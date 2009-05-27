@@ -157,11 +157,11 @@
     var markerIcon = markerIcons[type];
     var img = document.createElement('img');
     var imgDiv = document.createElement('div');
-    img.src = markerIcon.get_url();
+    img.src = markerIcon.url;
     imgDiv.style.position = 'absolute';
     imgDiv.style.visibility = 'visible';
-    imgDiv.style.top = (point.y - markerIcon.get_origin().y)+ 'px';
-    imgDiv.style.left = (point.x - markerIcon.get_origin().x) + 'px';
+    imgDiv.style.top = (point.y - markerIcon.origin.y)+ 'px';
+    imgDiv.style.left = (point.x - markerIcon.origin.x) + 'px';
     imgDiv.appendChild(img);
     this.imgs[place].push(imgDiv);
     this.div_.appendChild(imgDiv);
