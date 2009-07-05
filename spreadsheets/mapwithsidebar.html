@@ -11,8 +11,7 @@ sans-serif; font-size:11px; border:1px solid black">
 </div>
 
 <!-- Here -->
-<script type="text/javascript" src="http://maps-api-tt.appspot.com/apilite/3/apiv3.js"></script>
-
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 
 <script type="text/javascript">
 //<![CDATA[
@@ -39,16 +38,12 @@ var param_iconOverType = "orange";
 function cm_load() {  
   var myLatlng = new google.maps.LatLng(43.907787,-79.359741);
   var myOptions = {
-    key: 'ABQIAAAA-O3c-Om9OcvXMOJXreXHAxRlOb26qSyU154aZeLwOrF4C7-DphSw7JoLuXrcDjUb_7h-S1txkSCY7A',
     zoom: 2,
     center: myLatlng,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    sensor: '<i>set_to_true_or_false</i>'
   }
   cm_map = new google.maps.Map(document.getElementById("cm_map"), myOptions);
 
-  //  cm_map.addControl(new GLargeMapControl());
-  //  cm_map.addControl(new GMapTypeControl());
   cm_getJSON();
 }
 
@@ -59,12 +54,10 @@ function cm_load() {
  */
 function cm_markerClicked(markerNum) {
   var infowindowOptions = {
-    content: cm_mapHTMLS[markerNum]
+    content: cm_mapHTMLS[markerNum],
   }
-  var infowindow = new google.maps.InfoWindow(
-      infowindowOptions,
-      cm_map,
-      cm_mapMarkers[markerNum]);
+  var infowindow = new google.maps.InfoWindow(infowindowOptions);
+  infowindow.open(cm_map, cm_mapMarkers[markerNum]);
   cm_setInfowindow(infowindow);
 }
 
@@ -222,27 +215,27 @@ function cm_createMarker(map, latlng, title, html, rank) {
   var markerOptions = {
     title: title,
     icon: markerImage,
-    shadow: markerShadow
+    shadow: markerShadow,
+    position: latlng,
+    map: map
   }
 
-  var marker = new google.maps.Marker(latlng, markerOptions, map);
+  var marker = new google.maps.Marker(markerOptions);
 
   google.maps.event.addListener(marker, "click", function() {
     var infowindowOptions = {
       content: html
     }
-    var infowindow = new google.maps.InfoWindow(
-        infowindowOptions,
-        map,
-        marker);
+    var infowindow = new google.maps.InfoWindow(infowindowOptions);
     cm_setInfowindow(infowindow);
-    marker.set_icon(markerImageOut);
+    infowindow.open(map, marker);
+    //marker.set_icon(markerImageOut);
   });
   google.maps.event.addListener(marker, "mouseover", function() {
-    marker.set_icon(markerImageOver);
+    //marker.set_icon(markerImageOver);
   });
   google.maps.event.addListener(marker, "mouseout", function() {
-    marker.set_icon(markerImageOut);
+    //marker.set_icon(markerImageOut);
   });
 
   return marker;
