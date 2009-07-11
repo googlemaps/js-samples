@@ -40,7 +40,7 @@ function cm_load() {
   var myOptions = {
     zoom: 2,
     center: myLatlng,
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
   }
   cm_map = new google.maps.Map(document.getElementById("cm_map"), myOptions);
 
@@ -54,7 +54,7 @@ function cm_load() {
  */
 function cm_markerClicked(markerNum) {
   var infowindowOptions = {
-    content: cm_mapHTMLS[markerNum],
+    content: cm_mapHTMLS[markerNum]
   }
   var infowindow = new google.maps.InfoWindow(infowindowOptions);
   infowindow.open(cm_map, cm_mapMarkers[markerNum]);
