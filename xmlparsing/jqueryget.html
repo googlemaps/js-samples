@@ -17,6 +17,10 @@
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
     var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    // For more information on doing XMLHR with jQuery, see these resources:
+    // http://net.tutsplus.com/tutorials/javascript-ajax/use-jquery-to-retrieve-data-from-an-xml-file/
+    // http://marcgrabanski.com/article/jquery-makes-parsing-xml-easy
     jQuery.get("data.xml", {}, function(data) {
       jQuery(data).find("marker").each(function() {
         var marker = jQuery(this);
