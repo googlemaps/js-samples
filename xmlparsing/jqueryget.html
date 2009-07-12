@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Google Maps JavaScript API v3 Example: Common Loader</title>
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+<script type="text/javascript" src="util.js"></script>
+<script type="text/javascript">
+  google.load("maps", "3",  {other_params:"sensor=false"});
+  google.load("jquery", "1.3.2");
+
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(37.4419, -122.1419);
+    var myOptions = {
+      zoom: 13,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    jQuery.get("data.xml", {}, function(data) {
+      jQuery(data).find("marker").each(function() {
+        var marker = jQuery(this);
+        var latlng = new google.maps.LatLng(parseFloat(marker.attr("lat")),
+                                    parseFloat(marker.attr("lng")));
+        var marker = new google.maps.Marker({position: latlng, map: map});
+     });
+    });
+  }
+
+  google.setOnLoadCallback(initialize);
+</script>
+</head>
+<body>
+  <div id="map_canvas" style="width:400px; height:300px"></div>
+</body>
+</html>
