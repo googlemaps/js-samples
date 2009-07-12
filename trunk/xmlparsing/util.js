@@ -73,6 +73,10 @@ function xmlParse(str) {
   return createElement('div', null);
 }
 
+/**
+ * Appends a JavaScript file to the page.
+ * @param {string} url
+ */
 function downloadScript(url) {
   var script = document.createElement('script');
   script.src = url;
