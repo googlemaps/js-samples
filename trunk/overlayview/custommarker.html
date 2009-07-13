@@ -38,7 +38,7 @@
 
       // Then add the overlay to the DOM
       var panes = this.get_panes();
-      panes.overlayLayer.appendChild(div);
+      panes.overlayImage.appendChild(div);
     }
 
     // Position the overlay 
@@ -57,6 +57,10 @@
     }
   };
 
+  CustomMarker.prototype.get_position = function() {
+   return this.latlng_;
+  };
+
   var map;
   var overlay;
   function initialize() {
@@ -68,6 +72,8 @@
     map = new google.maps.Map(document.getElementById("map"), opts);
 
     overlay = new CustomMarker(map.get_center(), map);
+    var iw = google.maps.InfoWindow({content: "Hello!", pixelOffset: new google.maps.Size(5,0)});
+    iw.open(map, overlay);
     google.maps.event.addListener(overlay, "click", function() {
       alert("You clicked me! Yippee!");
     });
