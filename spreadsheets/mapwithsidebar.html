@@ -229,13 +229,13 @@ function cm_createMarker(map, latlng, title, html, rank) {
     var infowindow = new google.maps.InfoWindow(infowindowOptions);
     cm_setInfowindow(infowindow);
     infowindow.open(map, marker);
-    //marker.set_icon(markerImageOut);
+    marker.set_icon(markerImageOut);
   });
   google.maps.event.addListener(marker, "mouseover", function() {
-    //marker.set_icon(markerImageOver);
+    marker.set_icon(markerImageOver);
   });
   google.maps.event.addListener(marker, "mouseout", function() {
-    //marker.set_icon(markerImageOut);
+    marker.set_icon(markerImageOut);
   });
 
   return marker;
