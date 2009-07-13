@@ -1,0 +1,34 @@
+#searchwell {
+  width : 330px;
+}
+
+#searchwell .unselected {
+  padding-left: 18px;
+  padding-top: 1px;
+  margin-top: 5px;
+  background-image: url("http://labs.google.com/ridefinder/images/mm_20_yellow.png");
+  background-repeat: no-repeat;
+  background-position: top left;
+}
+
+.unselected .gs-watermark {
+  display: none;
+}
+
+.unselected .gs-directions {
+  display: none;
+}
+
+.unselected .gs-directions-to-from {
+  display: none;
+}
+
+.unselected .select {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #7777cc;
+}
+
+#searchwell .red {
+  background-image: url("http://labs.google.com/ridefinder/images/mm_20_red.png");
+}
