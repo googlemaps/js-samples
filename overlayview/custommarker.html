@@ -73,7 +73,7 @@
     var iw = new google.maps.InfoWindow({content: "Hello!", pixelOffset: new google.maps.Size(5,0)});
     iw.open(map, overlay);
     google.maps.event.addListener(overlay, "click", function() {
-      alert("You clicked me! Yippee!");
+      iw.open(map, overlay);
     });
   }
 
