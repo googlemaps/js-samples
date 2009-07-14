@@ -4,8 +4,6 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <script>
   function CustomMarker(latlng,  map) {
-    google.maps.OverlayView.call(this);
-
     this.latlng_ = latlng;
 
     // Once the LatLng and text are set, add the overlay to the map.  This will
@@ -72,7 +70,7 @@
     map = new google.maps.Map(document.getElementById("map"), opts);
 
     overlay = new CustomMarker(map.get_center(), map);
-    var iw = google.maps.InfoWindow({content: "Hello!", pixelOffset: new google.maps.Size(5,0)});
+    var iw = new google.maps.InfoWindow({content: "Hello!", pixelOffset: new google.maps.Size(5,0)});
     iw.open(map, overlay);
     google.maps.event.addListener(overlay, "click", function() {
       alert("You clicked me! Yippee!");
