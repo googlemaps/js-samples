@@ -19,7 +19,7 @@
         mapTypeId: 'roadmap',
         mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU}
       });
-      infoWindow = new google.maps.InfoWindow;
+      infoWindow = new google.maps.InfoWindow();
 
       locationSelect = document.getElementById("locationSelect");
       locationSelect.onchange = function() {
@@ -43,6 +43,7 @@
    }
 
    function clearLocations() {
+     infoWindow.close();
      for (var i = 0; i < markers.length; i++) {
        markers[i].set_map(null);
      }
@@ -59,7 +60,7 @@
      clearLocations(); 
 
      var radius = document.getElementById('radiusSelect').value;
-     var searchUrl = 'phpsqlajax_search.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
+     var searchUrl = 'phpsqlsearch_genxml.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
      downloadUrl(searchUrl, function(data) {
        var xml = parseXml(data);
        var markerNodes = xml.documentElement.getElementsByTagName("marker");
