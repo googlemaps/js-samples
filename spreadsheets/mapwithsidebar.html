@@ -149,7 +149,7 @@ function cm_loadMapJSON(json) {
   }
 
   cm_map.fitBounds(bounds);
-  cm_map.set_center(bounds.getCenter());
+  cm_map.setCenter(bounds.getCenter());
 }
 
 function cm_setInfowindow(newInfowindow) {
@@ -229,13 +229,13 @@ function cm_createMarker(map, latlng, title, html, rank) {
     var infowindow = new google.maps.InfoWindow(infowindowOptions);
     cm_setInfowindow(infowindow);
     infowindow.open(map, marker);
-    marker.set_icon(markerImageOut);
+    marker.setIcon(markerImageOut);
   });
   google.maps.event.addListener(marker, "mouseover", function() {
-    marker.set_icon(markerImageOver);
+    marker.setIcon(markerImageOver);
   });
   google.maps.event.addListener(marker, "mouseout", function() {
-    marker.set_icon(markerImageOut);
+    marker.setIcon(markerImageOut);
   });
 
   return marker;

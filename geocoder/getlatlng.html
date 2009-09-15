@@ -54,19 +54,19 @@
     }, 1000);
 
     google.maps.event.addListener(map, 'zoom_changed', function() {
-      document.getElementById("zoom_level").innerHTML = map.get_zoom();
+      document.getElementById("zoom_level").innerHTML = map.getZoom();
     });
 
     google.maps.event.addListener(map, 'center_changed', centerChanged);
 
     google.maps.event.addDomListener(document.getElementById('crosshair'),'dblclick', function() {
-       map.set_zoom(map.get_zoom() + 1);
+       map.setZoom(map.getZoom() + 1);
     });
 
   }
 
   function getCenterLatLngText() {
-    return '(' + map.get_center().lat() +', '+ map.get_center().lng() +')';
+    return '(' + map.getCenter().lat() +', '+ map.getCenter().lng() +')';
   }
 
   function centerChanged() {
@@ -79,7 +79,7 @@
 
   function reverseGeocode() {
     reverseGeocodedLast = new Date();
-    geocoder.geocode({latLng:map.get_center()},reverseGeocodeResult);
+    geocoder.geocode({latLng:map.getCenter()},reverseGeocodeResult);
   }
 
   function reverseGeocodeResult(results, status) {
@@ -113,7 +113,7 @@
 
   function addMarkerAtCenter() {
     var marker = new google.maps.Marker({
-        position: map.get_center(),
+        position: map.getCenter(),
         map: map
     });
 

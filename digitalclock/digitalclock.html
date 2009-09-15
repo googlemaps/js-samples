@@ -19,13 +19,11 @@
     map = new google.maps.Map(mapDiv, mapOptions);
 
     var clockOverlay = new ClockOverlay();
-    clockOverlay.set_map(map);
+    clockOverlay.setMap(map);
     clockOverlay.start();
   }
 
   function ClockOverlay() {
-    google.maps.OverlayView.call(this);
-
     var horizontalSize = new google.maps.Size(42, 16);
     var horizontalPoint = new google.maps.Point(21, 8);
     var horizontalIcon = new google.maps.MarkerImage("marker_hor.png",
@@ -85,17 +83,17 @@
     }
 
     // Get the overlay panes
-    var panes = this.get_panes();
+    var panes = this.getPanes();
 
     // Check if the overlay panes are available
     if (panes) {
       this.imgs = {
-        "hour_10":[], 
+        "hour_10":[],
         "hour_1" :[],
-        "min_10" :[], 
+        "min_10" :[],
         "min_1"  :[],
         "sec_10" :[],
-        "sec_1"  :[], 
+        "sec_1"  :[],
         "colon" : []
       };
 
@@ -132,7 +130,7 @@
       } else if (placeImgs[i].style.visibility != 'hidden' && !numberLayout[i]) {
         // if showing and should be off
         placeImgs[i].style.visibility = 'hidden';
-      } 
+      }
     }
   };
 

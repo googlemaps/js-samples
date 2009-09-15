@@ -31,7 +31,7 @@ function initialize() {
         map: map
     });
     var j = i + 1;
-    marker.set_title(j.toString());
+    marker.setTitle(j.toString());
     attachInfowindow(marker, i);
   }
 }
@@ -41,7 +41,7 @@ function attachInfowindow(marker, number) {
       { content: "I like to be on top!"
       });
   google.maps.event.addListener(marker, 'click', function() {
-    infowindow.set_zIndex(++infowindowLevel);
+    infowindow.setZIndex(++infowindowLevel);
     infowindow.open(map,marker);
   });
 }
