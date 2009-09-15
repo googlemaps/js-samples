@@ -69,8 +69,8 @@
     // Centre the map on the new location
     var coords = position.coords || position.coordinate || position;
     var latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
-    map.set_center(latLng);
-    map.set_zoom(12);
+    map.setCenter(latLng);
+    map.setZoom(12);
     var marker = new google.maps.Marker(latLng, map, {title:"Why, there you are!"});
   }
 

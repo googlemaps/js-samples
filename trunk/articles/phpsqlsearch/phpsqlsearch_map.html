@@ -45,7 +45,7 @@
    function clearLocations() {
      infoWindow.close();
      for (var i = 0; i < markers.length; i++) {
-       markers[i].set_map(null);
+       markers[i].setMap(null);
      }
      markers.length = 0;
 
@@ -93,7 +93,7 @@
         position: latlng
       });
       google.maps.event.addListener(marker, 'click', function() {
-        infoWindow.set_content(html);
+        infoWindow.setContent(html);
         infoWindow.open(map, marker);
       });
       markers.push(marker);

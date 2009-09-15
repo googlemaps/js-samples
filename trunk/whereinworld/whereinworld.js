@@ -293,21 +293,21 @@ updateScoreElement = function() {
 centerMap = function() {
   resetMapState();
   var location = currentRound.getLatLng();
-  map.set_mapTypeId(google.maps.MapTypeId.SATELLITE);
-  map.set_center(location);
-  map.set_zoom(levelZoom());
-  marker.set_position(location);
+  map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+  map.setCenter(location);
+  map.setZoom(levelZoom());
+  marker.setPosition(location);
   marker.setMap(map);
   document.getElementById("difficulty").innerHTML = "Difficulty: " +
                                                     levelDifficulty();
 }
 
 setStatusToAnswerState = function() {
-  map.set_zoom(answerStateZoom);
-  map.set_mapTypeId(google.maps.MapTypeId.HYBRID);
+  map.setZoom(answerStateZoom);
+  map.setMapTypeId(google.maps.MapTypeId.HYBRID);
   marker.setMap();
-  infowindow.set_position(currentRound.getLatLng());
-  infowindow.set_content('<center><h2>' +
+  infowindow.setPosition(currentRound.getLatLng());
+  infowindow.setContent('<center><h2>' +
                          currentRound.getCorrectLocationName()
                          + '</h2></center>');
   infowindow.open(map);

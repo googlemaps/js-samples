@@ -31,7 +31,7 @@ function InfoBox(opts) {
   // Once the properties of this OverlayView are initialized, set its map so
   // that we can display it.  This will trigger calls to panes_changed and
   // draw.
-  this.set_map(this.map_);
+  this.setMap(this.map_);
 }
 
 /* InfoBox extends GOverlay class from the Google Maps API
@@ -56,7 +56,7 @@ InfoBox.prototype.draw = function() {
 
   // Calculate the DIV coordinates of two opposite corners of our bounds to
   // get the size and position of our Bar
-  var pixPosition = this.get_projection().fromLatLngToDivPixel(this.latlng_);
+  var pixPosition = this.getProjection().fromLatLngToDivPixel(this.latlng_);
   if (!pixPosition) return;
 
   // Now position our DIV based on the DIV coordinates of our bounds
@@ -68,14 +68,14 @@ InfoBox.prototype.draw = function() {
 };
 
 /* Creates the DIV representing this InfoBox in the floatPane.  If the panes
- * object, retrieved by calling get_panes, is null, remove the element from the
+ * object, retrieved by calling getPanes, is null, remove the element from the
  * DOM.  If the div exists, but its parent is not the floatPane, move the div
  * to the new pane.
  * Called from within draw.  Alternatively, this can be called specifically on
  * a panes_changed event.
  */
 InfoBox.prototype.createElement = function() {
-  var panes = this.get_panes();
+  var panes = this.getPanes();
   var div = this.div_;
   if (!div) {
     // This does not handle changing panes.  You can set the map to be null and
@@ -101,7 +101,7 @@ InfoBox.prototype.createElement = function() {
 
     function removeInfoBox(ib) {
       return function() {
-        ib.set_map(null);
+        ib.setMap(null);
       };
     }
 
@@ -126,7 +126,7 @@ InfoBox.prototype.createElement = function() {
 InfoBox.prototype.panMap = function() {
   // if we go beyond map, pan map
   var map = this.map_;
-  var bounds = map.get_bounds();
+  var bounds = map.getBounds();
   if (!bounds) return;
 
   // The position of the infowindow
@@ -175,14 +175,14 @@ InfoBox.prototype.panMap = function() {
       (iwSouthLat < mapSouthLat ? mapSouthLat - iwSouthLat : 0);
 
   // The center of the map
-  var center = map.get_center();
+  var center = map.getCenter();
 
   // The new map center
   var centerX = center.lng() - shiftLng;
   var centerY = center.lat() - shiftLat;
 
   // center the map to the new shifted center
-  map.set_center(new google.maps.LatLng(centerY, centerX));
+  map.setCenter(new google.maps.LatLng(centerY, centerX));
 
   // Remove the listener after panning is complete.
   google.maps.event.removeListener(this.boundsChangedListener_);
@@ -203,7 +203,7 @@ function initialize() {
         map: map
     });
     google.maps.event.addListener(marker, "click", function(e) {
-      var infoBox = new InfoBox({latlng: marker.get_position(), map: map});
+      var infoBox = new InfoBox({latlng: marker.getPosition(), map: map});
     });
     google.maps.event.trigger(marker, "click");
   }

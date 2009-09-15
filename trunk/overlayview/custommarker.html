@@ -8,7 +8,7 @@
 
     // Once the LatLng and text are set, add the overlay to the map.  This will
     // trigger a call to panes_changed which should in turn call draw.
-    this.set_map(map);
+    this.setMap(map);
   }
 
   CustomMarker.prototype = new google.maps.OverlayView();
@@ -35,12 +35,12 @@
       });
 
       // Then add the overlay to the DOM
-      var panes = this.get_panes();
+      var panes = this.getPanes();
       panes.overlayImage.appendChild(div);
     }
 
     // Position the overlay 
-    var point = this.get_projection().fromLatLngToDivPixel(this.latlng_);
+    var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
     if (point) {
       div.style.left = point.x + 'px';
       div.style.top = point.y + 'px';
@@ -55,7 +55,7 @@
     }
   };
 
-  CustomMarker.prototype.get_position = function() {
+  CustomMarker.prototype.getPosition = function() {
    return this.latlng_;
   };
 
@@ -69,7 +69,7 @@
     }
     map = new google.maps.Map(document.getElementById("map"), opts);
 
-    overlay = new CustomMarker(map.get_center(), map);
+    overlay = new CustomMarker(map.getCenter(), map);
     var iw = new google.maps.InfoWindow({content: "Hello!", pixelOffset: new google.maps.Size(5,0)});
     iw.open(map, overlay);
     google.maps.event.addListener(overlay, "click", function() {
@@ -78,11 +78,11 @@
   }
 
   function addOverlay() {
-    overlay.set_map(map);
+    overlay.setMap(map);
   }
 
   function removeOverlay() {
-    overlay.set_map(null);
+    overlay.setMap(null);
   }
 </script>
 </head>

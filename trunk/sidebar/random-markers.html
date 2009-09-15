@@ -9,7 +9,7 @@
     padding: 0;
     font-size: 0.9em;
   }
-  
+
   #sideContainer {
     list-style-type: none;
     padding: 0;
@@ -86,7 +86,7 @@ var Demo = {
   
   clearMarkers: function() {
     for (var n = 0, marker; marker = Demo.markers[n]; n++) {
-      marker.set_visible(false);
+      marker.setVisible(false);
     }
   },
   
@@ -141,7 +141,7 @@ var Demo = {
       // Add marker click event listener.
       google.maps.event.addListener(
           marker, 'click', Demo.openInfoWindow(infoWindow, marker));
-      
+
       // Generate list elements for each marker.
       var li = document.createElement('li');
       var aSel = document.createElement('a');
@@ -150,17 +150,17 @@ var Demo = {
       aSel.onclick = Demo.generateTriggerCallback(marker, 'click');
       li.appendChild(aSel);
       ul.appendChild(li);
-      
+
       // Sum up all lat/lng to calculate center all points.
       avg.lat += randLatLng.lat();
       avg.lng += randLatLng.lng();
     }
-    
+
     // Center map.
-    Demo.map.set_center(new google.maps.LatLng(
+    Demo.map.setCenter(new google.maps.LatLng(
         avg.lat / Demo.numMarkers, avg.lng / Demo.numMarkers));
   },
-  
+
   init: function() {
     var firstLatLng = new google.maps.LatLng(37.4419, -122.1419);
     Demo.map = new google.maps.Map(Demo.mapContainer, {
@@ -168,15 +168,15 @@ var Demo = {
       center: firstLatLng,
       mapTypeId: google.maps.MapTypeId.ROADMAP,
     });
-    
+
     // Show generate link only after map tiles finish loading.
     google.maps.event.addListener(Demo.map, 'tilesloaded', function() {
       Demo.generateLink.style.display = 'block';
     });
-    
+
     // Add onclick handler to generate link.
     google.maps.event.addDomListener(Demo.generateLink, 'click', function() {
-      Demo.generateRandomMarkers(Demo.map.get_center());
+      Demo.generateRandomMarkers(Demo.map.getCenter());
     });
     
     // Generate markers against map center.
