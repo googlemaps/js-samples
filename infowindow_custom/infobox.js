@@ -77,7 +77,7 @@ InfoBox.prototype.draw = function() {
 
   // Calculate the DIV coordinates of two opposite corners of our bounds to
   // get the size and position of our Bar
-  var pixPosition = this.get('projection').fromLatLngToDivPixel(this.latlng_);
+  var pixPosition = this.getProjection.fromLatLngToDivPixel(this.latlng_);
   if (!pixPosition) return;
 
   // Now position our DIV based on the DIV coordinates of our bounds
@@ -98,11 +98,11 @@ InfoBox.prototype.draw = function() {
   var degHeight = (this.height_/mapHeight) * latSpan;
 
   if (this.latlng_.lng() + degWidth > bounds.getNorthEast().lng()) {
-    this.map_.set_center(this.latlng_);
+    this.map_.setCenter(this.latlng_);
   }
 
   var bottompt = new google.maps.LatLng( (this.latlng_.lat() - degHeight), this.latlng_.lng());
   if (!bounds.contains(bottompt)) {
-    this.map_.set_center(this.latlng_);
+    this.map_.setCenter(this.latlng_);
   }
 }

@@ -81,7 +81,7 @@
       searchWell.innerHTML = "";
       for (var i = 0; i < gCurrentResults.length; i++) {
         if (!gCurrentResults[i].selected()) {
-          gCurrentResults[i].marker().set_map(null);
+          gCurrentResults[i].marker().setMap(null);
         }
       }
 
@@ -97,7 +97,7 @@
 
       // Move the map to the first result
       var first = gLocalSearch.results[0];
-      gMap.set_center(new google.maps.LatLng(parseFloat(first.lat),
+      gMap.setCenter(new google.maps.LatLng(parseFloat(first.lat),
                                              parseFloat(first.lng)));
 
     }
@@ -159,7 +159,7 @@
       unselectMarkers();
       this.selected_ = true;
       this.highlight(true);
-      gInfoWindow.set_content(this.html(true));
+      gInfoWindow.setContent(this.html(true));
       gInfoWindow.open(gMap, this.marker());
     };
 
