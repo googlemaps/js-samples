@@ -1,0 +1,104 @@
+<html>
+<head>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script>
+  // Generates points for a square Koch snowflake at the given level.
+  // Level 0 is a simple square.
+  function generatePoints(level) {
+    var points = [
+        [1, 0],
+        [0, 1],
+        [-1, 0],
+        [0, -1],
+        [1, 0]
+    ];
+
+    while (level--) {
+      var newPoints = [ points[0] ];
+      var lastPoint;
+      for (var i = 0, I = points.length; i < I; ++i) {
+        var point = points[i];
+        if (lastPoint) {
+          var normal = [(point[1] - lastPoint[1]) * 2/5,
+                        -(point[0] - lastPoint[0]) * 2/5];
+          newPoints.push(
+              [lastPoint[0] * 3/5 + point[0] * 2/5,
+               lastPoint[1] * 3/5 + point[1] * 2/5]);
+          newPoints.push(
+              [lastPoint[0] * 3/5 + point[0] * 2/5 + normal[0] * 1/2,
+               lastPoint[1] * 3/5 + point[1] * 2/5 + normal[1] * 1/2]);
+          newPoints.push(
+              [lastPoint[0] * 2/5 + point[0] * 3/5 + normal[0] * 1/2,
+               lastPoint[1] * 2/5 + point[1] * 3/5 + normal[1] * 1/2]);
+          newPoints.push(
+              [lastPoint[0] * 2/5 + point[0] * 3/5,
+               lastPoint[1] * 2/5 + point[1] * 3/5]);
+          newPoints.push(point);
+        }
+        lastPoint = point;
+      }
+      points = newPoints;
+    }
+
+    return points;
+  }
+
+  function makePolyline(level) {
+    var points = generatePoints(level);
+    log('Vertices: ' + points.length);
+    var latlngs = new Array(points.length);
+    for (var i = 0, I = points.length; i < I; ++i) {
+      var point = points[i];
+      latlngs[i] = new google.maps.LatLng(point[0], point[1]);
+    }
+    poly = new google.maps.Polygon({paths: latlngs});
+    return poly;
+  }
+
+  var map, poly;
+  function initialize() {
+    map = new google.maps.Map(document.getElementById("map"));
+    map.setCenter(new google.maps.LatLng(0, 0));
+    map.setZoom(6);
+    map.setMapTypeId('roadmap');
+
+    setLevel(4);
+  }
+
+  function setLevel(levelString) {
+    var level = parseInt(levelString, 10);
+    if (('' + level) != levelString) {
+      alert('Iterations should be a number!');
+    } else if (level < 0) {
+      alert('Iterations should be positive');
+    } else if (level > 7) {
+      alert('Maximum of 7 iterations');
+    } else {
+      if (poly) {
+        poly.setMap(null);
+        poly = null;
+      }
+      poly = makePolyline(level);
+      poly.setMap(map);
+    }
+  }
+
+  function log(msg) {
+    document.getElementById('log').innerHTML = msg;
+  }
+</script>
+</head>
+<body onload="initialize()">
+  This is a square <a href="http://en.wikipedia.org/wiki/Koch_snowflake">
+    Koch snowflake
+  </a>.  Zoom in to see more!
+  <div id="map" style="width: 320px; height: 480px;">map div</div>
+  <div>
+    Iterations: 
+    <input id="level" type="textbox" value="4">
+    <input type="button" value="redraw"
+           onclick="setLevel(document.getElementById('level').value)">
+  </div>
+  <div id="log"></div>
+</body>
+</html>
