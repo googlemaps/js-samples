@@ -51,7 +51,7 @@
         msg = "Unable to find your location";
         break;
       case err.PERMISSION_DENINED:
-        msg = "Permissioned denied in finding your location";
+        msg = "Permission denied in finding your location";
         break;
       case err.POSITION_UNAVAILABLE:
         msg = "Your location is currently unknown";
@@ -71,8 +71,40 @@
     var latLng = new google.maps.LatLng(coords.latitude, coords.longitude);
     map.setCenter(latLng);
     map.setZoom(12);
-    var marker = new google.maps.Marker(latLng, map, {title:"Why, there you are!"});
+    var marker = new google.maps.Marker({
+	    map: map,
+	    position: latLng,
+	    title: 'Why, there you are!'
+    });
+    document.getElementById('info').innerHTML = 'Looking for <b>' +
+        coords.latitude + ', ' + coords.longitude + '</b>...';
+
+    // And reverse geocode.
+    (new google.maps.Geocoder()).geocode({latLng: latLng}, function(resp) {
+		  var place = "You're around here somewhere!";
+		  if (resp[0]) {
+			  var bits = [];
+			  for (var i = 0, I = resp[0].address_components.length; i < I; ++i) {
+				  var component = resp[0].address_components[i];
+				  if (contains(component.types, 'political')) {
+					  bits.push('<b>' + component.long_name + '</b>');
+					}
+				}
+				if (bits.length) {
+					place = bits.join(' > ');
+				}
+				marker.setTitle(resp[0].formatted_address);
+			}
+			document.getElementById('info').innerHTML = place;
+	  });
   }
+
+  function contains(array, item) {
+	  for (var i = 0, I = array.length; i < I; ++i) {
+		  if (array[i] == item) return true;
+		}
+		return false;
+	}
 
 </script>
 </head>
