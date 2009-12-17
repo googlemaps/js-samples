@@ -57,12 +57,12 @@ function initialize() {
   
   google.maps.event.addListener(marker, 'drag', function() {
     updateMarkerStatus('Dragging...');
-    updateMarkerPosition(marker.get_position());
+    updateMarkerPosition(marker.getPosition());
   });
   
   google.maps.event.addListener(marker, 'dragend', function() {
     updateMarkerStatus('Drag ended');
-    geocodePosition(marker.get_position());
+    geocodePosition(marker.getPosition());
   });
 }
 
