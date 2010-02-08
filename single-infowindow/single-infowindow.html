@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Single Info Windows</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+var Demo = {
+  map: null,
+  infoWindow: null
+};
+  
+/**
+ * Called when clicking anywhere on the map and closes the info window.
+ */
+Demo.closeInfoWindow = function() {
+  Demo.infoWindow.close();
+};
+
+/**
+ * Opens the shared info window, anchors it to the specified marker, and
+ * displays the marker's position as its content.
+ */
+Demo.openInfoWindow = function(marker) {
+  var markerLatLng = marker.getPosition();
+  Demo.infoWindow.setContent([
+    '<b>Marker position is:</b><br/>',
+    markerLatLng.lat() + ', ' + markerLatLng.lng()
+  ].join(''));
+  Demo.infoWindow.open(Demo.map, marker);
+},
+
+/**
+ * Called only once on initial page load to initialize the map.
+ */
+Demo.init = function() {
+  // Create single instance of a Google Map.
+  var centerLatLng = new google.maps.LatLng(37.789879, -122.390442);
+  Demo.map = new google.maps.Map(document.getElementById("map-canvas"), {
+    zoom: 13,
+    center: centerLatLng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+  
+  // Create a single instance of the InfoWindow object which will be shared
+  // by all Map objects to display information to the user.
+  Demo.infoWindow = new google.maps.InfoWindow();
+  
+  // Make the info window close when clicking anywhere on the map.
+  google.maps.event.addListener(Demo.map, 'click', Demo.closeInfoWindow);
+  
+  // Add multiple markers in a few random locations around San Francisco.
+  // First random marker
+  var marker1 = new google.maps.Marker({
+    map: Demo.map,
+    position: centerLatLng
+  });
+   
+  // Register event listeners to each marker to open a shared info
+  // window displaying the marker's position when clicked or dragged.
+  google.maps.event.addListener(marker1, 'click', function() {
+    Demo.openInfoWindow(marker1);
+  });
+  
+  // Second random marker
+  var marker2 = new google.maps.Marker({
+    map: Demo.map,
+    position: new google.maps.LatLng(37.787814,-122.40764),
+    draggable: true
+  });
+   
+  // Register event listeners to each marker to open a shared info
+  // window displaying the marker's position when clicked or dragged.
+  google.maps.event.addListener(marker2, 'click', function() {
+    Demo.openInfoWindow(marker2);
+  });
+  
+  // Third random marker
+  var marker3 = new google.maps.Marker({
+    map: Demo.map,
+    position: new google.maps.LatLng(37.767568,-122.391665),
+    draggable: true
+  });
+   
+  // Register event listeners to each marker to open a shared info
+  // window displaying the marker's position when clicked or dragged.
+  google.maps.event.addListener(marker3, 'click', function() {
+    Demo.openInfoWindow(marker3);
+  });
+}
+</script>
+</head>
+<body onload="Demo.init();">
+  <h2>Demonstrates how to share a single info window on a map.</h2>
+  <ol>
+    <li>Click a marker to open a single info window containing the marker's position.</li>
+    <li>Close an opened info window by clicking anywhere on the map.</li>
+  </ol>
+  <div id="map-canvas" style="width:500px; height:500px"></div>
+</body>
+</html>
