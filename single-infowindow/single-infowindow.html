@@ -24,7 +24,9 @@ Demo.openInfoWindow = function(marker) {
   var markerLatLng = marker.getPosition();
   Demo.infoWindow.setContent([
     '<b>Marker position is:</b><br/>',
-    markerLatLng.lat() + ', ' + markerLatLng.lng()
+    markerLatLng.lat(),
+    ', ',
+    markerLatLng.lng()
   ].join(''));
   Demo.infoWindow.open(Demo.map, marker);
 },
@@ -35,7 +37,7 @@ Demo.openInfoWindow = function(marker) {
 Demo.init = function() {
   // Create single instance of a Google Map.
   var centerLatLng = new google.maps.LatLng(37.789879, -122.390442);
-  Demo.map = new google.maps.Map(document.getElementById("map-canvas"), {
+  Demo.map = new google.maps.Map(document.getElementById('map-canvas'), {
     zoom: 13,
     center: centerLatLng,
     mapTypeId: google.maps.MapTypeId.ROADMAP
