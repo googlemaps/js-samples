@@ -102,7 +102,7 @@ CloudOverlay.prototype.draw = function() {
         cloud.circle.remove();
       }
       cloud.circle = cloud.canvas.circle(radius / 2, radius / 2, radius / 2)
-      cloud.circle.attr({stroke: 'none', fill: 'r(.5,.1)#fff-#fff', opacity: 0.0});
+      cloud.circle.attr({stroke: 'none', fill: 'r(.5,.5)#fff-#fff', opacity: 0.0});
       for (var j = 0; j < cloud.stars.length; j++) {
         cloud.stars[j].remove();
       }

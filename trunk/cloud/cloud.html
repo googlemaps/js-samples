@@ -24,7 +24,7 @@ function init() {
     mapTypeId: google.maps.MapTypeId.SATELLITE
   }
   map = new google.maps.Map(document.getElementById('map_canvas'), options);
-  for (var i = 0; i < 50; i++) {
+  for (var i = 0; i < 10; i++) {
     makeMarker(locations[i]);
   }
   cloud = new CloudOverlay(markers.slice(-7), map);
