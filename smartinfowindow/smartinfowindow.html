@@ -22,7 +22,7 @@ function init() {
     mapTypeId: google.maps.MapTypeId.SATELLITE
   }
   map = new google.maps.Map(document.getElementById('map_canvas'), options);
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 15; i++) {
     makeMarker(locations[i]);
   }
   centerMap();
@@ -46,7 +46,6 @@ function makeMarker(location) {
 </script>
 </head>
 <body onload="init()">
-  <input type="button" value="Next" onclick="nextMarker()">
   <div id="map_canvas" style="width:500px; height:600px;"></div>
 </body>
 </html>
