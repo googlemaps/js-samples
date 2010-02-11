@@ -15,18 +15,15 @@
 
     <script type="text/javascript">
       /**
-       * Called on the intiial page load.
+       * Called on the initial page load.
        */
-      function initialize() {
-        var latLng = new google.maps.LatLng(0, 0);
-        var options = {
+      function init() {
+        var mapCenter = new google.maps.LatLng(0, 0);
+        var map = new google.maps.Map(document.getElementById('map'), {
           'zoom': 1,
-          'center': latLng,
+          'center': mapCenter,
           'mapTypeId': google.maps.MapTypeId.ROADMAP
-        };
-
-        var map = new google.maps.Map(document.getElementById('map'),
-            options);
+        });
 
         // Create a draggable marker which will later on be binded to a
         // Circle overlay.
@@ -51,7 +48,7 @@
       }
       
       // Register an event listener to fire when the page finishes loading.
-      google.maps.event.addDomListener(window, 'load', initialize);
+      google.maps.event.addDomListener(window, 'load', init);
     </script>
   </head>
   <body>
