@@ -12,6 +12,7 @@
   var destination = null;
   var waypoints = [];
   var markers = [];
+  var directionsVisible = false;
 
   function initialize() {
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -77,6 +78,7 @@
         avoidHighways: document.getElementById('highways').checked,
         avoidTolls: document.getElementById('tolls').checked
     };
+    
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
@@ -84,20 +86,32 @@
     });
     
     clearMarkers();
+    directionsVisible = true;
+  }
+  
+  function updateMode() {
+    if (directionsVisible) {
+      calcRoute();
+    }
   }
   
   function clearMarkers() {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(null);
     }
+  }
+  
+  function clearWaypoints() {
     markers = [];
     origin = null;
     destination = null;
     waypoints = [];
+    directionsVisible = false;
   }
   
   function reset() {
     clearMarkers();
+    clearWaypoints();
     directionsDisplay.setMap(null);
     directionsDisplay.setPanel(null);
     directionsDisplay = new google.maps.DirectionsRenderer();
@@ -111,7 +125,7 @@
     <tr>
       <td><input type="checkbox" id="optimize" checked />Optimize</td>
       <td>
-        <select id="mode">
+        <select id="mode" onclick="updateMode()">
           <option value="bicycling">Bicycling</option>
           <option value="driving">Driving</option>
           <option value="walking">Walking</option>
