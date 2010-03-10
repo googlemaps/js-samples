@@ -29,22 +29,30 @@
     google.maps.event.addListener(map, 'click', function(event) {
       if (origin == null) {
         origin = event.latLng;
+        addMarker(origin);
       } else if (destination == null) {
         destination = event.latLng;
+        addMarker(destination);
       } else {
-        if (waypoints.length < 23) {
+        if (waypoints.length < 9) {
           waypoints.push({ location: destination, stopover: true });
           destination = event.latLng;
+          addMarker(destination);
+        } else {
+          alert("Maximum number of waypoints reached");
         }
       }
-      markers.push(new google.maps.Marker({
-        position: event.latLng, 
-        map: map,
-        icon: "http://maps.google.com/mapfiles/marker" + String.fromCharCode(markers.length + 65) + ".png"
-      }));
     });
   }
-  
+
+  function addMarker(latlng) {
+    markers.push(new google.maps.Marker({
+      position: latlng, 
+      map: map,
+      icon: "http://maps.google.com/mapfiles/marker" + String.fromCharCode(markers.length + 65) + ".png"
+    }));    
+  }
+
   function calcRoute() {
     if (origin == null) {
       alert("Click on the map to add a start point");
