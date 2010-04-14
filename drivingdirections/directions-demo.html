@@ -64,6 +64,7 @@ body {
   <div>
     <select onchange="Demo.getDirections();" id="travel-mode-input">
       <option value="driving" selected="selected">By car</option>
+      <option value="bicycling">Bicycling</option>
       <option value="walking">Walking</option>
     </select>
     <select onchange="Demo.getDirections();" id="unit-input">
@@ -108,6 +109,8 @@ var Demo = {
         Demo.travelModeInput.options[Demo.travelModeInput.selectedIndex].value;
     if (value == 'driving') {
       value = google.maps.DirectionsTravelMode.DRIVING;
+    } else if (value == 'bicycling') {
+      value = google.maps.DirectionsTravelMode.BICYCLING;
     } else if (value == 'walking') {
       value = google.maps.DirectionsTravelMode.WALKING;
     } else {
