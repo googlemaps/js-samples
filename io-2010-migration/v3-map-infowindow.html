@@ -1,0 +1,42 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<title>Simple Map</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+</head>
+<body onload="initialize()">
+
+<div id="map-canvas" style="width:500px; height:300px"></div>
+<script type="text/javascript">
+var map;
+var infoWindow = null;
+var counter = 0;
+function initialize() {
+  var myOptions = {
+    zoom: 13,
+    center: new google.maps.LatLng(37.4419, -122.1419),
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    scaleControl: true
+  };
+  var map = new google.maps.Map(
+      document.getElementById("map-canvas"),
+      myOptions);
+  
+  google.maps.event.addListener(map, 'click', function(mEvent) {
+    var marker = new google.maps.Marker();
+    marker.setPosition(mEvent.latLng);
+    marker.setMap(map);
+    
+    infoWindow = infoWindow || new google.maps.InfoWindow();
+    infoWindow.setPosition(mEvent.latLng);
+    infoWindow.setZIndex(counter);
+    infoWindow.setContent('Info window #' + counter);
+    infoWindow.open(map)
+    
+    counter++;
+  });
+}
+</script>
+
+</body>
+</html>
