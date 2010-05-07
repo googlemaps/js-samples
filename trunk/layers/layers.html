@@ -1,0 +1,117 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Google Maps JavaScript API v3 Example: Map Layers</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  var map;
+  
+  var kmlLayer = null;
+  var trafficLayer = null;
+  var bicyclingLayer = null;
+  var currentLayer = null;
+  
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(15, 0);
+    var myOptions = {
+      zoom: 1,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    
+    trafficLayer = new google.maps.TrafficLayer();
+    bicyclingLayer = new google.maps.BicyclingLayer();
+    kml();
+  }
+  
+  function traffic() {
+    map.setCenter(new google.maps.LatLng(40.7142691, -74.0059729));
+    map.setZoom(12);
+    clearLayer();
+    trafficLayer.setMap(map);
+    currentLayer = trafficLayer;
+  }
+  
+  function bicycling() {
+    map.setCenter(new google.maps.LatLng(42.3726399, -71.1096528));
+    map.setZoom(14);
+    clearLayer();
+    bicyclingLayer.setMap(map);
+    currentLayer = bicyclingLayer;
+  }
+  
+  function kml() {
+    url = document.getElementById("kmlUrl").value;
+    clearLayer();
+    kmlLayer = new google.maps.KmlLayer(url, { map: map });
+    currentLayer = kmlLayer;
+  }
+  
+  function clearLayer() {
+    if (currentLayer != null) {
+      currentLayer.setMap(null);
+    }
+  }
+  
+  function kmlKeyUp(e) {
+    var keyCode;
+  
+    if (window.event) {
+        keyCode = window.event.keyCode;
+    } else if (variable) {
+        keyCode = e.which;
+    }
+  
+    if (keyCode == 13) {
+        document.getElementById("kmlUrl").blur();
+        document.getElementById("kmlButton").click();
+    }
+  }
+</script>
+<style>
+  body {
+    font-family: sans-serif;
+  }
+  
+  #map_canvas {
+    border: 1px solid black;
+  }
+  
+  #layers {
+    border: 1px solid #000088;
+    background-color: #e0e0e0;
+    width: 512px;
+    margin-top: 1px;
+  }
+  
+  #heading {
+    font-weight: bold;
+    margin: 2px;
+  }
+</style>
+</head>
+<body style="margin:0px; padding:0px;" onload="initialize()">
+  <div id="map_canvas" style="width:512px; height:400px"></div>
+  <div id="layers">
+  <div id="heading">Layers</div>
+  <table>
+    <tr>
+      <td><input onclick="traffic()" type="radio" name="layer" id="trButton" value="traffic"/></td>
+      <td align="left">Traffic</td>
+    </tr>
+    <tr>
+      <td><input onclick="bicycling()" type="radio" name="layer" id="bcButton" value="bicycling"/></td>
+      <td align="left">Bicycling</td>
+    </tr>
+    <tr>
+      <td><input checked onclick="kml()" type="radio" name="layer" id="kmlButton" value="kml"/></td>
+      <td align="left">KML:
+        <input type="text" size="80" id="kmlUrl" onkeyup="kmlKeyUp()" value="http://services.google.com/earth/kmz/california_median_ages_n.kmz" />
+      </td>
+    </tr>
+  </table>
+  </div>
+</body>
+</html>
