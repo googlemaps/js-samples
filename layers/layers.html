@@ -1,10 +1,3 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
- Copyright 2010 Google Inc. 
- Licensed under the Apache License, Version 2.0: 
- http://www.apache.org/licenses/LICENSE-2.0 
- -->
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -20,9 +13,9 @@
   var currentLayer = null;
   
   function initialize() {
-    var myLatlng = new google.maps.LatLng(15, 0);
+    var myLatlng = new google.maps.LatLng(37.42166, -119.272);
     var myOptions = {
-      zoom: 1,
+      zoom: 5,
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
@@ -115,7 +108,7 @@
     <tr>
       <td><input checked onclick="kml()" type="radio" name="layer" id="kmlButton" value="kml"/></td>
       <td align="left">KML:
-        <input type="text" size="60" id="kmlUrl" onkeyup="kmlKeyUp()" value="http://services.google.com/earth/kmz/california_median_ages_n.kmz" />
+        <input type="text" size="80" id="kmlUrl" onkeyup="kmlKeyUp()" value="http://services.google.com/earth/kmz/california_median_ages_n.kmz" />
       </td>
     </tr>
   </table>
