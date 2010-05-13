@@ -5,9 +5,31 @@
     <title>Directions</title>
 
     <style type="text/css">
+      body {
+        font-family: Arial;
+        font-size: 12px;
+      }
+
       #map {
         width: 500px;
         height: 500px;
+        float: left;
+      }
+
+      #directions {
+        overflow: auto;
+        height: 500px;
+        width: 300px;
+        float: left;
+        margin-left: 5px;
+      }
+
+      #actions {
+        clear: both;
+      }
+
+      #to, #from {
+        width: 200px;
       }
     </style>
 
@@ -26,7 +48,10 @@
           zoom: 14,
           center: new google.maps.LatLng(37.44, -122.14),
           mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+          });
+
+        directionsRenderer.setMap(map);
+        directionsRenderer.setPanel(document.getElementById('directions'));
 
         geocoder = new google.maps.Geocoder();
         marker = new google.maps.Marker();
@@ -41,7 +66,6 @@
 
         directionsService.route(request, function(result, status) {
           if (status == google.maps.DirectionsStatus.OK) {
-            directionsRenderer.setMap(map);
             directionsRenderer.setDirections(result);
           }
         });
@@ -52,12 +76,17 @@
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    from
-    <input id="from" value="San Francisco, CA" style="width:200px"/>
-    to
-    <input id="to" value="New York, NY" style="width: 200px"/>
-    <button onclick="route()">Route</button>
+    <div>
+      <div id="map"></div>
+      <div id="directions"></div>
+    </div>
+    <div id="actions">
+      from
+      <input id="from" value="San Francisco, CA"/>
+      to
+      <input id="to" value="New York, NY"/>
+      <button onclick="route()">Route</button>
+    </div>
   </body>
 </html>
 
