@@ -82,22 +82,17 @@ AMC.clear = function() {
 AMC.timing = function() {
   AMC.count = 0;
   var start = new Date();
-  $("time-add").innerHTML = "timing...";
+  $('time-add').innerHTML = "timing...";
   
   if ($("usegmm").checked) {
-    AMC.markerClusterer = new MarkerClusterer(map, AMC.markers);
+    AMC.markerClusterer = new MarkerClusterer(AMC.map, AMC.markers);
     var end = new Date();
     $('time-add').innerHTML = end - start;
   } else {
-    
-  console.debug('length = ' + AMC.markers.length);
-  
     // Temporarily add map listener to detect overlays being added.  
     GEvent.addListener(AMC.map, 'addoverlay', function(overlay) {
       AMC.count++;
       if (AMC.count == AMC.markers.length - 1) {
-        console.debug(AMC.count);
-        
         var end = new Date();
         $('time-add').innerHTML = end - start;
         GEvent.clearListeners(AMC.map, 'addoverlay');
@@ -113,58 +108,27 @@ AMC.timing = function() {
 
 function markerClickFn(pic, latlng) {
   return function() {
-    var title = pic.photo_title;
-    var url = pic.photo_url;
-    var fileurl = pic.photo_file_url;
-    var infoHtml = '<div style="width:210px;"><h3>' + title
-     + '</h3><div style="width:200px;height:200px;line-height:200px;margin:2px 0;text-align:center;">'
-     + '<a id="infoimg" href="' + url + '" target="_blank">Loading...</a></div>'
-     + '<a href="http://www.panoramio.com/" target="_blank">'
-     + '<img src="http://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"></img></a><br/>'
-     + '<a href="' + pic.owner_url + '" target="_blank">' + pic.owner_name + '</a>';
-    var img = document.createElement("img");
-    GEvent.addDomListener(img, "load", function() {
-                           if ($("infoimg") == null) {
-                             return;
-                           }
-                           img = adjustImage(img, 200, 200);
-                           img.style.cssText = "vertical-align:middle;padding:1px;border:1px solid #EAEAEA;";
-                           $("infoimg").innerHTML = "";
-                           $("infoimg").appendChild(img);
-                         });
-    img.src = fileurl;
-    if(img.readyState == "complete" || img.readyState == "loaded") {
-     img = adjustImage(img, 280, 200);
-     infoHtml += '<img width=' + img.width + ' height=' + img.height
-       + ' style="vertical-align:middle;padding:1px;border:1px solid #aAaAaA"></img>';
-    }
-    infoHtml += '</div></div>';
+    var infoHtml = [
+      '<div class="info">',
+      '<h3>',
+      pic.photo_title,
+      '</h3>',
+      '<div class="info-body">',
+      '<a href="' + pic.photo_url + '" target="_blank">',
+      '<img class="info-img" src="' + pic.photo_file_url + '"/>',
+      '</a>',
+      '</div>',
+      '<a href="http://www.panoramio.com/" target="_blank">',
+      '<img ',
+      'src="http://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"/>',
+      '</a>',
+      '<br/>',
+      '<a href="' + pic.owner_url + '" target="_blank">',
+      pic.owner_name,
+      '</a>',
+      '</div>',
+      '</div>'
+    ].join('');
     AMC.map.openInfoWindowHtml(latlng, infoHtml);
   };
 }
-
-function adjustImage(img, maxwidth, maxheight) {
-  var wid = img.width;
-  var hei = img.height;
-  var newwid = wid;
-  var newhei = hei;
-  if(wid / maxwidth > hei / maxheight){
-   if(wid > maxwidth){
-     newwid = maxwidth;
-     newhei = parseInt(hei * newwid / wid);
-   }
-  } else {
-   if(hei > maxheight) {
-     newhei = maxheight;
-     newwid = parseInt(wid * newhei / hei);
-   }
-  }
-  var src = img.src;
-  img = document.createElement("img");
-  img.src = src;
-  img.width = newwid;
-  img.height = newhei;
-  return img;
-}
-
-window.AMC = AMC || window.AMC;

@@ -99,11 +99,12 @@ speedTest.markerClickFunction = function(pic, marker) {
       '</h3>',
       '<div class="info-body">',
       '<a href="' + pic.photo_url + '" target="_blank">',
-      '<img src="' + pic.photo_file_url + '" class="info-img"/>',
+      '<img class="info-img" src="' + pic.photo_file_url + '"/>',
       '</a>',
       '</div>',
       '<a href="http://www.panoramio.com" target="_blank">',
-      '<img src="http://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"/>',
+      '<img ',
+      'src="http://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"/>',
       '</a>',
       '<div>',
       '<a href="' + pic.owner_url + '" target="_blank">',
@@ -137,7 +138,8 @@ speedTest.time = function() {
   $('time-add').innerHTML = 'timing...';
   
   if ($('usegmm').checked) {
-    speedTest.markerClusterer = new MarkerClusterer(speedTest.map, speedTest.markers);
+    speedTest.markerClusterer = new MarkerClusterer(
+      speedTest.map, speedTest.markers);
     var end = new Date();
     $('time-add').innerHTML = end - start;
   } else {
@@ -146,8 +148,6 @@ speedTest.time = function() {
         return function() {
           speedTest.count++;
           if (speedTest.count == speedTest.markers.length - 1) {
-            console.debug(speedTest.count);
-            
             var end = new Date();
             $('time-add').innerHTML = end - start;
           }
