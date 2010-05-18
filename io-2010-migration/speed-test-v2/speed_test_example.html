@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Speed Test of MarkerClusterer</title>
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAjU0EJWnWPMv7oQ-jjS7dYxQGj0PqsCtxKvarsoS-iqLdqZSKfxRdmoPmGl7Y9335WLC36wIGYa6o5Q&sensor=false" type="text/javascript"></script>
+    <script type="text/javascript" src="data.json"></script>
+    <script type="text/javascript" src="markerclusterer_packed.js"></script>
+    <script type="text/javascript" src="speed_test.js"></script>
+  </head>
+  <body onload="AMC.init()" onunload="GUnload()">
+  
+<style>
+body {
+  font-size: 14px;
+}
+#userpanel {
+  float: left;
+  width: 250px;
+  height: 550px;
+}
+#map-panel {
+  margin-left: 250px;
+}
+#map {
+  width: 100%;
+  height: 500px;
+}
+#map span {
+  /* Hide long copyright */
+  visibility: hidden;
+}
+#userpanel h1 {
+  margin: 10px 0 0 5px;
+}
+#marker-list {
+  margin: 10px 5px 0 10px;
+  overflow: auto;
+  height: 400px;
+}
+
+#control-input {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#control-input li {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+#control-input input {
+  cursor: pointer;
+}
+#control-input .time-label {
+  font-size: 1.4em;
+}
+
+.red {
+  color: #b00;
+}
+</style>
+    
+    <div id="userpanel">
+      <h2>V2 Marker Performance</h2>
+
+      <ul id="control-input">
+        <li>
+          Use MarkerClusterer
+          <input type="checkbox" id="usegmm" onclick="AMC.changeType()"/>
+        </li>
+        <li>
+          <div>How many markers?</div>
+          <a href="javascript:void(0);">10</a>
+          |
+          <a href="javascript:void(0);">50</a>
+          |
+          <a href="javascript:void(0);">100</a>
+          |
+          <a href="javascript:void(0);">500</a>
+          |
+          <a href="javascript:void(0);">1000</a>
+        </li>
+        <li class="time-label">Marker count: <span id="num-markers" class="red">0</span></li>
+        <li class="time-label">Time (create): <span id="time-create" class="red">0</span> ms</li>
+        <li class="time-label">Time (add): <span id="time-add" class="red">0</span> ms</li>
+      </ul>
+
+      <div id="marker-list"></div>
+    </div>
+    
+    <div id="map-panel">
+      <div id="map"></div>
+    </div>
+    
+  </body>
+</html>
+
