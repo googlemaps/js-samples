@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>Circle Overlay</title>
+    <title>Multi-Map MVC Binds</title>
 
     <style type="text/css">
       .map-container {
@@ -20,7 +20,7 @@
       var maps = [];
       var headMap;
       var headMarker;
-      function createCircleMarker(latLng) {
+      function addCircleMarker(latLng) {
         // Create a draggable marker
         var marker = new google.maps.Marker({
           position: latLng,
@@ -29,6 +29,7 @@
 
         // Add a Circle overlay to the map
         var circle = new google.maps.Circle({
+          strokeWeight: 2,
           radius: 800
         });
         circle.bindTo('map', marker);
@@ -42,7 +43,7 @@
         mapNode.className = 'map-container';
         document.getElementById('maps').appendChild(mapNode);
         
-        // Double click on Map to move markers onto it.
+        // Create new Map object
         var map = new google.maps.Map(mapNode, {
           disableDoubleClickZoom: true,
           mapTypeControlOptions: {
@@ -52,12 +53,15 @@
             style: google.maps.NavigationControlStyle.DEFAULT
           }
         });
+        
+        // Single click on Map either moves head marker to it or adds a new one
         google.maps.event.addListener(map, 'click', function(e) {
           var currMap = headMarker.getMap();
           if (currMap === map) {
             // When same map containing head marker is clicked, create new
             // markers
-            var newMarker = createCircleMarker(e.latLng);
+            var newMarker = addCircleMarker(e.latLng);
+            newMarker.setPosition(e.latLng);
             newMarker.bindTo('map', headMarker);
             google.maps.event.addListener(newMarker, 'click', function() {
               newMarker.unbindAll();
@@ -79,12 +83,13 @@
       function init() {
         // Create the head map for all maps to follow
         headMap = createMap();
+        headMap.getDiv().style.borderColor = '#a00';
         headMap.setZoom(13);
         headMap.setCenter(new google.maps.LatLng(37.784182, -122.401509));
         headMap.setMapTypeId(google.maps.MapTypeId.TERRAIN);
         
         // Create the head marker for all markers to follow
-        headMarker = createCircleMarker(headMap.getCenter());
+        headMarker = addCircleMarker(headMap.getCenter());
         headMarker.setMap(headMap);
         headMarker.setIcon(new google.maps.MarkerImage(
             'http://www.google.com/mapfiles/markerH.png',
