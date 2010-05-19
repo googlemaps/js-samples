@@ -40,7 +40,8 @@
     });
     
     google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map,marker);
+      infowindow.open(map.getStreetView().getVisible() ?
+                      map.getStreetView() : map, marker);
     });
   }
 </script>
