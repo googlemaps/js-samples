@@ -20,8 +20,8 @@ AMC.markers = [];
 AMC.init = function() {
   if(GBrowserIsCompatible()) {
     AMC.map = new GMap2($('map'));
+    AMC.map.setUIToDefault();
     AMC.map.setCenter(new GLatLng(39.91, 116.38), 2);
-    AMC.map.addControl(new GLargeMapControl());
     AMC.pics = data.photos;
    
     // Register listeners for marker count links
