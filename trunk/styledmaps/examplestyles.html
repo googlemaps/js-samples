@@ -1,0 +1,182 @@
+<html>
+  <head>
+    <title>Styles</title>
+    <script type="text/javascript"
+      src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+      var maps;
+      var geocoder;
+      
+      function init() {
+        
+        maps = [];
+        geocoder = new google.maps.Geocoder();
+        
+        var styles = {
+          'Red': [
+            {
+              featureType: 'all',
+              rules: [{hue: '#ff0000'}]
+            }
+          ],
+          'Countries': [
+            {
+              featureType: 'all',
+              rules: [
+                {visibility: 'off'}
+              ]
+            },
+            {
+              featureType: 'water',
+              rules: [
+                {visibility: 'on'},
+                {lightness: -100 }
+              ]
+            }
+          ],
+          'Night': [
+            {
+              featureType: 'all',
+              rules: [{invert_lightness: 'true'}]
+            }        
+          ],
+          'Blue': [
+            {
+              featureType: 'all',
+              rules: [
+                {hue: '#0000b0'},
+                {invert_lightness: 'true'},
+                {saturation: -30}
+              ]
+            }
+          ],
+          'Greyscale': [
+            {              
+              featureType: 'all',
+              rules: [
+                {saturation: -100},
+                {gamma: 0.50}
+              ]
+            }
+          ],
+          'No roads': [
+            {
+              featureType: 'road',
+              rules: [
+                {visibility: 'off'}
+              ]
+            }
+          ],
+          'Mixed': [
+            {
+              featureType: 'landscape',
+              rules: [{hue: '#00dd00'}]
+            }, {
+              featureType: 'road',
+              rules: [{hue: '#dd0000'}]
+            }, {
+              featureType: 'water',
+              rules: [{hue: '#000040'}]
+            }, {
+              featureType: 'poi.park',
+              rules: [{visibility: 'off'}]
+            }, {
+              featureType: 'road.arterial',
+              rules: [{hue: '#ffff00'}]
+            }, {
+              featureType: 'road.local',
+              rules: [{visibility: 'off'}]
+            }            
+          ],
+          'Chilled': [
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              rules: [{'visibility': 'simplified'}]
+            }, {
+              featureType: 'road.arterial',
+              rules: [
+               {hue: 149},
+               {saturation: -78},
+               {lightness: 0}
+              ]
+            }, {
+              featureType: 'road.highway',
+              rules: [
+                {hue: -31},
+                {saturation: -40},
+                {lightness: 2.8}
+              ]
+            }, {
+              featureType: 'poi',
+              elementType: 'label',
+              rules: [{'visibility': 'off'}]
+            }, {
+              featureType: 'landscape',
+              rules: [
+                {hue: 163},
+                {saturation: -26},
+                {lightness: -1.1}
+              ]
+            }, {
+              featureType: 'transit',
+              rules: [{'visibility': 'off'}]
+            }, {
+              featureType: 'water',
+                rules: [
+                {hue: 3},
+                {saturation: -24.24},
+                {lightness: -38.57}
+              ]
+            }
+          ]
+        };
+        
+        for (var s in styles) {
+          var opt = {
+            mapTypeControlOptions: {
+              mapTypeIds: [google.maps.MapTypeId.ROADMAP, s]
+            },
+            center: new google.maps.LatLng(30, 0),
+            zoom: 1,
+            mapTypeId: s
+          };
+          
+          var div = document.createElement('div');
+          div.setAttribute("class", "map");
+          document.getElementById('body').appendChild(div);
+          var map = new google.maps.Map(div, opt);
+          var styledMapType = new google.maps.StyledMapType(styles[s], {name: s});
+          map.mapTypes.set(s, styledMapType);
+          maps.push(map);
+        }
+        
+        for (var i = 1; i < maps.length; i++) {
+          maps[i].bindTo('center', maps[0]);
+          maps[i].bindTo('zoom', maps[0]);
+        }
+      }
+      
+      function jumpTo(location) {
+        geocoder.geocode({ address: location }, function(results, status) {
+          maps[0].fitBounds(results[0].geometry.viewport);
+        });
+      }
+      </script>
+    <style>
+    .map {
+      width: 500px;
+      height: 300px;
+      border: 1px solid black;
+      float: left;
+      margin: 10px;
+    }
+    </style>
+  </head>
+  <body onload="init()" id="body">
+    <input type="button" onclick="jumpTo('San Francisco')" value="San Francisco" />
+    <input type="button" onclick="jumpTo('Sydney')" value="Sydney" />
+    <input type="button" onclick="jumpTo('Tokyo')" value="Tokyo" />
+    <br clear="all"/>
+  </body>
+</html>
