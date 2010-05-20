@@ -1,0 +1,210 @@
+body {
+  font-family: sans-serif;
+  position: relative;
+}
+
+#title {
+  font-size: 24pt;
+  font-weight: bold;
+  width: 630px;
+  height: 50px;
+  position: absolute;
+}
+
+#json {
+  width: 640px;
+  height: 630px;
+  background-color: #f8f8f8;
+  overflow: auto;
+  white-space: pre;
+  font-family: monospace;
+  display: none;
+  position: absolute;
+  top: 50px;
+  left: 0px;
+}
+
+#closeIcon {
+  width: 11px;
+  height: 11px;
+  position: absolute;
+  right: 4px;
+  top: 4px;
+  cursor: pointer;
+}
+
+#map {
+  position: absolute;
+  width: 640px;
+  height: 240px;
+  border: 2px solid black;
+  top: 50px;
+}
+
+#mapStyle {
+  position: absolute;
+  top: 0px;
+  left: 650px;
+  width: 256px;
+  height: 680px;
+}
+
+#mapStyleScrollable {
+  position: absolute;
+  top: 28px;
+  width: 256px;
+  overflow: auto;
+  border-top: 1px solid grey;
+}
+
+.mapStylePanel {
+  width: 256px;
+  cursor: pointer;
+  border-bottom: 1px solid grey;
+  padding-bottom: 3px;
+  padding-top: 0px;
+}
+
+.mapStylePanelHeader {
+  font-size: 10pt;
+  border-bottom: 1px solid lightgrey;
+  padding: 2px;
+  width: 252px;
+  margin-top: 0px;
+  cursor: auto;
+}
+
+.mapStylePanel table {
+  font-size: 10pt;
+  white-space: nowrap;
+}
+
+.mapStyleLabel {
+  text-align: right;
+  font-weight: bold;
+}
+
+#featureType {
+  position: absolute;
+  width: 510px;
+  height: 160px;
+  top: 300px;
+}
+
+#elementType {
+  position: absolute;
+  height: 80px;
+  top: 300px;
+  width: 120px;
+  left: 520px;
+}
+
+#buttons {
+  position: absolute;
+  width: 120px;
+  height: 70px;
+  left: 520px;
+  top: 390px;
+  text-align: center;
+}
+
+#rules {
+  position: absolute;
+  width: 640px;
+  height: 210px;
+  top: 470px;
+}
+
+.features {
+  width: 120px;
+  height: 130px;
+}
+
+.heading {
+  font-weight: bold;
+  margin: 2px;
+  padding-bottom: 2px;
+}
+
+.control {
+  border: 2px solid #004080;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+}
+
+#root, #elements {
+  margin-left: 10px;
+}
+
+#elements, #ruleColumns {
+  font-size: 10pt;
+}
+
+.rulecontrol {
+  margin-left: 10px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#ruleColumns {
+  position: relative;
+}
+
+#leftRules {
+  position: absolute;
+  width: 200px;
+  left: 20px;
+}
+
+#rightRules {
+  position: absolute;
+  width: 200px;
+  left: 320px;
+}
+
+#huePicker {
+  width: 182px;
+  height: 32px;
+  border: 1px solid black;
+}
+
+#hueSample {
+  width: 46px;
+  background-color: #f0f0f0;
+  border: 1px solid black;
+  padding: 2px;
+  height: 20px;
+}
+
+.slider {
+  width: 200px;
+  height: 30px;
+}
+
+.slidertrack {
+  position: absolute;
+  border: 2px grey groove;
+  top: 13px;
+  left: 10px;
+  height: 2px;
+  background-color: #e0e0e0;
+}
+
+.sliderhandle {
+  position: absolute;
+  height: 20px;
+  width: 4px;
+  border: 2px ridge #707070;
+  background-color: #80b2ff;
+  top: 5px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  cursor: ew-resize;
+}
+
+.ruleValue {
+  cursor: default;
+  border: 1px solid grey;
+  height: 20px;
+  margin-bottom: 2px;
+}

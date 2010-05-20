@@ -1,0 +1,128 @@
+<html>
+  <head>
+    <title>Google Maps API Map Style Wizard</title>
+    <link rel="stylesheet" type="text/css" href="StyledMapWizard.css"></link>
+    <script type="text/javascript"
+      src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="StyledMapWizard.js"></script>
+  </head>
+  <body onload="init()">
+    <div id="title">Google Maps API map style wizard</div>
+    <div id="map"></div>
+    
+    <div class="control" id="mapStyle">
+      <div class="heading">Map Style</div>
+      <div id="mapStyleScrollable">
+      </div>
+    </div>
+    
+    <div class="control" id="featureType">
+      <div class="heading">Feature type</div>
+      <select class="features" id="root" size="8">
+        <option value="all" selected="selected" onclick="selectAllFeatures()">All</option>
+      </select>
+      <select class="features" id="level1" size="8">
+        <option value="administrative" onclick="selectLevel1()">Administrative</option>
+        <option value="landscape" onclick="selectLevel1()">Landscape</option>
+        <option value="poi" onclick="selectLevel1()">Point of interest</option>
+        <option value="road" onclick="selectLevel1()">Road</option>
+        <option value="transit" onclick="selectLevel1()">Transit</option>
+        <option value="water" onclick="selectLevel1()">Water</option>
+      </select>
+      <select class="features" id="level2" size="8">
+      </select>
+      <select class="features" id="level3" size="8">
+      </select>
+    </div>
+    
+    <div class="control" id="elementType">
+      <div class="heading">Element type</div>
+      <div id="elements">
+        <input type="radio" name="elements" id="elements_all" checked="checked" onclick="setElementType()"/>All<br/>
+        <input type="radio" name="elements" id="elements_geometry" onclick="setElementType()"/>Geometry<br/>
+        <input type="radio" name="elements" id="elements_labels" onclick="setElementType()"/>Labels
+      </div>
+    </div>
+    
+    <br/>
+    <div id="buttons">
+      <input type="button" value="Add Style" onclick="addStyle()"/><br/>
+      <input type="button" value="Reset style" onclick="resetStyle()" />
+      <input type="button" value="Show JSON" onclick="showJson()" />
+    </div>
+    <br clear="all"/>
+    
+    <div class="control" id="rules">
+      <div class="heading">Stylers</div>
+      <div id="ruleColumns">
+        <div id="leftRules">
+          <div class="rule">
+            <div class="rulename">
+              <input type="checkbox" id="set_visibility" onclick="setRule('visibility')" />
+              Visibility
+              <input type="text" size="10" onfocus="blur()" id="visibility" class="ruleValue" />
+            </div>
+            <div class="rulecontrol">
+              <input type="radio" name="visibility" id="visibility_on" value="on" onclick="setVisibility()"/>On<br/>
+              <input type="radio" name="visibility" id="visibility_simplified" value="simplified" onclick="setVisibility()"/>Simplified<br/>
+              <input type="radio" name="visibility" id="visibility_off" value="off" onclick="setVisibility()"/>Off<br/>
+            </div>
+          </div>
+          <div class="rule">
+            <div class="rulename">
+              <input type="checkbox" id="set_hue" onclick="setRule('hue')" />
+              Hue
+              <input type="text" size="7" onfocus="blur()" id="hue" class="ruleValue" />
+              <input id="hueSample" disabled="disabled" />
+            </div>
+            <div class="rulecontrol">
+              <div id="huePicker"></div>
+            </div>
+          </div>
+          <div class="rule">
+            <div class="rulename">
+              <input type="checkbox" id="set_invert_lightness" onclick="setInvertLightness()" />
+              Invert lightness
+              <input type="text" size="5" onfocus="blur()" id="invert_lightness" class="ruleValue" />
+            </div>
+          </div>
+        </div>
+        
+        <div id="rightRules">
+          <div class="rule">
+            <div class="rulename">
+              <input type="checkbox" id="set_saturation" onclick="setRule('saturation')" />
+              Saturation
+              <input type="text" size="4" onfocus="blur()" id="saturation" class="ruleValue" />
+            </div>
+            <div class="rulecontrol">
+              <div class="slider" id="satSlider"></div>
+            </div>
+          </div>
+          <div class="rule">
+            <div class="rulename">
+              <input type="checkbox" id="set_lightness" onclick="setRule('lightness')" />
+              Lightness
+              <input type="text" size="4" onfocus="blur()" id="lightness" class="ruleValue" />
+            </div>
+            <div class="rulecontrol">
+              <div class="slider" id="lightSlider"></div>
+            </div>
+          </div>
+          <div class="rule">
+            <div class="rulename">
+              <input type="checkbox" id="set_gamma" onclick="setRule('gamma')" />
+              Gamma
+              <input type="text" size="4" onfocus="blur()" id="gamma" class="ruleValue" />
+            </div>
+            <div class="rulecontrol">
+              <div class="slider" id="gammaSlider"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="json" class="control"><img src="close.png" id="closeIcon" onclick="closeJson()" /></div>
+  </body>
+</html>
