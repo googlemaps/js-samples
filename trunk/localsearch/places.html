@@ -80,7 +80,7 @@
       // Clear the map and the old search well
       searchWell.innerHTML = "";
       for (var i = 0; i < gCurrentResults.length; i++) {
-        if (!gCurrentResults[i].selected) {
+        if (!gCurrentResults[i].isSelected()) {
           gCurrentResults[i].marker().setMap(null);
         }
       }
@@ -161,6 +161,10 @@
       this.highlight(true);
       gInfoWindow.setContent(this.html(true));
       gInfoWindow.open(gMap, this.marker());
+    };
+
+    LocalResult.prototype.isSelected = function() {
+      return this.selected_;
     };
 
     // Remove any highlighting on this result.
