@@ -18,7 +18,6 @@
  * @fileoverview Externs for the Google Maps V3 API.
  * @see http://code.google.com/apis/maps/documentation/v3/reference.html
  */
-var google = {};
 
 google.maps = {};
 
@@ -1834,7 +1833,7 @@ google.maps.ImageMapTypeOptions.prototype.tileSize;
 
 /**
  * @constructor
- * @param {Array<MapTypeStyle>} style
+ * @param {Array.<google.maps.MapTypeStyle>} style
  * @param {google.maps.StyledMapTypeOptions=} options
  */
 google.maps.StyledMapType = function(style, options) {};
