@@ -80,7 +80,7 @@
       // Clear the map and the old search well
       searchWell.innerHTML = "";
       for (var i = 0; i < gCurrentResults.length; i++) {
-        if (!gCurrentResults[i].selected()) {
+        if (!gCurrentResults[i].selected) {
           gCurrentResults[i].marker().setMap(null);
         }
       }
