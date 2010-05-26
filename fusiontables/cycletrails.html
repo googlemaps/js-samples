@@ -1,0 +1,124 @@
+<html>
+  <head>
+    <title>Fusion Tables in Maps API v3</title>
+    <!-- Load Google Closure CSS and JS files to provide a slider and a dialog
+    box -->
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="dialog.css">
+    <script type="text/javascript" src="closurec.js"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <style>
+    body {
+      font-size: small;
+      font-family: sans-serif;
+    }
+    .goog-slider-horizontal {
+      border: solid 1px #CCCCCC;
+      background-color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .goog-slider-thumb {
+      position: absolute;
+      background-color: #3399CC;
+      overflow: hidden;
+      width: 10px;
+      height: 100%;
+      top: 0;
+    }
+    
+    #map {
+      border: 1px solid black;
+      margin-bottom: 10px;
+    }
+    </style>
+
+  <script>
+  goog.require('goog.ui.Dialog');
+  goog.require('goog.ui.Slider');
+  goog.require('goog.ui.Component');
+  var map, sliderTimer, layer, slider;
+  function initializeMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: new google.maps.LatLng(37.27296,-121.97708),
+      zoom: 9,
+      mapTypeId: 'roadmap'
+    });
+
+    layer = new google.maps.FusionTablesLayer(132848, {
+      suppressInfoWindows: true
+    });
+    layer.setMap(map);
+
+    google.maps.event.addListener(layer, 'click', displayData);
+    initializeSlider();
+  }
+
+  // When a user clicks on a feature on the map, intercept the
+  // click event and display the data in a modal dialog box.
+  function displayData(mouseEvent) {
+    var dialog = new goog.ui.Dialog();
+    dialog.setTitle(mouseEvent.row['name'].value);
+    dialog.setContent(formatTableRowAsHtml(mouseEvent.row));
+    dialog.setButtonSet(goog.ui.Dialog.ButtonSet.OK);
+    dialog.setVisible(true);
+  }
+
+  // Produce some nicely formatted HTML using the raw row data exposed as
+  // part of the feature click event.
+  function formatTableRowAsHtml(row) {
+    var parts = [
+      '<center><img width="400px" height="200px" src="',
+      row['pic_link'].value,
+      '"></img><br>',
+      '<b>elevation: </b>',
+      row['min_elevation'].value,
+      ' to ',
+      row['max_elevation'].value,
+      ' feet</center>'
+    ];
+    return parts.join('');
+  }
+
+  // Create a Google Closure slider bar which can be used to select the
+  // distance by which to filter the Fusion Tables data.
+  function initializeSlider() {
+      var sliderElement = document.getElementById('slider');
+      slider = new goog.ui.Slider;
+      slider.decorate(sliderElement);
+      slider.addEventListener(goog.ui.Component.EventType.CHANGE, function() {
+        // Avoid updating the map too often by ignoring slider value changes
+        // that occur within 200mS of eachother.
+        if (sliderTimer) window.clearTimeout(sliderTimer);
+        sliderTimer = window.setTimeout(updateMap, 200);
+        document.getElementById("slider-value").innerHTML = slider.getValue() + " mi";
+      });
+      slider.setValue(25);
+  }
+
+  // Convert a slider value (0 - 100%) to an distance between 0 and 3000.
+  function sliderValueToKm(value) {
+    return Math.round(value * 1.609344);
+  }
+
+  // Update the query used to filter Fusion Tables data using the
+  // current value of the slider.
+  function updateMap() {
+    var distance = sliderValueToKm(slider.getValue());
+    layer.setQuery(
+      "select geom from 132848 where distance < " + distance);
+  }
+  </script>
+  <body onLoad="initializeMap()">
+    <div id="options" style="display: block;">
+      <p>Show trails of less than:</p>
+      <div id="slider" class="goog-slider" style="width: 480px; height: 15px; float: left">
+        <div class="goog-slider-thumb"></div>
+      </div>
+      <div id="slider-value" style="float: left; margin-left: 5px;"></div>
+    </div>
+    <br clear="all"/>
+    <div id="map" style="width: 512px; height: 420px; margin-top: 10px"></div>
+  </body>
+</html>
