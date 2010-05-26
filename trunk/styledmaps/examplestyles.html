@@ -143,8 +143,8 @@
           };
           
           var div = document.createElement('div');
-          div.setAttribute("class", "map");
-          document.getElementById('body').appendChild(div);
+          div.className = 'map';
+          document.body.appendChild(div);
           var map = new google.maps.Map(div, opt);
           var styledMapType = new google.maps.StyledMapType(styles[s], {name: s});
           map.mapTypes.set(s, styledMapType);
