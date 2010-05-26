@@ -987,7 +987,7 @@ google.maps.InfoWindowOptions.prototype.zIndex;
 google.maps.Geocoder = function() {};
 
 /**
- * @param {google.maps.GeocoderRequest} request
+ * @param {Object.<string, *>} request
  * @param {function(...[*])} callback
  */
 google.maps.Geocoder.prototype.geocode = function(request, callback) {};
@@ -1271,7 +1271,7 @@ google.maps.DirectionsRendererOptions.prototype.suppressPolylines;
 google.maps.DirectionsService = function() {};
 
 /**
- * @param {google.maps.DirectionsRequest} request
+ * @param {Object.<string, *>} request
  * @param {function(...[*])} callback
  */
 google.maps.DirectionsService.prototype.route = function(request, callback) {};
@@ -1574,14 +1574,14 @@ google.maps.DirectionsDuration.prototype.value;
 google.maps.ElevationService = function() {};
 
 /**
- * @param {google.maps.PathElevationRequest} request
+ * @param {Object.<string, *>} request
  * @param {function(...[*])} callback
  * @nosideeffects
  */
 google.maps.ElevationService.prototype.getElevationAlongPath = function(request, callback) {};
 
 /**
- * @param {google.maps.LocationElevationRequest} request
+ * @param {Object.<string, *>} request
  * @param {function(...[*])} callback
  * @nosideeffects
  */
