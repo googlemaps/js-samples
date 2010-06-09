@@ -68,6 +68,7 @@
 
     function doSearch() {
       var query = document.getElementById("queryInput").value;
+      gLocalSearch.setCenterPoint(gMap.getCenter());
       gLocalSearch.execute(query);
     }
 
@@ -80,10 +81,10 @@
       // Clear the map and the old search well
       searchWell.innerHTML = "";
       for (var i = 0; i < gCurrentResults.length; i++) {
-        if (!gCurrentResults[i].isSelected()) {
-          gCurrentResults[i].marker().setMap(null);
-        }
+        gCurrentResults[i].marker().setMap(null);
       }
+      // Close the infowindow
+      gInfoWindow.close();
 
       gCurrentResults = [];
       for (var i = 0; i < gLocalSearch.results.length; i++) {
@@ -98,7 +99,7 @@
       // Move the map to the first result
       var first = gLocalSearch.results[0];
       gMap.setCenter(new google.maps.LatLng(parseFloat(first.lat),
-                                             parseFloat(first.lng)));
+                                            parseFloat(first.lng)));
 
     }
 
@@ -192,11 +193,11 @@
     </script>
   </head>
   <body style="font-family: Arial, sans-serif; font-size: small;">
-    <p>Search for locations on the map below:</p>
+    <p>Perform a local search on the map below:</p>
     <div style="width: 500px;">
       <div style="margin-bottom: 5px;">
         <div>
-          <input type="text" id="queryInput" style="width: 250px;"/>
+          <input type="text" id="queryInput" value="pizza" style="width: 250px;"/>
           <input type="button" value="Find" onclick="doSearch()"/>
         </div>
       </div>
