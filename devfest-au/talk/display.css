@@ -84,7 +84,7 @@ devfestlogo img {
 .map-frame {
   border: 0;
   width: 80%;
-  height: 480px;
+  height: 475px;
   -webkit-box-shadow: 2px 2px 8px rgba(44, 44, 44, 0.8);
 }
 
@@ -98,7 +98,7 @@ devfestlogo img {
   margin-top: 40px;
   background: url(images/nexus-frame.png) 50% 0 no-repeat;
   height: 640px;
-  padding-top: 78px;
+  padding-top: 98px;
 }
 
 
