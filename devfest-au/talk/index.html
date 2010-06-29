@@ -720,7 +720,7 @@ function getPlaces() {
 function populatePlaces(places) {
   if (places.status == 'OK') {
     for (var i = 0, place; place = places.results[i]; i++) {
-      if (place.types[0] == 'establishment') {
+      if (place.types.indexOf('establishment') != -1) {
         // Add result.name to a select box
       }
     }
