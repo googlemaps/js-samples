@@ -36,7 +36,7 @@ slide {
   top: 50%;
   margin-top: -350px;
   background: -webkit-gradient(linear, left bottom, left top, from(#ffd400), to(#d68a00));
-  -webkit-transition: all 0.25s ease-in-out;
+  -webkit-transition: margin 0.25s ease-in-out;
 }
 
 slide {
@@ -48,14 +48,12 @@ slide.far-past {
 }
 slide.past {
   margin-left: -1400px;
-  -webkit-transform: scale(0.5);
 }
 slide.current {
   margin-left: -450px;
 }
 slide.future {
   margin-left: 500px;
-  -webkit-transform: scale(0.5);
 }
 slide.far-future {
   margin-left: 1500px;
