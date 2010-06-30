@@ -95,10 +95,10 @@ devfestlogo img {
 }
 
 .nexus {
-  margin-top: 40px;
+  margin-top: 90px;
   background: url(images/nexus-frame.png) 50% 0 no-repeat;
   height: 640px;
-  padding-top: 98px;
+  padding-top: 78px;
 }
 
 
@@ -134,6 +134,10 @@ header {
   top: 25px;
   margin: 0;
   padding: 0;
+}
+
+.center header {
+  top: 8px;
 }
 
 headerinline {

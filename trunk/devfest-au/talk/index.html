@@ -98,8 +98,8 @@
 
         <slide>
           <section>
-            <header>The HTML</header>
-<pre class="">
+            <header>HTML</header>
+<pre>
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
   &lt;head&gt;...&lt;/head&gt;
@@ -115,8 +115,8 @@
 
         <slide>
           <section>
-            <header>The CSS</header>
-<pre class="">
+            <header>CSS</header>
+<pre>
 &lt;style type=&quot;text/css&quot;&gt;
 html, body {
   height: 100%;
@@ -136,8 +136,8 @@ html, body {
 
         <slide>
           <section>
-            <header>The JavaScript</header>
-<pre class="">
+            <header>JavaScript</header>
+<pre>
 &lt;script type=&quot;text/javascript&quot;
   src=&quot;http://maps.google.com/maps/api/js?sensor=false&quot;&gt;&lt;/script&gt;
 
@@ -184,8 +184,18 @@ google.maps.event.addDomListener(window, 'load', init);
         </slide>
 
         <slide>
+          <section class="center">
+            <header>Geolocation</header>
+            <iframe class="map-frame" src="maps/map-geolocation.html"></iframe>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+
+
+        <slide>
           <section>
-            <header>HTML5 to the rescue</header>
+            <header>Javascript</header>
 <pre>
 function getUsersLocation() {
   if (navigator.geolocation) {
@@ -206,15 +216,6 @@ function getUsersLocation() {
 
         <slide>
           <section class="center">
-            <header>Geolocation</header>
-            <iframe class="map-frame" src="maps/map-geolocation.html"></iframe>
-            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
-            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
-          </section>
-        </slide>
-
-        <slide>
-          <section class="center">
             <header>Markers</header>
             <iframe class="map-frame" src="maps/map-geolocation-with-marker.html"></iframe>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
@@ -224,7 +225,7 @@ function getUsersLocation() {
 
         <slide>
           <section>
-            <header>Markers</header>
+            <header>Javascript</header>
 <pre>
 var marker = new google.maps.Marker();
 </pre>
@@ -255,7 +256,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
         <slide>
           <section>
-            <header>Marker Icons</header>
+            <header>Javascript</header>
 <pre>
 var icon = new google.maps.MarkerImage('my-location.png',
   new google.maps.Size(14, 14), // Image Size
@@ -326,7 +327,7 @@ function getUsersLocation() {
 
         <slide>
           <section>
-            <header>The CSS</header>
+            <header>CSS</header>
 <pre>
 .button {
   background: #fff;
@@ -345,7 +346,7 @@ function getUsersLocation() {
 
         <slide>
           <section>
-          <header>The Javascript</header>
+          <header>Javascript</header>
 <pre>
 var userLocation;
 navigator.geolocation.watchPosition(setUsersPosition);
@@ -564,24 +565,45 @@ google.maps.event.addListener(newShopInfoWindow, 'domready', function() {
           <section>
             <header>Javascript</header>
 <pre>
-google.maps.event.addListener(map, 'bounds_changed', function() {
-  findStores();
-});
+google.maps.event.addListener(map, 'idle', loadStoresInView);
 </pre>
 
 <pre class="to-show">
-var loadStoresTimeout;
-</pre>
+function loadStoresInView() {
+  var bounds = map.getBounds().toUrlValue();
 
-<pre class="to-show">
-function findStores() {
-  if (loadStoresTimeout) {
-    window.clearTimeout(loadStoresTimeout);
+  // Do an AJAX call to get stores in the bounds
+  // Call addStores on success
+}
+</pre>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+
+        <slide>
+          <section>
+            <header>Javascript</header>
+<pre>
+function addStores(shops) {
+  var d = new Date();
+  var added = '_' + d.getTime();
+  for (var i = 0, shop; shop = shops[i]; i++) {
+    if (shopMarkers[shop.key]) {
+      shopMarkers[shop.key]._added = added;
+    } else {
+      var marker = addStoreMarker(shop);
+      marker._added = added;
+      shopMarkers[shop.key] = marker;
+    }
   }
 
-  loadStoresTimeout = window.setTimeout(function() {
-    loadStoresInView();
-  }, 150);
+  for (var key in shopMarkers) {
+    if (shopMarkers[key]._added != added) {
+      shopMarkers[key].setMap(null);
+      delete shopMarkers[key];
+    }
+  }
 }
 </pre>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
@@ -601,38 +623,8 @@ function addStoreMarker(shop) {
     title: shop.name,
     icon: shopIcon
   });
-  marker.key = shop.key;
+  marker.shopKey = shop.key;
   return marker;
-}
-</pre>
-            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
-            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
-          </section>
-        </slide>
-
-        <slide>
-          <section>
-            <header>Javascript</header>
-<pre>
-function addStores(shops) {
-  var d = new Date();
-  var added = '_' + d.getTime();
-  for (var i = 0, shop; shop = shops[i]; i++) {
-    if (shopMarkers[shop.key]) {
-      shopMarkers[shop.key].added = added;
-    } else {
-      var marker = addStoreMarker(shop);
-      marker.added = added;
-      shopMarkers[shop.key] = marker;
-    }
-  }
-
-  for (var key in shopMarkers) {
-    if (shopMarkers[key].added != added) {
-      shopMarkers[key].setMap(null);
-      delete shopMarkers[key];
-    }
-  }
 }
 </pre>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
