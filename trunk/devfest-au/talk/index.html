@@ -195,7 +195,7 @@ google.maps.event.addDomListener(window, 'load', init);
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 function getUsersLocation() {
   if (navigator.geolocation) {
@@ -225,7 +225,7 @@ function getUsersLocation() {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 var marker = new google.maps.Marker();
 </pre>
@@ -256,7 +256,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 var icon = new google.maps.MarkerImage('my-location.png',
   new google.maps.Size(14, 14), // Image Size
@@ -284,7 +284,7 @@ marker = new google.maps.Marker({
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 var circle = new google.maps.Circle({
   fillColor: '#00f',
@@ -346,7 +346,7 @@ function getUsersLocation() {
 
         <slide>
           <section>
-          <header>JavaScript</header>
+          <header>Javascript</header>
 <pre>
 var userLocation;
 navigator.geolocation.watchPosition(setUsersPosition);
@@ -407,7 +407,7 @@ function addGotoUsersLocationButton() {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre to="show">
 function addAddNewShopButton() {
   var button = document.createElement('DIV');
@@ -433,7 +433,7 @@ function addNewShopButton() {
 
         <slide>
           <section>
-          <header>JavaScript</header>
+          <header>Javascript</header>
 <pre>
   var newShopMarker;
   var newShopInfoWindow;
@@ -460,7 +460,7 @@ function addMarkerAndInfoWindow() {
 
         <slide>
           <section>
-          <header>JavaScript</header>
+          <header>Javascript</header>
             <pre>
 function showNewShopForm() {
   newShopMarker.setPosition(map.getCenter());
@@ -484,7 +484,7 @@ function showNewShopForm() {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 function reverseGeocodeNewShopMarker() {
   var geocoder = new google.maps.Geocoder();
@@ -520,7 +520,7 @@ google.maps.event.addListener(map, 'click', function(e) {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 var shopIcon = new google.maps.MarkerImage('coffee.png',
   new google.maps.Size(32, 37));
@@ -563,7 +563,7 @@ google.maps.event.addListener(newShopInfoWindow, 'domready', function() {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 google.maps.event.addListener(map, 'idle', loadStoresInView);
 </pre>
@@ -583,7 +583,7 @@ function loadStoresInView() {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 function addStores(shops) {
   var d = new Date();
@@ -613,7 +613,7 @@ function addStores(shops) {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 function addStoreMarker(shop) {
   var position = new google.maps.LatLng(shop.lat, shop.lng);
@@ -643,7 +643,7 @@ function addStoreMarker(shop) {
 
         <slide>
           <section>
-            <header>JavaScript</header>
+            <header>Javascript</header>
 <pre>
 var directionsService = new google.maps.DirectionsService();
 var directionsRenderer = new google.maps.DirectionsRenderer({
@@ -675,9 +675,7 @@ function getDirectionsTo(shop) {
         <slide>
           <section class="center">
             <header>whereiscoffee.appspot.com</header>
-            <div class="nexus">
-              <iframe class="map-frame-mobile" src="http://whereiscoffee.appspot.com?mobile"></iframe>
-            </div>
+            <iframe class="map-frame" src="http://whereiscoffee.appspot.com"></iframe>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -686,17 +684,19 @@ function getDirectionsTo(shop) {
         <slide>
           <section>
             <header class="center">Places API</header>
-            Visit http://code.google.com/apis/maps/ documentation/places/ to find
-            out more and to sign up for a developer preview!
+            <br/>
+            Sign up for a developer preview:
+            <br/>
+            <br/>
+            http://code.google.com/apis/maps/ documentation/places/
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
         </slide>
 
-
         <slide>
           <section>
-          <header>JavaScript</header>
+          <header>Javascript</header>
 <pre>
 function getPlaces() {
   var data = {
@@ -752,7 +752,64 @@ self.response.out.write(urlfetch.fetch(places_url).content)
         </slide>
 
         <slide>
-          <section class="center">
+          <section>
+            <header class="center">What Did We Learn?</header>
+            Map
+            <br/>
+            Markers, Overlays, Controls
+            <br/>
+            Map Events
+            <br/>
+            Getting User's Location
+            <br/>
+            Geocoding
+            <br/>
+            Directions
+            <br/>
+            Places API
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+
+        <slide>
+          <section>
+            <header class="center">What Else Is There?</header>
+            Polys
+            <br/>
+            Elevation service
+            <br/>
+            Traffic &amp; Bicycling layers
+            <br/>
+            KML &amp; Fusion tables layers
+            <br/>
+            Styled maps
+            <br/>
+            Street view
+            <br/>
+            Custom map types
+            <br/>
+            ...
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+
+        <slide>
+          <section>
+            <header class="center">Our Parting Gift</header>
+            <br/>
+            http://code.google.com/apis/maps/ documentation/javascript/
+            <br/>
+            <br/>
+            http://whereiscoffee.appspot.com
+            <br/>
+            <br/>
+            <br/>
+            <div style="font-size: 1.2em;" class="center">
+              <b>Questions?</b>
+            </div>
+
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
