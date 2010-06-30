@@ -101,9 +101,7 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP
           });
 
-        google.maps.event.addListener(map, 'bounds_changed', function() {
-          findStores();
-        });
+        google.maps.event.addListener(map, 'idle', loadStoresInView);
 
         shopInfoWindow = new google.maps.InfoWindow();
 
@@ -138,16 +136,6 @@
         getUsersLocation();
         addGotoUsersLocationButton();
         addAddNewShopButton();
-      }
-
-      function findStores() {
-        if (loadStoresTimeout) {
-          window.clearTimeout(loadStoresTimeout);
-        }
-
-        loadStoresTimeout = window.setTimeout(function() {
-          loadStoresInView();
-        }, 150);
       }
 
       function loadStoresInView() {
