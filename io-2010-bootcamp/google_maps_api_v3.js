@@ -1586,16 +1586,14 @@ google.maps.DirectionsDuration.prototype.value;
 google.maps.ElevationService = function() {};
 
 /**
- * @param {(google.maps.PathElevationRequest|Object.<string, *>)} request
+ * @param {google.maps.PathElevationRequest} request
  * @param {function(Array.<google.maps.ElevationResult>, google.maps.ElevationStatus)} callback
- * @nosideeffects
  */
 google.maps.ElevationService.prototype.getElevationAlongPath = function(request, callback) {};
 
 /**
  * @param {(google.maps.LocationElevationRequest|Object.<string, *>)} request
  * @param {function(Array.<(google.maps.ElevationResult|Object.<string, *>)>, google.maps.ElevationStatus)} callback
- * @nosideeffects
  */
 google.maps.ElevationService.prototype.getElevationForLocations = function(request, callback) {};
 /**
