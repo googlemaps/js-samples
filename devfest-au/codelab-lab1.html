@@ -79,198 +79,200 @@ var App = {
   infoWindow: new google.maps.InfoWindow(),
   
   // DOM pointers
-  mapCanvasNode: document.getElementById('map-canvas'),
-  
-  /**
-   * Injects a new SCRIPT tag into HEAD to fetch JSONP resources.
-   * @param {string} url
-   */
-  loadScript: function(url) {
-    var script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = url;
-    document.getElementsByTagName('head')[0].appendChild(script);
-  },
-  
-  /**
-   * URL escapes the specified string, for use with request parameter values.
-   * @param {string} str
-   */
-  escapeUrl: function(str) {
-    return window.encodeURIComponent(str);
-  },
-  
-  
-  
-  handleMarkerClick: function(marker) {
-    return function() {
-      var photo = marker.photo_;
-      var photoDate = (new Date(photo.datetaken)).toUTCString();
-      photoDate = photoDate.substring(0, photoDate.lastIndexOf(' '));
-      App.infoWindow.setContent([
-        '<div class="info-window">',
-        '<h2>' + photo.title + '</h2>',
-        '<a target="_blank" ',
-          'href="' + App.getFlickrPhotoUrl(marker.photo_, 'b') + '">',
-        '<img src="',
-        App.getFlickrPhotoUrl(marker.photo_, 'm'),
-        '"/>',
-        '</a>',
-        '<div class="caption">',
-        '<div class="timestamp">',
-        '<b>Taken on:</b> ',
-        photoDate,
-        '</div>',
-        photo.description._content,
-        '</div>',
-        '</div>'
-      ].join(''));
-      App.infoWindow.open(App.map, marker);
-    };
-  },
-  
-  
-  /**
-   * Generates the Flickr photo source URL for the specified size.
-   * Reference: http://www.flickr.com/services/api/misc.urls.html
-   * @param {Object} photo Photo JSON response object
-   * @param {string} size One of the following: [m,s,t,b]
-   */
-  getFlickrPhotoUrl: function(photo, size) {
-    var url = [
-      'http://farm',
-      photo.farm,
-      '.static.flickr.com/',
-      photo.server,
-      '/',
-      photo.id,
-      '_',
-      photo.secret,
-      '_',
-      size,
-      '.jpg'
-    ].join('');
-    return url;
-  },
-  
-  /**
-   * Processes the response from the Flickr photos search query.
-   * @param {Object} response JSON response object
-   */
-  getFlickrPhotosCallback: function(response) {
-    // Iterate through each photo and plot on map.
-    var photos = response.photos;
-    for (var n = 0, photo; photo = photos.photo[n]; n++) {
-      // Try to reuse existing Marker objects to minimize creating new ones.
-      var marker = App.markers[n];
-      if (!marker) {
-        marker = new google.maps.Marker();
-        App.markers.push(marker);
-      }
-      
-      // Add new Marker to Map at the photo's geo location.
-      var latLng = new google.maps.LatLng(photo.latitude, photo.longitude);
-      marker.setTitle(photo.title);
-      marker.setPosition(latLng);
-      marker.setMap(App.map);
-      
-      // Bubble up the Marker's z-index on mouseover.
-      google.maps.event.addListener(marker, 'mouseover', (function(target) {
-        return function() {
-          target.setZIndex(1);
-        };
-      })(marker));
-      google.maps.event.addListener(marker, 'mouseout', (function(target) {
-        return function() {
-          target.setZIndex(0);
-        };
-      })(marker));
-      
-      // Start prefetching each photo
-      var img = new Image();
-      img.src = App.getFlickrPhotoUrl(photo, 'm');
-      
-      // Make info windows open up when clicking on the Marker
-      marker.photo_ = photo;
-      google.maps.event.addListener(marker, 'click',
-          App.handleMarkerClick(marker));
-    }
-  },
-  
-  /**
-   * Sends off a Flickr photos search query.
-   * @param {Object} opt_options Optional dictionary with search parameters.
-   */
-  getFlickrPhotos: function(opt_options) {
-    // If no options are passed in, create a default set.
-    var options = opt_options || {
-      tags: 'coffee',
-      text: ''
-    };
-    
-    // Flickr bbox param needs comma-delimited list of 4 values in format:
-    // [sw.lng, sw.lat, ne.lng, ne.lat]
-    var bounds = App.map.getBounds();
-    var sw = bounds.getSouthWest();
-    var ne = bounds.getNorthEast();
-    var bbox = [
-      sw.lng(),
-      sw.lat(),
-      ne.lng(),
-      ne.lat()
-    ].join(',');
+  mapCanvasNode: document.getElementById('map-canvas')
+};
 
-    // Generate request URL to Flickr's photo search API
-    var feedUrl = [
-      'http://api.flickr.com/services/rest/?method=flickr.photos.search',
-      'api_key=' + App.FLICKR_API_KEY,
-      'format=json',
-      'jsoncallback=App.getFlickrPhotosCallback',
-      'accuracy=16',
-      'has_geo=1',
-      'per_page=50',
-      'sort=date-posted-desc',
-      'bbox=' + App.escapeUrl(bbox),
-      'tags=' + App.escapeUrl(options.tags),
-      'text=' + App.escapeUrl(options.text),
-      'extras=geo,description,date_taken'
-    ].join('&');
+/**
+ * Injects a new SCRIPT tag into HEAD to fetch JSONP resources.
+ * @param {string} url
+ */
+App.loadScript = function(url) {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src = url;
+  document.getElementsByTagName('head')[0].appendChild(script);
+};
+
+/**
+ * URL escapes the specified string, for use with request parameter values.
+ * @param {string} str
+ */
+App.escapeUrl = function(str) {
+  return window.encodeURIComponent(str);
+};
+
+/**
+ * Callback function to handle click events fired on each Marker.
+ * @param {google.maps.Marker} marker
+ * @return {function}
+ */
+App.handleMarkerClick = function(marker) {
+  return function() {
+    var photo = marker.photo_;
+    var photoDate = (new Date(photo.datetaken)).toUTCString();
+    photoDate = photoDate.substring(0, photoDate.lastIndexOf(' '));
+    App.infoWindow.setContent([
+      '<div class="info-window">',
+      '<h2>' + photo.title + '</h2>',
+      '<a target="_blank" ',
+        'href="' + App.getFlickrPhotoUrl(marker.photo_, 'b') + '">',
+      '<img src="',
+      App.getFlickrPhotoUrl(marker.photo_, 'm'),
+      '"/>',
+      '</a>',
+      '<div class="caption">',
+      '<div class="timestamp">',
+      '<b>Taken on:</b> ',
+      photoDate,
+      '</div>',
+      photo.description._content,
+      '</div>',
+      '</div>'
+    ].join(''));
+    App.infoWindow.open(App.map, marker);
+  };
+};
+
+/**
+ * Generates the Flickr photo source URL for the specified size.
+ * Reference: http://www.flickr.com/services/api/misc.urls.html
+ * @param {Object} photo Photo JSON response object
+ * @param {string} size One of the following: [m,s,t,b]
+ */
+App.getFlickrPhotoUrl = function(photo, size) {
+  var url = [
+    'http://farm',
+    photo.farm,
+    '.static.flickr.com/',
+    photo.server,
+    '/',
+    photo.id,
+    '_',
+    photo.secret,
+    '_',
+    size,
+    '.jpg'
+  ].join('');
+  return url;
+};
+
+/**
+ * Processes the response from the Flickr photos search query.
+ * @param {Object} response JSON response object
+ */
+App.getFlickrPhotosCallback = function(response) {
+  // Iterate through each photo and plot on map.
+  var photos = response.photos;
+  for (var n = 0, photo; photo = photos.photo[n]; n++) {
+    // Try to reuse existing Marker objects to minimize creating new ones.
+    var marker = App.markers[n];
+    if (!marker) {
+      marker = new google.maps.Marker();
+      App.markers.push(marker);
+    }
     
-    // Send request
-    App.loadScript(feedUrl);
-  },
-  
-  /**
-   * Called on the initial page load to initialize the map.
-   */
-  init: function() {
-    App.map = new google.maps.Map(App.mapCanvasNode, {
-      zoom: 15,
-      center:  new google.maps.LatLng(-33.865386, 151.196897),
-      mapTypeId: google.maps.MapTypeId.HYBRID,
-      scaleControl: true,
-      mapTypeControlOptions: {
-        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-        position: google.maps.ControlPosition.TOP_LEFT
-      },
-      navigationControlOptions: {
-        style: google.maps.NavigationControlStyle.SMALL,
-        position: google.maps.ControlPosition.TOP_RIGHT
-      }
-    });
+    // Add new Marker to Map at the photo's geo location.
+    var latLng = new google.maps.LatLng(photo.latitude, photo.longitude);
+    marker.setTitle(photo.title);
+    marker.setPosition(latLng);
+    marker.setMap(App.map);
     
-    // Make the info window go away when clicking anywhere on the Map.
-    google.maps.event.addListener(App.map, 'click', function() {
-      App.infoWindow.close();
-    });
+    // Bubble up the Marker's z-index on mouseover.
+    google.maps.event.addListener(marker, 'mouseover', (function(target) {
+      return function() {
+        target.setZIndex(1);
+      };
+    })(marker));
+    google.maps.event.addListener(marker, 'mouseout', (function(target) {
+      return function() {
+        target.setZIndex(0);
+      };
+    })(marker));
     
-    // Send out a search for Flickr photos on initial map load.
-    google.maps.event.addListenerOnce(App.map, 'idle', App.getFlickrPhotos);
+    // Start prefetching each photo
+    var img = new Image();
+    img.src = App.getFlickrPhotoUrl(photo, 'm');
     
-    // Send out another search each time the u
-    google.maps.event.addListener(App.map, 'dragend', App.getFlickrPhotos);
-    google.maps.event.addListener(App.map, 'zoom_changed', App.getFlickrPhotos);
+    // Make info windows open up when clicking on the Marker
+    marker.photo_ = photo;
+    google.maps.event.addListener(marker, 'click',
+        App.handleMarkerClick(marker));
   }
+};
+
+/**
+ * Sends off a Flickr photos search query.
+ * @param {Object} opt_options Optional dictionary with search parameters.
+ */
+App.getFlickrPhotos = function(opt_options) {
+  // If no options are passed in, create a default set.
+  var options = opt_options || {
+    tags: 'coffee',
+    text: ''
+  };
+  
+  // Flickr bbox param needs comma-delimited list of 4 values in format:
+  // [sw.lng, sw.lat, ne.lng, ne.lat]
+  var bounds = App.map.getBounds();
+  var sw = bounds.getSouthWest();
+  var ne = bounds.getNorthEast();
+  var bbox = [
+    sw.lng(),
+    sw.lat(),
+    ne.lng(),
+    ne.lat()
+  ].join(',');
+
+  // Generate request URL to Flickr's photo search API
+  var feedUrl = [
+    'http://api.flickr.com/services/rest/?method=flickr.photos.search',
+    'api_key=' + App.FLICKR_API_KEY,
+    'format=json',
+    'jsoncallback=App.getFlickrPhotosCallback',
+    'accuracy=16',
+    'has_geo=1',
+    'per_page=50',
+    'sort=date-posted-desc',
+    'bbox=' + App.escapeUrl(bbox),
+    'tags=' + App.escapeUrl(options.tags),
+    'text=' + App.escapeUrl(options.text),
+    'extras=geo,description,date_taken'
+  ].join('&');
+  
+  // Send request
+  App.loadScript(feedUrl);
+};
+
+/**
+ * Called on the initial page load to initialize the map.
+ */
+App.init = function() {
+  App.map = new google.maps.Map(App.mapCanvasNode, {
+    zoom: 15,
+    center:  new google.maps.LatLng(-33.865386, 151.196897),
+    mapTypeId: google.maps.MapTypeId.HYBRID,
+    scaleControl: true,
+    mapTypeControlOptions: {
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+      position: google.maps.ControlPosition.TOP_LEFT
+    },
+    navigationControlOptions: {
+      style: google.maps.NavigationControlStyle.SMALL,
+      position: google.maps.ControlPosition.TOP_RIGHT
+    }
+  });
+  
+  // Make the info window go away when clicking anywhere on the Map.
+  google.maps.event.addListener(App.map, 'click', function() {
+    App.infoWindow.close();
+  });
+  
+  // Send out a search for Flickr photos on initial map load.
+  google.maps.event.addListenerOnce(App.map, 'idle', App.getFlickrPhotos);
+  
+  // Send out another search each time the u
+  google.maps.event.addListener(App.map, 'dragend', App.getFlickrPhotos);
+  google.maps.event.addListener(App.map, 'zoom_changed', App.getFlickrPhotos);
 };
 
 // Call App.init when page loads.
