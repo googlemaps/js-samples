@@ -140,8 +140,7 @@
 
       function loadStoresInView() {
         var bounds = map.getBounds();
-        var url =
-          'http://skare.syd.corp.google.com:8082/stores?action=search&bounds=' +
+        var url = 'http://whereiscoffee.appspot.com/stores?action=search&bounds=' +
           bounds.toUrlValue();
         $.ajax({
           url: url,
@@ -222,8 +221,7 @@
       }
 
       function loadShop(marker) {
-        var url =
-          'http://skare.syd.corp.google.com:8082/stores?action=load&key=' +
+        var url = 'http://whereiscoffee.appspot.com/stores?action=load&key=' +
           marker.key;
 
         $.ajax({
