@@ -119,7 +119,7 @@ google.maps.Map.prototype.setStreetView = function(panorama) {};
 google.maps.Map.prototype.setZoom = function(zoom) {};
 
 /**
- * @type {Array.<google.maps.MVCArray.<Node>}
+ * @type {Array.<google.maps.MVCArray.<Node>>}
  */
 google.maps.Map.prototype.controls;
 
@@ -818,7 +818,7 @@ google.maps.Polygon.prototype.getPath = function() {};
 
 /**
  * @nosideeffects
- * @return {google.maps.MVCArray.<google.maps.MVCArray.<google.maps.LatLng>}
+ * @return {google.maps.MVCArray.<google.maps.MVCArray.<google.maps.LatLng>>}
  */
 google.maps.Polygon.prototype.getPaths = function() {};
 
@@ -838,7 +838,7 @@ google.maps.Polygon.prototype.setOptions = function(options) {};
 google.maps.Polygon.prototype.setPath = function(path) {};
 
 /**
- * @param {google.maps.MVCArray.<google.maps.MVCArray.<google.maps.LatLng>|google.maps.MVCArray.<google.maps.LatLng>|Array.<Array.<google.maps.LatLng>|Array.<google.maps.LatLng>} paths
+ * @param {google.maps.MVCArray.<google.maps.MVCArray.<google.maps.LatLng>>|google.maps.MVCArray.<google.maps.LatLng>|Array.<Array.<google.maps.LatLng>>|Array.<google.maps.LatLng>} paths
  */
 google.maps.Polygon.prototype.setPaths = function(paths) {};
 /**
@@ -873,7 +873,7 @@ google.maps.PolygonOptions.prototype.geodesic;
 google.maps.PolygonOptions.prototype.map;
 
 /**
- * @type {google.maps.MVCArray.<google.maps.MVCArray.<google.maps.LatLng>|google.maps.MVCArray.<google.maps.LatLng>|Array.<Array.<google.maps.LatLng>|Array.<google.maps.LatLng>}
+ * @type {google.maps.MVCArray.<google.maps.MVCArray.<google.maps.LatLng>>|google.maps.MVCArray.<google.maps.LatLng>|Array.<Array.<google.maps.LatLng>>|Array.<google.maps.LatLng>}
  */
 google.maps.PolygonOptions.prototype.paths;
 
@@ -2526,7 +2526,7 @@ google.maps.StreetViewPanorama.prototype.setPov = function(pov) {};
 google.maps.StreetViewPanorama.prototype.setVisible = function(flag) {};
 
 /**
- * @type {Array.<google.maps.MVCArray.<Node>}
+ * @type {Array.<google.maps.MVCArray.<Node>>}
  */
 google.maps.StreetViewPanorama.prototype.controls;
 /**
