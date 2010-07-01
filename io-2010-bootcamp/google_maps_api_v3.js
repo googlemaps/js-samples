@@ -1716,7 +1716,6 @@ google.maps.MapType = function() {};
  * @param {google.maps.Point} tileCoord
  * @param {number} zoom
  * @param {Node} ownerDocument
- * @nosideeffects
  * @return {Node}
  */
 google.maps.MapType.prototype.getTile = function(tileCoord, zoom, ownerDocument) {};
@@ -2703,7 +2702,6 @@ google.maps.StreetViewTileData = function() {};
  * @param {number} tileZoom
  * @param {number} tileX
  * @param {number} tileY
- * @nosideeffects
  * @return {string}
  */
 google.maps.StreetViewTileData.prototype.getTileUrl = function(pano, tileZoom, tileX, tileY) {};
@@ -2730,7 +2728,6 @@ google.maps.StreetViewService = function() {};
 /**
  * @param {string} pano
  * @param {function(google.maps.StreetViewPanoramaData, google.maps.StreetViewStatus)} callback
- * @nosideeffects
  */
 google.maps.StreetViewService.prototype.getPanoramaById = function(pano, callback) {};
 
@@ -2738,7 +2735,6 @@ google.maps.StreetViewService.prototype.getPanoramaById = function(pano, callbac
  * @param {google.maps.LatLng} latlng
  * @param {number} radius
  * @param {function(google.maps.StreetViewPanoramaData, google.maps.StreetViewStatus)} callback
- * @nosideeffects
  */
 google.maps.StreetViewService.prototype.getPanoramaByLocation = function(latlng, radius, callback) {};
 /**
@@ -3024,7 +3020,6 @@ google.maps.MVCObject.prototype.changed = function(key) {};
 
 /**
  * @param {string} key
- * @nosideeffects
  * @return {*}
  */
 google.maps.MVCObject.prototype.get = function(key) {};
@@ -3068,7 +3063,6 @@ google.maps.MVCArray.prototype.forEach = function(callback) {};
 
 /**
  * @param {number} i
- * @nosideeffects
  * @return {*}
  */
 google.maps.MVCArray.prototype.getAt = function(i) {};
