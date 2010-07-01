@@ -29,7 +29,7 @@
 
         <slide>
           <section class="center">
-            <header>About</header>
+            <h1>Before we get started...</h1>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -173,7 +173,7 @@ google.maps.event.addDomListener(window, 'load', init);
         </slide>
 
         <slide>
-        <section class="center">
+          <section class="center">
           <header>On the Mobile!</header>
             <div class="nexus">
               <iframe class="map-frame-mobile" src="maps/first-map-android.html"></iframe>
@@ -227,15 +227,15 @@ function getUsersLocation() {
           <section>
             <header>Javascript</header>
 <pre>
-var marker = new google.maps.Marker();
+var userLocationMarker = new google.maps.Marker();
 </pre>
 <pre>
 navigator.geolocation.getCurrentPosition(function(position) {
   var pos = new google.maps.LatLng(position.coords.latitude,
     position.coords.longitude);
   map.panTo(pos);
-  marker.setPosition(pos);
-  marker.setMap(map);
+  userLocationMarker.setPosition(pos);
+  userLocationMarker.setMap(map);
 }, function() {
   // Can find the users location
 });
@@ -263,7 +263,7 @@ var icon = new google.maps.MarkerImage('my-location.png',
   new google.maps.Point(0, 0), // Origin
   new google.maps.Point(7, 7)); // Anchor
 
-marker = new google.maps.Marker({
+var userLocationMarker = new google.maps.Marker({
   icon: icon
 });
 </pre>
@@ -286,17 +286,17 @@ marker = new google.maps.Marker({
           <section>
             <header>Javascript</header>
 <pre>
-var circle = new google.maps.Circle({
-  fillColor: '#00f',
+var accuracyCircle = new google.maps.Circle({
+  fillColor: '#0000ff',
   fillOpacity: 0.1,
-  strokeColor: '#00f',
+  strokeColor: '#0000ff',
   strokeOpacity: 0.3,
   strokeWeight: 1
 });
 </pre>
 
 <pre class="to-show">
-circle.bindTo('center', marker, 'position');
+accuracyCircle.bindTo('center', userLocationMarker, 'position');
 </pre>
 
 <pre class="to-show">
@@ -306,8 +306,9 @@ function getUsersLocation() {
       var pos = new google.maps.LatLng(position.coords.latitude,
         position.coords.longitude);
       map.panTo(pos);
-      circle.setRadius(position.coords.accuracy);
-      circle.setMap(map);
+      userLocationMarker.setPosition(pos);
+      accuracyCircle.setRadius(position.coords.accuracy);
+      accuracyCircle.setMap(map);
       ...
 </pre>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
@@ -333,7 +334,7 @@ function getUsersLocation() {
   background: #fff;
   border: 1px solid #000;
   margin-top: 5px;
-  -webkit-box-shadow:inset -1px -1px 1px #707070;
+  -webkit-box-shadow: inset -1px -1px 1px #707070;
   font: 12px Arial, sans-serif;
   padding: 1px 4px;
   cursor: pointer;
@@ -358,23 +359,32 @@ function setUsersPosition(position) {
     position.coords.longitude);
   userLocation = pos;
   userLocationMarker.setPosition(pos);
-  userLocationMarker.setMap(map);
+  accuracyCircle.setRadius(position.coords.accuracy);
 }
 </pre>
 
 <pre class="to-show">
-function addGotoUsersLocationButton() {
+function addGoToUsersLocationButton() {
   var button = document.createElement('DIV');
   button.className = 'button';
   button.innerHTML = 'My Location';
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button);
   google.maps.event.addDomListener(button, 'click', function() {
-    if (usersLocation) {
+    if (userLocation) {
       map.panTo(userLocation);
     }
   });
 }
 </pre>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+
+                <slide>
+          <section class="center">
+            <header>What we have so far</header>
+            <p>aa</p>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -390,7 +400,8 @@ function addGotoUsersLocationButton() {
 
         <slide>
           <section class="center">
-            <h1>Welcome Back!</h1>
+            <header>Welcome back!</header>
+            <iframe class="map-frame" src="maps/map-with-button.html"></iframe>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -435,8 +446,8 @@ function addNewShopButton() {
           <section>
           <header>Javascript</header>
 <pre>
-  var newShopMarker;
-  var newShopInfoWindow;
+var newShopMarker;
+var newShopInfoWindow;
 </pre>
 <pre>
 function addMarkerAndInfoWindow() {
@@ -452,22 +463,14 @@ function addMarkerAndInfoWindow() {
   });
 }
 </pre>
-
-            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
-            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
-          </section>
-        </slide>
-
-        <slide>
-          <section>
-          <header>Javascript</header>
-            <pre>
+<pre class="to-show">
 function showNewShopForm() {
   newShopMarker.setPosition(map.getCenter());
   newShopMarker.setMap(map);
   newShopInfoWindow.open(map, newShopMarker);
 }
 </pre>
+
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -587,19 +590,19 @@ function loadStoresInView() {
 <pre>
 function addStores(shops) {
   var d = new Date();
-  var added = '_' + d.getTime();
+  var wasAdded = d.getTime();
   for (var i = 0, shop; shop = shops[i]; i++) {
     if (shopMarkers[shop.key]) {
-      shopMarkers[shop.key]._added = added;
+      shopMarkers[shop.key]._wasAdded = wasAdded;
     } else {
       var marker = addStoreMarker(shop);
-      marker._added = added;
+      marker._wasAdded = wasAdded;
       shopMarkers[shop.key] = marker;
     }
   }
 
   for (var key in shopMarkers) {
-    if (shopMarkers[key]._added != added) {
+    if (shopMarkers[key]._wasAdded != wasAdded) {
       shopMarkers[key].setMap(null);
       delete shopMarkers[key];
     }
@@ -623,7 +626,6 @@ function addStoreMarker(shop) {
     title: shop.name,
     icon: shopIcon
   });
-  marker.shopKey = shop.key;
   return marker;
 }
 </pre>
@@ -675,6 +677,17 @@ function getDirectionsTo(shop) {
         <slide>
           <section class="center">
             <header>whereiscoffee.appspot.com</header>
+            <div class="nexus">
+              <iframe class="map-frame-mobile" src="http://whereiscoffee.appspot.com?mobile"></iframe>
+            </div>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+
+        <slide>
+          <section class="center">
+            <header>whereiscoffee.appspot.com</header>
             <iframe class="map-frame" src="http://whereiscoffee.appspot.com"></iframe>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
@@ -688,7 +701,8 @@ function getDirectionsTo(shop) {
             Sign up for a developer preview:
             <br/>
             <br/>
-            http://code.google.com/apis/maps/ documentation/places/
+            http://code.google.com/apis/
+            maps/ documentation/places/
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -799,10 +813,12 @@ self.response.out.write(urlfetch.fetch(places_url).content)
           <section>
             <header class="center">Our Parting Gift</header>
             <br/>
-            http://code.google.com/apis/maps/ documentation/javascript/
+            http://code.google.com/apis/
+            maps/documentation/javascript/
             <br/>
             <br/>
-            http://whereiscoffee.appspot.com
+            <span style="font-size: 95%">http://whereiscoffee.appspot.com</span>
+
             <br/>
             <br/>
             <br/>
