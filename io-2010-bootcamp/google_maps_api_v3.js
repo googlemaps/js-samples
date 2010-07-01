@@ -1586,8 +1586,8 @@ google.maps.DirectionsDuration.prototype.value;
 google.maps.ElevationService = function() {};
 
 /**
- * @param {google.maps.PathElevationRequest} request
- * @param {function(Array.<google.maps.ElevationResult>, google.maps.ElevationStatus)} callback
+ * @param {(google.maps.PathElevationRequest|Object.<string, *>)} request
+ * @param {function(Array.<(google.maps.ElevationResult|Object.<string, *>)>, google.maps.ElevationStatus)} callback
  */
 google.maps.ElevationService.prototype.getElevationAlongPath = function(request, callback) {};
 
