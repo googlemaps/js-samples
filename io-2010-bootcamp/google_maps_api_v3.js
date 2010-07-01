@@ -993,8 +993,8 @@ google.maps.InfoWindowOptions.prototype.zIndex;
 google.maps.Geocoder = function() {};
 
 /**
- * @param {google.maps.GeocoderRequest|Object.<string, *>} request
- * @param {function(Array.<google.maps.GeocoderResult|Object.<string, *>>, google.maps.GeocoderStatus)} callback
+ * @param {google.maps.GeocoderRequest} request
+ * @param {function(Array.<google.maps.GeocoderResult>, google.maps.GeocoderStatus)} callback
  */
 google.maps.Geocoder.prototype.geocode = function(request, callback) {};
 /**
@@ -1165,7 +1165,7 @@ google.maps.DirectionsRenderer = function(opt_opts) {};
 
 /**
  * @nosideeffects
- * @return {google.maps.DirectionsResult|Object.<string, *>}
+ * @return {google.maps.DirectionsResult}
  */
 google.maps.DirectionsRenderer.prototype.getDirections = function() {};
 
@@ -1188,7 +1188,7 @@ google.maps.DirectionsRenderer.prototype.getPanel = function() {};
 google.maps.DirectionsRenderer.prototype.getRouteIndex = function() {};
 
 /**
- * @param {google.maps.DirectionsResult|Object.<string, *>} directions
+ * @param {google.maps.DirectionsResult} directions
  */
 google.maps.DirectionsRenderer.prototype.setDirections = function(directions) {};
 
@@ -1213,7 +1213,7 @@ google.maps.DirectionsRendererOptions = function() {};
 
 
 /**
- * @type {google.maps.DirectionsResult|Object.<string, *>}
+ * @type {google.maps.DirectionsResult}
  */
 google.maps.DirectionsRendererOptions.prototype.directions;
 
@@ -1278,8 +1278,8 @@ google.maps.DirectionsRendererOptions.prototype.suppressPolylines;
 google.maps.DirectionsService = function() {};
 
 /**
- * @param {google.maps.DirectionsRequest|Object.<string, *>} request
- * @param {function(google.maps.DirectionsResult|Object.<string, *>, google.maps.DirectionsStatus)} callback
+ * @param {google.maps.DirectionsRequest} request
+ * @param {function(google.maps.DirectionsResult, google.maps.DirectionsStatus)} callback
  */
 google.maps.DirectionsService.prototype.route = function(request, callback) {};
 /**
@@ -1586,15 +1586,15 @@ google.maps.DirectionsDuration.prototype.value;
 google.maps.ElevationService = function() {};
 
 /**
- * @param {google.maps.PathElevationRequest|Object.<string, *>} request
- * @param {function(Array.<google.maps.ElevationResult|Object.<string, *>>, google.maps.ElevationStatus)} callback
+ * @param {google.maps.PathElevationRequest} request
+ * @param {function(Array.<google.maps.ElevationResult>, google.maps.ElevationStatus)} callback
  * @nosideeffects
  */
 google.maps.ElevationService.prototype.getElevationAlongPath = function(request, callback) {};
 
 /**
- * @param {google.maps.LocationElevationRequest|Object.<string, *>} request
- * @param {function(Array.<google.maps.ElevationResult|Object.<string, *>>, google.maps.ElevationStatus)} callback
+ * @param {google.maps.LocationElevationRequest} request
+ * @param {function(Array.<google.maps.ElevationResult>, google.maps.ElevationStatus)} callback
  * @nosideeffects
  */
 google.maps.ElevationService.prototype.getElevationForLocations = function(request, callback) {};
