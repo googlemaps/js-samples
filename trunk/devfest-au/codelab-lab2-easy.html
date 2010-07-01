@@ -25,9 +25,9 @@ h1 {
   -webkit-box-shadow: rgba(0,0,0,0.7) 10px 10px 40px;
   -moz-box-shadow: rgba(0,0,0,0.7) 10px 10px 40px;
   box-shadow: rgba(0,0,0,0.7) 10px 10px 40px;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
   border: 6px solid #429;
 }
 
@@ -50,19 +50,49 @@ h1 {
 }
 
 .timestamp {
-  font-style: normal;
+  color: #676767;
+  font-size: 0.9em;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: 4px;
 }
 .caption {
   color: #333;
   font-size: 0.8em;
-  font-style: italic;
   overflow: none;
   width: 250px;
+}
+
+.info-control {
+  background: #fee;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 2px;
+  border-radius: 4px;
+  border: 3px solid #429;
+  border-left: 0;
+  font-size: 0.7em;
+  height: 120px;
+  margin: 15px 0 0 -5px;
+	filter: alpha(opacity=80);
+	-moz-opacity: 0.8;
+	opacity: 0.8;
+  padding: 4px 4px 2px 8px;
+  text-align: left;
+  width: 120px;
+  -webkit-transition: width 0.3s ease-in-out;
+}
+.info-control h3 {
+  font-size: 1em;
+  margin: 0 0 5px 0;
+}
+.info-control input {
+  font-size: 1em;
+  width: 110px;
 }
 </style>
 
 <div id="main">
-  <h1>Lab 1: Map Foundation</h1>
+  <h1>Lab 2: Map Customization (OverlayView)</h1>
   <div id="map-canvas"></div>
 </div>
 
@@ -76,10 +106,47 @@ var App = {
   // Map related
   map: null,
   markers: {},
+  infoControl: null,
   infoWindow: new google.maps.InfoWindow(),
   
   // DOM pointers
   mapCanvasNode: document.getElementById('map-canvas')
+};
+
+App.InfoControl = function(index) {
+  this.div = document.createElement('div');
+  this.div.className = 'info-control';
+  this.div.index = index;
+  this.init();
+};
+App.InfoControl.prototype.init = function() {
+  var html = [
+    '<h3>',
+    'Showing <span id="count-label">0</span> of ',
+    '<span id="total-label">0</span>',
+    '</h3>',
+    '<b>Search terms:</b> ',
+    '<input id="terms-input" type=text value=""/>',
+    '<br/>',
+    '<b>Tags:</b> ',
+    '<input id="tags-input" type=text value="coffee"/>',
+    '<br/>',
+    '<input onclick="App.getFlickrPhotos();" type=button value="update"/>'
+  ].join('');
+  this.div.innerHTML = html;
+};
+App.InfoControl.prototype.update = function(id, value) {
+  if (id == 'count' || id == 'total') {
+    document.getElementById(id + '-label').innerHTML = value;
+  } else {
+    document.getElementById(id + '-input').value = value;
+  }
+};
+App.InfoControl.prototype.getTerms = function() {
+  return document.getElementById('terms-input').value;
+};
+App.InfoControl.prototype.getTags = function() {
+  return document.getElementById('tags-input').value;
 };
 
 /**
@@ -121,11 +188,10 @@ App.handleMarkerClick = function(marker) {
       '"/>',
       '</a>',
       '<div class="caption">',
+      photo.description._content,
       '<div class="timestamp">',
-      '<b>Taken on:</b> ',
       photoDate,
       '</div>',
-      photo.description._content,
       '</div>',
       '</div>'
     ].join(''));
@@ -162,7 +228,8 @@ App.getFlickrPhotoUrl = function(photo, size) {
  */
 App.getFlickrPhotosCallback = function(response) {
   // Iterate through each photo and plot on map.
-  for (var n = 0, photo; photo = response.photos.photo[n]; n++) {
+  var photos = response.photos;
+  for (var n = 0, photo; photo = photos.photo[n]; n++) {
     // Keep a cache of Marker objects to minimize creating new ones by using
     // the photo ID as the key.
     var marker = App.markers[photo.id];
@@ -171,7 +238,17 @@ App.getFlickrPhotosCallback = function(response) {
       marker = new google.maps.Marker({
         map: App.map,
         position: new google.maps.LatLng(photo.latitude, photo.longitude),
-        title: photo.title
+        title: photo.title,
+        icon: new google.maps.MarkerImage(
+            App.getFlickrPhotoUrl(photo, 's'),
+            new google.maps.Size(75, 75),
+            new google.maps.Point(0, 0),
+            new google.maps.Point(0, 0),
+            new google.maps.Size(35, 35)),
+        shape: {
+          coord: [0, 0, 30, 30],
+          type: 'rectangle'
+        }
       });
       App.markers[photo.id] = marker;
     
@@ -199,17 +276,20 @@ App.getFlickrPhotosCallback = function(response) {
       marker.photo_ = photo;
     }
   }
+  
+  // Update info control with information about this request.
+  App.infoControl.update('count', photos.photo.length);
+  App.infoControl.update('total', photos.total);
 };
 
 /**
  * Sends off a Flickr photos search query.
- * @param {Object} opt_options Optional dictionary with search parameters.
  */
-App.getFlickrPhotos = function(opt_options) {
+App.getFlickrPhotos = function() {
   // If no options are passed in, create a default set.
-  var options = opt_options || {
-    tags: 'coffee',
-    text: ''
+  var options = {
+    tags: App.infoControl.getTags(),
+    text: App.infoControl.getTerms()
   };
   
   // Flickr bbox param needs comma-delimited list of 4 values in format:
@@ -244,6 +324,72 @@ App.getFlickrPhotos = function(opt_options) {
   App.loadScript(feedUrl);
 };
 
+App.getNightStyledMapType = function(mapName) {
+  var mapStyles = [{
+    featureType: 'all',
+    elementType: 'all',
+    stylers: [
+      { invert_lightness: true },
+      { visibility: 'on' },
+      { saturation: 36 },
+      { gamma: 0.83 },
+      { hue: '#00eeff' }
+    ]
+  }, {
+    featureType: 'water',
+    elementType: 'all',
+    stylers: [
+      { invert_lightness: true },
+      { visibility: 'simplified' },
+      { hue: '#ff8800' }
+    ]
+  }];
+  return new google.maps.StyledMapType(mapStyles, {
+    name: mapName
+  });
+};
+
+App.getCleanStyledMapType = function(mapName) {
+  var mapStyles = [{
+    featureType: "road",
+    elementType: "all",
+    stylers: [{
+      visibility: "simplified"
+    }]
+  }, {
+    featureType: "administrative.neighbourhood",
+    elementType: "geometry",
+    stylers: [{
+      hue: "#ff1a00"
+    }, {
+      saturation: -31
+    }]
+  }, {
+    featureType: "water",
+    elementType: "geometry",
+    stylers: [{
+      hue: "#6e00ff"
+    }, {
+      saturation: 26
+    }]
+  }, {
+    featureType: "road.highway",
+    elementType: "labels",
+    stylers: [{
+      visibility: "off"
+    }]
+  }, {
+    featureType: "landscape.natural",
+    elementType: "geometry",
+    stylers: [{
+      hue: "#0008ff"
+    }]
+  }];
+  return new google.maps.StyledMapType(mapStyles, {
+    name: mapName
+  });
+};
+
 /**
  * Called on the initial page load to initialize the map.
  */
@@ -251,17 +397,33 @@ App.init = function() {
   App.map = new google.maps.Map(App.mapCanvasNode, {
     zoom: 15,
     center:  new google.maps.LatLng(-33.865386, 151.196897),
-    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeId: 'clean',
     scaleControl: true,
     mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-      position: google.maps.ControlPosition.TOP_LEFT
+      position: google.maps.ControlPosition.TOP_LEFT,
+      mapTypeIds: [
+        'clean',
+        'night',
+        google.maps.MapTypeId.ROADMAP,
+        google.maps.MapTypeId.HYBRID,
+        google.maps.MapTypeId.SATELLITE,
+        google.maps.MapTypeId.TERRAIN
+      ]
     },
     navigationControlOptions: {
       style: google.maps.NavigationControlStyle.SMALL,
       position: google.maps.ControlPosition.TOP_RIGHT
     }
   });
+  
+  // Add custom styled map types.
+  App.map.mapTypes.set('clean', App.getCleanStyledMapType('Clean'));
+  App.map.mapTypes.set('night', App.getNightStyledMapType('Night'));
+  
+  // Add custom controls.
+  App.infoControl = new App.InfoControl(0);
+  App.map.controls[google.maps.ControlPosition.LEFT].push(App.infoControl.div);
   
   // Make the info window go away when clicking anywhere on the Map.
   google.maps.event.addListener(App.map, 'click', function() {
