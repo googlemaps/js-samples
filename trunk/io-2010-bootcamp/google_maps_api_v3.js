@@ -1587,7 +1587,7 @@ google.maps.ElevationService = function() {};
 
 /**
  * @param {(google.maps.PathElevationRequest|Object.<string, *>)} request
- * @param {function(Array.<(google.maps.ElevationResult|Object.<string, *>)>, google.maps.ElevationStatus)} callback
+ * @param {function(Array.<google.maps.ElevationResult>, google.maps.ElevationStatus)} callback
  * @nosideeffects
  */
 google.maps.ElevationService.prototype.getElevationAlongPath = function(request, callback) {};
