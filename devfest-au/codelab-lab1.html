@@ -194,9 +194,11 @@ App.getFlickrPhotosCallback = function(response) {
     img.src = App.getFlickrPhotoUrl(photo, 'm');
     
     // Make info windows open up when clicking on the Marker
-    marker.photo_ = photo;
     google.maps.event.addListener(marker, 'click',
         App.handleMarkerClick(marker));
+    
+    // Save this Photo JSON object into the marker so it can be accessed later.
+    marker.photo_ = photo;
   }
 };
 
