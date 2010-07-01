@@ -62,7 +62,7 @@ h1 {
 </style>
 
 <div id="main">
-  <h1>Lab 1: Map Foundation</h1>
+  <h1>Lab 2: Map Customization (MarkerImage)</h1>
   <div id="map-canvas"></div>
 </div>
 
@@ -171,7 +171,17 @@ App.getFlickrPhotosCallback = function(response) {
       marker = new google.maps.Marker({
         map: App.map,
         position: new google.maps.LatLng(photo.latitude, photo.longitude),
-        title: photo.title
+        title: photo.title,
+        icon: new google.maps.MarkerImage(
+            App.getFlickrPhotoUrl(photo, 's'),
+            new google.maps.Size(75, 75),
+            new google.maps.Point(0, 0),
+            new google.maps.Point(0, 0),
+            new google.maps.Size(35, 35)),
+        shape: {
+          coord: [0, 0, 30, 30],
+          type: 'rectangle'
+        }
       });
       App.markers[photo.id] = marker;
     
