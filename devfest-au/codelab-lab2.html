@@ -130,36 +130,58 @@ App.InfoControl = function(index) {
   this.div = document.createElement('div');
   this.div.className = 'info-control';
   this.div.index = index;
+  
+  this.totalNode = document.createElement('span');
+  this.totalNode.innerHTML = 0;
+  this.countNode = document.createElement('span');
+  this.countNode.innerHTML = 0;
+  this.termsNode = document.createElement('input');
+  this.tagsNode = document.createElement('input');
+  
   this.init();
 };
 App.InfoControl.prototype.init = function() {
-  var html = [
-    '<h3>',
-    'Showing <span id="count-label">0</span> of ',
-    '<span id="total-label">0</span>',
-    '</h3>',
-    '<b>Search terms:</b> ',
-    '<input id="terms-input" type=text value=""/>',
-    '<br/>',
-    '<b>Tags:</b> ',
-    '<input id="tags-input" type=text value="coffee"/>',
-    '<br/>',
-    '<input onclick="App.getFlickrPhotos();" type=button value="update"/>'
-  ].join('');
-  this.div.innerHTML = html;
-};
-App.InfoControl.prototype.update = function(id, value) {
-  if (id == 'count' || id == 'total') {
-    document.getElementById(id + '-label').innerHTML = value;
-  } else {
-    document.getElementById(id + '-input').value = value;
-  }
+  var node = document.createElement('h3');
+  this.div.appendChild(node);
+  
+  node.appendChild(document.createTextNode('Showing '));
+  node.appendChild(this.countNode);
+  node.appendChild(document.createTextNode(' of '));
+  node.appendChild(this.totalNode);
+  
+  node = document.createElement('b');
+  node.innerHTML = 'Search terms: ';
+  this.div.appendChild(node);
+  
+  this.termsNode = node = document.createElement('input');
+  node.type = 'text';
+  node.value = '';
+  this.div.appendChild(node);
+  
+  this.div.appendChild(document.createElement('br'));
+  
+  node = document.createElement('b');
+  node.innerHTML = 'Tags: ';
+  this.div.appendChild(node);
+  
+  this.tagsNode = node = document.createElement('input');
+  node.type = 'text';
+  node.value = 'coffee';
+  this.div.appendChild(node);
+  
+  this.div.appendChild(document.createElement('br'));
+  
+  node = document.createElement('input');
+  node.type = 'button';
+  node.value = 'update';
+  google.maps.event.addDomListener(node, 'click', App.getFlickrPhotos);
+  this.div.appendChild(node);
 };
 App.InfoControl.prototype.getTerms = function() {
-  return document.getElementById('terms-input').value;
+  return this.termsNode.value;
 };
 App.InfoControl.prototype.getTags = function() {
-  return document.getElementById('tags-input').value;
+  return this.tagsNode.value;
 };
 
 /**
@@ -178,6 +200,7 @@ App.PhotoMarker = function(options) {
   
   this.div_ = null;
   this.photo_ = options.photo;
+  
   this.position = options.position;
   this.size = options.size;
   this.map = options.map;
@@ -239,7 +262,7 @@ App.PhotoMarker.prototype.onRemove = function() {
 };
 
 App.PhotoMarker.prototype.setVisible = function(visible) {
-  this.div_.style.display = visible ? 'block' : 'none';
+  this.div_.style.display = visible ? '' : 'none';
 }
 
 /**
@@ -320,6 +343,11 @@ App.getFlickrPhotoUrl = function(photo, size) {
  * @param {Object} response JSON response object
  */
 App.getFlickrPhotosCallback = function(response) {
+  // Hide all markers before showing new ones.
+  for (var id in App.markers) {
+    App.markers[id].setVisible(false);
+  }
+  
   // Iterate through each photo and plot on map.
   var photos = response.photos;
   for (var n = 0, photo; photo = photos.photo[n]; n++) {
@@ -339,12 +367,14 @@ App.getFlickrPhotosCallback = function(response) {
       // Start prefetching photos to be displayed in the info window
       var img = new Image();
       img.src = App.getFlickrPhotoUrl(photo, 'm');
+    } else {
+      marker.setVisible(true);
     }
   }
   
   // Update info control with information about this request.
-  App.infoControl.update('count', photos.photo.length);
-  App.infoControl.update('total', photos.total);
+  App.infoControl.countNode.innerHTML = photos.photo.length;
+  App.infoControl.totalNode.innerHTML = photos.total;
 };
 
 /**
