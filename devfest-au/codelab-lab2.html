@@ -204,6 +204,7 @@ App.PhotoMarker = function(options) {
   
   this.div_ = null;
   this.photo_ = options.photo;
+  this.isAdded_ = false;
   
   this.position = options.position;
   this.size = options.size;
@@ -347,11 +348,6 @@ App.getFlickrPhotoUrl = function(photo, size) {
  * @param {Object} response JSON response object
  */
 App.getFlickrPhotosCallback = function(response) {
-  // Hide all markers before showing new ones.
-  for (var id in App.markers) {
-    App.markers[id].setVisible(false);
-  }
-  
   // Iterate through each photo and plot on map.
   var photos = response.photos;
   for (var n = 0, photo; photo = photos.photo[n]; n++) {
@@ -371,8 +367,22 @@ App.getFlickrPhotosCallback = function(response) {
       // Start prefetching photos to be displayed in the info window
       var img = new Image();
       img.src = App.getFlickrPhotoUrl(photo, 'm');
+    }
+    marker.isAdded_ = true;
+  }
+  
+  // Hide any markers which are not flagged to be added.
+  for (var id in App.markers) {
+    var marker = App.markers[id];
+    if (marker.isAdded_) {
+      if (!marker.getMap()) {
+        marker.setMap(App.map);
+      }
+      
+      // Reset added flag
+      marker.isAdded_ = false;
     } else {
-      marker.setVisible(true);
+      marker.setMap(null);
     }
   }
   
