@@ -112,6 +112,11 @@ var App = {
   mapCanvasNode: document.getElementById('map-canvas')
 };
 
+/**
+ * Custom control to overlay a DIV containers over a map to display more info
+ * and make available additional search controls.
+ * @param {number} index Default control index
+ */
 App.InfoControl = function(index) {
   this.div = document.createElement('div');
   this.div.className = 'info-control';
