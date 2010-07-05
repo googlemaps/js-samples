@@ -170,7 +170,7 @@ App.InfoControl.prototype.init = function() {
   
   this.tagsNode = node = document.createElement('input');
   node.type = 'text';
-  node.value = 'coffee';
+  node.value = 'art,food';
   this.div.appendChild(node);
   
   this.div.appendChild(document.createElement('br'));
@@ -504,8 +504,8 @@ App.getCleanStyledMapType = function(mapName) {
  */
 App.init = function() {
   App.map = new google.maps.Map(App.mapCanvasNode, {
-    zoom: 15,
-    center:  new google.maps.LatLng(-33.865386, 151.196897),
+    zoom: 14,
+    center:  new google.maps.LatLng(14.597466, 121.0092),
     mapTypeId: 'clean',
     scaleControl: true,
     mapTypeControlOptions: {
