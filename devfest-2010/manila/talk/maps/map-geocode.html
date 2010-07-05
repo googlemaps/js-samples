@@ -71,7 +71,7 @@
         var mapCenter = new google.maps.LatLng(0, 0);
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
-          center: new google.maps.LatLng(-33.86681373718802, 151.19591345512868),
+          center: new google.maps.LatLng(14.597466, 121.0092),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
@@ -106,11 +106,26 @@
         google.maps.event.addDomListener(button, 'click', showNewShopForm);
       }
 
+      function reverseGeocodeNewShopMarker() {
+        var geocoder = new google.maps.Geocoder();
+        var request = {latLng: newShopMarker.getPosition()};
+
+        geocoder.geocode(request, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            var address = results[0].formatted_address;
+            document.getElementById('new-shop-address').value = address;
+          }
+        });
+      }
+
       function showNewShopForm() {
         if (!newShopMarker) {
           newShopMarker = new google.maps.Marker();
           google.maps.event.addListener(map, 'click', function(e) {
             newShopMarker.setPosition(e.latLng);
+            if (infoWindowIsOpen) {
+              reverseGeocodeNewShopMarker();
+            }
           });
 
           var formHTML = '<div id="add-new-shop-form">' +
@@ -131,9 +146,15 @@
           newShopInfoWindow = new google.maps.InfoWindow({
             content: formHTML
           });
+
           google.maps.event.addListener(newShopInfoWindow, 'closeclick', function() {
             infoWindowIsOpen = false;
           });
+
+          google.maps.event.addListener(newShopInfoWindow, 'domready', function() {
+            reverseGeocodeNewShopMarker();
+          });
+
 
           google.maps.event.addListener(newShopMarker, 'click', function() {
             if (!infoWindowIsOpen) {
@@ -163,6 +184,7 @@
             map.panTo(new google.maps.LatLng(-33.86681373718802,
                 151.19591345512868));
           }
+          newShopMarker.setPosition(map.getCenter());
         });
       }
 
@@ -170,6 +192,15 @@
         var pos = new google.maps.LatLng(position.coords.latitude,
           position.coords.longitude);
         userLocation = pos;
+        userLocationMarker.setPosition(pos);
+        if (!userLocationMarker.getMap()) {
+          userLocationMarker.setMap(map);
+        }
+
+        userLocationCircle.setRadius(position.coords.accuracy);
+        if (!userLocationCircle.getMap()) {
+          userLocationCircle.setMap(map);
+        }
       }
 
       function getUsersLocation() {
@@ -183,7 +214,7 @@
           }, function() {
             // Can find the users location
             // Cheat for the talk
-            userLocationMarker.setPosition(new google.maps.LatLng(-33.86681373718802, 151.19591345512868));
+            userLocationMarker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
             userLocationMarker.setMap(map);
 
             userLocationCircle.setRadius(150);
@@ -191,7 +222,7 @@
           }, {timeout: 2000});
         } else {
           console.log('mooooo');
-          userLocationMarker.setPosition(new google.maps.LatLng(-33.86681373718802, 151.19591345512868));
+          userLocationMarker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
           userLocationMarker.setMap(map);
 
           userLocationCircle.setRadius(150);
