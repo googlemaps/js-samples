@@ -208,7 +208,7 @@ App.getFlickrPhotosCallback = function(response) {
 App.getFlickrPhotos = function(opt_options) {
   // If no options are passed in, create a default set.
   var options = opt_options || {
-    tags: 'coffee',
+    tags: 'art, food',
     text: ''
   };
   
@@ -249,8 +249,8 @@ App.getFlickrPhotos = function(opt_options) {
  */
 App.init = function() {
   App.map = new google.maps.Map(App.mapCanvasNode, {
-    zoom: 15,
-    center:  new google.maps.LatLng(-33.865386, 151.196897),
+    zoom: 13,
+    center:  new google.maps.LatLng(14.597466, 121.0092),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     scaleControl: true,
     mapTypeControlOptions: {

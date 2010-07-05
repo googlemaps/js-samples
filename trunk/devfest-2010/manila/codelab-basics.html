@@ -69,7 +69,7 @@ h1 {
 <script type="text/javascript"> 
 var Demo = {
   map: null,
-  initLatLng: new google.maps.LatLng(37.4419, -122.1419),
+  initLatLng: new google.maps.LatLng(14.597466, 121.0092),
   infoWindow: new google.maps.InfoWindow(),
   mapContainer: document.getElementById('map-container'),
   addMarkerNode: document.getElementById('add-marker'),
@@ -157,7 +157,7 @@ var Demo = {
   init: function() {
     // Step 1+2: Create map and experiment with different map options.
     Demo.map = new google.maps.Map(Demo.mapContainer, {
-      zoom: 12,
+      zoom: 15,
       center: Demo.initLatLng,
       mapTypeId: google.maps.MapTypeId.HYBRID,
       scaleControl: true,
@@ -182,15 +182,10 @@ var Demo = {
     google.maps.event.addListener(centerMarker, 'click', function() {
       Demo.infoWindow.setContent([
         '<div id="info-window-content">',
-        '<h3>DevFest AU Sydney</h3>',
-        '<b>Date:</b> Friday, July 2, 2010<br/>',
-        '<b>Location:</b> ',
-        '<a href="http://www.google.com.au/intl/en/jobs/sydney/" ',
-          'target="_blank">',
-        'Google Sydney Office',
-        '</a><br/>',
+        '<h3>DevFest 2010: Manila</h3>',
+        '<b>Date:</b> Tuesday, July 6, 2010<br/>',
         '<br/>',
-        '<a href="http://code.google.com/events/devfests/2010/sydney5.html" ',
+        '<a href="http://code.google.com/events/devfests/2010/asia1" ',
           'target="_blank">',
         '<img src="http://code.google.com/events/devfests/2010/',
           'images/devfest2010-logo.png"/>',
