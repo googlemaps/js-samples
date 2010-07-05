@@ -43,6 +43,8 @@
 
       #add-new-shop-form label {
         font-size: 12px;
+        width: 80px;
+        display: inline-block;
       }
 
       #add-new-shop-form h1 {
@@ -65,14 +67,11 @@
       var newShopMarker;
       var newShopInfoWindow;
       var infoWindowIsOpen;
-      var shopIcon;
-      var markers = [];
-
       function init() {
         var mapCenter = new google.maps.LatLng(0, 0);
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
-          center: new google.maps.LatLng(-33.86681373718802, 151.19591345512868),
+          center: new google.maps.LatLng(14.597466, 121.0092),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
@@ -83,9 +82,7 @@
 
         userLocationMarker = new google.maps.Marker({
           icon: icon
-        });
-
-        shopIcon = new google.maps.MarkerImage('coffee.png', new google.maps.Size(32, 37));
+          });
 
         userLocationCircle = new google.maps.Circle({
           fillColor: '#00f',
@@ -109,58 +106,18 @@
         google.maps.event.addDomListener(button, 'click', showNewShopForm);
       }
 
-      function reverseGeocodeNewShopMarker() {
-        var geocoder = new google.maps.Geocoder();
-        var request = {latLng: newShopMarker.getPosition()};
-
-        geocoder.geocode(request, function(results, status) {
-          if (status == google.maps.GeocoderStatus.OK) {
-            var address = results[0].formatted_address;
-            document.getElementById('new-shop-address').value = address;
-          }
-        });
-      }
-
-      function saveShop() {
-        var name = $('#new-shop-name').val();
-        var address = $('#new-shop-address').val();
-        var rating = $('#new-shop-rating').val();
-        var position = newShopMarker.getPosition();
-
-        // Fake the ajax
-        newShopMarker.setMap(null);
-        newShopInfoWindow.close();
-
-        var marker = new google.maps.Marker({
-          position: position,
-          map: map,
-          title: name,
-          icon: shopIcon
-        });
-
-        marker.name = name;
-        marker.address = address;
-        marker.rating = rating;
-        google.maps.event.addListner(marker, 'click', function() {
-          showShopInfo(this);
-        });
-      }
-
       function showNewShopForm() {
         if (!newShopMarker) {
           newShopMarker = new google.maps.Marker();
           google.maps.event.addListener(map, 'click', function(e) {
             newShopMarker.setPosition(e.latLng);
-            if (infoWindowIsOpen) {
-              reverseGeocodeNewShopMarker();
-            }
           });
 
           var formHTML = '<div id="add-new-shop-form">' +
             '<h1>Add a new Coffee Shop</h1>' +
-            '<div><label>Name:<label><br/><input type="text" id="new-shop-name"/></div>' +
-            '<div><label>Address:<label><br/><input type="text" id="new-shop-address"/></div>' +
-            '<div><label>Rating:</label><br/>' +
+            '<div><label>Name:<label> <input type="text" id="new-shop-name"/></div>' +
+            '<div><label>Address:<label> <input type="text" id="new-shop-address"/></div>' +
+            '<div><label>Rating:</label>' +
             '<select id="new-shop-rating">' +
             '<option value=""></option>' +
             '<option value="1">1</option>' +
@@ -174,16 +131,9 @@
           newShopInfoWindow = new google.maps.InfoWindow({
             content: formHTML
           });
-
           google.maps.event.addListener(newShopInfoWindow, 'closeclick', function() {
             infoWindowIsOpen = false;
           });
-
-          google.maps.event.addListener(newShopInfoWindow, 'domready', function() {
-              reverseGeocodeNewShopMarker();
-              $('#new-shop-save').click(saveShop);
-          });
-
 
           google.maps.event.addListener(newShopMarker, 'click', function() {
             if (!infoWindowIsOpen) {
@@ -213,9 +163,6 @@
             map.panTo(new google.maps.LatLng(-33.86681373718802,
                 151.19591345512868));
           }
-          if (newShopMarker) {
-            newShopMarker.setPosition(map.getCenter());
-          }
         });
       }
 
@@ -223,15 +170,6 @@
         var pos = new google.maps.LatLng(position.coords.latitude,
           position.coords.longitude);
         userLocation = pos;
-        userLocationMarker.setPosition(pos);
-        if (!userLocationMarker.getMap()) {
-          userLocationMarker.setMap(map);
-        }
-
-        userLocationCircle.setRadius(position.coords.accuracy);
-        if (!userLocationCircle.getMap()) {
-          userLocationCircle.setMap(map);
-        }
       }
 
       function getUsersLocation() {
@@ -245,14 +183,15 @@
           }, function() {
             // Can find the users location
             // Cheat for the talk
-            userLocationMarker.setPosition(new google.maps.LatLng(-33.86681373718802, 151.19591345512868));
+            userLocationMarker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
             userLocationMarker.setMap(map);
 
             userLocationCircle.setRadius(150);
             userLocationCircle.setMap(map);
           }, {timeout: 2000});
         } else {
-          userLocationMarker.setPosition(new google.maps.LatLng(-33.86681373718802, 151.19591345512868));
+          console.log('mooooo');
+          userLocationMarker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
           userLocationMarker.setMap(map);
 
           userLocationCircle.setRadius(150);
