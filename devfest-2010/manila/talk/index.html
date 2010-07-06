@@ -22,7 +22,7 @@
         <slide>
           <section class="center">
             <header>What are we learning today?</header>
-            <h2>Google Maps</h2>
+            <h2>Google Maps API</h2>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -30,7 +30,7 @@
 
         <slide>
           <section class="center">
-            <h1>Before we get started...</h1>
+            <h2>Before we get started...</h2>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -38,7 +38,7 @@
 
         <slide>
           <section class="center">
-            <img src="images/coffee3.jpg" width="400" class="fancy to-show"/>
+            <img src="images/coffee2.jpg" width="400" class="fancy to-show"/>
             <img src="images/coffee4.jpg" width="400" class="fancy to-show"/>
             <img src="images/coffee.jpg" width="400" class="fancy to-show"/>
 
@@ -175,7 +175,7 @@ google.maps.event.addDomListener(window, 'load', init);
 
         <slide>
           <section class="center">
-          <header>On the Mobile!</header>
+          <header>Mobile Map!</header>
             <div class="nexus">
               <iframe class="map-frame-mobile" src="maps/first-map-android.html"></iframe>
             </div>
@@ -268,7 +268,7 @@ var userLocationMarker = new google.maps.Marker({
   icon: icon
 });
 </pre>
-            <div class="center to-show"><img src="maps/my-location.png"</div>
+            <div class="center"><img src="maps/my-location.png"</div>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
           </section>
@@ -296,11 +296,11 @@ var accuracyCircle = new google.maps.Circle({
 });
 </pre>
 
-<pre class="to-show">
+<pre class="">
 accuracyCircle.bindTo('center', userLocationMarker, 'position');
 </pre>
 
-<pre class="to-show">
+<pre class="">
 function getUsersLocation() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -354,7 +354,7 @@ var userLocation;
 navigator.geolocation.watchPosition(setUsersPosition);
 </pre>
 
-<pre class="to-show">
+<pre class="">
 function setUsersPosition(position) {
   var pos = new google.maps.LatLng(position.coords.latitude,
     position.coords.longitude);
@@ -364,7 +364,7 @@ function setUsersPosition(position) {
 }
 </pre>
 
-<pre class="to-show">
+<pre class="">
 function addGoToUsersLocationButton() {
   var button = document.createElement('DIV');
   button.className = 'button';
@@ -384,7 +384,7 @@ function addGoToUsersLocationButton() {
 
         <slide>
           <section class="center">
-            <header>What we have so far</header>
+            <header>What do we have so far?x</header>
             <iframe class="map-frame" src="maps/map-with-button.html"></iframe>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
             <googlelogo><img src="images/maps-logo.png"/></googlelogo>
@@ -413,7 +413,7 @@ function addAddNewShopButton() {
   google.maps.event.addDomListener(button, 'click', showNewShopForm);
 }
 </pre>
-            <div class="to-show">
+            <div class="">
               <headerinline>Using jQuery</headerinline>
 <pre>
 function addNewShopButton() {
@@ -447,7 +447,7 @@ function addMarkerAndInfoWindow() {
   });
 }
 </pre>
-<pre class="to-show">
+<pre class="">
 function showNewShopForm() {
   newShopMarker.setPosition(map.getCenter());
   newShopMarker.setMap(map);
@@ -485,7 +485,7 @@ function reverseGeocodeNewShopMarker() {
   });
 }
 </pre>
-<pre class="to-show">
+<pre class="">
 google.maps.event.addListener(map, 'click', function(e) {
   ...
   reverseGeocodeNewShopMarker();
@@ -512,7 +512,7 @@ google.maps.event.addListener(map, 'click', function(e) {
 var shopIcon = new google.maps.MarkerImage('coffee.png',
   new google.maps.Size(32, 37));
 </pre>
-<pre class="to-show">
+<pre class="">
 function saveShop() {
   var position = newShopMarker.getPosition();
 
@@ -528,7 +528,7 @@ function saveShop() {
   });
 }
 </pre>
-<pre class="to-show">
+<pre class="">
 google.maps.event.addListener(newShopInfoWindow, 'domready', function() {
   var saveButton = document.getElementById('new-shop-save');
   google.maps.event.addDomListener(saveButton, 'click', saveShop);
@@ -555,7 +555,7 @@ google.maps.event.addListener(newShopInfoWindow, 'domready', function() {
 google.maps.event.addListener(map, 'idle', loadStoresInView);
 </pre>
 
-<pre class="to-show">
+<pre class="">
 function loadStoresInView() {
   var bounds = map.getBounds().toUrlValue();
 
@@ -638,7 +638,7 @@ var directionsRenderer = new google.maps.DirectionsRenderer({
 });
 </pre>
 
-<pre class="to-show">
+<pre class="">
 function getDirectionsTo(shop) {
   var request = {
     origin: userLocationMarker.getPosition(),
@@ -708,7 +708,7 @@ function getPlaces() {
 }
 </pre>
 
-<pre class="to-show">
+<pre class="">
 function populatePlaces(places) {
   if (places.status == 'OK') {
     for (var i = 0, place; place = places.results[i]; i++) {
@@ -817,6 +817,13 @@ self.response.out.write(urlfetch.fetch(places_url).content)
 
       </slides>
     </presentation>
+
+<script>
+var iframes = document.getElementsByTagName('iframe');
+for (var n = 0, frame; frame = iframes[n]; n++) {
+  frame.src = '';
+}
+</script>
 
     <script type="text/javascript" src="slide.js"></script>
   </body>
