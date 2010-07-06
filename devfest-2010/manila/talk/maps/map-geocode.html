@@ -213,7 +213,8 @@
           }, function() {
             // Can find the users location
             // Cheat for the talk
-            userLocationMarker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
+            userLocation = new google.maps.LatLng(14.597466, 121.0092);
+            userLocationMarker.setPosition(userLocation);
             userLocationMarker.setMap(map);
 
             userLocationCircle.setRadius(150);
