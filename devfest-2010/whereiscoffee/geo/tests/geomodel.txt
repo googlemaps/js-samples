@@ -1,0 +1,66 @@
+Creating and saving GeoModel-derived entities
+---------------------------------------------
+
+To use the GeoModel class, simply declare a new model class inheriting from the
+geomodel.GeoModel class like so:
+
+  >>> import google.appengine.ext.db
+  >>> import geo.geomodel
+  >>> class MyEntity(geo.geomodel.GeoModel):
+  ...     foo = google.appengine.ext.db.StringProperty()
+  ...     bar = google.appengine.ext.db.IntegerProperty()
+
+Currently, only single-point entities are supported. Entities of the new
+MyEntity kind will have a location property of type db.GeoPt, which can be set
+as needed. Before put()'ing entities to the datastore, make sure to call
+update_location to synchronize the entity's underlying geocell indexing
+properties:
+
+  >>> some_entity = MyEntity(location=google.appengine.ext.db.GeoPt(37, -122),
+  ...                        foo='Hello',
+  ...                        bar=5)
+  >>> some_entity.location = google.appengine.ext.db.GeoPt(38, -122)
+  >>> some_entity.update_location()
+  >>> some_entity.put()
+  datastore_types.Key.from_path(u'MyEntity', 1, _app=u'test')
+
+
+Querying your entities
+----------------------
+
+There are currently two types of basic geospatial queries supported by the
+GeoModel library:
+
+  - bounding box queries
+  - proximity (nearest-n) queries
+
+To perform a bounding box query, use the bounding_box_fetch class method like
+so:
+
+  >>> import geo.geotypes
+  >>> results = MyEntity.bounding_box_fetch(
+  ...               MyEntity.all().filter('bar >', 4),  # Rich query!
+  ...               geo.geotypes.Box(39, -121, 37, -123),
+  ...               max_results=10)
+  >>> results[0].foo
+  u'Hello'
+
+Be careful not to request too many results or else you'll get a datastore or
+request timeout!
+
+To perform a proximity query, use the proximity_fetch class method like so:
+
+  >>> result = MyEntity.proximity_fetch(
+  ...               MyEntity.all().filter('bar <', 10),  # Rich query!
+  ...               geo.geotypes.Point(39, -121),  # Or db.GeoPt
+  ...               max_results=10,
+  ...               max_distance=160934)  # Within 100 miles.
+  >>> result[0].foo
+  u'Hello'
+
+Note that for rich queries on multiple properties you'll need to set up the
+proper indexes in your index.yaml file. Testing your app on the development
+server should populate that file with the required indexes. Also, GeoModel
+currently requires many internal properties on each entity (one for each
+geocell resolution), which can lead to messy looking index.yaml files. That's
+something that will hopefully change in future versions.

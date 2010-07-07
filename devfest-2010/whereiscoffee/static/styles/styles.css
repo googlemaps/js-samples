@@ -1,0 +1,319 @@
+html, body, div, span,
+applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dd, dl, dt, li, ol, ul,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  vertical-align: baseline;
+}
+
+a img, :link img, :visited img {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+q:before, q:after,
+blockquote:before, blockquote:after {
+  content: "";
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font: 14px Helvetica, Arial, Sans-serif;
+  background: #fcfbe3;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -webkit-text-size-adjust: none;
+}
+
+#header {
+  height: 38px;
+  background: #8e5b3e;
+  background: #8e5b3e -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0.9, rgb(190,165,134)),
+    color-stop(0.51, rgb(162,131,92)),
+    color-stop(0.5, rgb(142,91,62)),
+    color-stop(0, rgb(142,91,61))
+  );
+  background: #8e5b3e -moz-linear-gradient(
+    center bottom,
+    rgb(190,165,134) 90%,
+    rgb(162,131,92) 51%,
+    rgb(142,91,62) 50%,
+    rgb(142,91,61) 0%
+  );
+}
+
+#header h1 {
+  font-size: 20px;
+  position: absolute;
+  left: 50%;
+  font-weight: bold;
+  text-shadow: rgb(33, 33, 33) 0px 1px 0;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 7px 0 0 -95px;
+  height: 45px;
+  width: 190px;
+  overflow: hidden;
+  color: #fff;
+  font-family: 'Yanone Kaffeesatz', arial, serif;
+}
+
+#footer {
+  height: 43px;
+  border-top: 1px solid #396c0f;
+  border-bottom: 1px solid #000;
+  background: #000;
+  background: #000 -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(0,0,0)),
+    color-stop(0.5, rgb(0,0,0)),
+    color-stop(0.51, rgb(21,21,21)),
+    color-stop(0.9, rgb(62,62,62))
+  );
+
+  background: #8e5b3e -moz-linear-gradient(
+    center bottom,
+    rgb(62,62,62) 90%,
+    rgb(21,21,21) 51%,
+    rgb(0,0,0) 50%,
+    rgb(0,0,0) 0%
+  );
+  text-align: center;
+}
+
+#footer {
+  line-height: 43px;
+}
+
+#footer .button {
+  margin: 0;
+  padding: 7px;
+  width: auto;
+  height: 30px;
+  line-height: 30px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.6) 0 -1px 0;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid rgba(15, 18, 34, 0.5);
+  border-left: 0;
+}
+
+#footer .button-left {
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  border: 1px solid rgba(15, 18, 34, 0.5);
+}
+
+#footer .button-right {
+  -webkit-border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border: 1px solid rgba(15, 18, 34, 0.5);
+  border-left: 0;
+}
+
+#footer .button-both {
+  -webkit-border-radius: 4px;
+  border: 1px solid rgba(15, 18, 34, 0.5);
+}
+
+#footer .button-active {
+  background: #4c4c4c;
+  background: #4c4c4c -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(37,37,37)),
+    color-stop(0.5, rgb(36,36,36)),
+    color-stop(0.51, rgb(54,54,54)),
+    color-stop(0.9, rgb(76,76,76))
+  );
+  background: #4c4c4c -moz-linear-gradient(
+    center bottom,
+    rgb(76,76,76) 90%,
+    rgb(54,54,54) 51%,
+    rgb(36,36,36) 50%,
+    rgb(37,37,37) 0%
+  );
+}
+
+#map {
+  height: 200px;
+  min-height: 200px;
+}
+
+#store-info {
+  display: none;
+  min-height: 200px;
+  position: absolute;
+  z-index: 5000;
+}
+
+#store-info-close {
+  float: right;
+  position: absolute;
+  z-index: 5003;
+  right: 20px;
+  margin-top: 10px;
+}
+
+#store-info-content {
+  background: #fcfbe3;
+  margin: 8px;
+  padding: 8px;
+  overflow-y: auto;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -moz-box-shadow: 0 0px 4px rgba(44, 44, 44, 0.8);
+  -webkit-box-shadow: 0 0px 4px rgba(44, 44, 44, 0.8);
+  box-shadow: 0 0px 4px rgba(44, 44, 44, 0.8);
+  min-height: 200px;
+}
+
+.button {
+  outline: 0;
+}
+
+#header .button {
+  position: absolute;
+  overflow: hidden;
+  top: 3px;
+  margin: 0;
+  padding: 0 3px;
+  width: auto;
+  height: 30px;
+  line-height: 30px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: rgba(0, 0, 0, 0.6) 0 -1px 0;
+  text-overflow: ellipsis;
+  text-decoration: none;
+  white-space: nowrap;
+  border: 1px solid rgba(15, 18, 34, 0.4);
+  -webkit-border-radius: 4px;
+}
+
+#header .button-active {
+  background: #172555;
+  background: #172555 -webkit-gradient(
+    linear,
+    left bottom,
+    left top,
+    color-stop(0, rgb(23,37,85)),
+    color-stop(0.5, rgb(23,37,85)),
+    color-stop(0.51, rgb(39,53,99)),
+    color-stop(0.9, rgb(91,101,126))
+  );
+  background: #172555 -moz-linear-gradient(
+    center bottom,
+    rgb(91,101,126) 90%,
+    rgb(39,53,99) 51%,
+    rgb(23,37,85) 50%,
+    rgb(23,37,85) 0%
+  );
+
+  border: 1px solid rgba(15, 18, 34, 0.5);
+}
+
+#header .button-right {
+  right: 6px;
+}
+
+#header .button-left {
+  left: 6px;
+}
+
+#my-location span {
+  font-size: 40px !important;
+  padding: 0 4px;
+  line-height: 30px;
+}
+
+#info {
+  border-bottom: 1px solid #000;
+  display: none;
+}
+
+#add-new-shop-form,
+#shop-info {
+  padding: 8px;
+}
+
+#add-new-shop-form input,
+#add-new-shop-form select {
+  padding: 4px 2px;
+  border: 1px solid #e5e5e5;
+  width: 250px;
+}
+
+#add-new-shop-form button,
+#shop-info button {
+  padding: 9px;
+}
+
+#add-new-shop-form label {
+  font-size: 12px;
+  width: 75px;
+  display: inline-block;
+}
+
+.row {
+  padding: 2px 0;
+}
+
+#add-new-shop-form h1,
+#shop-info h1 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#shop-info a, #shop-info a:visited {
+  color: #0000ee;
+}
+
+.star-full, .star-empty {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(/static/images/rating_sprite.gif) no-repeat 0 1px;
+}
+
+.star-full {
+  background-position: 0 -12px;
+}

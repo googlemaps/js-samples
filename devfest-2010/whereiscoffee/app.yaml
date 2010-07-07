@@ -1,0 +1,30 @@
+application: your-app-id-here
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /favicon.ico
+  static_files: static/images/favicon.ico
+  upload: static/images/favicon.ico
+
+- url: /static/scripts
+  static_dir: static/scripts
+  mime_type: text/javascript
+
+- url: /static/styles
+  static_dir: static/styles
+  mime_type: text/css
+
+- url: /static/images
+  static_dir: static/images
+
+- url: /stores[/]?
+  script: stores.py
+
+- url: /places[/]?
+  script: places.py
+
+- url: /.*
+  script: index.py
+  login: required
