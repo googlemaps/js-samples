@@ -771,7 +771,7 @@ self.response.out.write(urlfetch.fetch(places_url).content)
 
         <slide>
           <section>
-            <header class="center">What Else Is There?</header>
+            <header class="center">What else is there?</header>
             Polys
             <br/>
             Elevation service
@@ -792,6 +792,33 @@ self.response.out.write(urlfetch.fetch(places_url).content)
           </section>
         </slide>
 
+        <slide>
+          <section class="center">
+            <header>Styled Maps</header>
+            <iframe class="map-frame" src="http://beyond-markers.appspot.com/a-touch-of-style"></iframe>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+        
+        <slide>
+          <section class="center">
+            <header>Styled Maps Wizard</header>
+            <iframe class="map-frame" src="http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html"></iframe>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+        
+        <slide>
+          <section class="center">
+            <header>Custom Street View</header>
+            <iframe class="map-frame" src="http://beyond-markers.appspot.com/custom-sv-pano"></iframe>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+        
         <slide>
           <section>
             <header class="center">Our Parting Gift</header>
@@ -818,12 +845,16 @@ self.response.out.write(urlfetch.fetch(places_url).content)
     </presentation>
 
 <script>
+
 /*
 var iframes = document.getElementsByTagName('iframe');
 for (var n = 0, frame; frame = iframes[n]; n++) {
-  frame.src = '';
+  if (iframes.length < 60) {
+    frame.src = '';
+  }
 }
 */
+
 </script>
 
     <script type="text/javascript" src="slide.js"></script>
