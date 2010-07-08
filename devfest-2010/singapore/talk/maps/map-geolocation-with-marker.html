@@ -28,7 +28,7 @@
         var mapCenter = new google.maps.LatLng(0, 0);
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
-          center: new google.maps.LatLng(14.597466, 121.0092),
+          center: new google.maps.LatLng(1.2988500019602678, 103.7877099999999),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
@@ -47,11 +47,11 @@
           }, function() {
             // Can find the users location
             // Cheat for the talk
-            marker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
+            marker.setPosition(new google.maps.LatLng(1.2988500019602678, 103.7877099999999));
             marker.setMap(map);
           });
         } else {
-          marker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
+          marker.setPosition(new google.maps.LatLng(1.2988500019602678, 103.7877099999999));
           marker.setMap(map);
         }
       }
