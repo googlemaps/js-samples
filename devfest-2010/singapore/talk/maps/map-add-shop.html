@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <title>Template</title>
+
+    <style type="text/css">
+      html, body {
+        height: 100%;
+        margin: 0;
+      }
+
+      #map {
+        height: 100%;
+      }
+
+      .button {
+        background: #fff;
+        border: 1px solid #000;
+        margin-top: 5px;
+        padding: 0 4px;
+        -webkit-box-shadow: inset -1px -1px 1px #707070;
+        font: 12px Arial, sans-serif;
+        padding: 1px 4px;
+        cursor: pointer;
+      }
+
+      #add-new-shop-form {
+        width: 270px;
+      }
+
+      #add-new-shop-form input,
+      #add-new-shop-form select {
+        padding: 9px;
+        border: 1px solid #e5e5e5;
+        width: 250px;
+      }
+
+      #add-new-shop-form button {
+        padding: 9px;
+      }
+
+      #add-new-shop-form label {
+        font-size: 12px;
+        width: 80px;
+        display: inline-block;
+      }
+
+      #add-new-shop-form h1 {
+        font-size: 16px;
+        text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 5px;
+      }
+    </style>
+
+    <script type="text/javascript" src="http://www.google.com/jsapi?autoload={'modules':[{name:'maps',version:3,other_params:'sensor=false'},{'name':'jquery','version':'1.4.2'}]}"></script>
+
+
+    <script type="text/javascript">
+      /**
+       * Called on the intiial page load.
+       */
+      var map;
+      var userLocationMarker;
+      var userLocation;
+      var userLocationCircle;
+      var newShopMarker;
+      var newShopInfoWindow;
+      var infoWindowIsOpen;
+      function init() {
+        var mapCenter = new google.maps.LatLng(0, 0);
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: new google.maps.LatLng(14.597466, 121.0092),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var icon = new google.maps.MarkerImage('my-location.png',
+          new google.maps.Size(14, 14),
+          new google.maps.Point(0, 0),
+          new google.maps.Point(7, 7));
+
+        userLocationMarker = new google.maps.Marker({
+          icon: icon
+          });
+
+        userLocationCircle = new google.maps.Circle({
+          fillColor: '#00f',
+          fillOpacity: 0.1,
+          strokeColor: '#00f',
+          strokeOpacity: 0.3,
+          strokeWeight: 1
+        });
+        userLocationCircle.bindTo('center', userLocationMarker, 'position');
+        getUsersLocation();
+        addGotoUsersLocationButton();
+        addAddNewShopButton();
+      }
+
+      function addAddNewShopButton() {
+        var button = document.createElement('DIV');
+        button.className = 'button';
+        button.innerHTML = 'Add Shop';
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button);
+
+        google.maps.event.addDomListener(button, 'click', showNewShopForm);
+      }
+
+      function showNewShopForm() {
+        if (!newShopMarker) {
+          newShopMarker = new google.maps.Marker();
+          google.maps.event.addListener(map, 'click', function(e) {
+            newShopMarker.setPosition(e.latLng);
+          });
+
+          var formHTML = '<div id="add-new-shop-form">' +
+            '<h1>Add a new Coffee Shop</h1>' +
+            '<div><label>Name:<label> <input type="text" id="new-shop-name"/></div>' +
+            '<div><label>Address:<label> <input type="text" id="new-shop-address"/></div>' +
+            '<div><label>Rating:</label>' +
+            '<select id="new-shop-rating">' +
+            '<option value=""></option>' +
+            '<option value="1">1</option>' +
+            '<option value="2">2</option>' +
+            '<option value="3">3</option>' +
+            '<option value="4">4</option>' +
+            '<option value="5">5</option>' +
+            '</select>' +
+            '<div><button id="new-shop-save">Add!</button>';
+
+          newShopInfoWindow = new google.maps.InfoWindow({
+            content: formHTML
+          });
+          google.maps.event.addListener(newShopInfoWindow, 'closeclick', function() {
+            infoWindowIsOpen = false;
+          });
+
+          google.maps.event.addListener(newShopMarker, 'click', function() {
+            if (!infoWindowIsOpen) {
+              newShopInfoWindow.open(map, newShopMarker);
+            }
+          });
+        }
+
+        newShopMarker.setPosition(map.getCenter());
+        newShopMarker.setMap(map);
+
+        newShopInfoWindow.open(map, newShopMarker);
+        infoWindowIsOpen = true;
+      }
+
+
+      function addGotoUsersLocationButton() {
+        var button = document.createElement('DIV');
+        button.className = 'button';
+        button.innerHTML = 'My Location';
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button);
+
+        google.maps.event.addDomListener(button, 'click', function() {
+          if (userLocation) {
+            map.panTo(userLocation);
+          } else {
+            map.panTo(new google.maps.LatLng(14.597466, 121.0092));
+          }
+        });
+      }
+
+      function setUsersPosition(position) {
+        var pos = new google.maps.LatLng(position.coords.latitude,
+          position.coords.longitude);
+        userLocation = pos;
+      }
+
+      function getUsersLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(setUsersPosition);
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = new google.maps.LatLng(position.coords.latitude,
+              position.coords.longitude);
+            map.panTo(pos);
+            setUsersPosition(position);
+          }, function() {
+            // Can find the users location
+            // Cheat for the talk
+            userLocation = new google.maps.LatLng(14.597466, 121.0092);
+            userLocationMarker.setPosition(userLocation);
+            userLocationMarker.setMap(map);
+
+            userLocationCircle.setRadius(150);
+            userLocationCircle.setMap(map);
+          }, {timeout: 2000});
+        } else {
+          console.log('mooooo');
+          userLocationMarker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
+          userLocationMarker.setMap(map);
+
+          userLocationCircle.setRadius(150);
+          userLocationCircle.setMap(map);
+        }
+      }
+
+      // Register an event listener to fire when the page finishes loading.
+      google.maps.event.addDomListener(window, 'load', init);
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
+
