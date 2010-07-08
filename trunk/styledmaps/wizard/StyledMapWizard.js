@@ -127,7 +127,7 @@
             options[0] = new Option("Country", "administrative.country");
             options[1] = new Option("Province", "administrative.province");
             options[2] = new Option("Locality", "administrative.locality");
-            options[3] = new Option("Neighborhood", "administrative.neighbourhood");
+            options[3] = new Option("Neighborhood", "administrative.neighborhood");
             options[4] = new Option("Land parcel", "administrative.land_parcel");
             break;
           case "landscape":
