@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <title>Template</title>
+
+    <style type="text/css">
+      html, body {
+        height: 100%;
+        margin: 0;
+        font: 14px Helvetica, Arial, Sans-serif;
+      }
+
+      #map {
+        height: 100%;
+      }
+
+      .button {
+        background: #fff;
+        border: 1px solid #000;
+        margin-top: 5px;
+        padding: 0 4px;
+        -webkit-box-shadow: inset -1px -1px 1px #707070;
+        font: 12px Arial, sans-serif;
+        padding: 1px 4px;
+        cursor: pointer;
+      }
+
+      #add-new-shop-form {
+        width: 270px;
+      }
+
+      #add-new-shop-form input,
+      #add-new-shop-form select {
+        padding: 9px;
+        border: 1px solid #e5e5e5;
+        width: 250px;
+      }
+
+      #add-new-shop-form button {
+        padding: 9px;
+      }
+
+      #add-new-shop-form label {
+        font-size: 12px;
+      }
+
+      #add-new-shop-form h1,
+      #shop-info h1 {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .row {
+        padding: 4px 0;
+      }
+
+      #shop-info a, #shop-info a:visited {
+        color: #0000ee;
+      }
+
+      .star-full, .star-empty {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background: url(rating_sprite.gif) no-repeat 0 1px;
+      }
+
+      .star-full {
+        background-position: 0 -12px;
+      }
+    </style>
+
+    <script type="text/javascript" src="http://www.google.com/jsapi?autoload={'modules':[{name:'maps',version:3,other_params:'sensor=false'},{'name':'jquery','version':'1.4.2'}]}"></script>
+
+
+    <script type="text/javascript">
+      /**
+       * Called on the intiial page load.
+       */
+      var map;
+      var userLocationMarker;
+      var userLocation;
+      var userLocationCircle;
+      var newShopMarker;
+      var newShopInfoWindow;
+      var infoWindowIsOpen;
+      var shopIcon;
+      var shopMarkers = {};
+      var loadStoresTimeout;
+      var shopInfoWindow;
+      var directionsService;
+      var directionsRenderer;
+
+      function init() {
+        var mapCenter = new google.maps.LatLng(0, 0);
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: new google.maps.LatLng(14.597466, 121.0092),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+        google.maps.event.addListener(map, 'idle', loadStoresInView);
+
+        shopInfoWindow = new google.maps.InfoWindow();
+
+        var icon = new google.maps.MarkerImage('my-location.png',
+          new google.maps.Size(14, 14),
+          new google.maps.Point(0, 0),
+          new google.maps.Point(7, 7));
+
+        userLocationMarker = new google.maps.Marker({
+          icon: icon,
+          zIndex: 200
+        });
+
+        directionsService = new google.maps.DirectionsService();
+        directionsRenderer = new google.maps.DirectionsRenderer({
+          suppressMarkers: true,
+          map: map
+        });
+
+
+        shopIcon = new google.maps.MarkerImage('coffee.png', new google.maps.Size(32, 37));
+
+        userLocationCircle = new google.maps.Circle({
+          fillColor: '#00f',
+          fillOpacity: 0.1,
+          strokeColor: '#00f',
+          strokeOpacity: 0.3,
+          strokeWeight: 1,
+          zIndex: 199
+        });
+        userLocationCircle.bindTo('center', userLocationMarker, 'position');
+        getUsersLocation();
+        addGotoUsersLocationButton();
+        addAddNewShopButton();
+      }
+
+      function loadStoresInView() {
+        var bounds = map.getBounds();
+        var url = 'http://whereiscoffee.appspot.com/stores?action=search&bounds=' +
+          bounds.toUrlValue();
+        $.ajax({
+          url: url,
+          dataType: 'jsonp',
+          jsonp: 'jsonp',
+          jsonpCallback: 'addStores'
+        });
+      }
+
+      function addStores(shops) {
+        var d = new Date();
+        var added = '_' + d.getTime();
+        for (var i = 0, shop; shop = shops[i]; i++) {
+          if (shopMarkers[shop.key]) {
+            shopMarkers[shop.key].added = added;
+          } else {
+            var marker = addStoreMarker(shop);
+            marker.added = added;
+            shopMarkers[shop.key] = marker;
+          }
+        }
+
+        for (var key in shopMarkers) {
+          if (shopMarkers[key].added != added) {
+            shopMarkers[key].setMap(null);
+            google.maps.event.removeListener(shopMarkers[key].listener);
+            delete shopMarkers[key];
+          }
+        }
+      }
+
+      function getDirectionsTo(shop) {
+        var request = {
+          origin: userLocationMarker.getPosition(),
+          destination: shop.address,
+          travelMode: google.maps.DirectionsTravelMode.WALKING
+        };
+
+        directionsService.route(request, function(result, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            directionsRenderer.setDirections(result);
+          }
+        });
+      }
+
+      function showShop(shop) {
+        if (newShopMarker) {
+          newShopInfoWindow.close();
+          newInfoWindowIsOpen = false;
+          newShopMarker.setMap(null);
+        }
+
+        var html = '<div id="shop-info">' +
+          '<div><h1>' + shop.name + ' ';
+        for (var i = 1; i < 6; i++) {
+          if (i <= shop.rating) {
+            html += '<span class="star-full"></span>';
+          } else {
+            html += '<span class="star-empty"></span>';
+          }
+        }
+
+        html += '</h1></div>' +
+          '<div class="row">' + shop.address + '</div>' +
+          '<div class="row"><a href="#" id="get-directions">Directions</a></div>' +
+          '</div>';
+
+        var html = $(html);
+        var directions = $('#get-directions', html);
+
+        $(directions).click(function() {
+          getDirectionsTo(shop);
+          return false;
+        });
+
+        shopInfoWindow.setContent(html[0]);
+        shopInfoWindow.open(map, shopMarkers[shop.key]);
+      }
+
+      function loadShop(marker) {
+        var url = 'http://whereiscoffee.appspot.com/stores?action=load&key=' +
+          marker.key;
+
+        $.ajax({
+          url: url,
+          dataType: 'jsonp',
+          jsonp: 'jsonp',
+          jsonpCallback: 'showShop'
+        });
+      }
+
+      function addStoreMarker(shop) {
+        var position = new google.maps.LatLng(shop.lat, shop.lng);
+        var marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: shop.name,
+          icon: shopIcon,
+          zIndex: 100
+        });
+        marker.key = shop.key;
+
+        var listener = google.maps.event.addListener(marker, 'click', function() {
+          loadShop(this);
+        });
+        marker.listener = listener;
+        return marker;
+      }
+
+      function addAddNewShopButton() {
+        var button = document.createElement('DIV');
+        button.className = 'button';
+        button.innerHTML = 'Add Shop';
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button);
+
+        google.maps.event.addDomListener(button, 'click', showNewShopForm);
+      }
+
+      function reverseGeocodeNewShopMarker() {
+        var geocoder = new google.maps.Geocoder();
+        var request = {latLng: newShopMarker.getPosition()};
+
+        geocoder.geocode(request, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            var address = results[0].formatted_address;
+            document.getElementById('new-shop-address').value = address;
+          }
+        });
+      }
+
+      function saveShop() {
+        var name = $('#new-shop-name').val();
+        var address = $('#new-shop-address').val();
+        var rating = $('#new-shop-rating').val();
+        var position = newShopMarker.getPosition();
+
+        // Fake the ajax
+        newShopMarker.setMap(null);
+        newShopInfoWindow.close();
+
+        var marker = new google.maps.Marker({
+          position: position,
+          map: map,
+          title: name,
+          icon: shopIcon
+        });
+
+        marker.name = name;
+        marker.address = address;
+        marker.rating = rating;
+        google.maps.event.addListener(marker, 'click', function() {
+          showShopInfo(this);
+        });
+      }
+
+      function showNewShopForm() {
+        if (!newShopMarker) {
+          newShopMarker = new google.maps.Marker();
+          google.maps.event.addListener(map, 'click', function(e) {
+            newShopMarker.setPosition(e.latLng);
+            if (infoWindowIsOpen) {
+              reverseGeocodeNewShopMarker();
+            }
+          });
+
+          var formHTML = '<div id="add-new-shop-form">' +
+            '<h1>Add a new Coffee Shop</h1>' +
+            '<div><label>Name:<label><br/><input type="text" id="new-shop-name"/></div>' +
+            '<div><label>Address:<label><br/><input type="text" id="new-shop-address"/></div>' +
+            '<div><label>Rating:</label><br/>' +
+            '<select id="new-shop-rating">' +
+            '<option value=""></option>' +
+            '<option value="1">1</option>' +
+            '<option value="2">2</option>' +
+            '<option value="3">3</option>' +
+            '<option value="4">4</option>' +
+            '<option value="5">5</option>' +
+            '</select>' +
+            '<div><button id="new-shop-save">Add!</button>';
+
+          newShopInfoWindow = new google.maps.InfoWindow({
+            content: formHTML
+          });
+
+          google.maps.event.addListener(newShopInfoWindow, 'closeclick', function() {
+            infoWindowIsOpen = false;
+          });
+
+          google.maps.event.addListener(newShopInfoWindow, 'domready', function() {
+              reverseGeocodeNewShopMarker();
+              $('#new-shop-save').click(saveShop);
+          });
+
+
+          google.maps.event.addListener(newShopMarker, 'click', function() {
+            if (!infoWindowIsOpen) {
+              newShopInfoWindow.open(map, newShopMarker);
+            }
+          });
+        }
+
+        newShopMarker.setPosition(map.getCenter());
+        newShopMarker.setMap(map);
+
+        newShopInfoWindow.open(map, newShopMarker);
+        shopInfoWindow.close();
+        infoWindowIsOpen = true;
+      }
+
+
+      function addGotoUsersLocationButton() {
+        var button = document.createElement('DIV');
+        button.className = 'button';
+        button.innerHTML = 'My Location';
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(button);
+
+        google.maps.event.addDomListener(button, 'click', function() {
+          if (userLocation) {
+            map.panTo(userLocation);
+          } else {
+            map.panTo(new google.maps.LatLng(14.597466, 121.0092));
+          }
+          if (newShopMarker) {
+            newShopMarker.setPosition(map.getCenter());
+          }
+        });
+      }
+
+      function setUsersPosition(position) {
+        var pos = new google.maps.LatLng(position.coords.latitude,
+          position.coords.longitude);
+        userLocation = pos;
+        userLocationMarker.setPosition(pos);
+        if (!userLocationMarker.getMap()) {
+          userLocationMarker.setMap(map);
+        }
+
+        userLocationCircle.setRadius(position.coords.accuracy);
+        if (!userLocationCircle.getMap()) {
+          userLocationCircle.setMap(map);
+        }
+
+      }
+
+      function getUsersLocation() {
+        if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(setUsersPosition);
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = new google.maps.LatLng(position.coords.latitude,
+              position.coords.longitude);
+            map.panTo(pos);
+            setUsersPosition(position);
+          }, function() {
+            // Can find the users location
+            // Cheat for the talk
+            userLocation = new google.maps.LatLng(14.597466, 121.0092);
+            userLocationMarker.setPosition(userLocation);
+            userLocationMarker.setMap(map);
+
+            userLocationCircle.setRadius(150);
+            userLocationCircle.setMap(map);
+          }, {timeout: 2000});
+        } else {
+          userLocationMarker.setPosition(new google.maps.LatLng(14.597466, 121.0092));
+          userLocationMarker.setMap(map);
+
+          userLocationCircle.setRadius(150);
+          userLocationCircle.setMap(map);
+        }
+      }
+
+      // Register an event listener to fire when the page finishes loading.
+      google.maps.event.addDomListener(window, 'load', init);
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
+
