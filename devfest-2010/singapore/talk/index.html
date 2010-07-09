@@ -803,6 +803,48 @@ self.response.out.write(urlfetch.fetch(places_url).content)
         
         <slide>
           <section class="center">
+            <header>Styled Maps</header>
+            <img src="images/styled-maps-array.jpg" width="650"/>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+        
+        <slide>
+          <section>
+            <header>Styled Maps</header>
+<pre>
+var stylez = [{
+  featureType: 'road.local',
+  elementType: 'geometry',
+  stylers: [{
+    hue: '#00ff00'
+  }, {
+    saturation:100  
+  }]
+}, {
+  featureType: 'landscape',
+  elementType: 'geometry',
+  stylers: [{
+    hue: '#000000'
+  }]
+}];
+  
+var styledMapType =  new google.maps.StyledMapType(stylez, {
+  map: map,
+  name: 'Coffee Map!'
+});
+
+map.mapTypes.set('coffee-style', styledMapType);
+map.setMapTypeId('coffee-style');
+</pre>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+        
+        <slide>
+          <section class="center">
             <header>Styled Maps Wizard</header>
             <iframe class="map-frame" src="http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html"></iframe>
             <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
@@ -821,13 +863,13 @@ self.response.out.write(urlfetch.fetch(places_url).content)
         
         <slide>
           <section>
-            <header class="center">Our Parting Gift</header>
+            <header class="center">Lastly</header>
             <br/>
             http://code.google.com/apis/
             maps/documentation/javascript/
             <br/>
             <br/>
-            <span style="font-size: 95%">http://whereiscoffee.appspot.com</span>
+            <span>http://whereiscoffee.appspot.com</span>
 
             <br/>
             <br/>
@@ -846,14 +888,19 @@ self.response.out.write(urlfetch.fetch(places_url).content)
 
 <script>
 
-/*
+var frameUrls = [];
+
 var iframes = document.getElementsByTagName('iframe');
 for (var n = 0, frame; frame = iframes[n]; n++) {
-  if (iframes.length < 60) {
-    frame.src = '';
-  }
+  frameUrls.push(frame.src);
+  frame.src = '';
+  window.setTimeout((function(obj, k) {
+    return function() {
+      obj.src = frameUrls[k];
+    };
+  })(frame, n), 500);
 }
-*/
+
 
 </script>
 
