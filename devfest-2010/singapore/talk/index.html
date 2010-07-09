@@ -863,6 +863,20 @@ map.setMapTypeId('coffee-style');
         
         <slide>
           <section>
+            <header>Custom Street View</header>
+            <img src="images/streetview-tiles.jpg" width="600"/>
+<pre>
+function getCustomTileUrl(pano, x, y, z) {
+  return 'http://my_server/tiles/tile_' + z + '_' + x + '_' + y + '.jpg';
+};
+</pre>
+            <devfestlogo><img src="images/devfest-small.png"/></devfestlogo>
+            <googlelogo><img src="images/maps-logo.png"/></googlelogo>
+          </section>
+        </slide>
+        
+        <slide>
+          <section>
             <header class="center">Lastly</header>
             <br/>
             http://code.google.com/apis/
@@ -888,19 +902,10 @@ map.setMapTypeId('coffee-style');
 
 <script>
 
-var frameUrls = [];
-
 var iframes = document.getElementsByTagName('iframe');
 for (var n = 0, frame; frame = iframes[n]; n++) {
-  frameUrls.push(frame.src);
   frame.src = '';
-  window.setTimeout((function(obj, k) {
-    return function() {
-      obj.src = frameUrls[k];
-    };
-  })(frame, n), 500);
 }
-
 
 </script>
 
