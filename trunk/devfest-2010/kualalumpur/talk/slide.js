@@ -96,4 +96,4 @@ function nextSubSection() {
   }
 }
 
-initialize();
+//initialize();

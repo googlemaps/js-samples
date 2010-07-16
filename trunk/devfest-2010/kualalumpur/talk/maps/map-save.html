@@ -72,7 +72,7 @@
         var mapCenter = new google.maps.LatLng(0, 0);
         map = new google.maps.Map(document.getElementById('map'), {
           zoom: 13,
-          center: new google.maps.LatLng(2.926176, 101.64274),
+          center: new google.maps.LatLng(3.048264, 101.68842),
           mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 
@@ -210,7 +210,7 @@
           if (userLocation) {
             map.panTo(userLocation);
           } else {
-            map.panTo(new google.maps.LatLng(2.926176, 101.64274));
+            map.panTo(new google.maps.LatLng(3.048264, 101.68842));
           }
           if (newShopMarker) {
             newShopMarker.setPosition(map.getCenter());
@@ -244,7 +244,7 @@
           }, function() {
             // Can find the users location
             // Cheat for the talk
-            userLocation = new google.maps.LatLng(2.926176, 101.64274);
+            userLocation = new google.maps.LatLng(3.048264, 101.68842);
             userLocationMarker.setPosition(userLocation);
             userLocationMarker.setMap(map);
 
@@ -252,7 +252,7 @@
             userLocationCircle.setMap(map);
           }, {timeout: 2000});
         } else {
-          userLocationMarker.setPosition(new google.maps.LatLng(2.926176, 101.64274));
+          userLocationMarker.setPosition(new google.maps.LatLng(3.048264, 101.68842));
           userLocationMarker.setMap(map);
 
           userLocationCircle.setRadius(150);
