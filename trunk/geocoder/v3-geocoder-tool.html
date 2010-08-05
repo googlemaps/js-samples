@@ -79,10 +79,7 @@ function init() {
     new google.maps.Point(10, 34)
   );
     
-  google.maps.event.addListener(map, 'click', function(event) {
-    document.getElementById("query").value = event.latLng.toUrlValue(6);
-    geocode({ 'latLng': event.latLng });
-  });
+  google.maps.event.addListener(map, 'click', onClickCallback);
   
   // Bounds changes are asynchronous in v3, so we have to wait for the idle
   // event to ensure that viewport biasing picks up the correct viewport
@@ -101,6 +98,12 @@ function init() {
   }
   
   setInterval(checkHashFragment, 200);
+}
+
+function onClickCallback(event){
+    document.getElementById("query").value = event.latLng.toUrlValue(6);
+    geocode({ 'latLng': event.latLng });
+
 }
 
 function checkHashFragment() {
@@ -323,6 +326,7 @@ function plotMatchesOnMap(results, reverse) {
           'fillOpacity': 0.0
         });
         boundsOverlay.setMap(map);
+        google.maps.event.addListener(boundsOverlay, 'click', onClickCallback);
         document.getElementById('boundsLegend').style.display = 'block';
       } else {
         boundsOverlay = null;
@@ -336,6 +340,7 @@ function plotMatchesOnMap(results, reverse) {
           'fillOpacity': 0.0
         });
       viewportOverlay.setMap(map);
+      google.maps.event.addListener(viewportOverlay, 'click', onClickCallback);
       document.getElementById('viewportLegend').style.display = 'block';
 
       document.getElementById('p' + resultNum).style.backgroundColor = "#eeeeff";
@@ -409,6 +414,7 @@ function getResultDescription(result) {
   var bounds = result.geometry.bounds;
   var html  = '<table class="tabContent">';
       html += tr('Address', result.formatted_address);
+      html += tr('Types', result.types.join(", "));
       html += tr('Location', result.geometry.location.toString());
       html += tr('Bounds', (bounds ? boundsToHtml(bounds) : "None"));
       html += tr('Viewport', boundsToHtml(result.geometry.viewport));
