@@ -374,11 +374,21 @@ function plotMatchesOnMap(results, reverse) {
   document.getElementById("matches").innerHTML = resultsListHtml;
   document.getElementById("p0").style.border = "none";
   document.getElementById("matches").style.display = "block";
-  
-  if (! reverse) {
-    zoomToViewports(results);
+
+  if (reverse){
+      // make a smooth movement to the clicked position
+      map.panTo(clickMarker.getPosition());
+      google.maps.event.addListenerOnce(map, 'idle', function(){
+        selectMarker(0);
+      });
   }
-  selectMarker(0);
+
+  else {
+      zoomToViewports(results);
+      selectMarker(0);
+  }
+  
+  
 }
 
 function selectMarker(n) {
