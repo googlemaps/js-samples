@@ -235,7 +235,7 @@
               ruleObject[rule] = (value === 'true');
               break;
           }
-          styles[currentStyle].rules.push(ruleObject);
+          styles[currentStyle].stylers.push(ruleObject);
         } else {
           clearRuleUI(rule);
         }
@@ -289,10 +289,10 @@
       }
       
       function resetStyleUI() {
-        var rules = [ 'visibility', 'hue', 'saturation', 'lightness', 'gamma', 'invert_lightness'];
-        for (var i = 0; i < rules.length; i++) {
-          document.getElementById('set_' + rules[i]).checked = false;
-          clearRuleUI(rules[i]);
+        var stylers = [ 'visibility', 'hue', 'saturation', 'lightness', 'gamma', 'invert_lightness'];
+        for (var i = 0; i < stylers.length; i++) {
+          document.getElementById('set_' + stylers[i]).checked = false;
+          clearRuleUI(stylers[i]);
         }
         unselectLevel1();
         document.getElementById('elements_all').checked = true;
@@ -302,7 +302,7 @@
         styles[currentStyle] = {
           featureType: 'all',
           elementType: 'all',
-          rules: [],
+          stylers: [],
           sliders: {}
         }
         resetStyleUI();
@@ -312,14 +312,14 @@
       function deleteRule(rule) {
         var i = findRule(rule);
         if (i != -1) {
-          styles[currentStyle].rules.splice(i, 1);
+          styles[currentStyle].stylers.splice(i, 1);
         }
       }
       
       function findRule(rule) {
-        if (styles[currentStyle].rules) {
-          for (var i = 0; i < styles[currentStyle].rules.length; i++) {
-            for (var p in styles[currentStyle].rules[i]) {
+        if (styles[currentStyle].stylers) {
+          for (var i = 0; i < styles[currentStyle].stylers.length; i++) {
+            for (var p in styles[currentStyle].stylers[i]) {
               if (p === rule) {
                 return i;
               }
@@ -330,7 +330,7 @@
       }
       
       function setMapStyle(selectorClick) {
-        if (! selectorClick || styles[currentStyle].rules.length > 0) {
+        if (! selectorClick || styles[currentStyle].stylers.length > 0) {
           var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
           map.mapTypes.set('Styled', styledMapType);
         }
@@ -363,7 +363,7 @@
         resetStyleUI();
         loadFeatureType();
         loadElementType();
-        loadRules();
+        loadStylers();
       }
       
       function loadFeatureType() {
@@ -436,18 +436,18 @@
         document.getElementById('elements_' + type).checked = true;
       }
       
-      function loadRules() {
-        var rules = styles[currentStyle].rules;
-        for (var i = 0; i < rules.length; i++) {
-          for (var p in rules[i]) {
+      function loadStylers() {
+        var stylers = styles[currentStyle].stylers;
+        for (var i = 0; i < stylers.length; i++) {
+          for (var p in stylers[i]) {
             document.getElementById('set_' + p).checked = true;
-            document.getElementById(p).value = rules[i][p];
+            document.getElementById(p).value = stylers[i][p];
             switch (p) {
               case "visibility":
-                document.getElementById('visibility_' + rules[i][p]).checked = true;
+                document.getElementById('visibility_' + stylers[i][p]).checked = true;
                 break;
               case "hue":
-                document.getElementById('hueSample').style.backgroundColor = rules[i][p];
+                document.getElementById('hueSample').style.backgroundColor = stylers[i][p];
                 break;
               case "saturation":
                 satSlider.setPosition(styles[currentStyle].sliders.saturation);
@@ -470,20 +470,20 @@
           jsonStyles[i] += '    featureType: "' + styles[i].featureType + '",\n';
           jsonStyles[i] += '    elementType: "' + styles[i].elementType + '",\n';
           jsonStyles[i] += '    stylers: [\n';
-          var jsonRules = []
-          for (var j = 0; j < styles[i].rules.length; j++) {
-            for (var p in styles[i].rules[j]) {
+          var jsonStylers = []
+          for (var j = 0; j < styles[i].stylers.length; j++) {
+            for (var p in styles[i].stylers[j]) {
               switch (p) {
                 case 'visibility':
                 case 'hue':
-                  jsonRules[j] = '      { ' + p + ': "' + styles[i].rules[j][p] + '" }';
+                  jsonStylers[j] = '      { ' + p + ': "' + styles[i].stylers[j][p] + '" }';
                   break;
                 default:
-                  jsonRules[j] = '      { ' + p + ': ' + styles[i].rules[j][p] + ' }'
+                  jsonStylers[j] = '      { ' + p + ': ' + styles[i].stylers[j][p] + ' }'
               }
             }
           }
-          jsonStyles[i] += jsonRules.join(',\n');
+          jsonStyles[i] += jsonStylers.join(',\n');
           jsonStyles[i] += '\n    ]\n';
           jsonStyles[i] += '  }';
         }
@@ -757,12 +757,12 @@ MapStyleRenderer.prototype.getPanel = function(i) {
   var table = document.createElement('table');
   this.addRow(table, 'featureType', style.featureType);
   this.addRow(table, 'elementType', style.elementType);
-  this.addStyle(table, 'visibility', style.rules);
-  this.addStyle(table, 'hue', style.rules);
-  this.addStyle(table, 'invert_lightness', style.rules);
-  this.addStyle(table, 'saturation', style.rules);
-  this.addStyle(table, 'lightness', style.rules);
-  this.addStyle(table, 'gamma', style.rules);
+  this.addStyle(table, 'visibility', style.stylers);
+  this.addStyle(table, 'hue', style.stylers);
+  this.addStyle(table, 'invert_lightness', style.stylers);
+  this.addStyle(table, 'saturation', style.stylers);
+  this.addStyle(table, 'lightness', style.stylers);
+  this.addStyle(table, 'gamma', style.stylers);
   
   panel.onclick = this.getSelectionHandler(i);
   panel.appendChild(table);
@@ -822,12 +822,12 @@ MapStyleRenderer.prototype.addRow = function(table, att, val) {
   }
 }
 
-MapStyleRenderer.prototype.addStyle = function(table, style_name, rules) {
-  if (rules) {
-    for (var i = 0; i < rules.length; i++) {
-      for (var s in rules[i]) {
+MapStyleRenderer.prototype.addStyle = function(table, style_name, stylers) {
+  if (stylers) {
+    for (var i = 0; i < stylers.length; i++) {
+      for (var s in stylers[i]) {
         if (s === style_name) {
-          this.addRow(table, style_name, rules[i][s]);
+          this.addRow(table, style_name, stylers[i][s]);
         }
       }
     }

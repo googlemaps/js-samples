@@ -16,19 +16,19 @@
           'Red': [
             {
               featureType: 'all',
-              rules: [{hue: '#ff0000'}]
+              stylers: [{hue: '#ff0000'}]
             }
           ],
           'Countries': [
             {
               featureType: 'all',
-              rules: [
+              stylers: [
                 {visibility: 'off'}
               ]
             },
             {
               featureType: 'water',
-              rules: [
+              stylers: [
                 {visibility: 'on'},
                 {lightness: -100 }
               ]
@@ -37,13 +37,13 @@
           'Night': [
             {
               featureType: 'all',
-              rules: [{invert_lightness: 'true'}]
+              stylers: [{invert_lightness: 'true'}]
             }        
           ],
           'Blue': [
             {
               featureType: 'all',
-              rules: [
+              stylers: [
                 {hue: '#0000b0'},
                 {invert_lightness: 'true'},
                 {saturation: -30}
@@ -53,7 +53,7 @@
           'Greyscale': [
             {              
               featureType: 'all',
-              rules: [
+              stylers: [
                 {saturation: -100},
                 {gamma: 0.50}
               ]
@@ -62,7 +62,7 @@
           'No roads': [
             {
               featureType: 'road',
-              rules: [
+              stylers: [
                 {visibility: 'off'}
               ]
             }
@@ -70,39 +70,39 @@
           'Mixed': [
             {
               featureType: 'landscape',
-              rules: [{hue: '#00dd00'}]
+              stylers: [{hue: '#00dd00'}]
             }, {
               featureType: 'road',
-              rules: [{hue: '#dd0000'}]
+              stylers: [{hue: '#dd0000'}]
             }, {
               featureType: 'water',
-              rules: [{hue: '#000040'}]
+              stylers: [{hue: '#000040'}]
             }, {
               featureType: 'poi.park',
-              rules: [{visibility: 'off'}]
+              stylers: [{visibility: 'off'}]
             }, {
               featureType: 'road.arterial',
-              rules: [{hue: '#ffff00'}]
+              stylers: [{hue: '#ffff00'}]
             }, {
               featureType: 'road.local',
-              rules: [{visibility: 'off'}]
+              stylers: [{visibility: 'off'}]
             }            
           ],
           'Chilled': [
             {
               featureType: 'road',
               elementType: 'geometry',
-              rules: [{'visibility': 'simplified'}]
+              stylers: [{'visibility': 'simplified'}]
             }, {
               featureType: 'road.arterial',
-              rules: [
+              stylers: [
                {hue: 149},
                {saturation: -78},
                {lightness: 0}
               ]
             }, {
               featureType: 'road.highway',
-              rules: [
+              stylers: [
                 {hue: -31},
                 {saturation: -40},
                 {lightness: 2.8}
@@ -110,20 +110,20 @@
             }, {
               featureType: 'poi',
               elementType: 'label',
-              rules: [{'visibility': 'off'}]
+              stylers: [{'visibility': 'off'}]
             }, {
               featureType: 'landscape',
-              rules: [
+              stylers: [
                 {hue: 163},
                 {saturation: -26},
                 {lightness: -1.1}
               ]
             }, {
               featureType: 'transit',
-              rules: [{'visibility': 'off'}]
+              stylers: [{'visibility': 'off'}]
             }, {
               featureType: 'water',
-                rules: [
+                stylers: [
                 {hue: 3},
                 {saturation: -24.24},
                 {lightness: -38.57}
