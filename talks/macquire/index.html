@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+                 Brad Neuberg
+-->
+<html manifest="cache.manifest">
+  <head>
+    <!--[if gte IE 9]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <![endif]-->
+    
+    <!--[if lt IE 9]>
+      <meta http-equiv="X-UA-Compatible" content="IE=edge;chrome=1" />
+    <![endif]-->
+
+    <meta charset="utf-8" />
+    <title>Google Maps APIs</title>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> 
+<script type="text/javascript"> 
+  var map;
+  function init() {
+    var myLatlng = new google.maps.LatLng(-33.89204564589271, 151.27779224389792);
+    var myOptions = {
+      zoom: 3,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.SATELLITE
+    }
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+  }
+  
+  google.maps.event.addDomListener(window, 'load', init);
+  var timeouts = [];
+  function fancyZoomTo(zoom, latLng, advanceSlide, timeToShowSlide) {
+    if (!timeToShowSlide) {
+      timeToShowSlide = 2500;
+    }
+
+    for (var i = 0, t; t = timeouts[i]; i++) {
+     window.clearTimeout(t);
+    }
+
+    timeouts.length = 0;
+
+    var mapCenter = map.getCenter();
+    var latDiff = Math.abs(mapCenter.lat() - latLng.lat());
+    var lngDiff = Math.abs(mapCenter.lng() - latLng.lng());
+
+    if (latDiff > 0.1 || lngDiff > 0.1) {
+      map.setZoom(3);
+      timeouts.push(window.setTimeout(function() {
+        map.panTo(latLng);
+      }, 500));
+
+      timeouts.push(window.setTimeout(function() {
+        map.setZoom(zoom);
+        map.panTo(latLng);
+      }, 1500));
+    } else {
+      map.setZoom(zoom);
+    }
+
+    if (advanceSlide) {
+      timeouts.push(window.setTimeout(function() {
+        var slide = document.getElementsByClassName('current')[0];
+        slide.className = slide.className.replace('hide', 'fade');
+      }, timeToShowSlide));
+    }
+  }
+
+  function doSlide11() {
+    map.setZoom(14);
+    var t = 0;
+    timeouts.push(window.setTimeout(function() {
+      map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+    }, t));
+    timeouts.push(window.setTimeout(function() {
+      map.setMapTypeId(google.maps.MapTypeId.TERRAIN);
+    }, t+=5000));
+    timeouts.push(window.setTimeout(function() {
+      map.setMapTypeId(google.maps.MapTypeId.HYBRID);
+    }, t+=5000));
+    timeouts.push(window.setTimeout(function() {
+      map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+    }, t+=5000));
+
+    timeouts.push(window.setTimeout(function() {
+      window['slideshow'].next();
+    }, t+=5000));
+  }
+
+  function doMapStuff(slide) {
+    if (!map) {
+      return;
+    }
+
+    switch (slide) {
+      case 1:
+        map.setMapTypeId(google.maps.MapTypeId.SATELLITE);
+        break;
+      case 2:
+        fancyZoomTo(3, new google.maps.LatLng(-33.89204564589271, 151.27779224389792), true, 0);
+        break;
+      case 3:
+        fancyZoomTo(22, new google.maps.LatLng(-33.89204564589271, 151.27779224389792), true);
+        break;
+      case 4:
+        fancyZoomTo(22, new google.maps.LatLng(15.298489713458025, 19.429610976270443), true);
+        break;
+      case 10:
+        fancyZoomTo(19, new google.maps.LatLng(37.422165, -122.084383), true);
+        break;
+      case 11:
+        doSlide11();
+        break;
+      case 12:
+        map.setZoom(19);
+        fancyZoomTo(19, new google.maps.LatLng(37.422165, -122.084383), true);
+        break;
+      case 13:
+        fancyZoomTo(19, new google.maps.LatLng(48.858173, 2.294576), true);
+        break;
+      case 19:
+        fancyZoomTo(18, new google.maps.LatLng(37.646069,-115.750709), true); // KFC
+        break;
+      case 24:
+        fancyZoomTo(18, new google.maps.LatLng(20.485432, -86.974903), true);  //Dubai
+        break;
+
+
+      /*case 7:
+        //fancyZoomTo(8, new google.maps.LatLng(30.699335, 32.651367));
+        //fancyZoomTo(12, new google.maps.LatLng(-3.067838, 37.362785));
+        //fancyZoomTo(18, new google.maps.LatLng(37.488404, 141.034713)); // Whale
+        //fancyZoomTo(15, new google.maps.LatLng(51.476572, -0.232601)); // London
+        //fancyZoomTo(17, new google.maps.LatLng(25.197097, 55.275575));  //Dubai
+        //fancyZoomTo(18, new google.maps.LatLng(19.228108, 72.805989)); // India
+        //fancyZoomTo(18, new google.maps.LatLng(20.485432, -86.974903)); // Cruise ship
+        //fancyZoomTo(18, new google.maps.LatLng(28.395921, -81.578346)); // Disney
+        //fancyZoomTo(14, new google.maps.LatLng(25.118618, 55.135151)); // Dubai
+        //fancyZoomTo(18, new google.maps.LatLng(48.841411, 2.27392)); // Baloon
+        //fancyZoomTo(18, new google.maps.LatLng(34.495836, -115.343227)); // Planes
+        //fancyZoomTo(16, new google.maps.LatLng(40.450866, 93.743505)); //Crazy china
+        //fancyZoomTo(15, new google.maps.LatLng(51.116563, -0.534124)); // Top gear test track
+        //fancyZoomTo(15, new google.maps.LatLng(36.782548, -103.967829)); // Capulin volcano
+        //fancyZoomTo(19, new google.maps.LatLng(34.37641,-118.411835)); // Wipeout
+        //fancyZoomTo(5, new google.maps.LatLng(27,9773, 86.9258)); // Something
+        //fancyZoomTo(18, new google.maps.LatLng(52.250862, -2.250347)); // Random animals
+        //fancyZoomTo(18, new google.maps.LatLng(37.646069,-115.750709)); // KFC
+        //fancyZoomTo(8, new google.maps.LatLng(-20.17091, -67.600255)); // Largest salt flats
+        //fancyZoomTo(18, new google.maps.LatLng(-37.952068, 144.4339)); // Eagle
+        //fancyZoomTo(17, new google.maps.LatLng(38.024549, 23.489478)); // Fallen boat
+        //fancyZoomTo(17, new google.maps.LatLng(36.936507, -111.484323)); // Glen canyon dam
+        break;*/
+    }
+  }
+</script> 
+    <style>      
+      body {
+        font: 16px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0px; top: 0px;
+      }
+
+      #map {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+
+      .hide {
+        opacity: 0;
+      }
+
+      .fade {
+        opacity: 1;
+        -webkit-transition: opacity 1s linear;
+      }
+      
+      .presentation {
+        position: absolute;
+        height: 726px;
+        width: 926px;
+        left: 50%;
+        top: 50%;
+        margin-top: -363px;
+        margin-left: -463px;
+        display: block;
+        overflow: hidden;
+        -moz-border-radius: 20px;
+        -khtml-border-radius: 20px;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+      }
+      
+      .slides {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        position: absolute;
+        display: block;
+        -moz-border-radius: 20px;
+        -khtml-border-radius: 20px;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -webkit-transition: -webkit-transform 1s ease-in-out;
+        -moz-transition: -moz-transform 1s ease-in-out;
+        -o-transition: -o-transform 1s ease-in-out;
+        transition: transform 1s ease-in-out;
+      }
+
+      .slide {
+        display: none;
+        position: absolute;
+        overflow: hidden;
+        width: 900px;
+        height: 700px;
+        left: 50%;
+        top: 50%;
+        margin-top: -350px;
+        background-color: #eee;
+        background: -webkit-gradient(linear, left bottom, left top, from(#fefefe), to(#f3f3f3));
+        background: -moz-linear-gradient(bottom, #fefefe, #f3f3f3);
+        background: linear-gradient(bottom, #fefefe, #f3f3f3);
+        -webkit-transition: all 0.25s ease-in-out;
+        -moz-transition: all 0.25s ease-in-out;
+        -o-transition: all 0.25s ease-in-out;
+        transition: all 0.25s ease-in-out;
+        border: 1px solid #999;
+        -moz-border-radius: 20px;
+        -khtml-border-radius: 20px;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -webkit-box-shadow: 1px 1px 10px rgba(33, 33, 33, 0.5);
+        -moz-box-shadow: 5px 5px 10px rgba(33, 33, 33, 0.5);
+        box-shadow: 5px 5px 10px rgba(33, 33, 33, 0.5);
+      }
+
+      .slide p, .slide textarea {
+        font-size: 20px;
+      }
+
+      .slide .counter {
+        color: #999999;
+        position: absolute;
+        left: 20px;
+        bottom: 20px;
+        display: block;
+        font-size: 12px;
+      }
+
+      .slide.title > .counter,
+      .slide.segue > .counter,
+      .slide.mainTitle > .counter {
+        display: none;
+      }
+
+      .force-render {
+        display: block;
+        visibility: hidden;
+      }
+      
+      .slide.far-past {
+        display: block;
+        margin-left: -2400px;
+      }
+      
+      .slide.past {
+        visibility: visible;
+        display: block;
+        margin-left: -1400px;
+        -webkit-transform: scale(0.5);
+      }
+      
+      .slide.current {
+        visibility: visible;
+        display: block;
+        margin-left: -450px;
+      }
+      
+      .slide.future {
+        visibility: visible;
+        display: block;
+        margin-left: 500px;
+        -webkit-transform: scale(0.5);
+      }
+      
+      .slide.far-future {
+        display: block;
+        margin-left: 1500px;
+      }
+
+      logo {
+        width: 200px;
+        height: 42px;
+        background: url(maps-logo.png) no-repeat;
+        display: inline-block;
+        float: left;
+        position: absolute;
+        top: 650px;
+        right: 20px;
+        /*left: 100%;*/
+      }
+
+      body.three-d div.slides {
+        -webkit-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        -moz-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        -o-transform: translateX(50px) scale(0.8) rotateY(10deg);
+        transform: translateX(50px) scale(0.8) rotateY(10deg);
+      }
+      
+      /* Content */
+      /*
+        Font sizes:
+        header h1 - 50px
+        h2, p - 20px
+        default, pre, input - 16px
+      */
+      
+      @font-face { font-family: 'Junction'; src: url(src/Junction02.otf); }
+      @font-face { font-family: 'LeagueGothic'; src: url(src/LeagueGothic.otf); }
+      
+      header {
+        font-family: 'Droid Sans';
+        font-weight: normal;
+        letter-spacing: -.05em;
+        color: black;
+        text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+        position: absolute;
+        left: 30px;
+        top: 25px;
+        margin: 0;
+        padding: 0;
+        font-size: 50px;
+      }
+      
+      h1 {
+        font-size: 100%;
+        display: inline;
+      	font-weight: normal;
+      	padding: 0;
+      	margin: 0;
+      }
+      
+      h2 {
+        font-family: 'Droid Sans';
+        color: black;
+        font-size: 20px;
+        padding: 0;
+        margin: 15px 0 5px 0;
+      }
+
+      h2.big {
+        font-size: 40px;
+      }
+            
+      h2:first-child {
+        margin-top: 0;
+      }
+
+      section, footer {
+        font-family: 'Droid Sans';
+        color: #3f3f3f;
+        text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
+        margin: 100px 30px 0;
+        display: block;
+        overflow: hidden;
+      }
+      
+      footer {
+        font-size: 12px;
+        margin: 20px 0 0 30px;
+      }
+
+      a {
+        color: inherit;
+        display: inline-block;
+        text-decoration: none;
+        line-height: 110%;
+        border-bottom: 2px solid #3f3f3f;
+      }
+
+      .gmap a {
+        line-height: 100%;
+        border-bottom: none;
+      }
+
+      li {
+        list-style: none;
+        padding: 10px 0;
+      }
+
+      button {
+        font-size: 20px;
+      }
+      
+      pre button {
+        margin: 2px;
+      }
+      
+      .summary {
+        font-size: 30px;
+      }
+
+      .bullets {
+        font-size: 40px;
+      }
+      
+      section.left {
+        float: left;
+        width: 390px;
+      }
+
+      div.left {
+        float: left;
+        width: 49%;
+      }
+
+      div.right {
+        float: right;
+        width: 49%;
+      }
+      
+      section.small {
+        font-size: 24px;
+      }
+      
+      section.small ul {
+        margin: 0 0 0 15px;
+        padding: 0;
+      }
+      
+      section.small li {
+        padding-bottom: 0;
+      }
+            
+      section.middle {
+        line-height: 68px;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+        height: 700px;
+        width: 900px;
+      }
+      
+      pre {
+        text-align: left;
+        font-family: 'Droid Sans Mono', Courier;        
+        padding: 10px 20px;
+        background: rgba(255, 0, 0, 0.05);
+        -webkit-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 0, 0, 0.2);
+      }
+      
+      pre select {
+        font-family: Monaco, Courier;
+        border: 1px solid #c61800;
+      }
+        
+      input {
+        font-size: 16px;
+        margin-right: 10px;
+        font-family: Helvetica;
+        padding: 3px;
+      }
+      input[type="range"] {
+        width: 100%;
+      }
+      
+      button {
+        margin: 20px 10px 0 0;
+        font-family: Verdana;
+      }
+      
+      button.large {
+        font-size: 32px;
+      }
+        
+      pre b {
+        font-weight: normal;
+        color: #c61800;
+        text-shadow: #c61800 0 0 1px;
+        /*letter-spacing: -1px;*/
+      }
+      pre em {
+        font-weight: normal;
+        font-style: normal;
+        color: #18a600;
+        text-shadow: #18a600 0 0 1px;
+      }
+      pre input[type="range"] {
+        height: 6px;
+        cursor: pointer;
+        width: auto;
+      }
+      
+      div.example {
+        display: block;
+        padding: 10px 20px;
+        color: black;
+        background: rgba(255, 255, 255, 0.4);
+        -webkit-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+      }
+
+      .slide img,
+      .slide iframe {
+        -moz-border-radius: 8px;
+        -khtml-border-radius: 8px;
+        -webkit-border-radius: 8px;
+        border-radius: 8px;
+        -webkit-box-shadow: 1px 1px 10px rgba(33, 33, 33, 0.5);
+        -moz-box-shadow: 5px 5px 10px rgba(33, 33, 33, 0.5);
+        box-shadow: 5px 5px 10px rgba(33, 33, 33, 0.5);
+        vertical-align: middle;
+      }
+
+      .table {
+        width: 100%;
+      }
+
+      .table td, .table th {
+        text-align: left;
+        border-bottom: 1px solid #000;
+      }
+      
+      .css,
+      .js,
+      .html,
+      .key {
+        font-family: 'Droid Sans';
+        color: black;
+        display: inline-block;
+        padding: 6px 10px 3px 10px;
+        font-size: 25px;
+        line-height: 30px;
+        text-shadow: none;
+        letter-spacing: 0;
+        bottom: 10px;
+        position: relative;
+        -moz-border-radius: 10px;
+        -khtml-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+        -o-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 5px;
+      }
+      
+      .key { font-family: Arial; }
+      
+      :not(header) > .css,
+      :not(header) > .js,
+      :not(header) > .html,
+      :not(header) > .key {
+        margin: 0 5px;
+        bottom: 4px;
+      }fa
+      
+      .css {
+        background: -webkit-gradient(linear, left top, left bottom, from(#ff4), to(#ffa));
+        background-color: #ff4;
+        background: -moz-linear-gradient(left top, #ff4, #ffa);
+      }
+      .js {
+        background: -webkit-gradient(linear, left top, left bottom, from(#4f4), to(#afa));
+        background-color: #4f4;
+        background: -moz-linear-gradient(left top, #4f4, #afa);
+      }
+      .html {
+        background: -webkit-gradient(linear, left top, left bottom, from(#e88), to(#fee));
+        background-color: #e88;
+        background: -moz-linear-gradient(left top, #e88, #fee);
+      }
+
+      .two-column {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+      }
+      
+      .summary li::before, .bullets li::before {
+        content: '· ';
+      }
+
+      .stroke {
+        -webkit-text-stroke-color: red;
+        -webkit-text-stroke-width: 1px;
+      } /* currently webkit-only */
+      
+      .center {
+        text-align: center;
+      }
+      
+      .formula {
+        font-size: 50px;
+      }
+
+      .i {
+        display: inline-block;
+        width: 195px;
+        text-align: center;
+      }
+
+      .googlemap {
+        background: url(googlemaps.png) no-repeat;
+        width: 700px;
+        height: 500px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .h {
+        position:absolute;
+        border: 3px solid #f00;
+        -webkit-border-radius: 12px;
+        float: left;
+      }
+
+      .j {
+        position:absolute;
+        float:left;
+        background:#fff;
+        -webkit-border-radius:12px;
+        line-height: 1;
+        padding: 4px;
+        box-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+        -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+        -o-box-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px;
+        border: 3px solid #f00;
+        z-index: 10;
+      }
+    </style>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div class="presentation">
+      <div class="slides">
+        <div class="slide hide">
+        </div>
+        <div class="slide hide">
+          <section class="middle">
+            <h2 class="big">Google Maps APIs</h2>
+          </section>
+        </div>
+        <div class="slide hide">
+          <section>
+          <header>What are Google Maps APIs</header>
+            <p>A collection of libraries and services that are hosted by Google
+            which enable you to embed Google Maps on your website</p>
+            <img src="worldmap.png" style="width: 550px">
+            &nbsp;
+            &nbsp;
+            <img src="mobilemap.png" style="width: 240px">
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide hide">
+          <section class="middle">
+            <h2 class="big">How does it work?</h2>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+            <header>Step 1: Get the world</header>
+            <div><img src="world.jpg"/></div>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+            <header>Step 2: Make it flat!</header>
+            <div><img src="flat-planet-431x300.jpg"></div>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+          <header>Step 3: Cut it up</header>
+            <div class="left">
+              <div><img src="tiles.png" style="height: 400px;"></div>
+            </div>
+            <div class="right">
+              <table class="table">
+                <tr>
+                  <th>Zoom level</th>
+                  <th>Number of tiles</th>
+                  <th>Size of map</th>
+                </tr>
+                <tr>
+                  <td>0</td>
+                  <td>1 x 1</td>
+                  <td>256 x 256</td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>2 x 2</td>
+                  <td>512 x 512</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>4 x 4</td>
+                  <td>1024 x 1024</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>1024 x 1024</td>
+                  <td>262144 x 262144</td>
+                </tr>
+              </table>
+            </div>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+          <header>Step 4: Create different map types</header>
+          <div>
+            <span class="i">
+              <img src="roadtype.png">
+              RoadMap
+            </span>
+            <span class="i">
+              <img src="hybrid.png">
+              Hybrid
+            </span>
+            <span class="i">
+              <img src="terrain.png">
+              Terrain
+            </span>
+            <span class="i">
+              <img src="satellite.png">
+              Satellite
+            </span>
+          </div>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+            <header>Step 5: Build an awesome set of APIs</header>
+            <div style="padding-top: 20px">
+              <span class="i">
+                <img src="thumbnail_javascript_api.jpg"/>
+                Javascript
+              </span>
+              <span class="i">
+                <img src="thumbnail_flash_api.jpg"/>
+                Flash
+              </span>
+              <span class="i">
+                <img src="thumbnail_earth_api.jpg"/>
+                Earth
+              </span>
+            </div>
+            <div>
+              <span class="i">
+                <img src="thumbnail_static_api.jpg"/>
+                Static Maps
+              </span>
+              <span class="i">
+                <img src="thumbnail_web_services.jpg"/>
+                Web Services
+              </span>
+            </div>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide hide">
+          <section class="middle">
+            <header>What is a Map made of?</header>
+            <div class="googlemap">
+              <div class="h" style="top:10px;left:10px;width:63px;height:300px;"></div>
+              <div class="j" style="top:305px;left:-30px">Navigation Control</div>
+              <div class="h" style="top:-1px;left:415px;width:280px;height:25px;"></div>
+              <div class="j" style="top:27px;left:500px;">Map type control</div>
+            </div>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide hide">
+
+        </div>
+        <div class="slide hide">
+          <section class="middle">
+            <header>What is a Map made of?</header>
+            <div class="googlemap">
+              <div class="h" style="top:435px;left:50px;width:430px;height:45px;"></div>
+              <div class="j" style="top:435px;left:275px">Markers</div>
+              <div class="h" style="top:350px;left:60px;width:400px;height:35px;"></div>
+              <div class="j" style="top:350px;left:90px;">Polylines</div>
+              <div class="h" style="top:10px;left:165px;width:270px;height:125px;"></div>
+              <div class="j" style="top:10px;left:210px;">Info Window</div>
+            </div>
+            <!--http://tables.googlelabs.com/embedviz?viz=MAP&q=select+col0%2Ccol1%2Ccol2%2Ccol3%2Ccol4%2Ccol5%2Ccol6%2Ccol7%2Ccol8%2Ccol9%2Ccol10%2Ccol11%2Ccol12%2Ccol13%2Ccol14+from+260440+&h=false&lat=53.25206880589411&lng=-2.13134765625&z=6&t=3&l=col4
+            http://flightpaths.appspot.com/main/MapVis/index.html-->
+            <logo></logo>
+          </section>
+        </div>
+
+        <div class="slide hide">
+          <section class="middle">
+            <h2 class="big">What can I do with it?</h2>
+            <logo></logo>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section>
+            <header>Directions</header>
+            <lframe style="width: 825px; height: 500px"
+              src="http://gmaps-samples-v3.googlecode.com/svn/trunk/draggable-directions/draggable-directions.html"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+          <header>Streetview</header>
+            <lframe style="width: 500px; height: 400px"
+              src="http://code.google.com/apis/maps/documentation/javascript/examples/streetview-custom-tiles.html"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+            <header>Elevation</header>
+            <lframe style="width: 800px; height: 520px;"
+              src="http://gmaps-samples-v3.googlecode.com/svn/trunk/elevation/elevation-profile.html"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+            <header>Layers</header>
+            <lframe style="width: 514px; height: 525px"
+              src="http://gmaps-samples-v3.googlecode.com/svn/trunk/layers/layers.html"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+          <header>Styled Maps</header>
+            <lframe style="width: 700px; height: 520px"
+              src="http://beyond-markers.appspot.com/a-touch-of-style"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+
+        <div class="slide hide">
+          <section class="middle">
+            <h2 class="big">What have others done with it?</h2>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+            <header>Christchurch Earthquakes</header>
+            <lframe style="width: 850px; height: 520px;"
+              src="http://www.christchurchquakemap.co.nz/"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+        <div class="slide">
+          <section class="middle">
+            <header>US Flight Paths</header>
+            <lframe style="width: 850px; height: 520px;"
+              src="http://flightpaths.appspot.com/main/MapVis/index.html"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section class="middle">
+            <header>Realestate</header>
+            <lframe style="width: 850px; height: 520px;"
+              src="http://www.realestate.com.au/buy/in-sydney,+nsw+2000/map-1"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+
+        <div class="slide">
+          <section>
+            <header>San Francisco Marathon</header>
+            <lframe style="width: 835px; height: 540px;"
+              src="http://graphicsweb.wsj.com/documents/MARATHONS2010/info-MARATHONS2010.html"></lframe>
+            <logo></logo>
+          </section>
+        </div>
+
+          <div class="slide hide">
+          <section class="middle">
+            <h2 class="big">Thanks!</h2>
+            <p>For more information, check out the documentation<br/>
+            http://code.google.com/apis/maps</p>
+            <logo></logo>
+          </section>
+        </div>
+
+      </div><!-- slides -->
+
+    </div> <!-- presentation -->
+
+    <script type="text/javascript">
+
+      (function() {
+        var doc = document;
+        var disableBuilds = true;
+
+        var ctr = 0;
+        var spaces = /\s+/, a1 = [''];
+
+        var toArray = function(list) {
+          return Array.prototype.slice.call(list || [], 0);
+        };
+
+        var byId = function(id) {
+          if (typeof id == 'string') { return doc.getElementById(id); }
+          return id;
+        };
+
+        var query = function(query, root) {
+          if (!query) { return []; }
+          if (typeof query != 'string') { return toArray(query); }
+          if (typeof root == 'string') {
+            root = byId(root);
+            if(!root){ return []; }
+          }
+
+          root = root || document;
+          var rootIsDoc = (root.nodeType == 9);
+          var doc = rootIsDoc ? root : (root.ownerDocument || document);
+
+          // rewrite the query to be ID rooted
+          if (!rootIsDoc || ('>~+'.indexOf(query.charAt(0)) >= 0)) {
+            root.id = root.id || ('qUnique' + (ctr++));
+            query = '#' + root.id + ' ' + query;
+          }
+          // don't choke on something like ".yada.yada >"
+          if ('>~+'.indexOf(query.slice(-1)) >= 0) { query += ' *'; }
+
+          return toArray(doc.querySelectorAll(query));
+        };
+
+        var strToArray = function(s) {
+          if (typeof s == 'string' || s instanceof String) {
+            if (s.indexOf(' ') < 0) {
+              a1[0] = s;
+              return a1;
+            } else {
+              return s.split(spaces);
+            }
+          }
+          return s;
+        };
+
+        var addClass = function(node, classStr) {
+          classStr = strToArray(classStr);
+          var cls = ' ' + node.className + ' ';
+          for (var i = 0, len = classStr.length, c; i < len; ++i) {
+            c = classStr[i];
+            if (c && cls.indexOf(' ' + c + ' ') < 0) {
+              cls += c + ' ';
+            }
+          }
+          node.className = cls.trim();
+        };
+
+        var removeClass = function(node, classStr) {
+          var cls;
+          if (classStr !== undefined) {
+            classStr = strToArray(classStr);
+            cls = ' ' + node.className + ' ';
+            for (var i = 0, len = classStr.length; i < len; ++i) {
+              cls = cls.replace(' ' + classStr[i] + ' ', ' ');
+            }
+            cls = cls.trim();
+          } else {
+            cls = '';
+          }
+          if (node.className != cls) {
+            node.className = cls;
+          }
+        };
+
+        var toggleClass = function(node, classStr) {
+          var cls = ' ' + node.className + ' ';
+          if (cls.indexOf(' ' + classStr.trim() + ' ') >= 0) {
+            removeClass(node, classStr);
+          } else {
+            addClass(node, classStr);
+          }
+        };
+
+        var ua = navigator.userAgent;
+        var isFF = parseFloat(ua.split('Firefox/')[1]) || undefined;
+        var isWK = parseFloat(ua.split('WebKit/')[1]) || undefined;
+        var isOpera = parseFloat(ua.split('Opera/')[1]) || undefined;
+
+        var canTransition = (function() {
+          var ver = parseFloat(ua.split('Version/')[1]) || undefined;
+          // test to determine if this browser can handle CSS transitions.
+          var cachedCanTransition = 
+            (isWK || (isFF && isFF > 3.6 ) || (isOpera && ver >= 10.5));
+          return function() { return cachedCanTransition; }
+        })();
+
+        //
+        // Slide class
+        //
+        var Slide = function(node, idx) {
+          this._node = node;
+          if (idx >= 0) {
+            this._count = idx + 1;
+          }
+          if (this._node) {
+            addClass(this._node, 'slide distant-slide');
+          }
+          this._makeCounter();
+          this._makeBuildList();
+        };
+
+        Slide.prototype = {
+          _node: null,
+          _count: 0,
+          _buildList: [],
+          _visited: false,
+          _currentState: '',
+          _states: [ 'distant-slide', 'far-past',
+                     'past', 'current', 'future',
+                     'far-future', 'distant-slide' ],
+          setState: function(state) {
+            if (typeof state != 'string') {
+              state = this._states[state];
+            }
+            if (state == 'current' && !this._visited) {
+              this._visited = true;
+              this._makeBuildList();
+            }
+            removeClass(this._node, this._states);
+            addClass(this._node, state);
+            this._currentState = state;
+
+            if (state == 'current' || state == 'future') {
+              var frames = this._node.getElementsByTagName('lframe');
+              for (var i = 0, f; f = frames[i]; i++) {
+                var iframe = document.createElement('iframe');
+                iframe.setAttribute('style', f.getAttribute('style'));
+                iframe.setAttribute('src', f.getAttribute('src'));
+
+                f.parentNode.insertBefore(iframe, f);
+                f.parentNode.removeChild(f);
+              }
+            }
+
+            // delay first auto run. Really wish this were in CSS.
+            /*
+            this._runAutos();
+            */
+            var _t = this;
+            setTimeout(function(){ _t._runAutos(); } , 400);
+          },
+          _makeCounter: function() {
+            if(!this._count || !this._node) { return; }
+            var c = doc.createElement('span');
+            c.innerHTML = this._count;
+            c.className = 'counter';
+            this._node.appendChild(c);
+          },
+          _makeBuildList: function() {
+            this._buildList = [];
+            if (disableBuilds) { return; }
+            if (this._node) {
+              this._buildList = query('[data-build] > *', this._node);
+            }
+            this._buildList.forEach(function(el) {
+              addClass(el, 'to-build');
+            });
+          },
+          _runAutos: function() {
+            if (this._currentState != 'current') {
+              return;
+            }
+            // find the next auto, slice it out of the list, and run it
+            var idx = -1;
+            this._buildList.some(function(n, i) {
+              if (n.hasAttribute('data-auto')) {
+                idx = i;
+                return true;
+              }
+              return false;
+            });
+            if (idx >= 0) {
+              var elem = this._buildList.splice(idx, 1)[0];
+              var transitionEnd = isWK ? 'webkitTransitionEnd' : (isFF ? 'mozTransitionEnd' : 'oTransitionEnd');
+              var _t = this;
+              if (canTransition()) {
+                var l = function(evt) {
+                  elem.parentNode.removeEventListener(transitionEnd, l, false);
+                  _t._runAutos();
+                };
+                elem.parentNode.addEventListener(transitionEnd, l, false);
+                removeClass(elem, 'to-build');
+              } else {
+                setTimeout(function() {
+                  removeClass(elem, 'to-build');
+                  _t._runAutos();
+                }, 400);
+              }
+            }
+          },
+          buildNext: function() {
+            if (!this._buildList.length) {
+              return false;
+            }
+            removeClass(this._buildList.shift(), 'to-build');
+            return true;
+          },
+        };
+
+        //
+        // SlideShow class
+        //
+        var SlideShow = function(slides) {
+          this._slides = (slides || []).map(function(el, idx) {
+            return new Slide(el, idx);
+          });
+
+          var h = window.location.hash;
+          try {
+            this.current = parseInt(h.split('#slide')[1], 10);
+          }catch (e) { /* squeltch */ }
+          this.current = isNaN(this.current) ? 1 : this.current;
+          var _t = this;
+          doc.addEventListener('keydown', 
+              function(e) { _t.handleKeys(e); }, false);
+          doc.addEventListener('mousewheel', 
+              function(e) { _t.handleWheel(e); console.log(e);}, false);
+          doc.addEventListener('DOMMouseScroll', 
+              function(e) { _t.handleWheel(e); }, false);
+          doc.addEventListener('touchstart', 
+              function(e) { _t.handleTouchStart(e); }, false);
+          doc.addEventListener('touchend', 
+              function(e) { _t.handleTouchEnd(e); }, false);
+          window.addEventListener('popstate', 
+              function(e) { _t.go(e.state); }, false);
+          this._update();          
+        };
+
+        SlideShow.prototype = {
+          _slides: [],
+          _update: function(dontPush) {
+            if (history.pushState) {
+              if (!dontPush) {
+                history.pushState(this.current, 'Slide ' + this.current, '#slide' + this.current);
+              }
+            } else {
+              window.location.hash = 'slide' + this.current;
+            }
+            for (var x = this.current-1; x < this.current + 7; x++) {
+              if (this._slides[x-4]) {
+                this._slides[x-4].setState(Math.max(0, x-this.current));
+              }
+            }
+            doMapStuff(this.current);
+          },
+
+          current: 0,
+          next: function() {
+            if (!this._slides[this.current-1].buildNext()) {
+              this.current = Math.min(this.current + 1, this._slides.length);
+              this._update();
+            }
+          },
+          prev: function() {
+            this.current = Math.max(this.current-1, 1);
+            this._update();
+          },
+          go: function(num) {
+            if (history.pushState && this.current != num) {
+              history.replaceState(this.current, 'Slide ' + this.current, '#slide' + this.current);
+            }
+            this.current = num;
+            this._update(true);
+          },
+
+          _notesOn: false,
+          showNotes: function() {
+            var isOn = this._notesOn = !this._notesOn;
+            query('.notes').forEach(function(el) {
+              el.style.display = (notesOn) ? 'block' : 'none';
+            });
+          },
+          switch3D: function() {
+            toggleClass(document.body, 'three-d');
+          },
+          handleWheel: function(e) {
+            var delta = 0;
+            if (e.wheelDelta) {
+              delta = e.wheelDelta/120;
+              if (isOpera) {
+                delta = -delta;
+              }
+            } else if (e.detail) {
+              delta = -e.detail/3;
+            }
+
+            if (delta > 0 ) {
+              this.prev();
+              return;
+            }
+            if (delta < 0 ) {
+              this.next();
+              return;
+            }
+          },
+          handleKeys: function(e) {
+            
+            if (/^(input|textarea)$/i.test(e.target.nodeName)) return;
+            
+            switch (e.keyCode) {
+              case 37: // left arrow
+                this.prev(); break;
+              case 39: // right arrow
+              case 32: // space
+                this.next(); break;
+              case 50: // 2
+                this.showNotes(); break;
+              case 51: // 3
+                this.switch3D(); break;
+            }
+          },
+          _touchStartX: 0,
+          handleTouchStart: function(e) {
+            this._touchStartX = e.touches[0].pageX;
+          },
+          handleTouchEnd: function(e) {
+            var delta = this._touchStartX - e.changedTouches[0].pageX;
+            var SWIPE_SIZE = 150;
+            if (delta > SWIPE_SIZE) {
+              this.next();
+            } else if (delta< -SWIPE_SIZE) {
+              this.prev();
+            }
+          },
+        };
+
+        // Initialize
+        //function initialize() {
+          window['slideshow'] = new SlideShow(query('.slide'));
+        //}
+
+        //window['initialize'] = initialize;
+      })();
+    </script>
+
+    <!--[if lt IE 9]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+		<script>CFInstall.check({ mode: "overlay" });</script>
+    <![endif]-->
+  </body>
+</html>
