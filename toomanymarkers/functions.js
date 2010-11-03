@@ -168,15 +168,15 @@ function initialize() {
     mapTypeId: 'terrain'
   });
   google.maps.event.addDomListener(document.getElementById('fusion-cb'),
-      'change', toggleFusion);
+      'click', toggleFusion);
   google.maps.event.addDomListener(document.getElementById('fusion-hm-cb'),
-      'change', toggleFusionHeatmap);
+      'click', toggleFusionHeatmap);
   google.maps.event.addDomListener(document.getElementById('kml-cb'),
-      'change', toggleKmlLayer);
+      'click', toggleKmlLayer);
   google.maps.event.addDomListener(document.getElementById('mc-cb'),
-      'change', toggleMarkerClusterer);
+      'click', toggleMarkerClusterer);
   google.maps.event.addDomListener(document.getElementById('mgr-cb'),
-      'change', toggleMarkerManager);
+      'click', toggleMarkerManager);
 
   // Prepares the marker object, creating a google.maps.Marker object for each
   // location, place and country
