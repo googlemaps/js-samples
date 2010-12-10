@@ -1,0 +1,103 @@
+<html> 
+<head> 
+<title>Google Maps JavaScript API v3 Example: Overlay MapTypes</title> 
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>  
+<script type="text/javascript" src="copyright.js"></script>
+<script type="text/javascript">
+  function CoordMapType(name) {
+    this.tileSize = new google.maps.Size(256, 256);
+    this.maxZoom = 6;
+    this.name = name;
+    this.alt = 'Tile coordinate custom map type';
+  }
+ 
+  CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
+    var div = ownerDocument.createElement('DIV');
+    div.innerHTML = coord;
+    div.style.width = this.tileSize.width + 'px';
+    div.style.height = this.tileSize.height + 'px';
+    div.style.fontSize = '10';
+    div.style.borderStyle = 'solid';
+    div.style.borderWidth = '1px';
+    div.style.borderColor = '#AAAAAA';
+    return div;
+  };
+ 
+  var map;
+  var chicago = new google.maps.LatLng(41.850033,-87.6500523);
+  var copyrights = {}, id;
+  var copyrightNode;
+  
+  function initialize() {
+    loadCollections();
+
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
+      zoom: 6,
+      center: chicago,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControlOptions: {
+        mapTypeIds: ['custom1', 'custom2', google.maps.MapTypeId.ROADMAP]
+      }
+    });
+ 
+    map.mapTypes.set('custom1', new CoordMapType('Custom 1'));
+    map.mapTypes.set('custom2', new CoordMapType('Custom 2'));
+    map.setMapTypeId('custom1');
+    
+    // Create div for showing copyrights.
+    copyrightNode = document.createElement('div');
+    copyrightNode.id = 'copyright-control';
+    copyrightNode.style.fontSize = '11px';
+    copyrightNode.style.fontFamily = 'Arial, sans-serif';
+    copyrightNode.style.margin = '0 2px 2px 0';
+    copyrightNode.style.whiteSpace = 'nowrap';
+    copyrightNode.index = 0;
+    map.controls[google.maps.ControlPosition.BOTTOM_RIGHT].push(copyrightNode);
+    
+    google.maps.event.addListener(map, 'idle', updateCopyrights);
+    google.maps.event.addListener(map, 'maptypeid_changed', updateCopyrights);
+  }
+  
+  function updateCopyrights() {
+    var notice = '';
+    var collection = copyrights[map.getMapTypeId()];
+    var bounds = map.getBounds();
+    var zoom = map.getZoom();
+    if (collection && bounds && zoom) {
+      notice = collection.getCopyrightNotice(bounds, zoom);
+    }
+    copyrightNode.innerHTML = notice;
+  }
+  
+  // Load CopyrightCollections for custom map types.
+  function loadCollections() {
+    var collection1 = new CopyrightCollection('Map data &copy;2010');
+    collection1.addCopyright(new Copyright(
+      1,
+      new google.maps.LatLngBounds(
+          new google.maps.LatLng(-90, -179), new google.maps.LatLng(90, 180)),
+      0,
+      'Global Attribution'));
+    collection1.addCopyright(new Copyright(
+      2,
+      new google.maps.LatLngBounds(
+          new google.maps.LatLng(0, 0), new google.maps.LatLng(90, 90)),
+      1,
+      'Test Attribution 1'));
+      copyrights['custom1'] = collection1;
+
+    var collection2 = new CopyrightCollection('Satellite data &copy;2010');
+    collection2.addCopyright(new Copyright(
+      3,
+      new google.maps.LatLngBounds(
+          new google.maps.LatLng(0, 0), new google.maps.LatLng(90, 90)),
+      2,
+      'Test Attribution 2'));
+    copyrights['custom2'] = collection2;
+  }
+</script> 
+</head> 
+<body onload="initialize()"> 
+  <div id="map-canvas" style="width: 640px; height: 480px;">map div</div> 
+</body> 
+</html>
