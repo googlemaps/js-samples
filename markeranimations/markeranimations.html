@@ -51,7 +51,7 @@
       }
     };
 
-    drop5();
+    google.maps.event.addListenerOnce(map, 'tilesloaded', drop5);
   }
 </script>
 </head>
