@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Google Maps JavaScript API v3 Example: Panoramio Layer Tags</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=panoramio"></script>
+<script type="text/javascript">
+var panoramioLayer;
+
+function initialize() {
+  var sydHarbor = new google.maps.LatLng(-33.8689, 151.207);
+  var myOptions = {
+    zoom: 12,
+    center: sydHarbor,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  var map = new google.maps.Map(
+      document.getElementById("map_canvas"),
+      myOptions);
+
+  panoramioLayer = new google.maps.panoramio.PanoramioLayer();
+
+  panoramioLayer.setMap(map);
+}
+
+function getTaggedPhotos() {
+  var tagFilter = document.getElementById('tag').value;
+  panoramioLayer.setTag(tagFilter);
+}
+</script>
+</head>
+<body onload="initialize()">
+<div>
+  <input id="tag" type="textbox" value="Harbour">
+  <input type="button" value="Filter on Tag" onclick="getTaggedPhotos()">
+</div>
+<div id="map_canvas" style="width: 500px; height: 400px"></div>
+</body>
+</html>
