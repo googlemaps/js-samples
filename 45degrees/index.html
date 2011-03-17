@@ -1,0 +1,29 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Google Maps JavaScript API v3 Example: Map Simple</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  
+  function initialize() {
+    var myLatlng = new google.maps.LatLng(45.434062,12.339077);
+    var myOptions = {
+      zoom: 19,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.SATELLITE,
+      tilt: 45,
+      overviewMapControl: true,
+      overviewMapControlOptions: {
+        opened: true
+      }
+    }
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+  }
+</script>
+</head>
+<body style="margin:0px; padding:0px;" onload="initialize()">
+  <div id="map_canvas" style="width:512px; height:400px"></div>
+
+</body>
+</html>
