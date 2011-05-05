@@ -98,6 +98,7 @@
       for (var j = 0; j < destinations.length; j++) {
         var td = addElement(tr, 'element-' + i + '-' + j);
         td.onmouseover = getRouteFunction(i,j);
+        td.onclick = getRouteFunction(i,j);
       }
     }
   }
