@@ -1,0 +1,163 @@
+<html>
+<head>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<title>UN Poverty statistics</title>
+<script>
+  var map, layer;
+  
+  var styles = [
+    [
+      {
+        where: "extreme_poverty_rate >= 50",
+        polygonOptions: {
+          fillColor: "#ff0000",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "extreme_poverty_rate >= 30 and extreme_poverty_rate < 50",
+        polygonOptions: {
+          fillColor: "#ff8000",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "extreme_poverty_rate >= 10 and extreme_poverty_rate < 30",
+        polygonOptions: {
+          fillColor: "#ffff00",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "extreme_poverty_rate >= 5 and extreme_poverty_rate < 10",
+        polygonOptions: {
+          fillColor: "#80ff00",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "extreme_poverty_rate < 5",
+        polygonOptions: {
+          fillColor: "#00ff00",
+          fillOpacity: 0.8
+        }
+      }
+    ],
+    [
+      {
+        where: "infant_mortality >= 80",
+        polygonOptions: {
+          fillColor: "#ff0000",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "infant_mortality >= 60 and infant_mortality < 80",
+        polygonOptions: {
+          fillColor: "#ff8000",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "infant_mortality >= 40 and infant_mortality < 60",
+        polygonOptions: {
+          fillColor: "#ffff00",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "infant_mortality >= 20 and infant_mortality < 40",
+        polygonOptions: {
+          fillColor: "#80ff00",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "infant_mortality < 20",
+        polygonOptions: {
+          fillColor: "#00ff00",
+          fillOpacity: 0.8
+        }
+      }
+    ],
+    [
+      {
+        where: "life_expectancy <= 50",
+        polygonOptions: {
+          fillColor: "#ff0000",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "life_expectancy > 50 and life_expectancy <= 60",
+        polygonOptions: {
+          fillColor: "#ff8000",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "life_expectancy > 60 and life_expectancy <= 70",
+        polygonOptions: {
+          fillColor: "#ffff00",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "life_expectancy > 70 and life_expectancy <= 80",
+        polygonOptions: {
+          fillColor: "#80ff00",
+          fillOpacity: 0.8
+        }
+      }, {
+        where: "life_expectancy > 80",
+        polygonOptions: {
+          fillColor: "#00ff00",
+          fillOpacity: 0.8
+        }
+      }
+    ]
+  ];
+    
+  function initialize() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: new google.maps.LatLng(45,7),
+      zoom: 1,
+      mapTypeId: 'roadmap',
+      streetViewControl: false
+    });
+
+    layer = new google.maps.FusionTablesLayer({
+      query: {
+        select: 'geometry',
+        from: 390426
+      },
+      styles: styles[0],
+      map: map
+    });
+  }
+
+  function setDataSource(source) {        
+    layer.setOptions({
+      styles: styles[source]
+    });
+  }
+
+</script>
+<style>
+body {
+  font-family: sans-serif;
+}
+#map {
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  width: 512px;
+  height: 360px;
+  border: 1px solid black;
+}
+#source {
+  position: absolute;
+  font-size: 64pt;
+  top: 10px;
+  left: 0px;
+}
+</style>
+</head>
+<body onload='initialize()'>
+  <div id="map">map div</div>
+  <select id="source" onchange="setDataSource(this.selectedIndex)"> 
+     <option>Extreme Poverty</option> 
+     <option>Infant Mortality</option> 
+     <option>Life Expectancy</option> 
+   </select>
+</body>
+</html>
