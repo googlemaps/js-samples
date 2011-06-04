@@ -42,9 +42,12 @@
         map: map
     });
 
+    google.maps.event.addListener(infowindow, 'domready', function() {
+      $("#tabs").tabs();
+    });
+
     google.maps.event.addListener(marker, 'click', function() {
       infowindow.open(map, marker);
-      $("#tabs").tabs();
     });
   }
  </script>
