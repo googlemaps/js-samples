@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Maps Custom Markers</title>
+    <style type="text/css">
+      body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      #map {
+        width: 100%;
+        position: absolute;
+        top: 0;
+        bottom: 24px;
+      }
+      #info {
+        height: 24px;
+        position: absolute;
+        bottom: 0;
+        margin: 0;
+        font-size: 0.8em;
+        font-family: myriad pro, verdana, sans-serif;
+        color: #888;
+      }
+      #info a {
+        color: #888;
+      }
+      #info p {
+        margin: 0;
+        padding: 3px;
+      }
+      .btn {
+        background: #fff;
+        padding: 5px;
+        font-family: arial;
+        border-radius: 5px;
+        margin: 5px 10px 0 5px;
+        float: left;
+        position: relative;
+        cursor: pointer;
+      }
+    </style>
+    <script type="text/javascript"
+      src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript"
+      src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript">
+// The list of marker locations, and the map centre.
+var mapCentre = new google.maps.LatLng(44.85471, -93.24185);
+var markerPositions = [
+  new google.maps.LatLng(44.85490, -93.24749),
+  new google.maps.LatLng(44.85620, -93.24659),
+  new google.maps.LatLng(44.85737, -93.24800),
+  new google.maps.LatLng(44.85696, -93.24487),
+  new google.maps.LatLng(44.85759, -93.24234),
+  new google.maps.LatLng(44.85617, -93.23863),
+  new google.maps.LatLng(44.85334, -93.23689),
+  new google.maps.LatLng(44.85216, -93.24135),
+  new google.maps.LatLng(44.85184, -93.24631),
+  new google.maps.LatLng(44.85322, -93.24869)
+];
+
+var markers = [];
+
+function setupMarkers() {
+  for (var i = 0, position; position = markerPositions[i]; i++) {
+    var marker = new google.maps.Marker({
+      draggable: true,
+      position: position
+      });
+
+    google.maps.event.addListener(marker, 'drag', function(event) {
+      if (this.isZombie) {
+        this.setIcon(makeZombieMarkerImage(event.latLng, mapCentre, 1));
+      }
+    });
+    google.maps.event.addListener(marker, 'dragend', function(event) {
+      if (this.isZombie) {
+        this.setIcon(makeZombieMarkerImage(event.latLng, mapCentre,
+          this.origTile));
+      }
+    });
+    markers.push(marker);
+  }
+}
+
+function showMapMarkers() {
+  for (var i = 0, marker; marker = markers[i]; i++) {
+    marker.setMap(map);
+    marker.setIcon(null);
+    marker.isZombie = false;
+  }
+}
+
+
+function showZombieMarkers() {
+  for (var i = 0, marker; marker = markers[i]; i++) {
+    marker.setMap(map);
+    marker.isZombie = true;
+    var icon = makeZombieMarkerImage(marker.getPosition(), mapCentre);
+    marker.origTile = icon.horizTile;
+    marker.setIcon(icon);
+  }
+}
+
+// Load the map when the DOM is ready.
+$(function() {
+  var mapOptions = {
+    zoom: 16,
+    center: mapCentre,
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    mapTypeControl: false
+  };
+  map = new google.maps.Map($('#map').get(0), mapOptions);
+
+  var div = document.createElement('DIV');
+  div.className = 'btn';
+  div.innerHTML = 'A';
+  div.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(div);
+
+  google.maps.event.addDomListener(div, 'click', function() {
+    showZombieMarkers();
+  });
+
+  /*var div = document.createElement('DIV');
+  div.className = 'btn';
+  div.innerHTML = 'A';
+  div.index = 2;
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(div);
+
+  google.maps.event.addDomListener(div, 'click', function() {
+    showMapMarkers();
+  });*/
+
+  setupMarkers();
+  showMapMarkers();
+});
+
+function makeZombieMarkerImage(zombiePos, focusPos, opt_horzTile) {
+  // Code to calculate the bearing from zombie to map centre.
+  // Latitude/longitude spherical geodesy formulae & scripts (c) Chris Veness
+  // 2002-2010 - www.movable-type.co.uk/scripts/latlong.html
+  // Licence: CC-BY http://creativecommons.org/licenses/by/3.0/
+  // <snip>
+  var focusLat = focusPos.lat() / 180 * Math.PI;
+  var zombieLat = zombiePos.lat() / 180 * Math.PI;
+  var dLng = (focusPos.lng() - zombiePos.lng()) / 180 * Math.PI;
+  var y = Math.sin(dLng) * Math.cos(zombieLat);
+  var x = Math.cos(focusLat) * Math.sin(zombieLat) -
+          Math.sin(focusLat) * Math.cos(zombieLat) * Math.cos(dLng);
+  var bearing = 180 - (Math.atan2(y, x) * 180 / Math.PI);
+  // </snip>
+
+  // The zombie image is composed of 128x128 tiles in a grid. Vertically, there
+  // are 8 different bearings; horizontally there are 36 frames (we use 24).
+  var vertTile = Math.round(bearing / 45 + 10) % 8;
+  var horzTile = (opt_horzTile != null) ? opt_horzTile : Math.floor(Math.random() * 24);
+  var size = new google.maps.Size(128, 128);
+  var origin = new google.maps.Point(horzTile * 128, vertTile * 128);
+  var anchor = new google.maps.Point(64, 100);  // By fair roll of dice.
+
+  var img = new
+    google.maps.MarkerImage('images/zombie_sprite-fs8.png',
+                            size, origin, anchor);
+  img.horzTile = horzTile;
+  return img;
+}
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="info"><p>
+      Zombie images by <a
+        href="http://opengameart.org/content/zombie-sprites">pfunked</a>.
+      Available under <a
+        href="http://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA
+        3.0</a>.</p>
+    </div>
+  </body>
+</html>

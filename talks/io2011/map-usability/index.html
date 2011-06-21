@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<!--
+  Google I/O 2011 HTML slides template
+
+  Created by Luke Mahé (lukem@google.com)
+         and Marcin Wichary (mwichary@google.com).
+
+  URL: http://go/io-html-slides
+-->
+
+<html>
+  <head>
+    <title>Google I/O</title>
+
+    <meta charset='utf-8' />
+    <script
+      src='http://io-2011-slides.googlecode.com/svn/trunk/slides.js'></script>
+    <script type="text/javascript">
+      function addSlideNos() {
+        var total = slideEls.length;
+        for (var i = 0, slide; slide = slideEls[i]; i++) {
+          if (!slide.classList.contains('no-slidenum')) {
+            addSlideNo(slide, i+1, total);
+          }
+        }
+      }
+
+      function addSlideNo(slide, n, total) {
+        var slideNo = document.createElement('div');
+        slideNo.classList.add('slidenum');
+        slideNo.innerHTML = n + ' / ' + total;
+        slide.appendChild(slideNo);
+      }
+      document.addEventListener('DOMContentLoaded', addSlideNos, false);
+    </script>
+  </head>
+
+  <style>
+    /* Your individual styles here, or just use inline styles if that’s
+    what you want. */
+    .mobile-frame {
+      width: 336px;
+      height: 648px;
+      background: url(images/nexuss.png) no-repeat;
+      margin: -30px auto 0 auto;
+      position: relative;
+      padding: 120px 0 0 33px;
+    }
+
+    .mobile-frame iframe {
+      width: 272px;
+      height: 428px;
+      border: 0;
+    }
+
+    .note {
+      display: none;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: #fff8cc;
+      border: 2px solid #ff9300;
+      font-size: 13px;
+      padding: 9px;
+      max-width: 300px;
+      max-height: 200px;
+      overflow: auto;
+      box-shadow: 2px 2px 8px #ccc;
+    }
+
+    .with-notes .note {
+      display: block;
+      height: 150px;
+    }
+
+    .middle {
+      margin-top: 25px;
+      display: block;
+      line-height: 72px;
+    }
+
+    .slidenum {
+      position: absolute;
+      bottom: 30px;
+      left: 40px;
+      z-index: -999;
+    }
+
+    article.biglogo .slidenum,
+    article.full .slidenum {
+      display: none;
+    }
+
+    #next-slide-area {
+      margin-left: 450px !important;
+      width: 60px !important;
+      display: none !important; 
+    }
+
+    #prev-slide-area {
+      width: 60px !important;
+      margin-left: -510px !important;
+      display: none !important;
+    }
+
+    ul ul {
+      margin-top: 0.5em !important;
+    }
+  </style>
+
+  <body style='display: none' class="with-notes">
+
+    <section class='slides layout-widescreen'>
+
+      <!-- Your slides (<article>s) go here. Delete or comment out the
+           slides below. -->
+
+      <article class='biglogo'>
+      </article>
+
+      <article class="no-slidenum">
+        <h1>
+          Designing maps applications for usability on Mobile and Desktop
+        </h1>
+        <p>
+          Jez Fletcher and Luke Mah&eacute;
+          <br>
+          May 10, 2011
+        </p>
+
+      </article>
+
+      <article class="no-slidenum">
+        <h3>Speakermeter and Twitter</h3>
+        <ul>
+          <li>Speakermeter: http://goo.gl/FnM7a</li>
+          <li>Twitter: #geo #io2011</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>Overview</h3>
+
+        <ul class="build">
+          <li>Defining "user experience"</li>
+          <li>Differences between desktop and mobile</li>
+          <li>Pain points
+          </li>
+        </ul>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>
+          What is "User Experience"?
+        </h2>
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsnearsf2.png" class="centered" width="800px">
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsearchmobile1.png" class="centered">
+      </article>
+
+      <article>
+        <h3>What is UX?</h3>
+        <div class="build middle">
+          <div>Respect the intent of the user.</div>
+        </div>
+      </article>
+
+      <article>
+        <h3>What is UX?</h3>
+        <div class="build middle">
+          <div>Don't give people a problem, give them a solution.</div>
+        </div>
+      </article>
+
+      <article>
+        <h3>What is UX?</h3>
+        <div class="build middle">
+          <div>Ensure their experience matches their mental model.</div>
+        </div>
+      </article>
+
+      <article>
+        <h3>What is UX?</h3>
+        <div class="build middle">
+          <div>What is the "intent" of a user using a mapping application?</div>
+        </div>
+      </article>
+
+      <article>
+        <h3>What is desktop used for?</h3>
+          <ul>
+            <li>Planning</li>
+            <li>Sorting through information</li>
+            <li>Evaluating different options</li>
+            <li>Decision making</li>
+          </ul>
+      </article>
+
+      <article>
+        <h3>What is mobile used for?</h3>
+          <ul>
+            <li>Immediacy</li>
+            <li>Context</li>
+            <li>Location</li>
+            <li>Social</li>
+          </ul>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>Desktop vs Mobile</h2>
+      </article>
+
+      <article>
+        <h3>Desktop vs Mobile</h3>
+          <ul>
+            <li>Mouse vs Touch</li>
+            <li>Screen size and resolution</li>
+            <li>Bandwidth</li>
+            <li>Location</li>
+            <li>Processing power</li>
+            <li>Cache</li>
+          </ul>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>Why do we care?</h2>
+      </article>
+
+      <article>
+        <h3>Because...</h3>
+        <div class="build middle">
+          <div>If the user experience sucks, people aren't coming back.</div>
+        </div>
+      </article>
+
+      <article class="no-slidenum">
+      <h2>If <u>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</u> is done badly, the user experience sucks.</h2>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>If <u>the layout</u> is done badly, the user experience sucks.</h2>
+      </article>
+
+      <article>
+        <h3>The layout</h3>
+        <ul>
+          <li>Clutter</li>
+          <li>Things not being where the user expects them to be</li>
+          <li>Desktop:
+            <ul>
+              <li>Have the map and the content</li>
+              <li>Break out the content</li>
+              <li>Detailed info windows</li>
+            </ul>
+          </li>
+          <li>Mobile:
+            <ul>
+              <li>Map or the content</li>
+              <li>Avoid info windows</li>
+            </ul>
+          </li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsnearsf.png" width="800px">
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsearchmobile1.png" class="centered">
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsnearsf2.png" class="centered" width="800px">
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsearchmobile2.png" class="centered">
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsnearsf3.png" class="centered" width="800px">
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsearchmobile3.png" class="centered">
+      </article>
+
+      <article class="no-slidenum">
+        <h2>If <u>the data representation</u> is done badly, the user experience
+          sucks.</h2>
+      </article>
+
+      <article>
+        <h3>Data Representation</h3>
+        <ul>
+          <li>Clutter</li>
+          <li>Trying to show too much</li>
+          <li>Obstructing what the user is interested in</li>
+          <li>Not giving them the information they want</li>
+          <li>Breaking their "mental model" of the data</li>
+        </ul>
+      </article>
+
+      <article class="fill">
+        <iframe src="toomuchdata.html"></iframe>
+      </article>
+
+      <article class="fill">
+        <iframe src="zombies.html"></iframe>
+      </article>
+
+      <article class="fill">
+        <iframe src="ninjas.html"></iframe>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>If <u>controlling the map</u> is done badly, the user experience
+          sucks.</h2>
+        </article>
+
+      <article class="no-slidenum">
+        <h2>If <u>controlling the map</u> is done well, the user experience rocks!</h2>
+      </article>
+
+      <article>
+        <h3>Controlling the map</h3>
+        <ul>
+          <li>Breaking the mental model - not having desktop controls where users expect</li>
+          <li>Making interaction obvious:
+            <ul>
+              <li>Mouse over/Tooltips</li>
+              <li>Consitent buttons</li>
+              <li>Click vs Touch</li>
+            </ul>
+          </li>
+          <li>Removing functionality from mobile - Don't dumb down; simplify</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsnearsf.png" width="800px">
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/hotelsearchmobile1.png" class="centered">
+      </article>
+
+      <article class="no-slidenum">
+        <h2>If <u>the responsiveness</u> is done well, the user experience rocks!</h2>
+      </article>
+
+      <article>
+        <h3>Responsiveness</h3>
+        <ul>
+          <li>Don't break the mental model</li>
+          <li>Dragging is slow</li>
+          <li>Latency in dealing with requests</li>
+        </ul>
+      </article>
+
+      <article class="fill">
+        <iframe src="mappanslow.html"></iframe>
+      </article>
+
+      <article class="fill">
+        <iframe src="mappanfast.html"></iframe>
+      </article>
+
+      <article class="fill">
+        <iframe src="groundoverlay.html"></iframe>
+      </article>
+
+      <article class="fill">
+        <iframe src="groundoverlay-kml.html"></iframe>
+      </article>
+
+      <article>
+        <h3>Shout out</h3>
+        <p>"Speedy Maps" — 10:45am Wednesday</p>
+        <p>http://goo.gl/io/dpqTV</p>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>If <u>the storage</u> is done well, the user experience rocks!</h2>
+      </article>
+
+      <article>
+      <h3>Storage</h3>
+      <ul>
+        <li>Reliability — data doesn't show up on the map</li>
+        <li>Editability</li>
+        <li>Latency — don't rely on single homed DB in Reykjavik</li>
+      </ul>
+      </article>
+
+      <article class="fill">
+        <iframe src="kmlfromappengine.html"></iframe>
+      </article>
+
+      <article class="fill">
+        <iframe src="ponymap.html"></iframe>
+      </article>
+
+      <article class="fill">
+        <iframe src="toiletdistance.html"></iframe>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>If <u>sharing</u> is done well, the user experience rocks!</h2>
+      </article>
+
+      <article>
+        <h3>Sharing</h3>
+        <ul>
+          <li>Sharing between desktop and phone
+            <ul>
+              <li>Planning vs Active</li>
+            </ul>
+          </li>
+          <li>Sharing between people
+            <ul>
+              <li>Storing data</li>
+              <li>Sending this to friends</li>
+            </ul>
+          </li>
+          <li>Interactive/Social</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/directions.png" class="centered" width="800px">
+        </article>
+
+      <article>
+        <h3>&nbsp;</h3>
+        <img src="images/directionsmobile.png" class="centered">
+      </article>
+
+      <article>
+        <h3>Shout out</h3>
+        <p>"Location Based App development using Google APIs" — 3pm
+          Wednesday</p>
+        <p>http://goo.gl/io/FScsb</p>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>If <u>the map styling</u> is done well, the user experience rocks!</h2>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>
+          Justin O'Beirne - 41Latitude.com
+        </h2>
+      </article>
+
+      <article class="no-slidenum">
+        <h2>
+          Questions?
+        </h2>
+      </article>
+
+    </section>
+  </body>
+</html>
