@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      html, body, #map {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+
+      .btn {
+        background: #fff;
+        padding: 5px;
+        font-family: arial;
+        border-radius: 5px;
+        margin: 5px 10px 0 5px;
+        float: left;
+        position: relative;
+        cursor: pointer;
+      }
+    </style>
+
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript"
+      src="http://google-maps-utility-library-v3.googlecode.com/svn/trunk/markerclusterer/src/markerclusterer_compiled.js"></script>
+    <script type="text/javascript" src="toilets.json"></script>
+    <script type="text/javascript">
+      var map, clusterer, heatmap;
+      var markers = [];
+      function init() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(-27.406462821209885, 132.44384765625003),
+          zoom: 5,
+          mapTypeId: 'hybrid',
+          disableDefaultUI: true
+        });
+
+        var bounds = new google.maps.LatLngBounds();
+
+        for (var i = 0, toilet; toilet = toilets[i]; i++) {
+          var pos = new google.maps.LatLng(toilet.lat, toilet.lng);
+          var marker = new google.maps.Marker({
+            position: pos
+          });
+          bounds.extend(pos);
+          markers.push(marker);
+        }
+
+        var div = document.createElement('DIV');
+        div.className = 'btn';
+        div.innerHTML = 'A';
+        div.index = 2;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(div);
+
+        google.maps.event.addDomListener(div, 'click', displayMarkers);
+
+        div = document.createElement('DIV');
+        div.className = 'btn';
+        div.innerHTML = 'B';
+        div.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(div);
+
+        google.maps.event.addDomListener(div, 'click', displayClusterer);
+
+        div = document.createElement('DIV');
+        div.className = 'btn';
+        div.innerHTML = 'C';
+        div.index = 0;
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(div);
+
+        google.maps.event.addDomListener(div, 'click', displayHeatmap);
+
+        map.fitBounds(bounds);
+        window.setTimeout(function() {
+//          map.setZoom(map.getZoom() + 1);
+        }, 100);
+      }
+
+      function displayClusterer() {
+        if (heatmap) {
+          heatmap.setMap(null);
+        }
+        clusterer = new MarkerClusterer(map, markers);
+      }
+
+      function displayHeatmap() {
+        if (clusterer) {
+          clusterer.clearMarkers();
+        }
+
+        hideMarkers();
+
+        heatmap = new google.maps.FusionTablesLayer(350475, {
+          suppressInfoWindows: true
+        });
+
+        showFusionLayerHeatmap = true;
+        heatmap.set('heatmap', showFusionLayerHeatmap);
+        heatmap.setMap(map);
+      }
+
+      function hideMarkers() {
+        for (var i = 0, marker; marker = markers[i]; i++) {
+          marker.setMap(null);
+        }
+      }
+
+      function displayMarkers() {
+        if (clusterer) {
+          clusterer.clearMarkers();
+        }
+
+        if (heatmap) {
+          heatmap.setMap(null);
+        }
+
+        for (var i = 0, marker; marker = markers[i]; i++) {
+          marker.setMap(map);
+        }
+      }
+
+      google.maps.event.addDomListener(window, 'load', init);
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>
