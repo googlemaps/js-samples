@@ -12,18 +12,17 @@
       function init() {
         
         var opt = {
-          mapTypeControlOptions: {
-            mapTypeIds: [ 'Styled']
-          },
+          mapTypeControl: false,
           center: new google.maps.LatLng(30, 0),
           zoom: 1,
-          mapTypeId: 'Styled'
+          mapTypeId: 'roadmap'
         };
         
         var div = document.getElementById('map');
         map = new google.maps.Map(div, opt);
-        var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
-        map.mapTypes.set('Styled', styledMapType);
+        /*var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
+        map.mapTypes.set('Styled', styledMapType);*/
+        map.set('styles', styles);
 
         if (BrowserDetect.browser === "Explorer") {
           document.getElementById("ruleColumns").style.display = "none";
@@ -331,8 +330,9 @@
       
       function setMapStyle(selectorClick) {
         if (! selectorClick || styles[currentStyle].stylers.length > 0) {
-          var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
-          map.mapTypes.set('Styled', styledMapType);
+          /*var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
+          map.mapTypes.set('Styled', styledMapType);*/
+          map.set('styles', styles);
         }
         mapStyleRenderer.refresh(currentStyle);
         mapStyleRenderer.selectPanel(currentStyle);
