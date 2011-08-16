@@ -1,546 +1,713 @@
-      var map;
-      var geocoder;
-      var mapStyleRenderer;
-      var styles = [];
-      var currentStyle = 0;
-      
-      var huePicker;
-      var satSlider;
-      var lightSlider;
-      var gammaSlider;
-        
-      function init() {
-        
-        var opt = {
-          mapTypeControlOptions: {
-            mapTypeIds: [ 'Styled']
-          },
-          center: new google.maps.LatLng(30, 0),
-          zoom: 1,
-          mapTypeId: 'Styled'
-        };
-        
-        var div = document.getElementById('map');
-        map = new google.maps.Map(div, opt);
-        var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
-        map.mapTypes.set('Styled', styledMapType);
+var map;
+var geocoder;
+var mapStyleRenderer;
+var styles = [];
+var currentStyle = 0;
 
-        if (BrowserDetect.browser === "Explorer") {
-          document.getElementById("ruleColumns").style.display = "none";
-          alert("You must use Chrome, Firefox, or Safari to use the Styled Map wizard");
-          return;
-        }
-        
-        var mapStyleDiv = document.getElementById('mapStyleScrollable');
-        mapStyleRenderer = new MapStyleRenderer(mapStyleDiv, styles);
-        mapStyleRenderer.addSelectionListener(loadMapStyle);
-        mapStyleRenderer.addTrashcanListener(deleteStyle);
-        
-        makeSliders();
-        huePicker = new HuePicker(document.getElementById('huePicker'));
-        huePicker.addListener(function(rgb) {
-          document.getElementById('set_hue').checked = true;
-          document.getElementById('hue').value = rgb;
-          document.getElementById('hueSample').style.backgroundColor = rgb;
-          setRule('hue');
-        });
-        
-        geocoder = new google.maps.Geocoder();
-        createGeocoderControl();
-        addStyle();
-      }
-      
-      function makeSliders() {
-        satSlider = new Slider(document.getElementById('satSlider'));
-        satSlider.addListener(function(value, position) {
-          document.getElementById('set_saturation').checked = true;
-          var s = Math.round((200 * value) - 100);
-          document.getElementById('saturation').value = s;
-          setRule('saturation');
-          styles[currentStyle].sliders.saturation = position;
-        });
+var huePicker;
+var satSlider;
+var lightSlider;
+var gammaSlider;
 
-        lightSlider = new Slider(document.getElementById('lightSlider'));
-        lightSlider.addListener(function(value, position) {
-          document.getElementById('set_lightness').checked = true;
-          var l = Math.round((200 * value) - 100);
-          document.getElementById('lightness').value = l;
-          setRule('lightness');
-          styles[currentStyle].sliders.lightness = position;
-       });
-        
-        gammaSlider = new Slider(document.getElementById('gammaSlider'));
-        gammaSlider.addListener(function(value, position) {
-          document.getElementById('set_gamma').checked = true;
-          var g;
-          if (value < 0.5) {
-            g = Math.pow(10, (-2 * value) + 1.0);
-            g = (Math.round(g * 100) / 100);
-            if (g > 9.99) { g = 9.99 }
-          } else {
-            g = 1 - (2 * (value - 0.5));
-            g = (Math.round(g * 100) / 100);
-            if (g < 0.01) { g = 0.01 }
-          }
-          document.getElementById('gamma').value = g;
-          setRule('gamma');
-          styles[currentStyle].sliders.gamma = position;
-       });
-      }
-      
-      function selectAllFeatures() {
-        unselectLevel1();
-        styles[currentStyle].featureType = document.getElementById('root').value;
-        setMapStyle(true);        
-      }
+var sliderTimer;
+  
+function init() {
+  
+  var opt = {
+    center: new google.maps.LatLng(0, 0),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  
+  // Calculate the zoom level based on window height
+  var zoom = 0;
+  var height = document.body.clientHeight;
+  for (;height > 256 * (1 << zoom); zoom++);
+  opt.zoom = zoom;
+  
+  var div = document.getElementById('map');
+  map = new google.maps.Map(div, opt);
+  geocoder = new google.maps.Geocoder();
 
-      function selectLevel1() {
-        setLevel2();
-        styles[currentStyle].featureType = document.getElementById('level1').value;
-        setMapStyle(true);        
-      }
-      
-      function selectLevel2() {
-        setLevel3();
-        styles[currentStyle].featureType = document.getElementById('level2').value;
-        setMapStyle(true);
-      }
-        
-      function selectLevel3() {
-        styles[currentStyle].featureType = document.getElementById('level3').value;
-        setMapStyle(true);
-      }
-      
-      function unselectLevel1() {
-        document.getElementById('level3').options.length = 0;
-        document.getElementById('level2').options.length = 0;
-        document.getElementById('level1').selectedIndex = -1;
-      }
-      
-      function setLevel2() {
-        document.getElementById('level3').options.length = 0;
-        var options = document.getElementById('level2').options;
-        options.length = 0;
-        
-        switch (document.getElementById('level1').value) {
-          case "administrative":
-            options[0] = new Option("Country", "administrative.country");
-            options[1] = new Option("Province", "administrative.province");
-            options[2] = new Option("Locality", "administrative.locality");
-            options[3] = new Option("Neighborhood", "administrative.neighborhood");
-            options[4] = new Option("Land parcel", "administrative.land_parcel");
-            break;
-          case "landscape":
-            options[0] = new Option("Man made", "landscape.man_made");
-            options[1] = new Option("Natural", "landscape.natural");
-            break;
-          case "poi":
-            options[0] = new Option("Attraction", "poi.attraction");
-            options[1] = new Option("Business", "poi.business");
-            options[2] = new Option("Government", "poi.government");
-            options[3] = new Option("Medical", "poi.medical");
-            options[4] = new Option("Park", "poi.park");
-            options[5] = new Option("Place of worship", "poi.place_of_worship");
-            options[6] = new Option("School", "poi.school");
-            options[7] = new Option("Sports complex", "poi.sports_complex");
-            break;
-          case "road":
-            options[0] = new Option("Highway", "road.highway");
-            options[1] = new Option("Arterial", "road.arterial");
-            options[2] = new Option("Local", "road.local");
-            break;
-          case "transit":
-            options[0] = new Option("Line", "transit.line");
-            options[1] = new Option("Station", "transit.station");
-            break;
-          case "water":
-            break;
+  if (BrowserDetect.browser === "Explorer") {
+    document.getElementById("ruleColumns").style.display = "none";
+    alert("You must use Chrome, Firefox, or Safari to use the Styled Map wizard");
+    return;
+  }
+  
+  var mapStyleDiv = document.getElementById('mapStyleScrollable');
+  mapStyleRenderer = new MapStyleRenderer(mapStyleDiv, styles);
+  mapStyleRenderer.addSelectionListener(loadMapStyle);
+  mapStyleRenderer.addTrashcanListener(deleteStyle);
+  
+  makeSliders();
+  huePicker = new HuePicker(document.getElementById('huePicker'));
+  huePicker.addListener(function(rgb) {
+    document.getElementById('set_hue').checked = true;
+    document.getElementById('hue').value = rgb;
+    document.getElementById('hueSample').style.backgroundColor = rgb;
+    setRule('hue');
+  });
+  
+  createGeocoderControl();
+  addStyle();
+}
+
+function makeSliders() {
+  satSlider = new Slider(document.getElementById('satSlider'));
+  satSlider.addListener(function(value, position) {
+    document.getElementById('set_saturation').checked = true;
+    var s = Math.round((200 * value) - 100);
+    document.getElementById('saturation').value = s;
+    if (sliderTimer != null) {
+      clearTimeout(sliderTimer);
+    }
+    sliderTimer = setTimeout(function() {
+      sliderTimer = null;
+      setRule('saturation');      
+    }, 200);
+    //styles[currentStyle].sliders.saturation = position;
+  });
+
+  lightSlider = new Slider(document.getElementById('lightSlider'));
+  lightSlider.addListener(function(value, position) {
+    document.getElementById('set_lightness').checked = true;
+    var l = Math.round((200 * value) - 100);
+    document.getElementById('lightness').value = l;
+    if (sliderTimer != null) {
+      clearTimeout(sliderTimer);
+    }
+    sliderTimer = setTimeout(function() {
+      sliderTimer = null;
+      setRule('lightness');
+    }, 200);
+    //styles[currentStyle].sliders.lightness = position;
+ });
+  
+  gammaSlider = new Slider(document.getElementById('gammaSlider'));
+  gammaSlider.addListener(function(value, position) {
+    document.getElementById('set_gamma').checked = true;
+    var g;
+    if (value < 0.5) {
+      g = Math.pow(10, (-2 * value) + 1.0);
+      g = (Math.round(g * 100) / 100);
+      if (g > 9.99) { g = 9.99 }
+    } else {
+      g = 1 - (2 * (value - 0.5));
+      g = (Math.round(g * 100) / 100);
+      if (g < 0.01) { g = 0.01 }
+    }
+    document.getElementById('gamma').value = g;
+    if (sliderTimer != null) {
+      clearTimeout(sliderTimer);
+    }
+    sliderTimer = setTimeout(function() {
+      sliderTimer = null;
+      setRule('gamma');
+    }, 200);
+    //styles[currentStyle].sliders.gamma = position;
+ });
+}
+
+function selectAllFeatures() {
+  unselectLevel1();
+  styles[currentStyle].featureType = document.getElementById('root').value;
+  scrollToSelectedFeatureType();
+  setMapStyle(true);
+}
+
+function selectLevel1() {
+  setLevel2();
+  styles[currentStyle].featureType = document.getElementById('level1').value;
+  scrollToSelectedFeatureType();
+  setMapStyle(true);        
+}
+
+function selectLevel2() {
+  setLevel3();
+  styles[currentStyle].featureType = document.getElementById('level2').value;
+  scrollToSelectedFeatureType();
+  setMapStyle(true);
+}
+  
+function selectLevel3() {
+  styles[currentStyle].featureType = document.getElementById('level3').value;
+  scrollToSelectedFeatureType();
+  setMapStyle(true);
+}
+
+function unselectLevel1() {
+  document.getElementById('level3').options.length = 0;
+  document.getElementById('level2').options.length = 0;
+  document.getElementById('level1').selectedIndex = -1;
+}
+
+function setLevel2() {
+  document.getElementById('level3').options.length = 0;
+
+  var options = document.getElementById('level2').options;
+  options.length = 0;
+  
+  switch (document.getElementById('level1').value) {
+    case "administrative":
+      options[0] = new Option("Country", "administrative.country");
+      options[1] = new Option("Province", "administrative.province");
+      options[2] = new Option("Locality", "administrative.locality");
+      options[3] = new Option("Neighborhood", "administrative.neighborhood");
+      options[4] = new Option("Land parcel", "administrative.land_parcel");
+      break;
+    case "landscape":
+      options[0] = new Option("Man made", "landscape.man_made");
+      options[1] = new Option("Natural", "landscape.natural");
+      break;
+    case "poi":
+      options[0] = new Option("Attraction", "poi.attraction");
+      options[1] = new Option("Business", "poi.business");
+      options[2] = new Option("Government", "poi.government");
+      options[3] = new Option("Medical", "poi.medical");
+      options[4] = new Option("Park", "poi.park");
+      options[5] = new Option("Place of worship", "poi.place_of_worship");
+      options[6] = new Option("School", "poi.school");
+      options[7] = new Option("Sports complex", "poi.sports_complex");
+      break;
+    case "road":
+      options[0] = new Option("Highway", "road.highway");
+      options[1] = new Option("Arterial", "road.arterial");
+      options[2] = new Option("Local", "road.local");
+      break;
+    case "transit":
+      options[0] = new Option("Line", "transit.line");
+      options[1] = new Option("Station", "transit.station");
+      break;
+    case "water":
+      break;
+  }
+  
+  for (var i = 0; i < options.length; i++) {
+    options[i].onclick = selectLevel2;
+  }
+}
+
+function setLevel3() {
+  var options = document.getElementById('level3').options;
+  options.length = 0;
+  
+  switch (document.getElementById('level2').value) {
+    case "transit.station":
+      options[0] = new Option("Airport", "transit.station.airport");
+      options[1] = new Option("Bus", "transit.station.bus");
+      options[2] = new Option("Rail", "transit.station.rail");
+      break;
+  }
+  
+  for (var i = 0; i < options.length; i++) {
+    options[i].onclick = selectLevel3;
+  }
+}
+
+function animatedScroll(target) {
+  var element = document.getElementById('featureTypePanel');
+  var current = element.scrollLeft;
+  var t = 0;
+  var i = current;
+  if (current < target) {
+    while (current < target) {
+      var step = (target - current < 10 ? target - current : 10);
+      current += step;
+      setTimeout(scrollTo(element, current), t++ * 10);
+    }
+  } else {
+    while (current > target) {
+      var step = (current - target < 10 ? current - target : 10);
+      current -= step;
+      setTimeout(scrollTo(element, current), t++ * 10);
+    }
+  }
+}
+
+function scrollTo(element, n) {
+  return function() {
+    element.scrollLeft = n;
+  }
+}
+
+function setElementType() {
+  if (document.getElementById('elements_all').checked) {
+    styles[currentStyle].elementType = 'all';
+  } else if (document.getElementById('elements_geometry').checked) {
+    styles[currentStyle].elementType = 'geometry';
+  } else if (document.getElementById('elements_labels').checked) {
+    styles[currentStyle].elementType = 'labels';
+  }
+  setMapStyle(true);
+}
+
+function setVisibility() {
+  document.getElementById('set_visibility').checked = true;
+  if (document.getElementById('visibility_on').checked) {
+    document.getElementById('visibility').value = 'on';
+  } else if (document.getElementById('visibility_simplified').checked) {
+    document.getElementById('visibility').value = 'simplified';
+  } else if (document.getElementById('visibility_off').checked) {
+    document.getElementById('visibility').value = 'off';
+  }
+  setRule('visibility');
+}
+
+function setInvertLightness() {
+  if (document.getElementById('set_invert_lightness').checked) {
+    document.getElementById('invert_lightness').value = 'true';
+  } else {
+    document.getElementById('invert_lightness').value = 'false';          
+  }
+  setRule('invert_lightness');
+}
+
+function setRule(rule) {
+  deleteRule(rule);
+  if (document.getElementById('set_' + rule).checked) {
+    var value = document.getElementById(rule).value;
+    if (! value) {
+      value = getDefaultRuleValue(rule);
+    }
+    var ruleObject = {};
+    switch (rule) {
+      case 'visibility':
+      case 'hue':
+        ruleObject[rule] = value;
+        break;
+      case 'saturation':
+      case 'lightness':
+        var intValue = parseInt(value);
+        if (intValue != 0) {
+          ruleObject[rule] = parseInt(value);
         }
-        
-        for (var i = 0; i < options.length; i++) {
-          options[i].onclick = selectLevel2;
+        break;
+      case 'gamma':
+        var floatValue = parseFloat(value);
+        if (floatValue != 0) {
+          ruleObject[rule] = parseFloat(value);          
+        }
+        break;
+      case 'invert_lightness':
+        ruleObject[rule] = (value === 'true');
+        break;
+    }
+    if (ruleObject[rule]) {
+      styles[currentStyle].stylers.push(ruleObject);
+    }
+  } else {
+    clearRuleUI(rule);
+  }
+  setMapStyle();
+}
+
+function getDefaultRuleValue(rule) {
+  var value;
+  switch (rule) {
+    case 'visibility':
+      value = "on";
+      document.getElementById('visibility_on').checked = true;
+      break;
+    case 'hue':
+      value = '#ff0000';
+      document.getElementById('hueSample').style.backgroundColor = value;
+      break;
+    case 'saturation':
+    case 'lightness':
+    case 'gamma':
+      value = 0;
+      break;
+    case 'invert_lightness':
+      value = "true";
+  }
+  document.getElementById(rule).value = value;
+  return value;
+}
+
+function clearRuleUI(rule) {
+  document.getElementById(rule).value = "";
+  switch (rule) {
+    case 'visibility':
+      document.getElementById('visibility_on').checked = false;
+      document.getElementById('visibility_simplified').checked = false;
+      document.getElementById('visibility_off').checked = false;
+      break;
+    case 'hue':
+      document.getElementById('hueSample').style.backgroundColor = "#f0f0f0";
+      break;
+    case 'saturation':
+      satSlider.reset();
+      break;
+    case 'lightness':
+      lightSlider.reset();
+      break;
+    case 'gamma':
+      gammaSlider.reset();
+      break;            
+  }        
+}
+
+function resetStyleUI() {
+  var stylers = [ 'visibility', 'hue', 'saturation', 'lightness', 'gamma', 'invert_lightness'];
+  for (var i = 0; i < stylers.length; i++) {
+    document.getElementById('set_' + stylers[i]).checked = false;
+    clearRuleUI(stylers[i]);
+  }
+  unselectLevel1();
+  scrollToSelectedFeatureType();
+  document.getElementById('elements_all').checked = true;
+}
+
+function resetStyle() {
+  styles[currentStyle] = {
+    featureType: 'all',
+    elementType: 'all',
+    stylers: [],
+    sliders: {}
+  }
+  resetStyleUI();
+  setMapStyle();
+}
+
+function deleteRule(rule) {
+  var i = findRule(rule);
+  if (i != -1) {
+    styles[currentStyle].stylers.splice(i, 1);
+  }
+}
+
+function findRule(rule) {
+  if (styles[currentStyle].stylers) {
+    for (var i = 0; i < styles[currentStyle].stylers.length; i++) {
+      for (var p in styles[currentStyle].stylers[i]) {
+        if (p === rule) {
+          return i;
         }
       }
-      
-      function setLevel3() {
-        var options = document.getElementById('level3').options;
-        options.length = 0;
-        
-        switch (document.getElementById('level2').value) {
-          case "transit.station":
-            options[0] = new Option("Airport", "transit.station.airport");
-            options[1] = new Option("Bus", "transit.station.bus");
-            options[2] = new Option("Rail", "transit.station.rail");
-            break;
-        }
-        
-        for (var i = 0; i < options.length; i++) {
-          options[i].onclick = selectLevel3;
-        }
+    }
+  }
+  return -1;
+}
+
+function setMapStyle(selectorClick) {
+  if (! selectorClick || styles[currentStyle].stylers.length > 0) {
+    map.setOptions({ 'styles': styles });
+  }
+  mapStyleRenderer.refresh(currentStyle);
+  mapStyleRenderer.selectPanel(currentStyle);
+}
+
+function addStyle() {
+  currentStyle = styles.length;
+  styles.push({});
+  resetStyle();
+}
+
+function deleteStyle(i) {
+  styles.splice(i, 1);
+  
+  if (styles.length == 0) {
+    addStyle();
+  } else if (currentStyle == i) {
+    loadMapStyle(styles.length - 1);
+  } else if (currentStyle > i) {
+    currentStyle--;
+  }
+  
+  setMapStyle();          
+}
+
+function loadMapStyle(i) {
+  currentStyle = i;
+  resetStyleUI();
+  loadFeatureType();
+  loadElementType();
+  loadStylers();
+}
+
+function loadFeatureType() {
+  var type = styles[currentStyle].featureType;
+  document.getElementById('root').value = "all";
+  unselectLevel1();
+  scrollToSelectedFeatureType();
+
+  switch (type) {
+    case "all":
+      return;
+    case "administrative":
+    case "administrative.country":
+    case "administrative.province":
+    case "administrative.locality":
+    case "administrative.neighborhood":
+    case "administrative.land_parcel":
+      document.getElementById('level1').value = "administrative";
+      break;
+    case "landscape":
+    case "landscape.man_made":
+    case "landscape.natural":
+      document.getElementById('level1').value = "landscape"
+      break;
+    case "poi":
+    case "poi.business":
+    case "poi.medical":
+    case "poi.government":
+    case "poi.park":
+    case "poi.place_of_worship":
+    case "poi.school":
+    case "poi.sports_complex":
+      document.getElementById('level1').value = "poi"
+      break;
+    case "road":
+    case "road.highway":
+    case "road.arterial":
+    case "road.local":
+      document.getElementById('level1').value = "road";
+      break;
+    case "transit":
+    case "transit.line":
+    case "transit.station":
+    case "transit.station.airport":
+    case "transit.station.bus":
+    case "transit.station.rail":
+      document.getElementById('level1').value = "transit";
+      break;
+    case "water":
+      document.getElementById('level1').value = "water"
+      break;
+  }
+  
+  setLevel2();
+  switch (type) {
+    case "transit.station.airport":
+    case "transit.station.bus":
+    case "transit.station.rail":
+      document.getElementById('level2').value = "transit.station";
+      setLevel3();
+      document.getElementById('level3').value = type;
+      break;
+    default:
+      document.getElementById('level2').value = type;
+      setLevel3();
+  }
+}
+
+function scrollToSelectedFeatureType() {
+  switch (styles[currentStyle].featureType) {
+    case "all":
+      animatedScroll(0);
+      return;
+    case "administrative":
+    case "landscape":
+    case "poi":
+    case "road":
+    case "transit":
+    case "water":
+      animatedScroll(120);
+      return;
+    default:
+      animatedScroll(240);
+  }
+}
+
+function loadElementType(type) {
+  var type = styles[currentStyle].elementType;
+  document.getElementById('elements_' + type).checked = true;
+}
+
+function loadStylers() {
+  var stylers = styles[currentStyle].stylers;
+  for (var i = 0; i < stylers.length; i++) {
+    for (var p in stylers[i]) {
+      document.getElementById('set_' + p).checked = true;
+      document.getElementById(p).value = stylers[i][p];
+      switch (p) {
+        case "visibility":
+          document.getElementById('visibility_' + stylers[i][p]).checked = true;
+          break;
+        case "hue":
+          document.getElementById('hueSample').style.backgroundColor = stylers[i][p];
+          break;
+        case "saturation":
+          satSlider.setPosition(styles[currentStyle].sliders.saturation);
+          break;
+        case "lightness":
+          lightSlider.setPosition(styles[currentStyle].sliders.lightness);
+          break;
+        case "gamma":
+          gammaSlider.setPosition(styles[currentStyle].sliders.gamma);
+          break;
       }
+    }
+  }
+}
+
+function showJson() {
+  var jsonStyles = [];
+  for (var i = 0; i < styles.length; i++) {
+    jsonStyles[i] = '{\n'
+    if (styles[i].featureType != 'all') {
+      jsonStyles[i] += '    featureType: "' + styles[i].featureType + '",\n';
+    }
+    
+    if (styles[i].elementType != 'all') {
+      jsonStyles[i] += '    elementType: "' + styles[i].elementType + '",\n';      
+    }
+    
+    if (styles[i].stylers.length) {
+      jsonStyles[i] += '    stylers: [\n';
+      var jsonStylers = [];
       
-      function setElementType() {
-        if (document.getElementById('elements_all').checked) {
-          styles[currentStyle].elementType = 'all';
-        } else if (document.getElementById('elements_geometry').checked) {
-          styles[currentStyle].elementType = 'geometry';
-        } else if (document.getElementById('elements_labels').checked) {
-          styles[currentStyle].elementType = 'labels';
-        }
-        setMapStyle(true);
-      }
-      
-      function setVisibility() {
-        document.getElementById('set_visibility').checked = true;
-        if (document.getElementById('visibility_on').checked) {
-          document.getElementById('visibility').value = 'on';
-        } else if (document.getElementById('visibility_simplified').checked) {
-          document.getElementById('visibility').value = 'simplified';
-        } else if (document.getElementById('visibility_off').checked) {
-          document.getElementById('visibility').value = 'off';
-        }
-        setRule('visibility');
-      }
-      
-      function setInvertLightness() {
-        if (document.getElementById('set_invert_lightness').checked) {
-          document.getElementById('invert_lightness').value = 'true';
-        } else {
-          document.getElementById('invert_lightness').value = 'false';          
-        }
-        setRule('invert_lightness');
-      }
-      
-      function setRule(rule) {
-        deleteRule(rule);
-        if (document.getElementById('set_' + rule).checked) {
-          var value = document.getElementById(rule).value;
-          if (! value) {
-            value = getDefaultRuleValue(rule);
-          }
-          var ruleObject = {};
-          switch (rule) {
+      for (var j = 0; j < styles[i].stylers.length; j++) {
+        for (var p in styles[i].stylers[j]) {
+          switch (p) {
             case 'visibility':
             case 'hue':
-              ruleObject[rule] = value;
+              jsonStylers[j] = '      { ' + p + ': "' + styles[i].stylers[j][p] + '" }';
               break;
-            case 'saturation':
-            case 'lightness':
-              ruleObject[rule] = parseInt(value);
-              break;
-            case 'gamma':
-              ruleObject[rule] = parseFloat(value);
-              break;
-            case 'invert_lightness':
-              ruleObject[rule] = (value === 'true');
-              break;
+            default:
+              jsonStylers[j] = '      { ' + p + ': ' + styles[i].stylers[j][p] + ' }'
           }
-          styles[currentStyle].stylers.push(ruleObject);
+        }
+      }
+      jsonStyles[i] += jsonStylers.join(',\n');
+      jsonStyles[i] += '\n    ]\n';
+    }
+    
+    jsonStyles[i] += '  }';
+  }
+  var json = '[\n  ' + jsonStyles.join(',') + '\n]';
+  
+  var popup = document.getElementById('json');
+  popup.appendChild(document.createTextNode(json));
+  popup.style.display = "block";
+  document.getElementById('lightbox').style.display = "block";
+}
+
+function closeJson() {
+  var popup = document.getElementById('json');
+  popup.removeChild(popup.childNodes[2]);
+  popup.style.display = "none";
+  document.getElementById('lightbox').style.display = "none";
+}
+
+function showStaticMap() {
+  var url = getStaticMapsURL();
+  document.getElementById("staticMapImg").src = url;
+  var urlDiv = document.getElementById("staticMapUrl");
+  var anchor = document.createElement('a');
+  anchor.setAttribute('href', url);
+  anchor.appendChild(document.createTextNode(url));
+  urlDiv.appendChild(anchor);
+  var popup = document.getElementById('staticMap');
+  popup.style.display = "block";
+  document.getElementById('lightbox').style.display = "block";
+}
+
+function closeStaticMap() {
+  var popup = document.getElementById('staticMap');
+  var urlDiv = document.getElementById("staticMapUrl");
+  urlDiv.removeChild(urlDiv.childNodes[0]);
+  popup.style.display = "none";
+  document.getElementById('lightbox').style.display = "none";
+}
+
+function getStaticMapsURL() {
+  var url = 'http://maps.googleapis.com/maps/api/staticmap?';
+  var params = [];
+  params.push('center=' + map.getCenter().toUrlValue());
+  params.push('zoom=' + map.getZoom());
+  params.push('format=png');
+  params.push('sensor=false');
+  params.push('size=640x480');
+  params.push('maptype=' + map.getMapTypeId());
+  
+  for (var i = 0; i < styles.length; i++) {
+    var styleRule = [];
+    
+    if (styles[i].featureType != 'all') {
+      styleRule.push('feature:' + styles[i].featureType);
+    }
+    
+    if (styles[i].elementType != 'all') {
+      styleRule.push('element:' + styles[i].elementType)
+    }
+    
+    for (var j = 0; j < styles[i].stylers.length; j++) {
+      for (var p in styles[i].stylers[j]) {
+        var ruleArg = styles[i].stylers[j][p];
+        if (p == 'hue') {
+          ruleArg = '0x' + ruleArg.substring(1);
+        }
+        styleRule.push(p + ':' + ruleArg);
+      }
+    }
+    
+    var rule = styleRule.join('|');
+    if (rule != '') {
+      params.push('style=' + rule);      
+    }
+  }
+  
+  return(url + params.join('&'));
+}
+
+function createGeocoderControl() {
+  var control = document.createElement('div');
+  var input = document.createElement('input');
+  control.appendChild(input);
+  control.setAttribute('id', 'locationField');
+  input.style.width = '100%';
+  input.style.height = '100%';
+  input.style.margin = '0';
+  input.style.border = '1px solid #A9BBDF';
+  input.style.borderRadius = '2px';
+  input.setAttribute('id', 'locationInput');
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control);
+  
+  var ac = new google.maps.places.Autocomplete(input, { types: ['geocode'] });
+  google.maps.event.addListener(ac, 'place_changed', function() {
+    var place = ac.getPlace();
+    if (place.geometry.viewport) {
+      map.fitBounds(place.geometry.viewport);
+    } else {
+      map.setCenter(place.geometry.location);
+      map.setZoom(17);
+    }
+  });
+  
+  google.maps.event.addListener(map, 'bounds_changed', function() {
+    input.blur();
+    input.value = '';
+  });
+  
+  input.onkeyup = submitGeocode(input);
+}
+
+function submitGeocode(input) {
+  return function(e) {
+    var keyCode;
+  
+    if (window.event) {
+      keyCode = window.event.keyCode;
+    } else if (variable) {
+      keyCode = e.which;
+    }
+  
+    if (keyCode == 13) {
+      geocoder.geocode( { address: input.value }, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.fitBounds(results[0].geometry.viewport);
         } else {
-          clearRuleUI(rule);
+          alert("The location entered could not be found");
         }
-        setMapStyle();
-      }
-      
-      function getDefaultRuleValue(rule) {
-        var value;
-        switch (rule) {
-          case 'visibility':
-            value = "on";
-            document.getElementById('visibility_on').checked = true;
-            break;
-          case 'hue':
-            value = '#ff0000';
-            document.getElementById('hueSample').style.backgroundColor = value;
-            break;
-          case 'saturation':
-          case 'lightness':
-          case 'gamma':
-            value = 0;
-            break;
-          case 'invert_lightness':
-            value = "true";
-        }
-        document.getElementById(rule).value = value;
-        return value;
-      }
-      
-      function clearRuleUI(rule) {
-        document.getElementById(rule).value = "";
-        switch (rule) {
-          case 'visibility':
-            document.getElementById('visibility_on').checked = false;
-            document.getElementById('visibility_simplified').checked = false;
-            document.getElementById('visibility_off').checked = false;
-            break;
-          case 'hue':
-            document.getElementById('hueSample').style.backgroundColor = "#f0f0f0";
-            break;
-          case 'saturation':
-            satSlider.reset();
-            break;
-          case 'lightness':
-            lightSlider.reset();
-            break;
-          case 'gamma':
-            gammaSlider.reset();
-            break;            
-        }        
-      }
-      
-      function resetStyleUI() {
-        var stylers = [ 'visibility', 'hue', 'saturation', 'lightness', 'gamma', 'invert_lightness'];
-        for (var i = 0; i < stylers.length; i++) {
-          document.getElementById('set_' + stylers[i]).checked = false;
-          clearRuleUI(stylers[i]);
-        }
-        unselectLevel1();
-        document.getElementById('elements_all').checked = true;
-      }
-      
-      function resetStyle() {
-        styles[currentStyle] = {
-          featureType: 'all',
-          elementType: 'all',
-          stylers: [],
-          sliders: {}
-        }
-        resetStyleUI();
-        setMapStyle();
-      }
-      
-      function deleteRule(rule) {
-        var i = findRule(rule);
-        if (i != -1) {
-          styles[currentStyle].stylers.splice(i, 1);
-        }
-      }
-      
-      function findRule(rule) {
-        if (styles[currentStyle].stylers) {
-          for (var i = 0; i < styles[currentStyle].stylers.length; i++) {
-            for (var p in styles[currentStyle].stylers[i]) {
-              if (p === rule) {
-                return i;
-              }
-            }
-          }
-        }
-        return -1;
-      }
-      
-      function setMapStyle(selectorClick) {
-        if (! selectorClick || styles[currentStyle].stylers.length > 0) {
-          var styledMapType = new google.maps.StyledMapType(styles, { name: 'Styled' });
-          map.mapTypes.set('Styled', styledMapType);
-        }
-        mapStyleRenderer.refresh(currentStyle);
-        mapStyleRenderer.selectPanel(currentStyle);
-      }
-      
-      function addStyle() {
-        currentStyle = styles.length;
-        styles.push([]);
-        resetStyle();
-      }
-      
-      function deleteStyle(i) {
-        styles.splice(i, 1);
-        
-        if (styles.length == 0) {
-          addStyle();
-        } else if (currentStyle == i) {
-          loadMapStyle(styles.length - 1);
-        } else if (currentStyle > i) {
-          currentStyle--;
-        }
-        
-        setMapStyle();          
-      }
-      
-      function loadMapStyle(i) {
-        currentStyle = i;
-        resetStyleUI();
-        loadFeatureType();
-        loadElementType();
-        loadStylers();
-      }
-      
-      function loadFeatureType() {
-        var type = styles[currentStyle].featureType;
-        document.getElementById('root').value = "all";
-        unselectLevel1();
-        
-        switch (type) {
-          case "all":
-            return;
-          case "administrative":
-          case "administrative.country":
-          case "administrative.province":
-          case "administrative.locality":
-          case "administrative.neighborhood":
-          case "administrative.land_parcel":
-            document.getElementById('level1').value = "administrative";
-            break;
-          case "landscape":
-          case "landscape.man_made":
-          case "landscape.natural":
-            document.getElementById('level1').value = "landscape"
-            break;
-          case "poi":
-          case "poi.business":
-          case "poi.medical":
-          case "poi.government":
-          case "poi.park":
-          case "poi.place_of_worship":
-          case "poi.school":
-          case "poi.sports_complex":
-            document.getElementById('level1').value = "poi"
-            break;
-          case "road":
-          case "road.highway":
-          case "road.arterial":
-          case "road.local":
-            document.getElementById('level1').value = "road";
-            break;
-          case "transit":
-          case "transit.line":
-          case "transit.station":
-          case "transit.station.airport":
-          case "transit.station.bus":
-          case "transit.station.rail":
-            document.getElementById('level1').value = "transit";
-            break;
-          case "water":
-            document.getElementById('level1').value = "water"
-            break;
-        }
-        
-        setLevel2();
-        switch (type) {
-          case "transit.station.airport":
-          case "transit.station.bus":
-          case "transit.station.rail":
-            document.getElementById('level2').value = "transit.station";
-            setLevel3();
-            document.getElementById('level3').value = type;
-            break;
-          default:
-            document.getElementById('level2').value = type;
-            setLevel3();
-        }
-      }
-      
-      function loadElementType(type) {
-        var type = styles[currentStyle].elementType;
-        document.getElementById('elements_' + type).checked = true;
-      }
-      
-      function loadStylers() {
-        var stylers = styles[currentStyle].stylers;
-        for (var i = 0; i < stylers.length; i++) {
-          for (var p in stylers[i]) {
-            document.getElementById('set_' + p).checked = true;
-            document.getElementById(p).value = stylers[i][p];
-            switch (p) {
-              case "visibility":
-                document.getElementById('visibility_' + stylers[i][p]).checked = true;
-                break;
-              case "hue":
-                document.getElementById('hueSample').style.backgroundColor = stylers[i][p];
-                break;
-              case "saturation":
-                satSlider.setPosition(styles[currentStyle].sliders.saturation);
-                break;
-              case "lightness":
-                lightSlider.setPosition(styles[currentStyle].sliders.lightness);
-                break;
-              case "gamma":
-                gammaSlider.setPosition(styles[currentStyle].sliders.gamma);
-                break;
-            }
-          }
-        }
-      }
-      
-      function showJson() {
-        var jsonStyles = [];
-        for (var i = 0; i < styles.length; i++) {
-          jsonStyles[i] = '{\n'
-          jsonStyles[i] += '    featureType: "' + styles[i].featureType + '",\n';
-          jsonStyles[i] += '    elementType: "' + styles[i].elementType + '",\n';
-          jsonStyles[i] += '    stylers: [\n';
-          var jsonStylers = []
-          for (var j = 0; j < styles[i].stylers.length; j++) {
-            for (var p in styles[i].stylers[j]) {
-              switch (p) {
-                case 'visibility':
-                case 'hue':
-                  jsonStylers[j] = '      { ' + p + ': "' + styles[i].stylers[j][p] + '" }';
-                  break;
-                default:
-                  jsonStylers[j] = '      { ' + p + ': ' + styles[i].stylers[j][p] + ' }'
-              }
-            }
-          }
-          jsonStyles[i] += jsonStylers.join(',\n');
-          jsonStyles[i] += '\n    ]\n';
-          jsonStyles[i] += '  }';
-        }
-        var json = '[\n  ' + jsonStyles.join(',') + '\n]';
-        
-        document.getElementById('map').style.display = "none";
-        var popup = document.getElementById('json');
-        popup.appendChild(document.createTextNode(json));
-        popup.style.display = "block";
-      }
-      
-      function closeJson() {
-        var popup = document.getElementById('json');
-        popup.removeChild(popup.childNodes[1]);
-        popup.style.display = "none";
-        document.getElementById('map').style.display = "block";
-      }
-      
-      function createGeocoderControl() {
-        var control = document.createElement('input');
-        control.style.fontSize = '10pt';
-        control.style.margin = '5px';
-        control.onkeyup = submitGeocode(control);
-        control.style.color = "#808080";
-        control.value = "Enter location...";
-        control.onfocus = function() {
-          control.style.color = "#000000";
-          control.value = "";
-        }
-        control.onblur = function() {
-          control.style.color = "#808080";
-          control.value = "Enter location...";
-        }
-        map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(control);
-      }
-      
-      function submitGeocode(control) {
-        return function(e) {
-          var keyCode;
-        
-          if (window.event) {
-            keyCode = window.event.keyCode;
-          } else if (variable) {
-            keyCode = e.which;
-          }
-        
-          if (keyCode == 13) {
-            geocoder.geocode( { address: control.value }, function(results, status) {
-              if (status == google.maps.GeocoderStatus.OK) {
-                map.fitBounds(results[0].geometry.viewport);
-              } else {
-                alert("The location entered could not be found");
-              }
-            })
-          }
-        }
-      }
+      });
+    }
+  }
+}
+
+function do_click(field) {
+  document.getElementById('set_' + field).click();
+}
 
 function HuePicker(div) {
   this.listeners = [];
@@ -559,9 +726,9 @@ function HuePicker(div) {
 
     hue.style.position = "absolute";
     hue.style.height = this.container.offsetHeight - 2;
-    hue.style.width = "1px";
+    hue.style.width = "2px";
     hue.style.top = "1px";
-    hue.style.left = 1 + h + "px";
+    hue.style.left = (1 + (h*1.3)) + "px";
   
     hue.style.backgroundColor = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
     hue.onclick = this.setHue(rgb);
@@ -743,11 +910,7 @@ MapStyleRenderer.prototype.getPanel = function(i) {
   header.appendChild(document.createTextNode("Style " + i));
   
   var trashcan = document.createElement('div');
-  trashcan.style.background = "url('trashcan.png')";
-  trashcan.style.width = "13px";
-  trashcan.style.height = "16px";
-  trashcan.style.cssFloat = "right";
-  trashcan.style.cursor = "pointer";
+  trashcan.setAttribute('class', 'trashcan');
   trashcan.onclick = this.getTrashcanHandler(i);
   header.appendChild(trashcan);
   
@@ -755,6 +918,7 @@ MapStyleRenderer.prototype.getPanel = function(i) {
   panel.setAttribute('class', 'mapStylePanel');
   
   var table = document.createElement('table');
+  table.setAttribute('class', 'stylerTable');
   this.addRow(table, 'featureType', style.featureType);
   this.addRow(table, 'elementType', style.elementType);
   this.addStyle(table, 'visibility', style.stylers);
