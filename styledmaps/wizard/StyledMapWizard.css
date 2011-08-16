@@ -103,6 +103,7 @@ body {
 #buttonPanel {
   position: relative;
   border-top: 1px solid grey;
+  padding: 2px;
 }
 
 .features {
@@ -335,4 +336,16 @@ body {
 
 .clickable_label {
   cursor: default;
+}
+
+#help {
+  width: 500px;
+  height: 400px;
+  left: 360px;
+  top: 20px;
+  display: block;
+}
+
+#helpButton {
+  margin-left: 40px;
 }
