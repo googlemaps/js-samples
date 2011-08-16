@@ -17,8 +17,9 @@
       <div id="mapStyleScrollable">
       </div>
       <div id="buttonPanel">
-        <input type="button" value="Show JSON" onclick="showJson()" />
-        <input type="button" value="Static Map" onclick="showStaticMap()" />
+        <input id="jsonButton" type="button" value="Show JSON" onclick="showJson()" />
+        <input id="staticMapButton" type="button" value="Static Map" onclick="showStaticMap()" />
+        <input id="helpButton" type="button" value="Help" onclick="showHelp()" disabled />
       </div>
     </div>
     
@@ -141,8 +142,27 @@
       </div>
       
     </div>
+    <div id="help" class="srcPanel">
+      <img src="close.png" class="closeIcon" onclick="closeHelp()" />
+      <h1 class="srcTitle">How to use the Styled Maps Wizard</h1>
+      <ol>
+        <li>Navigate to the map region you wish to use to preview your style. Jump to a particular location using the <b>Enter a location</b> field in the top right.</li>
+        <li>Select a type of feature to style in the <b>Selectors</b> panel.</li>
+        <li>If you only wish to style the Geometry or Labels for the selected feature type, select the required Element Type.</li>
+        <li>Select the combination of Stylers to apply to the selected feature type.</li>
+        <li>Once you are happy with the styling of the feature type, click the <b>Add</b> button in the <b>Map Style</b> panel to save the style and create a new style to work on.</li>
+        <li>Repeat Steps 2 to 5 to build up the set of styles for your map. Styles are applied in the order they are listed in the <b>Map Style</b> panel.</li>
+        <li>Select an existing style in the <b>Map Style</b> panel to edit it.</li>
+        <li>Delete a style by clicking on the trashcan icon to the right of the style number.</li>
+        <li>When you are happy with your Styled Map, click the <b>Show JSON</b> button to display the JSON object to pass to the <code>style</code> property of your
+        <a target="_new" href="http://code.google.com/apis/maps/documentation/javascript/reference.html#MapOptions">MapOptions</a> object in order to apply the style to a Maps API v3 Map.</li>
+        <li>To generate an example map with this style using the <a href="http://code.google.com/apis/maps/documentation/staticmaps/">Static Maps API</a>, click the <b>Static Map</b> button.</li>
+      </ol>
+      <p>For more information on Map Styling, please see the <a target="_new" href="http://code.google.com/apis/maps/documentation/javascript/styling.html">Maps API v3 Documentation</a>,
+      and <a target="_new" href="http://code.google.com/apis/maps/documentation/staticmaps/#StyledMaps">Static Maps API Documentation</a>.</p>
+    </div>
     <div id="lightbox"></div>
-    <div id="json" class="srcPanel"><h1 class="srcTitle">Google Maps API v3 Styled Maps JSON</h1><img src="close.png" class="closeIcon" onclick="closeJson()" /></div>
+    <div id="json" class="srcPanel"><img src="close.png" class="closeIcon" onclick="closeJson()" /><h1 class="srcTitle">Google Maps API v3 Styled Maps JSON</h1></div>
     <div id="staticMap" class="srcPanel">
       <img src="close.png" class="closeIcon" onclick="closeStaticMap()" />
       <div id="staticMapImgDiv">
