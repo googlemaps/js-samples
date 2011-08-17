@@ -1,0 +1,137 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta charset="utf-8"> 
+    <title> 
+    Google Maps V3 API Sample #2:  Clik to find out  what country you are in
+    </title> 
+    <link
+    href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css"
+    rel="stylesheet" type="text/css"> 
+    <style type="text/css"> 
+      #country {
+        text-align: center;
+      }
+      #map_canvas {
+        height: 75%;
+      }
+    </style> 
+    <script type="text/javascript"
+      src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry"></script> 
+    <script type="text/javascript"> 
+      var geocoder;
+      var marker;
+      var chartBase = 'https://chart.googleapis.com/chart?chst=';
+ 
+      function getCountry(results) {
+         var geocoderAddressComponent,addressComponentTypes,address;
+         for (var i in results) {
+           geocoderAddressComponent = results[i].address_components;
+           for (var j in geocoderAddressComponent) {
+             address = geocoderAddressComponent[j];
+             addressComponentTypes = geocoderAddressComponent[j].types;
+             for (var k in addressComponentTypes) {
+               if (addressComponentTypes[k] == 'country') {
+                 return address;
+               }
+             }
+           }
+         }
+        return 'Unknown';
+      }
+      function getCountryIcon(country){
+        return chartBase + 'd_simple_text_icon_left&chld=' +
+            escape(country.long_name)  + '|14|999|flag_' +
+            country.short_name.toLowerCase() + '|24|000|FFF';
+      }
+      function getMsgIcon(msg){
+        return  chartBase + 'd_bubble_text_small&chld=edge_bl|' + msg +
+          '|C6EF8C|000000';
+      }
+      function initialize() {
+        // created using http://gmaps-samples-v3.googlecode.com/svn/trunk/styledmaps/wizard/index.html
+        var styleOff = [{ visibility: 'off' }];
+        var stylez = [
+          {   featureType: 'administrative',
+              elementType: 'labels',
+              stylers: styleOff},
+          {   featureType: 'administrative.province',
+              stylers: styleOff},
+          {   featureType: 'administrative.locality',
+              stylers: styleOff},
+          {   featureType: 'administrative.neighborhood',
+              stylers: styleOff},
+          {   featureType: 'administrative.land_parcel',
+              stylers: styleOff},
+          {   featureType: 'poi',
+              stylers: styleOff},
+          {   featureType: 'landscape',
+              stylers: styleOff},
+          {   featureType: 'road',
+              stylers: styleOff}
+          ];
+        geocoder = new google.maps.Geocoder();
+        var mapDiv = document.getElementById('map_canvas');
+        var map = new google.maps.Map(mapDiv, {
+          center: new google.maps.LatLng(53.012924,18.59848),
+          zoom: 4,
+          mapTypeId: 'Border View',
+          draggableCursor: 'pointer',
+          draggingCursor: 'wait',
+          mapTypeControlOptions: {
+              mapTypeIds: ['Border View']
+              }
+        });
+        var customMapType = new google.maps.StyledMapType(stylez,
+            {name: 'Border View'});
+        map.mapTypes.set('Border View', customMapType);
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(53.012924,18.59848),
+            map: map
+        });
+ 
+        google.maps.event.addListener(map, 'click', function(mouseEvent) {
+          var redMarkerIcon = chartBase +
+              'd_map_xpin_letter&chld=pin|+|C40000|000000|FF0000';
+          marker.setIcon(redMarkerIcon);
+          map.setCenter(mouseEvent.latLng);
+          geocoder.geocode(
+              {'latLng': mouseEvent.latLng},
+              function(results, status) {
+                var headingP = document.getElementById('country');
+                if (status == google.maps.GeocoderStatus.OK) {
+                  var country = getCountry(results);
+                  marker.setPosition(mouseEvent.latLng);
+                  marker.setIcon(getCountryIcon(country));
+                  headingP.innerHTML = country.long_name+ ' <br> ';
+                }
+                if (status == google.maps.GeocoderStatus.ZERO_RESULTS) {
+                  marker.setPosition(mouseEvent.latLng);
+                  marker.setIcon(
+                      getMsgIcon('Oups, I have no idea, are you on water?'));
+                  headingP.innerHTML = 'Oups, ' +
+                      'I have no idea, are you on water?';
+                }
+                if (status == google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {
+                  marker.setPosition(mouseEvent.latLng);
+                  marker.setIcon(
+                      getMsgIcon('Whoa! Hold your horses :) You are quick! ' +
+                          'too quick!')
+                      );
+                  headingP.innerHTML = 'Whoa! You are just too quick!';
+                }
+              });
+       });
+     }
+ 
+     google.maps.event.addDomListener(window, 'load', initialize);
+    </script> 
+  </head> 
+  <body> 
+    <p align="center" id="country"> Click on a map to find out what country you
+    clicked on. <br> This code sample shows how to create styled maps and how
+    to generate and handle geocoding requests. It also shows how to use the
+    chart api to generate dynamic icons. </p> 
+    <div id="map_canvas"></div> 
+  </body> 
+</html> 
