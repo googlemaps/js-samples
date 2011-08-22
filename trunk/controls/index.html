@@ -13,22 +13,25 @@
         height: 400px;
       }
 
-      .button, .button-selected {
-        margin: 5px;
+      .button, .button-selected, .dropdown {
         cursor: pointer;
-        font-family: Arial, sanf-serif;
+        font-family: Arial, sans-serif;
         font-size: 12px;
         line-height: 160%;
-        padding: 0 6px;
-        overflow: hidden;
-        text-align: center;
-        border-radius: 2px;
         -moz-border-radius: 2px;
         box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
         -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
         -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
         -webkit-user-select: none;
         -moz-user-select: none;
+      }
+
+      .button, .button-selected {
+        padding: 0 6px;
+        border-radius: 2px;
+        margin: 5px;
+        text-align: center;
+        overflow: hidden;
       }
 
       .button {
@@ -61,6 +64,31 @@
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6D8ACC', endColorstr='#7B98D9',GradientType=0);
       }
 
+      #dropdown-holder {
+        margin: 5px;
+      }
+
+      #dropdown-holder .button, #dropdown-holder .button-selected {
+        margin: 0;
+      }
+
+      .dropdown {
+        background: white;
+        border: 1px solid #A9BBDF;
+        padding-top: 1px;
+        border-top: 0;
+        z-index: -1;
+        position: relative;
+      }
+
+      .dropdown-item {
+        padding: 0 6px;
+      }
+
+      .dropdown-item:hover {
+        background: #E8ECF9;
+      }
+
     </style>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
@@ -74,6 +102,12 @@
         var map = new google.maps.Map(mapDiv, myOptions);
 
         addSydneyControl(map);
+        addDropDown(map);
+      }
+
+      function addDropDown(map) {
+        var dropdown = document.getElementById('dropdown-holder');
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(dropdown);
       }
 
       function addSydneyControl(map) {
@@ -106,5 +140,15 @@
   </head>
   <body>
     <div id="map"></div>
+    <div id="dropdown-holder">
+      <div class="button-selected">Dropdown</div>
+      <div class="dropdown">
+        <div class="dropdown-item">Item 1</div>
+        <div class="dropdown-item">Item 2</div>
+        <div class="dropdown-item">Item 3</div>
+        <div class="dropdown-item">Item 4</div>
+        <div class="dropdown-item">Item 5</div>
+      </div>
+    </div>
   </body>
 </html>
