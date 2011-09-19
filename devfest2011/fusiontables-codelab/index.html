@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fusion Tables Codelab</title>
+    <style>
+      body {
+        padding: 2em;
+        max-width: 50em;
+        font-family: sans-serif;
+        line-height: 1.4em;
+        background: url(bubbles.png) 0 -135px repeat-x;
+      }
+      abbr {
+        border-bottom: 1px dotted #ccc;
+        cursor: help;
+      }
+      code {
+        font-family: Menlo, monospace;
+        color: green;
+      }
+      h1, h2 {
+        padding-top: .5em;
+        margin-top: .5em;
+      }
+      .toc-1 {
+        margin-top: .3em;
+        margin-left: 20px;
+      }
+      .toc-2 {
+        margin-left: 40px;
+      }
+    </style>
+    <script>
+      window.onload = function() {
+        var nodes = document.body.childNodes;
+        var frag = document.createDocumentFragment();
+        var firstHeading;
+        for (var i = 0, node; node = nodes[i]; i++) {
+          if (!node.nodeName.indexOf('H')) {
+            // Skip the first heading
+            if (!firstHeading) {
+              firstHeading = node;
+              continue;
+            }
+            node.id = node.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '');
+            var entry = document.createElement('div');
+            entry.innerHTML = '<a href="#' + node.id + '">' + node.innerText +
+                '</a>';
+            entry.className = 'toc-' + parseInt(node.nodeName.substring(1), 10);
+            frag.appendChild(entry);
+          }
+        }
+        document.body.insertBefore(frag, firstHeading.nextSibling);
+      };
+    </script>
+  </head>
+  <body>
+    <p>
+      <img src="devfest_logo.png" height="150">
+    </p>
+<h1>Fusion Tables Codelab</h1>
+<h1>Introduction</h1>
+<p>Fusion Tables is a modern data management web application making it easy to host, manage, collaborate on, visualize, and publish data tables online. Follow the steps below to upload your own data to Fusion Tables and create a map!</p>
+<h1>Setting Up</h1>
+<ul>
+<li>Download the <a href="codelab.zip">zip file</a></li>
+<li>Unzip. Zip file includes:<br />
+  population.csv - Population data for zip codes around the bay area<br />
+  map.html - Basic HTML page</li>
+</ul>
+<h1>Fusion Tables</h1>
+<h2>Upload Data to Fusion Tables</h2>
+<ol>
+<li>
+<p>Go to <a href="http://www.google.com/fusiontables">Fusion Tables</a></p>
+</li>
+<li>
+<p>Select <strong>New table &gt; Import table</strong><br />
+<img alt="import" src="import1.png" /></p>
+</li>
+<li>
+<p>Click <strong>Choose File</strong><br />
+<img alt="import" src="import.png" /></p>
+</li>
+<li>
+<p>Browse to find the population.csv file.</p>
+</li>
+<li>
+<p>Click <strong>Next</strong></p>
+</li>
+<li>
+<p>Click <strong>Next</strong> again</p>
+</li>
+<li>
+<p>Update the Table name to Bay Area Population. Add any attribution data and/or change the description.<br />
+<img alt="import" src="import3.png" /></p>
+</li>
+<li>
+<p>Click <strong>Finish</strong></p>
+</li>
+<li>
+<p>The file will upload to Fusion Tables. Here's an example of what the table will look like in <a href="http://www.google.com/fusiontables/DataSource?dsrcid=721636">Fusion Tables</a></p>
+</li>
+</ol>
+<h2>Merge tables</h2>
+<p>Now that you have the Bay Area population data in Fusion Tables, we're going to merge with a table containing the zip code boundaries.</p>
+<ol>
+<li>
+<p>Make sure you have the Population table open in your browser</p>
+</li>
+<li>
+<p>Click the <strong>Merge</strong> tab in the navigation</p>
+</li>
+<li>
+<p>Paste the following URL in the Text box under Merge with: <a href="http://www.google.com/fusiontables/DataSource?dsrcid=702655">http://www.google.com/fusiontables/DataSource?dsrcid=702655</a></p>
+</li>
+<li>
+<p>Click the <strong>Get</strong> button</p>
+</li>
+<li>
+<p>Select the columns you want to merge on. Make sure the radio button next to <strong>Zip</strong> is selected in the left column, and select the radio button next to <strong>name</strong> in the right column.</p>
+</li>
+<li>
+<p>Enter a table name for your merged table in the text box next to <strong>Save as a new table named</strong>. Suggested name: Bay Area Population merged with KML.<br />
+<img alt="merge" src="merge.png" /></p>
+</li>
+<li>
+<p>Click <strong>Merge tables</strong>.</p>
+</li>
+<li>
+<p>Select <strong>Visualize &gt; Map</strong></p>
+</li>
+<li>
+<p>Click on one of the polygons on the map to see what is displayed in the InfoWindow.</p>
+</li>
+</ol>
+<h2>Configure the InfoWindow</h2>
+<p>Now let's customize the content in the InfoWindow.</p>
+<ol>
+<li>
+<p>Click on <strong>Configure info window</strong>.</p>
+</li>
+<li>
+<p>Deselect all checkboxes except for the 2 next to <strong>Zip</strong> and <strong>Population</strong>. Notice how the HTML in the right panel is updated as you do this.</p>
+</li>
+<li>
+<p>Select the <strong>Custom</strong> tab.<br />
+<img alt="infowindow" src="configureinfowindows.png" /></p>
+</li>
+<li>
+<p>Update the HTML to the following:  <br />
+</p>
+<pre><code>&lt;div class='googft-info-window' style='font-family: sans-serif'&gt;
+  &lt;b&gt;{Zip}&lt;/b&gt;&lt;br&gt;
+  &lt;b&gt;Population:&lt;b&gt; {Population}
+&lt;/div&gt;
+</code></pre>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+<li>
+<p>Click on one of the zip code boundaries. The InfoWindow content should be similar to the following:<br />
+<strong>94403</strong><br />
+<strong>Population:</strong> 37919</p>
+</li>
+</ol>
+<h2>Styling</h2>
+<p>Now add some styling to the map to create an interesting visualization of the data.</p>
+<ol>
+<li>
+<p>Click <strong>Configure styles</strong>.</p>
+</li>
+<li>
+<p>Select <strong>Fill color</strong> under <strong>Polygons</strong> in the left column.</p>
+</li>
+<li>
+<p>Select the <strong>Gradient</strong> tab.</p>
+</li>
+<li>
+<p>Select the radio button next to <strong>Show a gradient</strong>.</p>
+</li>
+<li>
+<p>In the drop-down menu next to <strong>Column</strong>, select <strong>Population</strong>.</p>
+</li>
+<li>
+<p>In the text box next to <strong>Through</strong>, enter the number <strong>90900</strong>.<br />
+<img alt="style" src="style.png" /></p>
+</li>
+<li>
+<p>Select any colors you want in the drop-down menus or keep the default.</p>
+</li>
+<li>
+<p>Click <strong>Save</strong> when done.</p>
+</li>
+<li>
+<p>The map will be updated with the new style.</p>
+</li>
+</ol>
+<h2>Sharing and permissions</h2>
+<p>New tables are automatically set to Private. The visibility needs to be changed to Unlisted or Public to embed in a web page.</p>
+<ol>
+<li>
+<p>Click the <strong>Share</strong> button in the top right corner.</p>
+</li>
+<li>
+<p>Select the radio button next to <strong>Unlisted</strong> or <strong>Public</strong>. The visibility will be updated immediately on selection.<br />
+<img alt="visibility" src="visibility1.png" /></p>
+</li>
+<li>
+<p>Close the window.</p>
+</li>
+</ol>
+<h2>Using the FusionTablesLayer to Display the map</h2>
+<p>Now that you have a nice, styled map, it's time to display it into a webpage.</p>
+<ol>
+<li>First, find the Table ID for your table. You can do this by either:</li>
+<li>Copying the value of the dsrcid parameter at the end of the URL. It is a 6-digit number.</li>
+<li>
+<p>Selecting <strong>File &gt; About</strong>. The Table ID is the value next to <strong>ID</strong>.</p>
+</li>
+<li>
+<p>Open the map.html file using a Text Editor. This file is in the zip file you downloaded at the beginning of this tutorial.</p>
+</li>
+<li>
+<p>Find the line that reads:</p>
+<pre><code>var tableId = XXXXXX;
+</code></pre>
+</li>
+<li>
+<p>Replace the XXXXXX with your Table ID.</p>
+</li>
+<li>
+<p>Review the code. The code creates a new Map and a FusionTablesLayer to display on the Map.</p>
+</li>
+<li>
+<p>Save your updates.</p>
+</li>
+<li>
+<p>Open the map.html file in a browser. You should see your Fusion Table data on the map.
+  <img alt="map" src="map.png" /></p>
+</li>
+<li>
+<p>Now, update the query sent to the Fusion Table Layer to include a filter. Tip: Use a <a href="http://code.google.com/apis/maps/documentation/javascript/reference.html#FusionTablesLayer">query</a> to narrow down results (Advanced: allow the user to dynamically change the query)</p>
+</li>
+<li>
+<p>View the HTML page in a browser again to see the map with the new filter.</p>
+</li>
+</ol>
+<h2>Advanced</h2>
+<p>This next section is for you to figure out :) A good place to get help will be in the <a href="http://code.google.com/apis/maps/documentation/javascript/">documentation</a></p>
+<ol>
+<li>
+<p>Add a <a href="http://code.google.com/apis/fusiontables/docs/developers_reference.html#Select">spatial clause</a> to the query. For example, a distance query. (Advanced: allow the user to dynamically change the query - for example, dragging a Marker to change the center point)</p>
+</li>
+<li>
+<p>Suppress info windows, and add your own click handler. Display information from the returned row in an info window or other info box on the page.</p>
+</li>
+<li>
+<p>Set the style of the FusionTablesLayer to color the population polygons red.</p>
+</li>
+<li>
+<p>Change the style so that areas with a population over 15000 are green (Advanced: allow the user to dynamically change the colors and opacity) </p>
+</li>
+</ol>
+<h1>Useful tools</h1>
+<p>Here are a couple useful tools that will help you work with Fusion Tables:</p>
+<ol>
+<li>
+<p><a href="http://shpescape.com">Shape Escape</a>.<br />
+  Shape Escape allows you to upload shape files to Fusion Tables. Simply go to shpescape.com and select <br />
+  the zipped shape file you want to upload. Shape Escape creates a Fusion Table with the shape file 
+  data for you!</p>
+</li>
+<li>
+<p><a href="http://goo.gl/X0kG4">FusionTablesLayer Builder</a><br />
+  Going a few steps beyond the built-in "Get embeddable code" feature, FusionTablesLayer Builder
+  generates all the code necessary to include a Google Map with a Fusion Table Layer on your own
+  website.</p>
+</li>
+</ol>	</body>
+</html>

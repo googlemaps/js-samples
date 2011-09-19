@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fusion Tables Codelab</title>
+    <style>
+      body {
+        padding: 2em;
+        max-width: 50em;
+        font-family: sans-serif;
+        line-height: 1.4em;
+        background: url(bubbles.png) 0 -135px repeat-x;
+      }
+      abbr {
+        border-bottom: 1px dotted #ccc;
+        cursor: help;
+      }
+      code {
+        font-family: Menlo, monospace;
+        color: green;
+      }
+      h1, h2 {
+        padding-top: .5em;
+        margin-top: .5em;
+      }
+      .toc-1 {
+        margin-top: .3em;
+        margin-left: 20px;
+      }
+      .toc-2 {
+        margin-left: 40px;
+      }
+    </style>
+    <script>
+      window.onload = function() {
+        var nodes = document.body.childNodes;
+        var frag = document.createDocumentFragment();
+        var firstHeading;
+        for (var i = 0, node; node = nodes[i]; i++) {
+          if (!node.nodeName.indexOf('H')) {
+            // Skip the first heading
+            if (!firstHeading) {
+              firstHeading = node;
+              continue;
+            }
+            node.id = node.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '');
+            var entry = document.createElement('div');
+            entry.innerHTML = '<a href="#' + node.id + '">' + node.innerText +
+                '</a>';
+            entry.className = 'toc-' + parseInt(node.nodeName.substring(1), 10);
+            frag.appendChild(entry);
+          }
+        }
+        document.body.insertBefore(frag, firstHeading.nextSibling);
+      };
+    </script>
+  </head>
+  <body>
+    <p>
+      <img src="devfest_logo.png" height="150">
+    </p>
