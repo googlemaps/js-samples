@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Google Maps JavaScript API v3 Example: Map Simple</title>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  
+  function initialize() {
+    var googleIO = new google.maps.LatLng(-33.8689009, 151.20709134);
+    var myOptions = {
+      zoom: 15,
+      center: googleIO,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      streetViewControl: true,
+    };
+
+    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map.getStreetView().getVisible() ?
+                      map.getStreetView() : map, marker);
+    });
+  }
+</script>
+</head>
+<body style="margin:0px; padding:0px;" onload="initialize()">
+  <div id="map_canvas" style="width:512px; height:358px; border: 1px solid black"></div>
+
+</body>
+</html>
