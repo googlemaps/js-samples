@@ -3,43 +3,65 @@
   <head>
     <title>Google Maps V3 style controls</title>
     <style type="text/css">
-      html, body, #map {
+      html,body {
         margin: 0;
         padding: 0;
         height: 100%;
       }
 
+      #map {
+        height: 100%;
+      }
+
       .button, .button-selected, .dropdown {
         cursor: pointer;
+        font-family: Arial, sans-serif;
+        font-size: 12px;
+        line-height: 160%;
+        -moz-border-radius: 2px;
+        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+        -moz-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+        -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
         -webkit-user-select: none;
         -moz-user-select: none;
-        text-align: center;
-        position: relative;
-        font-family: Arial, sans-serif;
-        font-size: 13px;
-        box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px;
-        -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px;
-        -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 2px 4px;
-        color: #000;
-        border: 1px solid #717B87;
-        background-color: #fff; 
       }
 
       .button, .button-selected {
-	    margin: 5px;
-	    padding: 1px 6px;
-	    overflow: hidden;
+        padding: 0 6px;
+        border-radius: 2px;
+        margin: 5px;
+        text-align: center;
+        overflow: hidden;
       }
 
-      .button:hover {
-		background: #FEFEFE;
+      .button {
+        color: #000;
+        border: 1px solid #A9BBDF;
+        /* old browsers */
+        background: #FEFEFE;
+        /* firefox */
         background: -moz-linear-gradient(top, #FEFEFE 0%, #F3F3F3 100%);
-        background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#F3F3F3));
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#F3F3F3', GradientType=0);
+        /* webkit */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FEFEFE), color-stop(100%,#F3F3F3));
+        /* ie */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FEFEFE', endColorstr='#F3F3F3',GradientType=0);
+      }
+
+      .button-selected, .button:hover {
+        border: 1px solid #678AC7;
       }
 
       .button-selected {
         font-weight: bold;
+        color: #fff;
+        /* old browsers */
+        background: #6D8ACC;
+        /* firefox */
+        background: -moz-linear-gradient(top, #6D8ACC 0%, #7B98D9 100%);
+        /* webkit */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#6D8ACC), color-stop(100%,#7B98D9));
+        /* ie */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6D8ACC', endColorstr='#7B98D9',GradientType=0);
       }
 
       #dropdown-holder {
@@ -52,20 +74,19 @@
 
       .dropdown {
         background: white;
-        border: 1px solid #717B87;
+        border: 1px solid #A9BBDF;
+        padding-top: 1px;
         border-top: 0;
-        padding-top: 2px;
         z-index: -1;
         position: relative;
       }
 
       .dropdown-item {
-        padding: 1px 5px 3px 5px;
-        text-align: left;
+        padding: 0 6px;
       }
 
       .dropdown-item:hover {
-        background: #ebebeb;
+        background: #E8ECF9;
       }
 
     </style>
@@ -101,7 +122,16 @@
         // When the button is clicked pan to sydney
         google.maps.event.addDomListener(control, 'click', function() {
           map.panTo(new google.maps.LatLng(-33.9, 151.2));
-          control.className = control.className == 'button' ? 'button-selected' : 'button';
+        });
+
+        // Change the style when the user mousedowns
+        google.maps.event.addDomListener(control, 'mousedown', function() {
+          control.className = 'button-selected';
+          });
+
+        // Change the style back when the user mouseups
+        google.maps.event.addDomListener(control, 'mouseup', function() {
+          control.className = 'button';
         });
       }
 
