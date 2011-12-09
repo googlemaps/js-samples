@@ -197,6 +197,9 @@ function setLevel3() {
       options[1] = new Option("Bus", "transit.station.bus");
       options[2] = new Option("Rail", "transit.station.rail");
       break;
+    case "road.highway":
+      options[0] = new Option("Controlled access", "road.highway.controlled_access");
+      break;
   }
   
   for (var i = 0; i < options.length; i++) {
