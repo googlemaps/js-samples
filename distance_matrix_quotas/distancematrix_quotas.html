@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset="utf-8">
+   <title> Distance matrix Request Meter </title>
+   <style>
+     html, body, div, h1, p, a,  b, u, i, center, table, tbody, tr, th, td {
+       border: 0;
+       font-size: 100%;
+       font: inherit;
+       margin: 0;
+       padding: 0;
+       vertical-align: baseline;
+     }
+
+     body {
+      color: #222;
+      font: 13px "Arial", sans-serif;
+      line-height: 18px;
+     }
+
+     table {
+       border-collapse: collapse;
+       border-spacing: 0;
+       margin-bottom: 2em;
+     }
+
+     /* header styling */
+     h1 {
+       font-size: 24px;
+       font-weight: bold;
+       margin-bottom: 1em;
+     }
+
+     /* table styling */
+     th, td {
+       border: 0 solid #BABDB6;
+       border-bottom-width: 1px;
+       padding: .3em .6em;
+     }
+
+     th {
+       background: #f5f5f5;
+       color: #222;
+       font-weight: bold;
+       text-align: center;
+     }
+
+     textarea {
+       font-family: "Arial", sans-serif;
+       vertical-align: top;
+     }
+
+     button { /* IE rendering fix */
+       overflow: visible;
+       width: auto;
+     }
+
+     textarea {
+       border: 1px solid #D9D9D9;
+       border-radius: 1px;
+       border-top-color: silver;
+       display: inline-block;
+     }
+
+     textarea:focus {
+       border: 1px solid #4D90FE;
+       box-shadow: inset 0 1px 2px rgba(0,0,0,.3);
+       outline: none;
+     }
+
+     /* button styling */
+     button {
+       background: #4D90FE;
+       border: 1px solid rgba(0, 0, 0, .1);
+       color: white;
+       display: inline-block;
+       font-size: 11px;
+       font-weight: bold;
+       height: 27px;
+       line-height: 27px;
+       min-width: 54px;
+       padding: 0 8px;
+       text-align: center;
+       text-decoration: none;
+     }
+
+     button:hover {
+       box-shadow: 1px 1px 2px 1px rgba(0,0,0 ,.5),
+       inset: 0 -5px 5px rgba(255,255,255,.2);
+     }
+
+     button:active {
+       border: 1px solid rgba(0, 0, 0, .3);
+     }
+     #header, #content, #footer {
+       padding: 10px;
+     }
+     #header, #footer {
+       background: #f5f5f5;
+     }
+     #header {
+       border-bottom: 1px solid #e5e5e5;
+       margin-bottom: .5em;
+     }
+     #header h1 {
+       color: #DD4B39;
+       margin-bottom: .3em;
+       margin-top: .3em;
+     }
+     #header a, #footer a {
+       text-decoration: none;
+     }
+     textarea {
+       display : block;
+       font-family: monospace;
+       font-size: .8em;
+     }
+     .clean{
+       background: white );
+     }
+     .select{
+       background: rgba(0,0,0,.1);
+     }
+     .red {
+       background: rgba(255,0,0,.2);
+     }
+     .green {
+       background: rgba(0,192,0,.2);
+     }
+     #input {
+       float: left;
+       overflow: hidden;
+       width: 650px;
+     }
+     #out {
+       color: rgba(0,0,0,.5);
+     }
+     #warning {
+      color: rgba(255,0,0,.5);
+     }
+     #ok {
+      color: darkgreen;
+     }
+   </style>
+   <script>
+     var DSMARIXWS_URL_PATTERN = new RegExp('' +
+       '^(https?:\/\/)maps\.googleapis\.com\/maps\/api\/distancematrix' +
+       '\/(json|xml)', 'i');
+     var MAX_ELEMS_PER_QUERY_FREE = 100;
+     var MAX_ELEMS_PER_QUERY_BIZ = 625;
+     var TEN_SEC_LIMIT_FREE = 100;
+     var TEN_SEC_LIMIT_BIZ = 1000;
+
+     function debug(toadd, elemid) {
+       var text = document.querySelector('#' + elemid).innerHTML;
+       document.querySelector('#' + elemid).innerHTML = text + toadd + '<br>';
+     }
+
+     function cleanDebug() {
+       document.querySelector('#biz_elems').className = 'clean';
+       document.querySelector('#biz_10s').className = 'clean';
+       document.querySelector('#free_elems').className = 'clean';
+       document.querySelector('#free_10s').className = 'clean';
+       document.querySelector('#free').className = 'clean';
+       document.querySelector('#biz').className = 'clean';
+       document.querySelector('#ok').innerHTML = '';
+       document.querySelector('#out').innerHTML = '';
+       document.querySelector('#warning').innerHTML = '';
+     }
+
+     function checkDistanceMartrixRequest() {
+        cleanDebug();
+        var urlString = document.querySelector('#url').value.replace(/ /g,'');
+        var query = (urlString.indexOf('?') >= 0) ?
+            urlString.substring(urlString.indexOf('?') + 1) : '';
+        var hostpath = (urlString.indexOf('?') >= 0) ?
+            urlString.substring(0, urlString.indexOf('?')) : urlString;
+        // Check if the base URL matches the distance matrix URL patterns
+        if (DSMARIXWS_URL_PATTERN.test(hostpath)) {
+          // check the params & create a "hashmap"
+          var params = {};
+          // split arguments
+          var psplit = query.split('&');
+          // for every argument you found
+          for (i = 0; i < psplit.length; i++) {
+            //separate name and value and save in the "hashmap"
+            nvsplit = psplit[i].split('=');
+            params[nvsplit[0]] = nvsplit.length == 1 ? '' : nvsplit[1];
+          }
+          // count the number of origins and dest
+          // check if the needed params exist
+          var overQuota = false;
+          if (params['origins'] && params['destinations'] &&
+             ((params['sensor'] == 'true') || (params['sensor'] == 'false'))) {
+            // check the number of elements
+            var orgins = params['origins'].split(/\%7C|\|/i);
+            var dest = params['destinations'].split(/\%7C|\|/i);
+            var numelems = orgins.length * dest.length;
+            // check limit for buissness
+            if (params['client']) {
+              document.querySelector('#biz').className = 'select';
+              if (numelems > MAX_ELEMS_PER_QUERY_BIZ) {
+                 overQuota = true;
+                 debug('(MAX_ELEMENTS_EXCEEDED)' +
+                     ' number of elements per query exceeded ( allowed: ' +
+                     MAX_ELEMS_PER_QUERY_BIZ + ', used: ' + numelems + ')',
+                     'warning');
+                 document.querySelector('#biz_elems').className = 'red';
+              } else {
+                document.querySelector('#biz_elems').className = 'green';
+              }
+              if (numelems > TEN_SEC_LIMIT_BIZ) {
+                 overQuota = true;
+                 debug('(OVER_QUERY_LIMIT) number of allowed requests in 10 ' +
+                     'secs exceeded ( allowed ' + TEN_SEC_LIMIT_BIZ +
+                     ', used: ' + numelems + ')', 'warning');
+                 document.querySelector('#biz_10s').className = 'red';
+              } else {
+                 document.querySelector('#biz_10s').className = 'green';
+              }
+            } else { // non Biz
+              document.querySelector('#free').className = 'select';
+              if (numelems > MAX_ELEMS_PER_QUERY_FREE) {
+                overQuota = true;
+                debug('(MAX_ELEMENTS_EXCEEDED) number of elements per query ' +
+                    'exceeded ( allowed ' + MAX_ELEMS_PER_QUERY_FREE +
+                    ', used: ' + numelems + ')', 'warning');
+                document.querySelector('#free_elems').className = 'red';
+              } else {
+                document.querySelector('#free_elems').className = 'green';
+              }
+              if (numelems > TEN_SEC_LIMIT_FREE) {
+                overQuota = true;
+                debug('(OVER_QUERY_LIMIT) number of allowed requests in 10 ' +
+                    'secs exceeded ( allowed: ' + TEN_SEC_LIMIT_FREE +
+                    ', used: ' + numelems + ')' , 'warning');
+                document.querySelector('#free_10s').className = 'red';
+              } else {
+                document.querySelector('#free_10s').className = 'green';
+               }
+             }
+          }
+          if (!overQuota) {
+            debug('Your request looks ok! :) Please remember to take care ' +
+                'not to exceed the daily quota' , 'ok');
+          }
+          debug('number of origins: ' + orgins.length +
+              ' , number of destinations: ' + dest.length, 'out');
+          debug('number of elements (#orgins * #destinations): ' +
+              numelems, 'out');
+          debug(' NOTE: Number of elements is counted against' +
+              'the 10 sec quota' , 'out');
+        } else {
+          debug('Your url is invalid', 'warning');
+        }
+     }
+   </script>
+ </head>
+  <body>
+    <div id="header">
+      <h1>Distance Matrix Requests Limits</h1>
+    </div>
+    <div id="content">
+      <div id="input">
+        <div id="instructions">Enter a distance matrix request to the textarea below </div>
+        <textarea id="url" rows="20" cols="90"
+          placeholder="Paste your request here"></textarea>
+        <button id="checkReq" onclick="checkDistanceMartrixRequest()">
+          Check Request
+        </button>
+      </div>
+      <div id="info">
+        <h3>Quotas table</h3>
+        <table>
+          <tr>
+            <th></th>
+            <th scope="col">Elements per query</th>
+            <th scope="col">Elemets per 10 seconds</th>
+            <th scope="col">Elements per 24 h </th>
+          </tr>
+          <tr>
+            <th id="free" scope="row"> Google Maps API free usage</th>
+            <td id="free_elems"> 100</td>
+            <td id="free_10s"> 100</td>
+            <td id="free_24h"> 2 500 </td>
+          </tr>
+          <tr>
+            <th id="biz" id="biz" scope="row"><a href="http://code.google.com/apis/maps/documentation/premier/">Google Maps API for Business</a></th>
+            <td id="biz_elems">625</td>
+            <td id="biz_10s">1000</td>
+            <td id="bix_24h">100000</td>
+          </tr>
+        </table>
+        <h3>Request details</h3>
+        <div id="warning"> </div>
+        <div id="ok"> </div>
+        <div id="out"> </div>
+      </div>
+    </div>
+  </body>
+</html>
