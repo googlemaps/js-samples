@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
   <head>
@@ -73,7 +72,7 @@
     <div class="options">
       <div class="option">
         <div class="heading">Temperature units:</div>
-        <input type="radio" name="temp"
+        <input type="radio" name="temp" checked
             onclick="setTemperature(google.maps.weather.TemperatureUnit.CELSIUS)"></input>Celsius
         <input type="radio" name="temp"
             onclick="setTemperature(google.maps.weather.TemperatureUnit.FAHRENHEIT)"></input>Fahrenheit
@@ -84,13 +83,13 @@
             onclick="setWindSpeed(google.maps.weather.WindSpeedUnit.MILES_PER_HOUR)"></input>mph
         <input type="radio" name="wind"
             onclick="setWindSpeed(google.maps.weather.WindSpeedUnit.KILOMETERS_PER_HOUR)"></input>km/h
-        <input type="radio" name="wind"
+        <input type="radio" name="wind" checked
             onclick="setWindSpeed(google.maps.weather.WindSpeedUnit.METERS_PER_SECOND)"></input>m/s
       </div>
       <div class="option">
         <div class="heading">Label color:</div>
         <input type="radio" name="color"
-            onclick="setLabelColor(null)"></input>automatic
+            onclick="setLabelColor(null)" checked></input>automatic
         <input type="radio" name="color"
             onclick="setLabelColor(google.maps.weather.LabelColor.BLACK)"></input>black
         <input type="radio" name="color"
