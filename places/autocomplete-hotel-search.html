@@ -160,7 +160,7 @@
   }
   
   function addResult(result, i) {
-    var results = document.getElementById("results");
+    var tbody = document.getElementById("results").childNodes[0];
     var markerLetter = String.fromCharCode("A".charCodeAt(0) + i);
     var markerIcon = MARKER_PATH + markerLetter + ".png";
 
@@ -350,6 +350,6 @@ table {
     </select>
   </div>
   <div id="map_canvas"></div>
-  <div id="listing"><table id="results"></table></div>
+  <div id="listing"><table id="results"><tbody></tbody></table></div>
 </body>
 </html>
