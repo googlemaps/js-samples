@@ -6,127 +6,89 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&libraries=places"></script>
 <script type="text/javascript">
   
-  var map, places, iw, shadow;
+  var map, places, iw;
   var markers = [];
+  var centerMarker;
   var autocomplete;
-  var countryRestrict = { 'country': 'us' };
-  var MARKER_PATH = 'http://maps.gstatic.com/intl/en_us/mapfiles/marker_green';
-  var SHADOW_URL = "http://maps.gstatic.com/intl/en_us/mapfiles/markers/marker_sprite.png";
   var hostnameRegexp = new RegExp('^https?://.+?/');
-  
-  var countries = {
-    'au': {
-      center: new google.maps.LatLng(-25.3,133.8),
-      zoom: 4
-    },
-    'br': {
-      center: new google.maps.LatLng(-14.2,-51.9),
-      zoom: 3
-    },
-    'ca': {
-      center: new google.maps.LatLng(62,-110.0),
-      zoom: 3
-    },
-    'fr': {
-      center: new google.maps.LatLng(46.2,2.2),
-      zoom: 5
-    },      
-    'de': {
-      center: new google.maps.LatLng(51.2,10.4),
-      zoom: 5
-    },
-    'mx': {
-      center: new google.maps.LatLng(23.6,-102.5),
-      zoom: 4
-    },
-    'nz': {
-      center: new google.maps.LatLng(-40.9,174.9),
-      zoom: 5
-    },
-    'it': {
-      center: new google.maps.LatLng(41.9,12.6),
-      zoom: 5
-    },
-    'za': {
-      center: new google.maps.LatLng(-30.6,22.9),
-      zoom: 5
-    },
-    'es': {
-      center: new google.maps.LatLng(40.5,-3.7),
-      zoom: 5
-    },
-    'pt':{
-      center: new google.maps.LatLng(39.4,-8.2),
-      zoom: 6
-    },
-    'us': {
-      center: new google.maps.LatLng(37.1,-95.7),
-      zoom: 3
-    },
-    'uk': {
-      center: new google.maps.LatLng(54.8, -4.6),
-      zoom: 5
-    }
-  };
 
   function initialize() {
+    var myLatlng = new google.maps.LatLng(37.783259, -122.402708);
     var myOptions = {
-      zoom: countries['us'].zoom,
-      center: countries['us'].center,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
+      zoom: 15,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+    }
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    places = new google.maps.places.PlacesService(map);
+    google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
+    
+    document.getElementById('keyword').onkeyup = function(e) {
+      if (!e) var e = window.event;
+      if (e.keyCode != 13) return;
+      document.getElementById("keyword").blur();
+      search(document.getElementById('keyword').value);
+    }
+  }
+  
+  function tilesLoaded() {
+    search();
+    google.maps.event.clearListeners(map, 'tilesloaded');
+    google.maps.event.addListener(map, 'zoom_changed', searchIfRankByProminence);
+    google.maps.event.addListener(map, 'dragend', search);
+  }
+  
+  function searchIfRankByProminence() {
+    if (document.getElementById('rankBy').value == 'prominence') {
+      search()
+    }    
+  }
+  
+  function search() {
+    clearResults();
+    clearMarkers();
+        
+    var type = document.getElementById('type').value;
+    var keyword = document.getElementById('keyword').value;
+    var rankBy = document.getElementById('rankBy').value;
+  
+    var search = {};
+    
+    if (keyword) {
+      search.keyword = keyword;
     }
     
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {
-      types: [ '(cities)' ],
-      componentRestrictions: countryRestrict
-    });
-    places = new google.maps.places.PlacesService(map);
-
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-      place_changed();
-    });
+    if (type != 'establishment') {
+      search.types = [ type ];
+    }
     
-    shadow = new google.maps.MarkerImage(
-      SHADOW_URL,
-      new google.maps.Size(32,37),
-      new google.maps.Point(22,0),
-      new google.maps.Point(8, 32)
-    );    
-  }
-  
-  function place_changed() {
-    var place = autocomplete.getPlace();
-    map.panTo(place.geometry.location);
-    map.setZoom(15);
-    search();
-  }
-  
-  function search() {    
-    var search = {
-      bounds: map.getBounds(),
-      types: [ 'lodging' ]
-    };
+    if (rankBy == 'distance' && (search.types || search.keyword)) {
+      search.rankBy = google.maps.places.RankBy.DISTANCE;
+      search.location = map.getCenter();
+      centerMarker = new google.maps.Marker({
+        position: search.location,
+        animation: google.maps.Animation.DROP,
+        map: map
+      });
+    } else {
+      search.bounds = map.getBounds();
+    }
     
     places.search(search, function(results, status) {
       if (status == google.maps.places.PlacesServiceStatus.OK) {
-        clearResults();
-        clearMarkers();
         for (var i = 0; i < results.length; i++) {
-          var markerLetter = String.fromCharCode("A".charCodeAt(0) + i);
-          var markerIcon = MARKER_PATH + markerLetter + ".png";
+          var icon = 'icons/number_' + (i+1) + '.png';
           markers[i] = new google.maps.Marker({
             position: results[i].geometry.location,
             animation: google.maps.Animation.DROP,
-            icon: markerIcon,
-            shadow: shadow
+            icon: icon
           });
           google.maps.event.addListener(markers[i], 'click', getDetails(results[i], i));
           setTimeout(dropMarker(i), i * 100);
           addResult(results[i], i);
         }
       }
-    })
+    });
   }
   
   function clearMarkers() {
@@ -136,21 +98,9 @@
         markers[i] == null;
       }
     }
-  }
-  
-  function setAutocompleteCountry() {
-    var country = document.getElementById('country').value;
-    if (country == 'all') {
-      autocomplete.setComponentRestrictions([]);
-      map.setCenter(new google.maps.LatLng(15,0));
-      map.setZoom(2);
-    } else {
-      autocomplete.setComponentRestrictions({ 'country': country });
-      map.setCenter(countries[country].center);
-      map.setZoom(countries[country].zoom);
+    if (centerMarker) {
+      centerMarker.setMap(null);
     }
-    clearResults();
-    clearMarkers();
   }
   
   function dropMarker(i) {
@@ -161,9 +111,6 @@
   
   function addResult(result, i) {
     var results = document.getElementById("results");
-    var markerLetter = String.fromCharCode("A".charCodeAt(0) + i);
-    var markerIcon = MARKER_PATH + markerLetter + ".png";
-
     var tr = document.createElement('tr');
     tr.style.backgroundColor = (i% 2 == 0 ? '#F0F0F0' : '#FFFFFF');
     tr.onclick = function() {
@@ -173,7 +120,7 @@
     var iconTd = document.createElement('td');
     var nameTd = document.createElement('td');
     var icon = document.createElement('img');
-    icon.src = markerIcon;
+    icon.src = 'icons/number_' + (i+1) + '.png';
     icon.setAttribute("class", "placeIcon");
     icon.setAttribute("className", "placeIcon");
     var name = document.createTextNode(result.name);
@@ -268,35 +215,35 @@ table {
 #listing {
   position: absolute;
   width: 200px;
-  height: 470px;
+  height: 440px;
   overflow: auto;
   left: 442px;
-  top: 0px;
+  top: 28px;
   cursor: pointer;
   overflow-x: hidden;
+  border: 1px solid lightgrey;
 }
 #controls {
   position: absolute;
   top: 0px;
   left: 300px;
-  width: 140px;
+  width: 346px;
+  text-align: right;
+  padding-top: 2px;
 }
-#locationField {
-  width: 190px;
+#keywordField {
+  width: 220px;
   height: 25px;
   top: 0px;
-  left: 108px;
+  left: 78px;
   position: absolute;
 }
-#autocomplete {
-  width: 100%;
-}
-#country {
+#keyword {
   width: 100%;
 }
 .placeIcon {
-  width: 20px;
-  height: 34px;
+  width: 32px;
+  height: 37px;
   margin: 4px;
 }
 .hotelIcon {
@@ -311,9 +258,9 @@ table {
   font-size: 13px;
   font-family: Arial Unicode MS;
 }
-#findhotels {
+#keywordsLabel {
   text-align: right;
-  width: 100px;
+  width: 70px;
   font-size: 14px;
   padding: 4px;
   position: absolute;
@@ -325,34 +272,46 @@ table {
   font-weight: bold;
   text-align: right;
 }
+#iconCredit {
+  position: absolute;
+  top: 476px;
+  left: 0px;
+  font-size: 11px;
+  text-align: right;
+  width: 640px;
+  font-style: italic;
+}
 </style>
 </head>
 <body style="margin:0px; padding:0px;" onload="initialize()">
-  <div id="findhotels">
-    Find hotels in:
+  <div id="keywordsLabel">
+    Keywords:
   </div>
-  <div id="locationField">
-    <input id="autocomplete" placeholder="Enter a city" type="text" />
+  <div id="keywordField">
+    <input id="keyword" type="text" />
   </div>
   <div id="controls">
-    <select id="country" onChange="setAutocompleteCountry()">
-      <option value="all">All</option>
-      <option value="au">Australia</option>
-      <option value="br">Brazil</option>
-      <option value="ca">Canada</option>
-      <option value="fr">France</option>
-      <option value="de">Germany</option>
-      <option value="mx">Mexico</option>
-      <option value="nz">New Zealand</option>
-      <option value="it">Italy</option>
-      <option value="za">South Africa</option>
-      <option value="es">Spain</option>
-      <option value="pt">Portugal</option>
-      <option value="us" selected>U.S.A.</option>
-      <option value="uk">United Kingdom</option>
+    <span id="typeLabel">
+      Type:
+    </span>
+    <select id="type" onChange="search()">
+      <option value="bar">Bars</option>
+      <option value="cafe">Cafe</option>
+      <option value="clothing_store">Clothing store</option>
+      <option value="museum">Museums</option>
+      <option value="restaurant">Restaurants</option>
+      <option value="university">University</option>
+    </select>
+    <span id="rankByLabel">
+      Rank by:
+    </span>
+    <select id="rankBy" onChange="search()">
+      <option value="prominence">Prominence</option>
+      <option value="distance">Distance</option>
     </select>
   </div>
   <div id="map_canvas"></div>
   <div id="listing"><table id="resultsTable"><tbody id="results"></tbody></table></div>
+  <div id="iconCredit">Numbered icons courtesy of Nicolas Mollet's awesome <a href="http://mapicons.nicolasmollet.com">Maps Icons Collection</a></div>
 </body>
 </html>
