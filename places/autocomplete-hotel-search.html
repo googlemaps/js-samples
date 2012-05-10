@@ -160,7 +160,7 @@
   }
   
   function addResult(result, i) {
-    var tbody = document.getElementById("results").childNodes[0];
+    var results = document.getElementById("results");
     var markerLetter = String.fromCharCode("A".charCodeAt(0) + i);
     var markerIcon = MARKER_PATH + markerLetter + ".png";
 
@@ -301,12 +301,13 @@ table {
   width: 24px;
   height: 24px;
 }
-#results {
+#resultsTable {
   border-collapse: collapse;
   width: 240px;
 }
 #rating {
   font-size: 13px;
+  font-family: Arial Unicode MS;
 }
 #findhotels {
   text-align: right;
@@ -350,6 +351,6 @@ table {
     </select>
   </div>
   <div id="map_canvas"></div>
-  <div id="listing"><table id="results"><tbody></tbody></table></div>
+  <div id="listing"><table id="resultsTable"><tbody id="results"></tbody></table></div>
 </body>
 </html>
