@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -8,6 +9,7 @@
   
   var map, places, iw;
   var markers = [];
+  var searchTimeout;
   var centerMarker;
   var autocomplete;
   var hostnameRegexp = new RegExp('^https?://.+?/');
@@ -19,16 +21,27 @@
       center: myLatlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
     places = new google.maps.places.PlacesService(map);
     google.maps.event.addListener(map, 'tilesloaded', tilesLoaded);
     
     document.getElementById('keyword').onkeyup = function(e) {
       if (!e) var e = window.event;
       if (e.keyCode != 13) return;
-      document.getElementById("keyword").blur();
+      document.getElementById('keyword').blur();
       search(document.getElementById('keyword').value);
     }
+
+    var typeSelect = document.getElementById('type');
+    typeSelect.onchange = function() {
+      search();
+    };
+
+    var rankBySelect = document.getElementById('rankBy');
+    rankBySelect.onchange = function() {
+      search();
+    };
+
   }
   
   function tilesLoaded() {
@@ -40,14 +53,21 @@
   
   function searchIfRankByProminence() {
     if (document.getElementById('rankBy').value == 'prominence') {
-      search()
+      search();
     }    
   }
-  
+
   function search() {
     clearResults();
     clearMarkers();
-        
+
+    if (searchTimeout) {
+      window.clearTimeout(searchTimeout);
+    }
+    searchTimeout = window.setTimeout(reallyDoSearch, 500);
+  }
+  
+  function reallyDoSearch() {      
     var type = document.getElementById('type').value;
     var keyword = document.getElementById('keyword').value;
     var rankBy = document.getElementById('rankBy').value;
@@ -59,7 +79,7 @@
     }
     
     if (type != 'establishment') {
-      search.types = [ type ];
+      search.types = [type];
     }
     
     if (rankBy == 'distance' && (search.types || search.keyword)) {
@@ -78,13 +98,13 @@
       if (status == google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           var icon = 'icons/number_' + (i+1) + '.png';
-          markers[i] = new google.maps.Marker({
+          markers.push(new google.maps.Marker({
             position: results[i].geometry.location,
             animation: google.maps.Animation.DROP,
             icon: icon
-          });
+          }));
           google.maps.event.addListener(markers[i], 'click', getDetails(results[i], i));
-          setTimeout(dropMarker(i), i * 100);
+          window.setTimeout(dropMarker(i), i * 100);
           addResult(results[i], i);
         }
       }
@@ -93,11 +113,9 @@
   
   function clearMarkers() {
     for (var i = 0; i < markers.length; i++) {
-      if (markers[i]) {
-        markers[i].setMap(null);
-        markers[i] == null;
-      }
+      markers[i].setMap(null);
     }
+    markers = [];
     if (centerMarker) {
       centerMarker.setMap(null);
     }
@@ -105,12 +123,14 @@
   
   function dropMarker(i) {
     return function() {
-      markers[i].setMap(map);
+      if (markers[i]) {
+        markers[i].setMap(map);
+      }
     }
   }
   
   function addResult(result, i) {
-    var results = document.getElementById("results");
+    var results = document.getElementById('results');
     var tr = document.createElement('tr');
     tr.style.backgroundColor = (i% 2 == 0 ? '#F0F0F0' : '#FFFFFF');
     tr.onclick = function() {
@@ -121,8 +141,8 @@
     var nameTd = document.createElement('td');
     var icon = document.createElement('img');
     icon.src = 'icons/number_' + (i+1) + '.png';
-    icon.setAttribute("class", "placeIcon");
-    icon.setAttribute("className", "placeIcon");
+    icon.setAttribute('class', 'placeIcon');
+    icon.setAttribute('className', 'placeIcon');
     var name = document.createTextNode(result.name);
     iconTd.appendChild(icon);
     nameTd.appendChild(name);
@@ -132,11 +152,11 @@
   }
   
   function clearResults() {
-    var results = document.getElementById("results");
+    var results = document.getElementById('results');
     while (results.childNodes[0]) {
       results.removeChild(results.childNodes[0]);
     }
-  }
+  }
   
   function getDetails(result, i) {
     return function() {
@@ -163,7 +183,7 @@
   }
   
   function getIWContent(place) {
-    var content = "";
+    var content = '';
     content += '<table>';
     content += '<tr class="iw_table_row">';
     content += '<td style="text-align: right"><img class="hotelIcon" src="' + place.icon + '"/></td>';
@@ -195,11 +215,16 @@
     content += '</table>';
     return content;
   }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 <style>
 body {
   font-family: sans-serif;
   font-size: 14px;
+  margin:0; 
+  padding:0;
 }
 table {
   font-size: 12px;
@@ -209,7 +234,7 @@ table {
   width: 440px;
   height: 440px;
   top: 28px;
-  left: 0px;
+  left: 0;
   border: 1px solid grey;
 }
 #listing {
@@ -225,7 +250,7 @@ table {
 }
 #controls {
   position: absolute;
-  top: 0px;
+  top: 0;
   left: 300px;
   width: 346px;
   text-align: right;
@@ -234,7 +259,7 @@ table {
 #keywordField {
   width: 220px;
   height: 25px;
-  top: 0px;
+  top: 0;
   left: 78px;
   position: absolute;
 }
@@ -275,7 +300,7 @@ table {
 #iconCredit {
   position: absolute;
   top: 472px;
-  left: 0px;
+  left: 0;
   font-size: 11px;
   text-align: right;
   width: 640px;
@@ -283,7 +308,7 @@ table {
 }
 </style>
 </head>
-<body style="margin:0px; padding:0px;" onload="initialize()">
+<body>
   <div id="keywordsLabel">
     Keywords:
   </div>
@@ -294,7 +319,7 @@ table {
     <span id="typeLabel">
       Type:
     </span>
-    <select id="type" onChange="search()">
+    <select id="type">
       <option value="bar">Bars</option>
       <option value="cafe">Cafe</option>
       <option value="clothing_store">Clothing store</option>
@@ -305,7 +330,7 @@ table {
     <span id="rankByLabel">
       Rank by:
     </span>
-    <select id="rankBy" onChange="search()">
+    <select id="rankBy">
       <option value="prominence">Prominence</option>
       <option value="distance">Distance</option>
     </select>
