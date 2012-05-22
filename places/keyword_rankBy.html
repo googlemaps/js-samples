@@ -110,7 +110,7 @@
       }
     });
   }
-  
+
   function clearMarkers() {
     for (var i = 0; i < markers.length; i++) {
       markers[i].setMap(null);
@@ -120,7 +120,7 @@
       centerMarker.setMap(null);
     }
   }
-  
+
   function dropMarker(i) {
     return function() {
       if (markers[i]) {
@@ -128,7 +128,7 @@
       }
     }
   }
-  
+
   function addResult(result, i) {
     var results = document.getElementById('results');
     var tr = document.createElement('tr');
@@ -136,7 +136,7 @@
     tr.onclick = function() {
       google.maps.event.trigger(markers[i], 'click');
     };
-    
+
     var iconTd = document.createElement('td');
     var nameTd = document.createElement('td');
     var icon = document.createElement('img');
@@ -150,14 +150,14 @@
     tr.appendChild(nameTd);
     results.appendChild(tr);
   }
-  
+
   function clearResults() {
     var results = document.getElementById('results');
     while (results.childNodes[0]) {
       results.removeChild(results.childNodes[0]);
     }
-  }
-  
+  }
+
   function getDetails(result, i) {
     return function() {
       places.getDetails({
@@ -165,7 +165,7 @@
       }, showInfoWindow(i));
     }
   }
-  
+
   function showInfoWindow(i) {
     return function(place, status) {
       if (iw) {
