@@ -89,20 +89,14 @@ body {
   width: 200px;
 }
 #locationField {
-  height: 40px;
+  height: 20px;
   margin-bottom: 2px;
-}
-#logo {
-  position: absolute;
-  right: 0px;
-  bottom: 0px;
 }
 </style>
 </head>
 <body onload="initialize()">
   <div id="locationField">
     <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text"></input>
-    <img id="logo" src="https://developers.google.com/maps/documentation/places/images/powered-by-google-on-white.png"></img>
   </div>
   <table id="address">
     <tr>
