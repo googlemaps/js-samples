@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Walmart heatmap</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization"></script>
+    <script type="text/javascript" src="../symbols/walmarts.json"></script>
+    <script type="text/javascript">
+    var map, heatmap, data;
+    var nextStore = 0;
+    var year = 1962;
+    var month = 1;
+
+    function initialize() {
+      data = new google.maps.MVCArray();
+      
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: new google.maps.LatLng(37,-96),
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        styles: [{
+          stylers: [{saturation: -100}]
+        }, {
+          featureType: 'poi.park',
+          stylers: [{visibility: 'off'}]
+        }],
+        disableDefaultUI: true
+      });
+
+      heatmap = new google.maps.visualization.HeatmapLayer({
+        map: map,
+        data: data,
+        radius: 16,
+        dissipate: false,
+        maxIntensity: 8,
+        gradient: [
+          'rgba(0, 0, 0, 0)',
+          'rgba(255, 255, 0, 0.50)',
+          'rgba(0, 0, 255, 1.0)'
+        ]
+      });
+
+      nextMonth();
+    }
+      
+    function nextMonth() {
+      while (stores[nextStore].date[0] <= year && stores[nextStore].date[1] <= month) {
+        data.push(new google.maps.LatLng(stores[nextStore].coords[0], stores[nextStore].coords[1]));
+        nextStore++;
+      }
+      if (nextStore < stores.length) {
+        if (month == 12) {
+          month = 1;
+          year++;
+          document.getElementById('year').innerHTML = year;
+        } else {
+          month++;
+        }
+        setTimeout(nextMonth, 30);
+      }
+    }
+    </script>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+}
+#map {
+  width: 620px;
+  height: 480px;
+  position: absolute;
+}
+#year {
+  position: absolute;
+  top: 426px;
+  left: 548px;
+  font-size: 30px;
+  font-family: sans-serif;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  color: white;
+}
+</style>
+</head>
+<body onload="initialize()">
+  <div id="map"></div>
+  <div id="year">1962</div>
+</body>
+</html>
