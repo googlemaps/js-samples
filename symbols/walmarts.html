@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Symbols on markers</title>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="walmarts.json"></script>
+<script type="text/javascript">
+  var map;
+  var nextStore = 0;
+  var year = 1962;
+  var month = 1;
+  var colors = [];
+
+  function initialize() {
+    var myOptions = {
+      zoom: 4,
+      center: new google.maps.LatLng(39,-96),
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      mapTypeControl: false,
+      backgroundColor: 'white',
+      zoomControl: false,
+      streetViewControl: false,
+      panControl: false,
+      styles: [
+        {
+          stylers: [
+            { visibility: "off" }
+          ]
+        },{
+          featureType: "water",
+          stylers: [
+            { visibility: "on" },
+            { lightness: -50 },
+            { saturation: -100 }
+          ]
+        },{
+          featureType: "administrative.province",
+          elementType: "geometry",
+          stylers: [
+            { visibility: "on" }
+          ]
+        },{
+          featureType: "administrative.country",
+          elementType: "geometry",
+          stylers: [
+            { visibility: "on" }
+          ]
+        },{
+          featureType: "water",
+          elementType: "labels",
+          stylers: [
+            { visibility: "off" }
+          ]
+        }
+      ]
+    };
+    map = new google.maps.Map(document.getElementById("map"), myOptions);
+    fillColorArray();
+    nextMonth();
+  }
+
+  function nextMonth() {
+    while (stores[nextStore].date[0] <= year && stores[nextStore].date[1] <= month) {
+      addStore(stores[nextStore].coords, year, month);
+      nextStore++;
+    }
+    updateColors(year, month);
+    if (nextStore < stores.length) {
+      if (month == 12) {
+        month = 1;
+        year++;
+        document.getElementById('year').innerHTML = year;
+      } else {
+        month++;
+      }
+      setTimeout(nextMonth, 150);
+    }
+  }
+
+  var markersByMonth = [];
+  for (var i = 0; i < 12; ++i) {
+    markersByMonth.push([]);
+  }
+
+  function updateColors(year, month) {
+    var markers = markersByMonth[month - 1];
+    for (var i = 0, I = markers.length; i < I; ++i) {
+      var inner = markers[i];
+      var age = year - inner.year;
+      if (age % 2) {
+        var icon = inner.get('icon');
+        icon.fillColor = colors[age];
+        inner.notify('icon');
+      }
+    }
+  }
+
+  function addStore(coords, year, month) {
+    var location = new google.maps.LatLng(coords[0], coords[1]);
+
+    var outer = new google.maps.Marker({
+      position: location,
+      clickable: false,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillOpacity: 0.5,
+        fillColor: colors[0],
+        strokeOpacity: 1.0,
+        strokeColor: colors[0],
+        strokeWeight: 1.0,
+        scale: 0,
+      },
+      optimized: false,
+      zIndex: year,
+      map: map
+    });
+
+    var inner = new google.maps.Marker({
+      position: location,
+      clickable: false,
+      icon: {
+        path: google.maps.SymbolPath.CIRCLE,
+        fillOpacity: 1.0,
+        fillColor: colors[0],
+        strokeWeight: 0,
+        scale: 0
+      },
+      optimized: false,
+      zIndex: year
+    });
+    inner.year = year;
+
+    markersByMonth[month - 1].push(inner);
+
+    for (var i = 0; i <= 10; i++) {
+      setTimeout(setScale(inner, outer, i / 10), i * 60);
+    }
+  }
+
+  function setScale(inner, outer, scale) {
+    return function() {
+      if (scale == 1) {
+        outer.setMap(null);
+      } else {
+        var icono = outer.get('icon');
+        icono.strokeOpacity = Math.cos((Math.PI/2) * scale);
+        icono.fillOpacity = icono.strokeOpacity * 0.5;
+        icono.scale = Math.sin((Math.PI/2) * scale) * 15;
+        outer.set('icon', icono);
+
+        var iconi = inner.get('icon');
+        var newScale = (icono.scale < 2.0 ? 0.0 : 2.0);
+        if (iconi.scale != newScale) {
+          iconi.scale = newScale;
+          inner.set('icon', iconi);
+          if (!inner.getMap()) inner.setMap(map);
+        }
+      }
+    }
+  }
+ 
+  function fillColorArray() {
+    var max = 198;
+    for (var i = 0; i < 44; i++) {
+      if (i < 11) { // red to yellow
+        r = max;
+        g = Math.floor(i * (max / 11));
+        b = 0;
+      } else if (i < 22) { // yellow to green
+        r = Math.floor((22 - i) * (max / 11));
+        g = max;
+        b = 0;
+      } else if (i < 33) { // green to cyan
+        r = 0;
+        g = max;
+        b = Math.floor((i - 22) * (max / 11));
+      } else { // cyan to blue
+        r = 0;
+        g = Math.floor((44 - i) * (max / 11));
+        b = max;
+      }
+      colors[i] = 'rgb(' + r + ',' + g + ',' + b + ')';
+    }
+  }
+</script>
+<style>
+body {
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+}
+#map {
+  width: 720px;
+  height: 480px;
+  position: absolute;
+  background-color: white;
+}
+#year {
+  position: absolute;
+  top: 426px;
+  left: 648px;
+  font-size: 30px;
+  font-family: sans-serif;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  color: white;
+}
+</style>
+</head>
+<body onload="initialize()">
+  <div id="map"></div>
+  <div id="year">1962</div>
+</body>
+</html>
