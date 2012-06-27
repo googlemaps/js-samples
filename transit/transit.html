@@ -1,99 +1,239 @@
 <!DOCTYPE html>
 <html>
   <head>
-
-    <style>
+    <title>Google Maps JavaScript API v3 Example: Transit</title>
+    <script
+      src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <style type="text/css">
       html, body {
-        margin: 0;
+        height: 100%;
         padding: 0;
-        height: 100%;
+        margin: 0;
+        color: black;
+        font-family: arial,sans-serif;
+        font-size: 13px;
       }
 
-      #container {
+      #map {
         position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 50%;
+      }
+
+      #panel-wpr {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        right: 0;
+        overflow: auto;
+      }
+
+      #panel {
+        font-family: arial;
+        padding: 0 5px;
+      }
+
+      #info {
+        padding: 5px;
+      }
+
+      #from {
+        width: 90%;
+        font-size: 1.2em;
+      }
+
+      .adp-directions {
         width: 100%;
-        height: 100%;
-        background:
-        url(http://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=14&size=1024x1024&sensor=false&skip_auth)
-        no-repeat;
       }
 
-      .bubble {
-        line-height: 15px;
-        position: absolute;
-        border: 1px solid #666;
-        padding: 2px;
-        background: #e3e3e3; /* Old browsers */
-        background: -moz-linear-gradient(top, #f9f9f9 0%, #eeeeee 52%, #f9f9f9 52%, #e3e3e3 63%, #eeeeee 63%, #e3e3e3 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f9f9f9), color-stop(52%,#eeeeee), color-stop(52%,#f9f9f9), color-stop(63%,#e3e3e3), color-stop(63%,#eeeeee), color-stop(100%,#e3e3e3)); /* Chrome,Safari4+ */
-background: -webkit-linear-gradient(top, #f9f9f9 0%,#eeeeee 52%,#f9f9f9 52%,#e3e3e3 63%,#eeeeee 63%,#e3e3e3 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top, #f9f9f9 0%,#eeeeee 52%,#f9f9f9 52%,#e3e3e3 63%,#eeeeee 63%,#e3e3e3 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top, #f9f9f9 0%,#eeeeee 52%,#f9f9f9 52%,#e3e3e3 63%,#eeeeee 63%,#e3e3e3 100%); /* IE10+ */
-        background: linear-gradient(top, #f9f9f9 0%,#eeeeee 52%,#f9f9f9 52%,#e3e3e3 63%,#eeeeee 63%,#e3e3e3 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#e3e3e3',GradientType=0 ); /* IE6-9 */
-        font-size: 14px;
-        font-weight: bold;
-        font-family: Arial;
-        -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+      .input {
+        background-color: white;
+        padding-left: 8px;
+        border: 1px solid #D9D9D9;
+        border-top: 1px solid silver;
+        -webkit-border-radius: 1px;
+        -moz-border-radius: 1px;
+        border-radius: 1px;
       }
 
-      .bubble-left {
-        border-radius: 3px 3px 3px 0;
+      .time {
+        margin: 0;
+        height: 17px;
+        border: 1px solid;
+        border-top-color: #CCC;
+        border-right-color: #999;
+        border-left-color: #999;
+        border-bottom-color: #CCC;
+        padding: 2px 15px 1px 1px;
       }
 
-      .bubble-left .tip {
-        position: absolute;
-        top: 18px;
-        left: -8px;
-        z-index: 2;
-        float: left;
-      }
+      button {
+        border: 1px solid #3079ED;
+        color: white;
+        background-color: #4D90FE;
+        background-image: -webkit-gradient(linear,left top,left bottom,from(#4D90FE),to(#4787ED));
+          background-image: -webkit-linear-gradient(top,#4D90FE,#4787ED);
+          background-image: -moz-linear-gradient(top, #4D90FE,#4787ED);
+          background-image: -ms-linear-gradient(top,#4D90FE,#4787ED);
+          background-image: -o-linear-gradient(top,#4D90FE,#4787ED);
+          background-image: linear-gradient(top,#4D90FE, #4787ED);
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#4d90fe',EndColorStr='#4787ed');
+          display: inline-block;
+          min-width: 54px;
+          text-align: center;
+          font-weight: bold;
+          padding: 0 8px;
+          line-height: 27px;
+          -webkit-border-radius: 2px;
+          -moz-border-radius: 2px;
+          border-radius: 2px;
+          -webkit-transition: all 0.218s;
+          -moz-transition: all 0.218s;
+          -o-transition: all 0.218s;
+          transition: all 0.218s;
+          }
 
-      .bubble-right {
-        border-radius: 3px 3px 0 3px;
-      }
+        #info div {
+          line-height: 22px;
+          font-size: 110%;
+          }
 
-      .bubble-right .tip {
-        position: absolute;
-        top: 18px;
-        right: -8px;
-        z-index: 2;
-        float: left;
-      }
+        .btn {
+        }
 
+        #panel-wpr {
+          border-left: 1px solid #e6e6e6;
+        }
 
-      .ico {
-        vertical-align: top;
-        position: relative;
-        width: 15px;
-        height: 15px;
-      }
+        #info {
+          border-bottom: 1px solid #E6E6E6;
+          margin-bottom: 5px;
+        }
 
-      #bubble1 {
-        top: 25px;
-        left: 25px;
-      }
+        h2 {
+          margin: 0;
+          padding: 0;
+        }
 
-      #bubble2 {
-        top: 50px;
-        left: 50px;
-      }
     </style>
+
+    <script>
+      var directions = new google.maps.DirectionsService();
+      var renderer = new google.maps.DirectionsRenderer();
+      var map, transitLayer;
+
+      function initialize() {
+        var mapOptions = {
+          zoom: 14,
+          center: new google.maps.LatLng(51.538551, -0.016633),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+
+        map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+        google.maps.event.addDomListener(document.getElementById('go'), 'click',
+        route);
+
+        var input = document.getElementById('from');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
+
+        transitLayer = new google.maps.TransitLayer();
+
+        var control = document.getElementById('transit-wpr');
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control);
+
+        google.maps.event.addDomListener(control, 'click', function() {
+          transitLayer.setMap(transitLayer.getMap() ? null : map);
+        });
+
+        addDepart();
+        route();
+      }
+
+      function addDepart() {
+        var depart = document.getElementById('depart');
+        for (var i = 0; i < 24; i++) {
+          for (var j = 0; j < 60; j += 15) {
+          var x = i < 10 ? '0' + i : i;
+          var y = j < 10 ? '0' + j : j;
+          depart.innerHTML += '<option>' + x + ':' + y + '</option>';
+        }
+        }
+      }
+
+      function route() {
+        var departure = document.getElementById('depart').value;
+        var bits = departure.split(':');
+        var now = new Date();
+        var tzOffset = (now.getTimezoneOffset() + 60) * 60 * 1000;
+
+        var time = new Date();
+        time.setHours(bits[0]);
+        time.setMinutes(bits[1]);
+
+        var ms = time.getTime() - tzOffset;
+        if (ms < now.getTime()) {
+          ms += 24 * 60 * 60 * 1000;
+        }
+
+        var departureTime = new Date(ms);
+
+        var request = {
+          origin: document.getElementById('from').value,
+          destination: 'Olympic Park London, United Kingdom',
+          travelMode: google.maps.DirectionsTravelMode.TRANSIT,
+          provideRouteAlternatives: true,
+          transitOptions: {
+            departureTime: departureTime
+          }
+        };
+
+        var panel = document.getElementById('panel');
+        panel.innerHTML = '';
+        directions.route(request, function(response, status) {
+          if (status == google.maps.DirectionsStatus.OK) {
+            renderer.setDirections(response);
+            renderer.setMap(map);
+            renderer.setPanel(panel);
+          } else {
+            renderer.setMap(null);
+            renderer.setPanel(null);
+          }
+        });
+
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
   </head>
   <body>
-    <div id="container">
-      <div class="bubble bubble-left" id="bubble1">
-        <img class="ico" src="https://maps.gstatic.com/mapfiles/transit/iw/6/bus.png">
-        47
-        <img src="tip.png" class="tip">
+    <div id="transit-wpr">
+      <button id="transit">Toggle transit layer</button>
+    </div>
+    <div id="map"></div>
+    <div id="panel-wpr">
+      <div id="info">
+        <div>
+          <h2>Transit directions</h2>
+        </div>
+        <div> 
+          <label>from:</label>
+          <input class="input" id="from" value="Belgrave House 76 Buckingham Palace Road, London, Greater London">
+        </div>
+        <div>
+          <label>to:</label>
+          <strong>Olympic Park London, United Kingdom</strong>
+        </div>
+        <div>Depart at <select class="time" id="depart"></select></div>
+        <div class="btn">
+          <button id="go">Get Directions</button>
+        </div>
       </div>
-
-      <div class="bubble bubble-right" id="bubble2">
-        <img class="ico"
-        src="https://maps.gstatic.com/mapfiles/transit/iw/6/airplane.png">
-        VX123
-        <img src="tiph.png" class="tip">
-      </div>
+      <div id="panel"></div>
     </div>
   </body>
 </html>
