@@ -5,12 +5,23 @@ var styles = [];
 var currentStyle = 0;
 
 var huePicker;
-var satSlider;
-var lightSlider;
-var gammaSlider;
-
 var sliderTimer;
-  
+
+var ukie = new google.maps.LatLngBounds(
+  new google.maps.LatLng(49.0, -10.0),
+  new google.maps.LatLng(66.0, 2.0)
+);
+
+var aunz = new google.maps.LatLngBounds(
+  new google.maps.LatLng(-48.0, 112.0),
+  new google.maps.LatLng(-9.0, 180.0) 
+);
+
+/* TODO
+  Remove vertical scrollbar on lists
+  Make text fields editable (with sanitisation)
+*/
+
 function init() {
   
   var opt = {
@@ -27,188 +38,242 @@ function init() {
   var div = document.getElementById('map');
   map = new google.maps.Map(div, opt);
   geocoder = new google.maps.Geocoder();
-
+  
   if (BrowserDetect.browser === "Explorer") {
-    document.getElementById("ruleColumns").style.display = "none";
-    alert("You must use Chrome, Firefox, or Safari to use the Styled Map wizard");
+    document.getElementById("mapStyle").style.display = "none";
+    document.getElementById("selectors").style.display = "none";
+    alert("The Styled Maps Wizard does not currently support your browser. Please use Chrome, Firefox, or Safari. Note that once you have designed a style using the wizard and applied it to a Maps API map, the styled map will display correctly on all browsers supported by the Maps API v3");
     return;
   }
+  
+  google.maps.event.addListener(map, 'bounds_changed', fixLabel);
   
   var mapStyleDiv = document.getElementById('mapStyleScrollable');
   mapStyleRenderer = new MapStyleRenderer(mapStyleDiv, styles);
   mapStyleRenderer.addSelectionListener(loadMapStyle);
   mapStyleRenderer.addTrashcanListener(deleteStyle);
   
-  makeSliders();
   huePicker = new HuePicker(document.getElementById('huePicker'));
-  huePicker.addListener(function(rgb) {
-    document.getElementById('set_hue').checked = true;
-    document.getElementById('hue').value = rgb;
-    document.getElementById('hueSample').style.backgroundColor = rgb;
-    setRule('hue');
-  });
+  huePicker.addListener(setHue);
   
-  createGeocoderControl();
+  createAddressSearchControl();
   addStyle();
 }
 
-function makeSliders() {
-  satSlider = new Slider(document.getElementById('satSlider'));
-  satSlider.addListener(function(value, position) {
-    document.getElementById('set_saturation').checked = true;
-    var s = Math.round((200 * value) - 100);
-    document.getElementById('saturation').value = s;
-    if (sliderTimer != null) {
-      clearTimeout(sliderTimer);
-    }
-    sliderTimer = setTimeout(function() {
-      sliderTimer = null;
-      setRule('saturation');      
-    }, 200);
-    //styles[currentStyle].sliders.saturation = position;
-  });
+/* Feature Type hierarchy */
 
-  lightSlider = new Slider(document.getElementById('lightSlider'));
-  lightSlider.addListener(function(value, position) {
-    document.getElementById('set_lightness').checked = true;
-    var l = Math.round((200 * value) - 100);
-    document.getElementById('lightness').value = l;
-    if (sliderTimer != null) {
-      clearTimeout(sliderTimer);
-    }
-    sliderTimer = setTimeout(function() {
-      sliderTimer = null;
-      setRule('lightness');
-    }, 200);
-    //styles[currentStyle].sliders.lightness = position;
- });
+function setFeatureType(i) {
+  styles[currentStyle].featureType = document.getElementById('features_level_' + i).value;
+  updateFeatureTypeLists();
+  setMapStyle(true); 
+}
+
+function updateFeatureTypeLists() {
+  var type = 'all.' +  styles[currentStyle].featureType;
+  var components = type.split('.');
+  var selected = [];
+  var value;
   
-  gammaSlider = new Slider(document.getElementById('gammaSlider'));
-  gammaSlider.addListener(function(value, position) {
-    document.getElementById('set_gamma').checked = true;
-    var g;
-    if (value < 0.5) {
-      g = Math.pow(10, (-2 * value) + 1.0);
-      g = (Math.round(g * 100) / 100);
-      if (g > 9.99) { g = 9.99 }
-    } else {
-      g = 1 - (2 * (value - 0.5));
-      g = (Math.round(g * 100) / 100);
-      if (g < 0.01) { g = 0.01 }
+  for (var i = 1; i <= 3;  i++) {
+    clearFeatures(i + 1);
+    var list = document.getElementById('features_level_' + i);
+    list.selectedIndex = -1;
+    if (components[i]) {
+      selected.push(components[i]);
+      value = selected.join('.');
+      list.value = value;
+      setFeatureList(i + 1, value);
     }
-    document.getElementById('gamma').value = g;
-    if (sliderTimer != null) {
-      clearTimeout(sliderTimer);
+  }
+  scrollToSelectedFeatureType();
+}
+
+function setFeatureList(i, parent) {
+  // Level 0 and 1 are never cleared so need not be reset  
+  if ( i < 2 || i > 3) {
+    return;
+  }
+
+  var clickHandler;  
+  var options = document.getElementById('features_level_' + i).options;
+  
+  if (i == 2) {
+    clickHandler = function() { setFeatureType(2) };
+    switch (parent) {
+      case "administrative":
+        options[0] = new Option("Country", "administrative.country");
+        options[1] = new Option("Province", "administrative.province");
+        options[2] = new Option("Locality", "administrative.locality");
+        options[3] = new Option("Neighborhood", "administrative.neighborhood");
+        options[4] = new Option("Land parcel", "administrative.land_parcel");
+        break;
+      case "landscape":
+        options[0] = new Option("Man made", "landscape.man_made");
+        options[1] = new Option("Natural", "landscape.natural");
+        break;
+      case "poi":
+        options[0] = new Option("Attraction", "poi.attraction");
+        options[1] = new Option("Business", "poi.business");
+        options[2] = new Option("Government", "poi.government");
+        options[3] = new Option("Medical", "poi.medical");
+        options[4] = new Option("Park", "poi.park");
+        options[5] = new Option("Place of worship", "poi.place_of_worship");
+        options[6] = new Option("School", "poi.school");
+        options[7] = new Option("Sports complex", "poi.sports_complex");
+        break;
+      case "road":
+        options[0] = new Option("Highway", "road.highway");
+        options[1] = new Option("Arterial", "road.arterial");
+        options[2] = new Option("Local", "road.local");
+        break;
+      case "transit":
+        options[0] = new Option("Line", "transit.line");
+        options[1] = new Option("Station", "transit.station");
+        break;
+      case "water":
+        break;
     }
-    sliderTimer = setTimeout(function() {
-      sliderTimer = null;
-      setRule('gamma');
-    }, 200);
-    //styles[currentStyle].sliders.gamma = position;
- });
-}
-
-function selectAllFeatures() {
-  unselectLevel1();
-  styles[currentStyle].featureType = document.getElementById('root').value;
-  scrollToSelectedFeatureType();
-  setMapStyle(true);
-}
-
-function selectLevel1() {
-  setLevel2();
-  styles[currentStyle].featureType = document.getElementById('level1').value;
-  scrollToSelectedFeatureType();
-  setMapStyle(true);        
-}
-
-function selectLevel2() {
-  setLevel3();
-  styles[currentStyle].featureType = document.getElementById('level2').value;
-  scrollToSelectedFeatureType();
-  setMapStyle(true);
-}
+  } else if (i == 3) {
+    clickHandler = function() { setFeatureType(3) };
+    switch (parent) {
+      case "road.highway":
+        options[0] = new Option("Controlled access", "road.highway.controlled_access");
+        break;
+      case "transit.station":
+        options[0] = new Option("Airport", "transit.station.airport");
+        options[1] = new Option("Bus", "transit.station.bus");
+        options[2] = new Option("Rail", "transit.station.rail");
+        break;
+    }  
+  }
   
-function selectLevel3() {
-  styles[currentStyle].featureType = document.getElementById('level3').value;
-  scrollToSelectedFeatureType();
-  setMapStyle(true);
+  for (var j = 0; j < options.length; j++) {
+    options[j].onclick = clickHandler;
+  }  
 }
 
-function unselectLevel1() {
-  document.getElementById('level3').options.length = 0;
-  document.getElementById('level2').options.length = 0;
-  document.getElementById('level1').selectedIndex = -1;
+function clearFeatures(i) {
+  // Level 0 and 1 are never cleared
+  if (i > 1 && i < 4) {
+    var list = document.getElementById('features_level_' + i);
+    if (list.options) {
+      list.options.length = 0;
+    }
+  }
 }
 
-function setLevel2() {
-  document.getElementById('level3').options.length = 0;
-
-  var options = document.getElementById('level2').options;
-  options.length = 0;
-  
-  switch (document.getElementById('level1').value) {
+function scrollToSelectedFeatureType() {
+  var panel = document.getElementById('featureTypePanel');
+  switch (styles[currentStyle].featureType) {
+    case "all":
+      animatedScroll(panel, 0);
+      return;
     case "administrative":
-      options[0] = new Option("Country", "administrative.country");
-      options[1] = new Option("Province", "administrative.province");
-      options[2] = new Option("Locality", "administrative.locality");
-      options[3] = new Option("Neighborhood", "administrative.neighborhood");
-      options[4] = new Option("Land parcel", "administrative.land_parcel");
-      break;
     case "landscape":
-      options[0] = new Option("Man made", "landscape.man_made");
-      options[1] = new Option("Natural", "landscape.natural");
-      break;
     case "poi":
-      options[0] = new Option("Attraction", "poi.attraction");
-      options[1] = new Option("Business", "poi.business");
-      options[2] = new Option("Government", "poi.government");
-      options[3] = new Option("Medical", "poi.medical");
-      options[4] = new Option("Park", "poi.park");
-      options[5] = new Option("Place of worship", "poi.place_of_worship");
-      options[6] = new Option("School", "poi.school");
-      options[7] = new Option("Sports complex", "poi.sports_complex");
-      break;
     case "road":
-      options[0] = new Option("Highway", "road.highway");
-      options[1] = new Option("Arterial", "road.arterial");
-      options[2] = new Option("Local", "road.local");
-      break;
     case "transit":
-      options[0] = new Option("Line", "transit.line");
-      options[1] = new Option("Station", "transit.station");
-      break;
     case "water":
-      break;
-  }
-  
-  for (var i = 0; i < options.length; i++) {
-    options[i].onclick = selectLevel2;
-  }
-}
-
-function setLevel3() {
-  var options = document.getElementById('level3').options;
-  options.length = 0;
-  
-  switch (document.getElementById('level2').value) {
-    case "transit.station":
-      options[0] = new Option("Airport", "transit.station.airport");
-      options[1] = new Option("Bus", "transit.station.bus");
-      options[2] = new Option("Rail", "transit.station.rail");
-      break;
-    case "road.highway":
-      options[0] = new Option("Controlled access", "road.highway.controlled_access");
-      break;
-  }
-  
-  for (var i = 0; i < options.length; i++) {
-    options[i].onclick = selectLevel3;
+      animatedScroll(panel, 120);
+      return;
+    default:
+      animatedScroll(panel, 240);
   }
 }
 
-function animatedScroll(target) {
-  var element = document.getElementById('featureTypePanel');
+/* Element Type hierarchy */
+
+function setElementType(i) {
+  styles[currentStyle].elementType = document.getElementById('elements_level_' + i).value;
+  updateElementTypeLists();
+  setMapStyle(true); 
+}
+
+function updateElementTypeLists() {
+  var type = 'all.' +  styles[currentStyle].elementType;
+  var components = type.split('.');
+  var selected = [];
+  var value;
+  
+  for (var i = 1; i <= 3;  i++) {
+    clearElements(i + 1);
+    var list = document.getElementById('elements_level_' + i);
+    list.selectedIndex = -1;
+    if (components[i]) {
+      selected.push(components[i]);
+      value = selected.join('.');
+      list.value = value;
+      setElementList(i + 1, value);
+    }
+  }
+  scrollToSelectedElementType();
+}
+
+function setElementList(i, parent) {
+  // Level 0 and 1 are never cleared so need not be reset  
+  if ( i < 2 || i > 3) {
+    return;
+  }
+
+  var clickHandler;  
+  var options = document.getElementById('elements_level_' + i).options;
+  
+  if (i == 2) {
+    clickHandler = function() { setElementType(2) };
+    switch (parent) {
+      case "geometry":
+        options[0] = new Option("Fill", "geometry.fill");
+        options[1] = new Option("Stroke", "geometry.stroke");
+        break;
+      case "labels":
+        options[0] = new Option("Text", "labels.text");
+        options[1] = new Option("Icon", "labels.icon");
+        break;
+    }
+  } else if (i == 3) {
+    clickHandler = function() { setElementType(3) };
+    switch (parent) {
+      case "labels.text":
+        options[0] = new Option("Fill", "labels.text.fill");
+        options[1] = new Option("Stroke", "labels.text.stroke");
+        break;
+    }  
+  }
+  
+  for (var j = 0; j < options.length; j++) {
+    options[j].onclick = clickHandler;
+  }  
+}
+
+function clearElements(i) {
+  // Level 0 and 1 are never cleared
+  if (i > 1 && i < 4) {
+    var list = document.getElementById('elements_level_' + i);
+    if (list.options) {
+      list.options.length = 0;
+    }
+  }
+}
+
+function scrollToSelectedElementType() {
+  var panel = document.getElementById('elementTypePanel');
+  switch (styles[currentStyle].elementType) {
+    case "all":
+      animatedScroll(panel, 0);
+      return;
+    case "geometry":
+    case "labels":
+      animatedScroll(panel, 120);
+      return;
+    default:
+      animatedScroll(panel, 240);
+  }
+}
+
+
+/* Hierarchy Utility Functions */
+
+function animatedScroll(element, target) {
   var current = element.scrollLeft;
   var t = 0;
   var i = current;
@@ -233,16 +298,7 @@ function scrollTo(element, n) {
   }
 }
 
-function setElementType() {
-  if (document.getElementById('elements_all').checked) {
-    styles[currentStyle].elementType = 'all';
-  } else if (document.getElementById('elements_geometry').checked) {
-    styles[currentStyle].elementType = 'geometry';
-  } else if (document.getElementById('elements_labels').checked) {
-    styles[currentStyle].elementType = 'labels';
-  }
-  setMapStyle(true);
-}
+/* Stylers */
 
 function setVisibility() {
   document.getElementById('set_visibility').checked = true;
@@ -253,7 +309,7 @@ function setVisibility() {
   } else if (document.getElementById('visibility_off').checked) {
     document.getElementById('visibility').value = 'off';
   }
-  setRule('visibility');
+  setStyler('visibility');
 }
 
 function setInvertLightness() {
@@ -262,148 +318,133 @@ function setInvertLightness() {
   } else {
     document.getElementById('invert_lightness').value = 'false';          
   }
-  setRule('invert_lightness');
+  setStyler('invert_lightness');
 }
 
-function setRule(rule) {
-  deleteRule(rule);
-  if (document.getElementById('set_' + rule).checked) {
-    var value = document.getElementById(rule).value;
-    if (! value) {
-      value = getDefaultRuleValue(rule);
+function setColor() {
+  var r = parseInt(document.getElementById('redSlider').value);
+  var g = parseInt(document.getElementById('greenSlider').value);
+  var b = parseInt(document.getElementById('blueSlider').value);
+
+  document.getElementById('redInt').value = r;
+  document.getElementById('greenInt').value = g;
+  document.getElementById('blueInt').value = b;
+  
+  var aarrggbb = getColorCode([r, g, b]);
+  
+  document.getElementById('set_color').checked = true;
+  document.getElementById('color').value = aarrggbb;
+  document.getElementById('colorSample').style.backgroundColor = aarrggbb;
+
+  if (sliderTimer != null) {
+    clearTimeout(sliderTimer);
+  }
+  sliderTimer = setTimeout(function() {
+    sliderTimer = null;
+    setStyler('color');
+  }, 200);
+}
+
+function setWeight() {
+  var weight = parseInt(document.getElementById('weightSlider').value) / 10;
+  document.getElementById('set_weight').checked = true;
+  document.getElementById('weight').value = weight.toFixed(1);
+  if (sliderTimer != null) {
+      clearTimeout(sliderTimer);
+  }
+  sliderTimer = setTimeout(function() {
+    sliderTimer = null;
+    setStyler('weight');      
+  }, 200);
+}
+
+function setHue(rgb) {
+  document.getElementById('set_hue').checked = true;
+  document.getElementById('hue').value = rgb;
+  document.getElementById('hueSample').style.backgroundColor = rgb;
+  setStyler('hue');  
+}
+
+function setSaturation() {
+  var saturation = parseInt(document.getElementById('satSlider').value);
+  document.getElementById('set_saturation').checked = true;
+  document.getElementById('saturation').value = saturation;
+  if (sliderTimer != null) {
+      clearTimeout(sliderTimer);
+  }
+  sliderTimer = setTimeout(function() {
+    sliderTimer = null;
+    setStyler('saturation');      
+  }, 200);
+}
+
+function setLightness() {
+  var lightness = parseInt(document.getElementById('lightSlider').value);
+  document.getElementById('set_lightness').checked = true;
+  document.getElementById('lightness').value = lightness;
+  if (sliderTimer != null) {
+    clearTimeout(sliderTimer);
+  }
+  sliderTimer = setTimeout(function() {
+    sliderTimer = null;
+    setStyler('lightness');
+  }, 200);  
+}
+
+function setGamma() {
+    var gamma = getGammaFromSlider(parseInt(document.getElementById('gammaSlider').value));
+    document.getElementById('set_gamma').checked = true;
+    document.getElementById('gamma').value = gamma;
+    if (sliderTimer != null) {
+      clearTimeout(sliderTimer);
     }
-    var ruleObject = {};
-    switch (rule) {
-      case 'visibility':
-      case 'hue':
-        ruleObject[rule] = value;
-        break;
-      case 'saturation':
-      case 'lightness':
-        var intValue = parseInt(value);
-        if (intValue != 0) {
-          ruleObject[rule] = parseInt(value);
-        }
-        break;
-      case 'gamma':
-        var floatValue = parseFloat(value);
-        if (floatValue != 0) {
-          ruleObject[rule] = parseFloat(value);          
-        }
-        break;
-      case 'invert_lightness':
-        ruleObject[rule] = (value === 'true');
-        break;
-    }
-    if (ruleObject[rule]) {
-      styles[currentStyle].stylers.push(ruleObject);
-    }
+    sliderTimer = setTimeout(function() {
+      sliderTimer = null;
+      setStyler('gamma');
+    }, 200);
+}
+
+function getGammaFromSlider(value) {
+  var gamma;
+  value /= 500;
+  if (value < 0.5) {
+    gamma = Math.pow(10, (-2 * value) + 1.0);
+    gamma = (Math.round(gamma * 100) / 100);
+    if (gamma > 9.99) { gamma = 9.99 }
   } else {
-    clearRuleUI(rule);
+    gamma = 1 - (2 * (value - 0.5));
+    gamma = (Math.round(gamma * 100) / 100);
+    if (gamma < 0.01) { gamma = 0.01 }
   }
-  setMapStyle();
+  return gamma;
 }
 
-function getDefaultRuleValue(rule) {
+function getSliderFromGamma(gamma) {
   var value;
-  switch (rule) {
-    case 'visibility':
-      value = "on";
-      document.getElementById('visibility_on').checked = true;
-      break;
-    case 'hue':
-      value = '#ff0000';
-      document.getElementById('hueSample').style.backgroundColor = value;
-      break;
-    case 'saturation':
-    case 'lightness':
-    case 'gamma':
-      value = 0;
-      break;
-    case 'invert_lightness':
-      value = "true";
+  if (gamma > 1) {
+    value = Math.log(gamma) / Math.log(10);
+    value -= 1.0;
+    value /= -2;
+  } else {
+    value = ((1 - gamma) / 2) + 0.5;
   }
-  document.getElementById(rule).value = value;
-  return value;
+  return Math.round(value * 500);
 }
 
-function clearRuleUI(rule) {
-  document.getElementById(rule).value = "";
-  switch (rule) {
-    case 'visibility':
-      document.getElementById('visibility_on').checked = false;
-      document.getElementById('visibility_simplified').checked = false;
-      document.getElementById('visibility_off').checked = false;
-      break;
-    case 'hue':
-      document.getElementById('hueSample').style.backgroundColor = "#f0f0f0";
-      break;
-    case 'saturation':
-      satSlider.reset();
-      break;
-    case 'lightness':
-      lightSlider.reset();
-      break;
-    case 'gamma':
-      gammaSlider.reset();
-      break;            
-  }        
-}
+/* Map Styles management */
 
-function resetStyleUI() {
-  var stylers = [ 'visibility', 'hue', 'saturation', 'lightness', 'gamma', 'invert_lightness'];
-  for (var i = 0; i < stylers.length; i++) {
-    document.getElementById('set_' + stylers[i]).checked = false;
-    clearRuleUI(stylers[i]);
-  }
-  unselectLevel1();
-  scrollToSelectedFeatureType();
-  document.getElementById('elements_all').checked = true;
-}
-
-function resetStyle() {
-  styles[currentStyle] = {
-    featureType: 'all',
-    elementType: 'all',
-    stylers: [],
-    sliders: {}
-  }
-  resetStyleUI();
-  setMapStyle();
-}
-
-function deleteRule(rule) {
-  var i = findRule(rule);
-  if (i != -1) {
-    styles[currentStyle].stylers.splice(i, 1);
-  }
-}
-
-function findRule(rule) {
-  if (styles[currentStyle].stylers) {
-    for (var i = 0; i < styles[currentStyle].stylers.length; i++) {
-      for (var p in styles[currentStyle].stylers[i]) {
-        if (p === rule) {
-          return i;
-        }
-      }
-    }
-  }
-  return -1;
-}
-
-function setMapStyle(selectorClick) {
-  if (! selectorClick || styles[currentStyle].stylers.length > 0) {
-    map.setOptions({ 'styles': styles });
-  }
-  mapStyleRenderer.refresh(currentStyle);
-  mapStyleRenderer.selectPanel(currentStyle);
+function loadMapStyle(i) {
+  currentStyle = i;
+  resetStylers();
+  updateFeatureTypeLists();
+  updateElementTypeLists();
+  loadStylers();
 }
 
 function addStyle() {
   currentStyle = styles.length;
   styles.push({});
-  resetStyle();
+  resetCurrentStyle();
 }
 
 function deleteStyle(i) {
@@ -420,101 +461,19 @@ function deleteStyle(i) {
   setMapStyle();          
 }
 
-function loadMapStyle(i) {
-  currentStyle = i;
-  resetStyleUI();
-  loadFeatureType();
-  loadElementType();
-  loadStylers();
-}
-
-function loadFeatureType() {
-  var type = styles[currentStyle].featureType;
-  document.getElementById('root').value = "all";
-  unselectLevel1();
-  scrollToSelectedFeatureType();
-
-  switch (type) {
-    case "all":
-      return;
-    case "administrative":
-    case "administrative.country":
-    case "administrative.province":
-    case "administrative.locality":
-    case "administrative.neighborhood":
-    case "administrative.land_parcel":
-      document.getElementById('level1').value = "administrative";
-      break;
-    case "landscape":
-    case "landscape.man_made":
-    case "landscape.natural":
-      document.getElementById('level1').value = "landscape"
-      break;
-    case "poi":
-    case "poi.business":
-    case "poi.medical":
-    case "poi.government":
-    case "poi.park":
-    case "poi.place_of_worship":
-    case "poi.school":
-    case "poi.sports_complex":
-      document.getElementById('level1').value = "poi"
-      break;
-    case "road":
-    case "road.highway":
-    case "road.arterial":
-    case "road.local":
-      document.getElementById('level1').value = "road";
-      break;
-    case "transit":
-    case "transit.line":
-    case "transit.station":
-    case "transit.station.airport":
-    case "transit.station.bus":
-    case "transit.station.rail":
-      document.getElementById('level1').value = "transit";
-      break;
-    case "water":
-      document.getElementById('level1').value = "water"
-      break;
+function setMapStyle(selectorClick) {
+  if (! selectorClick || styles[currentStyle].stylers.length > 0) {
+    map.setOptions({ 'styles': styles });
   }
   
-  setLevel2();
-  switch (type) {
-    case "transit.station.airport":
-    case "transit.station.bus":
-    case "transit.station.rail":
-      document.getElementById('level2').value = "transit.station";
-      setLevel3();
-      document.getElementById('level3').value = type;
-      break;
-    default:
-      document.getElementById('level2').value = type;
-      setLevel3();
+  if (! isStaticMapsCompatible()) {
+    document.getElementById('staticMapButton').disabled = true;
+  } else {
+    document.getElementById('staticMapButton').disabled = false;
   }
-}
-
-function scrollToSelectedFeatureType() {
-  switch (styles[currentStyle].featureType) {
-    case "all":
-      animatedScroll(0);
-      return;
-    case "administrative":
-    case "landscape":
-    case "poi":
-    case "road":
-    case "transit":
-    case "water":
-      animatedScroll(120);
-      return;
-    default:
-      animatedScroll(240);
-  }
-}
-
-function loadElementType(type) {
-  var type = styles[currentStyle].elementType;
-  document.getElementById('elements_' + type).checked = true;
+  
+  mapStyleRenderer.refresh(currentStyle);
+  mapStyleRenderer.selectPanel(currentStyle);
 }
 
 function loadStylers() {
@@ -527,22 +486,188 @@ function loadStylers() {
         case "visibility":
           document.getElementById('visibility_' + stylers[i][p]).checked = true;
           break;
+        case "color":
+          document.getElementById('colorSample').style.backgroundColor = stylers[i][p];
+          var rgb = getRGBFromColorCode(stylers[i][p]);
+          document.getElementById('redSlider').value = rgb[1];
+          document.getElementById('greenSlider').value = rgb[2];
+          document.getElementById('blueSlider').value = rgb[3];
+          break;
+        case 'weight':
+          document.getElementById('weightSlider').value = (stylers[i][p] * 10);
+          break;
         case "hue":
           document.getElementById('hueSample').style.backgroundColor = stylers[i][p];
           break;
         case "saturation":
-          satSlider.setPosition(styles[currentStyle].sliders.saturation);
+          document.getElementById('satSlider').value = stylers[i][p];
           break;
         case "lightness":
-          lightSlider.setPosition(styles[currentStyle].sliders.lightness);
+          document.getElementById('lightSlider').value = stylers[i][p];
           break;
         case "gamma":
-          gammaSlider.setPosition(styles[currentStyle].sliders.gamma);
+          document.getElementById('gammaSlider').value = getSliderFromGamma(stylers[i][p]);
           break;
       }
     }
   }
 }
+
+function resetCurrentStyle() {
+  styles[currentStyle] = {
+    featureType: 'all',
+    elementType: 'all',
+    stylers: []
+  };
+  resetStylers();
+  updateFeatureTypeLists();
+  updateElementTypeLists();
+  setMapStyle();
+}
+
+function resetStylers() {
+  var stylers = [ 'visibility', 'invert_lightness', 'color', 'weight', 'hue', 'saturation', 'lightness', 'gamma'];
+  for (var i = 0; i < stylers.length; i++) {
+    document.getElementById('set_' + stylers[i]).checked = false;
+    resetStyler(stylers[i]);
+  }
+}
+
+/* Styler management */
+
+function resetStyler(styler) {
+  document.getElementById(styler).value = "";
+  switch (styler) {
+    case 'visibility':
+      document.getElementById('visibility_on').checked = false;
+      document.getElementById('visibility_simplified').checked = false;
+      document.getElementById('visibility_off').checked = false;
+      break;
+    case 'hue':
+      document.getElementById('hueSample').style.backgroundColor = "#f0f0f0";
+      break;
+    case 'color':
+      document.getElementById('colorSample').style.backgroundColor = "#f0f0f0";
+      document.getElementById('redSlider').value = 128;
+      document.getElementById('greenSlider').value = 128;
+      document.getElementById('blueSlider').value = 128;
+      document.getElementById('redInt').value = '';
+      document.getElementById('greenInt').value = '';
+      document.getElementById('blueInt').value = '';
+      break;
+    case 'weight':
+      document.getElementById('weightSlider').value = '0.1';
+      break;
+    case 'saturation':
+      document.getElementById('satSlider').value = 0;
+      break;
+    case 'lightness':
+      document.getElementById('lightSlider').value = 0;
+      break;
+    case 'gamma':
+      document.getElementById('gammaSlider').value = 250;
+      break;            
+  }        
+}
+
+function setStyler(styler) {
+  deleteStyler(styler);
+  if (document.getElementById('set_' + styler).checked) {
+    var value = document.getElementById(styler).value;
+    if (! value) {
+      value = getDefaultStylerValue(styler);
+    }
+    var stylerLiteral = {};
+    switch (styler) {
+      case 'visibility':
+      case 'color':
+      case 'hue':
+        stylerLiteral[styler] = value;
+        break;
+      case 'weight':
+        stylerLiteral[styler] = parseFloat(value);
+        break;
+      case 'saturation':
+      case 'lightness':
+        var intValue = parseInt(value);
+        if (intValue != 0) {
+          stylerLiteral[styler] = parseInt(value);
+        }
+        break;
+      case 'gamma':
+        var floatValue = parseFloat(value);
+        if (floatValue != 0) {
+          stylerLiteral[styler] = parseFloat(value);          
+        }
+        break;
+      case 'invert_lightness':
+        stylerLiteral[styler] = (value === 'true');
+        break;
+    }
+    if (stylerLiteral.hasOwnProperty(styler)) {
+      styles[currentStyle].stylers.push(stylerLiteral);
+    }
+  } else {
+    resetStyler(styler);
+  }
+  setMapStyle();
+}
+
+function getDefaultStylerValue(styler) {
+  var value;
+  switch (styler) {
+    case 'visibility':
+      value = "on";
+      document.getElementById('visibility_on').checked = true;
+      break;
+    case 'color':
+      value = '#808080';
+      document.getElementById('redInt').value = '128';
+      document.getElementById('greenInt').value = '128';
+      document.getElementById('blueInt').value = '128';
+      document.getElementById('colorSample').style.backgroundColor = value;
+      break;
+    case 'weight':
+      value = '0.1';
+      break;
+    case 'hue':
+      value = '#ff0000';
+      document.getElementById('hueSample').style.backgroundColor = value;
+      break;
+    case 'saturation':
+    case 'lightness':
+      value = 0;
+    case 'gamma':
+      value = 1.0;
+      break;
+    case 'invert_lightness':
+      value = "true";
+  }
+  document.getElementById(styler).value = value;
+  return value;
+}
+
+function deleteStyler(styler) {
+  var i = findStyler(styler);
+  if (i != -1) {
+    styles[currentStyle].stylers.splice(i, 1);
+  }
+}
+
+function findStyler(styler) {
+  if (styles[currentStyle].stylers) {
+    for (var i = 0; i < styles[currentStyle].stylers.length; i++) {
+      for (var p in styles[currentStyle].stylers[i]) {
+        if (p === styler) {
+          return i;
+        }
+      }
+    }
+  }
+  return -1;
+}
+
+/* JSON pretty printer */
 
 function showJson() {
   var jsonStyles = [];
@@ -564,6 +689,7 @@ function showJson() {
         for (var p in styles[i].stylers[j]) {
           switch (p) {
             case 'visibility':
+            case 'color':
             case 'hue':
               jsonStylers[j] = '      { ' + p + ': "' + styles[i].stylers[j][p] + '" }';
               break;
@@ -593,6 +719,25 @@ function closeJson() {
   document.getElementById('lightbox').style.display = 'none';
 }
 
+/* Static Maps support */
+
+function isStaticMapsCompatible() {
+  for (var i = 0; i < styles.length; i++) {
+    // Static Maps does not support element subtypes of geometry and labels
+    if (styles[i].elementType.indexOf('.') != -1) {
+      return false;
+    }
+    
+    for (var j = 0; j < styles[i].stylers.length; j++) {      
+      // Static Maps does not support the color styler
+      if (styles[i].stylers[j].color || styles[i].stylers[j].weight) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
 function showStaticMap() {
   var url = getStaticMapsURL();
   document.getElementById("staticMapImg").src = url;
@@ -612,16 +757,6 @@ function closeStaticMap() {
   urlDiv.removeChild(urlDiv.childNodes[0]);
   popup.style.display = 'none';
   document.getElementById('lightbox').style.display = 'none';
-}
-
-function showHelp() {
-  document.getElementById('help').style.display = 'block';
-  document.getElementById('helpButton').disabled = true;
-}
-
-function closeHelp() {
-  document.getElementById('help').style.display = 'none';
-  document.getElementById('helpButton').disabled = false;
 }
 
 function getStaticMapsURL() {
@@ -664,7 +799,21 @@ function getStaticMapsURL() {
   return(url + params.join('&'));
 }
 
-function createGeocoderControl() {
+/* Help window */
+
+function showHelp() {
+  document.getElementById('help').style.display = 'block';
+  document.getElementById('helpButton').disabled = true;
+}
+
+function closeHelp() {
+  document.getElementById('help').style.display = 'none';
+  document.getElementById('helpButton').disabled = false;
+}
+
+/* Address Search Control */
+
+function createAddressSearchControl() {
   var control = document.createElement('div');
   var input = document.createElement('input');
   control.appendChild(input);
@@ -722,6 +871,40 @@ function do_click(field) {
   document.getElementById('set_' + field).click();
 }
 
+function getColorCode(ints) {
+  var code = '#';
+  
+  for (var i = 0; i < ints.length; i++) {
+    var hex = ints[i].toString(16);
+    hex = (hex.length === 1 ? '0' + hex : hex);
+    code = code + hex;
+  }
+
+  return code;
+}
+
+function getRGBFromColorCode(code) {
+  var offset = 1;
+  var ints = [];
+  for (i = 1; i <= (code.length - 2); i += 2) {
+    var hex = code.substring(i, i+2);
+    ints.push(parseInt(hex, 16));
+  }
+  return ints;
+}
+
+function fixLabel() {
+  var bounds = map.getBounds();
+  var label = document.getElementById('colourLabel');
+  var text = 'Color';
+  if (map.getZoom() > 4) {
+    if (bounds.intersects(ukie) || bounds.intersects(aunz)) {
+      text = 'Colour';
+    } 
+  }
+  label.innerHTML = text;
+}
+
 function HuePicker(div) {
   this.listeners = [];
   
@@ -752,16 +935,10 @@ function HuePicker(div) {
 HuePicker.prototype.setHue = function(rgb) {
   var me = this;
   return function() {
-    var rr = rgb[0].toString(16);
-    var gg = rgb[1].toString(16);
-    var bb = rgb[2].toString(16);
-    
-    rr = (rr.length === 1 ? '0' + rr : rr);
-    gg = (gg.length === 1 ? '0' + gg : gg);
-    bb = (bb.length === 1 ? '0' + bb : bb);
-    
+    var rrggbb = getColorCode(rgb)
+
     for (var i = 0; i < me.listeners.length; i++) {
-      me.listeners[i]('#' + rr + gg + bb);
+      me.listeners[i](rrggbb);
     }
   }
 }
@@ -789,89 +966,6 @@ HuePicker.prototype.addListener = function(f) {
   this.listeners.push(f);
 }
 
-function Slider(div) {
-  this.listeners = [];
-  
-  this.div = div;
-  this.container = document.createElement('div');
-  this.track = document.createElement('div');
-  this.handle = document.createElement('div');
-  
-  this.container.style.position = 'relative';
-  this.container.style.width = '100%';
-  this.container.style.height = '100%';
-  this.div.appendChild(this.container);
-
-  this.track.setAttribute('class', 'slidertrack');
-  this.handle.setAttribute('class', 'sliderhandle');
-  this.track.style.width = (this.container.offsetWidth - 20) + 'px';
-  this.handle.style.left = ((this.container.offsetWidth / 2) - 2) + 'px'
-  this.container.appendChild(this.track);
-  this.container.appendChild(this.handle);
-  
-  this.handle.onmousedown = this.startSliderDrag();
-  this.container.onmousemove = this.sliderDrag();
-}
-
-Slider.prototype.reset = function() {
-  this.handle.style.left = ((this.container.offsetWidth / 2) - 2) + 'px';
-}
-
-Slider.prototype.startSliderDrag = function() {
-  var me = this;
-  return function(e) {
-    me.startLeft = me.handle.offsetLeft;
-    me.startMouseX = me.getMousePositionX(e);
-    me.inDrag = true;
-    document.body.onmouseup = me.stopSliderDrag();
- }
-}
-
-Slider.prototype.sliderDrag = function() {
-  var me = this;
-  return function(e) {
-    if (me.inDrag) {
-      var x = me.getMousePositionX(e);
-      var left = me.startLeft + (x - me.startMouseX);
-      if (left >= 8 && left <= me.container.offsetWidth - 12) {
-        me.handle.style.left = left + 'px';
-        var value = (left - 8) / (me.container.offsetWidth - 20);
-        for (var i = 0; i < me.listeners.length; i++) {
-          me.listeners[i](value, left);
-        }
-      }
-    }
-  }
-}
-
-Slider.prototype.stopSliderDrag = function() {
-  var me = this;
-  return function(e) {
-    me.inDrag = false;
-  }
-}
-
-Slider.prototype.getMousePositionX = function(e) {
-  var posx = 0;
-  if (!e) var e = window.event;
-  if (e.pageX) 	{
-          posx = e.pageX;
-  }
-  else if (e.clientX) 	{
-          posx = e.clientX + document.body.scrollLeft
-                  + document.documentElement.scrollLeft;
-  }
-  return posx;
-}
-
-Slider.prototype.setPosition = function(position) {
-  this.handle.style.left = position + 'px';
-}
-
-Slider.prototype.addListener = function(f) {
-  this.listeners.push(f);
-}
-
 function MapStyleRenderer(div, styles) {
   this.headers = [];
   this.panels = [];
@@ -884,6 +978,8 @@ function MapStyleRenderer(div, styles) {
     featureType: "Feature type",
     elementType: "Element type",
     visibility: "Visibility",
+    color: "Color",
+    weight: "Weight",
     hue: "Hue",
     invert_lightness: "Invert lightness",
     saturation: "Saturation",
@@ -917,7 +1013,6 @@ MapStyleRenderer.prototype.selectPanel = function(selectedIndex) {
 
 MapStyleRenderer.prototype.getPanel = function(i) {
   var style = this.styles[i];
-
   var header = document.createElement('div');
   header.setAttribute('class', 'mapStylePanelHeader');
   header.appendChild(document.createTextNode("Style " + i));
@@ -935,6 +1030,8 @@ MapStyleRenderer.prototype.getPanel = function(i) {
   this.addRow(table, 'featureType', style.featureType);
   this.addRow(table, 'elementType', style.elementType);
   this.addStyle(table, 'visibility', style.stylers);
+  this.addStyle(table, 'color', style.stylers);
+  this.addStyle(table, 'weight', style.stylers);
   this.addStyle(table, 'hue', style.stylers);
   this.addStyle(table, 'invert_lightness', style.stylers);
   this.addStyle(table, 'saturation', style.stylers);
@@ -986,7 +1083,7 @@ MapStyleRenderer.prototype.getTrashcanHandler = function(trashcanIndex) {
 }
 
 MapStyleRenderer.prototype.addRow = function(table, att, val) {
-  if (val) {
+  if (att == 'weight' || val) {
     var tr = document.createElement('tr');
     var atd = document.createElement('td');
     var vtd = document.createElement('td');
