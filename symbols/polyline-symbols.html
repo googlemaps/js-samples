@@ -6,9 +6,10 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 <script type="text/javascript">
 
-  var map;
+  var map, timer;
   var offset = {};
   var dotted, dashed, tracks, barometric, chevrons;
+  var unlock = false;
   
   function initialize() {
     var myOptions = {
@@ -191,14 +192,33 @@
       'chevrons': 0
     }
     
-  setInterval(function() {
-      animateBarometric();
-      animateChevrons();
-      animateDashed();
-      animateDotted();
-      animateTracks();
-    }, 20);
+    google.maps.event.addListener(map, 'mouseout', stop);
+    google.maps.event.addListener(map, 'tilesloaded', function() {
+      unlock = true;
+    });
   }
+
+  function start() {
+    if (unlock) {
+      document.getElementById("lightbox").style.display = "none";
+      document.getElementById("msg").style.display = "none";
+ 
+      timer = setInterval(function() {
+        animateBarometric();
+        animateChevrons();
+        animateDashed();
+        animateDotted();
+        animateTracks();
+      }, 20);
+    }
+  }
+
+  function stop() {
+    clearInterval(timer);
+    document.getElementById("lightbox").style.display = "block";
+    document.getElementById("msg").style.display = "block";
+  }
+
   
   function animateDotted() {
     if (offset['dotted'] == 5) {
@@ -286,9 +306,27 @@ body {
   position: absolute;
   background-color: white;
 }
+#msg {
+  position: absolute;
+  font-size: 30px;
+  font-family: sans-serif;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  color: #d0d0ff;
+  top: 200px;
+  width: 600px;
+  text-align: center;
+}
+#lightbox {
+  width: 600px;
+  height: 480px;
+  background-color: #ffffff;
+  opacity: 0.8;
+}
 </style>
 </head>
 <body onload="initialize()">
   <div id="map"></div>
+  <div id="lightbox" onmouseover="start()"></div>
+  <div id="msg">Mouse over the map to view</div>
 </body>
 </html>
