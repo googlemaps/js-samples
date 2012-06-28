@@ -18,7 +18,7 @@ body {
 }
 
 .srcPanel {
-  background-color: #f8f8f8;
+  background-color: #ffffff;
   overflow: auto;
   display: none;
   position: absolute;
@@ -27,10 +27,10 @@ body {
   bottom: 30px;
   right: 30px;
   padding: 0px 20px 10px 20px;
-  border: 2px solid #004080;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  border: 1px solid #606060;
+  -moz-box-shadow: 2px 2px 3px #888;
+  -webkit-box-shadow: 2px 2px 3px #888;
+  box-shadow: 2px 2px 2px #888; 
 }
 
 .closeIcon {
@@ -50,10 +50,10 @@ body {
   left: 0px;
 }
 
-#featureType {
+#selectors {
   position: absolute;
   width: 254px;
-  height: 602px;
+  height: 701px;
   top: 20px;
   left: 80px;
 }
@@ -62,7 +62,7 @@ body {
   top: 80px;
   right: 10px;
   width: 256px;
-  height: 542px;
+  height: 594px;
   position: absolute;
 }
 
@@ -70,7 +70,7 @@ body {
   position: relative;
   top: 0px;
   width: 256px;
-  height: 494px;
+  height: 544px;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -103,18 +103,35 @@ body {
 #buttonPanel {
   position: relative;
   border-top: 1px solid grey;
-  padding: 2px;
+  padding: 1px;
 }
 
 .features {
   width: 120px;
-  height: 130px;
+  height: 116px;
+  margin-bottom: 5px;
+}
+
+.elements {
+  width: 120px;
+  height: 32px;
+  margin-bottom: 5px;
+}
+
+#featureLists, #elementLists {
+  width: 496px;
+  padding-top: 4px;
+  padding-left: 4px;
+}
+
+#featureTypePanel, #elementTypePanel {
+  overflow-x: scroll;
+  width: 100%;
 }
 
 .heading {
   font-weight: bold;
-  padding: 2px;
-  padding-bottom: 4px;
+  padding: 4px;
   border-bottom: 1px solid grey;
   font-size: 11pt;
   position: relative;
@@ -138,11 +155,11 @@ body {
 }
 
 .control {
-  border: 2px solid #004080;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  background-color: #efefef;
+  border: 1px solid #606060;
+  background-color: #f0f0f0;
+  -moz-box-shadow: 2px 2px 3px #888;
+  -webkit-box-shadow: 2px 2px 3px #888;
+  box-shadow: 2px 2px 2px #888;
 }
 
 #elementHeading, #stylersHeading {
@@ -150,20 +167,14 @@ body {
   padding-top: 5px;
 }
 
-.features {
-  margin-bottom: 5px;
-}
-
-#elements {
-  padding-bottom: 5px;
-  padding-top: 2px;
-  width: 100%;
+.rule {
+  border-bottom: 1px solid lightgrey;
+  margin-bottom: 4px;
 }
 
 .rulecontrol {
   margin-left: 10px;
   position: relative;
-  margin-bottom: 10px;
 }
 
 #ruleColumn {
@@ -173,11 +184,12 @@ body {
 
 #huePicker {
   width: 236px;
-  height: 32px;
+  height: 24px;
   border: 1px solid black;
+  margin-bottom: 4px;
 }
 
-#hueSample {
+#hueSample,#colorSample {
   width: 42px;
   background-color: #f0f0f0;
   border: 1px solid grey;
@@ -185,31 +197,28 @@ body {
   height: 20px;
 }
 
-.slider {
-  width: 240px;
-  height: 30px;
+#colorSliders {
+  border-collapse: collapse;
+  font-size: 10pt;
 }
 
-.slidertrack {
-  position: absolute;
-  border: 2px grey groove;
-  top: 13px;
-  left: 10px;
-  height: 2px;
-  background-color: #e0e0e0;
-}
-
-.sliderhandle {
-  position: absolute;
+.colorSlider {
+  width: 193px;
   height: 20px;
-  width: 4px;
-  border: 2px ridge #707070;
-  background-color: #80b2ff;
-  top: 5px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
-  cursor: ew-resize;
+  margin: 0px; 
+}
+
+.colorInt {
+  border: 1px solid grey;
+  width: 30px;
+  margin: 0px;
+  text-align: right;
+}
+
+.slider {
+  width: 238px;
+  height: 20px;
+  margin: 0px;
 }
 
 .ruleValue {
@@ -217,6 +226,7 @@ body {
   border: 1px solid grey;
   height: 20px;
   margin-bottom: 2px;
+  text-align: right;
 }
 
 .trashcan {
@@ -233,24 +243,13 @@ body {
   margin-right: 5px;  
 }
 
-#featureLists {
-  width: 496px;
-  padding-top: 4px;
-  padding-left: 4px;
-}
-
-#featureTypePanel{
-  overflow-x: scroll;
-  width: 100%;
-}
-
 .selector {
   background-color: #f8f8ff;
   width: 100%;
 }
 
 .rulename {
-  width: 100%;
+  width: 250px;
   border-collapse: collapse;
   font-size: 10pt;
 }
@@ -261,10 +260,6 @@ body {
 
 #visibilityRule {
   padding-top: 4px;
-}
-
-#invertLightnessRule {
-  padding-bottom: 10px;
 }
 
 .stylerTable {
@@ -322,7 +317,7 @@ body {
 #staticMap {
   height: 620px;
   overflow: hidden;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
 }
 
 #json {
@@ -348,4 +343,8 @@ body {
 
 #helpButton {
   margin-left: 40px;
+}
+
+input:focus, select:focus {
+ outline: none;
 }

@@ -23,10 +23,10 @@
       </div>
     </div>
     
-    <div class="control" id="featureType">
+    <div class="control" id="selectors">
       <div class="heading" id="selectorsHeading">
         Selectors
-        <input type="button" id="resetStyle" value="Reset" onclick="resetStyle()" />
+        <input type="button" id="resetStyle" value="Reset" onclick="resetCurrentStyle()" />
       </div>
       
       <div class="selectorHeading">
@@ -34,31 +34,41 @@
       </div>
       <div id="featureTypePanel" class="selector">
         <div id="featureLists">
-          <select class="features" id="root" size="8">
-            <option value="all" selected="selected" onclick="selectAllFeatures()">All</option>
+          <select class="features" id="features_level_0" size="8">
+            <option value="all" selected="selected" onclick="setFeatureType(0)">All</option>
           </select>
-          <select class="features" id="level1" size="8">
-            <option value="administrative" onclick="selectLevel1()">Administrative</option>
-            <option value="landscape" onclick="selectLevel1()">Landscape</option>
-            <option value="poi" onclick="selectLevel1()">Point of interest</option>
-            <option value="road" onclick="selectLevel1()">Road</option>
-            <option value="transit" onclick="selectLevel1()">Transit</option>
-            <option value="water" onclick="selectLevel1()">Water</option>
+          <select class="features" id="features_level_1" size="8">
+            <option value="administrative" onclick="setFeatureType(1)">Administrative</option>
+            <option value="landscape" onclick="setFeatureType(1)">Landscape</option>
+            <option value="poi" onclick="setFeatureType(1)">Point of interest</option>
+            <option value="road" onclick="setFeatureType(1)">Road</option>
+            <option value="transit" onclick="setFeatureType(1)">Transit</option>
+            <option value="water" onclick="setFeatureType(1)">Water</option>
           </select>
-          <select class="features" id="level2" size="8">
+          <select class="features" id="features_level_2" size="8">
           </select>
-          <select class="features" id="level3" size="8">
+          <select class="features" id="features_level_3" size="8">
           </select>
         </div>
       </div>
-      
+
       <div class="selectorHeading" id="elementHeading">
         Element type
       </div>
-      <div id="elements" class="selector">
-        <input type="radio" name="elements" id="elements_all" checked="checked" onclick="setElementType()"/>All
-        <input type="radio" name="elements" id="elements_geometry" onclick="setElementType()"/>Geometry
-        <input type="radio" name="elements" id="elements_labels" onclick="setElementType()"/>Labels
+      <div id="elementTypePanel" class="selector">
+        <div id="elementLists">
+          <select class="elements" id="elements_root" size="8">
+            <option value="all" selected="selected" onclick="setElementType(0)">All</option>
+          </select>
+          <select class="elements" id="elements_level_1" size="8">
+            <option value="geometry" onclick="setElementType(1)">Geometry</option>
+            <option value="labels" onclick="setElementType(1)">Labels</option>
+          </select>
+          <select class="elements" id="elements_level_2" size="8">
+          </select>
+          <select class="elements" id="elements_level_3" size="8">
+          </select>
+        </div>
       </div>
       
       <div class="selectorHeading" id="stylersHeading">
@@ -69,9 +79,11 @@
         <div class="rule" id="visibilityRule">
           <table class="rulename">
             <tr>
-              <td width="20"><input type="checkbox" id="set_visibility" onclick="setRule('visibility')" /></td>
-              <td width="120"><span class="clickable_label" onclick="do_click('visibility')"><b>Visibility</b></span></td>
-              <td width="120"><input type="text" size="10" onfocus="blur()" id="visibility" class="ruleValue" /></td>
+              <td width="20"><input type="checkbox" id="set_visibility" onclick="setStyler('visibility')" /></td>
+              <td width="111"><span class="clickable_label" onclick="do_click('visibility')"><b>Visibility</b></span></td>
+              <td width="129" align="right">
+                <input type="text" size="9" onfocus="blur()" id="visibility" class="ruleValue" />
+              </td>
             </tr>
           </table>
           <div class="rulecontrol" id="visibilities">
@@ -84,19 +96,66 @@
           <table class="rulename">
             <tr>
               <td width="20"><input type="checkbox" id="set_invert_lightness" onclick="setInvertLightness()" /></td>
-              <td width="120"><span class="clickable_label" onclick="do_click('invert_lightness')"><b>Invert lightness</b></span></td>
-              <td width="120"><input type="text" size="4" onfocus="blur()" id="invert_lightness" class="ruleValue" /></td>
+              <td width="111"><span class="clickable_label" onclick="do_click('invert_lightness')"><b>Invert lightness</b></span></td>
+              <td width="129" align="right">
+                <input type="text" size="9" onfocus="blur()" id="invert_lightness" class="ruleValue" />
+              </td>
             </tr>
           </table>
         </div>
         <div class="rule">
           <table class="rulename">
             <tr>
-              <td width="20"><input type="checkbox" id="set_hue" onclick="setRule('hue')" /></td>
-              <td width="120"><span class="clickable_label" onclick="do_click('hue')"><b>Hue</b></span></td>
-              <td width="120">
-                <input type="text" size="7" onfocus="blur()" id="hue" class="ruleValue" />
-                <input id="hueSample" disabled="disabled" /></td>
+              <td width="20"><input type="checkbox" id="set_color" onclick="setStyler('color')" /></td>
+              <td width="111"><span class="clickable_label" onclick="do_click('color')"><b><span id="colourLabel">Color</span></b></span></td>
+              <td width="129" align="right">
+                <input id="colorSample" disabled="disabled" />
+                <input type="text" size="9" onfocus="blur()" id="color" class="ruleValue" />
+              </td>
+            </tr>
+          </table>
+          <div class="rulecontrol">
+            <table id="colorSliders">
+              <td>R</td>
+                <td><input class="colorSlider" type="range" id="redSlider" min="0" max="255" value="0" onchange="setColor()" /></td>
+                <td><input class="colorInt" type="text" size="3" id="redInt" maxlength="3" /></td>
+              </tr>
+              <tr>
+                <td>G</td>
+                <td><input class="colorSlider" type="range" id="greenSlider" min="0" max="255" value="0" onchange="setColor()" /></td>
+                <td><input class="colorInt" type="text" size="3" id="greenInt"  maxlength="3" /></td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td><input class="colorSlider" type="range" id="blueSlider" min="0" max="255" value="0" onchange="setColor()"></td>
+                <td><input class="colorInt" type="text" size="3" id="blueInt" maxlength="3" /></td>                
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="rule">
+          <table class="rulename">
+            <tr>
+              <td width="20"><input type="checkbox" id="set_weight" onclick="setStyler('weight')" /></td>
+              <td width="111"><span class="clickable_label" onclick="do_click('weight')"><b>Weight</b></span></td>
+              <td width="129" align="right">
+                <input type="text" size="9" onfocus="blur()" id="weight" class="ruleValue" />
+              </td>
+            </tr>
+          </table>
+          <div class="rulecontrol">
+            <input class="slider" type="range" id="weightSlider" min="1" max="80" value="0" onchange="setWeight()">
+          </div>
+        </div>
+        <div class="rule">
+          <table class="rulename">
+            <tr>
+              <td width="20"><input type="checkbox" id="set_hue" onclick="setStyler('hue')" /></td>
+              <td width="111"><span class="clickable_label" onclick="do_click('hue')"><b>Hue</b></span></td>
+              <td width="129" align="right">
+                <input id="hueSample" disabled="disabled" />
+                <input type="text" size="9" onfocus="blur()" id="hue" class="ruleValue" />
+              </td>
             </tr>
           </table>
           <div class="rulecontrol">
@@ -106,37 +165,43 @@
         <div class="rule">
           <table class="rulename">
             <tr>
-              <td width="20"><input type="checkbox" id="set_saturation" onclick="setRule('saturation')" /></td>
-              <td width="120"><span class="clickable_label" onclick="do_click('saturation')"><b>Saturation</b></span></td>
-              <td width="120"><input type="text" size="4" onfocus="blur()" id="saturation" class="ruleValue" /></td>
+              <td width="20"><input type="checkbox" id="set_saturation" onclick="setStyler('saturation')" /></td>
+              <td width="111"><span class="clickable_label" onclick="do_click('saturation')"><b>Saturation</b></span></td>
+              <td width="129" align="right">
+                <input type="text" size="9" onfocus="blur()" id="saturation" class="ruleValue" />
+              </td>
             </tr>
           </table>
           <div class="rulecontrol">
-            <div class="slider" id="satSlider"></div>
+            <input class="slider" type="range" id="satSlider" min="-100" max="100" value="0" onchange="setSaturation()">
           </div>
         </div>
         <div class="rule">
           <table class="rulename">
             <tr>
-              <td width="20"><input type="checkbox" id="set_lightness" onclick="setRule('lightness')" /></td>
-              <td width="120"><span class="clickable_label" onclick="do_click('lightness')"><b>Lightness</b></span></td>
-              <td width="120"><input type="text" size="4" onfocus="blur()" id="lightness" class="ruleValue" /></td>
+              <td width="20"><input type="checkbox" id="set_lightness" onclick="setStyler('lightness')" /></td>
+              <td width="111"><span class="clickable_label" onclick="do_click('lightness')"><b>Lightness</b></span></td>
+              <td width="129" align="right">
+                <input type="text" size="9" onfocus="blur()" id="lightness" class="ruleValue" />
+              </td>
             </tr>
           </table>
           <div class="rulecontrol">
-            <div class="slider" id="lightSlider"></div>
+            <input class="slider" type="range" id="lightSlider" min="-100" max="100" value="0" onchange="setLightness()">
           </div>
         </div>
         <div class="rule">
           <table class="rulename">
             <tr>
-              <td width="20"><input type="checkbox" id="set_gamma" onclick="setRule('gamma')" /></td>
-              <td width="120"><span class="clickable_label" onclick="do_click('gamma')"><b>Gamma</b></span></td>
-              <td width="120"><input type="text" size="4" onfocus="blur()" id="gamma" class="ruleValue" /></td>
+              <td width="20"><input type="checkbox" id="set_gamma" onclick="setStyler('gamma')" /></td>
+              <td width="111"><span class="clickable_label" onclick="do_click('gamma')"><b>Gamma</b></span></td>
+              <td width="129" align="right">
+                <input type="text" size="9" onfocus="blur()" id="gamma" class="ruleValue" />
+              </td>
             </tr>
           </table>
           <div class="rulecontrol">
-            <div class="slider" id="gammaSlider"></div>
+            <input class="slider" type="range" id="gammaSlider" min="0" max="500" value="250" onchange="setGamma()">
           </div>
         </div>
       </div>
