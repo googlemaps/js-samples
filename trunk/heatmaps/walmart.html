@@ -12,6 +12,8 @@
     var nextStore = 0;
     var year = 1962;
     var month = 1;
+    var running = false;
+    var unlock = false;
 
     function initialize() {
       data = new google.maps.MVCArray();
@@ -42,10 +44,31 @@
         ]
       });
 
-      nextMonth();
+      google.maps.event.addListener(map, 'mouseout', stop);
+      google.maps.event.addListener(map, 'tilesloaded', function() {
+        unlock = true;
+      });
     }
-      
+
+    function start() {
+      if (unlock && ! running) {
+        document.getElementById("lightbox").style.display = "none";
+        document.getElementById("msg").style.display = "none";
+        running = true;
+        nextMonth();
+      }
+    }
+
+    function stop() {
+      document.getElementById("lightbox").style.display = "block";
+      document.getElementById("msg").style.display = "block";
+      running = false;
+    }
+
     function nextMonth() {
+      if (! running) {
+        return;
+      }
       while (stores[nextStore].date[0] <= year && stores[nextStore].date[1] <= month) {
         data.push(new google.maps.LatLng(stores[nextStore].coords[0], stores[nextStore].coords[1]));
         nextStore++;
@@ -81,10 +104,28 @@ html, body {
   text-shadow: 0.1em 0.1em 0.2em black;
   color: white;
 }
+#msg {
+  position: absolute;
+  font-size: 30px;
+  font-family: sans-serif;
+  text-shadow: 0.1em 0.1em 0.2em black;
+  color: #d0d0ff;
+  top: 200px;
+  width: 600px;
+  text-align: center;
+}
+#lightbox {
+  width: 600px;
+  height: 480px;
+  background-color: #ffffff;
+  opacity: 0.8;
+}
 </style>
 </head>
 <body onload="initialize()">
   <div id="map"></div>
   <div id="year">1962</div>
+  <div id="lightbox" onmouseover="start()"></div>
+  <div id="msg">Mouse over the map to view</div>
 </body>
 </html>
