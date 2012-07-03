@@ -7,6 +7,9 @@
 <script>
   var control, map, places, iw;
   var markers = [];
+  var resultsBounds = null;
+  var resultsCount = 0;
+  var pagination = null;
   var hostnameRegexp = new RegExp('^https?://.+?/');
   
   function initialize() {
@@ -26,31 +29,37 @@
   
   function doQuery() {
     var query = document.getElementById('query').value;
+    resultsBounds = new google.maps.LatLngBounds();
+    resultsCount = 0;
+    clearResults();
+    clearMarkers();
     places.textSearch({
       'query': query,
       'bounds': map.getBounds()
-    }, function(results, status) {
-      var newBounds = new google.maps.LatLngBounds();
-      if (status == google.maps.places.PlacesServiceStatus.OK) {
-        clearResults();
-        clearMarkers();
-        for (var i = 0; i < (results.length < 20 ? results.length : 20); i++) {
-          markers[i] = new google.maps.Marker({
-            position: results[i].geometry.location,
-            map: map
-          });
-          google.maps.event.addListener(markers[i], 'click', getDetails(results[i], i));
-          addResult(results[i], i);
-          newBounds.extend(results[i].geometry.location);
-        }
-        if (results.length == 1) {
-          map.setCenter(results[0].geometry.location);
-          map.setZoom(17);
-        } else {
-          map.fitBounds(newBounds);
-        }
+    }, addResults);
+  }
+  
+  function addResults(results, status, p) {
+    console.log(p);
+    pagination = p;
+    if (status == google.maps.places.PlacesServiceStatus.OK) {
+      for (var i = 0; i < (results.length < 20 ? results.length : 20); i++) {
+        markers[i] = new google.maps.Marker({
+          position: results[i].geometry.location,
+          map: map
+        });
+        google.maps.event.addListener(markers[i], 'click', getDetails(results[i], i));
+        addResult(results[i], i);
+        resultsBounds.extend(results[i].geometry.location);
       }
-    });
+      resultsCount += results.length;
+      if (resultsCount == 1) {
+        map.setCenter(results[0].geometry.location);
+        map.setZoom(17);
+      } else {
+        map.fitBounds(resultsBounds);
+      }
+    }
   }
   
   function clearMarkers() {
@@ -239,8 +248,8 @@
     
     function reviewsScroll() {
         var listing = document.getElementById('listing');
-        if (listing.scrollTop + listing.clientHeight == listing.scrollHeight) {
-            // infinite scroll
+        if (listing.scrollTop + listing.clientHeight == listing.scrollHeight && pagination.hasNextPage) {
+            pagination.nextPage();
         }
     }
 </script>
