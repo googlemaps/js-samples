@@ -20,7 +20,7 @@
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       panControl: false,
       streetViewControl: false,
-      zoomControl: false,
+      zoomControl: false
     }
     
     map = new google.maps.Map(document.getElementById('map'), myOptions);
@@ -40,7 +40,6 @@
   }
   
   function addResults(results, status, p) {
-    console.log(p);
     pagination = p;
     if (status == google.maps.places.PlacesServiceStatus.OK) {
       for (var i = 0; i < (results.length < 20 ? results.length : 20); i++) {
@@ -84,6 +83,7 @@
     var icon = document.createElement('img');
     icon.src = result.icon;
     icon.setAttribute("class", "placeIcon");
+    icon.setAttribute("className", "placeIcon");
     var name = document.createTextNode(result.name);
     iconTd.appendChild(icon);
     nameTd.appendChild(name);
@@ -133,25 +133,30 @@
     for (var i = 0; i < reviews.length; i++) {
         var table = document.createElement('table');
         table.setAttribute('class', 'review');
+        table.setAttribute('className', 'review');
         var tableBody = document.createElement('tbody');
         var aspectsTr = document.createElement('tr');
         var aspectsTd = document.createElement('td');
         aspectsTd.appendChild(getAspectsTable(reviews[i].aspects));
-        aspectsTd.setAttribute('colspan', 2);        
+        aspectsTd.setAttribute('colSpan', '2');        
         aspectsTr.appendChild(aspectsTd);
         
-        var reviewTr = document.createElement('td');
-        reviewTr.setAttribute('colspan', 2);
-        reviewTr.innerHTML = reviews[i].text;
+        var reviewTr = document.createElement('tr');
+        var reviewTd = document.createElement('td');
+        reviewTd.setAttribute('colSpan', '2');
+        reviewTd.innerHTML = reviews[i].text;
+        reviewTr.appendChild(reviewTd);
         
         var whenWhoTr = document.createElement('tr');
         var dateTd = document.createElement('td');
         var reviewDate = new Date(reviews[i].time * 1000);
         dateTd.setAttribute('class', 'reviewDate');
+        dateTd.setAttribute('className', 'reviewDate');
         dateTd.appendChild(document.createTextNode(reviewDate.toLocaleDateString()));
         
         var authorTd = document.createElement('td');
         authorTd.setAttribute('class', 'reviewAuthor');
+        authorTd.setAttribute('className', 'reviewAuthor');
         if (reviews[i].author_url) {
             var authorLink = document.createElement('a');
             authorLink.setAttribute('href', reviews[i].author_url);
@@ -174,15 +179,18 @@
   function getAspectsTable(aspects) {
     var scoresTable = document.createElement('table');
     scoresTable.setAttribute('class', 'aspectsTable');
+    scoresTable.setAttribute('className', 'aspectsTable');
     
     var scoresTBody = document.createElement('tbody');
     var scoresTr = document.createElement('tr');
     for (var j = 0; j < aspects.length; j++) {
         var aspectTd = document.createElement('td');
         aspectTd.setAttribute('class', 'aspectName');
+        aspectTd.setAttribute('className', 'aspectName');
         
         var scoreTd = document.createElement('td');
         scoreTd.setAttribute('class', 'aspectScore');
+        scoreTd.setAttribute('className', 'aspectScore');
         
         aspectTd.appendChild(document.createTextNode(aspects[j].type.toUpperCase() + ':'));
         scoreTd.appendChild(document.createTextNode(aspects[j].rating));
@@ -241,6 +249,7 @@
   }
 
     function checkSubmit(e) {
+      var e = e || window.event;
         if (e && e.keyCode == 13) {
           doQuery();
         }
@@ -288,7 +297,7 @@ body {
   width: 24px;
   height: 24px;
 }
-#results {
+#resultsTable {
   border-collapse: collapse;
   width: 100%;
 }
@@ -348,9 +357,11 @@ table {
 .reviewAuthor {
     text-align: right;
     font-style: italic;
+    width: 50%;
 }
 .reviewDate {
     color: #808080;
+    width: 50%;
 }
 #hours {
     position: absolute;
@@ -373,7 +384,7 @@ table {
   <div>
   </div>
   <div id="map">map div</div>
-  <div id="listing" onscroll="reviewsScroll()"><table id="results"></table></div>
+  <div id="listing" onscroll="reviewsScroll()"><table id="resultsTable"><tbody id="results"></tbody></table></div>
   <div id="reviews"></div>
 </body>
 </html>
