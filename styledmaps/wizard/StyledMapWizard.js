@@ -672,17 +672,26 @@ function findStyler(styler) {
 function showJson() {
   var jsonStyles = [];
   for (var i = 0; i < styles.length; i++) {
+    var hasPreviousEntry = false;
     jsonStyles[i] = '{\n'
     if (styles[i].featureType != 'all') {
-      jsonStyles[i] += '    featureType: "' + styles[i].featureType + '",\n';
+      jsonStyles[i] += '    "featureType": "' + styles[i].featureType + '"';
+      hasPreviousEntry = true;
     }
     
     if (styles[i].elementType != 'all') {
-      jsonStyles[i] += '    elementType: "' + styles[i].elementType + '",\n';      
+      if (hasPreviousEntry) {
+        jsonStyles[i] += ',\n';
+      }
+      jsonStyles[i] += '    "elementType": "' + styles[i].elementType + '"';      
+      hasPreviousEntry = true;
     }
     
     if (styles[i].stylers.length) {
-      jsonStyles[i] += '    stylers: [\n';
+      if (hasPreviousEntry) {
+        jsonStyles[i] += ',\n';
+      }
+      jsonStyles[i] += '    "stylers": [\n';
       var jsonStylers = [];
       
       for (var j = 0; j < styles[i].stylers.length; j++) {
@@ -691,10 +700,10 @@ function showJson() {
             case 'visibility':
             case 'color':
             case 'hue':
-              jsonStylers[j] = '      { ' + p + ': "' + styles[i].stylers[j][p] + '" }';
+              jsonStylers[j] = '      { "' + p + '": "' + styles[i].stylers[j][p] + '" }';
               break;
             default:
-              jsonStylers[j] = '      { ' + p + ': ' + styles[i].stylers[j][p] + ' }'
+              jsonStylers[j] = '      { "' + p + '": ' + styles[i].stylers[j][p] + ' }'
           }
         }
       }
