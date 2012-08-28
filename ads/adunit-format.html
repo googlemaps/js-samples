@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Maps JavaScript API v3 Example: Map Ads Unit</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link href="https://developers.google.com/maps/documentation/javascript/examples/default.css" rel="stylesheet">
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+        font: normal normal 13px Open Sans;
+        color: #444649;
+      }
+      div.ad-unit-options {
+        width: 650px;
+        text-align: left;
+        overflow: auto;
+      }
+      div.format-option, div.position-option {
+        padding: 0px;
+        display: inline-block;
+      }
+      div.style-option {
+        padding: 20px;
+        display: inline-block;
+      }
+      #map_canvas {
+        width: 600px;
+        height: 480px;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=adsense&v=3.10"></script>
+    <script>
+      var adUnit;
+
+      var SAMPLE_AD_STYLES = {
+        'default': {
+          'color_bg': '#c4d4f3',
+          'color_border': '#e5ecf9',
+          'color_link': '#0000cc',
+          'color_text': '#000000',
+          'color_url': '#009900'
+        },
+        'modern': {
+          'color_bg': '#ffffff',
+          'color_border': '#000000',
+          'color_link': '#1155cc',
+          'color_text': '#000000',
+          'color_url': '#009900'
+        },
+        'plain': {
+          'color_bg': '#f5f5f5',
+          'color_border': '#cccccc',
+          'color_link': '#1155cc',
+          'color_text': '#333333',
+          'color_url': '#009900'
+        },
+        'kennedy': {
+          'color_bg': '#f1f1f1',
+          'color_border': '#dd4b39',
+          'color_link': '#4d90fe',
+          'color_text': '#222222',
+          'color_url': '#3d9400'
+        },
+        'flamingo': {
+          'color_bg': '#feeeff',
+          'color_border': '#d1d1ed',
+          'color_link': '#5577ee',
+          'color_text': '#000000',
+          'color_url': '#44bbbb'
+        },
+        'monochrome': {
+          'color_bg': '#eeeeee',
+          'color_border': '#666666',
+          'color_link': '#333333',
+          'color_text': '#666666',
+          'color_url': '#999999'
+        },
+        'barbecue': {
+          'color_bg': '#666666',
+          'color_border': '#555555',
+          'color_link': '#ffcc00',
+          'color_text': '#808080',
+          'color_url': '#e8ab00'
+        },
+        'miami': {
+          'color_bg': '#d6f8ff',
+          'color_border': '#89d1ff',
+          'color_link': '#3b8aeb',
+          'color_text': '#333333',
+          'color_url': '#53be05'
+        },
+        'shamrock': {
+          'color_bg': '#f5ffe9',
+          'color_border': '#449944',
+          'color_link': '#009900',
+          'color_text': '#596659',
+          'color_url': '#779977'
+        }
+      };
+
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(36.5987, -121.8950),
+          zoom: 12,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById('map_canvas'),
+            mapOptions);
+
+        var adUnitDiv = document.createElement('div');
+        var adUnitOptions = {
+          format: google.maps.adsense.AdFormat.HALF_BANNER,
+          position: google.maps.ControlPosition.TOP,
+          backgroundColor: '#c4d4f3',
+          borderColor: '#e5ecf9',
+          titleColor: '#0000cc',
+          textColor: '#000000',
+          urlColor: '#009900',
+          publisherId: 'ca-google-maps_apidocs',
+          map: map,
+          visible: true
+        };
+        var adUnit = new google.maps.adsense.AdUnit(adUnitDiv, adUnitOptions);
+
+        var format = document.getElementById('format');
+        google.maps.event.addDomListener(format, 'change', function() {
+          adUnit.setFormat(google.maps.adsense.AdFormat[this.value]);
+        });
+
+        var style = document.getElementById('style');
+        google.maps.event.addDomListener(style, 'change', function() {
+          adStyle = SAMPLE_AD_STYLES[this.value];
+          adUnit.setBackgroundColor(adStyle['color_bg']);
+          adUnit.setBorderColor(adStyle['color_border']);
+          adUnit.setTitleColor(adStyle['color_link']);
+          adUnit.setTextColor(adStyle['color_text']);
+          adUnit.setUrlColor(adStyle['color_url']);
+        });
+
+        var position = document.getElementById('position');
+        google.maps.event.addDomListener(position, 'change', function() {
+          adUnit.setPosition(google.maps.ControlPosition[this.value]);
+        });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div class="ad-unit-options">
+      <div class="format-option">
+        <label for="format">Format:</label>
+        <select id="format">
+          <option value="HALF_BANNER" selected>Half Banner</option>
+          <option value="VERTICAL_BANNER">Vertical Banner</option>
+          <option value="BUTTON">Button</option>
+          <option value="SMALL_SQUARE">Small Square</option>
+          <option value="SMALL_RECTANGLE">Small Rectangle</option>
+          <option value="SMALL_VERTICAL_LINK_UNIT">Small Vertical Link Unit</option>
+          <option value="MEDIUM_VERTICAL_LINK_UNIT">Medium Vertical Link Unit</option>
+          <option value="LARGE_VERTICAL_LINK_UNIT">Large Vertical Link Unit</option>
+        </select>
+      </div>
+      <div class="style-option">
+        <label for="style">Style:</label>
+        <select id="style">
+          <option value="default" selected>Maps API default</option>
+          <option value="modern">Modern</option>
+          <option value="plain">Plain</option>
+          <option value="kennedy">Kennedy</option>
+          <option value="monochrome">Monochrome</option>
+          <option value="barbecue">Barbecue</option>
+          <option value="flamingo">Flamingo</option>
+          <option value="miami">Miami</option>
+          <option value="shamrock">Shamrock</option>
+        </select>
+      </div>
+      <div class="position-option">
+        <label for="position">Position:</label>
+        <select id="position">
+          <option value="TOP_CENTER" selected>Top Center</option>
+          <option value="TOP_LEFT">Top Left</option>
+          <option value="TOP_RIGHT">Top Right</option>
+          <option value="RIGHT_TOP">Right Top</option>
+          <option value="RIGHT_CENTER">Right Center</option>
+          <option value="RIGHT_BOTTOM">Right Bottom</option>
+        </select>
+      </div>
+    </div>
+    <div id="map_canvas"></div>
+  </body>
+</html>
