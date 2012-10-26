@@ -144,6 +144,10 @@ function setFeatureList(i, parent) {
         options[1] = new Option("Bus", "transit.station.bus");
         options[2] = new Option("Rail", "transit.station.rail");
         break;
+      case "landscape.natural":
+        options[0] = new Option("Land cover", "landscape.natural.landcover");
+        options[1] = new Option("Terrain", "landscape.natural.terrain");
+        break;        
     }  
   }
   
