@@ -735,19 +735,6 @@ function closeJson() {
 /* Static Maps support */
 
 function isStaticMapsCompatible() {
-  for (var i = 0; i < styles.length; i++) {
-    // Static Maps does not support element subtypes of geometry and labels
-    if (styles[i].elementType.indexOf('.') != -1) {
-      return false;
-    }
-    
-    for (var j = 0; j < styles[i].stylers.length; j++) {      
-      // Static Maps does not support the color styler
-      if (styles[i].stylers[j].color || styles[i].stylers[j].weight) {
-        return false;
-      }
-    }
-  }
   return true;
 }
 
@@ -796,7 +783,7 @@ function getStaticMapsURL() {
     for (var j = 0; j < styles[i].stylers.length; j++) {
       for (var p in styles[i].stylers[j]) {
         var ruleArg = styles[i].stylers[j][p];
-        if (p == 'hue') {
+        if (p == 'hue' || p == 'color') {
           ruleArg = '0x' + ruleArg.substring(1);
         }
         styleRule.push(p + ':' + ruleArg);
