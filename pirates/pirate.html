@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weigh Anchor, Me Hearties</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <style>
+      html, body, #map-canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="ship.js"></script>
+    <script src="pirate_network.js"></script>
+    <script>
+      var map;
+      var NUMBER_OF_SHIPS = 30;
+      var ships = [];
+      var lastTime;
+
+      function init() {
+        var myOptions = {
+          treasureMode: 'aye',
+          zoom: 3,
+          minZoom: 3,
+          center: new google.maps.LatLng(0, 0),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          mapTypeControl: false,
+          streetViewControl: false,
+          panControl: false,
+        };
+        map = new google.maps.Map(document.getElementById('map-canvas'),
+            myOptions);
+
+        setupShips();
+        lastTime = nowFunc();
+        animate();
+      }
+
+      function setupShips() {
+        for (var i = 0; i < NUMBER_OF_SHIPS; i++) {
+          var line = new google.maps.Polyline({
+            path: [],
+            strokeOpacity: 0,
+            icons: [{
+              icon: {
+                path: 'M 0,-1 0,1',
+                strokeOpacity: 1,
+                scale: 2
+              },
+              offset: '0',
+              repeat: '10px'
+            }],
+            map: map
+          });
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(0, 0),
+            map: map,
+            icon: {
+              url: 'pirate_marker_64.png',
+              scaledSize: new google.maps.Size(32, 32)
+            }
+          });
+
+          ships[i] = new Ship(map, line.getPath(), marker, PirateNetwork.getPoint);
+        }
+      }
+
+      function animate() {
+        var newTime = nowFunc();
+        var elapsed = newTime - lastTime;
+        var dt = elapsed / 1000;
+        lastTime = newTime;
+
+        if (map.getProjection()) {
+          for (var i = 0; i < ships.length; i++) {
+            ships[i].update(dt);
+          }
+        }
+
+        window.requestAnimFrame(animate);
+      }
+
+      // shim for performance.now
+      var nowFunc = (function() {
+        if (window.performance && window.performance.now) {
+          return window.performance.now.bind(window.performance);
+        } else if (Date.now) {
+          return Date.now;
+        } else {
+          return function() {
+            +new Date();
+          };
+        }
+      })();
+
+      // requestAnimationFrame polyfill
+      window.requestAnimFrame =
+        window.requestAnimationFrame ||
+        window.webkitRequestAnimationFrame ||
+        window.mozRequestAnimationFrame ||
+        window.oRequestAnimationFrame ||
+        window.msRequestAnimationFrame ||
+        function(callback) {
+          return window.setTimeout(callback, 1000 / 60);
+        };
+
+      google.maps.event.addDomListener(window, 'load', init);
+    </script>
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
