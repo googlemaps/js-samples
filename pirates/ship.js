@@ -11,6 +11,7 @@ var Ship = function(map, path, marker, nodeProvider) {
 
   this.speed_ = Ship.lerp(Ship.MIN_RATE, Ship.MAX_RATE, Math.random());
   this.t_ = (Math.random() * Ship.MAX_INITIAL_DISTANCE) / this.speed_;
+  this.directionInitted_ = false;
 };
 
 Ship.MAX_INITIAL_DISTANCE = 50;
@@ -46,6 +47,8 @@ Ship.prototype.update = function(dt) {
   Ship.correctForAntimeridian(lastPoint, nextPoint);
   var dist = Ship.dist(lastPoint, nextPoint);
 
+  var westward = nextPoint.x < lastPoint.x;
+
   // add new legs until distance to go is less than length of next leg
   while (toTravel - dist > 0) {
     toTravel -= dist;
@@ -61,20 +64,17 @@ Ship.prototype.update = function(dt) {
     nextPoint = proj.fromLatLngToPoint(this.nextNode_.latLng);
     Ship.correctForAntimeridian(lastPoint, nextPoint);
     dist = Ship.dist(lastPoint, nextPoint);
-
-    if (nextPoint.x < lastPoint.x) {
-      this.marker_.setIcon({
-        url: 'pirate_marker_64_west.png',
-        scaledSize: new google.maps.Size(32, 32)
-      });
-    } else {
-      this.marker_.setIcon({
-        url: 'pirate_marker_64.png',
-        scaledSize: new google.maps.Size(32, 32)
-      });
-    }
   }
   this.t_ = toTravel / this.speed_;
+
+  var newWestward = nextPoint.x < lastPoint.x;
+  if (newWestward !== westward || !this.directionInitted_) {
+    this.marker_.setIcon({
+      url: 'pirate_marker_64' + (newWestward ? '_west' : '') + '.png',
+      scaledSize: new google.maps.Size(32, 32)
+    });
+    this.directionInitted_ = true;
+  }
 
   nextPoint.x = Ship.lerp(lastPoint.x, nextPoint.x, toTravel / dist);
   nextPoint.y = Ship.lerp(lastPoint.y, nextPoint.y, toTravel / dist);
