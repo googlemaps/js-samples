@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Watersheds</title>
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <style type="text/css">
+      html, body, #map_canvas {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+      }
+      #watershedName{
+        font-size: 1.5em;
+      }
+      #summary {
+        padding:5px;
+        font-size:.8em;
+
+      }
+      #info{
+        position: absolute;
+        top: 20px;
+        left: 90px;
+        z-index: 99;
+        width:285px;
+        background:white;
+        padding:10px;
+        opacity:.9;
+        color:#333;
+        border-radius:5px;
+      }
+      .key {
+        font-weight:bold;
+        min-width:90px;
+        float:left;
+       }
+      .value {
+        margin-left:10px;
+      }
+    </style>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?sensor=false&v=3.exp&libraries=visualization"></script>
+    <script type="text/javascript">
+      google.maps.visualRefresh = true;
+
+      var map, watershedLayer, subwatershedLayer, hoverData, currentWatershedId;
+
+      var defaultBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(37.4041, -123.0242),
+          new google.maps.LatLng(38.2409, -122.2484));
+
+      var watershedStyles = {
+        strokeColor: '#9ffcf7',
+        strokeOpacity: 1,
+        strokeWidth: '2px',
+        fillOpacity: .3,
+        zIndex: 1
+      };
+      var subwatershedStyles = {
+        strokeColor: '#0777d0',
+        strokeOpacity: 1,
+        strokeWidth: '1px',
+        fillOpacity: .9,
+        fillColor: '#fcf79f'
+      };
+
+      function initialize() {
+        var mapOptions = {
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          styles: mapStyles
+        };
+        map = new google.maps.Map(document.getElementById('map_canvas'),
+            mapOptions);
+        map.fitBounds(defaultBounds);
+        map.addListener('click', mapClick);
+
+        watershedLayer = new google.maps.visualization.DynamicMapsEngineLayer({
+          layerId: '06012705376863690871-15778121843865327762',
+          suppressInfoWindows: true
+        });
+        watershedLayer.addListener('mouseover', watershedMouseOver);
+        watershedLayer.addListener('mouseout', watershedMouseOut);
+        watershedLayer.addListener('click', watershedClick);
+
+        google.maps.event.addListenerOnce(watershedLayer, 'status_changed',
+            getAllTableData);
+        watershedLayer.setMap(map);
+      }
+
+      //////////////////////////////////////////////////////////////////////////
+      // Base map styling
+      //////////////////////////////////////////////////////////////////////////
+
+      var mapStyles = [
+        {
+          "elementType": "labels",
+          "stylers": [
+            { "visibility": "off" }
+          ]
+        },{
+          "featureType": "poi.park",
+          "elementType": "labels",
+          "stylers": [
+            { "visibility": "on" }
+          ]
+        },{
+          "featureType": "water",
+          "elementType": "labels",
+          "stylers": [
+            { "visibility": "on" }
+          ]
+        },{
+          "featureType": "road",
+          "elementType": "geometry.fill",
+          "stylers": [
+            { "color": "#ffffff" }
+          ]
+        },{
+          "featureType": "road.local",
+          "stylers": [
+            { "visibility": "off" }
+          ]
+        }
+      ];
+
+      //////////////////////////////////////////////////////////////////////////
+      // Handling layer events
+      //////////////////////////////////////////////////////////////////////////
+
+      var focused = false;
+
+      function mapClick() {
+        if (focused) {
+          unfocus();
+        }
+      }
+
+      function watershedMouseOver(e) {
+        displayHoverData('Watershed', watersheds[e.featureId]);
+        if (!focused) {
+          var styles = watershedLayer.getFeatureStyle(e.featureId);
+          for (var property in watershedStyles) {
+            styles[property] = watershedStyles[property];
+          }
+        }
+      }
+
+      function watershedMouseOut(e) {
+        if (!focused) {
+          var styles = watershedLayer.getFeatureStyle(e.featureId);
+          styles.resetAll();
+        }
+      }
+      function subwatershedMouseOver(e) {
+          displayHoverData('Sub Watershed', subwatersheds[e.featureId]);
+          var styles = subwatershedLayer.getFeatureStyle(e.featureId);
+          for (var property in subwatershedStyles) {
+            styles[property] = subwatershedStyles[property];
+          }
+      }
+
+      function subwatershedMouseOut(e) {
+        var styles = subwatershedLayer.getFeatureStyle(e.featureId);
+        styles.resetAll();
+      }
+
+      function watershedClick(e) {
+        if (!watershedsLoaded || !subwatershedsLoaded) return;
+
+        setFocus(e.featureId);
+      }
+
+      function setFocus(watershedId) {
+
+        var watershed = watersheds[watershedId];
+        map.fitBounds(watershed.bounds);
+
+        // set same styles as mouseover
+        var styles = watershedLayer.getFeatureStyle(watershedId);
+        for (var property in watershedStyles) {
+          styles[property] = watershedStyles[property];
+        }
+        for (var subwatershedId in subwatersheds) {
+          var subwatershed = subwatersheds[subwatershedId];
+          var style = subwatershedLayer.getFeatureStyle(subwatershedId);
+          if (subwatershed.code == watershed.code) {
+            style.resetAll();
+          } else {
+            style.strokeOpacity = 0;
+            style.fillOpacity = 0;
+          }
+        }
+
+        // reset style for previous watershed after setting subwatershed
+        // styles, so that the watershed is back on top for mouse events
+        if (currentWatershedId) {
+          watershedLayer.getFeatureStyle(currentWatershedId).resetAll();
+        }
+        currentWatershedId = watershedId;
+
+        focused = true;
+      }
+
+      function unfocus() {
+        map.fitBounds(defaultBounds);
+        if (currentWatershedId) {
+          watershedLayer.getFeatureStyle(currentWatershedId).resetAll();
+        }
+        focused = false;
+      }
+
+      //////////////////////////////////////////////////////////////////////////
+      // Retrieving feature data
+      //////////////////////////////////////////////////////////////////////////
+
+      var watersheds = {}, subwatersheds = {};
+      var watershedsLoaded = false, subwatershedsLoaded = false;
+
+      var key = 'AIzaSyAEK5hBTYc6rjgqjWvGnHKVyYs1dafQQ8c';
+      var watershedTableId = '06012705376863690871-13754331562819803040';
+      var watershedColumns = [
+        'geometry',
+        'AREA_SQ_M_',
+        'DESCRIPTIO',
+        'WATERSHED',
+        'gx_id'
+      ];
+      var subwatershedTableId = '06012705376863690871-03105005506203545214';
+      var subwatershedColumns = [
+        'AREA_SQ_M_',
+        'WATERSHED',
+        'gx_id'
+      ];
+
+      function getAllTableData() {
+        getTableData(watershedTableId, watershedColumns, processWatersheds);
+        getTableData(subwatershedTableId, subwatershedColumns, processSubwatersheds);
+      }
+
+      function getTableData(tableId, columns, callback) {
+        var url = 'https://www.googleapis.com/mapsengine/v1/tables/' + tableId +
+            '/features?version=published&maxResults=1000&key=' + key + '&callback=' +
+            callback.name + '&select=' + columns.join();
+        var script = document.createElement('script');
+        script.src = url;
+        document.head.appendChild(script);
+      }
+
+      function processWatersheds(data) {
+        try {
+          data.features.forEach(function(feature) {
+            var id = feature.properties.gx_id;
+            var properties = {
+              code: feature.properties.WATERSHED,
+              description: feature.properties.DESCRIPTIO,
+              area: feature.properties.AREA_SQ_M_,
+              bounds: padBounds(computeBounds(feature.geometry.coordinates))
+            };
+            watersheds[id] = properties;
+          });
+          watershedsLoaded = true;
+        } catch (e) {
+          window.console.log(e, 'watersheds', data);
+        }
+      }
+
+      function processSubwatersheds(data) {
+        try {
+          subwatershedLayer = new google.maps.visualization.DynamicMapsEngineLayer({
+            layerId: '06012705376863690871-13702287451885560587',
+            suppressInfoWindows: true
+          });
+          data.features.forEach(function(feature) {
+            var id = feature.properties.gx_id;
+            var properties = {
+              code: feature.properties.WATERSHED,
+              area: feature.properties.AREA_SQ_M_
+            };
+            subwatersheds[id] = properties;
+
+            var style = subwatershedLayer.getFeatureStyle(id);
+            style.strokeOpacity = 0;
+            style.fillOpacity = 0;
+          });
+          subwatershedsLoaded = true;
+          subwatershedLayer.setMap(map);
+
+          subwatershedLayer.addListener('mouseover', subwatershedMouseOver);
+          subwatershedLayer.addListener('mouseout', subwatershedMouseOut);
+        } catch (e) {
+          window.console.log(e, 'subwatersheds', data);
+        }
+      }
+
+      function getAttributesHtml(table, attrs) {
+        var html = '<div class="summary">';
+        html += '<span>' + table + '</span>';
+        html += '<span class="value">' + attrs.code + '</span>';
+        if (attrs.area) {
+          var sqkm = parseInt(parseInt(attrs.area) / 1000);
+          var formatted = (sqkm + '').replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+          html += '<span class="value">' + formatted + ' sq km.</span>';
+        }
+        html += '</div>';
+        return html;
+      }
+
+      function displayHoverData(table, attrs) {
+        var el = document.getElementById('hover');
+        if (table == 'Sub Watershed') {
+          var watershed = watersheds[currentWatershedId];
+          var desc = watershed.description || '<br>';
+          el.innerHTML = '<div id="watershedName">' + desc + '</div>';
+          el.innerHTML += getAttributesHtml('Watershed', watershed);
+          el.innerHTML += getAttributesHtml(table, attrs);
+        } else {
+          var desc = attrs.description || '<br>';
+          el.innerHTML = '<div id="watershedName">' + desc + '</div>';
+          el.innerHTML += getAttributesHtml(table, attrs);
+        }
+      }
+
+      function computeBounds(coordinates) {
+        var bounds = new google.maps.LatLngBounds;
+        coordinates[0].forEach(function(coordinate) {
+          bounds.extend(new google.maps.LatLng(coordinate[1], coordinate[0]));
+        });
+        return bounds;
+      }
+
+      function padBounds(bounds) {
+        var width = bounds.getNorthEast().lng() - bounds.getSouthWest().lng();
+        var height = bounds.getNorthEast().lat() - bounds.getSouthWest().lat();
+        var center = bounds.getCenter();
+        return new google.maps.LatLngBounds(
+            new google.maps.LatLng(center.lat() - 0.6 * height,
+                                   center.lng() - 0.6 * width),
+            new google.maps.LatLng(center.lat() + 0.6 * height,
+                                   center.lng() + 0.6 * width));
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="map_canvas"></div>
+    <div id="info">
+      <div id="hover"></div>
+      <hr>
+      Golden Gate National Parks Conservancy<hr>
+      Watershed boundaries are the ridgetops or the high elevations around a
+      valley, and as such represent logical bounding areas for natural processes.
+      In the Golden Gate Natural Resource Area, our native plant nurseries
+      collect seeds and cuttings within watershed and subwatershed boundaries
+      to grow plants for reintroduction to the landscape after a construction
+      project, find and document rare plants, and track genetic change and
+      diversity to prevent mixing species across ridgetops.
+    </div>
+  </body>
+</html>
