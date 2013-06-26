@@ -31,6 +31,10 @@
         color:#333;
         border-radius:5px;
       }
+
+      @media all and (max-width: 500px) {
+        #info_overview { display: none; }
+      }
       .key {
         font-weight:bold;
         min-width:90px;
@@ -349,14 +353,17 @@
     <div id="info">
       <div id="hover"></div>
       <hr>
-      Golden Gate National Parks Conservancy<hr>
-      Watershed boundaries are the ridgetops or the high elevations around a
-      valley, and as such represent logical bounding areas for natural processes.
-      In the Golden Gate Natural Resource Area, our native plant nurseries
-      collect seeds and cuttings within watershed and subwatershed boundaries
-      to grow plants for reintroduction to the landscape after a construction
-      project, find and document rare plants, and track genetic change and
-      diversity to prevent mixing species across ridgetops.
+        Golden Gate National Parks Conservancy
+      <div id="info_overview">
+        <hr>
+        Watershed boundaries are the ridgetops or the high elevations around a
+        valley, and as such represent logical bounding areas for natural processes.
+        In the Golden Gate Natural Resource Area, our native plant nurseries
+        collect seeds and cuttings within watershed and subwatershed boundaries
+        to grow plants for reintroduction to the landscape after a construction
+        project, find and document rare plants, and track genetic change and
+        diversity to prevent mixing species across ridgetops.
+      </div>
     </div>
   </body>
 </html>
