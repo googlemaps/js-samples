@@ -26,7 +26,8 @@ function init() {
   
   var opt = {
     center: new google.maps.LatLng(0, 0),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    visualRefresh: true
   };
   
   // Calculate the zoom level based on window height
@@ -34,8 +35,24 @@ function init() {
   var height = document.body.clientHeight;
   for (;height > 256 * (1 << zoom); zoom++);
   opt.zoom = zoom;
+
+  initMap(opt);
+
+  var mapStyleDiv = document.getElementById('mapStyleScrollable');
+  mapStyleRenderer = new MapStyleRenderer(mapStyleDiv, styles);
+  mapStyleRenderer.addSelectionListener(loadMapStyle);
+  mapStyleRenderer.addTrashcanListener(deleteStyle);
   
+  huePicker = new HuePicker(document.getElementById('huePicker'));
+  huePicker.addListener(setHue);
+
+  addStyle();
+}
+
+function initMap(opt) {
+
   var div = document.getElementById('map');
+  google.maps.visualRefresh = opt.visualRefresh;
   map = new google.maps.Map(div, opt);
   geocoder = new google.maps.Geocoder();
   
@@ -47,17 +64,9 @@ function init() {
   }
   
   google.maps.event.addListener(map, 'bounds_changed', fixLabel);
-  
-  var mapStyleDiv = document.getElementById('mapStyleScrollable');
-  mapStyleRenderer = new MapStyleRenderer(mapStyleDiv, styles);
-  mapStyleRenderer.addSelectionListener(loadMapStyle);
-  mapStyleRenderer.addTrashcanListener(deleteStyle);
-  
-  huePicker = new HuePicker(document.getElementById('huePicker'));
-  huePicker.addListener(setHue);
-  
+    
   createAddressSearchControl();
-  addStyle();
+  createVisualRefreshControl(opt.visualRefresh);
 }
 
 /* Feature Type hierarchy */
@@ -811,6 +820,40 @@ function closeHelp() {
   document.getElementById('helpButton').disabled = false;
 }
 
+/* Visual Refresh Control */
+
+function createVisualRefreshControl(checked) {
+  var control = document.createElement('div');
+  var checkbox = document.createElement('input');
+  checkbox.setAttribute('type', 'checkbox');
+  if (checked) {
+    checkbox.setAttribute('checked', 'checked');
+  }
+  control.appendChild(checkbox);
+  control.appendChild(document.createTextNode('Visual refresh'));
+  control.setAttribute('id', 'visualRefreshControl');
+  checkbox.setAttribute('id', 'visualRefreshCheckbox');
+
+  checkbox.onclick = this.setVisualRefresh();
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control);
+}
+
+function setVisualRefresh() {
+  return function() {
+    
+    var opt = {
+      'zoom': map.getZoom(),
+      'center': map.getCenter(),
+      'mapTypeId': map.getMapTypeId(),
+      'visualRefresh': document.getElementById('visualRefreshCheckbox').checked
+    };
+
+    document.getElementById("map").innerHTML = '';
+    initMap(opt);
+    setMapStyle();
+  }
+}
+
 /* Address Search Control */
 
 function createAddressSearchControl() {
@@ -821,7 +864,7 @@ function createAddressSearchControl() {
   input.style.width = '100%';
   input.style.height = '100%';
   input.style.margin = '0';
-  input.style.border = '1px solid #A9BBDF';
+  input.style.border = '1px solid #A5A5A5';
   input.style.borderRadius = '2px';
   input.setAttribute('id', 'locationInput');
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control);
