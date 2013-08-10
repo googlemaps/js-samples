@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   position: relative;
   margin: 0px;
   height: 100%;
@@ -274,6 +274,19 @@ body {
   -moz-box-shadow: 2px 2px 3px #888;
   -webkit-box-shadow: 2px 2px 3px #888;
   box-shadow: 2px 2px 2px #888;
+}
+
+#visualRefreshControl {
+  position: relative;
+  margin: 5px;
+  height: 18px;
+  width: 120px;
+  border: 1px solid #A5A5A5;
+  background-color: #ffffff;
+  -moz-box-shadow: 2px 2px 3px #888;
+  -webkit-box-shadow: 2px 2px 3px #888;
+  box-shadow: 2px 2px 2px #888;
+  font-size: 11px;
 }
 
 #staticMapUrlTable {
