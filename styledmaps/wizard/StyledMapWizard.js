@@ -777,6 +777,9 @@ function getStaticMapsURL() {
   params.push('sensor=false');
   params.push('size=640x480');
   params.push('maptype=' + map.getMapTypeId());
+  if (google.maps.visualRefresh) {
+    params.push('visual_refresh=true');
+  }
   
   for (var i = 0; i < styles.length; i++) {
     var styleRule = [];
