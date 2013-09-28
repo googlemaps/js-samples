@@ -152,9 +152,6 @@ function parseUrlParams() {
         case 'country':
           params.country = unescape(param[1]);
           break;
-        case 'language':
-          params.language = unescape(param[1]);
-          break;
       }
     }
   }
@@ -166,7 +163,6 @@ function clearOptions() {
   document.getElementById("query").value = '';
   document.getElementById("biasViewport").checked = false;
   document.getElementById("country").value = '';
-  document.getElementById("language").value = '';
 }
 
 function setOptions(params) {
@@ -180,10 +176,6 @@ function setOptions(params) {
 
   if (params.country) {
     document.getElementById("country").value = params.country;
-  }
-
-  if (params.language) {
-    document.getElementById("language").value = params.language;
   }
 }
 
@@ -225,16 +217,12 @@ function geocode(request) {
 
   var vpbias = document.getElementById("biasViewport").checked;
   var country = document.getElementById("country").value;
-  var language = document.getElementById("language").value;
 
   if (vpbias) {
     request.bounds = map.getBounds();
   }
   if (country) {
     request.country = country;
-  }
-  if (language) {
-    request.language = language;
   }
 
   var hash = getPermalink(query);
@@ -251,7 +239,6 @@ function getPermalink(query) {
   var hash = 'q=' + query;
   var vpbias = document.getElementById("biasViewport").checked;
   var country = document.getElementById("country").value;
-  var language = document.getElementById("language").value;
 
   if (vpbias) {
     hash += '&vpcenter=' + map.getCenter().toUrlValue(6);
@@ -260,10 +247,6 @@ function getPermalink(query) {
 
   if (country) {
     hash += '&country=' + country;
-  }
-
-  if (language) {
-    hash += '&language=' + language;
   }
 
   return hash
@@ -717,8 +700,6 @@ span.pc_localities {
     <input type="checkbox" id="biasViewport"/>
     <span style="font-weight: bold">Country bias:</span>
     <input type="text" size="2" id="country"/>
-    <span style="font-weight: bold">Language:</span>
-    <input type="text" size="2" id="language"/>
   </div>
 </div>
 <div id="responseInfo">
