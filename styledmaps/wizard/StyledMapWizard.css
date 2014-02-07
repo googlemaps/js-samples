@@ -276,19 +276,6 @@ body {
   box-shadow: 2px 2px 2px #888;
 }
 
-#visualRefreshControl {
-  position: relative;
-  margin: 5px;
-  height: 18px;
-  width: 120px;
-  border: 1px solid #A5A5A5;
-  background-color: #ffffff;
-  -moz-box-shadow: 2px 2px 3px #888;
-  -webkit-box-shadow: 2px 2px 3px #888;
-  box-shadow: 2px 2px 2px #888;
-  font-size: 11px;
-}
-
 #staticMapUrlTable {
   width: 640px;
   margin-top: 20px;

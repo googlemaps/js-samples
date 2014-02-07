@@ -6,6 +6,7 @@ var currentStyle = 0;
 
 var huePicker;
 var sliderTimer;
+var hexre = /^#[0-9a-f]{6}/i;
 
 var ukie = new google.maps.LatLngBounds(
   new google.maps.LatLng(49.0, -10.0),
@@ -27,7 +28,6 @@ function init() {
   var opt = {
     center: new google.maps.LatLng(0, 0),
     mapTypeId: google.maps.MapTypeId.ROADMAP,
-    visualRefresh: true
   };
   
   // Calculate the zoom level based on window height
@@ -52,7 +52,6 @@ function init() {
 function initMap(opt) {
 
   var div = document.getElementById('map');
-  google.maps.visualRefresh = opt.visualRefresh;
   map = new google.maps.Map(div, opt);
   geocoder = new google.maps.Geocoder();
   
@@ -66,7 +65,6 @@ function initMap(opt) {
   google.maps.event.addListener(map, 'bounds_changed', fixLabel);
     
   createAddressSearchControl();
-  createVisualRefreshControl(opt.visualRefresh);
 }
 
 /* Feature Type hierarchy */
@@ -334,20 +332,46 @@ function setInvertLightness() {
   setStyler('invert_lightness');
 }
 
-function setColor() {
+function setColorRGB() {
   var r = parseInt(document.getElementById('redSlider').value);
   var g = parseInt(document.getElementById('greenSlider').value);
   var b = parseInt(document.getElementById('blueSlider').value);
+  
+  if (r && g && b) {
+    var aarrggbb = getColorCode([r, g, b]); 
+    document.getElementById('color').value = aarrggbb;
+    document.getElementById('colorSample').style.backgroundColor = aarrggbb;
+  }
 
-  document.getElementById('redInt').value = r;
-  document.getElementById('greenInt').value = g;
-  document.getElementById('blueInt').value = b;
-  
-  var aarrggbb = getColorCode([r, g, b]);
-  
+  setColor(r, g, b);
+}
+
+function setHexColor(event) {
+  var hex = document.getElementById('color').value;
+  if (hexre.test(hex)) {
+    
+    if (hex.length == 6) {
+      hex = '#' + hex;
+    }
+
+    var rgb = getRGBFromColorCode(hex);
+    document.getElementById('redSlider').value = rgb[0];
+    document.getElementById('greenSlider').value = rgb[1];
+    document.getElementById('blueSlider').value = rgb[2];
+
+    document.getElementById('colorSample').style.backgroundColor = hex;
+    setColor(rgb[0], rgb[1], rgb[2]);
+  }
+}
+
+function setColor(r, g, b) {
+  if (r && g && b) {
+    document.getElementById('redInt').value = r;
+    document.getElementById('greenInt').value = g;
+    document.getElementById('blueInt').value = b;
+  }
+
   document.getElementById('set_color').checked = true;
-  document.getElementById('color').value = aarrggbb;
-  document.getElementById('colorSample').style.backgroundColor = aarrggbb;
 
   if (sliderTimer != null) {
     clearTimeout(sliderTimer);
@@ -355,7 +379,7 @@ function setColor() {
   sliderTimer = setTimeout(function() {
     sliderTimer = null;
     setStyler('color');
-  }, 200);
+  }, 200);  
 }
 
 function setWeight() {
@@ -502,9 +526,12 @@ function loadStylers() {
         case "color":
           document.getElementById('colorSample').style.backgroundColor = stylers[i][p];
           var rgb = getRGBFromColorCode(stylers[i][p]);
-          document.getElementById('redSlider').value = rgb[1];
-          document.getElementById('greenSlider').value = rgb[2];
-          document.getElementById('blueSlider').value = rgb[3];
+          document.getElementById('redSlider').value = rgb[0];
+          document.getElementById('greenSlider').value = rgb[1];
+          document.getElementById('blueSlider').value = rgb[2];
+          document.getElementById('redInt').value = rgb[0];
+          document.getElementById('greenInt').value = rgb[1];
+          document.getElementById('blueInt').value = rgb[2];
           break;
         case 'weight':
           document.getElementById('weightSlider').value = (stylers[i][p] * 10);
@@ -777,9 +804,6 @@ function getStaticMapsURL() {
   params.push('sensor=false');
   params.push('size=640x480');
   params.push('maptype=' + map.getMapTypeId());
-  if (google.maps.visualRefresh) {
-    params.push('visual_refresh=true');
-  }
   
   for (var i = 0; i < styles.length; i++) {
     var styleRule = [];
@@ -821,40 +845,6 @@ function showHelp() {
 function closeHelp() {
   document.getElementById('help').style.display = 'none';
   document.getElementById('helpButton').disabled = false;
-}
-
-/* Visual Refresh Control */
-
-function createVisualRefreshControl(checked) {
-  var control = document.createElement('div');
-  var checkbox = document.createElement('input');
-  checkbox.setAttribute('type', 'checkbox');
-  if (checked) {
-    checkbox.setAttribute('checked', 'checked');
-  }
-  control.appendChild(checkbox);
-  control.appendChild(document.createTextNode('Visual refresh'));
-  control.setAttribute('id', 'visualRefreshControl');
-  checkbox.setAttribute('id', 'visualRefreshCheckbox');
-
-  checkbox.onclick = this.setVisualRefresh();
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control);
-}
-
-function setVisualRefresh() {
-  return function() {
-    
-    var opt = {
-      'zoom': map.getZoom(),
-      'center': map.getCenter(),
-      'mapTypeId': map.getMapTypeId(),
-      'visualRefresh': document.getElementById('visualRefreshCheckbox').checked
-    };
-
-    document.getElementById("map").innerHTML = '';
-    initMap(opt);
-    setMapStyle();
-  }
 }
 
 /* Address Search Control */

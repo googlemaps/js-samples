@@ -109,25 +109,25 @@
               <td width="111"><span class="clickable_label" onclick="do_click('color')"><b><span id="colourLabel">Color</span></b></span></td>
               <td width="129" align="right">
                 <input id="colorSample" disabled="disabled" />
-                <input type="text" size="9" onfocus="blur()" id="color" class="ruleValue" />
+                <input type="text" size="9" onfocus="setColor()" onkeyup="setHexColor()" maxlength="7" id="color" class="ruleValue" />
               </td>
             </tr>
           </table>
           <div class="rulecontrol">
             <table id="colorSliders">
               <td>R</td>
-                <td><input class="colorSlider" type="range" id="redSlider" min="0" max="255" value="0" onchange="setColor()" /></td>
-                <td><input class="colorInt" type="text" size="3" id="redInt" maxlength="3" /></td>
+                <td><input class="colorSlider" type="range" id="redSlider" min="0" max="255" value="0" onchange="setColorRGB()" onfocus="blur()" /></td>
+                <td><input class="colorInt" type="text" size="3" id="redInt" maxlength="3" onfocus="blur()" /></td>
               </tr>
               <tr>
                 <td>G</td>
-                <td><input class="colorSlider" type="range" id="greenSlider" min="0" max="255" value="0" onchange="setColor()" /></td>
-                <td><input class="colorInt" type="text" size="3" id="greenInt"  maxlength="3" /></td>
+                <td><input class="colorSlider" type="range" id="greenSlider" min="0" max="255" value="0" onchange="setColorRGB()" onfocus="blur()" /></td>
+                <td><input class="colorInt" type="text" size="3" id="greenInt"  maxlength="3" onfocus="blur()" /></td>
               </tr>
               <tr>
                 <td>B</td>
-                <td><input class="colorSlider" type="range" id="blueSlider" min="0" max="255" value="0" onchange="setColor()"></td>
-                <td><input class="colorInt" type="text" size="3" id="blueInt" maxlength="3" /></td>                
+                <td><input class="colorSlider" type="range" id="blueSlider" min="0" max="255" value="0" onchange="setColorRGB()" onfocus="blur()" ></td>
+                <td><input class="colorInt" type="text" size="3" id="blueInt" maxlength="3" onfocus="blur()" /></td>                
               </tr>
             </table>
           </div>
