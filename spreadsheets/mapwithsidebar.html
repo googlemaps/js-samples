@@ -184,15 +184,15 @@ function cm_createMarker(map, latlng, title, html, rank) {
   var iconImageOutUrl;
 
   if(rank > 0 && rank < 100) {
-    iconImageOutUrl = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+    iconImageOutUrl = "http://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconType + "/marker" + rank + ".png";
-    iconImageOverUrl = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+    iconImageOverUrl = "http://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconOverType + "/marker" + rank + ".png";
     iconImageUrl = iconImageOutUrl;
   } else { 
-    iconImageOutUrl = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+    iconImageOutUrl = "http://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconType + "/blank.png";
-    iconImageOverUrl = "http://gmaps-samples.googlecode.com/svn/trunk/" +
+    iconImageOverUrl = "http://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconOverType + "/blank.png";
     iconImageUrl = iconImageOutUrl;
   }
