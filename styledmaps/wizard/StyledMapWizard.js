@@ -24,6 +24,7 @@ var aunz = new google.maps.LatLngBounds(
 */
 
 function init() {
+  initGA();
   
   var opt = {
     center: new google.maps.LatLng(0, 0),
@@ -47,6 +48,16 @@ function init() {
   huePicker.addListener(setHue);
 
   addStyle();
+}
+
+function initGA() {
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-77808203-2', 'auto');
+  ga('send', 'pageview');
 }
 
 function initMap(opt) {
@@ -651,6 +662,10 @@ function setStyler(styler) {
     resetStyler(styler);
   }
   setMapStyle();
+  ga('send', {
+    hitType: 'event',
+    eventAction: 'set-style'
+  });
 }
 
 function getDefaultStylerValue(styler) {
@@ -759,6 +774,10 @@ function showJson() {
   popup.appendChild(document.createTextNode(json));
   popup.style.display = "block";
   document.getElementById('lightbox').style.display = "block";
+  ga('send', {
+    hitType: 'event',
+    eventAction: 'get-JSON'
+  });
 }
 
 function closeJson() {
@@ -785,6 +804,10 @@ function showStaticMap() {
   var popup = document.getElementById('staticMap');
   popup.style.display = "block";
   document.getElementById('lightbox').style.display = 'block';
+  ga('send', {
+    hitType: 'event',
+    eventAction: 'get-static-map'
+  });
 }
 
 function closeStaticMap() {
