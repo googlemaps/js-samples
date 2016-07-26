@@ -664,7 +664,8 @@ function setStyler(styler) {
   setMapStyle();
   ga('send', {
     hitType: 'event',
-    eventAction: 'set-style'
+    eventCategory: 'style',
+    eventAction: 'modify'
   });
 }
 
@@ -776,7 +777,8 @@ function showJson() {
   document.getElementById('lightbox').style.display = "block";
   ga('send', {
     hitType: 'event',
-    eventAction: 'get-JSON'
+    eventCategory: 'JSON',
+    eventAction: 'export'
   });
 }
 
@@ -806,7 +808,8 @@ function showStaticMap() {
   document.getElementById('lightbox').style.display = 'block';
   ga('send', {
     hitType: 'event',
-    eventAction: 'get-static-map'
+    eventCategory: 'staticMap',
+    eventAction: 'export'
   });
 }
 
