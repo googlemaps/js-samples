@@ -822,7 +822,7 @@ function closeStaticMap() {
 }
 
 function getStaticMapsURL() {
-  var url = 'http://maps.googleapis.com/maps/api/staticmap?';
+  var url = 'https://maps.googleapis.com/maps/api/staticmap?';
   var params = [];
   params.push('center=' + map.getCenter().toUrlValue());
   params.push('zoom=' + map.getZoom());
