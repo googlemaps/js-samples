@@ -1,4 +1,4 @@
-![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/v3-utility-library)
+![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/js-samples)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
 js-samples
