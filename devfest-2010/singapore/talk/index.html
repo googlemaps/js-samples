@@ -140,7 +140,7 @@ html, body {
             <header>JavaScript</header>
 <pre>
 &lt;script type=&quot;text/javascript&quot;
-  src=&quot;http://maps.google.com/maps/api/js?sensor=false&quot;&gt;&lt;/script&gt;
+  src=&quot;https://maps.google.com/maps/api/js?sensor=false&quot;&gt;&lt;/script&gt;
 
 &lt;script type=&quot;text/javascript&quot;&gt;
 /**
@@ -737,7 +737,7 @@ decodedKey = base64.urlsafe_b64decode(PRIVATE_KEY)
 signature = hmac.new(decodedKey, url_to_sign, hashlib.sha1)
 encoded_signature = base64.urlsafe_b64encode(signature.digest())
 
-places_url = ('http://maps.google.com/maps/api/place/search/json?location'
+places_url = ('https://maps.google.com/maps/api/place/search/json?location'
   '=%s&amp;radius=%s&amp;client=%s&amp;sensor=true&amp;'
   'signature=%s') % (location, radius, CLIENT_ID, encoded_signature)
 

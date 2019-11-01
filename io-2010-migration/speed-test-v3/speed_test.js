@@ -104,7 +104,7 @@ speedTest.markerClickFunction = function(pic, marker) {
       '</div>',
       '<a href="http://www.panoramio.com" target="_blank">',
       '<img ',
-      'src="http://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"/>',
+      'src="https://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"/>',
       '</a>',
       '<div>',
       '<a href="' + pic.owner_url + '" target="_blank">',

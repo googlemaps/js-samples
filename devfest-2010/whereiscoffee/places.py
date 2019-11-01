@@ -39,7 +39,7 @@ class PlacesHandler(webapp.RequestHandler):
       signature = hmac.new(decoded_key, url_to_sign, hashlib.sha1)
       encoded_signature = base64.urlsafe_b64encode(signature.digest())
 
-      places_url = ('http://maps.google.com/maps/api/place/search/json?'
+      places_url = ('https://maps.google.com/maps/api/place/search/json?'
                     'location=%s&radius=%s&client=%s&sensor=true&'
                     'signature=%s') % (location, radius, CLIENT_ID,
                                        encoded_signature)
