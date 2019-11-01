@@ -1,0 +1,26 @@
+{
+  "name": "js-samples",
+  "description": "Samples for Google Maps JavaScript",
+  "scripts": {
+    "format": "prettier **/*.json **/*.js **/*.html **/*.ts",
+    "build:index": "tree -H '.' -L 3 --prune  --noreport --charset utf-8 -T 'Google Maps JS Samples' -P '*html' -o index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/googlemaps/js-samples.git"
+  },
+  "keywords": [
+    "google",
+    "maps",
+    "javascript",
+    "samples"
+  ],
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/googlemaps/js-samples/issues"
+  },
+  "homepage": "https://github.com/googlemaps/js-samples#readme",
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  }
+}
