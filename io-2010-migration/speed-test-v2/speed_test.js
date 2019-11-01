@@ -120,7 +120,7 @@ function markerClickFn(pic, latlng) {
       '</div>',
       '<a href="http://www.panoramio.com/" target="_blank">',
       '<img ',
-      'src="http://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"/>',
+      'src="https://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"/>',
       '</a>',
       '<br/>',
       '<a href="' + pic.owner_url + '" target="_blank">',
