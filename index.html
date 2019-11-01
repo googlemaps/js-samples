@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <meta name="Author" content="Made by 'tree'">
+ <meta name="GENERATOR" content="$Version: $ tree v1.7.0 (c) 1996 - 2014 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro $">
+ <title>Google Maps JS Samples</title>
+ <style type="text/css">
+  <!-- 
+  BODY { font-family : ariel, monospace, sans-serif; }
+  P { font-weight: normal; font-family : ariel, monospace, sans-serif; color: black; background-color: transparent;}
+  B { font-weight: normal; color: black; background-color: transparent;}
+  A:visited { font-weight : normal; text-decoration : none; background-color : transparent; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
+  A:link    { font-weight : normal; text-decoration : none; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
+  A:hover   { color : #000000; font-weight : normal; text-decoration : underline; background-color : yellow; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
+  A:active  { color : #000000; font-weight: normal; background-color : transparent; margin : 0px 0px 0px 0px; padding : 0px 0px 0px 0px; display: inline; }
+  .VERSION { font-size: small; font-family : arial, sans-serif; }
+  .NORM  { color: black;  background-color: transparent;}
+  .FIFO  { color: purple; background-color: transparent;}
+  .CHAR  { color: yellow; background-color: transparent;}
+  .DIR   { color: blue;   background-color: transparent;}
+  .BLOCK { color: yellow; background-color: transparent;}
+  .LINK  { color: aqua;   background-color: transparent;}
+  .SOCK  { color: fuchsia;background-color: transparent;}
+  .EXEC  { color: green;  background-color: transparent;}
+  -->
+ </style>
+</head>
+<body>
+	<h1>Google Maps JS Samples</h1><p>
+	<a href=".">.</a><br>
+	├── <a href="./45degrees/">45degrees</a><br>
+	│   └── <a href="./45degrees/index.html">index.html</a><br>
+	├── <a href="./ads/">ads</a><br>
+	│   └── <a href="./ads/adunit-format.html">adunit-format.html</a><br>
+	├── <a href="./articles/">articles</a><br>
+	│   ├── <a href="./articles/phpsqlinfo/">phpsqlinfo</a><br>
+	│   │   └── <a href="./articles/phpsqlinfo/phpsqlinfo_add.html">phpsqlinfo_add.html</a><br>
+	│   └── <a href="./articles/phpsqlsearch/">phpsqlsearch</a><br>
+	│   &nbsp;&nbsp;&nbsp; └── <a href="./articles/phpsqlsearch/phpsqlsearch_map.html">phpsqlsearch_map.html</a><br>
+	├── <a href="./callback/">callback</a><br>
+	│   ├── <a href="./callback/callback_delayed.html">callback_delayed.html</a><br>
+	│   └── <a href="./callback/callback.html">callback.html</a><br>
+	├── <a href="./circle-overlay/">circle-overlay</a><br>
+	│   └── <a href="./circle-overlay/circle-overlay.html">circle-overlay.html</a><br>
+	├── <a href="./clear-all-overlays/">clear-all-overlays</a><br>
+	│   └── <a href="./clear-all-overlays/clear-all-overlays.html">clear-all-overlays.html</a><br>
+	├── <a href="./cloud/">cloud</a><br>
+	│   └── <a href="./cloud/cloud.html">cloud.html</a><br>
+	├── <a href="./commonloader/">commonloader</a><br>
+	│   ├── <a href="./commonloader/autoload.html">autoload.html</a><br>
+	│   ├── <a href="./commonloader/clientlocation.html">clientlocation.html</a><br>
+	│   └── <a href="./commonloader/commonloader.html">commonloader.html</a><br>
+	├── <a href="./controls/">controls</a><br>
+	│   ├── <a href="./controls/controlsv3_6.html">controlsv3_6.html</a><br>
+	│   └── <a href="./controls/index.html">index.html</a><br>
+	├── <a href="./country_explorer/">country_explorer</a><br>
+	│   └── <a href="./country_explorer/country_explorer.html">country_explorer.html</a><br>
+	├── <a href="./custom-copyirghts/">custom-copyirghts</a><br>
+	│   └── <a href="./custom-copyirghts/custom-copyrights.html">custom-copyrights.html</a><br>
+	├── <a href="./devfest-2010/">devfest-2010</a><br>
+	│   ├── <a href="./devfest-2010/kualalumpur/">kualalumpur</a><br>
+	│   │   ├── <a href="./devfest-2010/kualalumpur/codelab-basics.html">codelab-basics.html</a><br>
+	│   │   ├── <a href="./devfest-2010/kualalumpur/codelab-lab1.html">codelab-lab1.html</a><br>
+	│   │   ├── <a href="./devfest-2010/kualalumpur/codelab-lab2-easy.html">codelab-lab2-easy.html</a><br>
+	│   │   ├── <a href="./devfest-2010/kualalumpur/codelab-lab2.html">codelab-lab2.html</a><br>
+	│   │   └── <a href="./devfest-2010/kualalumpur/step1-map.html">step1-map.html</a><br>
+	│   ├── <a href="./devfest-2010/manila/">manila</a><br>
+	│   │   ├── <a href="./devfest-2010/manila/codelab-basics.html">codelab-basics.html</a><br>
+	│   │   ├── <a href="./devfest-2010/manila/codelab-lab1.html">codelab-lab1.html</a><br>
+	│   │   ├── <a href="./devfest-2010/manila/codelab-lab2-easy.html">codelab-lab2-easy.html</a><br>
+	│   │   ├── <a href="./devfest-2010/manila/codelab-lab2.html">codelab-lab2.html</a><br>
+	│   │   └── <a href="./devfest-2010/manila/step1-map.html">step1-map.html</a><br>
+	│   ├── <a href="./devfest-2010/singapore/">singapore</a><br>
+	│   │   ├── <a href="./devfest-2010/singapore/codelab-basics.html">codelab-basics.html</a><br>
+	│   │   ├── <a href="./devfest-2010/singapore/codelab-lab1.html">codelab-lab1.html</a><br>
+	│   │   ├── <a href="./devfest-2010/singapore/codelab-lab2-easy.html">codelab-lab2-easy.html</a><br>
+	│   │   ├── <a href="./devfest-2010/singapore/codelab-lab2.html">codelab-lab2.html</a><br>
+	│   │   └── <a href="./devfest-2010/singapore/step1-map.html">step1-map.html</a><br>
+	│   └── <a href="./devfest-2010/sydney/">sydney</a><br>
+	│   &nbsp;&nbsp;&nbsp; ├── <a href="./devfest-2010/sydney/codelab-basics.html">codelab-basics.html</a><br>
+	│   &nbsp;&nbsp;&nbsp; ├── <a href="./devfest-2010/sydney/codelab-lab1.html">codelab-lab1.html</a><br>
+	│   &nbsp;&nbsp;&nbsp; ├── <a href="./devfest-2010/sydney/codelab-lab2-easy.html">codelab-lab2-easy.html</a><br>
+	│   &nbsp;&nbsp;&nbsp; ├── <a href="./devfest-2010/sydney/codelab-lab2.html">codelab-lab2.html</a><br>
+	│   &nbsp;&nbsp;&nbsp; └── <a href="./devfest-2010/sydney/step1-map.html">step1-map.html</a><br>
+	├── <a href="./devfest2011/">devfest2011</a><br>
+	│   └── <a href="./devfest2011/fusiontables-codelab/">fusiontables-codelab</a><br>
+	│   &nbsp;&nbsp;&nbsp; └── <a href="./devfest2011/fusiontables-codelab/index.html">index.html</a><br>
+	├── <a href="./digitalclock/">digitalclock</a><br>
+	│   └── <a href="./digitalclock/digitalclock.html">digitalclock.html</a><br>
+	├── <a href="./distancematrix/">distancematrix</a><br>
+	│   └── <a href="./distancematrix/london.html">london.html</a><br>
+	├── <a href="./distance_matrix_quotas/">distance_matrix_quotas</a><br>
+	│   └── <a href="./distance_matrix_quotas/distancematrix_quotas.html">distancematrix_quotas.html</a><br>
+	├── <a href="./draggable-directions/">draggable-directions</a><br>
+	│   └── <a href="./draggable-directions/draggable-directions.html">draggable-directions.html</a><br>
+	├── <a href="./draggable-markers/">draggable-markers</a><br>
+	│   ├── <a href="./draggable-markers/draggable-imagechange.html">draggable-imagechange.html</a><br>
+	│   └── <a href="./draggable-markers/draggable-markers.html">draggable-markers.html</a><br>
+	├── <a href="./drawing/">drawing</a><br>
+	│   └── <a href="./drawing/drawing-tools.html">drawing-tools.html</a><br>
+	├── <a href="./drivingdirections/">drivingdirections</a><br>
+	│   ├── <a href="./drivingdirections/directions-demo.html">directions-demo.html</a><br>
+	│   ├── <a href="./drivingdirections/directions-optimized.html">directions-optimized.html</a><br>
+	│   └── <a href="./drivingdirections/directions_tict.html">directions_tict.html</a><br>
+	├── <a href="./elevation/">elevation</a><br>
+	│   └── <a href="./elevation/elevation-profile.html">elevation-profile.html</a><br>
+	├── <a href="./folds/">folds</a><br>
+	│   └── <a href="./folds/folds.html">folds.html</a><br>
+	├── <a href="./fusiontables/">fusiontables</a><br>
+	│   ├── <a href="./fusiontables/beaches_heatmap.html">beaches_heatmap.html</a><br>
+	│   ├── <a href="./fusiontables/chicago-homicides.html">chicago-homicides.html</a><br>
+	│   ├── <a href="./fusiontables/cycletrails.html">cycletrails.html</a><br>
+	│   └── <a href="./fusiontables/un-stats.html">un-stats.html</a><br>
+	├── <a href="./geocoder/">geocoder</a><br>
+	│   ├── <a href="./geocoder/getlatlng.html">getlatlng.html</a><br>
+	│   └── <a href="./geocoder/v3-geocoder-tool.html">v3-geocoder-tool.html</a><br>
+	├── <a href="./geolocate/">geolocate</a><br>
+	│   └── <a href="./geolocate/geolocate.html">geolocate.html</a><br>
+	├── <a href="./grabbag/">grabbag</a><br>
+	│   ├── <a href="./grabbag/israel-map.html">israel-map.html</a><br>
+	│   ├── <a href="./grabbag/rotation-animation.html">rotation-animation.html</a><br>
+	│   └── <a href="./grabbag/streetview-preview.html">streetview-preview.html</a><br>
+	├── <a href="./heatmaps/">heatmaps</a><br>
+	│   └── <a href="./heatmaps/walmart.html">walmart.html</a><br>
+	├── <a href="./index.html">index.html</a><br>
+	├── <a href="./infowindow/">infowindow</a><br>
+	│   ├── <a href="./infowindow/infowindow-raise.html">infowindow-raise.html</a><br>
+	│   ├── <a href="./infowindow/infowindow-zindex.html">infowindow-zindex.html</a><br>
+	│   └── <a href="./infowindow/tabs.html">tabs.html</a><br>
+	├── <a href="./infowindow_custom/">infowindow_custom</a><br>
+	│   └── <a href="./infowindow_custom/infowindow-custom.html">infowindow-custom.html</a><br>
+	├── <a href="./io-2010-bootcamp/">io-2010-bootcamp</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-adding-markers.html">v3-adding-markers.html</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-directions.html">v3-directions.html</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-geocode.html">v3-geocode.html</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-infomarker.html">v3-infomarker.html</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-infowindow.html">v3-infowindow.html</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-making-a-map.html">v3-making-a-map.html</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-marker-directions.html">v3-marker-directions.html</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-polygon.html">v3-polygon.html</a><br>
+	│   ├── <a href="./io-2010-bootcamp/v3-polyline.html">v3-polyline.html</a><br>
+	│   └── <a href="./io-2010-bootcamp/v3-reverse-geocode.html">v3-reverse-geocode.html</a><br>
+	├── <a href="./io-2010-migration/">io-2010-migration</a><br>
+	│   ├── <a href="./io-2010-migration/circle-overlay.html">circle-overlay.html</a><br>
+	│   ├── <a href="./io-2010-migration/multi-map-binds.html">multi-map-binds.html</a><br>
+	│   ├── <a href="./io-2010-migration/speed-test-v2/">speed-test-v2</a><br>
+	│   │   └── <a href="./io-2010-migration/speed-test-v2/speed_test_example.html">speed_test_example.html</a><br>
+	│   ├── <a href="./io-2010-migration/speed-test-v3/">speed-test-v3</a><br>
+	│   │   └── <a href="./io-2010-migration/speed-test-v3/speed_test_example.html">speed_test_example.html</a><br>
+	│   ├── <a href="./io-2010-migration/v2-map-simple.html">v2-map-simple.html</a><br>
+	│   ├── <a href="./io-2010-migration/v3-map-infowindow.html">v3-map-infowindow.html</a><br>
+	│   ├── <a href="./io-2010-migration/v3-map-infowindows.html">v3-map-infowindows.html</a><br>
+	│   └── <a href="./io-2010-migration/v3-map-simple.html">v3-map-simple.html</a><br>
+	├── <a href="./latlng-to-coord-control/">latlng-to-coord-control</a><br>
+	│   └── <a href="./latlng-to-coord-control/latlng-to-coord-control.html">latlng-to-coord-control.html</a><br>
+	├── <a href="./layers/">layers</a><br>
+	│   ├── <a href="./layers/dmel.html">dmel.html</a><br>
+	│   ├── <a href="./layers/layers.html">layers.html</a><br>
+	│   └── <a href="./layers/panoramio-tags.html">panoramio-tags.html</a><br>
+	├── <a href="./localsearch/">localsearch</a><br>
+	│   └── <a href="./localsearch/places.html">places.html</a><br>
+	├── <a href="./map_events/">map_events</a><br>
+	│   └── <a href="./map_events/map_events.html">map_events.html</a><br>
+	├── <a href="./map_language/">map_language</a><br>
+	│   └── <a href="./map_language/map_lang.html">map_lang.html</a><br>
+	├── <a href="./mapofthedead/">mapofthedead</a><br>
+	│   └── <a href="./mapofthedead/mapofthedead_game.html">mapofthedead_game.html</a><br>
+	├── <a href="./markeranimations/">markeranimations</a><br>
+	│   └── <a href="./markeranimations/markeranimations.html">markeranimations.html</a><br>
+	├── <a href="./overlayview/">overlayview</a><br>
+	│   └── <a href="./overlayview/custommarker.html">custommarker.html</a><br>
+	├── <a href="./pirates/">pirates</a><br>
+	│   └── <a href="./pirates/pirate.html">pirate.html</a><br>
+	├── <a href="./places/">places</a><br>
+	│   ├── <a href="./places/2012-may-hangout/">2012-may-hangout</a><br>
+	│   │   ├── <a href="./places/2012-may-hangout/autocomplete.html">autocomplete.html</a><br>
+	│   │   └── <a href="./places/2012-may-hangout/search.html">search.html</a><br>
+	│   ├── <a href="./places/autocomplete-addressform.html">autocomplete-addressform.html</a><br>
+	│   ├── <a href="./places/autocomplete-hotel-search.html">autocomplete-hotel-search.html</a><br>
+	│   ├── <a href="./places/keyword_rankBy.html">keyword_rankBy.html</a><br>
+	│   ├── <a href="./places/place-icons.html">place-icons.html</a><br>
+	│   ├── <a href="./places/places-search.html">places-search.html</a><br>
+	│   ├── <a href="./places/query_autocomplete_service.html">query_autocomplete_service.html</a><br>
+	│   └── <a href="./places/reviews.html">reviews.html</a><br>
+	├── <a href="./planetary-maptypes/">planetary-maptypes</a><br>
+	│   └── <a href="./planetary-maptypes/planetary-maptypes.html">planetary-maptypes.html</a><br>
+	├── <a href="./poly/">poly</a><br>
+	│   ├── <a href="./poly/pentagon.html">pentagon.html</a><br>
+	│   ├── <a href="./poly/poly_edit.html">poly_edit.html</a><br>
+	│   └── <a href="./poly/poly_snowflake.html">poly_snowflake.html</a><br>
+	├── <a href="./rectangle-overlay/">rectangle-overlay</a><br>
+	│   └── <a href="./rectangle-overlay/rectangle-overlay.html">rectangle-overlay.html</a><br>
+	├── <a href="./routeboxer/">routeboxer</a><br>
+	│   └── <a href="./routeboxer/routeboxer-v3.html">routeboxer-v3.html</a><br>
+	├── <a href="./sidebar/">sidebar</a><br>
+	│   └── <a href="./sidebar/random-markers.html">random-markers.html</a><br>
+	├── <a href="./single-infowindow/">single-infowindow</a><br>
+	│   └── <a href="./single-infowindow/single-infowindow.html">single-infowindow.html</a><br>
+	├── <a href="./smartinfowindow/">smartinfowindow</a><br>
+	│   └── <a href="./smartinfowindow/smartinfowindow.html">smartinfowindow.html</a><br>
+	├── <a href="./spreadsheets/">spreadsheets</a><br>
+	│   └── <a href="./spreadsheets/mapwithsidebar.html">mapwithsidebar.html</a><br>
+	├── <a href="./streetview/">streetview</a><br>
+	│   └── <a href="./streetview/streetview-v3.html">streetview-v3.html</a><br>
+	├── <a href="./styledmaps/">styledmaps</a><br>
+	│   ├── <a href="./styledmaps/examples/">examples</a><br>
+	│   │   ├── <a href="./styledmaps/examples/style1.html">style1.html</a><br>
+	│   │   ├── <a href="./styledmaps/examples/style2.html">style2.html</a><br>
+	│   │   └── <a href="./styledmaps/examples/style3.html">style3.html</a><br>
+	│   ├── <a href="./styledmaps/examplestyles.html">examplestyles.html</a><br>
+	│   ├── <a href="./styledmaps/io2012update.html">io2012update.html</a><br>
+	│   └── <a href="./styledmaps/wizard/">wizard</a><br>
+	│   &nbsp;&nbsp;&nbsp; └── <a href="./styledmaps/wizard/index.html">index.html</a><br>
+	├── <a href="./symbols/">symbols</a><br>
+	│   ├── <a href="./symbols/polyline-symbols.html">polyline-symbols.html</a><br>
+	│   └── <a href="./symbols/walmarts.html">walmarts.html</a><br>
+	├── <a href="./toomanymarkers/">toomanymarkers</a><br>
+	│   └── <a href="./toomanymarkers/toomanymarkers.html">toomanymarkers.html</a><br>
+	├── <a href="./transit/">transit</a><br>
+	│   └── <a href="./transit/transit.html">transit.html</a><br>
+	├── <a href="./weather/">weather</a><br>
+	│   └── <a href="./weather/weather_layer.html">weather_layer.html</a><br>
+	├── <a href="./whereinworld/">whereinworld</a><br>
+	│   └── <a href="./whereinworld/whereinworld.html">whereinworld.html</a><br>
+	└── <a href="./xmlparsing/">xmlparsing</a><br>
+	&nbsp;&nbsp;&nbsp; ├── <a href="./xmlparsing/downloadurl.html">downloadurl.html</a><br>
+	&nbsp;&nbsp;&nbsp; ├── <a href="./xmlparsing/downloadurl_info.html">downloadurl_info.html</a><br>
+	&nbsp;&nbsp;&nbsp; └── <a href="./xmlparsing/jqueryget.html">jqueryget.html</a><br>
+	<br><br>
+	</p>
+	<p>
+	<br><br>
+	</p>
+	<hr>
+	<p class="VERSION">
+		 tree v1.7.0 © 1996 - 2014 by Steve Baker and Thomas Moore <br>
+		 HTML output hacked and copyleft © 1998 by Francesc Rocher <br>
+		 JSON output hacked and copyleft © 2014 by Florian Sesser <br>
+		 Charsets / OS/2 support © 2001 by Kyosuke Tokoro
+	</p>
+</body>
+</html>
