@@ -4,14 +4,14 @@
     <script type="text/javascript"
       src="https://maps.google.com/maps/api/js?sensor=false"></script> 
     <script type="text/javascript"
-      src="http://beyond-markers.appspot.com/s/js/streetview_office_rooms.js"></script> 
+      src="https://beyond-markers.appspot.com/s/js/streetview_office_rooms.js"></script> 
     <script> 
       var map;
       var officeEntryLatLng = new google.maps.LatLng(-33.86675, 151.195914);
  
       function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
         // Return the URL of the tile.
-        return 'http://syd-office-panos.appspot.com/p/' + pano + '_' +
+        return 'https://syd-office-panos.appspot.com/p/' + pano + '_' +
                zoom + '_' + tileX + '_' + tileY + '.jpg';
       }
  
@@ -42,7 +42,7 @@
         // Code to calculate the bearing.
         // Latitude/longitude spherical geodesy formulae & scripts (c) Chris Veness
         // 2002-2010 - www.movable-type.co.uk/scripts/latlong.html
-        // Licence: CC-BY http://creativecommons.org/licenses/by/3.0/
+        // Licence: CC-BY https://creativecommons.org/licenses/by/3.0/
         // <snip>
         var toLat = latLngTo.lat() / 180 * Math.PI;
         var fromLat = latLngFrom.lat() / 180 * Math.PI;
@@ -84,7 +84,7 @@
  
         // Setup the googleLogo on the map
         var mapMarkerImage = new google.maps.MarkerImage(
-            'http://www.google.com/intl/en_ALL/images/srpr/logo1w.png',
+            'https://www.google.com/intl/en_ALL/images/srpr/logo1w.png',
             new google.maps.Size(275, 95),
             new google.maps.Point(0, 0),
             new google.maps.Point(16, 37),
@@ -101,7 +101,7 @@
  
         // Setup the marker in StreetView
         var panoMarkerImage = new google.maps.MarkerImage(
-            'http://www.google.com/intl/en_ALL/images/srpr/logo1w.png',
+            'https://www.google.com/intl/en_ALL/images/srpr/logo1w.png',
             new google.maps.Size(275, 95),
             new google.maps.Point(0, 0),
             new google.maps.Point(32, 108));

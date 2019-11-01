@@ -5,8 +5,8 @@
  * This library contains classes for working with copyrights for custom map
  * types.
  * <br/>
- * This is a v3 implementation of the <a href="http://code.google.com/apis/maps/documentation/javascript/v2/reference.html#GCopyright">GCopyright</a>
- * and <a href="http://code.google.com/apis/maps/documentation/javascript/v2/reference.html#GCopyrightCollection">GCopyrightCollection</a>
+ * This is a v3 implementation of the <a href="https://code.google.com/apis/maps/documentation/javascript/v2/reference.html#GCopyright">GCopyright</a>
+ * and <a href="https://code.google.com/apis/maps/documentation/javascript/v2/reference.html#GCopyrightCollection">GCopyrightCollection</a>
  * classes in v2 of the Maps API.
  */
 

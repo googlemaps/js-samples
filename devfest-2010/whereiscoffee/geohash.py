@@ -1,6 +1,6 @@
 #!/usr/bin/python
 """
- implementation of http://en.wikipedia.org/wiki/Geohash
+ implementation of https://en.wikipedia.org/wiki/Geohash
 
  This module was written in May 2008 by Schuyler Erle and is made
  available in the public domain. Cheers to Christopher Schmidt for

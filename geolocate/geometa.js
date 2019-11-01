@@ -1,5 +1,5 @@
 // From
-// http://google-ajax-examples.googlecode.com/svn/trunk/whereareyou/scripts/geometa.js
+// https://google-ajax-examples.googlecode.com/svn/trunk/whereareyou/scripts/geometa.js
 function prepareGeolocation(opt_force) {
 if ( opt_force || typeof navigator.geolocation == "undefined" || navigator.geolocation.shim ) (function(){
 
@@ -105,7 +105,7 @@ var AjaxGeoLocation = (function() {
         if (!hasGoogleLoader() && !loading) {
             loading = true;
             var s = document.createElement('script');
-            s.src = 'http://www.google.com/jsapi?callback=_google_loader_apiLoaded';
+            s.src = 'https://www.google.com/jsapi?callback=_google_loader_apiLoaded';
             s.type = "text/javascript";
             document.getElementsByTagName('body')[0].appendChild(s);
         }

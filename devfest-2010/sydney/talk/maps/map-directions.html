@@ -72,7 +72,7 @@
       }
     </style>
 
-    <script type="text/javascript" src="http://www.google.com/jsapi?autoload={'modules':[{name:'maps',version:3,other_params:'sensor=false'},{'name':'jquery','version':'1.4.2'}]}"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{name:'maps',version:3,other_params:'sensor=false'},{'name':'jquery','version':'1.4.2'}]}"></script>
 
 
     <script type="text/javascript">
@@ -140,7 +140,7 @@
 
       function loadStoresInView() {
         var bounds = map.getBounds();
-        var url = 'http://whereiscoffee.appspot.com/stores?action=search&bounds=' +
+        var url = 'https://whereiscoffee.appspot.com/stores?action=search&bounds=' +
           bounds.toUrlValue();
         $.ajax({
           url: url,
@@ -221,7 +221,7 @@
       }
 
       function loadShop(marker) {
-        var url = 'http://whereiscoffee.appspot.com/stores?action=load&key=' +
+        var url = 'https://whereiscoffee.appspot.com/stores?action=load&key=' +
           marker.key;
 
         $.ajax({
