@@ -33,14 +33,14 @@ class PlacesHandler(webapp.RequestHandler):
       radius = self.request.get('radius')
 
       url_to_sign = ('/maps/api/place/search/json?location=%s&radius=%s&client='
-                     '%s&sensor=true') % (location, radius, CLIENT_ID)
+                     '%s') % (location, radius, CLIENT_ID)
 
       decoded_key = base64.urlsafe_b64decode(PRIVATE_KEY)
       signature = hmac.new(decoded_key, url_to_sign, hashlib.sha1)
       encoded_signature = base64.urlsafe_b64encode(signature.digest())
 
       places_url = ('https://maps.google.com/maps/api/place/search/json?'
-                    'location=%s&radius=%s&client=%s&sensor=true&'
+                    'location=%s&radius=%s&client=%s&'
                     'signature=%s') % (location, radius, CLIENT_ID,
                                        encoded_signature)
 
