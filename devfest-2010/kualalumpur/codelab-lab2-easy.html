@@ -227,13 +227,13 @@ App.handleMarkerClick = function(marker) {
 
 /**
  * Generates the Flickr photo source URL for the specified size.
- * Reference: http://www.flickr.com/services/api/misc.urls.html
+ * Reference: https://www.flickr.com/services/api/misc.urls.html
  * @param {Object} photo Photo JSON response object
  * @param {string} size One of the following: [m,s,t,b]
  */
 App.getFlickrPhotoUrl = function(photo, size) {
   var url = [
-    'http://farm',
+    'https://farm',
     photo.farm,
     '.static.flickr.com/',
     photo.server,
@@ -348,7 +348,7 @@ App.getFlickrPhotos = function() {
 
   // Generate request URL to Flickr's photo search API
   var feedUrl = [
-    'http://api.flickr.com/services/rest/?method=flickr.photos.search',
+    'https://api.flickr.com/services/rest/?method=flickr.photos.search',
     'api_key=' + App.FLICKR_API_KEY,
     'format=json',
     'jsoncallback=App.getFlickrPhotosCallback',

@@ -20,7 +20,7 @@ speedTest.infoWindow = null;
 
 speedTest.init = function() {
   // Cache initial marker image
-  var imageUrl = 'http://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=' +
+  var imageUrl = 'https://chart.apis.google.com/chart?cht=mm&chs=24x32&chco=' +
       'FFFFFF,008CFF,000000&ext=.png';
   var markerImage = new google.maps.MarkerImage(imageUrl,
       new google.maps.Size(24, 32));
@@ -102,7 +102,7 @@ speedTest.markerClickFunction = function(pic, marker) {
       '<img class="info-img" src="' + pic.photo_file_url + '"/>',
       '</a>',
       '</div>',
-      '<a href="http://www.panoramio.com" target="_blank">',
+      '<a href="https://www.panoramio.com" target="_blank">',
       '<img ',
       'src="https://maps.google.com/intl/en_ALL/mapfiles/iw_panoramio.png"/>',
       '</a>',

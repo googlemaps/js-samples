@@ -207,7 +207,7 @@
       var fullUrl = place.website;
       var website = hostnameRegexp.exec(place.website);
       if (website == null) { 
-        website = 'http://' + place.website + '/';
+        website = 'https://' + place.website + '/';
         fullUrl = website;
       }
       content += '<tr class="iw_table_row"><td class="iw_attribute_name">Website:</td><td><a href="' + fullUrl + '">' + website + '</a></td></tr>';
@@ -337,6 +337,6 @@ table {
   </div>
   <div id="map_canvas"></div>
   <div id="listing"><table id="resultsTable"><tbody id="results"></tbody></table></div>
-  <div id="iconCredit">Numbered icons courtesy of Nicolas Mollet's awesome <a href="http://mapicons.nicolasmollet.com">Maps Icons Collection</a></div>
+  <div id="iconCredit">Numbered icons courtesy of Nicolas Mollet's awesome <a href="https://mapicons.nicolasmollet.com">Maps Icons Collection</a></div>
 </body>
 </html>

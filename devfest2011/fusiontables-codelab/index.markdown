@@ -15,7 +15,7 @@ Fusion Tables is a modern data management web application making it easy to host
 
 ## Upload Data to Fusion Tables
 
-1. Go to [Fusion Tables](http://www.google.com/fusiontables)
+1. Go to [Fusion Tables](https://www.google.com/fusiontables)
 
 2. Select **New table > Import table**  
    ![import](import1.png)
@@ -34,7 +34,7 @@ Fusion Tables is a modern data management web application making it easy to host
 
 8. Click **Finish**
 
-9. The file will upload to Fusion Tables. Here's an example of what the table will look like in [Fusion Tables](http://www.google.com/fusiontables/DataSource?dsrcid=721636)
+9. The file will upload to Fusion Tables. Here's an example of what the table will look like in [Fusion Tables](https://www.google.com/fusiontables/DataSource?dsrcid=721636)
 
 
 ## Merge tables
@@ -45,7 +45,7 @@ Now that you have the Bay Area population data in Fusion Tables, we're going to 
 
 2.  Click the **Merge** tab in the navigation
 
-3.  Paste the following URL in the Text box under Merge with: [http://www.google.com/fusiontables/DataSource?dsrcid=702655](http://www.google.com/fusiontables/DataSource?dsrcid=702655)
+3.  Paste the following URL in the Text box under Merge with: [https://www.google.com/fusiontables/DataSource?dsrcid=702655](https://www.google.com/fusiontables/DataSource?dsrcid=702655)
 
 4. Click the **Get** button
 
@@ -141,15 +141,15 @@ Now that you have a nice, styled map, it's time to display it into a webpage.
 7. Open the map.html file in a browser. You should see your Fusion Table data on the map.
   ![map](map.png)
 
-8. Now, update the query sent to the Fusion Table Layer to include a filter. Tip: Use a [query](http://code.google.com/apis/maps/documentation/javascript/reference.html#FusionTablesLayer) to narrow down results (Advanced: allow the user to dynamically change the query)
+8. Now, update the query sent to the Fusion Table Layer to include a filter. Tip: Use a [query](https://code.google.com/apis/maps/documentation/javascript/reference.html#FusionTablesLayer) to narrow down results (Advanced: allow the user to dynamically change the query)
 
 9. View the HTML page in a browser again to see the map with the new filter.
 
 ## Advanced
 
-This next section is for you to figure out :) A good place to get help will be in the [documentation](http://code.google.com/apis/maps/documentation/javascript/)
+This next section is for you to figure out :) A good place to get help will be in the [documentation](https://code.google.com/apis/maps/documentation/javascript/)
 
-1. Add a [spatial clause](http://code.google.com/apis/fusiontables/docs/developers_reference.html#Select) to the query. For example, a distance query. (Advanced: allow the user to dynamically change the query - for example, dragging a Marker to change the center point)
+1. Add a [spatial clause](https://code.google.com/apis/fusiontables/docs/developers_reference.html#Select) to the query. For example, a distance query. (Advanced: allow the user to dynamically change the query - for example, dragging a Marker to change the center point)
 
 2. Suppress info windows, and add your own click handler. Display information from the returned row in an info window or other info box on the page.
 
@@ -161,12 +161,12 @@ This next section is for you to figure out :) A good place to get help will be i
 
 Here are a couple useful tools that will help you work with Fusion Tables:
 
-1. [Shape Escape](http://shpescape.com).  
+1. [Shape Escape](https://shpescape.com).  
   Shape Escape allows you to upload shape files to Fusion Tables. Simply go to shpescape.com and select   
   the zipped shape file you want to upload. Shape Escape creates a Fusion Table with the shape file 
   data for you!
 
-2. [FusionTablesLayer Builder](http://goo.gl/X0kG4)  
+2. [FusionTablesLayer Builder](https://goo.gl/X0kG4)  
   Going a few steps beyond the built-in "Get embeddable code" feature, FusionTablesLayer Builder
   generates all the code necessary to include a Google Map with a Fusion Table Layer on your own
   website.

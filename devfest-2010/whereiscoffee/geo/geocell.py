@@ -6,7 +6,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#     http://www.apache.org/licenses/LICENSE-2.0
+#     https://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -21,7 +21,7 @@ region inside the [-90,90] x [-180,180] latitude/longitude space. A geocell's
 'resolution' is its length. For most practical purposes, at high resolutions,
 geocells can be treated as single points.
 
-Much like geohashes (see http://en.wikipedia.org/wiki/Geohash), geocells are
+Much like geohashes (see https://en.wikipedia.org/wiki/Geohash), geocells are
 hierarchical, in that any prefix of a geocell is considered its ancestor, with
 geocell[:-1] being geocell's immediate parent cell.
 

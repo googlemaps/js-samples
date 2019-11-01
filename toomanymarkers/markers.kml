@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<kml xmlns="http://www.opengis.net/kml/2.2">
+<kml xmlns="https://www.opengis.net/kml/2.2">
 <Document>
 <Folder id="Fusiontables">
 <name>Fusiontables folder</name>
@@ -9,7 +9,7 @@
 </BalloonStyle>
 <IconStyle>
 <Icon>
-<href>http://www.google.com/help/hc/images/maps_camera.png</href>
+<href>https://www.google.com/help/hc/images/maps_camera.png</href>
 </Icon>
 </IconStyle>
 </Style>

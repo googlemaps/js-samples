@@ -285,7 +285,7 @@ RadiusWidget.prototype.getSnappedPosition_ = function(pos) {
 
 /**
  * Calculates the distance between two latlng points in km.
- * @see http://www.movable-type.co.uk/scripts/latlong.html
+ * @see https://www.movable-type.co.uk/scripts/latlong.html
  *
  * @param {google.maps.LatLng} p1 The first lat lng point.
  * @param {google.maps.LatLng} p2 The second lat lng point.

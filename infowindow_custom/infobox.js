@@ -36,7 +36,7 @@ InfoBox.prototype.panes_changed = function() {
     var div = this.div_ = document.createElement("div");
     div.style.border = "0px none";
     div.style.position = "absolute";
-    div.style.background = "url('http://ace.imageg.net/images/WIZ_ACE_myStore/mapBubble.png')";
+    div.style.background = "url('https://ace.imageg.net/images/WIZ_ACE_myStore/mapBubble.png')";
     div.style.paddingTop = "12px";
     div.style.width = this.width_ + "px";
     div.style.height = this.height_ + "px";
@@ -49,7 +49,7 @@ InfoBox.prototype.panes_changed = function() {
     topDiv.style.paddingRight = "10px";
     var closeImg = document.createElement("img");
     closeImg.style.cursor = "pointer";
-    closeImg.src = "http://www.google.com/intl/en_us/mapfiles/close.gif";
+    closeImg.src = "https://www.google.com/intl/en_us/mapfiles/close.gif";
     topDiv.appendChild(closeImg);
 
     function removeInfoBox(ib) {

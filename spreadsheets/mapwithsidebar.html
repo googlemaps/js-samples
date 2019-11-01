@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head> </head><body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="https://www.w3.org/1999/xhtml"><head> </head><body>
 
 <!-- You can see the sample spreadsheet here:
 https://spreadsheets.google.com/pub?key=0AneCM3YnuzpAcG5FczJCXzM3Uy1ER0dGSTZrZFFaUFE&output=html
@@ -178,21 +178,21 @@ function cm_createMarker(map, latlng, title, html, rank) {
   var infoWindowAnchor = new google.maps.Point(9, 2);
   var infoShadowAnchor = new google.maps.Point(18, 25);
 
-  var iconShadowUrl = "http://www.google.com/mapfiles/shadow50.png";
+  var iconShadowUrl = "https://www.google.com/mapfiles/shadow50.png";
   var iconImageUrl;
   var iconImageOverUrl;
   var iconImageOutUrl;
 
   if(rank > 0 && rank < 100) {
-    iconImageOutUrl = "http://googlemaps.github.io/js-v2-samples/" +
+    iconImageOutUrl = "https://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconType + "/marker" + rank + ".png";
-    iconImageOverUrl = "http://googlemaps.github.io/js-v2-samples/" +
+    iconImageOverUrl = "https://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconOverType + "/marker" + rank + ".png";
     iconImageUrl = iconImageOutUrl;
   } else { 
-    iconImageOutUrl = "http://googlemaps.github.io/js-v2-samples/" +
+    iconImageOutUrl = "https://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconType + "/blank.png";
-    iconImageOverUrl = "http://googlemaps.github.io/js-v2-samples/" +
+    iconImageOverUrl = "https://googlemaps.github.io/js-v2-samples/" +
         "markers/" + param_iconOverType + "/blank.png";
     iconImageUrl = iconImageOutUrl;
   }
@@ -252,7 +252,7 @@ function cm_getJSON() {
   // Retrieve the JSON feed.
   var script = document.createElement('script');
 
-  script.setAttribute('src', 'http://spreadsheets.google.com/feeds/list'
+  script.setAttribute('src', 'https://spreadsheets.google.com/feeds/list'
                          + '/' + param_ssKey + '/' + param_wsId + '/public/values' +
                         '?alt=json-in-script&callback=cm_loadMapJSON');
   script.setAttribute('id', 'jsonScript');

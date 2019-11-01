@@ -6,7 +6,7 @@
   padding-left: 18px;
   padding-top: 1px;
   margin-top: 5px;
-  background-image: url("http://labs.google.com/ridefinder/images/mm_20_yellow.png");
+  background-image: url("https://labs.google.com/ridefinder/images/mm_20_yellow.png");
   background-repeat: no-repeat;
   background-position: top left;
 }
@@ -30,5 +30,5 @@
 }
 
 #searchwell .red {
-  background-image: url("http://labs.google.com/ridefinder/images/mm_20_red.png");
+  background-image: url("https://labs.google.com/ridefinder/images/mm_20_red.png");
 }

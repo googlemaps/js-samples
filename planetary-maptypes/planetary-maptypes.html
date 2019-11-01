@@ -11,7 +11,7 @@
       getTileUrl: function(coord, zoom) {
         return getHorizontallyRepeatingTileUrl(coord, zoom, function(coord, zoom) {
           var bound = Math.pow(2, zoom);
-          return "http://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/" +
+          return "https://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/" +
                  + zoom + "/" + coord.x + "/" + (bound - coord.y - 1) + '.jpg';
         });
       },
@@ -27,7 +27,7 @@
     mapTypes['sky'] = {
       getTileUrl: function(coord, zoom) {
         return getHorizontallyRepeatingTileUrl(coord, zoom, function(coord, zoom) {
-          return "http://mw1.google.com/mw-planetary/sky/skytiles_v1/" +
+          return "https://mw1.google.com/mw-planetary/sky/skytiles_v1/" +
                  coord.x + "_" + coord.y + '_' + zoom + '.jpg';
  
         });
@@ -43,7 +43,7 @@
     mapTypes['mars_elevation'] = {
       getTileUrl: function(coord, zoom) {
         return getHorizontallyRepeatingTileUrl(coord, zoom, function(coord, zoom) {
-          return getMarsTileUrl("http://mw1.google.com/mw-planetary/mars/elevation/", coord, zoom);
+          return getMarsTileUrl("https://mw1.google.com/mw-planetary/mars/elevation/", coord, zoom);
         });
       },
       tileSize: new google.maps.Size(256, 256),
@@ -57,7 +57,7 @@
     mapTypes['mars_visible'] = {
       getTileUrl: function(coord, zoom) {
         return getHorizontallyRepeatingTileUrl(coord, zoom, function(coord, zoom) {
-          return getMarsTileUrl("http://mw1.google.com/mw-planetary/mars/visible/", coord, zoom);
+          return getMarsTileUrl("https://mw1.google.com/mw-planetary/mars/visible/", coord, zoom);
         });
       },
       tileSize: new google.maps.Size(256, 256),
@@ -71,7 +71,7 @@
     mapTypes['mars_infrared'] = {
       getTileUrl: function(coord, zoom) {
         return getHorizontallyRepeatingTileUrl(coord, zoom, function(coord, zoom) {
-          return getMarsTileUrl("http://mw1.google.com/mw-planetary/mars/infrared/", coord, zoom);
+          return getMarsTileUrl("https://mw1.google.com/mw-planetary/mars/infrared/", coord, zoom);
         });
       },
       tileSize: new google.maps.Size(256, 256),
