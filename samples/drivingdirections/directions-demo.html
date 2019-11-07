@@ -1,158 +1,176 @@
 <html>
-<head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=ABQIAAAAOZJQqoDBwAknMtPNKR-dvRSi2OoyjRwg8X5jAJmNj4togrBv2xSClpdvpd4FJNt4C5i-i6aTtWzs-g"></script>
-</head>
-<body>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script
+      type="text/javascript"
+      src="https://maps.google.com/maps/api/js?key=ABQIAAAAOZJQqoDBwAknMtPNKR-dvRSi2OoyjRwg8X5jAJmNj4togrBv2xSClpdvpd4FJNt4C5i-i6aTtWzs-g"
+    ></script>
+  </head>
+  <body>
+    <style>
+      body {
+        font-size: 0.8em;
+      }
 
-<style>
-body {
-  font-size: 0.8em;
-}
+      #map-container,
+      #side-container,
+      #side-container li {
+        float: left;
+      }
 
-#map-container, #side-container, #side-container li {
-  float: left;
-}
+      #map-container {
+        width: 500px;
+        height: 600px;
+      }
 
-#map-container {
-  width: 500px;
-  height: 600px;
-}
+      #side-container {
+        border: 1px solid #bbb;
+        margin-right: 5px;
+        padding: 2px 4px;
+        text-align: right;
+        width: 260px;
+      }
+      #side-container ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      #side-container li input {
+        font-size: 0.85em;
+        width: 210px;
+      }
+      #side-container .dir-label {
+        font-weight: bold;
+        padding-right: 3px;
+        text-align: right;
+        width: 40px;
+      }
 
-#side-container {
-  border: 1px solid #bbb;
-  margin-right: 5px;
-  padding: 2px 4px;
-  text-align: right;
-  width: 260px;
-}
-#side-container ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-#side-container li input {
-  font-size: 0.85em;
-  width: 210px;
-}
-#side-container .dir-label {
-  font-weight: bold;
-  padding-right: 3px;
-  text-align: right;
-  width: 40px;
-}
+      #dir-container {
+        height: 525px;
+        overflow: auto;
+        padding: 2px 4px 2px 0;
+      }
+      #dir-container table {
+        font-size: 1em;
+        width: 100%;
+      }
+    </style>
 
-#dir-container {
-  height: 525px;
-  overflow: auto;
-  padding: 2px 4px 2px 0;
-}
-#dir-container table {
-  font-size: 1em;
-  width: 100%;
-}
-</style>
+    <div id="side-container">
+      <ul>
+        <li class="dir-label">From:</li>
+        <li>
+          <input
+            id="from-input"
+            type="text"
+            value="345 Spear St, San Francisco, CA"
+          />
+        </li>
+        <br clear="both" />
+        <li class="dir-label">To:</li>
+        <li>
+          <input
+            id="to-input"
+            type="text"
+            value="1600 Amphitheatre Pkwy, Mountain View, CA"
+          />
+        </li>
+      </ul>
+      <div>
+        <select onchange="Demo.getDirections();" id="travel-mode-input">
+          <option value="driving" selected="selected">By car</option>
+          <option value="bicycling">Bicycling</option>
+          <option value="walking">Walking</option>
+        </select>
+        <select onchange="Demo.getDirections();" id="unit-input">
+          <option value="imperial" selected="selected">Imperial</option>
+          <option value="metric">Metric</option>
+        </select>
+        <input onclick="Demo.getDirections();" type="button" value="Go!" />
+      </div>
+      <div id="dir-container"></div>
+    </div>
+    <div id="map-container"></div>
 
-<div id="side-container">
-  <ul>
-    <li class="dir-label">From:</li>
-    <li><input id="from-input" type=text value="345 Spear St, San Francisco, CA"/></li>
-    <br clear="both"/>
-    <li class="dir-label">To:</li>
-    <li><input id="to-input" type=text value="1600 Amphitheatre Pkwy, Mountain View, CA"/></li>
-  </ul>
-  <div>
-    <select onchange="Demo.getDirections();" id="travel-mode-input">
-      <option value="driving" selected="selected">By car</option>
-      <option value="bicycling">Bicycling</option>
-      <option value="walking">Walking</option>
-    </select>
-    <select onchange="Demo.getDirections();" id="unit-input">
-      <option value="imperial" selected="selected">Imperial</option>
-      <option value="metric">Metric</option>
-    </select>
-    <input onclick="Demo.getDirections();" type=button value="Go!"/>
-  </div>
-  <div id="dir-container"></div>
-</div>
-<div id="map-container"></div>
+    <script type="text/javascript">
+      var Demo = {
+        // HTML Nodes
+        mapContainer: document.getElementById("map-container"),
+        dirContainer: document.getElementById("dir-container"),
+        fromInput: document.getElementById("from-input"),
+        toInput: document.getElementById("to-input"),
+        travelModeInput: document.getElementById("travel-mode-input"),
+        unitInput: document.getElementById("unit-input"),
 
-<script type="text/javascript">
-var Demo = {
-  // HTML Nodes
-  mapContainer: document.getElementById('map-container'),
-  dirContainer: document.getElementById('dir-container'),
-  fromInput: document.getElementById('from-input'),
-  toInput: document.getElementById('to-input'),
-  travelModeInput: document.getElementById('travel-mode-input'),
-  unitInput: document.getElementById('unit-input'),
+        // API Objects
+        dirService: new google.maps.DirectionsService(),
+        dirRenderer: new google.maps.DirectionsRenderer(),
+        map: null,
 
-  // API Objects
-  dirService: new google.maps.DirectionsService(),
-  dirRenderer: new google.maps.DirectionsRenderer(),
-  map: null,
+        showDirections: function(dirResult, dirStatus) {
+          if (dirStatus != google.maps.DirectionsStatus.OK) {
+            alert("Directions failed: " + dirStatus);
+            return;
+          }
 
-  showDirections: function(dirResult, dirStatus) {
-    if (dirStatus != google.maps.DirectionsStatus.OK) {
-      alert('Directions failed: ' + dirStatus);
-      return;
-    }
+          // Show directions
+          Demo.dirRenderer.setMap(Demo.map);
+          Demo.dirRenderer.setPanel(Demo.dirContainer);
+          Demo.dirRenderer.setDirections(dirResult);
+        },
 
-    // Show directions
-    Demo.dirRenderer.setMap(Demo.map);
-    Demo.dirRenderer.setPanel(Demo.dirContainer);
-    Demo.dirRenderer.setDirections(dirResult);
-  },
+        getSelectedTravelMode: function() {
+          var value =
+            Demo.travelModeInput.options[Demo.travelModeInput.selectedIndex]
+              .value;
+          if (value == "driving") {
+            value = google.maps.DirectionsTravelMode.DRIVING;
+          } else if (value == "bicycling") {
+            value = google.maps.DirectionsTravelMode.BICYCLING;
+          } else if (value == "walking") {
+            value = google.maps.DirectionsTravelMode.WALKING;
+          } else {
+            alert("Unsupported travel mode.");
+          }
+          return value;
+        },
 
-  getSelectedTravelMode: function() {
-    var value =
-        Demo.travelModeInput.options[Demo.travelModeInput.selectedIndex].value;
-    if (value == 'driving') {
-      value = google.maps.DirectionsTravelMode.DRIVING;
-    } else if (value == 'bicycling') {
-      value = google.maps.DirectionsTravelMode.BICYCLING;
-    } else if (value == 'walking') {
-      value = google.maps.DirectionsTravelMode.WALKING;
-    } else {
-      alert('Unsupported travel mode.');
-    }
-    return value;
-  },
+        getSelectedUnitSystem: function() {
+          return Demo.unitInput.options[Demo.unitInput.selectedIndex].value ==
+            "metric"
+            ? google.maps.DirectionsUnitSystem.METRIC
+            : google.maps.DirectionsUnitSystem.IMPERIAL;
+        },
 
-  getSelectedUnitSystem: function() {
-    return Demo.unitInput.options[Demo.unitInput.selectedIndex].value == 'metric' ?
-        google.maps.DirectionsUnitSystem.METRIC :
-        google.maps.DirectionsUnitSystem.IMPERIAL;
-  },
+        getDirections: function() {
+          var fromStr = Demo.fromInput.value;
+          var toStr = Demo.toInput.value;
+          var dirRequest = {
+            origin: fromStr,
+            destination: toStr,
+            travelMode: Demo.getSelectedTravelMode(),
+            unitSystem: Demo.getSelectedUnitSystem(),
+            provideRouteAlternatives: true
+          };
+          Demo.dirService.route(dirRequest, Demo.showDirections);
+        },
 
-  getDirections: function() {
-    var fromStr = Demo.fromInput.value;
-    var toStr = Demo.toInput.value;
-    var dirRequest = {
-      origin: fromStr,
-      destination: toStr,
-      travelMode: Demo.getSelectedTravelMode(),
-      unitSystem: Demo.getSelectedUnitSystem(),
-      provideRouteAlternatives: true
-    };
-    Demo.dirService.route(dirRequest, Demo.showDirections);
-  },
+        init: function() {
+          var latLng = new google.maps.LatLng(37.77493, -122.419415);
+          Demo.map = new google.maps.Map(Demo.mapContainer, {
+            zoom: 13,
+            center: latLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
 
-  init: function() {
-    var latLng = new google.maps.LatLng(37.77493, -122.419415);
-    Demo.map = new google.maps.Map(Demo.mapContainer, {
-      zoom: 13,
-      center: latLng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+          // Show directions onload
+          Demo.getDirections();
+        }
+      };
 
-    // Show directions onload
-    Demo.getDirections();
-  }
-};
-
-// Onload handler to fire off the app.
-google.maps.event.addDomListener(window, 'load', Demo.init);
-</script>
-</body>
+      // Onload handler to fire off the app.
+      google.maps.event.addDomListener(window, "load", Demo.init);
+    </script>
+  </body>
 </html>

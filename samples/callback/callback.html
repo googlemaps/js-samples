@@ -1,22 +1,28 @@
 <html>
-<head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<title>Google Maps JavaScript API v3 Example: Dynamic Loading</title>
-<script type="text/javascript">
-  function handleApiReady() {
-    var myLatlng = new google.maps.LatLng(-34.397, 150.644);
-    var myOptions = {
-      zoom: 8,
-      center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  }
-</script>
-</head>
-<body style="margin:0px; padding:0px;">
-  <div id="map_canvas" style="width:400px; height:400px"></div>
-  <script type="text/javascript" src="https://maps.google.com/maps/api/js?callback=handleApiReady"></script>
-</body>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Google Maps JavaScript API v3 Example: Dynamic Loading</title>
+    <script type="text/javascript">
+      function handleApiReady() {
+        var myLatlng = new google.maps.LatLng(-34.397, 150.644);
+        var myOptions = {
+          zoom: 8,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(
+          document.getElementById("map_canvas"),
+          myOptions
+        );
+      }
+    </script>
+  </head>
+  <body style="margin:0px; padding:0px;">
+    <div id="map_canvas" style="width:400px; height:400px"></div>
+    <script
+      type="text/javascript"
+      src="https://maps.google.com/maps/api/js?callback=handleApiReady"
+    ></script>
+  </body>
 </html>
