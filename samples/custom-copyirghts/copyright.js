@@ -38,7 +38,7 @@ function Copyright(id, bounds, minZoom, text) {
 function CopyrightCollection(opt_prefix) {
   this.zoomLevels_ = [];
   this.copyrights_ = {};
-  this.prefix_ = opt_prefix || '';
+  this.prefix_ = opt_prefix || "";
 }
 
 /**
@@ -123,5 +123,5 @@ CopyrightCollection.prototype.getCopyrights = function(bounds, zoom) {
  */
 CopyrightCollection.prototype.getCopyrightNotice = function(bounds, zoom) {
   var copyrights = this.getCopyrights(bounds, zoom);
-  return copyrights.length ? this.prefix_ + ' ' + copyrights.join(', ') : '';
+  return copyrights.length ? this.prefix_ + " " + copyrights.join(", ") : "";
 };

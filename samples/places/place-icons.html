@@ -1,91 +1,162 @@
 <html>
-<head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<title>Google Maps JavaScript API v3 Example: Map Simple</title>
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">
-  var map;
-  var types = ["attraction", "business", "government", "medical", "park", "place_of_worship", "school", "sports_complex"];
-  
-  function initialize() {
-    var styles = getStyles();
-    var myLatlng = new google.maps.LatLng(37.7749295, -122.4194155);
-    var myOptions = {
-      zoom: 18,
-      center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      styles: styles
-    }
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-  }
-  function updateMap() {
-    map.setOptions({'styles': getStyles() });
-  }
-  
-  function getStyles() {
-    var styles = [];
-    for (var i=0; i < types.length; i++) {
-      var style = {};
-      var type = types[i];
-      var enabled = document.getElementById(type).checked;
-      style['featureType'] = 'poi.' + type;
-      style['elementType'] = 'labels';
-      style['stylers'] = [{'visibility' : (enabled ? 'on' : 'off') }];
-      styles.push(style);
-    }
-    return styles;
-  }
-</script>
-<style>
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding: 0;
-}
-#controls {
-  font-size: 10pt;
-  width: 512px;
-}
-#map_canvas {
-  border: 1px solid black;
-  margin-bottom: 5px;
-  width: 512px;
-  height: 400px;
-}
-</style>
-</head>
-<body onload="initialize()">
-  <div id="map_canvas"></div>
-  <table id="controls">
-    <tr>
-      <td>
-        <input type="checkbox" id="attraction" checked="checked" onchange="updateMap()">poi.attraction</input>
-      </td>
-      <td>
-        <input type="checkbox" id="business" checked="checked" onchange="updateMap()">poi.business</input>
-      </td>
-      <td>
-        <input type="checkbox" id="government" checked="checked" onchange="updateMap()">poi.government</input>
-      </td>
-      <td>
-        <input type="checkbox" id="medical" checked="checked" onchange="updateMap()">poi.medical</input>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <input type="checkbox" id="park" checked="checked" onchange="updateMap()">poi.park</input>
-      </td>
-      <td>
-        <input type="checkbox" id="place_of_worship" checked="checked" onchange="updateMap()">poi.place_of_worship</input>
-      </td>
-      <td>
-        <input type="checkbox" id="school" checked="checked" onchange="updateMap()">poi.school</input>
-      </td>
-      <td>
-        <input type="checkbox" id="sports_complex" checked="checked" onchange="updateMap()">poi.sports_complex</input>
-      </td>
-    </tr>
-  </table>
-</body>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Google Maps JavaScript API v3 Example: Map Simple</title>
+    <script
+      type="text/javascript"
+      src="https://maps.google.com/maps/api/js?sensor=false"
+    ></script>
+    <script type="text/javascript">
+      var map;
+      var types = [
+        "attraction",
+        "business",
+        "government",
+        "medical",
+        "park",
+        "place_of_worship",
+        "school",
+        "sports_complex"
+      ];
+
+      function initialize() {
+        var styles = getStyles();
+        var myLatlng = new google.maps.LatLng(37.7749295, -122.4194155);
+        var myOptions = {
+          zoom: 18,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          styles: styles
+        };
+        map = new google.maps.Map(
+          document.getElementById("map_canvas"),
+          myOptions
+        );
+      }
+      function updateMap() {
+        map.setOptions({ styles: getStyles() });
+      }
+
+      function getStyles() {
+        var styles = [];
+        for (var i = 0; i < types.length; i++) {
+          var style = {};
+          var type = types[i];
+          var enabled = document.getElementById(type).checked;
+          style["featureType"] = "poi." + type;
+          style["elementType"] = "labels";
+          style["stylers"] = [{ visibility: enabled ? "on" : "off" }];
+          styles.push(style);
+        }
+        return styles;
+      }
+    </script>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      #controls {
+        font-size: 10pt;
+        width: 512px;
+      }
+      #map_canvas {
+        border: 1px solid black;
+        margin-bottom: 5px;
+        width: 512px;
+        height: 400px;
+      }
+    </style>
+  </head>
+  <body onload="initialize()">
+    <div id="map_canvas"></div>
+    <table id="controls">
+      <tr>
+        <td>
+          <label
+            ><input
+              type="checkbox"
+              id="attraction"
+              checked="checked"
+              onchange="updateMap()"
+            />poi.attraction</label
+          >
+        </td>
+        <td>
+          <label
+            ><input
+              type="checkbox"
+              id="business"
+              checked="checked"
+              onchange="updateMap()"
+            />poi.business</label
+          >
+        </td>
+        <td>
+          <label
+            ><input
+              type="checkbox"
+              id="government"
+              checked="checked"
+              onchange="updateMap()"
+            />poi.government</label
+          >
+        </td>
+        <td>
+          <label
+            ><input
+              type="checkbox"
+              id="medical"
+              checked="checked"
+              onchange="updateMap()"
+            />poi.medical</label
+          >
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label
+            ><input
+              type="checkbox"
+              id="park"
+              checked="checked"
+              onchange="updateMap()"
+            />poi.park</label
+          >
+        </td>
+        <td>
+          <label
+            ><input
+              type="checkbox"
+              id="place_of_worship"
+              checked="checked"
+              onchange="updateMap()"
+            />poi.place_of_worship</label
+          >
+        </td>
+        <td>
+          <label
+            ><input
+              type="checkbox"
+              id="school"
+              checked="checked"
+              onchange="updateMap()"
+            />poi.school</label
+          >
+        </td>
+        <td>
+          <label
+            ><input
+              type="checkbox"
+              id="sports_complex"
+              checked="checked"
+              onchange="updateMap()"
+            />poi.sports_complex</label
+          >
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>

@@ -1,97 +1,103 @@
 <html>
-<head>
-<title>Google Maps JavaScript API v3: Custom Marker Demo</title>
-<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-<script>
-  function CustomMarker(latlng,  map) {
-    this.latlng_ = latlng;
+  <head>
+    <title>Google Maps JavaScript API v3: Custom Marker Demo</title>
+    <script
+      type="text/javascript"
+      src="https://maps.google.com/maps/api/js?sensor=false"
+    ></script>
+    <script>
+      function CustomMarker(latlng, map) {
+        this.latlng_ = latlng;
 
-    // Once the LatLng and text are set, add the overlay to the map.  This will
-    // trigger a call to panes_changed which should in turn call draw.
-    this.setMap(map);
-  }
+        // Once the LatLng and text are set, add the overlay to the map.  This will
+        // trigger a call to panes_changed which should in turn call draw.
+        this.setMap(map);
+      }
 
-  CustomMarker.prototype = new google.maps.OverlayView();
+      CustomMarker.prototype = new google.maps.OverlayView();
 
-  CustomMarker.prototype.draw = function() {
-    var me = this;
+      CustomMarker.prototype.draw = function() {
+        var me = this;
 
-    // Check if the div has been created.
-    var div = this.div_;
-    if (!div) {
-      // Create a overlay text DIV
-      div = this.div_ = document.createElement('DIV');
-      // Create the DIV representing our CustomMarker
-      div.style.border = "none";
-      div.style.position = "absolute";
-      div.style.paddingLeft = "0px";
-      div.style.cursor = 'pointer';
+        // Check if the div has been created.
+        var div = this.div_;
+        if (!div) {
+          // Create a overlay text DIV
+          div = this.div_ = document.createElement("DIV");
+          // Create the DIV representing our CustomMarker
+          div.style.border = "none";
+          div.style.position = "absolute";
+          div.style.paddingLeft = "0px";
+          div.style.cursor = "pointer";
 
-      var img = document.createElement("img");
-      img.src = "https://googlemaps.github.io/js-v2-samples/markers/circular/bluecirclemarker.png";
-      div.appendChild(img);
-      google.maps.event.addDomListener(div, "click", function(event) {
-        google.maps.event.trigger(me, "click");
-      });
+          var img = document.createElement("img");
+          img.src =
+            "https://googlemaps.github.io/js-v2-samples/markers/circular/bluecirclemarker.png";
+          div.appendChild(img);
+          google.maps.event.addDomListener(div, "click", function(event) {
+            google.maps.event.trigger(me, "click");
+          });
 
-      // Then add the overlay to the DOM
-      var panes = this.getPanes();
-      panes.overlayImage.appendChild(div);
-    }
+          // Then add the overlay to the DOM
+          var panes = this.getPanes();
+          panes.overlayImage.appendChild(div);
+        }
 
-    // Position the overlay 
-    var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
-    if (point) {
-      div.style.left = point.x + 'px';
-      div.style.top = point.y + 'px';
-    }
-  };
+        // Position the overlay
+        var point = this.getProjection().fromLatLngToDivPixel(this.latlng_);
+        if (point) {
+          div.style.left = point.x + "px";
+          div.style.top = point.y + "px";
+        }
+      };
 
-  CustomMarker.prototype.remove = function() {
-    // Check if the overlay was on the map and needs to be removed.
-    if (this.div_) {
-      this.div_.parentNode.removeChild(this.div_);
-      this.div_ = null;
-    }
-  };
+      CustomMarker.prototype.remove = function() {
+        // Check if the overlay was on the map and needs to be removed.
+        if (this.div_) {
+          this.div_.parentNode.removeChild(this.div_);
+          this.div_ = null;
+        }
+      };
 
-  CustomMarker.prototype.getPosition = function() {
-   return this.latlng_;
-  };
+      CustomMarker.prototype.getPosition = function() {
+        return this.latlng_;
+      };
 
-  var map;
-  var overlay;
-  function initialize() {
-    var opts = {
-      zoom: 9,
-      center: new google.maps.LatLng(-34.397, 150.644),
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    map = new google.maps.Map(document.getElementById("map"), opts);
+      var map;
+      var overlay;
+      function initialize() {
+        var opts = {
+          zoom: 9,
+          center: new google.maps.LatLng(-34.397, 150.644),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map"), opts);
 
-    overlay = new CustomMarker(map.getCenter(), map);
-    var iw = new google.maps.InfoWindow({content: "Hello!", pixelOffset: new google.maps.Size(5,0)});
-    iw.open(map, overlay);
-    google.maps.event.addListener(overlay, "click", function() {
-      iw.open(map, overlay);
-    });
-  }
+        overlay = new CustomMarker(map.getCenter(), map);
+        var iw = new google.maps.InfoWindow({
+          content: "Hello!",
+          pixelOffset: new google.maps.Size(5, 0)
+        });
+        iw.open(map, overlay);
+        google.maps.event.addListener(overlay, "click", function() {
+          iw.open(map, overlay);
+        });
+      }
 
-  function addOverlay() {
-    overlay.setMap(map);
-  }
+      function addOverlay() {
+        overlay.setMap(map);
+      }
 
-  function removeOverlay() {
-    overlay.setMap(null);
-  }
-</script>
-</head>
-<body onload="initialize()">
-  <div id="map" style="width: 320px; height: 480px;">map div</div>
-  <div>
-      <input type="button" value="Add Marker" onclick="addOverlay()">
-      <input type="button" value="Remove Marker" onclick="removeOverlay()">
-  </div>
-
-</body>
+      function removeOverlay() {
+        overlay.setMap(null);
+      }
+    </script>
+  </head>
+  <body onload="initialize()">
+    <div id="map" style="width: 320px; height: 480px;">map div</div>
+    <div>
+      <input type="button" value="Add Marker" onclick="addOverlay()" />
+      <input type="button" value="Remove Marker" onclick="removeOverlay()" />
+    </div>
+  </body>
 </html>

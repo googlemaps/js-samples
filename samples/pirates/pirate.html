@@ -1,11 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Weigh Anchor, Me Hearties</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no"
+    />
     <style>
-      html, body, #map-canvas {
+      html,
+      body,
+      #map-canvas {
         margin: 0;
         padding: 0;
         height: 100%;
@@ -22,17 +27,19 @@
 
       function init() {
         var myOptions = {
-          treasureMode: 'aye',
+          treasureMode: "aye",
           zoom: 3,
           minZoom: 3,
           center: new google.maps.LatLng(0, 0),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           mapTypeControl: false,
           streetViewControl: false,
-          panControl: false,
+          panControl: false
         };
-        map = new google.maps.Map(document.getElementById('map-canvas'),
-            myOptions);
+        map = new google.maps.Map(
+          document.getElementById("map-canvas"),
+          myOptions
+        );
 
         setupShips();
         lastTime = nowFunc();
@@ -44,27 +51,34 @@
           var line = new google.maps.Polyline({
             path: [],
             strokeOpacity: 0,
-            icons: [{
-              icon: {
-                path: 'M 0,-1 0,1',
-                strokeOpacity: 1,
-                scale: 2
-              },
-              offset: '0',
-              repeat: '10px'
-            }],
+            icons: [
+              {
+                icon: {
+                  path: "M 0,-1 0,1",
+                  strokeOpacity: 1,
+                  scale: 2
+                },
+                offset: "0",
+                repeat: "10px"
+              }
+            ],
             map: map
           });
           var marker = new google.maps.Marker({
             position: new google.maps.LatLng(0, 0),
             map: map,
             icon: {
-              url: 'pirate_marker_64.png',
+              url: "pirate_marker_64.png",
               scaledSize: new google.maps.Size(32, 32)
             }
           });
 
-          ships[i] = new Ship(map, line.getPath(), marker, PirateNetwork.getPoint);
+          ships[i] = new Ship(
+            map,
+            line.getPath(),
+            marker,
+            PirateNetwork.getPoint
+          );
         }
       }
 
@@ -107,7 +121,7 @@
           return window.setTimeout(callback, 1000 / 60);
         };
 
-      google.maps.event.addDomListener(window, 'load', init);
+      google.maps.event.addDomListener(window, "load", init);
     </script>
   </head>
   <body>

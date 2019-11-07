@@ -24,7 +24,7 @@ Ship.lerp = function(a, b, t) {
 Ship.dist = function(pointA, pointB) {
   var xDist = pointA.x - pointB.x;
   var yDist = pointA.y - pointB.y;
-  return Math.sqrt(xDist*xDist + yDist*yDist);
+  return Math.sqrt(xDist * xDist + yDist * yDist);
 };
 
 Ship.correctForAntimeridian = function(from, to) {
@@ -69,12 +69,12 @@ Ship.prototype.update = function(dt) {
 
   if (nextPoint.x < lastPoint.x) {
     this.marker_.setIcon({
-      url: 'pirate_marker_64_west.png',
+      url: "pirate_marker_64_west.png",
       scaledSize: new google.maps.Size(32, 32)
     });
   } else {
     this.marker_.setIcon({
-      url: 'pirate_marker_64.png',
+      url: "pirate_marker_64.png",
       scaledSize: new google.maps.Size(32, 32)
     });
   }
@@ -83,4 +83,3 @@ Ship.prototype.update = function(dt) {
   this.path_.setAt(this.path_.length - 1, currentLatLng);
   this.marker_.setPosition(currentLatLng);
 };
-

@@ -1,333 +1,341 @@
 <!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-<title>Symbols on polylines</title>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <title>Symbols on polylines</title>
+    <script
+      type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?sensor=false"
+    ></script>
+    <script type="text/javascript">
+      var map, timer;
+      var offset = {};
+      var dotted, dashed, tracks, barometric, chevrons;
+      var unlock = false;
 
-  var map, timer;
-  var offset = {};
-  var dotted, dashed, tracks, barometric, chevrons;
-  var unlock = false;
-  
-  function initialize() {
-    var myOptions = {
-      zoom: 2,
-      center: new google.maps.LatLng(0,0),
-      mapTypeId: google.maps.MapTypeId.ROADMAP,
-      mapTypeControl: false,
-      backgroundColor: 'white',
-      zoomControl: false,
-      streetViewControl: false,
-      panControl: false,
-      styles: [
-        {
-          stylers: [
-            { visibility: "off" }
+      function initialize() {
+        var myOptions = {
+          zoom: 2,
+          center: new google.maps.LatLng(0, 0),
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          mapTypeControl: false,
+          backgroundColor: "white",
+          zoomControl: false,
+          streetViewControl: false,
+          panControl: false,
+          styles: [
+            {
+              stylers: [{ visibility: "off" }]
+            },
+            {
+              featureType: "water",
+              stylers: [{ visibility: "on" }]
+            },
+            {
+              featureType: "administrative.province",
+              elementType: "geometry",
+              stylers: [{ visibility: "on" }]
+            },
+            {
+              featureType: "administrative.country",
+              elementType: "geometry",
+              stylers: [{ visibility: "on" }]
+            },
+            {
+              featureType: "water",
+              elementType: "labels",
+              stylers: [{ visibility: "off" }]
+            }
           ]
-        },{
-          featureType: "water",
-          stylers: [
-            { visibility: "on" }
-          ]
-        },{
-          featureType: "administrative.province",
-          elementType: "geometry",
-          stylers: [
-            { visibility: "on" }
-          ]
-        },{
-          featureType: "administrative.country",
-          elementType: "geometry",
-          stylers: [
-            { visibility: "on" }
-          ]
-        },{
-          featureType: "water",
-          elementType: "labels",
-          stylers: [
-            { visibility: "off" }
-          ]
-        }
-      ]
-    };
-    map = new google.maps.Map(document.getElementById('map'), myOptions);
+        };
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
 
-    dotted = new google.maps.Polyline({
-      path: [
-        new google.maps.LatLng(45, -80),
-        new google.maps.LatLng(-45, 80)
-      ],
-      geodesic: true,
-      strokeOpacity: 0.0,
-      icons: [{
-        icon: {
-          path: 'M 2,-5 2,5 3.5, 2',
-          strokeOpacity: 1,
-        },
-        offset: '50%'
-      },{
-        icon: {
-          path: 'M -2,5 -2,-5 -3.5,-2',
-          strokeOpacity: 1,
-        },
-        offset: '50%'
-      },{
-        icon: {
-          path: 'M -.5,-.5 .5,-.5, .5,.5 -.5,.5',
-          fillOpacity: 1,
-          fillColor: 'blue'
-        },
-        repeat: '6px'
-      }],
-      map: map,
-    });
-            
-    tracks = new google.maps.Polyline({ 
-      path: [
-        new google.maps.LatLng(50, -80),
-        new google.maps.LatLng(-40, 80)
-      ],
-      geodesic: true,
-      strokeOpacity: 1.0,
-      strokeWeight: 1.0,
-      icons: [{
-        icon: {
-          path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-          strokeColor: 'black',
+        dotted = new google.maps.Polyline({
+          path: [
+            new google.maps.LatLng(45, -80),
+            new google.maps.LatLng(-45, 80)
+          ],
+          geodesic: true,
+          strokeOpacity: 0.0,
+          icons: [
+            {
+              icon: {
+                path: "M 2,-5 2,5 3.5, 2",
+                strokeOpacity: 1
+              },
+              offset: "50%"
+            },
+            {
+              icon: {
+                path: "M -2,5 -2,-5 -3.5,-2",
+                strokeOpacity: 1
+              },
+              offset: "50%"
+            },
+            {
+              icon: {
+                path: "M -.5,-.5 .5,-.5, .5,.5 -.5,.5",
+                fillOpacity: 1,
+                fillColor: "blue"
+              },
+              repeat: "6px"
+            }
+          ],
+          map: map
+        });
+
+        tracks = new google.maps.Polyline({
+          path: [
+            new google.maps.LatLng(50, -80),
+            new google.maps.LatLng(-40, 80)
+          ],
+          geodesic: true,
           strokeOpacity: 1.0,
           strokeWeight: 1.0,
-          fillColor: 'yellow',
-          fillOpacity: 1.0,
-          scale: 4
-        },
-        repeat: '10%',
-        offset: '5%'
-      }],
-      map: map,
-    });
-    
-    dashed = new google.maps.Polyline({ 
-      path: [
-        new google.maps.LatLng(40, -80),
-        new google.maps.LatLng(-50, 80)
-      ],
-      geodesic: true,
-      strokeOpacity: 0.0,
-      strokeColor: 'yellow',
-      icons: [{
-        icon: {
-          path: 'M 0,-2 0,2',
-          strokeColor: 'red',
-          strokeOpacity: 1.0,          
-        },
-        repeat: '24px'
-      }],
-      map: map,
-    });
+          icons: [
+            {
+              icon: {
+                path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+                strokeColor: "black",
+                strokeOpacity: 1.0,
+                strokeWeight: 1.0,
+                fillColor: "yellow",
+                fillOpacity: 1.0,
+                scale: 4
+              },
+              repeat: "10%",
+              offset: "5%"
+            }
+          ],
+          map: map
+        });
 
-    barometric = new google.maps.Polyline({
-      path: [
-        new google.maps.LatLng(47, -80),
-        new google.maps.LatLng(-43, 80)
-      ],
-      geodesic: true,
-      strokeOpacity: 1.0,
-      icons: [{
-        icon: {
-          path: 'M 0,-2 A 2,2 0 0 0 0,2 z',
-          fillColor: 'blue',
-          fillOpacity: 1,
-          strokeWeight: 1,
-          strokeColor: 'black',
+        dashed = new google.maps.Polyline({
+          path: [
+            new google.maps.LatLng(40, -80),
+            new google.maps.LatLng(-50, 80)
+          ],
+          geodesic: true,
+          strokeOpacity: 0.0,
+          strokeColor: "yellow",
+          icons: [
+            {
+              icon: {
+                path: "M 0,-2 0,2",
+                strokeColor: "red",
+                strokeOpacity: 1.0
+              },
+              repeat: "24px"
+            }
+          ],
+          map: map
+        });
+
+        barometric = new google.maps.Polyline({
+          path: [
+            new google.maps.LatLng(47, -80),
+            new google.maps.LatLng(-43, 80)
+          ],
+          geodesic: true,
           strokeOpacity: 1.0,
-          scale: 6
-        },
-        offset: '0',
-        repeat: '48px'
-      }, {
-        icon: {
-          path: 'M 0,-2 A 2,2 0 0 1 0,2 z',
-          fillColor: 'red',
-          fillOpacity: 1,
-          strokeWeight: 1,
-          strokeColor: 'black',
-          strokeOpacity: 1.0,
-          scale: 6
-        },
-        offset: '24px',
-        repeat: '48px'
-      }],
-      map: map,
-    });
+          icons: [
+            {
+              icon: {
+                path: "M 0,-2 A 2,2 0 0 0 0,2 z",
+                fillColor: "blue",
+                fillOpacity: 1,
+                strokeWeight: 1,
+                strokeColor: "black",
+                strokeOpacity: 1.0,
+                scale: 6
+              },
+              offset: "0",
+              repeat: "48px"
+            },
+            {
+              icon: {
+                path: "M 0,-2 A 2,2 0 0 1 0,2 z",
+                fillColor: "red",
+                fillOpacity: 1,
+                strokeWeight: 1,
+                strokeColor: "black",
+                strokeOpacity: 1.0,
+                scale: 6
+              },
+              offset: "24px",
+              repeat: "48px"
+            }
+          ],
+          map: map
+        });
 
-    chevrons = new google.maps.Polyline({
-      path: [
-        new google.maps.LatLng(43, -80),
-        new google.maps.LatLng(-47, 80)
-      ],
-      geodesic: true,
-      strokeOpacity: 0.0,
-      icons: [{
-        icon: {
-          path: 'M -1,1 0,0 1,1',
-          strokeOpacity: 1,
-          strokeWeight: 1.5,
-          scale: 6
-        },
-        repeat: '10px'
-      }],
-      map: map,
-    });
-    
-    offset = {
-      'dotted': 0,
-      'tracks': 0,
-      'dashed': 0,
-      'darrow0': 50,
-      'darrow1': 50,
-      'barometric0': 0,
-      'barometric1': 24,
-      'chevrons': 0
-    }
-    
-    google.maps.event.addListener(map, 'mouseout', stop);
-    google.maps.event.addListener(map, 'tilesloaded', function() {
-      unlock = true;
-    });
-  }
+        chevrons = new google.maps.Polyline({
+          path: [
+            new google.maps.LatLng(43, -80),
+            new google.maps.LatLng(-47, 80)
+          ],
+          geodesic: true,
+          strokeOpacity: 0.0,
+          icons: [
+            {
+              icon: {
+                path: "M -1,1 0,0 1,1",
+                strokeOpacity: 1,
+                strokeWeight: 1.5,
+                scale: 6
+              },
+              repeat: "10px"
+            }
+          ],
+          map: map
+        });
 
-  function start() {
-    if (unlock) {
-      document.getElementById("lightbox").style.display = "none";
-      document.getElementById("msg").style.display = "none";
- 
-      timer = setInterval(function() {
-        animateBarometric();
-        animateChevrons();
-        animateDashed();
-        animateDotted();
-        animateTracks();
-      }, 20);
-    }
-  }
+        offset = {
+          dotted: 0,
+          tracks: 0,
+          dashed: 0,
+          darrow0: 50,
+          darrow1: 50,
+          barometric0: 0,
+          barometric1: 24,
+          chevrons: 0
+        };
 
-  function stop() {
-    clearInterval(timer);
-    document.getElementById("lightbox").style.display = "block";
-    document.getElementById("msg").style.display = "block";
-  }
+        google.maps.event.addListener(map, "mouseout", stop);
+        google.maps.event.addListener(map, "tilesloaded", function() {
+          unlock = true;
+        });
+      }
 
-  
-  function animateDotted() {
-    if (offset['dotted'] == 5) {
-      offset['dotted'] = 0;
-    } else {
-      offset['dotted']++;
-    }
-    if (offset['darrow0'] == 100) {
-      offset['darrow0'] = 0;
-    } else {
-      offset['darrow0']++;
-    }
-    if (offset['darrow1'] == 0) {
-      offset['darrow1'] = 100;
-    } else {
-      offset['darrow1']--;
-    }
-    var icons = dotted.get('icons');
-    icons[0].offset = offset['darrow1'] + '%';
-    icons[1].offset = offset['darrow0'] + '%';
-    icons[2].offset = offset['dotted'] + 'px';
-    dotted.set('icons', icons);
-  }
-  
-  function animateTracks() {
-    if (offset['tracks'] == 9) {
-      offset['tracks'] = 0;
-    } else {
-      offset['tracks']++;
-    }
-    var icons = tracks.get('icons');
-    icons[0].offset = offset['tracks'] + '%';
-    tracks.set('icons', icons); 
-  }
-  
-  function animateDashed() {
-    if (offset['dashed'] > 23) {
-      offset['dashed'] = 0;
-    } else {
-      offset['dashed'] += 2;
-    }
-    var icons = dashed.get('icons');
-    icons[0].offset = offset['dashed'] + 'px';
-    dashed.set('icons', icons); 
-  }
-  
-  function animateBarometric() {
-    if (offset['barometric0'] == 47) {
-      offset['barometric0'] = 0;
-    } else {
-     offset['barometric0']++;
-    }
-   if (offset['barometric1'] == 0) {
-      offset['barometric1'] = 47;
-    } else {
-      offset['barometric1']--;
-    }
-    var icons = barometric.get('icons');
-    icons[0].offset = offset['barometric0'] + 'px';
-    icons[1].offset = offset['barometric1'] + 'px';
-    barometric.set('icons', icons); 
-  }
-  
-  function animateChevrons() {
-    if (offset['chevrons'] == 9) {
-      offset['chevrons'] = 0;
-    } else {
-      offset['chevrons']++;
-    }
-    var icons = chevrons.get('icons');
-    icons[0].offset = offset['chevrons'] + 'px';
-    chevrons.set('icons', icons); 
-  }
-</script>
-<style>
-body {
-  background-color: white;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-}
-#map {
-  width: 598px;
-  height: 478px;
-  position: absolute;
-  background-color: white;
-  border: 1px solid black;
-}
-#msg {
-  position: absolute;
-  font-size: 30px;
-  font-family: sans-serif;
-  text-shadow: 0.1em 0.1em 0.2em black;
-  color: #d0d0ff;
-  top: 200px;
-  width: 600px;
-  text-align: center;
-}
-#lightbox {
-  width: 600px;
-  height: 480px;
-  background-color: #ffffff;
-  opacity: 0.8;
-}
-</style>
-</head>
-<body onload="initialize()">
-  <div id="map"></div>
-  <div id="lightbox" onmouseover="start()"></div>
-  <div id="msg">Mouse over the map to view</div>
-</body>
+      function start() {
+        if (unlock) {
+          document.getElementById("lightbox").style.display = "none";
+          document.getElementById("msg").style.display = "none";
+
+          timer = setInterval(function() {
+            animateBarometric();
+            animateChevrons();
+            animateDashed();
+            animateDotted();
+            animateTracks();
+          }, 20);
+        }
+      }
+
+      function stop() {
+        clearInterval(timer);
+        document.getElementById("lightbox").style.display = "block";
+        document.getElementById("msg").style.display = "block";
+      }
+
+      function animateDotted() {
+        if (offset["dotted"] == 5) {
+          offset["dotted"] = 0;
+        } else {
+          offset["dotted"]++;
+        }
+        if (offset["darrow0"] == 100) {
+          offset["darrow0"] = 0;
+        } else {
+          offset["darrow0"]++;
+        }
+        if (offset["darrow1"] == 0) {
+          offset["darrow1"] = 100;
+        } else {
+          offset["darrow1"]--;
+        }
+        var icons = dotted.get("icons");
+        icons[0].offset = offset["darrow1"] + "%";
+        icons[1].offset = offset["darrow0"] + "%";
+        icons[2].offset = offset["dotted"] + "px";
+        dotted.set("icons", icons);
+      }
+
+      function animateTracks() {
+        if (offset["tracks"] == 9) {
+          offset["tracks"] = 0;
+        } else {
+          offset["tracks"]++;
+        }
+        var icons = tracks.get("icons");
+        icons[0].offset = offset["tracks"] + "%";
+        tracks.set("icons", icons);
+      }
+
+      function animateDashed() {
+        if (offset["dashed"] > 23) {
+          offset["dashed"] = 0;
+        } else {
+          offset["dashed"] += 2;
+        }
+        var icons = dashed.get("icons");
+        icons[0].offset = offset["dashed"] + "px";
+        dashed.set("icons", icons);
+      }
+
+      function animateBarometric() {
+        if (offset["barometric0"] == 47) {
+          offset["barometric0"] = 0;
+        } else {
+          offset["barometric0"]++;
+        }
+        if (offset["barometric1"] == 0) {
+          offset["barometric1"] = 47;
+        } else {
+          offset["barometric1"]--;
+        }
+        var icons = barometric.get("icons");
+        icons[0].offset = offset["barometric0"] + "px";
+        icons[1].offset = offset["barometric1"] + "px";
+        barometric.set("icons", icons);
+      }
+
+      function animateChevrons() {
+        if (offset["chevrons"] == 9) {
+          offset["chevrons"] = 0;
+        } else {
+          offset["chevrons"]++;
+        }
+        var icons = chevrons.get("icons");
+        icons[0].offset = offset["chevrons"] + "px";
+        chevrons.set("icons", icons);
+      }
+    </script>
+    <style>
+      body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+      }
+      #map {
+        width: 598px;
+        height: 478px;
+        position: absolute;
+        background-color: white;
+        border: 1px solid black;
+      }
+      #msg {
+        position: absolute;
+        font-size: 30px;
+        font-family: sans-serif;
+        text-shadow: 0.1em 0.1em 0.2em black;
+        color: #d0d0ff;
+        top: 200px;
+        width: 600px;
+        text-align: center;
+      }
+      #lightbox {
+        width: 600px;
+        height: 480px;
+        background-color: #ffffff;
+        opacity: 0.8;
+      }
+    </style>
+  </head>
+  <body onload="initialize()">
+    <div id="map"></div>
+    <div id="lightbox" onmouseover="start()"></div>
+    <div id="msg">Mouse over the map to view</div>
+  </body>
 </html>
