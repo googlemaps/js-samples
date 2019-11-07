@@ -4,3 +4,14 @@ node_js:
 script:
 - npm run bootstrap
 - npm run ci
+before_deploy:
+- touch docs/.nojekyll
+- tree -H '.' -L 3 --prune  --noreport --charset utf-8 -T Samples -P '*html' -o index.html
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  keep_history: true
+  committer_from_gh: true
+  on:
+    branch: feat/pages
