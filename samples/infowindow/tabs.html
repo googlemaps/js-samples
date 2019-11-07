@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false"></script>
-  <link type="text/css" href="jquery-ui-1.8rc3.custom.css" rel="stylesheet" />
-  <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="jquery-ui-1.8rc3.custom.min.js"></script>
-<script type="text/javascript">
-  function initialize() {
-    var myLatlng = new google.maps.LatLng(-25.363882,131.044922);
-    var map = new google.maps.Map(document.getElementById('map-canvas'), {
-      zoom: 4,
-      center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+  <head>
+    <script
+      type="text/javascript"
+      src="https://maps.google.com/maps/api/js?sensor=false"
+    ></script>
+    <link type="text/css" href="jquery-ui-1.8rc3.custom.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery-1.4.2.min.js"></script>
+    <script
+      type="text/javascript"
+      src="jquery-ui-1.8rc3.custom.min.js"
+    ></script>
+    <script type="text/javascript">
+      function initialize() {
+        var myLatlng = new google.maps.LatLng(-25.363882, 131.044922);
+        var map = new google.maps.Map(document.getElementById("map-canvas"), {
+          zoom: 4,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
 
-    var contentString = [
-      '<div id="tabs">',
-      '<ul>',
-        '<li><a href="#tab-1"><span>One</span></a></li>',
-        '<li><a href="#tab-2"><span>Two</span></a></li>',
-        '<li><a href="#tab-3"><span>Three</span></a></li>',
-      '</ul>',
-      '<div id="tab-1">',
-        '<p>Tab 1</p>',
-      '</div>',
-      '<div id="tab-2">',
-       '<p>Tab 2</p>',
-      '</div>',
-      '<div id="tab-3">',
-        '<p>Tab 3</p>',
-      '</div>',
-      '</div>'
-    ].join('');
+        var contentString = [
+          '<div id="tabs">',
+          "<ul>",
+          '<li><a href="#tab-1"><span>One</span></a></li>',
+          '<li><a href="#tab-2"><span>Two</span></a></li>',
+          '<li><a href="#tab-3"><span>Three</span></a></li>',
+          "</ul>",
+          '<div id="tab-1">',
+          "<p>Tab 1</p>",
+          "</div>",
+          '<div id="tab-2">',
+          "<p>Tab 2</p>",
+          "</div>",
+          '<div id="tab-3">',
+          "<p>Tab 3</p>",
+          "</div>",
+          "</div>"
+        ].join("");
 
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
 
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: map
-    });
+        var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map
+        });
 
-    google.maps.event.addListener(infowindow, 'domready', function() {
-      $("#tabs").tabs();
-    });
+        google.maps.event.addListener(infowindow, "domready", function() {
+          $("#tabs").tabs();
+        });
 
-    google.maps.event.addListener(marker, 'click', function() {
-      infowindow.open(map, marker);
-    });
-  }
- </script>
-</head>
-<body style="font-size:62.5%;" onload="initialize()">
-  <div id="map-canvas" style="width:500px;height:400px;"></div>
-</body>
+        google.maps.event.addListener(marker, "click", function() {
+          infowindow.open(map, marker);
+        });
+      }
+    </script>
+  </head>
+  <body style="font-size:62.5%;" onload="initialize()">
+    <div id="map-canvas" style="width:500px;height:400px;"></div>
+  </body>
 </html>

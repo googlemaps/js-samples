@@ -1,7 +1,7 @@
 /* An InfoBox is like an info window, but it displays
  * under the marker, opens quicker, and has flexible styling.
  * @param {GLatLng} latlng Point to place bar at
- * @param {Object} opts Passes configuration options - content, 
+ * @param {Object} opts Passes configuration options - content,
  *   offsetVertical, offsetHorizontal, className, height, width
  */
 function InfoBox(latlng, map, opts) {
@@ -29,19 +29,20 @@ InfoBox.prototype.panes_changed = function() {
     this.div_ = null;
   }
 
-  var panes = this.get('panes');
+  var panes = this.get("panes");
 
   if (panes) {
     // Create the DIV representing our Bar
-    var div = this.div_ = document.createElement("div");
+    var div = (this.div_ = document.createElement("div"));
     div.style.border = "0px none";
     div.style.position = "absolute";
-    div.style.background = "url('https://ace.imageg.net/images/WIZ_ACE_myStore/mapBubble.png')";
+    div.style.background =
+      "url('https://ace.imageg.net/images/WIZ_ACE_myStore/mapBubble.png')";
     div.style.paddingTop = "12px";
     div.style.width = this.width_ + "px";
     div.style.height = this.height_ + "px";
     var contentDiv = document.createElement("div");
-    contentDiv.style.padding = "30px"
+    contentDiv.style.padding = "30px";
     contentDiv.innerHTML = this.content_;
 
     var topDiv = document.createElement("div");
@@ -53,12 +54,12 @@ InfoBox.prototype.panes_changed = function() {
     topDiv.appendChild(closeImg);
 
     function removeInfoBox(ib) {
-      return function() { 
+      return function() {
         ib.setMap(null);
       };
     }
 
-    google.maps.event.addDomListener(closeImg, 'click', removeInfoBox(this));
+    google.maps.event.addDomListener(closeImg, "click", removeInfoBox(this));
 
     div.appendChild(topDiv);
     div.appendChild(contentDiv);
@@ -68,7 +69,7 @@ InfoBox.prototype.panes_changed = function() {
     // Then add this overlay to the DOM
     panes.floatPane.appendChild(div);
   }
-}
+};
 
 /* Redraw the Bar based on the current projection and zoom level
  */
@@ -82,10 +83,10 @@ InfoBox.prototype.draw = function() {
 
   // Now position our DIV based on the DIV coordinates of our bounds
   this.div_.style.width = this.width_ + "px";
-  this.div_.style.left = (pixPosition.x + this.offsetHorizontal_) + "px";
+  this.div_.style.left = pixPosition.x + this.offsetHorizontal_ + "px";
   this.div_.style.height = this.height_ + "px";
-  this.div_.style.top = (pixPosition.y + this.offsetVertical_) + "px";
-  this.div_.style.display = 'block';
+  this.div_.style.top = pixPosition.y + this.offsetVertical_ + "px";
+  this.div_.style.display = "block";
 
   // if we go beyond map, pan map
   var mapWidth = this.map_.getDiv().offsetWidth;
@@ -94,15 +95,18 @@ InfoBox.prototype.draw = function() {
   var boundsSpan = bounds.toSpan();
   var longSpan = boundsSpan.lng();
   var latSpan = boundsSpan.lat();
-  var degWidth = (this.width_/mapWidth) * longSpan;
-  var degHeight = (this.height_/mapHeight) * latSpan;
+  var degWidth = (this.width_ / mapWidth) * longSpan;
+  var degHeight = (this.height_ / mapHeight) * latSpan;
 
   if (this.latlng_.lng() + degWidth > bounds.getNorthEast().lng()) {
     this.map_.setCenter(this.latlng_);
   }
 
-  var bottompt = new google.maps.LatLng( (this.latlng_.lat() - degHeight), this.latlng_.lng());
+  var bottompt = new google.maps.LatLng(
+    this.latlng_.lat() - degHeight,
+    this.latlng_.lng()
+  );
   if (!bounds.contains(bottompt)) {
     this.map_.setCenter(this.latlng_);
   }
-}
+};

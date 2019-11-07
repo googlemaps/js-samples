@@ -1,9 +1,8 @@
-
 // Object representing a Round in the game.
 
 Round = function() {
   Round.constructor_.apply(this, arguments);
-}
+};
 
 Round.constructor_ = function() {
   this.choices = [];
@@ -22,7 +21,7 @@ Round.constructor_ = function() {
   this.maxLng = 50.449219;
   this.minLat = -37.857507;
   this.minLng = -26.191406;
-/*
+  /*
   // The Middle East and Central Asia
   this.maxLat = 48.806863;
   this.maxLng = 83.232422;
@@ -48,15 +47,20 @@ Round.constructor_ = function() {
   this.minLat = -70;
   this.minLng = -180;
 */
-}
+};
 
 Round.prototype.getChoice = function() {
   var latLng = new google.maps.LatLng(
-    ((((Math.random() * (this.maxLat - this.minLat)) + this.minLat) + 180) % 360) - 180,
-    ((((Math.random() * (this.maxLng - this.minLng)) + this.minLng) + 180) % 360) - 180 );
+    ((Math.random() * (this.maxLat - this.minLat) + this.minLat + 180) % 360) -
+      180,
+    ((Math.random() * (this.maxLng - this.minLng) + this.minLng + 180) % 360) -
+      180
+  );
   var me = this;
-  this.geocoder.geocode({latLng: latLng}, function(status, response) {me.addChoiceCallback(status, response)} );
-}
+  this.geocoder.geocode({ latLng: latLng }, function(status, response) {
+    me.addChoiceCallback(status, response);
+  });
+};
 
 Round.prototype.loadChoices = function(num) {
   this.choices = [];
@@ -65,9 +69,9 @@ Round.prototype.loadChoices = function(num) {
   for (var i = 0; i < num; ++i) {
     this.getChoice();
   }
-}
+};
 
-Round.prototype.addChoiceCallback = function(status, response) { 
+Round.prototype.addChoiceCallback = function(status, response) {
   if (status != google.maps.GeocoderStatus.OK) {
     this.getChoice();
   } else if (response.results.length == 0) {
@@ -94,7 +98,7 @@ Round.prototype.addChoiceCallback = function(status, response) {
       this.getChoice();
     }
   }
-}
+};
 
 Round.prototype.contains = function(place) {
   for (var i = 0; i < this.choices.length; ++i) {
@@ -103,68 +107,78 @@ Round.prototype.contains = function(place) {
     }
   }
   return false;
-}
+};
 
 Round.prototype.getLatLng = function() {
   return this.choices[this.correctAnswer].latlng;
-}
+};
 
 Round.prototype.getCorrectLocationName = function() {
   return this.choices[this.correctAnswer].name;
-}
+};
 
 Round.prototype.isCorrect = function(answer) {
   return answer == this.correctAnswer;
-}
+};
 
 Round.prototype.isReady = function() {
   return this.choices.length == this.numChoices;
-}
+};
 
 // Object representing a choice in a Round.
 
 Choice = function() {
   Choice.constructor_.apply(this, arguments);
-}
+};
 
 Choice.constructor_ = function(name, latlng) {
   this.name = name;
   this.latlng = latlng;
-}
+};
 
 // Game parameters
 var totalRounds = 20; // The total number of rounds in a game.
 var bufferSize = 1; // How many rounds ahead we load the geocoded data.
 var numChoices = 5; // The number of options in each round.
 var delayBetweenRounds = 3000; // Amount of time (in ms) after answering before
-                               // the next round begins.
-var delayStartRetries = 100;   // Amount of time (in ms) waited before retrying
-                               // to start a round (if there is a delay in the
-                               // geocoding).
+// the next round begins.
+var delayStartRetries = 100; // Amount of time (in ms) waited before retrying
+// to start a round (if there is a delay in the
+// geocoding).
 var answerStateZoom = 3; // The zoom level we zoom out to when showing the
-                         // answer on the hybrid map.
+// answer on the hybrid map.
 
 // The difficulty levels - these are split evenly over the Rounds.
 // Each entry specifies the zoom level which will be shown, a string describing
 // the relative difficulty, and the number of points which is to be awarded for
 // a correct answer at this difficulty level.
 var levels = [
-      { zoom: 4,
-        difficulty: '<font color="green">Easy</font> (1 Point)',
-        score: 1},
-      { zoom: 5,
-        difficulty: '<font color="blue">Moderate</font> (2 Points)',
-        score: 2},
-      { zoom: 6,
-        difficulty: '<font color="yellow">Difficult</font> (3 Points)',
-        score: 3},
-      { zoom: 7,
-        difficulty: '<font color="red">Crazy</font> (4 Points)',
-        score: 4},
-      { zoom: 9,
-        difficulty: '<font color="purple">Holy Crap!</font> (5 Points)',
-        score: 5}
-                   ]
+  {
+    zoom: 4,
+    difficulty: '<font color="green">Easy</font> (1 Point)',
+    score: 1
+  },
+  {
+    zoom: 5,
+    difficulty: '<font color="blue">Moderate</font> (2 Points)',
+    score: 2
+  },
+  {
+    zoom: 6,
+    difficulty: '<font color="yellow">Difficult</font> (3 Points)',
+    score: 3
+  },
+  {
+    zoom: 7,
+    difficulty: '<font color="red">Crazy</font> (4 Points)',
+    score: 4
+  },
+  {
+    zoom: 9,
+    difficulty: '<font color="purple">Holy Crap!</font> (5 Points)',
+    score: 5
+  }
+];
 
 // Game state
 var score = 0.0; // Current score of the player
@@ -183,21 +197,21 @@ levelZoom = function() {
     return levels[level].zoom;
   }
   return levels[0].zoom;
-}
+};
 
 levelDifficulty = function() {
   if (level < levels.length) {
     return levels[level].difficulty;
   }
   return levels[0].difficulty;
-}
+};
 
 levelScore = function() {
   if (level < levels.length) {
     return levels[level].score;
   }
   return levels[0].score;
-}
+};
 
 // Functions for changing the game state.
 
@@ -218,28 +232,28 @@ submitAnswer = function(answer) {
   } else {
     finish();
   }
-}
+};
 
 answerCorrect = function() {
   score += levelScore();
   setAnswerElement(true);
-}
+};
 
 answerIncorrect = function() {
   setAnswerElement(false);
-}
+};
 
 startRound = function() {
   if (!currentRound.isReady()) {
-    setTimeout('startRound()', delayStartRetries);
+    setTimeout("startRound()", delayStartRetries);
     return;
   }
   centerMap();
   revealButtons();
-}
+};
 
 nextRound = function() {
-  level = Math.floor(roundsPlayed / totalRounds * levels.length);
+  level = Math.floor((roundsPlayed / totalRounds) * levels.length);
   currentRound = rounds.shift();
   // TODO: don't add rounds that will never be played.
   var newRound = new Round();
@@ -252,12 +266,12 @@ nextRound = function() {
     countdown = 0;
   }
   setGetReadyMapState();
-  setTimeout('startRound()', delayBetweenRounds);
-}
+  setTimeout("startRound()", delayBetweenRounds);
+};
 
 finish = function() {
   setTimeout("askPlayAgain()", delayBetweenRounds);
-}
+};
 
 initialiseRounds = function() {
   for (var i = 0; i < bufferSize; ++i) {
@@ -265,30 +279,37 @@ initialiseRounds = function() {
     newRound.loadChoices(numChoices);
     rounds.push(newRound);
   }
-}
+};
 
 initialiseState = function() {
   score = 0.0;
   roundsPlayed = 0;
   maxScore = 0.0;
   level = 0;
-}
-
+};
 
 // DOM manipulation methods
 
 setAnswerElement = function(correct) {
   if (correct) {
-    document.getElementById("correct").innerHTML = '<font color="green">CORRECT</font>';
+    document.getElementById("correct").innerHTML =
+      '<font color="green">CORRECT</font>';
   } else {
-    document.getElementById("correct").innerHTML = '<font color="red">INCORRECT</font>';
+    document.getElementById("correct").innerHTML =
+      '<font color="red">INCORRECT</font>';
   }
-}
+};
 
 updateScoreElement = function() {
-  document.getElementById("score").innerHTML = 'Score: ' + score + ' / ' +
-    maxScore + ' points (' + Math.floor((score / maxScore) * 100) + '%)';
-}
+  document.getElementById("score").innerHTML =
+    "Score: " +
+    score +
+    " / " +
+    maxScore +
+    " points (" +
+    Math.floor((score / maxScore) * 100) +
+    "%)";
+};
 
 centerMap = function() {
   resetMapState();
@@ -298,21 +319,21 @@ centerMap = function() {
   map.setZoom(levelZoom());
   marker.setPosition(location);
   marker.setMap(map);
-  document.getElementById("difficulty").innerHTML = "Difficulty: " +
-                                                    levelDifficulty();
-}
+  document.getElementById("difficulty").innerHTML =
+    "Difficulty: " + levelDifficulty();
+};
 
 setStatusToAnswerState = function() {
   map.setZoom(answerStateZoom);
   map.setMapTypeId(google.maps.MapTypeId.HYBRID);
   marker.setMap();
   infowindow.setPosition(currentRound.getLatLng());
-  infowindow.setContent('<center><h2>' +
-                         currentRound.getCorrectLocationName()
-                         + '</h2></center>');
+  infowindow.setContent(
+    "<center><h2>" + currentRound.getCorrectLocationName() + "</h2></center>"
+  );
   infowindow.open(map);
-  document.getElementById("status").innerHTML = '<br>';
-}
+  document.getElementById("status").innerHTML = "<br>";
+};
 
 removeIncorrectButtons = function() {
   buttonDiv = document.getElementById("buttons");
@@ -326,52 +347,53 @@ removeIncorrectButtons = function() {
       ++j;
     }
   }
-}
+};
 
 removeButtons = function() {
   buttonDiv = document.getElementById("buttons");
   while (buttonDiv.childNodes.length > 0) {
     buttonDiv.removeChild(buttonDiv.childNodes[0]);
   }
-}
+};
 
 revealButtons = function() {
   for (var i = 0; i < currentRound.choices.length; ++i) {
     var button = document.createElement("input");
-    button.setAttribute("type","button");
-    button.setAttribute("value",currentRound.choices[i].name);
-    button.setAttribute("onClick","submitAnswer(" + i + ")");
+    button.setAttribute("type", "button");
+    button.setAttribute("value", currentRound.choices[i].name);
+    button.setAttribute("onClick", "submitAnswer(" + i + ")");
     buttonDiv.appendChild(button);
   }
   document.getElementById("status").innerHTML = "Go!";
-}
+};
 
 resetMapState = function() {
   removeButtons();
   document.getElementById("correct").innerHTML = "<br>";
   infowindow.hide();
-}
+};
 
 setGetReadyMapState = function() {
   if (roundsPlayed == 0) {
     document.getElementById("status").innerHTML = "Buffering geocoding data...";
   } else if (countdown > 0) {
-    document.getElementById("status").innerHTML = "Next round in " + countdown + " seconds...";
+    document.getElementById("status").innerHTML =
+      "Next round in " + countdown + " seconds...";
     countdown--;
-    setTimeout('setGetReadyMapState()', 1000);
+    setTimeout("setGetReadyMapState()", 1000);
   }
-}
+};
 
 askPlayAgain = function() {
   document.getElementById("status").innerHTML = "Would you like to play again?";
   removeButtons();
   var buttonDiv = document.getElementById("buttons");
   var button = document.createElement("input");
-  button.setAttribute("type","button");
-  button.setAttribute("value","Play Again?");
-  button.setAttribute("onClick","initialise()");
+  button.setAttribute("type", "button");
+  button.setAttribute("value", "Play Again?");
+  button.setAttribute("onClick", "initialise()");
   buttonDiv.appendChild(button);
-}
+};
 
 initialise = function() {
   initialiseRounds();
@@ -386,4 +408,4 @@ initialise = function() {
   marker = new google.maps.Marker();
 
   nextRound();
-}
+};
