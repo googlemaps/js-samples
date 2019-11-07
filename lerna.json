@@ -1,0 +1,14 @@
+{
+  "packages": ["samples/*"],
+  "version": "independent",
+  "command": {
+    "publish": {
+      "allowBranch": ["master"]
+    },
+    "version": {
+      "allowBranch": ["master"],
+      "message": "chore: release"
+    }
+  },
+  "ignoreChanges": ["**/examples/**", "**/tests/**", "**/docs/**", "**/*.md"]
+}
