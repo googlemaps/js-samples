@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "license-header"
+  ],
+  "rules": {
+    "license-header/header": [
+      "error",
+      "header.js"
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "globals": {
+    "google": "writable"
+  },
+  "env": {
+    "browser": true
+  }
+}
