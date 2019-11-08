@@ -26,6 +26,7 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "build:css": "sass src/index.scss dist/style.css",
     "build:html": "../../build/render_template.sh",
     "build:js": "npm run prepare",
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
