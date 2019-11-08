@@ -1,9 +1,5 @@
 {
-
-    "rules": {
-      "license-header/header": [
-        "error",
-        "../../header.js"
-      ]
-    }
+  "rules": {
+    "no-unused-vars": 1
+  }
 }
