@@ -1,0 +1,20 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Street View Side-By-Side</title>
+    <style>
+{% includecode content_path="maps/documentation/javascript/examples/_css/streetview-simple.css" region_tag="css" html_escape="False" %}
+    </style>
+  </head>
+  <body>
+{% includecode content_path="maps/documentation/javascript/examples/_html-body/streetview-simple.html" region_tag="html-body" html_escape="False" %}
+    <script>
+
+{% includecode content_path="maps/documentation/javascript/examples/_js/streetview-simple.js" region_tag="script-body" html_escape="False" %}
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ html_apikey }}&callback=initialize">
+    </script>
+  </body>
+</html>

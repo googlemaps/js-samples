@@ -1,0 +1,52 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <title>Map Events Explorer</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+      .event {
+        transition: background-color 0.5s ease-out;
+        padding-bottom: 2px;
+      }
+      #map {
+        float: left;
+        width: 600px;
+        height: 400px;
+        margin-right: 10px;
+      }
+      #events {
+        padding: 2px;
+        overflow: hidden;
+        font-size: 15px;
+        font-family: 'Droid Sans Mono', monospace;
+      }
+      .active {
+        background-color: #99CCFF;
+      }
+      .inactive {
+        background-color: white;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ html_apikey }}"></script>
+    <script>
+{% include "maps/documentation/javascript/examples/_js/map-events.js" %}
+    </script>
+  </head>
+  <body>
+    <div id="main">
+      <div id="map">
+      </div>
+      <div id="events">
+      </div>
+    </div>
+  </body>
+</html>

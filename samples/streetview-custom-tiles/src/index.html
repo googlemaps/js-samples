@@ -1,0 +1,21 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <title>Custom Street View Panorama Tiles</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+{% includecode content_path="maps/documentation/javascript/examples/_css/streetview-custom-tiles.css" region_tag="css" html_escape="False" %}
+    </style>
+  </head>
+  <body>
+{% includecode content_path="maps/documentation/javascript/examples/_html-body/streetview-custom-tiles.html" region_tag="html-body" html_escape="False" %}
+    <script>
+
+{% includecode content_path="maps/documentation/javascript/examples/_js/streetview-custom-tiles.js" region_tag="script-body" html_escape="False" %}
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ html_apikey }}&callback=initialize">
+    </script>
+  </body>
+</html>

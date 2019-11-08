@@ -1,0 +1,18 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+{% includecode content_path="maps/documentation/javascript/examples/_css/default.css" region_tag="css" html_escape="False" %}
+    </style>
+  </head>
+  <body>
+{% includecode content_path="maps/documentation/javascript/examples/_html-body/default.html" region_tag="html-body" html_escape="False" %}
+    <script>
+{% includecode content_path="maps/documentation/javascript/examples/_js/earthquake_heatmap_weighted.js" region_tag="script-body" html_escape="False" %}
+    </script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ html_apikey }}&libraries=visualization&callback=initMap">
+    </script>
+  </body>
+</html>
+

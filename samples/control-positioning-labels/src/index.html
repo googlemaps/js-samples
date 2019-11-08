@@ -1,0 +1,41 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Control Positioning</title>
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    .controlUI {
+      background-color: #fff;
+      border: 2px solid #fff;
+      border-radius: 3px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.3);
+      margin-bottom: 22px;
+      text-align: center;
+    }
+    .controlText {
+      color: rgb(25,25,25);
+      font-family: Roboto,Arial,sans-serif;
+      font-size: 12px;
+      line-height: 18px;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ html_apikey }}&"></script>
+    <script>
+{% include "maps/documentation/javascript/examples/_js/control-positioning-labels.js" %}
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

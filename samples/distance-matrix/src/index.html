@@ -1,0 +1,17 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <title>Distance Matrix Service</title>
+    <style>
+{% includecode content_path="maps/documentation/javascript/examples/_css/right-panel.css" region_tag="css" html_escape="False" %}
+{% includecode content_path="maps/documentation/javascript/examples/_css/distance-matrix.css" region_tag="css" html_escape="False" %}
+    </style>
+  </head>
+  <body>
+{% includecode content_path="maps/documentation/javascript/examples/_html-body/distance-matrix.html" region_tag="html-body" html_escape="False" %}
+    <script>
+{% includecode content_path="maps/documentation/javascript/examples/_js/distance-matrix.js" region_tag="script-body" html_escape="False" %}
+    </script>
+    {{ api_loader_default }}
+  </body>
+</html>

@@ -1,0 +1,22 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place Autocomplete Address Form</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+{% includecode content_path="maps/documentation/javascript/examples/_css/default.css" region_tag="css" html_escape="False" %}
+{% includecode content_path="maps/documentation/javascript/examples/_css/places-autocomplete-addressform.css" region_tag="css" html_escape="False" %}
+    </style>
+  </head>
+
+  <body>
+{% includecode content_path="maps/documentation/javascript/examples/_html-body/places-autocomplete-addressform.html" region_tag="html-body" html_escape="False" %}
+
+    <script>
+{% includecode content_path="maps/documentation/javascript/examples/_js/places-autocomplete-addressform.js" region_tag="script-body" html_escape="False" %}
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ html_apikey }}&libraries=places&callback=initAutocomplete"
+        async defer></script>
+  </body>
+</html>

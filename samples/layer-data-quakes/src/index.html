@@ -1,0 +1,19 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <title>Advanced Data Layer: Earthquakes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0" />
+    <style type="text/css">
+{% includecode content_path="maps/documentation/javascript/examples/_css/default.css" region_tag="css" html_escape="False" %}
+    </style>
+  </head>
+  <body id="map-container">
+{% includecode content_path="maps/documentation/javascript/examples/_html-body/default.html" region_tag="html-body" html_escape="False" %}
+    <script>
+{% includecode content_path="maps/documentation/javascript/examples/_js/layer-data-quakes.js" region_tag="script-body" html_escape="False" %}
+    </script>
+    {{ api_loader_default }}
+  </body>
+</html>
+

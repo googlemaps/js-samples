@@ -1,0 +1,19 @@
+{% spaceless %}{% include "maps/documentation/javascript/examples/full/_apikey.html" %}{% endspaceless %}<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Waypoints in Directions</title>
+    <style>
+{% includecode content_path="maps/documentation/javascript/examples/_css/right-panel.css" region_tag="css" html_escape="False" %}
+{% includecode content_path="maps/documentation/javascript/examples/_css/directions-waypoints.css" region_tag="css" html_escape="False" %}
+    </style>
+  </head>
+  <body>
+{% includecode content_path="maps/documentation/javascript/examples/_html-body/directions-waypoints.html" region_tag="html-body" html_escape="False" %}
+    <script>
+{% includecode content_path="maps/documentation/javascript/examples/_js/directions-waypoints.js" region_tag="script-body" html_escape="False" %}
+    </script>
+    {{ api_loader_default }}
+  </body>
+</html>
