@@ -1,0 +1,9 @@
+{
+
+    "rules": {
+      "license-header/header": [
+        "error",
+        "../../header.js"
+      ]
+    }
+}
