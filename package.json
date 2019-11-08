@@ -20,11 +20,12 @@
     "bootstrap": "lerna bootstrap",
     "ci": "npm run lint && npm run test",
     "docs": "rm -rf docs/ && typedoc .",
-    "format": "sort-package-json && prettier *.json *.js shared/*.css shared/*.html--write && lerna run format",
+    "format": "npm run format:root && lerna run format",
+    "format:root": "sort-package-json && prettier *.json *.js shared/* --write",
     "lint": "lerna run lint",
+    "package:defaults:merge": "lerna exec '../../build/merge_default_package.sh'",
     "prepare": "lerna run prepare",
-    "test": "lerna run test",
-    "package:defaults:merge": "lerna exec '../../build/merge_default_package.sh'"
+    "test": "lerna run test"
   },
   "devDependencies": {
     "@types/googlemaps": "^3.37.7",
@@ -40,6 +41,7 @@
     "jest": "^24.9.0",
     "json": "^9.0.6",
     "lerna": "^3.16.4",
+    "license-check-and-add": "^3.0.3",
     "nunjucks-cli": "^1.0.0",
     "prettier": "^1.18.2",
     "rollup": "^1.24.0",
@@ -47,6 +49,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.24.3",
+    "sass": "^1.23.3",
     "sort-package-json": "^1.22.1",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
