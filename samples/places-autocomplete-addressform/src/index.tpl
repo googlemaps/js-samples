@@ -1,4 +1,10 @@
-{% extends '../../../shared/layout.tpl'%} {% block html %}
+{% extends '../../../shared/layout.tpl'%} {% block external %}
+<link
+  type="text/css"
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
+/>
+{% endblock %} {% block html %}
 <!-- [START html-body] -->
 <div id="locationField">
   <input

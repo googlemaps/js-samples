@@ -26,13 +26,15 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build:css": "sass src/index.scss dist/style.css",
+    "build": "npm run build:clean && npm run build:html && npm run build:css && npm run build:js",
+    "build:clean": "rm -rf dist",
+    "build:css": "sass --no-source-map src/index.scss dist/style.css",
     "build:html": "../../build/render_template.sh",
-    "build:js": "npm run prepare",
+    "build:js": "rollup -c",
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
+    "format:dist": "prettier dist/* --write",
     "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
     "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
-    "lint": "eslint src/*.js && npm run license:check",
-    "prepare": "rollup -c"
+    "lint": "eslint src/*.js && npm run license:check"
   }
 }

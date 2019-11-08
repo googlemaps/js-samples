@@ -14,10 +14,9 @@
  * limitations under the License.
 */
 /* [START css] */
-</style>
-    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-    <style>
-      #locationField, #controls {
+
+#locationField,
+#controls {
   position: relative;
   width: 480px;
 }
@@ -32,7 +31,7 @@
   font-weight: bold;
   width: 100px;
   color: #303030;
-  font-family: "Roboto";
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
 }
 #address {
   border: 1px solid #000090;

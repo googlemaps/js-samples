@@ -18,16 +18,22 @@
   "license": "Apache-2.0",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "ci": "npm run lint && npm run test",
-    "docs": "rm -rf docs/ && typedoc .",
+    "build": "lerna run build",
+    "build:clean": "lerna run build:clean",
+    "build:css": "lerna run build:css",
+    "build:html": "lerna run build:html",
+    "build:js": "lerna run build:js",
+    "ci": "npm run lint && npm run test && npm build",
     "format": "npm run format:root && lerna run format",
+    "format:dist": "lerna run format:dist",
     "format:root": "sort-package-json && prettier *.json *.js shared/* --write",
     "lint": "lerna run lint",
     "package:defaults:merge": "lerna exec '../../build/merge_default_package.sh'",
-    "prepare": "lerna run prepare",
     "test": "lerna run test"
   },
+  "dependencies": {},
   "devDependencies": {
+    "@babel/preset-env": "^7.7.1",
     "@types/googlemaps": "^3.37.7",
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
@@ -44,14 +50,16 @@
     "nunjucks-cli": "^1.0.0",
     "prettier": "^1.18.2",
     "rollup": "^1.24.0",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-license": "^0.12.1",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-strip-banner": "^0.2.0",
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-typescript2": "^0.24.3",
     "sass": "^1.23.3",
     "sort-package-json": "^1.22.1",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
-  },
-  "dependencies": {}
+  }
 }

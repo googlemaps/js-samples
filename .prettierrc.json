@@ -5,6 +5,12 @@
             "options": {
                 "parser": "html"
             }
+        },
+        {
+            "files": "*.map",
+            "options": {
+                "parser": "json"
+            }
         }
     ]
 }

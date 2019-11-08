@@ -19,7 +19,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
     <title>{{ title }}</title>
-    {% block css %}
+    {% block external %}{% endblock%} {% block css %}
     <script src="./index.css" />
     {% endblock %}
   </head>
