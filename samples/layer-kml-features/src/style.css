@@ -1,0 +1,20 @@
+/* [START css] */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        float: left;
+        height: 425px;
+        width: 79%;
+      }
+      #content-window {
+        float: left;
+        font-family: 'Roboto','sans-serif';
+        height: 100%;
+        line-height: 30px;
+        padding-left: 10px;
+        width: 19%;
+      }
+/* [END css] */
