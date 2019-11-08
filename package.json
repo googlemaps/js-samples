@@ -20,7 +20,7 @@
     "bootstrap": "lerna bootstrap",
     "ci": "npm run lint && npm run test",
     "docs": "rm -rf docs/ && typedoc .",
-    "format": "sort-package-json && prettier *.json *.js --write && lerna run format",
+    "format": "sort-package-json && prettier *.json *.js shared/*.css shared/*.html--write && lerna run format",
     "lint": "lerna run lint",
     "prepare": "lerna run prepare",
     "test": "lerna run test"
@@ -38,6 +38,7 @@
     "eslint-plugin-prettier": "^3.1.1",
     "jest": "^24.9.0",
     "lerna": "^3.16.4",
+    "nunjucks-cli": "^1.0.0",
     "prettier": "^1.18.2",
     "rollup": "^1.24.0",
     "rollup-plugin-commonjs": "^10.1.0",

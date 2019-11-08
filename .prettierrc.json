@@ -1,0 +1,10 @@
+{
+    "overrides": [
+        {
+            "files": "*.tpl",
+            "options": {
+                "parser": "html"
+            }
+        }
+    ]
+}

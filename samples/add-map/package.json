@@ -28,6 +28,7 @@
   "scripts": {
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
     "lint": "eslint src/*",
-    "prepare": "rollup -c"
+    "prepare": "rollup -c",
+    "build:html": "../../build/render_template.sh"
   }
 }
