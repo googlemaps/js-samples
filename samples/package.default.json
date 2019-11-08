@@ -15,10 +15,12 @@
     ],
     "scripts": {
       "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
-      "lint": "eslint src/*.js src/*.ts",
+      "lint": "eslint src/*.js src/*.ts && npm run license:check",
       "prepare": "rollup -c",
       "build:html": "../../build/render_template.sh",
       "build:js": "npm run prepare",
-      "build:css": "sass src/index.scss dist/style.css"
+      "build:css": "sass src/index.scss dist/style.css",
+      "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
+      "license:add": "license-check-and-add add src/* -f ../../.license-check.json"
     }
   }

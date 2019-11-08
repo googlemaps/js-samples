@@ -30,7 +30,9 @@
     "build:html": "../../build/render_template.sh",
     "build:js": "npm run prepare",
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
-    "lint": "eslint src/*.js src/*.ts",
+    "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
+    "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
+    "lint": "eslint src/*.js src/*.ts && npm run license:check",
     "prepare": "rollup -c"
   }
 }
