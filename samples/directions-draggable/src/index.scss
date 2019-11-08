@@ -14,24 +14,25 @@
  * limitations under the License.
 */
 /* [START css] */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-        float: left;
-        width: 63%;
-        height: 100%;
-      }
-      #right-panel {
-        float: right;
-        width: 34%;
-        height: 100%;
-      }
-      .panel {
-        height: 100%;
-        overflow: auto;
-      }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: 100%;
+  float: left;
+  width: 63%;
+  height: 100%;
+}
+#right-panel {
+  float: right;
+  width: 34%;
+  height: 100%;
+}
+.panel {
+  height: 100%;
+  overflow: auto;
+}
 /* [END css] */

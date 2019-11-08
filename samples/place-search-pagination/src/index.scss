@@ -14,43 +14,43 @@
  * limitations under the License.
 */
 /* [START css] */
-      #right-panel {
-        font-family: Arial, Helvetica, sans-serif;
-        position: absolute;
-        right: 5px;
-        top: 60%;
-        margin-top: -195px;
-        height: 330px;
-        width: 200px;
-        padding: 5px;
-        z-index: 5;
-        border: 1px solid #999;
-        background: #fff;
-      }
-      h2 {
-        font-size: 22px;
-        margin: 0 0 5px 0;
-      }
-      ul {
-        list-style-type: none;
-        padding: 0;
-        margin: 0;
-        height: 271px;
-        width: 200px;
-        overflow-y: scroll;
-      }
-      li {
-        background-color: #f1f1f1;
-        padding: 10px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-      }
-      li:nth-child(odd) {
-        background-color: #fcfcfc;
-      }
-      #more {
-        width: 100%;
-        margin: 5px 0 0 0;
-      }
+#right-panel {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  right: 5px;
+  top: 60%;
+  margin-top: -195px;
+  height: 330px;
+  width: 200px;
+  padding: 5px;
+  z-index: 5;
+  border: 1px solid #999;
+  background: #fff;
+}
+h2 {
+  font-size: 22px;
+  margin: 0 0 5px 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  height: 271px;
+  width: 200px;
+  overflow-y: scroll;
+}
+li {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+li:nth-child(odd) {
+  background-color: #fcfcfc;
+}
+#more {
+  width: 100%;
+  margin: 5px 0 0 0;
+}
 /* [END css] */

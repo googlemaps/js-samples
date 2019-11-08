@@ -1,6 +1,5 @@
-{% extends '../../../shared/layout.tpl'%}
-{% block html %}
+{% extends '../../../shared/layout.tpl'%} {% block html %}
 <!-- [START html-body] -->
-    <div id="street-view"></div>
+<div id="street-view"></div>
 <!-- [END html-body] -->
 {% endblock %}

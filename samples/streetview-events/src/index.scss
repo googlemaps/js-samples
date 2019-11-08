@@ -14,18 +14,18 @@
  * limitations under the License.
 */
 /* [START css] */
-      #pano {
-        width: 50%;
-        height: 100%;
-        float: left;
-      }
-      #floating-panel {
-        width: 45%;
-        height: 100%;
-        float: right;
-        text-align: left;
-        overflow: auto;
-        position: static;
-        border: 0px solid #999;
-      }
+#pano {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+#floating-panel {
+  width: 45%;
+  height: 100%;
+  float: right;
+  text-align: left;
+  overflow: auto;
+  position: static;
+  border: 0px solid #999;
+}
 /* [END css] */

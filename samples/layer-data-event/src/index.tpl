@@ -1,7 +1,6 @@
-{% extends '../../../shared/layout.tpl'%}
-{% block html %}
+{% extends '../../../shared/layout.tpl'%} {% block html %}
 <!-- [START html-body] -->
-    <div id="map"></div>
-    <div id="info-box">?</div>
+<div id="map"></div>
+<div id="info-box">?</div>
 <!-- [END html-body] -->
 {% endblock %}

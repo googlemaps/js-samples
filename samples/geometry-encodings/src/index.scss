@@ -14,22 +14,23 @@
  * limitations under the License.
 */
 /* [START css] */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-        width: 50%;
-        float: left;
-      }
-      #right-panel {
-        width: 46%;
-        float: left;
-      }
-      #encoded-polyline {
-        height: 100px;
-        width: 100%;
-      }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: 100%;
+  width: 50%;
+  float: left;
+}
+#right-panel {
+  width: 46%;
+  float: left;
+}
+#encoded-polyline {
+  height: 100px;
+  width: 100%;
+}
 /* [END css] */

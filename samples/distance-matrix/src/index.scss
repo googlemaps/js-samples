@@ -14,21 +14,22 @@
  * limitations under the License.
 */
 /* [START css] */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #map {
-        height: 100%;
-        width: 50%;
-      }
-      #right-panel {
-        float: right;
-        width: 48%;
-        padding-left: 2%;
-      }
-      #output {
-        font-size: 11px;
-      }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#map {
+  height: 100%;
+  width: 50%;
+}
+#right-panel {
+  float: right;
+  width: 48%;
+  padding-left: 2%;
+}
+#output {
+  font-size: 11px;
+}
 /* [END css] */
