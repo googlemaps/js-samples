@@ -26,10 +26,10 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npm run build:clean && npm run build:html && npm run build:css && npm run build:js",
+    "build": "run-s build:clean build:html build:css build:js format:dist",
     "build:clean": "rm -rf dist",
     "build:css": "sass --no-source-map src/index.scss dist/style.css",
-    "build:html": "../../build/render_template.sh",
+    "build:html": "../../build/render_template.sh && JSFIDDLE=1 ../../build/render_template.sh",
     "build:js": "rollup -c",
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
     "format:dist": "prettier dist/* --write",

@@ -1,13 +1,7 @@
 {
     "overrides": [
         {
-            "files": "*.tpl",
-            "options": {
-                "parser": "html"
-            }
-        },
-        {
-            "files": "*.map",
+            "files": "*.css.map",
             "options": {
                 "parser": "json"
             }

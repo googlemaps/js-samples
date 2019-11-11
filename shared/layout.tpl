@@ -16,16 +16,24 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
+    <meta charset="utf-8"/>
     <title>{{ title }}</title>
-    {% block external %}{% endblock%} {% block css %}
-    <script src="./index.css" />
-    {% endblock %}
+    {% block external %}{% endblock %}
+    {% if env.JSFIDDLE %}
+      <!-- jsFiddle will insert css and js -->
+    {% else %}
+      {% block css %}
+        <script src="./style.css"/>
+      {% endblock %}
+      {% block js %}
+        <script src="./app.compat.js"/>
+      {% endblock %}
+    {% endif %}
+
+    {% block api %}{% endblock %}
   </head>
   <body>
-    {% block html %}{% endblock %} {% block js %}
-    <script src="./index.es5.js" />
-    {% endblock %} {% block api %}{% endblock %}
+    {% block html %}{% endblock %}
   </body>
 </html>

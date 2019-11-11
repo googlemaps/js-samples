@@ -14,15 +14,15 @@
     "src/*"
   ],
   "scripts": {
-    "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
-    "lint": "eslint src/*.js && npm run license:check",
-    "format:dist": "prettier dist/* --write",
-    "build:html": "../../build/render_template.sh",
-    "build:js": "rollup -c",
-    "build:css": "sass --no-source-map src/index.scss dist/style.css",
-    "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
-    "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
+    "build": "run-s build:clean build:html build:css build:js format:dist",
     "build:clean": "rm -rf dist",
-    "build": "npm run build:clean && npm run build:html && npm run build:css && npm run build:js && npm run format:dist"
+    "build:css": "sass --no-source-map src/index.scss dist/style.css",
+    "build:html": "../../build/render_template.sh && JSFIDDLE=1 ../../build/render_template.sh",
+    "build:js": "rollup -c",
+    "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
+    "format:dist": "prettier dist/* --write",
+    "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
+    "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
+    "lint": "eslint src/*.js && npm run license:check"
   }
 }
