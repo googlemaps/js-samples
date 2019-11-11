@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example uses a GroundOverlay to place an image on the map
 // showing an antique map of Newark, NJ.

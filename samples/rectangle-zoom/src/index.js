@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example creates a rectangle based on the viewport
 // on any 'zoom-changed' event.

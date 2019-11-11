@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * Creates a series of custom controls to demonstrate positioning
  * of controls within a map.

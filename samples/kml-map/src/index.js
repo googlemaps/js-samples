@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 /**
  * @fileoverview Sample showing capturing a KML file click
  *   and displaying the contents in a side panel instead of

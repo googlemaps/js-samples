@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example uses the Google Maps JavaScript API's Data layer
 // to create a rectangular polygon with 2 holes in it.

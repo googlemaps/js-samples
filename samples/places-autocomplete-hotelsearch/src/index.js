@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example uses the autocomplete feature of the Google Places API.
 // It allows the user to find all hotels in a given place, within a given

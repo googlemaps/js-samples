@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example adds a user-editable rectangle to the map.
 // When the user changes the bounds of the rectangle,

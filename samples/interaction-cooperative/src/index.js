@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 /**
  * This sample sets the gesture handling mode to 'cooperative',

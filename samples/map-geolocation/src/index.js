@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // Note: This example requires that you consent to location sharing when
 // prompted by your browser. If you see the error "The Geolocation service

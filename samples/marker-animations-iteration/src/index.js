@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // If you're adding a number of markers, you may want to drop them on the map
 // consecutively rather than all at once. This example shows how to use

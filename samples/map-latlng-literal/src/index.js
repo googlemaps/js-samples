@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // In this example, we center the map, and add a marker, using a LatLng object
 // literal instead of a google.maps.LatLng object. LatLng object literals are

@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // Load the Visualization API and the columnchart package.
 google.load("visualization", "1", { packages: ["columnchart"] });

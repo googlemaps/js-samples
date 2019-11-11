@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 function initMap() {
   var originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);

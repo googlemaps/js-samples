@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // In the following example, markers appear when the user clicks on the map.
 // Each marker is labeled with a single alphabetical character.

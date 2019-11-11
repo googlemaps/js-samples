@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example requires the Geometry library. Include the libraries=geometry
 // parameter when you first load the API. For example:

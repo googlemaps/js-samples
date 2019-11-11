@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 function initialize() {
   var fenway = { lat: 42.345573, lng: -71.098326 };

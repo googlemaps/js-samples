@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This sample uses the Autocomplete widget to help the user select a
 // place, then it retrieves the address components associated with that

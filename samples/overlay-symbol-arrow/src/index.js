@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example adds a predefined symbol (an arrow) to a polyline.
 // Setting offset to 100% places the arrow at the end of the line.

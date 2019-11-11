@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example displays a map with the language and region set
 // to Japan. These settings are specified in the HTML script element

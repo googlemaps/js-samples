@@ -3,10 +3,14 @@
     "licenseFormats": {
         "js|ts|css|scss|less|php|as|c|java|cpp|go|cto|acl": {
             "prepend": "/*",
-            "append": "*/",
+            "append": " */",
             "eachLine": {
                 "prepend": " * "
             }
+        },
+        "tpl": {
+            "prepend": "<!--",
+            "append": "-->"
         }
     }
 }

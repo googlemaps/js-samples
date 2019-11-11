@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 function initPano() {
   // Set up Street View and initially set it visible. Register the

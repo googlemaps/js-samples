@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example creates an interactive map which constructs a polyline based on
 // user clicks. Note that the polyline only appears once its path property

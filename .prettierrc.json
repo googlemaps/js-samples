@@ -5,6 +5,12 @@
             "options": {
                 "parser": "json"
             }
+        },
+        {
+            "files": "*.tpl",
+            "options": {
+                "parser": "html"
+            }
         }
     ]
 }

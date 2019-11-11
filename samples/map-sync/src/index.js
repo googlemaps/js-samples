@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 var map = new google.maps.Map(document.getElementById("map"), {
   center: { lat: -34.397, lng: 150.644 },

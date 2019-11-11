@@ -16,7 +16,7 @@
   "scripts": {
     "build": "run-s build:clean build:html build:css build:js format:dist",
     "build:clean": "rm -rf dist",
-    "build:css": "sass --no-source-map src/index.scss dist/style.css",
+    "build:css": "sass --no-source-map src/style.scss dist/style.css",
     "build:html": "../../build/render_template.sh && JSFIDDLE=1 ../../build/render_template.sh",
     "build:js": "rollup -c",
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",

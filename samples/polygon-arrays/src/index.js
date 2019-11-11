@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 // [START script-body]
 // This example creates a simple polygon representing the Bermuda Triangle.
 // When the user clicks on the polygon an info window opens, showing
