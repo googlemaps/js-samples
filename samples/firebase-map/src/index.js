@@ -14,13 +14,6 @@
  * limitations under the License.
  */
 
-// Declarations to keep the compiler happy.
-/**
- * @param {string} database
- * @constructor
- */
-function Firebase(database) {}
-
 // [START script-body]
 /**
  * Firebase config block.

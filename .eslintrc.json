@@ -13,7 +13,9 @@
     }
   },
   "globals": {
-    "google": "writable"
+    "google": "writable",
+    "firebase": "readonly",
+    "ActiveXObject": "readonly"
   },
   "env": {
     "browser": true
