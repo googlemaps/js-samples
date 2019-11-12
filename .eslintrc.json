@@ -4,15 +4,6 @@
     "plugin:jest/recommended",
     "plugin:prettier/recommended"
   ],
-  "plugins": [
-    "license-header"
-  ],
-  "rules": {
-    "license-header/header": [
-      "error",
-      "header.js"
-    ]
-  },
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -22,7 +13,9 @@
     }
   },
   "globals": {
-    "google": "writable"
+    "google": "writable",
+    "firebase": "readonly",
+    "ActiveXObject": "readonly"
   },
   "env": {
     "browser": true

@@ -1,0 +1,40 @@
+{
+  "name": "place-search-pagination",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "google",
+    "maps",
+    "sample"
+  ],
+  "homepage": "https://github.com/googlemaps/js-samples",
+  "bugs": {
+    "url": "https://github.com/googlemaps/js-samples/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/googlemaps/js-samples.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Google Inc.",
+  "files": [
+    "dist/*",
+    "src/*"
+  ],
+  "main": "dist/index.umd.js",
+  "unpkg": "dist/index.min.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "run-s build:clean build:html build:css build:js format:dist",
+    "build:clean": "rm -rf dist",
+    "build:css": "sass --no-source-map src/style.scss dist/style.css",
+    "build:html": "../../build/render_template.sh && JSFIDDLE=1 ../../build/render_template.sh",
+    "build:js": "rollup -c",
+    "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
+    "format:dist": "prettier dist/* --write",
+    "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
+    "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
+    "lint": "eslint src/*.js && npm run license:check"
+  }
+}

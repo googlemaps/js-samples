@@ -1,0 +1,16 @@
+{
+    "overrides": [
+        {
+            "files": "*.css.map",
+            "options": {
+                "parser": "json"
+            }
+        },
+        {
+            "files": "*.tpl",
+            "options": {
+                "parser": "html"
+            }
+        }
+    ]
+}
