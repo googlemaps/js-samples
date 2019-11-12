@@ -1,6 +1,8 @@
 language: node_js
 node_js:
 - stable
+before_install:
+  - sudo apt-get -y install tree
 script:
 - npm run bootstrap
 - npm run ci
