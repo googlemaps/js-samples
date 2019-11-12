@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/googlemaps/js-samples.svg?branch=master)](https://travis-ci.org/googlemaps/js-samples)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/js-samples)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
