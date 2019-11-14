@@ -10,7 +10,7 @@ script:
 before_deploy:
 - touch .nojekyll
 - sed -i 's/\*\*\/dist\//# **\/dist/g' .gitignore
-- tree -H '.' -L 3 --prune  --noreport --charset utf-8 -T Samples -P '*html' -o index.html
+- tree -H '.' -L 4 --prune  --noreport --charset utf-8 -T Samples -P '*html' -o index.html
 deploy:
   provider: pages
   skip_cleanup: true
