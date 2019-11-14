@@ -19,10 +19,10 @@
  * Click the map to set a new location for the Street View camera.
  */
 
-var map;
-var panorama;
+export var map;
+export var panorama;
 
-function initMap() {
+export function initMap() {
   var berkeley = { lat: 37.869085, lng: -122.254775 };
   var sv = new google.maps.StreetViewService();
 
@@ -48,7 +48,7 @@ function initMap() {
   });
 }
 
-function processSVData(data, status) {
+export function processSVData(data, status) {
   if (status === "OK") {
     var marker = new google.maps.Marker({
       position: data.location.latLng,

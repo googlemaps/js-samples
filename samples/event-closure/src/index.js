@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat: -25.363882, lng: 131.044922 }
@@ -52,7 +52,7 @@ function initMap() {
 
 // Attaches an info window to a marker with the provided message. When the
 // marker is clicked, the info window will open with the secret message.
-function attachSecretMessage(marker, secretMessage) {
+export function attachSecretMessage(marker, secretMessage) {
   var infowindow = new google.maps.InfoWindow({
     content: secretMessage
   });

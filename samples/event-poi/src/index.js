@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var origin = { lat: -33.871, lng: 151.197 };
 
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -28,7 +28,7 @@ function initMap() {
 /**
  * @constructor
  */
-var ClickEventHandler = function(map, origin) {
+export var ClickEventHandler = function(map, origin) {
   this.origin = origin;
   this.map = map;
   this.directionsService = new google.maps.DirectionsService();

@@ -17,9 +17,9 @@
 // [START script-body]
 /* Map functions */
 
-var map;
+export var map;
 
-function initMap() {
+export function initMap() {
   // set up the map
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(0, 0),
@@ -27,7 +27,7 @@ function initMap() {
   });
 }
 
-function loadGeoJsonString(geoString) {
+export function loadGeoJsonString(geoString) {
   var geojson = JSON.parse(geoString);
   map.data.addGeoJson(geojson);
   zoom(map);
@@ -37,7 +37,7 @@ function loadGeoJsonString(geoString) {
  * Update a map's viewport to fit each geometry in a dataset
  * @param {google.maps.Map} map The map to adjust
  */
-function zoom(map) {
+export function zoom(map) {
   var bounds = new google.maps.LatLngBounds();
   map.data.forEach(function(feature) {
     processPoints(feature.getGeometry(), bounds.extend, bounds);
@@ -53,7 +53,7 @@ function zoom(map) {
  * @param {Object} thisArg The value of 'this' as provided to 'callback' (e.g.
  *     myArray)
  */
-function processPoints(geometry, callback, thisArg) {
+export function processPoints(geometry, callback, thisArg) {
   if (geometry instanceof google.maps.LatLng) {
     callback.call(thisArg, geometry);
   } else if (geometry instanceof google.maps.Data.Point) {
@@ -67,7 +67,7 @@ function processPoints(geometry, callback, thisArg) {
 
 /* DOM (drag/drop) functions */
 
-function initEvents() {
+export function initEvents() {
   // set up the drag & drop events
   var mapContainer = document.getElementById("map");
   var dropContainer = document.getElementById("drop-container");
@@ -81,18 +81,18 @@ function initEvents() {
   dropContainer.addEventListener("dragleave", hidePanel, false);
 }
 
-function showPanel(e) {
+export function showPanel(e) {
   e.stopPropagation();
   e.preventDefault();
   document.getElementById("drop-container").style.display = "block";
   return false;
 }
 
-function hidePanel(e) {
+export function hidePanel(e) {
   document.getElementById("drop-container").style.display = "none";
 }
 
-function handleDrop(e) {
+export function handleDrop(e) {
   e.preventDefault();
   e.stopPropagation();
   hidePanel(e);
@@ -124,7 +124,7 @@ function handleDrop(e) {
   return false;
 }
 
-function initialize() {
+export function initialize() {
   initMap();
   initEvents();
 }

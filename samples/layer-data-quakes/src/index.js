@@ -15,9 +15,9 @@
  */
 
 // [START script-body]
-var map;
+export var map;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 20, lng: -160 },
     zoom: 2,
@@ -38,11 +38,11 @@ function initMap() {
 }
 
 // Defines the callback function referenced in the jsonp file.
-function eqfeed_callback(data) {
+export function eqfeed_callback(data) {
   map.data.addGeoJson(data);
 }
 
-function styleFeature(feature) {
+export function styleFeature(feature) {
   var low = [151, 83, 34]; // color of mag 1.0
   var high = [5, 69, 54]; // color of mag 6.0 and above
   var minMag = 1.0;
@@ -68,7 +68,7 @@ function styleFeature(feature) {
   };
 }
 
-function interpolateHsl(lowHsl, highHsl, fraction) {
+export function interpolateHsl(lowHsl, highHsl, fraction) {
   var color = [];
   for (var i = 0; i < 3; i++) {
     // Calculate color based on the fraction.
@@ -78,7 +78,7 @@ function interpolateHsl(lowHsl, highHsl, fraction) {
   return "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)";
 }
 
-var mapStyle = [
+export var mapStyle = [
   {
     featureType: "all",
     elementType: "all",

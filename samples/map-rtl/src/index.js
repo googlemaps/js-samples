@@ -22,7 +22,7 @@
 // Setting the region biases the geocoding results to that region.
 // In addition, the page's html element sets the text direction to
 // right-to-left.
-function initMap() {
+export function initMap() {
   var cairo = { lat: 30.064742, lng: 31.249509 };
 
   var map = new google.maps.Map(document.getElementById("map"), {

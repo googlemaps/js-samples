@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var geocoder = new google.maps.Geocoder();
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
@@ -27,7 +27,7 @@ function initMap() {
   });
 }
 
-function geocodeAddress(geocoder, map) {
+export function geocodeAddress(geocoder, map) {
   geocoder.geocode(
     {
       componentRestrictions: {

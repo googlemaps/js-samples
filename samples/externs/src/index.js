@@ -20,7 +20,7 @@
  */
 
 // Panoramio externs reference this, assuming that Closure is being used.
-var goog;
+export var goog;
 goog.math;
 
 /**

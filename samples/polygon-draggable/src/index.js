@@ -19,7 +19,7 @@
 // Note also that the red triangle is geodesic, so its shape changes
 // as you drag it north or south.
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 1,
     center: { lat: 24.886, lng: -70.268 },

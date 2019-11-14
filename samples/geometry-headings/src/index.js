@@ -19,10 +19,10 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
 
-var marker1, marker2;
-var poly, geodesicPoly;
+export var marker1, marker2;
+export var poly, geodesicPoly;
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat: 34, lng: -40.605 }
@@ -71,7 +71,7 @@ function initMap() {
   update();
 }
 
-function update() {
+export function update() {
   var path = [marker1.getPosition(), marker2.getPosition()];
   poly.setPath(path);
   geodesicPoly.setPath(path);

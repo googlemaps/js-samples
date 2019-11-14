@@ -19,7 +19,7 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 14,
     center: { lat: 34.366, lng: -89.519 }
@@ -41,7 +41,7 @@ function initMap() {
  * Handles click events on a map, and adds a new point to the Polyline.
  * Updates the encoding text area with the path's encoded values.
  */
-function addLatLngToPoly(latLng, poly) {
+export function addLatLngToPoly(latLng, poly) {
   var path = poly.getPath();
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear

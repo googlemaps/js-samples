@@ -17,7 +17,7 @@
 // [START script-body]
 // This example adds a red rectangle to a map.
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 33.678, lng: -116.243 },

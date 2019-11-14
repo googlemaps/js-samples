@@ -20,7 +20,7 @@
  * which means that on a mobile device, the user must swipe with one
  * finger to scroll the page and two fingers to pan the map.
  */
-function initMap() {
+export function initMap() {
   var myLatLng = { lat: -25.363, lng: 131.044 };
 
   var map = new google.maps.Map(document.getElementById("map"), {

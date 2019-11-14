@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var mapDiv = document.getElementById("map");
   var map = new google.maps.Map(mapDiv, {
     zoom: 8,

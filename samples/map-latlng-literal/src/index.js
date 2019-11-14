@@ -20,8 +20,8 @@
 // a convenient way to add a LatLng coordinate and, in most cases, can be used
 // in place of a google.maps.LatLng object.
 
-var map;
-function initialize() {
+export var map;
+export function initialize() {
   var mapOptions = {
     zoom: 8,
     center: { lat: -34.397, lng: 150.644 }

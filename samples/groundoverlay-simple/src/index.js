@@ -18,9 +18,9 @@
 // This example uses a GroundOverlay to place an image on the map
 // showing an antique map of Newark, NJ.
 
-var historicalOverlay;
+export var historicalOverlay;
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: { lat: 40.74, lng: -74.18 }

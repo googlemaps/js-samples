@@ -15,9 +15,9 @@
  */
 
 // [START script-body]
-var panorama;
+export var panorama;
 
-function initMap() {
+export function initMap() {
   var astorPlace = { lat: 40.729884, lng: -73.990988 };
 
   // Set up the map
@@ -64,7 +64,7 @@ function initMap() {
   );
 }
 
-function toggleStreetView() {
+export function toggleStreetView() {
   var toggle = panorama.getVisible();
   if (toggle == false) {
     panorama.setVisible(true);

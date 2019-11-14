@@ -23,9 +23,9 @@
 // <script
 // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-var placeSearch, autocomplete;
+export var placeSearch, autocomplete;
 
-var componentForm = {
+export var componentForm = {
   street_number: "short_name",
   route: "long_name",
   locality: "long_name",
@@ -34,7 +34,7 @@ var componentForm = {
   postal_code: "short_name"
 };
 
-function initAutocomplete() {
+export function initAutocomplete() {
   // Create the autocomplete object, restricting the search predictions to
   // geographical location types.
   autocomplete = new google.maps.places.Autocomplete(
@@ -52,7 +52,7 @@ function initAutocomplete() {
 }
 
 // [START region_fillform]
-function fillInAddress() {
+export function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
 
@@ -76,7 +76,7 @@ function fillInAddress() {
 // [START region_geolocation]
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
+export function geolocate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
       var geolocation = {

@@ -15,11 +15,11 @@
  */
 
 // [START script-body]
-var map;
-var maxZoomService;
-var infoWindow;
+export var map;
+export var maxZoomService;
+export var infoWindow;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 35.6894, lng: 139.692 },
@@ -33,7 +33,7 @@ function initMap() {
   map.addListener("click", showMaxZoom);
 }
 
-function showMaxZoom(e) {
+export function showMaxZoom(e) {
   maxZoomService.getMaxZoomAtLatLng(e.latLng, function(response) {
     if (response.status !== "OK") {
       infoWindow.setContent("Error in MaxZoomService");

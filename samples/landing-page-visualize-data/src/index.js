@@ -15,8 +15,8 @@
  */
 
 // [START script-body]
-var map;
-function initMap() {
+export var map;
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 2,
     center: { lat: -33.865427, lng: 151.196123 },
@@ -44,7 +44,7 @@ function initMap() {
   });
 }
 
-function getCircle(magnitude) {
+export function getCircle(magnitude) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: "red",
@@ -55,7 +55,7 @@ function getCircle(magnitude) {
   };
 }
 
-function eqfeed_callback(results) {
+export function eqfeed_callback(results) {
   map.data.addGeoJson(results);
 }
 // [END script-body]

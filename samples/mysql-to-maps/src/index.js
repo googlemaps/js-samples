@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-var customLabel = {
+export var customLabel = {
   restaurant: {
     label: "R"
   },
@@ -24,7 +24,7 @@ var customLabel = {
   }
 };
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-33.863276, 151.207977),
     zoom: 12
@@ -71,7 +71,7 @@ function initMap() {
   );
 }
 
-function downloadUrl(url, callback) {
+export function downloadUrl(url, callback) {
   var request = window.ActiveXObject
     ? new ActiveXObject("Microsoft.XMLHTTP")
     : new XMLHttpRequest();
@@ -87,5 +87,5 @@ function downloadUrl(url, callback) {
   request.send(null);
 }
 
-function doNothing() {}
+export function doNothing() {}
 // [END script-body]

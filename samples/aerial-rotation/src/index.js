@@ -15,9 +15,9 @@
  */
 
 // [START script-body]
-var map;
+export var map;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 45.518, lng: -122.672 },
     zoom: 18,
@@ -27,12 +27,12 @@ function initMap() {
   });
 }
 
-function rotate90() {
+export function rotate90() {
   var heading = map.getHeading() || 0;
   map.setHeading(heading + 90);
 }
 
-function autoRotate() {
+export function autoRotate() {
   // Determine if we're showing aerial imagery.
   if (map.getTilt() !== 0) {
     window.setInterval(rotate90, 3000);

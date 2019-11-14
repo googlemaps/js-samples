@@ -15,8 +15,8 @@
  */
 
 // [START script-body]
-var map;
-function initMap() {
+export var map;
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.86, lng: 151.209 },
     zoom: 13,
@@ -36,7 +36,7 @@ function initMap() {
   });
 }
 
-var styles = {
+export var styles = {
   default: null,
   hide: [
     {

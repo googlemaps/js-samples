@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var bounds = new google.maps.LatLngBounds();
   var markersArray = [];
 
@@ -101,7 +101,7 @@ function initMap() {
   );
 }
 
-function deleteMarkers(markersArray) {
+export function deleteMarkers(markersArray) {
   for (var i = 0; i < markersArray.length; i++) {
     markersArray[i].setMap(null);
   }

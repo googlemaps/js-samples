@@ -15,13 +15,13 @@
  */
 
 // [START script-body]
-var panorama;
+export var panorama;
 
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
-var outsideGoogle;
+export var outsideGoogle;
 
 // StreetViewPanoramaData for a custom panorama: the Google Sydney reception.
-function getReceptionPanoramaData() {
+export function getReceptionPanoramaData() {
   return {
     location: {
       pano: "reception", // The ID for this custom panorama.
@@ -56,7 +56,7 @@ function getReceptionPanoramaData() {
   };
 }
 
-function initPanorama() {
+export function initPanorama() {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view"),
     { pano: outsideGoogle.location.pano }
@@ -81,7 +81,7 @@ function initPanorama() {
   });
 }
 
-function initialize() {
+export function initialize() {
   // Use the Street View service to find a pano ID on Pirrama Rd, outside the
   // Google office.
   var streetviewService = new google.maps.StreetViewService();
