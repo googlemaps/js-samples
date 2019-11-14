@@ -17,7 +17,7 @@
 // [START script-body]
 // This example adds three custom symbols to a polyline.
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 6,
     center: { lat: 20.291, lng: 153.027 },

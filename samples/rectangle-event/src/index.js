@@ -19,11 +19,11 @@
 // When the user changes the bounds of the rectangle,
 // an info window pops up displaying the new bounds.
 
-var rectangle;
-var map;
-var infoWindow;
+export var rectangle;
+export var map;
+export var infoWindow;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 44.5452, lng: -78.5389 },
     zoom: 9
@@ -54,7 +54,7 @@ function initMap() {
 // Show the new coordinates for the rectangle in an info window.
 
 /** @this {google.maps.Rectangle} */
-function showNewRect(event) {
+export function showNewRect(event) {
   var ne = rectangle.getBounds().getNorthEast();
   var sw = rectangle.getBounds().getSouthWest();
 

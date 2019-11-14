@@ -19,9 +19,9 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-var map;
+export var map;
 
-function initMap() {
+export function initMap() {
   // Create the map.
   var pyrmont = { lat: -33.866, lng: 151.196 };
   map = new google.maps.Map(document.getElementById("map"), {
@@ -55,7 +55,7 @@ function initMap() {
   );
 }
 
-function createMarkers(places) {
+export function createMarkers(places) {
   var bounds = new google.maps.LatLngBounds();
   var placesList = document.getElementById("places");
 

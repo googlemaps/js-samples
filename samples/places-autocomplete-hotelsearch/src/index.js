@@ -24,15 +24,15 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-var map, places, infoWindow;
-var markers = [];
-var autocomplete;
-var countryRestrict = { country: "us" };
-var MARKER_PATH =
+export var map, places, infoWindow;
+export var markers = [];
+export var autocomplete;
+export var countryRestrict = { country: "us" };
+export var MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
-var hostnameRegexp = new RegExp("^https?://.+?/");
+export var hostnameRegexp = new RegExp("^https?://.+?/");
 
-var countries = {
+export var countries = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
     zoom: 4
@@ -87,7 +87,7 @@ var countries = {
   }
 };
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
@@ -122,7 +122,7 @@ function initMap() {
 
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
-function onPlaceChanged() {
+export function onPlaceChanged() {
   var place = autocomplete.getPlace();
   if (place.geometry) {
     map.panTo(place.geometry.location);
@@ -134,7 +134,7 @@ function onPlaceChanged() {
 }
 
 // Search for hotels in the selected city, within the viewport of the map.
-function search() {
+export function search() {
   var search = {
     bounds: map.getBounds(),
     types: ["lodging"]
@@ -166,7 +166,7 @@ function search() {
   });
 }
 
-function clearMarkers() {
+export function clearMarkers() {
   for (var i = 0; i < markers.length; i++) {
     if (markers[i]) {
       markers[i].setMap(null);
@@ -178,7 +178,7 @@ function clearMarkers() {
 // [START region_setcountry]
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
-function setAutocompleteCountry() {
+export function setAutocompleteCountry() {
   var country = document.getElementById("country").value;
   if (country == "all") {
     autocomplete.setComponentRestrictions({ country: [] });
@@ -194,13 +194,13 @@ function setAutocompleteCountry() {
 }
 // [END region_setcountry]
 
-function dropMarker(i) {
+export function dropMarker(i) {
   return function() {
     markers[i].setMap(map);
   };
 }
 
-function addResult(result, i) {
+export function addResult(result, i) {
   var results = document.getElementById("results");
   var markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   var markerIcon = MARKER_PATH + markerLetter + ".png";
@@ -225,7 +225,7 @@ function addResult(result, i) {
   results.appendChild(tr);
 }
 
-function clearResults() {
+export function clearResults() {
   var results = document.getElementById("results");
   while (results.childNodes[0]) {
     results.removeChild(results.childNodes[0]);
@@ -234,7 +234,7 @@ function clearResults() {
 
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker for the hotel that the user selected.
-function showInfoWindow() {
+export function showInfoWindow() {
   var marker = this;
   places.getDetails({ placeId: marker.placeResult.place_id }, function(
     place,
@@ -249,7 +249,7 @@ function showInfoWindow() {
 }
 
 // Load the place information into the HTML elements used by the info window.
-function buildIWContent(place) {
+export function buildIWContent(place) {
   document.getElementById("iw-icon").innerHTML =
     '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
   document.getElementById("iw-url").innerHTML =

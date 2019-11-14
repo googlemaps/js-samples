@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
     center: { lat: -34.397, lng: 150.644 }
@@ -27,7 +27,7 @@ function initMap() {
   });
 }
 
-function geocodeAddress(geocoder, resultsMap) {
+export function geocodeAddress(geocoder, resultsMap) {
   var address = document.getElementById("address").value;
   geocoder.geocode({ address: address }, function(results, status) {
     if (status === "OK") {

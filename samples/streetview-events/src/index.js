@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initPano() {
+export function initPano() {
   var panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
     {

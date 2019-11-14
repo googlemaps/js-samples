@@ -19,9 +19,9 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
 
-var map, heatmap;
+export var map, heatmap;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: { lat: 37.775, lng: -122.434 },
@@ -34,11 +34,11 @@ function initMap() {
   });
 }
 
-function toggleHeatmap() {
+export function toggleHeatmap() {
   heatmap.setMap(heatmap.getMap() ? null : map);
 }
 
-function changeGradient() {
+export function changeGradient() {
   var gradient = [
     "rgba(0, 255, 255, 0)",
     "rgba(0, 255, 255, 1)",
@@ -58,16 +58,16 @@ function changeGradient() {
   heatmap.set("gradient", heatmap.get("gradient") ? null : gradient);
 }
 
-function changeRadius() {
+export function changeRadius() {
   heatmap.set("radius", heatmap.get("radius") ? null : 20);
 }
 
-function changeOpacity() {
+export function changeOpacity() {
   heatmap.set("opacity", heatmap.get("opacity") ? null : 0.2);
 }
 
 // Heatmap data: 500 Points
-function getPoints() {
+export function getPoints() {
   return [
     new google.maps.LatLng(37.782551, -122.445368),
     new google.maps.LatLng(37.782745, -122.444586),

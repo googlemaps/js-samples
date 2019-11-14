@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initialize() {
+export function initialize() {
   var mapOptions = {
     zoom: 3,
     center: new google.maps.LatLng(0, -180),
@@ -54,7 +54,7 @@ function initialize() {
  * A menu that lets a user delete a selected vertex of a path.
  * @constructor
  */
-function DeleteMenu() {
+export function DeleteMenu() {
   this.div_ = document.createElement("div");
   this.div_.className = "delete-menu";
   this.div_.innerHTML = "Delete";

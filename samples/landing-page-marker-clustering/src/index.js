@@ -21,9 +21,9 @@
  * @param {!Object} options
  * @constructor
  */
-function MarkerClusterer(map, markers, options) {}
+export function MarkerClusterer(map, markers, options) {}
 // [START script-body]
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
     center: { lat: -28.024, lng: 140.887 },
@@ -53,7 +53,7 @@ function initMap() {
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
   });
 }
-var locations = [
+export var locations = [
   { lat: -31.56391, lng: 147.154312 },
   { lat: -33.718234, lng: 150.363181 },
   { lat: -33.727111, lng: 150.371124 },

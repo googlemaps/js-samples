@@ -18,7 +18,7 @@
 /**
  * @constructor @struct @final
  */
-function PuzzleDemo() {
+export function PuzzleDemo() {
   /** @private {!Array<google.maps.Polygon>} */
   this.polys_ = [];
   /** @private {string} */
@@ -411,7 +411,7 @@ PuzzleDemo.prototype.removeCountries_ = function() {
   this.polys_ = [];
 };
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     disableDefaultUI: true,
     center: { lat: 10, lng: 60 },

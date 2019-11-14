@@ -15,8 +15,8 @@
  */
 
 // [START script-body]
-var map;
-function initMap() {
+export var map;
+export function initMap() {
   map = new google.maps.Map(document.querySelector("#map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
@@ -28,7 +28,7 @@ function initMap() {
   initFullscreenControl(map);
 }
 
-function initZoomControl(map) {
+export function initZoomControl(map) {
   document.querySelector(".zoom-control-in").onclick = function() {
     map.setZoom(map.getZoom() + 1);
   };
@@ -40,7 +40,7 @@ function initZoomControl(map) {
   );
 }
 
-function initMapTypeControl(map) {
+export function initMapTypeControl(map) {
   var mapTypeControlDiv = document.querySelector(".maptype-control");
   document.querySelector(".maptype-control-map").onclick = function() {
     mapTypeControlDiv.classList.add("maptype-control-is-map");
@@ -56,7 +56,7 @@ function initMapTypeControl(map) {
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(mapTypeControlDiv);
 }
 
-function initFullscreenControl(map) {
+export function initFullscreenControl(map) {
   var elementToSendFullscreen = map.getDiv().firstChild;
   var fullscreenControl = document.querySelector(".fullscreen-control");
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
@@ -78,7 +78,7 @@ function initFullscreenControl(map) {
   };
 }
 
-function isFullscreen(element) {
+export function isFullscreen(element) {
   return (
     (document.fullscreenElement ||
       document.webkitFullscreenElement ||
@@ -86,7 +86,7 @@ function isFullscreen(element) {
       document.msFullscreenElement) == element
   );
 }
-function requestFullscreen(element) {
+export function requestFullscreen(element) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
   } else if (element.webkitRequestFullScreen) {
@@ -97,7 +97,7 @@ function requestFullscreen(element) {
     element.msRequestFullScreen();
   }
 }
-function exitFullscreen() {
+export function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
   } else if (document.webkitExitFullscreen) {

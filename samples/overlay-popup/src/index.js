@@ -15,10 +15,10 @@
  */
 
 // [START script-body]
-var map, popup, Popup;
+export var map, popup, Popup;
 
 /** Initializes the map and the custom popup. */
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.9, lng: 151.1 },
     zoom: 10
@@ -39,7 +39,7 @@ function initMap() {
  * google.maps.OverlayView is defined, when the Maps API is loaded.
  * This function should be called by initMap.
  */
-function createPopupClass() {
+export function createPopupClass() {
   /**
    * A customized popup on the map.
    * @param {!google.maps.LatLng} position

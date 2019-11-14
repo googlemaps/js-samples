@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var markerArray = [];
 
   // Instantiate a directions service.
@@ -55,7 +55,7 @@ function initMap() {
   document.getElementById("end").addEventListener("change", onChangeHandler);
 }
 
-function calculateAndDisplayRoute(
+export function calculateAndDisplayRoute(
   directionsRenderer,
   directionsService,
   markerArray,
@@ -90,7 +90,7 @@ function calculateAndDisplayRoute(
   );
 }
 
-function showSteps(directionResult, markerArray, stepDisplay, map) {
+export function showSteps(directionResult, markerArray, stepDisplay, map) {
   // For each step, place a marker, and add the text to the marker's infowindow.
   // Also attach the marker to an array so we can keep track of it and remove it
   // when calculating new routes.
@@ -108,7 +108,7 @@ function showSteps(directionResult, markerArray, stepDisplay, map) {
   }
 }
 
-function attachInstructionText(stepDisplay, marker, text, map) {
+export function attachInstructionText(stepDisplay, marker, text, map) {
   google.maps.event.addListener(marker, "click", function() {
     // Open an info window when the marker is clicked on, containing the text
     // of the step.

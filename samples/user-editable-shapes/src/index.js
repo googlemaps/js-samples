@@ -16,7 +16,7 @@
 
 // [START script-body]
 // This example adds a user-editable rectangle to the map.
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 44.5452, lng: -78.5389 },
     zoom: 9

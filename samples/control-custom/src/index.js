@@ -15,8 +15,8 @@
  */
 
 // [START script-body]
-var map;
-var chicago = { lat: 41.85, lng: -87.65 };
+export var map;
+export var chicago = { lat: 41.85, lng: -87.65 };
 
 /**
  * The CenterControl adds a control to the map that recenters the map on
@@ -24,7 +24,7 @@ var chicago = { lat: 41.85, lng: -87.65 };
  * This constructor takes the control DIV as an argument.
  * @constructor
  */
-function CenterControl(controlDiv, map) {
+export function CenterControl(controlDiv, map) {
   // Set CSS for the control border.
   var controlUI = document.createElement("div");
   controlUI.style.backgroundColor = "#fff";
@@ -54,7 +54,7 @@ function CenterControl(controlDiv, map) {
   });
 }
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
     center: chicago

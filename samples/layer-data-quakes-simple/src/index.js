@@ -15,9 +15,9 @@
  */
 
 // [START script-body]
-var map;
+export var map;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 20, lng: -160 },
     zoom: 2
@@ -35,7 +35,7 @@ function initMap() {
 }
 
 // Defines the callback function referenced in the jsonp file.
-function eqfeed_callback(data) {
+export function eqfeed_callback(data) {
   map.data.addGeoJson(data);
 }
 // [END script-body]

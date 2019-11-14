@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
     center: { lat: 63.333, lng: -150.5 }, // Denali.
@@ -31,7 +31,7 @@ function initMap() {
   });
 }
 
-function displayLocationElevation(location, elevator, infowindow) {
+export function displayLocationElevation(location, elevator, infowindow) {
   // Initiate the location request
   elevator.getElevationForLocations(
     {

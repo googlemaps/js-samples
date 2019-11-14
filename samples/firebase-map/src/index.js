@@ -18,7 +18,7 @@
 /**
  * Firebase config block.
  */
-var config = {
+export var config = {
   apiKey: "AIzaSyDX-tgWqPmTme8lqlFn2hIsqwxGL6FYPBY",
   authDomain: "maps-docs-team.firebaseapp.com",
   databaseURL: "https://maps-docs-team.firebaseio.com",
@@ -32,9 +32,9 @@ firebase.initializeApp(config);
 /**
  * Data object to be written to Firebase.
  */
-var data = { sender: null, timestamp: null, lat: null, lng: null };
+export var data = { sender: null, timestamp: null, lat: null, lng: null };
 
-function makeInfoBox(controlDiv, map) {
+export function makeInfoBox(controlDiv, map) {
   // Set CSS for the control border.
   var controlUI = document.createElement("div");
   controlUI.style.boxShadow = "rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px";
@@ -61,7 +61,7 @@ function makeInfoBox(controlDiv, map) {
  * Starting point for running the program. Authenticates the user.
  * @param {function()} onAuthSuccess - Called when authentication succeeds.
  */
-function initAuthentication(onAuthSuccess) {
+export function initAuthentication(onAuthSuccess) {
   firebase
     .auth()
     .signInAnonymously()
@@ -85,7 +85,7 @@ function initAuthentication(onAuthSuccess) {
 /**
  * Creates a map object with a click listener and a heatmap.
  */
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 0, lng: 0 },
     zoom: 3,
@@ -130,7 +130,7 @@ function initMap() {
  * Set up a Firebase with deletion on clicks older than expiryMs
  * @param {!google.maps.visualization.HeatmapLayer} heatmap The heatmap to
  */
-function initFirebase(heatmap) {
+export function initFirebase(heatmap) {
   // 10 minutes before current time.
   var startTime = new Date().getTime() - 60 * 10 * 1000;
 
@@ -180,7 +180,7 @@ function initFirebase(heatmap) {
  *     this function is called with the current timestamp to add the
  *     click to the firebase.
  */
-function getTimestamp(addClick) {
+export function getTimestamp(addClick) {
   // Reference to location for saving the last click time.
   var ref = firebase.database().ref("last_message/" + data.sender);
 
@@ -211,7 +211,7 @@ function getTimestamp(addClick) {
  * @param {Object} data The data to be added to firebase.
  *     It contains the lat, lng, sender and timestamp.
  */
-function addToFirebase(data) {
+export function addToFirebase(data) {
   getTimestamp(function(timestamp) {
     // Add the new timestamp to the record data.
     data.timestamp = timestamp;

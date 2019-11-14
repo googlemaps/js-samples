@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var directionsService = new google.maps.DirectionsService();
   var directionsRenderer = new google.maps.DirectionsRenderer();
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -31,7 +31,10 @@ function initMap() {
   document.getElementById("end").addEventListener("change", onChangeHandler);
 }
 
-function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+export function calculateAndDisplayRoute(
+  directionsService,
+  directionsRenderer
+) {
   directionsService.route(
     {
       origin: { query: document.getElementById("start").value },
