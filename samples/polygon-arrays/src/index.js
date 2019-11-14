@@ -19,10 +19,10 @@
 // When the user clicks on the polygon an info window opens, showing
 // information about the polygon's coordinates.
 
-var map;
-var infoWindow;
+export var map;
+export var infoWindow;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 5,
     center: { lat: 24.886, lng: -70.268 },
@@ -54,7 +54,7 @@ function initMap() {
 }
 
 /** @this {google.maps.Polygon} */
-function showArrays(event) {
+export function showArrays(event) {
   // Since this polygon has only one path, we can call getPath() to return the
   // MVCArray of LatLngs.
   var vertices = this.getPath();

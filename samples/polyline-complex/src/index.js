@@ -19,10 +19,10 @@
 // user clicks. Note that the polyline only appears once its path property
 // contains two LatLng coordinates.
 
-var poly;
-var map;
+export var poly;
+export var map;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 7,
     center: { lat: 41.879, lng: -87.624 } // Center the map on Chicago, USA.
@@ -40,7 +40,7 @@ function initMap() {
 }
 
 // Handles click events on a map, and adds a new point to the Polyline.
-function addLatLng(event) {
+export function addLatLng(event) {
   var path = poly.getPath();
 
   // Because path is an MVCArray, we can simply append a new coordinate

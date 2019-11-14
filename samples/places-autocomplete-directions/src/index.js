@@ -20,7 +20,7 @@
 // <script
 // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
     center: { lat: -33.8688, lng: 151.2195 },
@@ -33,7 +33,7 @@ function initMap() {
 /**
  * @constructor
  */
-function AutocompleteDirectionsHandler(map) {
+export function AutocompleteDirectionsHandler(map) {
   this.map = map;
   this.originPlaceId = null;
   this.destinationPlaceId = null;

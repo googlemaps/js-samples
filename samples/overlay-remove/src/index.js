@@ -18,10 +18,10 @@
 // This example adds a UI control allowing users to remove the
 // ground overlay from the map.
 
-var historicalOverlay;
-var map;
+export var historicalOverlay;
+export var map;
 
-function initMap() {
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: { lat: 40.74, lng: -74.18 }
@@ -42,12 +42,12 @@ function initMap() {
   addOverlay();
 }
 
-function addOverlay() {
+export function addOverlay() {
   historicalOverlay.setMap(map);
 }
 
 // [START region_removal]
-function removeOverlay() {
+export function removeOverlay() {
   historicalOverlay.setMap(null);
 }
 // [END region_removal]

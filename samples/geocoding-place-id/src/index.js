@@ -16,7 +16,7 @@
 
 // [START script-body]
 // Initialize the map.
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
     center: { lat: 40.72, lng: -73.96 }
@@ -31,7 +31,7 @@ function initMap() {
 
 // This function is called when the user clicks the UI button requesting
 // a geocode of a place ID.
-function geocodePlaceId(geocoder, map, infowindow) {
+export function geocodePlaceId(geocoder, map, infowindow) {
   var placeId = document.getElementById("place-id").value;
   geocoder.geocode({ placeId: placeId }, function(results, status) {
     if (status === "OK") {

@@ -15,8 +15,8 @@
  */
 
 // [START script-body]
-var map;
-function initMap() {
+export var map;
+export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 2,
     center: { lat: -33.865427, lng: 151.196123 },
@@ -33,7 +33,7 @@ function initMap() {
   document.getElementsByTagName("head")[0].appendChild(script);
 }
 
-function eqfeed_callback(results) {
+export function eqfeed_callback(results) {
   var heatmapData = [];
   for (var i = 0; i < results.features.length; i++) {
     var coords = results.features[i].geometry.coordinates;

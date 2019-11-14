@@ -17,10 +17,10 @@
 // [START script-body]
 // In the following example, markers appear when the user clicks on the map.
 // Each marker is labeled with a single alphabetical character.
-var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var labelIndex = 0;
+export var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+export var labelIndex = 0;
 
-function initialize() {
+export function initialize() {
   var bangalore = { lat: 12.97, lng: 77.59 };
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
@@ -37,7 +37,7 @@ function initialize() {
 }
 
 // Adds a marker to the map.
-function addMarker(location, map) {
+export function addMarker(location, map) {
   // Add the marker at the clicked location, and add the next-available label
   // from the array of alphabetical characters.
   var marker = new google.maps.Marker({

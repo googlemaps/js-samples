@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat: -24.345, lng: 134.46 } // Australia.
@@ -40,7 +40,7 @@ function initMap() {
   );
 }
 
-function displayRoute(origin, destination, service, display) {
+export function displayRoute(origin, destination, service, display) {
   service.route(
     {
       origin: origin,
@@ -62,7 +62,7 @@ function displayRoute(origin, destination, service, display) {
   );
 }
 
-function computeTotalDistance(result) {
+export function computeTotalDistance(result) {
   var total = 0;
   var myroute = result.routes[0];
   for (var i = 0; i < myroute.legs.length; i++) {

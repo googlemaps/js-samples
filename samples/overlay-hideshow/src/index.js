@@ -20,11 +20,11 @@
 // Additionally, we add a toggleDOM() method, which attaches or detaches the
 // overlay to or from the map.
 
-var overlay;
+export var overlay;
 
 USGSOverlay.prototype = new google.maps.OverlayView();
 
-function initMap() {
+export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 62.323907, lng: -150.109291 },
@@ -44,7 +44,7 @@ function initMap() {
 }
 
 /** @constructor */
-function USGSOverlay(bounds, image, map) {
+export function USGSOverlay(bounds, image, map) {
   // Now initialize all properties.
   this.bounds_ = bounds;
   this.image_ = image;

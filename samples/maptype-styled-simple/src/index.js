@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   // Create a new StyledMapType object, passing it an array of styles,
   // and the name to be displayed on the map type control.
   var styledMapType = new google.maps.StyledMapType(

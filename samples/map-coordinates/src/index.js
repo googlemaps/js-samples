@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var chicago = new google.maps.LatLng(41.85, -87.65);
 
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -34,9 +34,9 @@ function initMap() {
   });
 }
 
-var TILE_SIZE = 256;
+export var TILE_SIZE = 256;
 
-function createInfoWindowContent(latLng, zoom) {
+export function createInfoWindowContent(latLng, zoom) {
   var scale = 1 << zoom;
 
   var worldCoordinate = project(latLng);
@@ -63,7 +63,7 @@ function createInfoWindowContent(latLng, zoom) {
 
 // The mapping between latitude, longitude and pixels is defined by the web
 // mercator projection.
-function project(latLng) {
+export function project(latLng) {
   var siny = Math.sin((latLng.lat() * Math.PI) / 180);
 
   // Truncating to 0.9999 effectively limits latitude to 89.189. This is

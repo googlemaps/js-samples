@@ -15,7 +15,7 @@
  */
 
 // [START script-body]
-function initMap() {
+export function initMap() {
   var directionsService = new google.maps.DirectionsService();
   var directionsRenderer = new google.maps.DirectionsRenderer();
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -29,7 +29,10 @@ function initMap() {
   });
 }
 
-function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+export function calculateAndDisplayRoute(
+  directionsService,
+  directionsRenderer
+) {
   var waypts = [];
   var checkboxArray = document.getElementById("waypoints");
   for (var i = 0; i < checkboxArray.length; i++) {
