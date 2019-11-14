@@ -36,6 +36,5 @@
     "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
     "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
     "lint": "eslint src/*.js && npm run license:check"
-  },
-  "title": "Data Layer: Drag and Drop GeoJSON"
+  }
 }
