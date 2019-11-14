@@ -3,7 +3,7 @@
 **/dist/
 **/.npmrc
 **/docs
-**/*.full.html
+**/src/*.html
 # Logs
 logs
 *.log
