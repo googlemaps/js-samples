@@ -24,7 +24,7 @@
       <!-- jsFiddle will insert css and js -->
     {% else %}
       {% block css %}
-        <script src="./style.css"/>
+        <link rel="stylesheet" type="text/css" href="./style.css">
       {% endblock %}
       {% block js %}
         <script src="./app.compat.js"/>
