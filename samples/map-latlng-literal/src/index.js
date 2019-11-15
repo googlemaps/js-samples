@@ -21,7 +21,7 @@
 // in place of a google.maps.LatLng object.
 
 export var map;
-export function initialize() {
+export function initMap() {
   var mapOptions = {
     zoom: 8,
     center: { lat: -34.397, lng: 150.644 }
