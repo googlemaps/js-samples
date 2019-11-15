@@ -20,16 +20,106 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <meta charset="utf-8"/>
     <title>Google Maps JavaScript Samples</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <style>
+      .is-sidebar-menu {
+        overflow-y: scroll;
+      }
+
+      .is-main-content,
+      body,
+      html,
+      iframe {
+        height: 100%;
+        width: 100%;
+      }
+
+      .is-full-height {
+        height: 100%;
+      }
+
+      .menu-list li ul {
+        transition: opacity 1s ease-out;
+        opacity: 0;
+        height: 0;
+        overflow: hidden;
+        margin: 0;
+      }
+
+      a.is-active + ul {
+        opacity: 1;
+        height: auto;
+      }
+
+      .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
   <body>
-  <h1>Google Maps JavaScript Samples</h1>
-    <ul>
-      {% for item in packages | dictsort %}
-        <li>
-          <a src="samples/{{ item[1] }}/dist/index.html">{{ item[0] }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </body>
+    <div class="columns has-text-centered is-paddingless is-marginless is-full-height is-mobile">
+      <div class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop is-sidebar-menu">
+        <h1 class="title">Google Maps JavaScript Samples</h1>
+        <p class="subtitle">Read the <a href="https://developers.google.com/maps/documentation/javascript/tutorial">documentation</a>.</p>
+        <aside class="menu has-text-left">
+          <ul class="menu-list">
+            {% for item in packages | dictsort %}
+              <li>
+                <a id="{{ item[1] }}" onClick="setIframe('{{ item[1] }}')">{{ item[0] }}</a>
+                <ul>
+                  <li>
+                    <a href="https://github.com/googlemaps/js-samples/tree/master/samples/{{ item[1] }}/src" target="_blank">
+                      <i class="fab fa-github"></i>&nbsp;
+                      Source</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/googlemaps/js-samples/issues/new?assignees=&labels=type%3A+bug%2C+triage+me&template=bug_report.md&title={{ '[sample] '|urlencode }}{{ item[0]|urlencode}}" target="_blank">
+                      <i class="fas fa-bug"></i>&nbsp;
+                      Report Bug</a>
+                  </li>
+                </ul>
+              </li>
+            {% endfor %}
+          </ul>
+        </aside>
+      </div>
+      <div class="column is-main-content is-paddingless">
+        <iframe id="iframe"></iframe>
+      </div>
+    </div>
+  </div>
+  <script>
+    let active = "aerial-simple";
+
+    function setIframe(package) {
+      if (active === package) {
+        return
+      }
+
+      document
+        .getElementById('iframe')
+        .src = "samples/" + package + "/dist/index.html";
+
+      const previous = document.getElementById(active)
+
+      previous
+        .classList
+        .remove("is-active");
+
+      const current = document.getElementById(package)
+
+      current
+        .classList
+        .add("is-active");
+
+      active = package;
+    }
+
+    // initialize
+    setIframe(active);
+  </script>
+</body>
 </html>
