@@ -14,15 +14,27 @@
     "src/*"
   ],
   "scripts": {
-    "build": "run-s build:clean build:html build:css build:js format:dist",
+    "build": "run-s build:clean build:html build:css build:js",
     "build:clean": "rm -rf dist",
     "build:css": "sass --no-source-map src/style.scss dist/style.css",
     "build:html": "../../build/render_template.sh && JSFIDDLE=1 ../../build/render_template.sh",
     "build:js": "rollup -c",
-    "format": "sort-package-json && prettier *.json *.js src/* examples/* --write",
-    "format:dist": "prettier dist/* --write",
+    "build:format": "run-s build format:dist",
+    "build:watch": "npm-watch build",
+    "format": "sort-package-json && prettier *.json *.js src/* examples/* --write --loglevel error",
+    "format:dist": "prettier dist/* --write --loglevel error",
     "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
     "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
     "lint": "eslint src/*.js && npm run license:check"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "src/**",
+        "data",
+        "../../shared/**"
+      ],
+      "extensions": "ts,scss,tpl,json"
+    }
   }
 }

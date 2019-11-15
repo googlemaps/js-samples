@@ -8,9 +8,7 @@ script:
 - npm run ci
 - npm run build
 before_deploy:
-- touch .nojekyll
-- sed -i 's/\*\*\/dist\//# **\/dist/g' .gitignore
-- tree -H '.' -L 4 --prune  --noreport --charset utf-8 -T Samples -P '*html' -o index.html
+- ./build/before_deploy_pages.sh
 deploy:
   provider: pages
   skip_cleanup: true
