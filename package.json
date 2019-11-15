@@ -25,6 +25,7 @@
     "build:html": "lerna run build:html",
     "build:js": "lerna run build:js",
     "build:watch": "npm-watch build",
+    "build:index": "./build/index.sh",
     "ci": "npm run lint && npm run test && npm build",
     "format": "npm run format:root && lerna run format",
     "format:dist": "lerna run format:dist",
