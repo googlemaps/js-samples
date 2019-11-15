@@ -1,6 +1,6 @@
 {
   "title": "Street View Controls",
-  "callback": "initMap",
+  "callback": "initPano",
   "libraries": [],
   "version": "weekly"
 }

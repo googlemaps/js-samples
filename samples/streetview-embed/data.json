@@ -1,6 +1,6 @@
 {
   "title": "Street View Containers",
-  "callback": "initMap",
+  "callback": "initialize",
   "libraries": [],
   "version": "weekly"
 }
