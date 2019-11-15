@@ -15,6 +15,9 @@
  */
 
 /* [START css] */
+@import "../../../shared/scss/default.scss";
+@import "../../../shared/scss/floating-panel.scss";
+
 #floating-panel {
   margin-left: -100px;
 }

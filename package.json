@@ -28,7 +28,7 @@
     "ci": "npm run lint && npm run test && npm build",
     "format": "npm run format:root && lerna run format",
     "format:dist": "lerna run format:dist",
-    "format:root": "sort-package-json && prettier *.json *.js shared/*.scss --write --loglevel error",
+    "format:root": "sort-package-json && prettier *.json *.js shared/**/*.scss --write --loglevel error",
     "lint": "lerna run lint",
     "package:defaults:merge": "lerna exec '../../build/merge_default_package.sh'",
     "serve": "node serve.js",

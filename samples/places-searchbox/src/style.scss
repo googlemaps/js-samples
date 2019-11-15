@@ -15,6 +15,9 @@
  */
 
 /* [START css] */
+@import "../../../shared/scss/default.scss";
+@import "../../../shared/scss/autocomplete.scss";
+
 #target {
   width: 345px;
 }

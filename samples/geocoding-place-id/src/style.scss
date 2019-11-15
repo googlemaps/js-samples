@@ -15,6 +15,9 @@
  */
 
 /* [START css] */
+@import "../../../shared/scss/default.scss";
+@import "../../../shared/scss/floating-panel.scss";
+
 #floating-panel {
   width: 440px;
 }

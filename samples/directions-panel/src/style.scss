@@ -15,6 +15,10 @@
  */
 
 /* [START css] */
+@import "../../../shared/scss/default.scss";
+@import "../../../shared/scss/floating-panel.scss";
+@import "../../../shared/scss/right-panel.scss";
+
 #right-panel {
   height: 100%;
   float: right;
