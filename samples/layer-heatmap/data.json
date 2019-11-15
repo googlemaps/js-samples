@@ -1,8 +1,6 @@
 {
   "title": "Heatmaps",
-  "libraries": [
-    "visualization"
-  ],
+  "libraries": ["visualization"],
   "callback": "initMap",
   "version": "weekly"
 }
