@@ -25,7 +25,9 @@
     "format:dist": "prettier dist/* --write --loglevel error",
     "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
     "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
-    "lint": "eslint src/*.js && npm run license:check"
+    "lint": "eslint src/*.js && npm run license:check",
+    "test": "run-p test:callback",
+    "test:callback": "../../build/test_callback.sh"
   },
   "watch": {
     "build": {
