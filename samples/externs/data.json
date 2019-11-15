@@ -1,1 +1,6 @@
-{ "title": "Externs" }
+{
+  "title": "Externs",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

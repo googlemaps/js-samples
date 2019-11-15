@@ -1,1 +1,6 @@
-{ "title": "Marker Clustering" }
+{
+  "title": "Marker Clustering",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

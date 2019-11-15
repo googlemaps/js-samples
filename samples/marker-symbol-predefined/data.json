@@ -1,1 +1,6 @@
-{ "title": "Predefined Symbols (Marker)" }
+{
+  "title": "Predefined Symbols (Marker)",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Custom Overlays" }
+{
+  "title": "Custom Overlays",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

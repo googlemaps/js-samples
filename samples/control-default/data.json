@@ -1,1 +1,6 @@
-{ "title": "Default Controls" }
+{
+  "title": "Default Controls",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

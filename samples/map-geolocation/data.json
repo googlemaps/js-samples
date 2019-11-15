@@ -1,1 +1,6 @@
-{ "title": "Geolocation" }
+{
+  "title": "Geolocation",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

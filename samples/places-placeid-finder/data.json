@@ -1,1 +1,8 @@
-{ "title": "Place ID Finder" }
+{
+  "title": "Place ID Finder",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Data Layer: Event Handling" }
+{
+  "title": "Data Layer: Event Handling",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

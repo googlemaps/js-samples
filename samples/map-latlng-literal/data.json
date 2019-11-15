@@ -1,1 +1,6 @@
-{ "title": "Lat/Lng Object Literal" }
+{
+  "title": "Lat/Lng Object Literal",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

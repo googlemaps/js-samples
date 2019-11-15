@@ -1,1 +1,6 @@
-{ "title": "Directly Accessing Street View Data" }
+{
+  "title": "Directly Accessing Street View Data",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Overlay Map Types" }
+{
+  "title": "Overlay Map Types",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

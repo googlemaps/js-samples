@@ -1,1 +1,6 @@
-{ "title": "Bicycle Layer" }
+{
+  "title": "Bicycle Layer",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Hiding Map Features With Styling" }
+{
+  "title": "Hiding Map Features With Styling",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

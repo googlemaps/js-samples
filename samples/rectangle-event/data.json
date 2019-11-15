@@ -1,1 +1,6 @@
-{ "title": "Listening to Events" }
+{
+  "title": "Listening to Events",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Disabling the Default UI" }
+{
+  "title": "Disabling the Default UI",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

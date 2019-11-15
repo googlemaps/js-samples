@@ -1,1 +1,6 @@
-{ "title": "Animating Symbols" }
+{
+  "title": "Animating Symbols",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

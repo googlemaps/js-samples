@@ -1,1 +1,6 @@
-{ "title": "Simple Polylines" }
+{
+  "title": "Simple Polylines",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

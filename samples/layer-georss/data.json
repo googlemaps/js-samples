@@ -1,1 +1,6 @@
-{ "title": "GeoRSS Layers" }
+{
+  "title": "GeoRSS Layers",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

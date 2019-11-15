@@ -1,1 +1,6 @@
-{ "title": "Data Layer: Drag and Drop GeoJSON" }
+{
+  "title": "Data Layer: Drag and Drop GeoJSON",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

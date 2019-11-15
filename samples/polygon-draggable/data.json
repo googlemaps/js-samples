@@ -1,1 +1,6 @@
-{ "title": "Draggable Polygons" }
+{
+  "title": "Draggable Polygons",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

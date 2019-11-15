@@ -1,1 +1,6 @@
-{ "title": "Traffic Layer" }
+{
+  "title": "Traffic Layer",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

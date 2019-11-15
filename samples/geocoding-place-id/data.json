@@ -1,1 +1,6 @@
-{ "title": "Retrieving an Address for a Place ID" }
+{
+  "title": "Retrieving an Address for a Place ID",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

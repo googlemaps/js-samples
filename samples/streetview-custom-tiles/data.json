@@ -1,1 +1,6 @@
-{ "title": "Custom Street View Panorama Tiles" }
+{
+  "title": "Custom Street View Panorama Tiles",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

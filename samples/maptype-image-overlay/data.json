@@ -1,1 +1,6 @@
-{ "title": "Overlaying an Image Map Type" }
+{
+  "title": "Overlaying an Image Map Type",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,8 @@
-{ "title": "Navigation Functions (Heading)" }
+{
+  "title": "Navigation Functions (Heading)",
+  "libraries": [
+    "geometry"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

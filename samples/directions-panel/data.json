@@ -1,1 +1,6 @@
-{ "title": "Displaying Text Directions With setPanel()" }
+{
+  "title": "Displaying Text Directions With setPanel()",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,8 @@
-{ "title": "Place Search Pagination" }
+{
+  "title": "Place Search Pagination",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

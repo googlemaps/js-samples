@@ -1,1 +1,6 @@
-{ "title": "Control Options" }
+{
+  "title": "Control Options",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

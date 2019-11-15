@@ -1,1 +1,6 @@
-{ "title": "Styled Maps - Night Mode" }
+{
+  "title": "Styled Maps - Night Mode",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

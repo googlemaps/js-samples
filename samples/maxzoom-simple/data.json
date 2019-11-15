@@ -1,1 +1,6 @@
-{ "title": "Maximum Zoom Imagery Service" }
+{
+  "title": "Maximum Zoom Imagery Service",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Removing Markers" }
+{
+  "title": "Removing Markers",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

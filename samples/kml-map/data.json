@@ -1,1 +1,6 @@
-{ "title": "KML Map" }
+{
+  "title": "KML Map",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

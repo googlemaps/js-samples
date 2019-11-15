@@ -1,1 +1,6 @@
-{ "title": "Removing Polylines" }
+{
+  "title": "Removing Polylines",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,8 @@
-{ "title": "Place Autocomplete Restricted to Multiple Countries" }
+{
+  "title": "Place Autocomplete Restricted to Multiple Countries",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Disable Zoom and Pan" }
+{
+  "title": "Disable Zoom and Pan",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

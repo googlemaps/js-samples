@@ -1,1 +1,6 @@
-{ "title": "Custom Controls" }
+{
+  "title": "Custom Controls",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

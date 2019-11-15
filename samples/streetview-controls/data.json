@@ -1,1 +1,6 @@
-{ "title": "Street View Controls" }
+{
+  "title": "Street View Controls",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

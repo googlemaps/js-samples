@@ -1,1 +1,6 @@
-{ "title": "Removing Overlays" }
+{
+  "title": "Removing Overlays",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

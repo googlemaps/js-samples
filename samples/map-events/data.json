@@ -1,1 +1,6 @@
-{ "title": "Map Events Explorer" }
+{
+  "title": "Map Events Explorer",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -31,6 +31,7 @@
     "format:root": "sort-package-json && prettier *.json *.js shared/**/*.scss --write --loglevel error",
     "lint": "lerna run lint",
     "package:defaults:merge": "lerna exec '../../build/merge_default_package.sh'",
+    "data:defaults:merge": "lerna exec '../../build/merge_default_data.sh'",
     "serve": "node serve.js",
     "serve:watch": "run-p build:watch serve",
     "test": "lerna run test"

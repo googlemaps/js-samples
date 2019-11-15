@@ -1,1 +1,6 @@
-{ "title": "Adding Controls to the Map" }
+{
+  "title": "Adding Controls to the Map",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

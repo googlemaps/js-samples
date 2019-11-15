@@ -1,1 +1,6 @@
-{ "title": "Custom Legend" }
+{
+  "title": "Custom Legend",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

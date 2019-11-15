@@ -1,1 +1,6 @@
-{ "title": "Reverse Geocoding" }
+{
+  "title": "Reverse Geocoding",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

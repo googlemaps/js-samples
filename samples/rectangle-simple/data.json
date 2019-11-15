@@ -1,1 +1,6 @@
-{ "title": "Rectangles" }
+{
+  "title": "Rectangles",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}
