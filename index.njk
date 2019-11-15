@@ -38,6 +38,12 @@
         height: 100%;
       }
 
+      @media only screen and (max-width: 600px) {
+        .is-sidebar-menu {
+          max-height: 250px;
+        }
+      }
+
       .menu-list li ul {
         transition: opacity 1s ease-out;
         opacity: 0;
@@ -60,11 +66,11 @@
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
   <body>
-    <div class="columns has-text-centered is-paddingless is-marginless is-full-height is-mobile">
-      <div class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop is-sidebar-menu">
-        <h1 class="title">Google Maps JavaScript Samples</h1>
-        <p class="subtitle">Read the <a href="https://developers.google.com/maps/documentation/javascript/tutorial">documentation</a>.</p>
+    <div class="columns has-text-centered is-paddingless is-marginless is-full-height">
+      <div class="column is-narrow is-sidebar-menu">
+        <h1 class="title">Google Maps<br/>JavaScript Samples</h1>
         <aside class="menu has-text-left">
+          <p class="menu-label">Samples</p>
           <ul class="menu-list">
             {% for item in packages | dictsort %}
               <li>
@@ -84,6 +90,15 @@
               </li>
             {% endfor %}
           </ul>
+          <p class="menu-label">Links </p>
+          <ul class="menu-list">
+            <li>
+              <a href="https://developers.google.com/maps/documentation/javascript/tutorial">Documentation</a>
+            </li>
+            <li>
+              <a href="https://github.com/googlemaps/js-samples">Github</a>
+            </li>
+          </ul>
         </aside>
       </div>
       <div class="column is-main-content is-paddingless">
@@ -92,7 +107,7 @@
     </div>
   </div>
   <script>
-    let active = "aerial-simple";
+    let active = "";
 
     function setIframe(package) {
       if (active === package) {
@@ -105,9 +120,11 @@
 
       const previous = document.getElementById(active)
 
-      previous
-        .classList
-        .remove("is-active");
+      if (previous) {
+        previous
+          .classList
+          .remove("is-active");
+      }
 
       const current = document.getElementById(package)
 
@@ -119,7 +136,7 @@
     }
 
     // initialize
-    setIframe(active);
+    setIframe("aerial-simple");
   </script>
 </body>
 </html>
