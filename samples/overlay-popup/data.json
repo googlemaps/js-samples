@@ -1,1 +1,6 @@
-{ "title": "Custom Popups" }
+{
+  "title": "Custom Popups",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

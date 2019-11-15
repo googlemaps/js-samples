@@ -1,1 +1,6 @@
-{ "title": "Localizing the Map" }
+{
+  "title": "Localizing the Map",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

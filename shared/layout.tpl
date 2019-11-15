@@ -13,6 +13,14 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
+
+{% macro api() %}
+  <script 
+    src="https://maps.googleapis.com/maps/api/js?key={{ env.GOOGLE_MAPS_KEY }}&callback={{ callback }}&libraries={{ libraries }}&version={{ version }}" 
+    async defer>
+  </script>
+{% endmacro %}
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -29,13 +37,13 @@
       {% block js %}
         <script src="./app.compat.js"></script>
       {% endblock %}
+      {{ api() }}
     {% endif %}
-
-    {% block api %}
-      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
-    {% endblock %}
   </head>
   <body>
     {% block html %}{% endblock %}
+    {% if env.JSFIDDLE %}
+      {{ api() }}
+    {% endif %}
   </body>
 </html>

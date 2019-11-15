@@ -1,1 +1,6 @@
-{ "title": "Simple Polygon" }
+{
+  "title": "Simple Polygon",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

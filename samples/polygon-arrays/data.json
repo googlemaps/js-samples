@@ -1,1 +1,6 @@
-{ "title": "Polygon Arrays" }
+{
+  "title": "Polygon Arrays",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

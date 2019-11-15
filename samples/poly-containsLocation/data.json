@@ -1,1 +1,8 @@
-{ "title": "containsLocation()" }
+{
+  "title": "containsLocation()",
+  "libraries": [
+    "geometry"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

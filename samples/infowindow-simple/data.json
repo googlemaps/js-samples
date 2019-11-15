@@ -1,1 +1,6 @@
-{ "title": "Info Windows" }
+{
+  "title": "Info Windows",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

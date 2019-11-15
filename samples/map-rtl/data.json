@@ -1,1 +1,6 @@
-{ "title": "Right-to-Left Languages" }
+{
+  "title": "Right-to-Left Languages",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

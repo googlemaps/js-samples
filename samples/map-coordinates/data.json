@@ -1,1 +1,6 @@
-{ "title": "Showing Pixel and Tile Coordinates" }
+{
+  "title": "Showing Pixel and Tile Coordinates",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,8 @@
-{ "title": "Retrieving Autocomplete Predictions" }
+{
+  "title": "Retrieving Autocomplete Predictions",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initService",
+  "version": "weekly"
+}

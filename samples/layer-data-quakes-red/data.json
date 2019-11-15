@@ -1,1 +1,6 @@
-{ "title": "Simple Data Layer: Earthquakes" }
+{
+  "title": "Simple Data Layer: Earthquakes",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

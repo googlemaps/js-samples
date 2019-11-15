@@ -1,1 +1,6 @@
-{ "title": "User-Editable Shapes" }
+{
+  "title": "User-Editable Shapes",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

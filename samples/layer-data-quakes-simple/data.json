@@ -1,1 +1,6 @@
-{ "title": "Default Data Layer: Earthquakes" }
+{
+  "title": "Default Data Layer: Earthquakes",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

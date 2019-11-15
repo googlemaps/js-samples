@@ -1,1 +1,6 @@
-{ "title": "Complex Marker Icons" }
+{
+  "title": "Complex Marker Icons",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

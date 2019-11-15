@@ -1,1 +1,6 @@
-{ "title": "Overlays Within Street View" }
+{
+  "title": "Overlays Within Street View",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

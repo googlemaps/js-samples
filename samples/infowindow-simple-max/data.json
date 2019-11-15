@@ -1,1 +1,6 @@
-{ "title": "Info Window With maxWidth" }
+{
+  "title": "Info Window With maxWidth",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

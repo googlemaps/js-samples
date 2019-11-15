@@ -1,1 +1,8 @@
-{ "title": "Place Autocomplete Address Form" }
+{
+  "title": "Place Autocomplete Address Form",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initAutocomplete",
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Basic Map Types" }
+{
+  "title": "Basic Map Types",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

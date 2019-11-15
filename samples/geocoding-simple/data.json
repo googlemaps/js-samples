@@ -1,1 +1,6 @@
-{ "title": "Geocoding Service" }
+{
+  "title": "Geocoding Service",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

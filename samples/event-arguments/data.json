@@ -1,1 +1,6 @@
-{ "title": "Accessing Arguments in UI Events" }
+{
+  "title": "Accessing Arguments in UI Events",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

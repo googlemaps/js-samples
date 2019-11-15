@@ -1,1 +1,6 @@
-{ "title": "Add Map" }
+{
+  "title": "Add Map",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

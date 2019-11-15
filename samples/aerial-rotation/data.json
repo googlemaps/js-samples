@@ -1,1 +1,6 @@
-{ "title": "Rotating 45° Imagery" }
+{
+  "title": "Rotating 45° Imagery",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

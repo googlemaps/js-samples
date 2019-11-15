@@ -1,1 +1,8 @@
-{ "title": "Place Searches" }
+{
+  "title": "Place Searches",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

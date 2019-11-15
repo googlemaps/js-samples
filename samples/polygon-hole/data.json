@@ -1,1 +1,6 @@
-{ "title": "Polygon With Hole" }
+{
+  "title": "Polygon With Hole",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

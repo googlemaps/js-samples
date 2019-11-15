@@ -1,1 +1,6 @@
-{ "title": "Data Layer: Simple" }
+{
+  "title": "Data Layer: Simple",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

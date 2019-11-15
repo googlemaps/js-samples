@@ -1,1 +1,8 @@
-{ "title": "Place ID Geocoder" }
+{
+  "title": "Place ID Geocoder",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

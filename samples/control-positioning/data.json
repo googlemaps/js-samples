@@ -1,1 +1,6 @@
-{ "title": "Control Positioning" }
+{
+  "title": "Control Positioning",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Map Bounds Restriction" }
+{
+  "title": "Map Bounds Restriction",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}
