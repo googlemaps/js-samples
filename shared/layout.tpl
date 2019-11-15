@@ -27,11 +27,13 @@
         <link rel="stylesheet" type="text/css" href="./style.css">
       {% endblock %}
       {% block js %}
-        <script src="./app.compat.js"/>
+        <script src="./app.compat.js"></script>
       {% endblock %}
     {% endif %}
 
-    {% block api %}{% endblock %}
+    {% block api %}
+      <script src="https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+    {% endblock %}
   </head>
   <body>
     {% block html %}{% endblock %}

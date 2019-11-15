@@ -12,6 +12,21 @@ Samples for the Google Maps JavaScript API.
 
 **Note::** Many of these samples were written in 2010-2012. Some are still functional and are in the samples folder. Others that do not run have been moved to archive.
 
+## Development
+
+Start a server that will reload as built files change.
+
+```
+npm run serve
+```
+
+Build files as they change using one of these options:
+1. Limited to a single sample: `lerna --scope circle-simple run build:watch`
+2. Building all samples on change: `npm run build:watch`
+3. Limited to matching scope: `lerna --scope control-* --concurrency 16 run build:watch` Requires a concurrency value > # of samples.
+
+Alternatively, `npm run serve:watch` can be called to wrap `npm run serve` and `npm build:watch`.
+
 ## Other Resources
 - [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
 - [Google Maps Reference Documenations](https://developers.google.com/maps/documentation/javascript/reference/)
