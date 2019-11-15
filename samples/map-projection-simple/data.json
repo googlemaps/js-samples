@@ -1,1 +1,6 @@
-{ "title": "Custom Map Projections" }
+{
+  "title": "Custom Map Projections",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

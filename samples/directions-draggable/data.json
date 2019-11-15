@@ -1,1 +1,6 @@
-{ "title": "Draggable Directions" }
+{
+  "title": "Draggable Directions",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

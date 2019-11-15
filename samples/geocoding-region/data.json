@@ -1,1 +1,6 @@
-{ "title": "Geocoding Region" }
+{
+  "title": "Geocoding Region",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Deleting a Vertex" }
+{
+  "title": "Deleting a Vertex",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

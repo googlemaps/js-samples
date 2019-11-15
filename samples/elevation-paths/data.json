@@ -1,1 +1,6 @@
-{ "title": "Showing Elevation Along a Path" }
+{
+  "title": "Showing Elevation Along a Path",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

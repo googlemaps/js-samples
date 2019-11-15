@@ -1,1 +1,8 @@
-{ "title": "Heatmaps" }
+{
+  "title": "Heatmaps",
+  "libraries": [
+    "visualization"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Distance Matrix Service" }
+{
+  "title": "Distance Matrix Service",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

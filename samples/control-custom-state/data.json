@@ -1,1 +1,6 @@
-{ "title": "Adding State to Controls" }
+{
+  "title": "Adding State to Controls",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Street View Events" }
+{
+  "title": "Street View Events",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

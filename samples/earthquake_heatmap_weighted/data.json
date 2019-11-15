@@ -1,1 +1,8 @@
-{ "title": "Earthquake Weighted Heatmap" }
+{
+  "title": "Earthquake Weighted Heatmap",
+  "libraries": [
+    "visualization"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

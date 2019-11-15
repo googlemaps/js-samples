@@ -1,1 +1,6 @@
-{ "title": "Dashed Line Symbols (Polyline)" }
+{
+  "title": "Dashed Line Symbols (Polyline)",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}

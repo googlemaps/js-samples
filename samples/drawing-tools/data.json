@@ -1,1 +1,8 @@
-{ "title": "Drawing Tools" }
+{
+  "title": "Drawing Tools",
+  "libraries": [
+    "drawing"
+  ],
+  "callback": "initMap",
+  "version": "weekly"
+}

@@ -1,1 +1,6 @@
-{ "title": "Polygon Auto-Completion" }
+{
+  "title": "Polygon Auto-Completion",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly"
+}
