@@ -1,6 +1,6 @@
 {
   "title": "Street View Events",
-  "callback": "initMap",
+  "callback": "initPano",
   "libraries": [],
   "version": "weekly"
 }
