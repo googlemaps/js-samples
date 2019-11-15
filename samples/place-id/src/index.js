@@ -47,5 +47,3 @@ export function callback(results, status) {
     });
   }
 }
-
-google.maps.event.addDomListener(window, "load", initialize);

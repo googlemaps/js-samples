@@ -46,6 +46,4 @@ export function addMarker(location, map) {
     map: map
   });
 }
-
-google.maps.event.addDomListener(window, "load", initialize);
 // [END script-body]

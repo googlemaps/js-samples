@@ -69,6 +69,3 @@ export function populateTable() {
   }
   eventsTable.innerHTML = content;
 }
-
-// Load the map
-google.maps.event.addDomListener(window, "load", initialize);

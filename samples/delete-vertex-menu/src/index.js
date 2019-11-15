@@ -139,5 +139,4 @@ DeleteMenu.prototype.removeVertex = function() {
   this.close();
 };
 
-google.maps.event.addDomListener(window, "load", initialize);
 // [END script-body]

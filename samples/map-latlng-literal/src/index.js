@@ -48,6 +48,4 @@ export function initMap() {
     infowindow.open(map, marker);
   });
 }
-
-google.maps.event.addDomListener(window, "load", initialize);
 // [END script-body]
