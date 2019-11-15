@@ -17,8 +17,7 @@
 {% macro api() %}
   <script 
     src="https://maps.googleapis.com/maps/api/js?key={{ env.GOOGLE_MAPS_KEY }}&callback={{ callback }}&libraries={{ libraries }}&version={{ version }}" 
-    async defer>
-  </script>
+    async defer></script>
 {% endmacro %}
 
 <!DOCTYPE html>
@@ -38,6 +37,7 @@
         <script src="./app.compat.js"></script>
       {% endblock %}
       {{ api() }}
+      {% include 'shared/analytics.njk' %}
     {% endif %}
   </head>
   <body>
