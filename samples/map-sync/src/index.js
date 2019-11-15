@@ -15,8 +15,12 @@
  */
 
 // [START script-body]
-export var map = new google.maps.Map(document.getElementById("map"), {
-  center: { lat: -34.397, lng: 150.644 },
-  zoom: 8
-});
+export var map;
+
+export function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8
+  });
+}
 // [END script-body]

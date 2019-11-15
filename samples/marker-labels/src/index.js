@@ -20,7 +20,7 @@
 export var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 export var labelIndex = 0;
 
-export function initialize() {
+export function initMap() {
   var bangalore = { lat: 12.97, lng: 77.59 };
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
@@ -46,6 +46,4 @@ export function addMarker(location, map) {
     map: map
   });
 }
-
-google.maps.event.addDomListener(window, "load", initialize);
 // [END script-body]
