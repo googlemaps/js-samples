@@ -10,7 +10,7 @@ d=$(pwd)
 pushd ../../
 
 # render the template
-nunjucks $d/src/index.tpl -p . $d/data.json
+nunjucks $d/src/index.tpl -p . $d/data.json --loglevel info
 
 # nunjucks -o will render the relative path to the tpl in this
 # folder, eg $d/dist/$d/index.html, so we move manually

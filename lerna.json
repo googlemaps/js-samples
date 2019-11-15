@@ -10,5 +10,6 @@
       "message": "chore: release"
     }
   },
-  "ignoreChanges": ["**/examples/**", "**/tests/**", "**/docs/**", "**/*.md"]
+  "ignoreChanges": ["**/examples/**", "**/tests/**", "**/docs/**", "**/*.md"],
+  "loglevel": "info"
 }

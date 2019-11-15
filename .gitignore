@@ -4,6 +4,7 @@
 **/.npmrc
 **/docs
 **/src/*.html
+index.html
 # Logs
 logs
 *.log
