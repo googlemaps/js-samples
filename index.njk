@@ -79,12 +79,17 @@
                   <li>
                     <a href="https://github.com/googlemaps/js-samples/tree/master/samples/{{ item[1] }}/src" target="_blank">
                       <i class="fab fa-github"></i>&nbsp;
-                      Source</a>
+                      View Source</a>
                   </li>
                   <li>
                     <a href="https://github.com/googlemaps/js-samples/issues/new?assignees=&labels=type%3A+bug%2C+triage+me&template=bug_report.md&title={{ '[sample] '|urlencode }}{{ item[0]|urlencode}}" target="_blank">
                       <i class="fas fa-bug"></i>&nbsp;
                       Report Bug</a>
+                  </li>
+                  <li>
+                    <a href="./samples/{{ item[1] }}/dist/index.html" target="_blank">
+                      <i class="fas fa-external-link-alt"></i>&nbsp;
+                      Open in New Window</a>
                   </li>
                 </ul>
               </li>
