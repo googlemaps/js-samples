@@ -1,6 +1,6 @@
 {
   "title": "Street View Side-By-Side",
-  "callback": "initMap",
+  "callback": "initialize",
   "libraries": [],
   "version": "weekly"
 }
