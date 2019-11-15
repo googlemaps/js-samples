@@ -1,5 +1,5 @@
 {
-  "title": "containsLocation()",
+  "title": "Polygon Contains Location",
   "libraries": [
     "geometry"
   ],
