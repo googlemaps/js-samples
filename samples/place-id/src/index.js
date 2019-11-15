@@ -16,7 +16,7 @@
 
 export var map;
 
-export function initialize() {
+export function initMap() {
   // Create a map centered in Pyrmont, Sydney (Australia).
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.8666, lng: 151.1958 },
@@ -47,5 +47,3 @@ export function callback(results, status) {
     });
   }
 }
-
-google.maps.event.addDomListener(window, "load", initialize);

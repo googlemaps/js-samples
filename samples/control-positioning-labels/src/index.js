@@ -71,5 +71,3 @@ export function initialize() {
     map.controls[controlText[i][1]].push(divName);
   }
 }
-
-google.maps.event.addDomListener(window, "load", initialize);

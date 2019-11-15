@@ -1,6 +1,6 @@
 {
   "title": "Control Positioning",
-  "callback": "initMap",
+  "callback": "initialize",
   "libraries": [],
   "version": "weekly"
 }
