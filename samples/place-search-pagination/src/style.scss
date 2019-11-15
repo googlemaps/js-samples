@@ -15,6 +15,9 @@
  */
 
 /* [START css] */
+@import "../../../shared/scss/default.scss";
+@import "../../../shared/scss/right-panel.scss";
+
 #right-panel {
   font-family: Arial, Helvetica, sans-serif;
   position: absolute;
