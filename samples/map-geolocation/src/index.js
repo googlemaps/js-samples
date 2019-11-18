@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_map_geolocation_script_body]
 // Note: This example requires that you consent to location sharing when
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
@@ -60,4 +60,4 @@ export function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   );
   infoWindow.open(map);
 }
-// [END script-body]
+// [END maps_map_geolocation_script_body]

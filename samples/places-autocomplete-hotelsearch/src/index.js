@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_places_autocomplete_hotelsearch_script_body]
 // This example uses the autocomplete feature of the Google Places API.
 // It allows the user to find all hotels in a given place, within a given
 // country. It then displays markers for all the hotels returned,
@@ -297,4 +297,4 @@ export function buildIWContent(place) {
     document.getElementById("iw-website-row").style.display = "none";
   }
 }
-// [END script-body]
+// [END maps_places_autocomplete_hotelsearch_script_body]

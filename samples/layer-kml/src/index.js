@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_layer_kml_script_body]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
@@ -26,4 +26,4 @@ export function initMap() {
     map: map
   });
 }
-// [END script-body]
+// [END maps_layer_kml_script_body]

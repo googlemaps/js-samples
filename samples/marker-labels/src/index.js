@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_marker_labels_script_body]
 // In the following example, markers appear when the user clicks on the map.
 // Each marker is labeled with a single alphabetical character.
 export var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -46,4 +46,4 @@ export function addMarker(location, map) {
     map: map
   });
 }
-// [END script-body]
+// [END maps_marker_labels_script_body]

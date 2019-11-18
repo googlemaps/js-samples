@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_streetview_service_script_body]
 /*
  * Click the map to set a new location for the Street View camera.
  */
@@ -77,4 +77,4 @@ export function processSVData(data, status) {
     console.error("Street View data not found for this location.");
   }
 }
-// [END script-body]
+// [END maps_streetview_service_script_body]

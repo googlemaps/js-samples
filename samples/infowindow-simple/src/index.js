@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_infowindow_simple_script_body]
 // This example displays a marker at the center of Australia.
 // When the user clicks the marker, an info window opens.
 
@@ -60,4 +60,4 @@ export function initMap() {
     infowindow.open(map, marker);
   });
 }
-// [END script-body]
+// [END maps_infowindow_simple_script_body]

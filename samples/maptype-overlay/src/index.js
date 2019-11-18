@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_maptype_overlay_script_body]
 /*
  * This demo illustrates the coordinate system used to display map tiles in the
  * API.
@@ -58,4 +58,4 @@ export function initMap() {
     new CoordMapType(new google.maps.Size(256, 256))
   );
 }
-// [END script-body]
+// [END maps_maptype_overlay_script_body]

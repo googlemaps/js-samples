@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_geocoding_reverse_script_body]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
@@ -50,4 +50,4 @@ export function geocodeLatLng(geocoder, map, infowindow) {
     }
   });
 }
-// [END script-body]
+// [END maps_geocoding_reverse_script_body]

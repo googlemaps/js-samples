@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_control_options_script_body]
 // You can set control options to change the default position or style of many
 // of the map controls.
 
@@ -29,4 +29,4 @@ export function initMap() {
     }
   });
 }
-// [END script-body]
+// [END maps_control_options_script_body]

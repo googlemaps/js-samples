@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_groundoverlay_simple_script_body]
 // This example uses a GroundOverlay to place an image on the map
 // showing an antique map of Newark, NJ.
 
@@ -39,4 +39,4 @@ export function initMap() {
   );
   historicalOverlay.setMap(map);
 }
-// [END script-body]
+// [END maps_groundoverlay_simple_script_body]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_places_autocomplete_script_body]
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -112,4 +112,4 @@ export function initMap() {
       autocomplete.setOptions({ strictBounds: this.checked });
     });
 }
-// [END script-body]
+// [END maps_places_autocomplete_script_body]

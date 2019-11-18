@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_map_coordinates_script_body]
 export function initMap() {
   var chicago = new google.maps.LatLng(41.85, -87.65);
 
@@ -75,4 +75,4 @@ export function project(latLng) {
     TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI))
   );
 }
-// [END script-body]
+// [END maps_map_coordinates_script_body]

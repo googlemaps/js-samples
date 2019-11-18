@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_layer_traffic_script_body]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
@@ -24,4 +24,4 @@ export function initMap() {
   var trafficLayer = new google.maps.TrafficLayer();
   trafficLayer.setMap(map);
 }
-// [END script-body]
+// [END maps_layer_traffic_script_body]

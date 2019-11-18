@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_maptype_styled_simple_script_body]
 export function initMap() {
   // Create a new StyledMapType object, passing it an array of styles,
   // and the name to be displayed on the map type control.
@@ -146,4 +146,4 @@ export function initMap() {
   map.mapTypes.set("styled_map", styledMapType);
   map.setMapTypeId("styled_map");
 }
-// [END script-body]
+// [END maps_maptype_styled_simple_script_body]

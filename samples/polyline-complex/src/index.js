@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_polyline_complex_script_body]
 // This example creates an interactive map which constructs a polyline based on
 // user clicks. Note that the polyline only appears once its path property
 // contains two LatLng coordinates.
@@ -54,4 +54,4 @@ export function addLatLng(event) {
     map: map
   });
 }
-// [END script-body]
+// [END maps_polyline_complex_script_body]

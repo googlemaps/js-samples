@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_maxzoom_simple_script_body]
 export var map;
 export var maxZoomService;
 export var infoWindow;
@@ -46,4 +46,4 @@ export function showMaxZoom(e) {
     infoWindow.open(map);
   });
 }
-// [END script-body]
+// [END maps_maxzoom_simple_script_body]

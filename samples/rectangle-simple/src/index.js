@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_rectangle_simple_script_body]
 // This example adds a red rectangle to a map.
 
 export function initMap() {
@@ -39,4 +39,4 @@ export function initMap() {
     }
   });
 }
-// [END script-body]
+// [END maps_rectangle_simple_script_body]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_marker_symbol_predefined_script_body]
 // This example uses a symbol to add a vector-based icon to a marker.
 // The symbol uses one of the predefined vector paths ('CIRCLE') supplied by the
 // Google Maps JavaScript API.
@@ -35,4 +35,4 @@ export function initMap() {
     map: map
   });
 }
-// [END script-body]
+// [END maps_marker_symbol_predefined_script_body]

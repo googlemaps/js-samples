@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_drawing_tools_script_body]
 // This example requires the Drawing library. Include the libraries=drawing
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
@@ -47,4 +47,4 @@ export function initMap() {
   });
   drawingManager.setMap(map);
 }
-// [END script-body]
+// [END maps_drawing_tools_script_body]

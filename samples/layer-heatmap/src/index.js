@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_layer_heatmap_script_body]
 // This example requires the Visualization library. Include the libraries=visualization
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
@@ -571,4 +571,4 @@ export function getPoints() {
     new google.maps.LatLng(37.751266, -122.403355)
   ];
 }
-// [END script-body]
+// [END maps_layer_heatmap_script_body]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_layer_data_quakes_script_body]
 export var map;
 
 export function initMap() {
@@ -100,4 +100,4 @@ export var mapStyle = [
     stylers: [{ visibility: "on" }, { hue: "#5f94ff" }, { lightness: 60 }]
   }
 ];
-// [END script-body]
+// [END maps_layer_data_quakes_script_body]
