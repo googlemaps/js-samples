@@ -48,7 +48,7 @@
         "data",
         "../../shared/**"
       ],
-      "extensions": "ts,scss,tpl,json"
+      "extensions": "ts,scss,njk,json"
     }
   }
 }

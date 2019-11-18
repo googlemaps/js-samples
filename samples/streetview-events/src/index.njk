@@ -1,0 +1,41 @@
+<!--
+Copyright 2019 Google LLC. All Rights Reserved.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+{% extends '../../../shared/layout.njk'%} {% block html %}
+<!-- [START html-body] -->
+<div id="pano"></div>
+<div id="floating-panel">
+  <table>
+    <tr>
+      <td><b>Position</b></td>
+      <td id="position-cell">&nbsp;</td>
+    </tr>
+    <tr>
+      <td><b>POV Heading</b></td>
+      <td id="heading-cell">270</td>
+    </tr>
+    <tr>
+      <td><b>POV Pitch</b></td>
+      <td id="pitch-cell">0.0</td>
+    </tr>
+    <tr>
+      <td><b>Pano ID</b></td>
+      <td id="pano-cell">&nbsp;</td>
+    </tr>
+    <table id="links_table"></table>
+  </table>
+</div>
+<!-- [END html-body] -->
+{% endblock %}

@@ -77,7 +77,7 @@
         "samples/**/src",
         "shared/**"
       ],
-      "extensions": "ts,scss,tpl",
+      "extensions": "ts,scss,njk",
       "quiet": false
     }
   }
