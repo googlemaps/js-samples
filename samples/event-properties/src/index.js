@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_event_properties_script_body]
 export function initMap() {
   var originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -32,4 +32,4 @@ export function initMap() {
     infowindow.setContent("Zoom: " + map.getZoom());
   });
 }
-// [END script-body]
+// [END maps_event_properties_script_body]

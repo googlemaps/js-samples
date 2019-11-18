@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_places_autocomplete_directions_script_body]
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
@@ -130,4 +130,4 @@ AutocompleteDirectionsHandler.prototype.route = function() {
   );
 };
 
-// [END script-body]
+// [END maps_places_autocomplete_directions_script_body]

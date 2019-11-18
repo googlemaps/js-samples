@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_maptype_image_script_body]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 0, lng: 0 },
@@ -76,4 +76,4 @@ export function getNormalizedCoord(coord, zoom) {
 
   return { x: x, y: y };
 }
-// [END script-body]
+// [END maps_maptype_image_script_body]

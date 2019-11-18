@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_legend_script_body]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -139,4 +139,4 @@ export function initMap() {
 
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }
-// [END script-body]
+// [END maps_legend_script_body]

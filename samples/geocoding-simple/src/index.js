@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_geocoding_simple_script_body]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
@@ -41,4 +41,4 @@ export function geocodeAddress(geocoder, resultsMap) {
     }
   });
 }
-// [END script-body]
+// [END maps_geocoding_simple_script_body]

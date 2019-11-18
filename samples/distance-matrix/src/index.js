@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_distance_matrix_script_body]
 export function initMap() {
   var bounds = new google.maps.LatLngBounds();
   var markersArray = [];
@@ -107,4 +107,4 @@ export function deleteMarkers(markersArray) {
   }
   markersArray = [];
 }
-// [END script-body]
+// [END maps_distance_matrix_script_body]

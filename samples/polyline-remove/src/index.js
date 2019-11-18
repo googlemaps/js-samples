@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_polyline_remove_script_body]
 // This example adds a UI control allowing users to remove the polyline from the
 // map.
 
@@ -52,4 +52,4 @@ export function addLine() {
 export function removeLine() {
   flightPath.setMap(null);
 }
-// [END script-body]
+// [END maps_polyline_remove_script_body]

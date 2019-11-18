@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_places_autocomplete_addressform_script_body]
 // This sample uses the Autocomplete widget to help the user select a
 // place, then it retrieves the address components associated with that
 // place, and then it populates the form fields with those details.
@@ -92,4 +92,4 @@ export function geolocate() {
   }
 }
 // [END region_geolocation]
-// [END script-body]
+// [END maps_places_autocomplete_addressform_script_body]

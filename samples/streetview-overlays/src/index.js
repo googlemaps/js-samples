@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_streetview_overlays_script_body]
 export var panorama;
 
 export function initMap() {
@@ -72,4 +72,4 @@ export function toggleStreetView() {
     panorama.setVisible(false);
   }
 }
-// [END script-body]
+// [END maps_streetview_overlays_script_body]

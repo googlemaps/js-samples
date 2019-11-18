@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_control_bounds_restriction_script_body]
 export var map;
 export var NEW_ZEALAND_BOUNDS = {
   north: -34.36,
@@ -34,4 +34,4 @@ export function initMap() {
     zoom: 7
   });
 }
-// [END script-body]
+// [END maps_control_bounds_restriction_script_body]

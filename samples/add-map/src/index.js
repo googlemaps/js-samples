@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_add_map_script_body]
 // Initialize and add the map
 export function initMap() {
   // The location of Uluru
@@ -27,4 +27,4 @@ export function initMap() {
   // The marker, positioned at Uluru
   var marker = new google.maps.Marker({ position: uluru, map: map });
 }
-// [END script-body]
+// [END maps_add_map_script_body]

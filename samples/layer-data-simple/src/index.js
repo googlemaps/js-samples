@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_layer_data_simple_script_body]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -27,4 +27,4 @@ export function initMap() {
     "https://storage.googleapis.com/mapsdevsite/json/google.json"
   );
 }
-// [END script-body]
+// [END maps_layer_data_simple_script_body]

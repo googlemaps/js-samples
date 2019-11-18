@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_control_simple_script_body]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -23,4 +23,4 @@ export function initMap() {
     scaleControl: true
   });
 }
-// [END script-body]
+// [END maps_control_simple_script_body]

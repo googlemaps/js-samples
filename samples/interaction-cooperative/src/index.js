@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_interaction_cooperative_script_body]
 /**
  * This sample sets the gesture handling mode to 'cooperative',
  * which means that on a mobile device, the user must swipe with one
@@ -35,4 +35,4 @@ export function initMap() {
     title: "Hello World!"
   });
 }
-// [END script-body]
+// [END maps_interaction_cooperative_script_body]

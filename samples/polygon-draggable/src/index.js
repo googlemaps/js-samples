@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_polygon_draggable_script_body]
 // This example creates draggable triangles on the map.
 // Note also that the red triangle is geodesic, so its shape changes
 // as you drag it north or south.
@@ -66,4 +66,4 @@ export function initMap() {
     geodesic: false
   });
 }
-// [END script-body]
+// [END maps_polygon_draggable_script_body]

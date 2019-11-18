@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_earthquake_heatmap_weighted_script_body]
 export var map;
 
 export function initMap() {
@@ -52,4 +52,4 @@ window.eqfeed_callback = function(results) {
     map: map
   });
 };
-// [END script-body]
+// [END maps_earthquake_heatmap_weighted_script_body]

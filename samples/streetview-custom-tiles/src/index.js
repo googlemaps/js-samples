@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_streetview_custom_tiles_script_body]
 export var panorama;
 
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
@@ -95,4 +95,4 @@ export function initMap() {
     }
   );
 }
-// [END script-body]
+// [END maps_streetview_custom_tiles_script_body]

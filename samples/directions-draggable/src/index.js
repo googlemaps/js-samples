@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_directions_draggable_script_body]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -71,4 +71,4 @@ export function computeTotalDistance(result) {
   total = total / 1000;
   document.getElementById("total").innerHTML = total + " km";
 }
-// [END script-body]
+// [END maps_directions_draggable_script_body]

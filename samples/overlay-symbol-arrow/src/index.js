@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_overlay_symbol_arrow_script_body]
 // This example adds a predefined symbol (an arrow) to a polyline.
 // Setting offset to 100% places the arrow at the end of the line.
 
@@ -45,4 +45,4 @@ export function initMap() {
   });
   // [END region_polyline]
 }
-// [END script-body]
+// [END maps_overlay_symbol_arrow_script_body]

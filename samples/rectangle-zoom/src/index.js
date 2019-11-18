@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_rectangle_zoom_script_body]
 // This example creates a rectangle based on the viewport
 // on any 'zoom-changed' event.
 
@@ -40,4 +40,4 @@ export function initMap() {
     });
   });
 }
-// [END script-body]
+// [END maps_rectangle_zoom_script_body]

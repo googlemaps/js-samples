@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_map_puzzle_script_body]
 /**
  * @constructor @struct @final
  */
@@ -420,4 +420,4 @@ export function initMap() {
 
   new PuzzleDemo().init(map);
 }
-// [END script-body]
+// [END maps_map_puzzle_script_body]

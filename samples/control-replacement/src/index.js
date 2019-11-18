@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_control_replacement_script_body]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.querySelector("#map"), {
@@ -108,4 +108,4 @@ export function exitFullscreen() {
     document.msCancelFullScreen();
   }
 }
-// [END script-body]
+// [END maps_control_replacement_script_body]

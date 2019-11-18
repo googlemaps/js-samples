@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_icon_simple_script_body]
 // This example adds a marker to indicate the position of Bondi Beach in Sydney,
 // Australia.
 export function initMap() {
@@ -31,4 +31,4 @@ export function initMap() {
     icon: image
   });
 }
-// [END script-body]
+// [END maps_icon_simple_script_body]
