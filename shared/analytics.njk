@@ -1,4 +1,11 @@
+<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-152595271-1"></script>
 <script>
-    function gtag(){dataLayer.push(arguments)}function report(e){let t;"string"==typeof e?t=e:(t=e.message,e.stack&&(t+="\n"+e.stack)),gtag("event","exception",{description:t})}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","UA-152595271-1"),window.addEventListener("error",function(e){report(e.error)}),window.addEventListener("unhandledrejection",function(e){report(e.reason)});
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-152595271-1');
 </script>
