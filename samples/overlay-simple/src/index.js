@@ -129,6 +129,4 @@ USGSOverlay.prototype.onRemove = function() {
   this.div_ = null;
 };
 // [END region_removal]
-
-google.maps.event.addDomListener(window, "load", initMap);
 // [END script-body]
