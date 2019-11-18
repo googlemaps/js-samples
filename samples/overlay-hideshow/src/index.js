@@ -144,6 +144,4 @@ USGSOverlay.prototype.toggleDOM = function() {
   }
 };
 // [END region_hideshow]
-
-google.maps.event.addDomListener(window, "load", initMap);
 // [END script-body]
