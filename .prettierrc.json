@@ -7,7 +7,7 @@
             }
         },
         {
-            "files": "*.tpl",
+            "files": "*.njk",
             "options": {
                 "parser": "html"
             }
