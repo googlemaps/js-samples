@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_rectangle_event_script_body]
 // This example adds a user-editable rectangle to the map.
 // When the user changes the bounds of the rectangle,
 // an info window pops up displaying the new bounds.
@@ -76,4 +76,4 @@ export function showNewRect(event) {
 
   infoWindow.open(map);
 }
-// [END script-body]
+// [END maps_rectangle_event_script_body]

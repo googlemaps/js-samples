@@ -14,8 +14,8 @@
  * limitations under the License.
  */
 
-// [START script-body]
-// [START script-snippet]
+// [START maps_disable_zoom_and_pan_script_body]
+// [START maps_disable_zoom_and_pan_script_snippet]
 export function initMap() {
   var locationRio = { lat: -22.915, lng: -43.197 };
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -24,11 +24,11 @@ export function initMap() {
     gestureHandling: "none",
     zoomControl: false
   });
-  // [END script-snippet]
+  // [END maps_disable_zoom_and_pan_script_snippet]
   var marker = new google.maps.Marker({
     position: locationRio,
     map: map,
     title: "Hello World!"
   });
 }
-// [END script-body]
+// [END maps_disable_zoom_and_pan_script_body]

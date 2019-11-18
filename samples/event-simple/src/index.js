@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_event_simple_script_body]
 export function initMap() {
   var myLatlng = { lat: -25.363, lng: 131.044 };
 
@@ -42,4 +42,4 @@ export function initMap() {
     map.setCenter(marker.getPosition());
   });
 }
-// [END script-body]
+// [END maps_event_simple_script_body]

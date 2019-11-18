@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_elevation_paths_script_body]
 // Load the Visualization API and the columnchart package.
 google.load("visualization", "1", { packages: ["columnchart"] });
 
@@ -95,4 +95,4 @@ export function plotElevation(elevations, status) {
     titleY: "Elevation (m)"
   });
 }
-// [END script-body]
+// [END maps_elevation_paths_script_body]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_style_array_script_body]
 export function initMap() {
   // Styles a map in night mode.
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -102,4 +102,4 @@ export function initMap() {
     ]
   });
 }
-// [END script-body]
+// [END maps_style_array_script_body]

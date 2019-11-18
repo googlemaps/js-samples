@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_maptype_base_script_body]
 /*
  * This demo demonstrates how to replace default map tiles with custom imagery.
  * In this case, the CoordMapType displays gray tiles annotated with the tile
@@ -73,4 +73,4 @@ export function initMap() {
     new CoordMapType(new google.maps.Size(256, 256))
   );
 }
-// [END script-body]
+// [END maps_maptype_base_script_body]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_places_queryprediction_script_body]
 // This example retrieves autocomplete predictions programmatically from the
 // autocomplete service, and displays them as an HTML list.
 
@@ -39,4 +39,4 @@ export function initService() {
   var service = new google.maps.places.AutocompleteService();
   service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
 }
-// [END script-body]
+// [END maps_places_queryprediction_script_body]

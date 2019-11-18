@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_layer_data_style_script_body]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -22,19 +22,19 @@ export function initMap() {
     center: { lat: -28, lng: 137 }
   });
 
-  // [START snippet-load]
+  // [START maps_layer_data_style_script_snippet_load]
   // Load GeoJSON.
   map.data.loadGeoJson(
     "https://storage.googleapis.com/mapsdevsite/json/google.json"
   );
-  // [END snippet-load]
+  // [END maps_layer_data_style_script_snippet_load]
 
-  // [START snippet-style]
+  // [START maps_layer_data_style_script_snippet_style]
   // Set the stroke width, and fill color for each polygon
   map.data.setStyle({
     fillColor: "green",
     strokeWeight: 1
   });
-  // [END snippet-style]
+  // [END maps_layer_data_style_script_snippet_style]
 }
-// [END script-body]
+// [END maps_layer_data_style_script_body]

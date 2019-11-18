@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_style_selector_script_body]
 export var map;
 export function initMap() {
   // Create the map with no initial style specified.
@@ -335,4 +335,4 @@ export var styles = {
   ]
 };
 
-// [END script-body]
+// [END maps_style_selector_script_body]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_streetview_embed_script_body]
 export var panorama;
 export function initialize() {
   panorama = new google.maps.StreetViewPanorama(
@@ -26,4 +26,4 @@ export function initialize() {
     }
   );
 }
-// [END script-body]
+// [END maps_streetview_embed_script_body]

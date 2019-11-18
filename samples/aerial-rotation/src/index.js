@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_aerial_rotation_script_body]
 export var map;
 
 export function initMap() {
@@ -38,4 +38,4 @@ export function autoRotate() {
     window.setInterval(rotate90, 3000);
   }
 }
-// [END script-body]
+// [END maps_aerial_rotation_script_body]

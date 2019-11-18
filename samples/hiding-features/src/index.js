@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_hiding_features_script_body]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -51,4 +51,4 @@ export var styles = {
   ]
 };
 
-// [END script-body]
+// [END maps_hiding_features_script_body]

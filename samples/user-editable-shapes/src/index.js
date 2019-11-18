@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_user_editable_shapes_script_body]
 // This example adds a user-editable rectangle to the map.
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -38,4 +38,4 @@ export function initMap() {
   // [END region_rectangle]
   rectangle.setMap(map);
 }
-// [END script-body]
+// [END maps_user_editable_shapes_script_body]

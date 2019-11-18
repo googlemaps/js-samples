@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_event_poi_script_body]
 export function initMap() {
   var origin = { lat: -33.871, lng: 151.197 };
 
@@ -92,4 +92,4 @@ ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
     }
   });
 };
-// [END script-body]
+// [END maps_event_poi_script_body]

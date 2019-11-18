@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_event_domListener_script_body]
 export function initMap() {
   var mapDiv = document.getElementById("map");
   var map = new google.maps.Map(mapDiv, {
@@ -28,4 +28,4 @@ export function initMap() {
     window.alert("Map was clicked!");
   });
 }
-// [END script-body]
+// [END maps_event_domListener_script_body]

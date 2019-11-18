@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_layer_transit_script_body]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
@@ -24,4 +24,4 @@ export function initMap() {
   var transitLayer = new google.maps.TransitLayer();
   transitLayer.setMap(map);
 }
-// [END script-body]
+// [END maps_layer_transit_script_body]

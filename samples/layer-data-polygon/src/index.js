@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_layer_data_polygon_script_body]
 // This example uses the Google Maps JavaScript API's Data layer
 // to create a rectangular polygon with 2 holes in it.
 
@@ -56,4 +56,4 @@ export function initMap() {
     ])
   });
 }
-// [END script-body]
+// [END maps_layer_data_polygon_script_body]

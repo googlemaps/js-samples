@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START script-body]
+// [START maps_places_placeid_geocoder_script_body]
 // This sample requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
@@ -81,4 +81,4 @@ export function initMap() {
     });
   });
 }
-// [END script-body]
+// [END maps_places_placeid_geocoder_script_body]
