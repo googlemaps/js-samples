@@ -2,7 +2,7 @@
 
 callback=$(json -f data.json callback)
 case $(
-    grep "export function $callback" src/index.*  >/dev/null
+    grep "export function $callback()" src/index.*  >/dev/null
     echo $?
 ) in
 0)
