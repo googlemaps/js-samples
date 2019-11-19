@@ -32,6 +32,7 @@
     "build:format": "run-s build format:dist",
     "build:html": "../../build/render_template.sh && JSFIDDLE=1 ../../build/render_template.sh",
     "build:js": "rollup -c",
+    "build:move": "../../build/move_dist.sh",
     "build:watch": "npm-watch build",
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write --loglevel error",
     "format:dist": "prettier dist/* --write --loglevel error",
