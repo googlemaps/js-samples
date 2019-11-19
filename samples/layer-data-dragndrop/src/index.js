@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_layer_data_dragndrop_script_body]
+// [START maps_layer_data_dragndrop]
 /* Map functions */
 
 export var map;
@@ -128,4 +128,4 @@ export function initialize() {
   initMap();
   initEvents();
 }
-// [END maps_layer_data_dragndrop_script_body]
+// [END maps_layer_data_dragndrop]

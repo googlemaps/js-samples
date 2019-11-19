@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_polygon_arrays_script_body]
+// [START maps_polygon_arrays]
 // This example creates a simple polygon representing the Bermuda Triangle.
 // When the user clicks on the polygon an info window opens, showing
 // information about the polygon's coordinates.
@@ -80,4 +80,4 @@ export function showArrays(event) {
 
   infoWindow.open(map);
 }
-// [END maps_polygon_arrays_script_body]
+// [END maps_polygon_arrays]

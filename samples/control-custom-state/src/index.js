@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_control_custom_state_script_body]
+// [START maps_control_custom_state]
 export var map;
 export var chicago = { lat: 41.85, lng: -87.65 };
 
@@ -113,4 +113,4 @@ export function initMap() {
   centerControlDiv.style["padding-top"] = "10px";
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
-// [END maps_control_custom_state_script_body]
+// [END maps_control_custom_state]

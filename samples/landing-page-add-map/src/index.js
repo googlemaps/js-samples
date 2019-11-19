@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_landing_page_add_map_script_body]
+// [START maps_landing_page_add_map]
 export function initMap() {
   var uluru = { lat: -25.363, lng: 131.044 };
 
@@ -32,4 +32,4 @@ export function initMap() {
     map: map
   });
 }
-// [END maps_landing_page_add_map_script_body]
+// [END maps_landing_page_add_map]

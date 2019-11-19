@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_overlay_symbol_animate_script_body]
+// [START maps_overlay_symbol_animate]
 // This example adds an animated symbol to a polyline.
 
 export function initMap() {
@@ -59,4 +59,4 @@ export function animateCircle(line) {
     line.set("icons", icons);
   }, 20);
 }
-// [END maps_overlay_symbol_animate_script_body]
+// [END maps_overlay_symbol_animate]

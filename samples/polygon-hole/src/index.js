@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_polygon_hole_script_body]
+// [START maps_polygon_hole]
 // This example creates a triangular polygon with a hole in it.
 
 export function initMap() {
@@ -50,4 +50,4 @@ export function initMap() {
   });
   bermudaTriangle.setMap(map);
 }
-// [END maps_polygon_hole_script_body]
+// [END maps_polygon_hole]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_layer_georss_script_body]
+// [START maps_layer_georss]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -27,4 +27,4 @@ export function initMap() {
   });
   georssLayer.setMap(map);
 }
-// [END maps_layer_georss_script_body]
+// [END maps_layer_georss]

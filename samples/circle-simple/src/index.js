@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_circle_simple_script_body]
+// [START maps_circle_simple]
 // This example creates circles on the map, representing populations in North
 // America.
 
@@ -62,4 +62,4 @@ export function initMap() {
     });
   }
 }
-// [END maps_circle_simple_script_body]
+// [END maps_circle_simple]

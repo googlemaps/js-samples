@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_layer_data_style_script_body]
+// [START maps_layer_data_style]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -37,4 +37,4 @@ export function initMap() {
   });
   // [END maps_layer_data_style_script_snippet_style]
 }
-// [END maps_layer_data_style_script_body]
+// [END maps_layer_data_style]

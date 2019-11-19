@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_firebase_map_script_body]
+// [START maps_firebase_map]
 /**
  * Firebase config block.
  */
@@ -226,4 +226,4 @@ export function addToFirebase(data) {
       });
   });
 }
-// [END maps_firebase_map_script_body]
+// [END maps_firebase_map]

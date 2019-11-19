@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_overlay_simple_script_body]
+// [START maps_overlay_simple]
 // [START region_initialization]
 // This example creates a custom overlay called USGSOverlay, containing
 // a U.S. Geological Survey (USGS) image of the relevant area on the map.
@@ -129,4 +129,4 @@ USGSOverlay.prototype.onRemove = function() {
   this.div_ = null;
 };
 // [END region_removal]
-// [END maps_overlay_simple_script_body]
+// [END maps_overlay_simple]

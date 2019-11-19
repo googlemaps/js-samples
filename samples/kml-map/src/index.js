@@ -19,7 +19,7 @@
  *   and displaying the contents in a side panel instead of
  *   an InfoWindow
  */
-// [START maps_kml_map_script_body]
+// [START maps_kml_map]
 export var map;
 export var src =
   "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
@@ -42,4 +42,4 @@ export function initMap() {
     testimonial.innerHTML = content;
   });
 }
-// [END maps_kml_map_script_body]
+// [END maps_kml_map]

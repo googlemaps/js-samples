@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_layer_data_quakes_red_script_body]
+// [START maps_layer_data_quakes_red]
 export var map;
 
 export function initMap() {
@@ -52,4 +52,4 @@ export function initMap() {
 export function eqfeed_callback(data) {
   map.data.addGeoJson(data);
 }
-// [END maps_layer_data_quakes_red_script_body]
+// [END maps_layer_data_quakes_red]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_elevation_simple_script_body]
+// [START maps_elevation_simple]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
@@ -57,4 +57,4 @@ export function displayLocationElevation(location, elevator, infowindow) {
     }
   );
 }
-// [END maps_elevation_simple_script_body]
+// [END maps_elevation_simple]

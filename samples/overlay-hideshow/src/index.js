@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_overlay_hideshow_script_body]
+// [START maps_overlay_hideshow]
 // This example adds hide() and show() methods to a custom overlay's prototype.
 // These methods toggle the visibility of the container <div>.
 // Additionally, we add a toggleDOM() method, which attaches or detaches the
@@ -144,4 +144,4 @@ USGSOverlay.prototype.toggleDOM = function() {
   }
 };
 // [END region_hideshow]
-// [END maps_overlay_hideshow_script_body]
+// [END maps_overlay_hideshow]
