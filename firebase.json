@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "shared/**",
+      "build/**",
+      "samples/**/src/*",
+      "*.json",
+      "*.yml",
+      "*.yaml",
+      "**/*.njk",
+      "**/*.ts",
+      "**/*.scss"
+    ]
+  }
+}
