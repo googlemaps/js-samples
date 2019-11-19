@@ -52,7 +52,7 @@ export default [
       })
     ],
     output: {
-      file: "dist/app.compat.js",
+      file: "dist/transpiled.js",
       ...output
     }
   },
