@@ -17,7 +17,7 @@ nunjucks $d/src/index.njk -p . $d/data.json --loglevel info
 mkdir -p $d/dist
 
 if [ "$JSFIDDLE" -eq "1" ]; then
-    mv $d/src/index.html $d/dist/index.jsfiddle.html
+    mv $d/src/index.html $d/dist/jsfiddle.html
 else
     mv $d/src/index.html $d/dist/index.html
 fi
