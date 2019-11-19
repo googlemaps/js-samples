@@ -18,7 +18,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "build": "lerna run build && ./build/index.sh",
+    "build": "rm -rf dist && lerna run build && ./build/index.sh && npm run build:move",
     "build:clean": "lerna run build:clean",
     "build:css": "lerna run build:css",
     "build:format": "lerna run build:format",
@@ -26,6 +26,7 @@
     "build:index": "./build/index.sh",
     "build:js": "lerna run build:js",
     "build:watch": "npm-watch build",
+    "build:move": "lerna run build:move && cp index.html dist/index.html",
     "ci": "npm run lint && npm run test && npm build",
     "defaults:data:merge": "lerna exec '../../build/merge_default_data.sh'",
     "defaults:package:merge": "lerna exec '../../build/merge_default_package.sh'",
