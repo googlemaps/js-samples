@@ -8,16 +8,13 @@ script:
 - npm run bootstrap
 - npm run ci
 - npm run build
-before_deploy:
-- "./build/before_deploy_pages.sh"
 deploy:
-  provider: script
+- provider: script
   skip_cleanup: true
   script: firebase deploy --token "$FIREBASE_TOKEN"
   on:
     branch: master
-deploy:
-  provider: pages
+- provider: pages
   local_dir: dist
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
