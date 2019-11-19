@@ -8,9 +8,9 @@ js-samples
 ## Description
 Samples for the Google Maps JavaScript API.
 
-**View the samples:** https://googlemaps.github.io/js-samples
+**[View the samples](https://geo-devrel-259418.firebaseapp.com/)**
 
-**Note::** Many of these samples were written in 2010-2012. Some are still functional and are in the samples folder. Others that do not run have been moved to archive.
+**Note::** Many of these samples were written in 2010-2012. Many are still functional and are in the samples folder. Others that do not run have been moved to archive.
 
 ## Development
 
