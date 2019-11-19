@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_combining_data_script_body]
+// [START maps_combining_data]
 export var mapStyle = [
   {
     stylers: [{ visibility: "off" }]
@@ -217,4 +217,4 @@ export function mouseOutOfRegion(e) {
 }
 // [END maps_combining_data_snippet_mouseevents]
 
-// [END maps_combining_data_script_body]
+// [END maps_combining_data]

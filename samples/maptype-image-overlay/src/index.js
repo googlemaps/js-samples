@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_maptype_image_overlay_script_body]
+// [START maps_maptype_image_overlay]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 18,
@@ -56,4 +56,4 @@ export function initMap() {
 
   map.overlayMapTypes.push(imageMapType);
 }
-// [END maps_maptype_image_overlay_script_body]
+// [END maps_maptype_image_overlay]

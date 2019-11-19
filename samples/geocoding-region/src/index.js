@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_geocoding_region_script_body]
+// [START maps_geocoding_region]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), { zoom: 8 });
   var geocoder = new google.maps.Geocoder();
@@ -32,4 +32,4 @@ export function initMap() {
     }
   });
 }
-// [END maps_geocoding_region_script_body]
+// [END maps_geocoding_region]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_directions_waypoints_script_body]
+// [START maps_directions_waypoints]
 export function initMap() {
   var directionsService = new google.maps.DirectionsService();
   var directionsRenderer = new google.maps.DirectionsRenderer();
@@ -73,4 +73,4 @@ export function calculateAndDisplayRoute(
     }
   );
 }
-// [END maps_directions_waypoints_script_body]
+// [END maps_directions_waypoints]

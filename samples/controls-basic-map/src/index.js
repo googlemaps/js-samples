@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_controls_basic_map_script_body]
+// [START maps_controls_basic_map]
 // [START maps_controls_basic_map_script_snippet]
 export function initMap() {
   var locationRio = { lat: -22.915, lng: -43.197 };
@@ -30,4 +30,4 @@ export function initMap() {
     title: "Hello World!"
   });
 }
-// [END maps_controls_basic_map_script_body]
+// [END maps_controls_basic_map]

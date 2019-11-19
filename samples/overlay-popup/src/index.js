@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_overlay_popup_script_body]
+// [START maps_overlay_popup]
 export var map, popup, Popup;
 
 /** Initializes the map and the custom popup. */
@@ -101,4 +101,4 @@ export function createPopupClass() {
 
   return Popup;
 }
-// [END maps_overlay_popup_script_body]
+// [END maps_overlay_popup]

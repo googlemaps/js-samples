@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_custom_markers_script_body]
+// [START maps_custom_markers]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -125,4 +125,4 @@ export function initMap() {
     });
   }
 }
-// [END maps_custom_markers_script_body]
+// [END maps_custom_markers]

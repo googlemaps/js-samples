@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_event_closure_script_body]
+// [START maps_event_closure]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -61,4 +61,4 @@ export function attachSecretMessage(marker, secretMessage) {
     infowindow.open(marker.get("map"), marker);
   });
 }
-// [END maps_event_closure_script_body]
+// [END maps_event_closure]

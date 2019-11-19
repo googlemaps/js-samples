@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_streetview_controls_script_body]
+// [START maps_streetview_controls]
 export function initPano() {
   // Note: constructed panorama objects have visible: true
   // set by default.
@@ -31,4 +31,4 @@ export function initPano() {
     }
   );
 }
-// [END maps_streetview_controls_script_body]
+// [END maps_streetview_controls]

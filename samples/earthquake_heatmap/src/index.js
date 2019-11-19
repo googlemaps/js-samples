@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_earthquake_heatmap_script_body]
+// [START maps_earthquake_heatmap]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -46,4 +46,4 @@ export function eqfeed_callback(results) {
     map: map
   });
 }
-// [END maps_earthquake_heatmap_script_body]
+// [END maps_earthquake_heatmap]

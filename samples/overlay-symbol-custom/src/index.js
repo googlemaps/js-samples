@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_overlay_symbol_custom_script_body]
+// [START maps_overlay_symbol_custom]
 // This example adds three custom symbols to a polyline.
 
 export function initMap() {
@@ -69,4 +69,4 @@ export function initMap() {
   });
   // [END region_polyline]
 }
-// [END maps_overlay_symbol_custom_script_body]
+// [END maps_overlay_symbol_custom]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_polygon_simple_script_body]
+// [START maps_polygon_simple]
 // This example creates a simple polygon representing the Bermuda Triangle.
 
 export function initMap() {
@@ -43,4 +43,4 @@ export function initMap() {
   });
   bermudaTriangle.setMap(map);
 }
-// [END maps_polygon_simple_script_body]
+// [END maps_polygon_simple]
