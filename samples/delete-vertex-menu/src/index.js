@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_delete_vertex_menu_script_body]
+// [START maps_delete_vertex_menu]
 export function initialize() {
   var mapOptions = {
     zoom: 3,
@@ -139,4 +139,4 @@ DeleteMenu.prototype.removeVertex = function() {
   this.close();
 };
 
-// [END maps_delete_vertex_menu_script_body]
+// [END maps_delete_vertex_menu]

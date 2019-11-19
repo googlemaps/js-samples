@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_landing_page_visualize_data_script_body]
+// [START maps_landing_page_visualize_data]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -58,4 +58,4 @@ export function getCircle(magnitude) {
 export function eqfeed_callback(results) {
   map.data.addGeoJson(results);
 }
-// [END maps_landing_page_visualize_data_script_body]
+// [END maps_landing_page_visualize_data]

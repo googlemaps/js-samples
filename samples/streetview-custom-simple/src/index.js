@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_streetview_custom_simple_script_body]
+// [START maps_streetview_custom_simple]
 export function initPano() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
@@ -64,4 +64,4 @@ export function getCustomPanorama(pano) {
     };
   }
 }
-// [END maps_streetview_custom_simple_script_body]
+// [END maps_streetview_custom_simple]

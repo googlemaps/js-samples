@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_map_simple_script_body]
+// [START maps_map_simple]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -22,4 +22,4 @@ export function initMap() {
     zoom: 8
   });
 }
-// [END maps_map_simple_script_body]
+// [END maps_map_simple]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_event_arguments_script_body]
+// [START maps_event_arguments]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -33,4 +33,4 @@ export function placeMarkerAndPanTo(latLng, map) {
   });
   map.panTo(latLng);
 }
-// [END maps_event_arguments_script_body]
+// [END maps_event_arguments]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_geocoding_place_id_script_body]
+// [START maps_geocoding_place_id]
 // Initialize the map.
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -52,4 +52,4 @@ export function geocodePlaceId(geocoder, map, infowindow) {
     }
   });
 }
-// [END maps_geocoding_place_id_script_body]
+// [END maps_geocoding_place_id]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_geometry_headings_script_body]
+// [START maps_geometry_headings]
 // This example requires the Geometry library. Include the libraries=geometry
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
@@ -80,4 +80,4 @@ export function update() {
   document.getElementById("origin").value = path[0].toString();
   document.getElementById("destination").value = path[1].toString();
 }
-// [END maps_geometry_headings_script_body]
+// [END maps_geometry_headings]

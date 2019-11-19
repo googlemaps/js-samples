@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_directions_complex_script_body]
+// [START maps_directions_complex]
 export function initMap() {
   var markerArray = [];
 
@@ -116,4 +116,4 @@ export function attachInstructionText(stepDisplay, marker, text, map) {
     stepDisplay.open(map, marker);
   });
 }
-// [END maps_directions_complex_script_body]
+// [END maps_directions_complex]

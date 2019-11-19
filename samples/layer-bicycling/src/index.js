@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_layer_bicycling_script_body]
+// [START maps_layer_bicycling]
 export function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 14,
@@ -24,4 +24,4 @@ export function initMap() {
   var bikeLayer = new google.maps.BicyclingLayer();
   bikeLayer.setMap(map);
 }
-// [END maps_layer_bicycling_script_body]
+// [END maps_layer_bicycling]

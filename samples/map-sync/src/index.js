@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_map_sync_script_body]
+// [START maps_map_sync]
 export var map;
 
 export function initMap() {
@@ -23,4 +23,4 @@ export function initMap() {
     zoom: 8
   });
 }
-// [END maps_map_sync_script_body]
+// [END maps_map_sync]

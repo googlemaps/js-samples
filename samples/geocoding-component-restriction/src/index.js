@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_geocoding_component_restriction_script_body]
+// [START maps_geocoding_component_restriction]
 export function initMap() {
   var geocoder = new google.maps.Geocoder();
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -50,4 +50,4 @@ export function geocodeAddress(geocoder, map) {
     }
   );
 }
-// [END maps_geocoding_component_restriction_script_body]
+// [END maps_geocoding_component_restriction]

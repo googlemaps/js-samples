@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_mysql_to_maps_script_body]
+// [START maps_mysql_to_maps]
 export var customLabel = {
   restaurant: {
     label: "R"
@@ -88,4 +88,4 @@ export function downloadUrl(url, callback) {
 }
 
 export function doNothing() {}
-// [END maps_mysql_to_maps_script_body]
+// [END maps_mysql_to_maps]

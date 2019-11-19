@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_overlay_symbol_dashed_script_body]
+// [START maps_overlay_symbol_dashed]
 // This example converts a polyline to a dashed line, by
 // setting the opacity of the polyline to 0, and drawing an opaque symbol
 // at a regular interval on the polyline.
@@ -51,4 +51,4 @@ export function initMap() {
   });
   // [END region_polyline]
 }
-// [END maps_overlay_symbol_dashed_script_body]
+// [END maps_overlay_symbol_dashed]

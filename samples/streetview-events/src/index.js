@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_streetview_events_script_body]
+// [START maps_streetview_events]
 export function initPano() {
   var panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
@@ -63,4 +63,4 @@ export function initPano() {
     pitchCell.firstChild.nodeValue = panorama.getPov().pitch + "";
   });
 }
-// [END maps_streetview_events_script_body]
+// [END maps_streetview_events]

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_earthquake_circles_script_body]
+// [START maps_earthquake_circles]
 export var map;
 export function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -54,4 +54,4 @@ export function getCircle(magnitude) {
 export function eqfeed_callback(results) {
   map.data.addGeoJson(results);
 }
-// [END maps_earthquake_circles_script_body]
+// [END maps_earthquake_circles]
