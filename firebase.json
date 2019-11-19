@@ -4,7 +4,16 @@
     "ignore": [
       "firebase.json",
       "**/.*",
-      "**/node_modules/**"
+      "**/node_modules/**",
+      "shared/**",
+      "build/**",
+      "samples/**/src/*",
+      "*.json",
+      "*.yml",
+      "*.yaml",
+      "**/*.njk",
+      "**/*.ts",
+      "**/*.scss"
     ]
   }
 }
