@@ -36,7 +36,8 @@
     "lint": "lerna run lint",
     "serve": "firebase serve --port 8080",
     "serve:watch": "run-p build:watch serve",
-    "test": "lerna run test"
+    "test": "lerna run test && npm run test:tags",
+    "test:tags": "./build/test_tags.sh"
   },
   "dependencies": {},
   "devDependencies": {
