@@ -21,6 +21,7 @@
     "build:js": "rollup -c",
     "build:format": "run-s build format:dist",
     "build:watch": "npm-watch build",
+    "build:move": "../../build/move_dist.sh",
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write --loglevel error",
     "format:dist": "prettier dist/* --write --loglevel error",
     "license:add": "license-check-and-add add src/* -f ../../.license-check.json",

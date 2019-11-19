@@ -88,7 +88,7 @@
                       Report Bug</a>
                   </li>
                   <li>
-                    <a href="./samples/{{ item[1] }}/dist/index.html" target="_blank">
+                    <a href="/samples/{{ item[1] }}/index.html" target="_blank">
                       <i class="fas fa-external-link-alt"></i>&nbsp;
                       Open in New Window</a>
                   </li>
@@ -122,7 +122,7 @@
 
       document
         .getElementById('iframe')
-        .src = "samples/" + package + "/dist/index.html";
+        .src = "/samples/" + package + "/index.html";
 
       const previous = document.getElementById(active)
 
