@@ -1,6 +1,0 @@
-{
-  "title": "Ground Overlays",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly"
-}

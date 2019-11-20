@@ -1,6 +1,0 @@
-{
-  "title": "Encoding Methods",
-  "libraries": ["geometry"],
-  "callback": "initMap",
-  "version": "weekly"
-}

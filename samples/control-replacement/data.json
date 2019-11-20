@@ -1,6 +1,0 @@
-{
-  "title": "Replacing Default Controls",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly"
-}

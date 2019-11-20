@@ -1,6 +1,0 @@
-{
-  "title": "Rectangle Zoom",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly"
-}

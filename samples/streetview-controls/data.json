@@ -1,6 +1,0 @@
-{
-  "title": "Street View Controls",
-  "callback": "initPano",
-  "libraries": [],
-  "version": "weekly"
-}

@@ -1,6 +1,0 @@
-{
-  "title": "Geolocation",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly"
-}

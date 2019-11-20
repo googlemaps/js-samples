@@ -1,6 +1,0 @@
-{
-  "title": "Place Details",
-  "libraries": ["places"],
-  "callback": "initMap",
-  "version": "weekly"
-}
