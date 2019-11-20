@@ -16,6 +16,7 @@ deploy:
     branch: master
 - provider: pages
   local_dir: dist
+  target_branch: devsite
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
   keep_history: true
