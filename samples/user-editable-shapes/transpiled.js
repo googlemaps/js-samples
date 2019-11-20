@@ -26,7 +26,7 @@
         lng: -78.5389
       },
       zoom: 9
-    }); // [START region_rectangle]
+    }); // [START maps_user_editable_shapes_rectangle]
 
     var bounds = {
       north: 44.599,
@@ -38,7 +38,7 @@
     var rectangle = new google.maps.Rectangle({
       bounds: bounds,
       editable: true
-    }); // [END region_rectangle]
+    }); // [END maps_user_editable_shapes_rectangle]
 
     rectangle.setMap(map);
   } // [END maps_user_editable_shapes]

@@ -28,7 +28,7 @@
       mapTypeId: "terrain"
     });
 
-    // [START region_polyline]
+    // [START maps_overlay_symbol_arrow_region_polyline]
     // Define a symbol using a predefined path (an arrow)
     // supplied by the Google Maps JavaScript API.
     var lineSymbol = {
@@ -46,7 +46,7 @@
       ],
       map: map
     });
-    // [END region_polyline]
+    // [END maps_overlay_symbol_arrow_region_polyline]
   }
   // [END maps_overlay_symbol_arrow]
 

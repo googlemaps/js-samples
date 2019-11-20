@@ -29,7 +29,7 @@
         lng: 153.027
       },
       mapTypeId: "terrain"
-    }); // [START region_polyline]
+    }); // [START maps_overlay_symbol_dashed_region_polyline]
     // Define a symbol using SVG path notation, with an opacity of 1.
 
     var lineSymbol = {
@@ -55,7 +55,7 @@
         repeat: "20px"
       }],
       map: map
-    }); // [END region_polyline]
+    }); // [END maps_overlay_symbol_dashed_region_polyline]
   } // [END maps_overlay_symbol_dashed]
 
   exports.initMap = initMap;

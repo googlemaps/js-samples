@@ -37,11 +37,11 @@
   }
   function addOverlay() {
     exports.historicalOverlay.setMap(exports.map);
-  } // [START region_removal]
+  } // [START maps_overlay_remove_region_removal]
 
   function removeOverlay() {
     exports.historicalOverlay.setMap(null);
-  } // [END region_removal]
+  } // [END maps_overlay_remove_region_removal]
   // [END maps_overlay_remove]
 
   exports.addOverlay = addOverlay;

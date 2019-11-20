@@ -37,12 +37,12 @@
           strokeWeight: 1
         }
       );
-    }); // [START snippet]
+    }); // [START maps_layer_data_event_snippet]
     // Set mouseover event for each feature.
 
     exports.map.data.addListener("mouseover", function (event) {
       document.getElementById("info-box").textContent = event.feature.getProperty("letter");
-    }); // [END snippet]
+    }); // [END maps_layer_data_event_snippet]
   } // [END maps_layer_data_event]
 
   exports.initMap = initMap;

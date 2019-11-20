@@ -90,7 +90,7 @@
 
   USGSOverlay.prototype.onRemove = function () {
     this.div_.parentNode.removeChild(this.div_);
-  }; // [START region_hideshow]
+  }; // [START maps_overlay_hideshow_snippet]
   // Set the visibility to 'hidden' or 'visible'.
 
 
@@ -127,7 +127,7 @@
     } else {
       this.setMap(this.map_);
     }
-  }; // [END region_hideshow]
+  }; // [END maps_overlay_hideshow_snippet]
   // [END maps_overlay_hideshow]
 
   exports.USGSOverlay = USGSOverlay;

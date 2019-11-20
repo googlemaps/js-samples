@@ -35,8 +35,8 @@
     // the bounds of the image, and a reference to the map.
 
     exports.overlay = new USGSOverlay(bounds, srcImage, map);
-  } // [END region_initialization]
-  // [START region_constructor]
+  } // [END maps_overlay_simple_region_initialization]
+  // [START maps_overlay_simple_region_constructor]
 
   /** @constructor */
 
@@ -51,8 +51,8 @@
     this.div_ = null; // Explicitly call setMap on this overlay.
 
     this.setMap(map);
-  } // [END region_constructor]
-  // [START region_attachment]
+  } // [END maps_overlay_simple_region_constructor]
+  // [START maps_overlay_simple_region_attachment]
 
   /**
    * onAdd is called when the map's panes are ready and the overlay has been
@@ -75,8 +75,8 @@
 
     var panes = this.getPanes();
     panes.overlayLayer.appendChild(div);
-  }; // [END region_attachment]
-  // [START region_drawing]
+  }; // [END maps_overlay_simple_region_attachment]
+  // [START maps_overlay_simple_region_drawing]
 
 
   USGSOverlay.prototype.draw = function () {
@@ -95,8 +95,8 @@
     div.style.top = ne.y + "px";
     div.style.width = ne.x - sw.x + "px";
     div.style.height = sw.y - ne.y + "px";
-  }; // [END region_drawing]
-  // [START region_removal]
+  }; // [END maps_overlay_simple_region_drawing]
+  // [START maps_overlay_simple_region_removal]
   // The onRemove() method will be called automatically from the API if
   // we ever set the overlay's map property to 'null'.
 
@@ -104,7 +104,7 @@
   USGSOverlay.prototype.onRemove = function () {
     this.div_.parentNode.removeChild(this.div_);
     this.div_ = null;
-  }; // [END region_removal]
+  }; // [END maps_overlay_simple_region_removal]
   // [END maps_overlay_simple]
 
   exports.USGSOverlay = USGSOverlay;

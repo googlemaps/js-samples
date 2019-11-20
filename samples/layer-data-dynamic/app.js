@@ -29,7 +29,7 @@
       "https://storage.googleapis.com/mapsdevsite/json/google.json"
     );
 
-    // [START snippet]
+    // [START maps_layer_data_dynamic_snippet]
     // Color each letter gray. Change the color when the isColorful property
     // is set to true.
     exports.map.data.setStyle(function(feature) {
@@ -60,7 +60,7 @@
     exports.map.data.addListener("mouseout", function(event) {
       exports.map.data.revertStyle();
     });
-    // [END snippet]
+    // [END maps_layer_data_dynamic_snippet]
   }
   // [END maps_layer_data_dynamic]
 
