@@ -15,7 +15,7 @@ limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_overlay_hideshow] -->
-<!-- [START region_toolbar] -->
+<!-- [START maps_overlay_hideshow_toolbar] -->
 <!-- Add an input button to initiate the toggle method on the overlay. -->
 <div id="floating-panel">
   <input type="button" value="Toggle visibility" onclick="overlay.toggle();" />
@@ -25,7 +25,7 @@ limitations under the License.
     onclick="overlay.toggleDOM();"
   />
 </div>
-<!-- [END region_toolbar] -->
+<!-- [END maps_overlay_hideshow_toolbar] -->
 <div id="map"></div>
 <!-- [END maps_overlay_hideshow] -->
 {% endblock %}

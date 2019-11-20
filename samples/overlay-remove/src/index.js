@@ -46,9 +46,9 @@ export function addOverlay() {
   historicalOverlay.setMap(map);
 }
 
-// [START region_removal]
+// [START maps_overlay_remove_region_removal]
 export function removeOverlay() {
   historicalOverlay.setMap(null);
 }
-// [END region_removal]
+// [END maps_overlay_remove_region_removal]
 // [END maps_overlay_remove]
