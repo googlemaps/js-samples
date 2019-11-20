@@ -175,7 +175,7 @@ export function clearMarkers() {
   markers = [];
 }
 
-// [START region_setcountry]
+// [START maps_places_autocomplete_hotelsearch]
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
 export function setAutocompleteCountry() {
@@ -192,7 +192,7 @@ export function setAutocompleteCountry() {
   clearResults();
   clearMarkers();
 }
-// [END region_setcountry]
+// [END maps_places_autocomplete_hotelsearch]
 
 export function dropMarker(i) {
   return function() {

@@ -32,7 +32,7 @@ export function initMap() {
     { lat: 32.321, lng: -44.757 }
   ];
 
-  // [START region_red_triangle]
+  // [START maps_polygon_draggable_red_triangle]
   var redCoords = [
     { lat: 25.774, lng: -80.19 },
     { lat: 18.466, lng: -66.118 },
@@ -51,7 +51,7 @@ export function initMap() {
     draggable: true,
     geodesic: true
   });
-  // [END region_red_triangle]
+  // [END maps_polygon_draggable_red_triangle]
 
   // Construct a draggable blue triangle with geodesic set to false.
   new google.maps.Polygon({

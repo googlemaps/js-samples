@@ -27,7 +27,7 @@
     "build:js": "lerna run build:js",
     "build:watch": "npm-watch build",
     "build:move": "lerna run build:move && cp index.html dist/index.html",
-    "ci": "npm run lint && npm run test && npm build",
+    "ci": "npm run lint && npm run test",
     "defaults:data:merge": "lerna exec '../../build/merge_default_data.sh'",
     "defaults:package:merge": "lerna exec '../../build/merge_default_package.sh'",
     "format": "npm run format:root && lerna run format",
@@ -36,7 +36,8 @@
     "lint": "lerna run lint",
     "serve": "firebase serve --port 8080",
     "serve:watch": "run-p build:watch serve",
-    "test": "lerna run test"
+    "test": "lerna run test && npm run test:tags",
+    "test:tags": "./build/test_tags.sh"
   },
   "dependencies": {},
   "devDependencies": {
