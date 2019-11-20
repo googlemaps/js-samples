@@ -13,6 +13,7 @@ Samples for the Google Maps JavaScript API.
 **Note::** Many of these samples were written in 2010-2012. Many are still functional and are in the samples folder. Others that do not run have been moved to archive.
 
 ## Development
+**Note**: The default branch for this repo is dev and **not** master.
 
 Start a server that will reload as built files change.
 
