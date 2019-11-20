@@ -44,3 +44,5 @@ fi
     echo "${errors_duplicate[*]}"
     echo "${errors_lint[*]}"
 )
+
+exit 1
