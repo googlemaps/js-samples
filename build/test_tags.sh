@@ -35,14 +35,17 @@ while read l; do
 done <$tmp
 
 if [ "${#errors_duplicate[@]}" == "0" ] && [ "${#errors_lint[@]}" == "0" ]; then
+    echo -e "\033[32m Passed: Region tags passed checks!\033[0m"
     exit 0
 fi
 
 # print errors
 (
     IFS=$'\n'
+    echo -e "\033[31m Failed: Invalid region tags!"
     echo "${errors_duplicate[*]}"
     echo "${errors_lint[*]}"
+    echo -e "\033[0m"
 )
 
 exit 1
