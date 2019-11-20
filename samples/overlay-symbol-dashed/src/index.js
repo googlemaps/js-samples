@@ -26,7 +26,7 @@ export function initMap() {
     mapTypeId: "terrain"
   });
 
-  // [START region_polyline]
+  // [START maps_overlay_symbol_dashed_region_polyline]
   // Define a symbol using SVG path notation, with an opacity of 1.
   var lineSymbol = {
     path: "M 0,-1 0,1",
@@ -49,6 +49,6 @@ export function initMap() {
     ],
     map: map
   });
-  // [END region_polyline]
+  // [END maps_overlay_symbol_dashed_region_polyline]
 }
 // [END maps_overlay_symbol_dashed]

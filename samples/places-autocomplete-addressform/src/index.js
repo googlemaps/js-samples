@@ -51,7 +51,7 @@ export function initAutocomplete() {
   autocomplete.addListener("place_changed", fillInAddress);
 }
 
-// [START region_fillform]
+// [START maps_places_autocomplete_addressform_fillform]
 export function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
@@ -71,9 +71,9 @@ export function fillInAddress() {
     }
   }
 }
-// [END region_fillform]
+// [END maps_places_autocomplete_addressform_fillform]
 
-// [START region_geolocation]
+// [START maps_places_autocomplete_addressform_geolocation]
 // Bias the autocomplete object to the user's geographical location,
 // as supplied by the browser's 'navigator.geolocation' object.
 export function geolocate() {
@@ -91,5 +91,5 @@ export function geolocate() {
     });
   }
 }
-// [END region_geolocation]
+// [END maps_places_autocomplete_addressform_geolocation]
 // [END maps_places_autocomplete_addressform]

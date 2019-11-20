@@ -30,7 +30,7 @@ while read l; do
 
     # Check if begins with [START maps_*]
     if [ "${region:7:5}" != "maps_" ]; then
-        errors_lint+=("region tag should start with maps_: $region")
+        errors_lint+=("region tag should start with maps_: $region $path")
     fi
 done <$tmp
 

@@ -24,7 +24,7 @@ export function initMap() {
     mapTypeId: "terrain"
   });
 
-  // [START region_polyline]
+  // [START maps_overlay_symbol_custom_region_polyline]
   // Define the custom symbols. All symbols are defined via SVG path notation.
   // They have varying stroke color, fill color, stroke weight,
   // opacity and rotation properties.
@@ -67,6 +67,6 @@ export function initMap() {
     ],
     map: map
   });
-  // [END region_polyline]
+  // [END maps_overlay_symbol_custom_region_polyline]
 }
 // [END maps_overlay_symbol_custom]

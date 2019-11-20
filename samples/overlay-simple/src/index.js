@@ -15,7 +15,7 @@
  */
 
 // [START maps_overlay_simple]
-// [START region_initialization]
+// [START maps_overlay_simple_region_initialization]
 // This example creates a custom overlay called USGSOverlay, containing
 // a U.S. Geological Survey (USGS) image of the relevant area on the map.
 
@@ -52,9 +52,9 @@ export function initMap() {
   // the bounds of the image, and a reference to the map.
   overlay = new USGSOverlay(bounds, srcImage, map);
 }
-// [END region_initialization]
+// [END maps_overlay_simple_region_initialization]
 
-// [START region_constructor]
+// [START maps_overlay_simple_region_constructor]
 /** @constructor */
 export function USGSOverlay(bounds, image, map) {
   // Initialize all properties.
@@ -70,9 +70,9 @@ export function USGSOverlay(bounds, image, map) {
   // Explicitly call setMap on this overlay.
   this.setMap(map);
 }
-// [END region_constructor]
+// [END maps_overlay_simple_region_constructor]
 
-// [START region_attachment]
+// [START maps_overlay_simple_region_attachment]
 /**
  * onAdd is called when the map's panes are ready and the overlay has been
  * added to the map.
@@ -97,9 +97,9 @@ USGSOverlay.prototype.onAdd = function() {
   var panes = this.getPanes();
   panes.overlayLayer.appendChild(div);
 };
-// [END region_attachment]
+// [END maps_overlay_simple_region_attachment]
 
-// [START region_drawing]
+// [START maps_overlay_simple_region_drawing]
 USGSOverlay.prototype.draw = function() {
   // We use the south-west and north-east
   // coordinates of the overlay to peg it to the correct position and size.
@@ -119,14 +119,14 @@ USGSOverlay.prototype.draw = function() {
   div.style.width = ne.x - sw.x + "px";
   div.style.height = sw.y - ne.y + "px";
 };
-// [END region_drawing]
+// [END maps_overlay_simple_region_drawing]
 
-// [START region_removal]
+// [START maps_overlay_simple_region_removal]
 // The onRemove() method will be called automatically from the API if
 // we ever set the overlay's map property to 'null'.
 USGSOverlay.prototype.onRemove = function() {
   this.div_.parentNode.removeChild(this.div_);
   this.div_ = null;
 };
-// [END region_removal]
+// [END maps_overlay_simple_region_removal]
 // [END maps_overlay_simple]

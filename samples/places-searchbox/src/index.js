@@ -41,7 +41,7 @@ export function initAutocomplete() {
   });
 
   var markers = [];
-  // [START region_getplaces]
+  // [START maps_places_searchbox_getplaces]
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
   searchBox.addListener("places_changed", function() {
@@ -91,7 +91,7 @@ export function initAutocomplete() {
     });
     map.fitBounds(bounds);
   });
-  // [END region_getplaces]
+  // [END maps_places_searchbox_getplaces]
 }
 
 // [END maps_places_searchbox]
