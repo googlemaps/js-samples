@@ -50,7 +50,10 @@ export function initMap() {
 
   // Create the polyline and add the symbols via the 'icons' property.
   var line = new google.maps.Polyline({
-    path: [{ lat: 22.291, lng: 153.027 }, { lat: 18.291, lng: 153.027 }],
+    path: [
+      { lat: 22.291, lng: 153.027 },
+      { lat: 18.291, lng: 153.027 }
+    ],
     icons: [
       {
         icon: symbolOne,
