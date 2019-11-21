@@ -38,7 +38,10 @@ export function initMap() {
   // Give the line an opacity of 0.
   // Repeat the symbol at intervals of 20 pixels to create the dashed effect.
   var line = new google.maps.Polyline({
-    path: [{ lat: 22.291, lng: 153.027 }, { lat: 18.291, lng: 153.027 }],
+    path: [
+      { lat: 22.291, lng: 153.027 },
+      { lat: 18.291, lng: 153.027 }
+    ],
     strokeOpacity: 0,
     icons: [
       {

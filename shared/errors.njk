@@ -14,24 +14,27 @@
         var uuid = s.join("");
         return uuid;
     }
-    window.addEventListener('DOMContentLoaded', function () {
-        const errorHandler = new StackdriverErrorReporter();
-        let uuid = localStorage.getItem("uuid");
+    
+    if (window.location.hostname !== "127.0.0.1") {
+        window.addEventListener('DOMContentLoaded', function () {
+            const errorHandler = new StackdriverErrorReporter();
+            let uuid = localStorage.getItem("uuid");
 
-        if (!uuid ) {
-            uuid = uuid4();
-            localStorage.setItem("uuid", uuid);
-        }
-
-        errorHandler.start({
-            key: 'AIzaSyD298H_8hrIigzJbFPTnHaAUGABMWJZBMA',
-            projectId: 'geo-devrel-259418',
-            service: 'js-samples',
-            reportUncaughtExceptions: true,
-            reportUnhandledPromiseRejections: true,
-            context: {
-                user: uuid
+            if (!uuid) {
+                uuid = uuid4();
+                localStorage.setItem("uuid", uuid);
             }
+
+            errorHandler.start({
+                key: 'AIzaSyD298H_8hrIigzJbFPTnHaAUGABMWJZBMA',
+                projectId: 'geo-devrel-259418',
+                service: 'js-samples',
+                reportUncaughtExceptions: true,
+                reportUnhandledPromiseRejections: true,
+                context: {
+                    user: uuid
+                }
+            });
         });
-    });
+    }
 </script>
