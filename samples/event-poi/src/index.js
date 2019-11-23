@@ -15,7 +15,7 @@
  */
 
 // [START maps_event_poi]
-export function initMap() {
+function initMap() {
   var origin = { lat: -33.871, lng: 151.197 };
 
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -28,7 +28,7 @@ export function initMap() {
 /**
  * @constructor
  */
-export var ClickEventHandler = function(map, origin) {
+var ClickEventHandler = function(map, origin) {
   this.origin = origin;
   this.map = map;
   this.directionsService = new google.maps.DirectionsService();
@@ -93,3 +93,4 @@ ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
   });
 };
 // [END maps_event_poi]
+export { initMap, ClickEventHandler };

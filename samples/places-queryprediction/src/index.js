@@ -22,7 +22,7 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-export function initService() {
+function initService() {
   var displaySuggestions = function(predictions, status) {
     if (status != google.maps.places.PlacesServiceStatus.OK) {
       alert(status);
@@ -40,3 +40,4 @@ export function initService() {
   service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
 }
 // [END maps_places_queryprediction]
+export { initService };

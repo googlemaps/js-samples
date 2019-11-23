@@ -19,7 +19,7 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.866, lng: 151.196 },
     zoom: 15
@@ -56,3 +56,4 @@ export function initMap() {
   });
 }
 // [END maps_place_details]
+export { initMap };

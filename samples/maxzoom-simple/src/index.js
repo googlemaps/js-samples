@@ -15,11 +15,11 @@
  */
 
 // [START maps_maxzoom_simple]
-export var map;
-export var maxZoomService;
-export var infoWindow;
+var map;
+var maxZoomService;
+var infoWindow;
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 35.6894, lng: 139.692 },
@@ -33,7 +33,7 @@ export function initMap() {
   map.addListener("click", showMaxZoom);
 }
 
-export function showMaxZoom(e) {
+function showMaxZoom(e) {
   maxZoomService.getMaxZoomAtLatLng(e.latLng, function(response) {
     if (response.status !== "OK") {
       infoWindow.setContent("Error in MaxZoomService");
@@ -47,3 +47,4 @@ export function showMaxZoom(e) {
   });
 }
 // [END maps_maxzoom_simple]
+export { map, maxZoomService, infoWindow, initMap, showMaxZoom };

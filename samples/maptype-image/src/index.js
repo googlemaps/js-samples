@@ -15,7 +15,7 @@
  */
 
 // [START maps_maptype_image]
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 0, lng: 0 },
     zoom: 1,
@@ -56,7 +56,7 @@ export function initMap() {
 
 // Normalizes the coords that tiles repeat across the x axis (horizontally)
 // like the standard Google map tiles.
-export function getNormalizedCoord(coord, zoom) {
+function getNormalizedCoord(coord, zoom) {
   var y = coord.y;
   var x = coord.x;
 
@@ -77,3 +77,4 @@ export function getNormalizedCoord(coord, zoom) {
   return { x: x, y: y };
 }
 // [END maps_maptype_image]
+export { initMap, getNormalizedCoord };

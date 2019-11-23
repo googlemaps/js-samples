@@ -15,8 +15,8 @@
  */
 
 // [START maps_control_custom_state]
-export var map;
-export var chicago = { lat: 41.85, lng: -87.65 };
+var map;
+var chicago = { lat: 41.85, lng: -87.65 };
 
 /**
  * The CenterControl adds a control to the map that recenters the map on
@@ -26,7 +26,7 @@ export var chicago = { lat: 41.85, lng: -87.65 };
  * @param {!google.maps.Map} map
  * @param {?google.maps.LatLng} center
  */
-export function CenterControl(controlDiv, map, center) {
+function CenterControl(controlDiv, map, center) {
   // We set up a variable for this since we're adding event listeners
   // later.
   var control = this;
@@ -97,7 +97,7 @@ CenterControl.prototype.setCenter = function(center) {
   this.center_ = center;
 };
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
     center: chicago
@@ -114,3 +114,4 @@ export function initMap() {
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
 // [END maps_control_custom_state]
+export { map, chicago, CenterControl, initMap };

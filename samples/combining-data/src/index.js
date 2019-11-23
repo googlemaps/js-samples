@@ -15,7 +15,7 @@
  */
 
 // [START maps_combining_data]
-export var mapStyle = [
+var mapStyle = [
   {
     stylers: [{ visibility: "off" }]
   },
@@ -30,11 +30,11 @@ export var mapStyle = [
     stylers: [{ visibility: "on" }, { color: "#bfd4ff" }]
   }
 ];
-export var map;
-export var censusMin = Number.MAX_VALUE,
+var map;
+var censusMin = Number.MAX_VALUE,
   censusMax = -Number.MAX_VALUE;
 
-export function initMap() {
+function initMap() {
   // load the map
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 40, lng: -100 },
@@ -59,7 +59,7 @@ export function initMap() {
 }
 
 /** Loads the state boundary polygons from a GeoJSON source. */
-export function loadMapShapes() {
+function loadMapShapes() {
   // load US state outline polygons from a GeoJson file
   map.data.loadGeoJson(
     "https://storage.googleapis.com/mapsdevsite/json/states.js",
@@ -81,7 +81,7 @@ export function loadMapShapes() {
  *
  * @param {string} variable
  */
-export function loadCensusData(variable) {
+function loadCensusData(variable) {
   // load the requested variable from the census API (using local copies)
   var xhr = new XMLHttpRequest();
   xhr.open("GET", variable + ".json");
@@ -120,7 +120,7 @@ export function loadCensusData(variable) {
 }
 
 /** Removes census data from each shape on the map and resets the UI. */
-export function clearCensusData() {
+function clearCensusData() {
   censusMin = Number.MAX_VALUE;
   censusMax = -Number.MAX_VALUE;
   map.data.forEach(function(row) {
@@ -138,7 +138,7 @@ export function clearCensusData() {
  * @param {google.maps.Data.Feature} feature
  */
 // [START maps_combining_data_snippet_stylefeature]
-export function styleFeature(feature) {
+function styleFeature(feature) {
   var low = [5, 69, 54]; // color of smallest datum
   var high = [151, 83, 34]; // color of largest datum
 
@@ -185,7 +185,7 @@ export function styleFeature(feature) {
  *
  * @param {?google.maps.MouseEvent} e
  */
-export function mouseInToRegion(e) {
+function mouseInToRegion(e) {
   // set the hover state so the setStyle function can change the border
   e.feature.setProperty("state", "hover");
 
@@ -211,10 +211,22 @@ export function mouseInToRegion(e) {
  *
  * @param {?google.maps.MouseEvent} e
  */
-export function mouseOutOfRegion(e) {
+function mouseOutOfRegion(e) {
   // reset the hover state, returning the border to normal
   e.feature.setProperty("state", "normal");
 }
 // [END maps_combining_data_snippet_mouseevents]
 
 // [END maps_combining_data]
+export {
+  mapStyle,
+  map,
+  censusMin,
+  initMap,
+  loadMapShapes,
+  loadCensusData,
+  clearCensusData,
+  styleFeature,
+  mouseInToRegion,
+  mouseOutOfRegion
+};

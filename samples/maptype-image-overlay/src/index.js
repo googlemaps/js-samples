@@ -15,7 +15,7 @@
  */
 
 // [START maps_maptype_image_overlay]
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 18,
     center: { lat: 37.783, lng: -122.403 }
@@ -69,3 +69,4 @@ export function initMap() {
   map.overlayMapTypes.push(imageMapType);
 }
 // [END maps_maptype_image_overlay]
+export { initMap };

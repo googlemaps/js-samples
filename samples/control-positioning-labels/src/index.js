@@ -26,7 +26,7 @@
  * @param {!Element} controlDiv  The name of the DIV element for the control.
  * @param {string} label  Text to display within the DIV element.
  */
-export function MakeControl(controlDiv, label) {
+function MakeControl(controlDiv, label) {
   // Set up the control border.
   var controlUI = document.createElement("div");
   controlUI.title = label;
@@ -40,7 +40,7 @@ export function MakeControl(controlDiv, label) {
   controlUI.appendChild(controlText);
 }
 
-export function initialize() {
+function initialize() {
   var mapDiv = document.getElementById("map");
   var mapOptions = {
     zoom: 11,
@@ -71,3 +71,4 @@ export function initialize() {
     map.controls[controlText[i][1]].push(divName);
   }
 }
+export { MakeControl, initialize };

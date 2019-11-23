@@ -15,8 +15,8 @@
  */
 
 // [START maps_streetview_embed]
-export var panorama;
-export function initialize() {
+var panorama;
+function initialize() {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view"),
     {
@@ -27,3 +27,4 @@ export function initialize() {
   );
 }
 // [END maps_streetview_embed]
+export { panorama, initialize };

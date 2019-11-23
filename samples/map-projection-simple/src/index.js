@@ -19,7 +19,7 @@
 // projection.
 // https://en.wikipedia.org/wiki/Gall%E2%80%93Peters_projection
 
-export function initMap() {
+function initMap() {
   // Create a map. Use the Gall-Peters map type.
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 0,
@@ -53,8 +53,8 @@ export function initMap() {
   map.data.addGeoJson(cities);
 }
 
-export var gallPetersMapType;
-export function initGallPeters() {
+var gallPetersMapType;
+function initGallPeters() {
   var GALL_PETERS_RANGE_X = 800;
   var GALL_PETERS_RANGE_Y = 512;
 
@@ -110,7 +110,7 @@ export function initGallPeters() {
 }
 
 // GeoJSON, describing the locations and names of some cities.
-export var cities = {
+var cities = {
   type: "FeatureCollection",
   features: [
     {
@@ -156,3 +156,4 @@ export var cities = {
   ]
 };
 // [END maps_map_projection_simple]
+export { initMap, gallPetersMapType, initGallPeters, cities };

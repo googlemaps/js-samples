@@ -19,31 +19,31 @@
 // consecutively rather than all at once. This example shows how to use
 // window.setTimeout() to space your markers' animation.
 
-export var neighborhoods = [
+var neighborhoods = [
   { lat: 52.511, lng: 13.447 },
   { lat: 52.549, lng: 13.422 },
   { lat: 52.497, lng: 13.396 },
   { lat: 52.517, lng: 13.394 }
 ];
 
-export var markers = [];
-export var map;
+var markers = [];
+var map;
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
     center: { lat: 52.52, lng: 13.41 }
   });
 }
 
-export function drop() {
+function drop() {
   clearMarkers();
   for (var i = 0; i < neighborhoods.length; i++) {
     addMarkerWithTimeout(neighborhoods[i], i * 200);
   }
 }
 
-export function addMarkerWithTimeout(position, timeout) {
+function addMarkerWithTimeout(position, timeout) {
   window.setTimeout(function() {
     markers.push(
       new google.maps.Marker({
@@ -55,10 +55,19 @@ export function addMarkerWithTimeout(position, timeout) {
   }, timeout);
 }
 
-export function clearMarkers() {
+function clearMarkers() {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
   markers = [];
 }
 // [END maps_marker_animations_iteration]
+export {
+  neighborhoods,
+  markers,
+  map,
+  initMap,
+  drop,
+  addMarkerWithTimeout,
+  clearMarkers
+};

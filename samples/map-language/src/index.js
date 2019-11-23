@@ -20,10 +20,11 @@
 // when loading the Google Maps JavaScript API.
 // Setting the language shows the map in the language of your choice.
 // Setting the region biases the geocoding results to that region.
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
     center: { lat: 35.717, lng: 139.731 }
   });
 }
 // [END maps_map_language]
+export { initMap };

@@ -15,7 +15,7 @@
  */
 
 // [START maps_mysql_to_maps]
-export var customLabel = {
+var customLabel = {
   restaurant: {
     label: "R"
   },
@@ -24,7 +24,7 @@ export var customLabel = {
   }
 };
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-33.863276, 151.207977),
     zoom: 12
@@ -71,7 +71,7 @@ export function initMap() {
   );
 }
 
-export function downloadUrl(url, callback) {
+function downloadUrl(url, callback) {
   var request = window.ActiveXObject
     ? new ActiveXObject("Microsoft.XMLHTTP")
     : new XMLHttpRequest();
@@ -87,5 +87,6 @@ export function downloadUrl(url, callback) {
   request.send(null);
 }
 
-export function doNothing() {}
+function doNothing() {}
 // [END maps_mysql_to_maps]
+export { customLabel, initMap, downloadUrl, doNothing };

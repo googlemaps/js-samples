@@ -18,7 +18,7 @@
 // You can set control options to change the default position or style of many
 // of the map controls.
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat: -33, lng: 151 },
@@ -30,3 +30,4 @@ export function initMap() {
   });
 }
 // [END maps_control_options]
+export { initMap };

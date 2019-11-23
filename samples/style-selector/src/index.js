@@ -15,8 +15,8 @@
  */
 
 // [START maps_style_selector]
-export var map;
-export function initMap() {
+var map;
+function initMap() {
   // Create the map with no initial style specified.
   // It therefore has default styling.
   map = new google.maps.Map(document.getElementById("map"), {
@@ -39,7 +39,7 @@ export function initMap() {
   });
 }
 
-export var styles = {
+var styles = {
   default: null,
   silver: [
     {
@@ -336,3 +336,4 @@ export var styles = {
 };
 
 // [END maps_style_selector]
+export { map, initMap, styles };

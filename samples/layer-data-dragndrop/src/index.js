@@ -17,9 +17,9 @@
 // [START maps_layer_data_dragndrop]
 /* Map functions */
 
-export var map;
+var map;
 
-export function initMap() {
+function initMap() {
   // set up the map
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(0, 0),
@@ -27,7 +27,7 @@ export function initMap() {
   });
 }
 
-export function loadGeoJsonString(geoString) {
+function loadGeoJsonString(geoString) {
   var geojson = JSON.parse(geoString);
   map.data.addGeoJson(geojson);
   zoom(map);
@@ -37,7 +37,7 @@ export function loadGeoJsonString(geoString) {
  * Update a map's viewport to fit each geometry in a dataset
  * @param {google.maps.Map} map The map to adjust
  */
-export function zoom(map) {
+function zoom(map) {
   var bounds = new google.maps.LatLngBounds();
   map.data.forEach(function(feature) {
     processPoints(feature.getGeometry(), bounds.extend, bounds);
@@ -53,7 +53,7 @@ export function zoom(map) {
  * @param {Object} thisArg The value of 'this' as provided to 'callback' (e.g.
  *     myArray)
  */
-export function processPoints(geometry, callback, thisArg) {
+function processPoints(geometry, callback, thisArg) {
   if (geometry instanceof google.maps.LatLng) {
     callback.call(thisArg, geometry);
   } else if (geometry instanceof google.maps.Data.Point) {
@@ -67,7 +67,7 @@ export function processPoints(geometry, callback, thisArg) {
 
 /* DOM (drag/drop) functions */
 
-export function initEvents() {
+function initEvents() {
   // set up the drag & drop events
   var mapContainer = document.getElementById("map");
   var dropContainer = document.getElementById("drop-container");
@@ -81,18 +81,18 @@ export function initEvents() {
   dropContainer.addEventListener("dragleave", hidePanel, false);
 }
 
-export function showPanel(e) {
+function showPanel(e) {
   e.stopPropagation();
   e.preventDefault();
   document.getElementById("drop-container").style.display = "block";
   return false;
 }
 
-export function hidePanel(e) {
+function hidePanel(e) {
   document.getElementById("drop-container").style.display = "none";
 }
 
-export function handleDrop(e) {
+function handleDrop(e) {
   e.preventDefault();
   e.stopPropagation();
   hidePanel(e);
@@ -124,8 +124,20 @@ export function handleDrop(e) {
   return false;
 }
 
-export function initialize() {
+function initialize() {
   initMap();
   initEvents();
 }
 // [END maps_layer_data_dragndrop]
+export {
+  map,
+  initMap,
+  loadGeoJsonString,
+  zoom,
+  processPoints,
+  initEvents,
+  showPanel,
+  hidePanel,
+  handleDrop,
+  initialize
+};

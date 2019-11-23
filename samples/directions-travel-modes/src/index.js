@@ -15,7 +15,7 @@
  */
 
 // [START maps_directions_travel_modes]
-export function initMap() {
+function initMap() {
   var directionsRenderer = new google.maps.DirectionsRenderer();
   var directionsService = new google.maps.DirectionsService();
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -30,10 +30,7 @@ export function initMap() {
   });
 }
 
-export function calculateAndDisplayRoute(
-  directionsService,
-  directionsRenderer
-) {
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   var selectedMode = document.getElementById("mode").value;
   directionsService.route(
     {
@@ -54,3 +51,4 @@ export function calculateAndDisplayRoute(
   );
 }
 // [END maps_directions_travel_modes]
+export { initMap, calculateAndDisplayRoute };
