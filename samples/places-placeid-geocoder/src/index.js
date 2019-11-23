@@ -20,7 +20,7 @@
 // <script
 // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.8688, lng: 151.2195 },
     zoom: 13
@@ -82,3 +82,4 @@ export function initMap() {
   });
 }
 // [END maps_places_placeid_geocoder]
+export { initMap };

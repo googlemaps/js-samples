@@ -19,7 +19,7 @@
 // America.
 
 // First, create an object containing LatLng and population for each city.
-export var citymap = {
+var citymap = {
   chicago: {
     center: { lat: 41.878, lng: -87.629 },
     population: 2714856
@@ -38,7 +38,7 @@ export var citymap = {
   }
 };
 
-export function initMap() {
+function initMap() {
   // Create the map.
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -63,3 +63,4 @@ export function initMap() {
   }
 }
 // [END maps_circle_simple]
+export { citymap, initMap };

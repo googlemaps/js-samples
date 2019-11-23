@@ -20,7 +20,7 @@
 // <script
 // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
     center: { lat: -33.8688, lng: 151.2195 },
@@ -33,7 +33,7 @@ export function initMap() {
 /**
  * @constructor
  */
-export function AutocompleteDirectionsHandler(map) {
+function AutocompleteDirectionsHandler(map) {
   this.map = map;
   this.originPlaceId = null;
   this.destinationPlaceId = null;
@@ -131,3 +131,4 @@ AutocompleteDirectionsHandler.prototype.route = function() {
 };
 
 // [END maps_places_autocomplete_directions]
+export { initMap, AutocompleteDirectionsHandler };

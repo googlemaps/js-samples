@@ -16,7 +16,7 @@
 
 // [START maps_controls_basic_map]
 // [START maps_controls_basic_map_script_snippet]
-export function initMap() {
+function initMap() {
   var locationRio = { lat: -22.915, lng: -43.197 };
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
@@ -31,3 +31,4 @@ export function initMap() {
   });
 }
 // [END maps_controls_basic_map]
+export { initMap };

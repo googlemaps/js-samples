@@ -15,8 +15,8 @@
  */
 
 // [START maps_layer_data_event]
-export var map;
-export function initMap() {
+var map;
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat: -28, lng: 137 }
@@ -45,3 +45,4 @@ export function initMap() {
   // [END maps_layer_data_event_snippet]
 }
 // [END maps_layer_data_event]
+export { map, initMap };

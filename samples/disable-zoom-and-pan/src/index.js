@@ -16,7 +16,7 @@
 
 // [START maps_disable_zoom_and_pan]
 // [START maps_disable_zoom_and_pan_script_snippet]
-export function initMap() {
+function initMap() {
   var locationRio = { lat: -22.915, lng: -43.197 };
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
@@ -32,3 +32,4 @@ export function initMap() {
   });
 }
 // [END maps_disable_zoom_and_pan]
+export { initMap };

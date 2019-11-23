@@ -17,7 +17,7 @@
 // [START maps_overlay_symbol_animate]
 // This example adds an animated symbol to a polyline.
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 20.291, lng: 153.027 },
     zoom: 6,
@@ -52,7 +52,7 @@ export function initMap() {
 
 // Use the DOM setInterval() function to change the offset of the symbol
 // at fixed intervals.
-export function animateCircle(line) {
+function animateCircle(line) {
   var count = 0;
   window.setInterval(function() {
     count = (count + 1) % 200;
@@ -63,3 +63,4 @@ export function animateCircle(line) {
   }, 20);
 }
 // [END maps_overlay_symbol_animate]
+export { initMap, animateCircle };

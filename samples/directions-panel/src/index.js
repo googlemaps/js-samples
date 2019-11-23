@@ -15,7 +15,7 @@
  */
 
 // [START maps_directions_panel]
-export function initMap() {
+function initMap() {
   var directionsRenderer = new google.maps.DirectionsRenderer();
   var directionsService = new google.maps.DirectionsService();
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -36,10 +36,7 @@ export function initMap() {
   document.getElementById("end").addEventListener("change", onChangeHandler);
 }
 
-export function calculateAndDisplayRoute(
-  directionsService,
-  directionsRenderer
-) {
+function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   var start = document.getElementById("start").value;
   var end = document.getElementById("end").value;
   directionsService.route(
@@ -58,3 +55,4 @@ export function calculateAndDisplayRoute(
   );
 }
 // [END maps_directions_panel]
+export { initMap, calculateAndDisplayRoute };

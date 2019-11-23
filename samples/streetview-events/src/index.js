@@ -15,7 +15,7 @@
  */
 
 // [START maps_streetview_events]
-export function initPano() {
+function initPano() {
   var panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
     {
@@ -64,3 +64,4 @@ export function initPano() {
   });
 }
 // [END maps_streetview_events]
+export { initPano };

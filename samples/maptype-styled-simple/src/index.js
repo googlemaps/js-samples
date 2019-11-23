@@ -15,7 +15,7 @@
  */
 
 // [START maps_maptype_styled_simple]
-export function initMap() {
+function initMap() {
   // Create a new StyledMapType object, passing it an array of styles,
   // and the name to be displayed on the map type control.
   var styledMapType = new google.maps.StyledMapType(
@@ -147,3 +147,4 @@ export function initMap() {
   map.setMapTypeId("styled_map");
 }
 // [END maps_maptype_styled_simple]
+export { initMap };

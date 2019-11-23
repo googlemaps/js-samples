@@ -15,7 +15,7 @@
  */
 
 // [START maps_layer_transit]
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: { lat: 51.501904, lng: -0.115871 }
@@ -25,3 +25,4 @@ export function initMap() {
   transitLayer.setMap(map);
 }
 // [END maps_layer_transit]
+export { initMap };

@@ -19,9 +19,9 @@
 // animation. Clicking on the marker will toggle the animation between a BOUNCE
 // animation and no animation.
 
-export var marker;
+var marker;
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: { lat: 59.325, lng: 18.07 }
@@ -36,7 +36,7 @@ export function initMap() {
   marker.addListener("click", toggleBounce);
 }
 
-export function toggleBounce() {
+function toggleBounce() {
   if (marker.getAnimation() !== null) {
     marker.setAnimation(null);
   } else {
@@ -44,3 +44,4 @@ export function toggleBounce() {
   }
 }
 // [END maps_marker_animations]
+export { marker, initMap, toggleBounce };

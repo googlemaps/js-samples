@@ -15,7 +15,7 @@
  */
 
 // [START maps_streetview_controls]
-export function initPano() {
+function initPano() {
   // Note: constructed panorama objects have visible: true
   // set by default.
   var panorama = new google.maps.StreetViewPanorama(
@@ -32,3 +32,4 @@ export function initPano() {
   );
 }
 // [END maps_streetview_controls]
+export { initPano };

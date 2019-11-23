@@ -15,7 +15,7 @@
  */
 
 // [START maps_event_domListener]
-export function initMap() {
+function initMap() {
   var mapDiv = document.getElementById("map");
   var map = new google.maps.Map(mapDiv, {
     zoom: 8,
@@ -29,3 +29,4 @@ export function initMap() {
   });
 }
 // [END maps_event_domListener]
+export { initMap };

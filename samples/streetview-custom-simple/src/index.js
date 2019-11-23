@@ -15,7 +15,7 @@
  */
 
 // [START maps_streetview_custom_simple]
-export function initPano() {
+function initPano() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
   // the custom panorama 'reception' which we check for below.
@@ -27,7 +27,7 @@ export function initPano() {
 }
 
 // Return a pano image given the panoID.
-export function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
+function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
   return (
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
     "panoReception1024-" +
@@ -42,7 +42,7 @@ export function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
 
 // Construct the appropriate StreetViewPanoramaData given
 // the passed pano IDs.
-export function getCustomPanorama(pano) {
+function getCustomPanorama(pano) {
   if (pano === "reception") {
     return {
       location: {
@@ -65,3 +65,4 @@ export function getCustomPanorama(pano) {
   }
 }
 // [END maps_streetview_custom_simple]
+export { initPano, getCustomPanoramaTileUrl, getCustomPanorama };

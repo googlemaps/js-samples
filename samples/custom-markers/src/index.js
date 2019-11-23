@@ -15,8 +15,8 @@
  */
 
 // [START maps_custom_markers]
-export var map;
-export function initMap() {
+var map;
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     zoom: 16
@@ -126,3 +126,4 @@ export function initMap() {
   }
 }
 // [END maps_custom_markers]
+export { map, initMap };

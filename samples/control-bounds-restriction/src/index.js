@@ -15,16 +15,16 @@
  */
 
 // [START maps_control_bounds_restriction]
-export var map;
-export var NEW_ZEALAND_BOUNDS = {
+var map;
+var NEW_ZEALAND_BOUNDS = {
   north: -34.36,
   south: -47.35,
   west: 166.28,
   east: -175.81
 };
-export var AUCKLAND = { lat: -37.06, lng: 174.58 };
+var AUCKLAND = { lat: -37.06, lng: 174.58 };
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: AUCKLAND,
     restriction: {
@@ -35,3 +35,4 @@ export function initMap() {
   });
 }
 // [END maps_control_bounds_restriction]
+export { map, NEW_ZEALAND_BOUNDS, AUCKLAND, initMap };

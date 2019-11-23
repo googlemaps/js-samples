@@ -15,8 +15,8 @@
  */
 
 // [START maps_control_replacement]
-export var map;
-export function initMap() {
+var map;
+function initMap() {
   map = new google.maps.Map(document.querySelector("#map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
@@ -28,7 +28,7 @@ export function initMap() {
   initFullscreenControl(map);
 }
 
-export function initZoomControl(map) {
+function initZoomControl(map) {
   document.querySelector(".zoom-control-in").onclick = function() {
     map.setZoom(map.getZoom() + 1);
   };
@@ -40,7 +40,7 @@ export function initZoomControl(map) {
   );
 }
 
-export function initMapTypeControl(map) {
+function initMapTypeControl(map) {
   var mapTypeControlDiv = document.querySelector(".maptype-control");
   document.querySelector(".maptype-control-map").onclick = function() {
     mapTypeControlDiv.classList.add("maptype-control-is-map");
@@ -56,7 +56,7 @@ export function initMapTypeControl(map) {
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(mapTypeControlDiv);
 }
 
-export function initFullscreenControl(map) {
+function initFullscreenControl(map) {
   var elementToSendFullscreen = map.getDiv().firstChild;
   var fullscreenControl = document.querySelector(".fullscreen-control");
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
@@ -78,7 +78,7 @@ export function initFullscreenControl(map) {
   };
 }
 
-export function isFullscreen(element) {
+function isFullscreen(element) {
   return (
     (document.fullscreenElement ||
       document.webkitFullscreenElement ||
@@ -86,7 +86,7 @@ export function isFullscreen(element) {
       document.msFullscreenElement) == element
   );
 }
-export function requestFullscreen(element) {
+function requestFullscreen(element) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
   } else if (element.webkitRequestFullScreen) {
@@ -97,7 +97,7 @@ export function requestFullscreen(element) {
     element.msRequestFullScreen();
   }
 }
-export function exitFullscreen() {
+function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
   } else if (document.webkitExitFullscreen) {
@@ -109,3 +109,13 @@ export function exitFullscreen() {
   }
 }
 // [END maps_control_replacement]
+export {
+  map,
+  initMap,
+  initZoomControl,
+  initMapTypeControl,
+  initFullscreenControl,
+  isFullscreen,
+  requestFullscreen,
+  exitFullscreen
+};

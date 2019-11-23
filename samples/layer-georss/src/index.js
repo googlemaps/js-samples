@@ -15,7 +15,7 @@
  */
 
 // [START maps_layer_georss]
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat: 49.496675, lng: -102.65625 }
@@ -28,3 +28,4 @@ export function initMap() {
   georssLayer.setMap(map);
 }
 // [END maps_layer_georss]
+export { initMap };
