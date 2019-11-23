@@ -15,9 +15,9 @@
  */
 
 // [START maps_aerial_rotation]
-export var map;
+var map;
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 45.518, lng: -122.672 },
     zoom: 18,
@@ -27,15 +27,16 @@ export function initMap() {
   });
 }
 
-export function rotate90() {
+function rotate90() {
   var heading = map.getHeading() || 0;
   map.setHeading(heading + 90);
 }
 
-export function autoRotate() {
+function autoRotate() {
   // Determine if we're showing aerial imagery.
   if (map.getTilt() !== 0) {
     window.setInterval(rotate90, 3000);
   }
 }
 // [END maps_aerial_rotation]
+export { map, initMap, rotate90, autoRotate };

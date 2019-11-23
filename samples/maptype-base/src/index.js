@@ -27,7 +27,7 @@
  * @constructor
  * @implements {google.maps.MapType}
  */
-export function CoordMapType(tileSize) {
+function CoordMapType(tileSize) {
   this.tileSize = tileSize;
 }
 
@@ -48,7 +48,7 @@ CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
   return div;
 };
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: { lat: 41.85, lng: -87.65 },
@@ -74,3 +74,4 @@ export function initMap() {
   );
 }
 // [END maps_maptype_base]
+export { CoordMapType, initMap };

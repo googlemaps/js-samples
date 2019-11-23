@@ -15,9 +15,9 @@
  */
 
 // [START maps_streetview_overlays]
-export var panorama;
+var panorama;
 
-export function initMap() {
+function initMap() {
   var astorPlace = { lat: 40.729884, lng: -73.990988 };
 
   // Set up the map
@@ -64,7 +64,7 @@ export function initMap() {
   );
 }
 
-export function toggleStreetView() {
+function toggleStreetView() {
   var toggle = panorama.getVisible();
   if (toggle == false) {
     panorama.setVisible(true);
@@ -73,3 +73,4 @@ export function toggleStreetView() {
   }
 }
 // [END maps_streetview_overlays]
+export { panorama, initMap, toggleStreetView };

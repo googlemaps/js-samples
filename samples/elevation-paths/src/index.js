@@ -18,7 +18,7 @@
 // Load the Visualization API and the columnchart package.
 google.load("visualization", "1", { packages: ["columnchart"] });
 
-export function initMap() {
+function initMap() {
   // The following path marks a path from Mt. Whitney, the highest point in the
   // continental United States to Badwater, Death Valley, the lowest point.
   var path = [
@@ -43,7 +43,7 @@ export function initMap() {
   displayPathElevation(path, elevator, map);
 }
 
-export function displayPathElevation(path, elevator, map) {
+function displayPathElevation(path, elevator, map) {
   // Display a polyline of the elevation path.
   new google.maps.Polyline({
     path: path,
@@ -66,7 +66,7 @@ export function displayPathElevation(path, elevator, map) {
 
 // Takes an array of ElevationResult objects, draws the path on the map
 // and plots the elevation profile on a Visualization API ColumnChart.
-export function plotElevation(elevations, status) {
+function plotElevation(elevations, status) {
   var chartDiv = document.getElementById("elevation_chart");
   if (status !== "OK") {
     // Show the error code inside the chartDiv.
@@ -96,3 +96,4 @@ export function plotElevation(elevations, status) {
   });
 }
 // [END maps_elevation_paths]
+export { initMap, displayPathElevation, plotElevation };

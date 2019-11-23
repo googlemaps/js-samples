@@ -17,7 +17,7 @@
 // [START maps_polygon_simple]
 // This example creates a simple polygon representing the Bermuda Triangle.
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 5,
     center: { lat: 24.886, lng: -70.268 },
@@ -44,3 +44,4 @@ export function initMap() {
   bermudaTriangle.setMap(map);
 }
 // [END maps_polygon_simple]
+export { initMap };

@@ -19,7 +19,7 @@
 // setting the opacity of the polyline to 0, and drawing an opaque symbol
 // at a regular interval on the polyline.
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 6,
     center: { lat: 20.291, lng: 153.027 },
@@ -55,3 +55,4 @@ export function initMap() {
   // [END maps_overlay_symbol_dashed_region_polyline]
 }
 // [END maps_overlay_symbol_dashed]
+export { initMap };

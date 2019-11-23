@@ -19,7 +19,7 @@
 // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
 // to the base of the flagpole.
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: { lat: -33.9, lng: 151.2 }
@@ -30,7 +30,7 @@ export function initMap() {
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
-export var beaches = [
+var beaches = [
   ["Bondi Beach", -33.890542, 151.274856, 4],
   ["Coogee Beach", -33.923036, 151.259052, 5],
   ["Cronulla Beach", -34.028249, 151.157507, 3],
@@ -38,7 +38,7 @@ export var beaches = [
   ["Maroubra Beach", -33.950198, 151.259302, 1]
 ];
 
-export function setMarkers(map) {
+function setMarkers(map) {
   // Adds markers to the map.
 
   // Marker sizes are expressed as a Size of X,Y where the origin of the image
@@ -76,3 +76,4 @@ export function setMarkers(map) {
   }
 }
 // [END maps_icon_complex]
+export { initMap, beaches, setMarkers };

@@ -19,8 +19,8 @@
 // prompted by your browser. If you see the error "The Geolocation service
 // failed.", it means you probably did not give permission for the browser to
 // locate you.
-export var map, infoWindow;
-export function initMap() {
+var map, infoWindow;
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 6
@@ -51,7 +51,7 @@ export function initMap() {
   }
 }
 
-export function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(
     browserHasGeolocation
@@ -61,3 +61,4 @@ export function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.open(map);
 }
 // [END maps_map_geolocation]
+export { map, initMap, handleLocationError };

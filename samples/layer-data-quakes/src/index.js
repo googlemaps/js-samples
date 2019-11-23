@@ -15,9 +15,9 @@
  */
 
 // [START maps_layer_data_quakes]
-export var map;
+var map;
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 20, lng: -160 },
     zoom: 2,
@@ -38,11 +38,11 @@ export function initMap() {
 }
 
 // Defines the callback function referenced in the jsonp file.
-export function eqfeed_callback(data) {
+function eqfeed_callback(data) {
   map.data.addGeoJson(data);
 }
 
-export function styleFeature(feature) {
+function styleFeature(feature) {
   var low = [151, 83, 34]; // color of mag 1.0
   var high = [5, 69, 54]; // color of mag 6.0 and above
   var minMag = 1.0;
@@ -68,7 +68,7 @@ export function styleFeature(feature) {
   };
 }
 
-export function interpolateHsl(lowHsl, highHsl, fraction) {
+function interpolateHsl(lowHsl, highHsl, fraction) {
   var color = [];
   for (var i = 0; i < 3; i++) {
     // Calculate color based on the fraction.
@@ -78,7 +78,7 @@ export function interpolateHsl(lowHsl, highHsl, fraction) {
   return "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)";
 }
 
-export var mapStyle = [
+var mapStyle = [
   {
     featureType: "all",
     elementType: "all",
@@ -101,3 +101,11 @@ export var mapStyle = [
   }
 ];
 // [END maps_layer_data_quakes]
+export {
+  map,
+  initMap,
+  eqfeed_callback,
+  styleFeature,
+  interpolateHsl,
+  mapStyle
+};

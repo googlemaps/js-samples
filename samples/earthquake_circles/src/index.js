@@ -15,8 +15,8 @@
  */
 
 // [START maps_earthquake_circles]
-export var map;
-export function initMap() {
+var map;
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 2,
     center: { lat: -33.865427, lng: 151.196123 },
@@ -40,7 +40,7 @@ export function initMap() {
   });
 }
 
-export function getCircle(magnitude) {
+function getCircle(magnitude) {
   return {
     path: google.maps.SymbolPath.CIRCLE,
     fillColor: "red",
@@ -51,7 +51,8 @@ export function getCircle(magnitude) {
   };
 }
 
-export function eqfeed_callback(results) {
+function eqfeed_callback(results) {
   map.data.addGeoJson(results);
 }
 // [END maps_earthquake_circles]
+export { map, initMap, getCircle, eqfeed_callback };

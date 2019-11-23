@@ -24,15 +24,15 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-export var map, places, infoWindow;
-export var markers = [];
-export var autocomplete;
-export var countryRestrict = { country: "us" };
-export var MARKER_PATH =
+var map, places, infoWindow;
+var markers = [];
+var autocomplete;
+var countryRestrict = { country: "us" };
+var MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
-export var hostnameRegexp = new RegExp("^https?://.+?/");
+var hostnameRegexp = new RegExp("^https?://.+?/");
 
-export var countries = {
+var countries = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
     zoom: 4
@@ -87,7 +87,7 @@ export var countries = {
   }
 };
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
@@ -122,7 +122,7 @@ export function initMap() {
 
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
-export function onPlaceChanged() {
+function onPlaceChanged() {
   var place = autocomplete.getPlace();
   if (place.geometry) {
     map.panTo(place.geometry.location);
@@ -134,7 +134,7 @@ export function onPlaceChanged() {
 }
 
 // Search for hotels in the selected city, within the viewport of the map.
-export function search() {
+function search() {
   var search = {
     bounds: map.getBounds(),
     types: ["lodging"]
@@ -166,7 +166,7 @@ export function search() {
   });
 }
 
-export function clearMarkers() {
+function clearMarkers() {
   for (var i = 0; i < markers.length; i++) {
     if (markers[i]) {
       markers[i].setMap(null);
@@ -178,7 +178,7 @@ export function clearMarkers() {
 // [START maps_places_autocomplete_hotelsearch]
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
-export function setAutocompleteCountry() {
+function setAutocompleteCountry() {
   var country = document.getElementById("country").value;
   if (country == "all") {
     autocomplete.setComponentRestrictions({ country: [] });
@@ -194,13 +194,13 @@ export function setAutocompleteCountry() {
 }
 // [END maps_places_autocomplete_hotelsearch]
 
-export function dropMarker(i) {
+function dropMarker(i) {
   return function() {
     markers[i].setMap(map);
   };
 }
 
-export function addResult(result, i) {
+function addResult(result, i) {
   var results = document.getElementById("results");
   var markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   var markerIcon = MARKER_PATH + markerLetter + ".png";
@@ -225,7 +225,7 @@ export function addResult(result, i) {
   results.appendChild(tr);
 }
 
-export function clearResults() {
+function clearResults() {
   var results = document.getElementById("results");
   while (results.childNodes[0]) {
     results.removeChild(results.childNodes[0]);
@@ -234,7 +234,7 @@ export function clearResults() {
 
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker for the hotel that the user selected.
-export function showInfoWindow() {
+function showInfoWindow() {
   var marker = this;
   places.getDetails({ placeId: marker.placeResult.place_id }, function(
     place,
@@ -249,7 +249,7 @@ export function showInfoWindow() {
 }
 
 // Load the place information into the HTML elements used by the info window.
-export function buildIWContent(place) {
+function buildIWContent(place) {
   document.getElementById("iw-icon").innerHTML =
     '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
   document.getElementById("iw-url").innerHTML =
@@ -298,3 +298,22 @@ export function buildIWContent(place) {
   }
 }
 // [END maps_places_autocomplete_hotelsearch]
+export {
+  map,
+  markers,
+  autocomplete,
+  countryRestrict,
+  MARKER_PATH,
+  hostnameRegexp,
+  countries,
+  initMap,
+  onPlaceChanged,
+  search,
+  clearMarkers,
+  setAutocompleteCountry,
+  dropMarker,
+  addResult,
+  clearResults,
+  showInfoWindow,
+  buildIWContent
+};

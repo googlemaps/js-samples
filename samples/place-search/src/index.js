@@ -19,11 +19,11 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-export var map;
-export var service;
-export var infowindow;
+var map;
+var service;
+var infowindow;
 
-export function initMap() {
+function initMap() {
   var sydney = new google.maps.LatLng(-33.867, 151.195);
 
   infowindow = new google.maps.InfoWindow();
@@ -51,7 +51,7 @@ export function initMap() {
   });
 }
 
-export function createMarker(place) {
+function createMarker(place) {
   var marker = new google.maps.Marker({
     map: map,
     position: place.geometry.location
@@ -63,3 +63,4 @@ export function createMarker(place) {
   });
 }
 // [END maps_place_search]
+export { map, service, infowindow, initMap, createMarker };

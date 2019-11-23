@@ -26,12 +26,12 @@
 // Note that we set the prototype to an instance, rather than the
 // parent class itself, because we do not wish to modify the parent class.
 
-export var overlay;
+var overlay;
 USGSOverlay.prototype = new google.maps.OverlayView();
 
 // Initialize the map and the custom overlay.
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 62.323907, lng: -150.109291 },
@@ -56,7 +56,7 @@ export function initMap() {
 
 // [START maps_overlay_simple_region_constructor]
 /** @constructor */
-export function USGSOverlay(bounds, image, map) {
+function USGSOverlay(bounds, image, map) {
   // Initialize all properties.
   this.bounds_ = bounds;
   this.image_ = image;
@@ -130,3 +130,4 @@ USGSOverlay.prototype.onRemove = function() {
 };
 // [END maps_overlay_simple_region_removal]
 // [END maps_overlay_simple]
+export { overlay, initMap, USGSOverlay };

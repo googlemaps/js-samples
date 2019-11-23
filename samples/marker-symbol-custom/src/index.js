@@ -19,7 +19,7 @@
 // as the icon for a marker. The resulting icon is a star-shaped symbol
 // with a pale yellow fill and a thick yellow border.
 
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat: -25.363882, lng: 131.044922 }
@@ -42,3 +42,4 @@ export function initMap() {
   });
 }
 // [END maps_marker_symbol_custom]
+export { initMap };

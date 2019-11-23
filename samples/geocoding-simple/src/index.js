@@ -15,7 +15,7 @@
  */
 
 // [START maps_geocoding_simple]
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
     center: { lat: -34.397, lng: 150.644 }
@@ -27,7 +27,7 @@ export function initMap() {
   });
 }
 
-export function geocodeAddress(geocoder, resultsMap) {
+function geocodeAddress(geocoder, resultsMap) {
   var address = document.getElementById("address").value;
   geocoder.geocode({ address: address }, function(results, status) {
     if (status === "OK") {
@@ -42,3 +42,4 @@ export function geocodeAddress(geocoder, resultsMap) {
   });
 }
 // [END maps_geocoding_simple]
+export { initMap, geocodeAddress };

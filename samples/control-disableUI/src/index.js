@@ -15,7 +15,7 @@
  */
 
 // [START maps_control_disableUI]
-export function initMap() {
+function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: { lat: -33, lng: 151 },
@@ -23,3 +23,4 @@ export function initMap() {
   });
 }
 // [END maps_control_disableUI]
+export { initMap };

@@ -15,7 +15,7 @@
  */
 
 // [START maps_distance_matrix]
-export function initMap() {
+function initMap() {
   var bounds = new google.maps.LatLngBounds();
   var markersArray = [];
 
@@ -101,10 +101,11 @@ export function initMap() {
   );
 }
 
-export function deleteMarkers(markersArray) {
+function deleteMarkers(markersArray) {
   for (var i = 0; i < markersArray.length; i++) {
     markersArray[i].setMap(null);
   }
   markersArray = [];
 }
 // [END maps_distance_matrix]
+export { initMap, deleteMarkers };

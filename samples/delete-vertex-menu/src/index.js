@@ -15,7 +15,7 @@
  */
 
 // [START maps_delete_vertex_menu]
-export function initialize() {
+function initialize() {
   var mapOptions = {
     zoom: 3,
     center: new google.maps.LatLng(0, -180),
@@ -54,7 +54,7 @@ export function initialize() {
  * A menu that lets a user delete a selected vertex of a path.
  * @constructor
  */
-export function DeleteMenu() {
+function DeleteMenu() {
   this.div_ = document.createElement("div");
   this.div_.className = "delete-menu";
   this.div_.innerHTML = "Delete";
@@ -140,3 +140,4 @@ DeleteMenu.prototype.removeVertex = function() {
 };
 
 // [END maps_delete_vertex_menu]
+export { initialize, DeleteMenu };

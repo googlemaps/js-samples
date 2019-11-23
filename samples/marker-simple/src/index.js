@@ -15,7 +15,7 @@
  */
 
 // [START maps_marker_simple]
-export function initMap() {
+function initMap() {
   var myLatLng = { lat: -25.363, lng: 131.044 };
 
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -30,3 +30,4 @@ export function initMap() {
   });
 }
 // [END maps_marker_simple]
+export { initMap };

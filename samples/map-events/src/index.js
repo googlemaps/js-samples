@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-export var events = [
+var events = [
   "bounds_changed",
   "center_changed",
   "click",
@@ -36,7 +36,7 @@ export var events = [
   "zoom_changed"
 ];
 
-export function setupListener(map, name) {
+function setupListener(map, name) {
   var eventRow = document.getElementById(name);
   google.maps.event.addListener(map, name, function() {
     eventRow.className = "event active";
@@ -46,7 +46,7 @@ export function setupListener(map, name) {
   });
 }
 
-export function initMap() {
+function initMap() {
   populateTable();
   var mapDiv = document.getElementById("map");
   var map = new google.maps.Map(mapDiv, {
@@ -60,7 +60,7 @@ export function initMap() {
 }
 
 // Dynamically create the table of events from the defined hashmap
-export function populateTable() {
+function populateTable() {
   var eventsTable = document.getElementById("events");
   var content = "";
   for (var i = 0; i < events.length; i++) {
@@ -69,3 +69,4 @@ export function populateTable() {
   }
   eventsTable.innerHTML = content;
 }
+export { events, setupListener, initMap, populateTable };

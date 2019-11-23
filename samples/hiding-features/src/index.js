@@ -15,8 +15,8 @@
  */
 
 // [START maps_hiding_features]
-export var map;
-export function initMap() {
+var map;
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.86, lng: 151.209 },
     zoom: 13,
@@ -36,7 +36,7 @@ export function initMap() {
   });
 }
 
-export var styles = {
+var styles = {
   default: null,
   hide: [
     {
@@ -52,3 +52,4 @@ export var styles = {
 };
 
 // [END maps_hiding_features]
+export { map, initMap, styles };

@@ -15,9 +15,9 @@
  */
 
 // [START maps_earthquake_heatmap_weighted]
-export var map;
+var map;
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 2,
     center: new google.maps.LatLng(2.8, -187.3),
@@ -53,3 +53,4 @@ window.eqfeed_callback = function(results) {
   });
 };
 // [END maps_earthquake_heatmap_weighted]
+export { map, initMap };

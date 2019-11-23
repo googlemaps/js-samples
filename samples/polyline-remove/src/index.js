@@ -18,10 +18,10 @@
 // This example adds a UI control allowing users to remove the polyline from the
 // map.
 
-export var flightPath;
-export var map;
+var flightPath;
+var map;
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
     center: { lat: 0, lng: -180 },
@@ -45,11 +45,12 @@ export function initMap() {
   addLine();
 }
 
-export function addLine() {
+function addLine() {
   flightPath.setMap(map);
 }
 
-export function removeLine() {
+function removeLine() {
   flightPath.setMap(null);
 }
 // [END maps_polyline_remove]
+export { flightPath, map, initMap, addLine, removeLine };

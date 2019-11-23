@@ -15,9 +15,9 @@
  */
 
 // [START maps_layer_data_quakes_red]
-export var map;
+var map;
 
-export function initMap() {
+function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 20, lng: -160 },
     zoom: 2
@@ -49,7 +49,8 @@ export function initMap() {
 }
 
 // Defines the callback function referenced in the jsonp file.
-export function eqfeed_callback(data) {
+function eqfeed_callback(data) {
   map.data.addGeoJson(data);
 }
 // [END maps_layer_data_quakes_red]
+export { map, initMap, eqfeed_callback };
