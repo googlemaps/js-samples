@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_control_replacement]
+
   function initMap() {
     exports.map = new google.maps.Map(document.querySelector("#map"), {
       center: { lat: -34.397, lng: 150.644 },
@@ -110,7 +111,6 @@
       document.msCancelFullScreen();
     }
   }
-  // [END maps_control_replacement]
 
   exports.exitFullscreen = exitFullscreen;
   exports.initFullscreenControl = initFullscreenControl;

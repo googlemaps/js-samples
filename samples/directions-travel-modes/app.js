@@ -33,10 +33,7 @@
     });
   }
 
-  function calculateAndDisplayRoute(
-    directionsService,
-    directionsRenderer
-  ) {
+  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     var selectedMode = document.getElementById("mode").value;
     directionsService.route(
       {
@@ -56,7 +53,6 @@
       }
     );
   }
-  // [END maps_directions_travel_modes]
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;

@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_control_bounds_restriction]
+
   var NEW_ZEALAND_BOUNDS = {
     north: -34.36,
     south: -47.35,
@@ -36,7 +37,6 @@
       zoom: 7
     });
   }
-  // [END maps_control_bounds_restriction]
 
   exports.AUCKLAND = AUCKLAND;
   exports.NEW_ZEALAND_BOUNDS = NEW_ZEALAND_BOUNDS;

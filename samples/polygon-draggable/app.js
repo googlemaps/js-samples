@@ -69,7 +69,6 @@
       geodesic: false
     });
   }
-  // [END maps_polygon_draggable]
 
   exports.initMap = initMap;
 

@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_overlay_popup]
+  var popup, Popup;
   /** Initializes the map and the custom popup. */
 
   function initMap() {
@@ -28,9 +29,9 @@
       },
       zoom: 10
     });
-    exports.Popup = createPopupClass();
-    exports.popup = new exports.Popup(new google.maps.LatLng(-33.866, 151.196), document.getElementById("content"));
-    exports.popup.setMap(exports.map);
+    Popup = createPopupClass();
+    popup = new Popup(new google.maps.LatLng(-33.866, 151.196), document.getElementById("content"));
+    popup.setMap(exports.map);
   }
   /**
    * Returns the Popup class.
@@ -39,6 +40,7 @@
    * google.maps.OverlayView is defined, when the Maps API is loaded.
    * This function should be called by initMap.
    */
+
 
   function createPopupClass() {
     /**

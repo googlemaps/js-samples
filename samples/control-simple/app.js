@@ -26,7 +26,6 @@
       scaleControl: true
     });
   }
-  // [END maps_control_simple]
 
   exports.initMap = initMap;
 

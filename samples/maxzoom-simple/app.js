@@ -19,6 +19,9 @@
 
   // [START maps_maxzoom_simple]
 
+
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
@@ -46,7 +49,6 @@
       exports.infoWindow.open(exports.map);
     });
   }
-  // [END maps_maxzoom_simple]
 
   exports.initMap = initMap;
   exports.showMaxZoom = showMaxZoom;

@@ -19,6 +19,7 @@
 
   // [START maps_layer_data_quakes_red]
 
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 20, lng: -160 },
@@ -54,7 +55,6 @@
   function eqfeed_callback(data) {
     exports.map.data.addGeoJson(data);
   }
-  // [END maps_layer_data_quakes_red]
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.initMap = initMap;

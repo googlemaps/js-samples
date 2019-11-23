@@ -41,6 +41,7 @@
     controlText.className = "controlText";
     controlUI.appendChild(controlText);
   }
+
   function initialize() {
     var mapDiv = document.getElementById("map");
     var mapOptions = {

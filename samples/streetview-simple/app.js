@@ -36,7 +36,6 @@
     );
     map.setStreetView(panorama);
   }
-  // [END maps_streetview_simple]
 
   exports.initialize = initialize;
 

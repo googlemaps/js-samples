@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_control_bounds_restriction]
+
   var NEW_ZEALAND_BOUNDS = {
     north: -34.36,
     south: -47.35,
@@ -28,6 +29,7 @@
     lat: -37.06,
     lng: 174.58
   };
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: AUCKLAND,

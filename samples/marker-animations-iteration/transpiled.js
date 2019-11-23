@@ -35,6 +35,8 @@
     lng: 13.394
   }];
   exports.markers = [];
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,
@@ -44,6 +46,7 @@
       }
     });
   }
+
   function drop() {
     clearMarkers();
 
@@ -51,6 +54,7 @@
       addMarkerWithTimeout(neighborhoods[i], i * 200);
     }
   }
+
   function addMarkerWithTimeout(position, timeout) {
     window.setTimeout(function () {
       exports.markers.push(new google.maps.Marker({
@@ -60,6 +64,7 @@
       }));
     }, timeout);
   }
+
   function clearMarkers() {
     for (var i = 0; i < exports.markers.length; i++) {
       exports.markers[i].setMap(null);

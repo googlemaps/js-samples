@@ -65,7 +65,6 @@
       });
     }
   }
-  // [END maps_circle_simple]
 
   exports.citymap = citymap;
   exports.initMap = initMap;

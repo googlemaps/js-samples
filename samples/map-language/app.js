@@ -29,7 +29,6 @@
       center: { lat: 35.717, lng: 139.731 }
     });
   }
-  // [END maps_map_language]
 
   exports.initMap = initMap;
 

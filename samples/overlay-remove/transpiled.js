@@ -18,6 +18,11 @@
   'use strict';
 
   // [START maps_overlay_remove]
+  // This example adds a UI control allowing users to remove the
+  // ground overlay from the map.
+
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 13,
@@ -35,14 +40,15 @@
     exports.historicalOverlay = new google.maps.GroundOverlay("https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg", imageBounds);
     addOverlay();
   }
+
   function addOverlay() {
     exports.historicalOverlay.setMap(exports.map);
   } // [START maps_overlay_remove_region_removal]
 
+
   function removeOverlay() {
     exports.historicalOverlay.setMap(null);
   } // [END maps_overlay_remove_region_removal]
-  // [END maps_overlay_remove]
 
   exports.addOverlay = addOverlay;
   exports.initMap = initMap;

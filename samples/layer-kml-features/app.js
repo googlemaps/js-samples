@@ -40,7 +40,6 @@
       sidediv.innerHTML = text;
     }
   }
-  // [END maps_layer_kml_features]
 
   exports.initMap = initMap;
 

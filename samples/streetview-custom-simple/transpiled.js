@@ -29,10 +29,12 @@
     panorama.registerPanoProvider(getCustomPanorama);
   } // Return a pano image given the panoID.
 
+
   function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
     return "https://developers.google.com/maps/documentation/javascript/examples/full/images/" + "panoReception1024-" + zoom + "-" + tileX + "-" + tileY + ".jpg";
   } // Construct the appropriate StreetViewPanoramaData given
   // the passed pano IDs.
+
 
   function getCustomPanorama(pano) {
     if (pano === "reception") {

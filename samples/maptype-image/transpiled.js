@@ -52,6 +52,7 @@
   } // Normalizes the coords that tiles repeat across the x axis (horizontally)
   // like the standard Google map tiles.
 
+
   function getNormalizedCoord(coord, zoom) {
     var y = coord.y;
     var x = coord.x; // tile range in one direction range is dependent on zoom level

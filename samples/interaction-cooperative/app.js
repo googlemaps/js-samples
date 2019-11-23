@@ -38,7 +38,6 @@
       title: "Hello World!"
     });
   }
-  // [END maps_interaction_cooperative]
 
   exports.initMap = initMap;
 

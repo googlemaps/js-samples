@@ -26,6 +26,7 @@
       label: "B"
     }
   };
+
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       center: new google.maps.LatLng(-33.863276, 151.207977),
@@ -63,6 +64,7 @@
       });
     });
   }
+
   function downloadUrl(url, callback) {
     var request = window.ActiveXObject ? new ActiveXObject("Microsoft.XMLHTTP") : new XMLHttpRequest();
 
@@ -76,6 +78,7 @@
     request.open("GET", url, true);
     request.send(null);
   }
+
   function doNothing() {} // [END maps_mysql_to_maps]
 
   exports.customLabel = customLabel;

@@ -78,7 +78,6 @@
       TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI))
     );
   }
-  // [END maps_map_coordinates]
 
   exports.TILE_SIZE = TILE_SIZE;
   exports.createInfoWindowContent = createInfoWindowContent;

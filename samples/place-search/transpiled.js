@@ -18,6 +18,13 @@
   'use strict';
 
   // [START maps_place_search]
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+
+
+
   function initMap() {
     var sydney = new google.maps.LatLng(-33.867, 151.195);
     exports.infowindow = new google.maps.InfoWindow();
@@ -40,6 +47,7 @@
       }
     });
   }
+
   function createMarker(place) {
     var marker = new google.maps.Marker({
       map: exports.map,

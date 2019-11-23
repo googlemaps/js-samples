@@ -42,7 +42,6 @@
       infowindow.open(map, marker);
     });
   }
-  // [END maps_map_rtl]
 
   exports.initMap = initMap;
 

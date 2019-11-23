@@ -31,6 +31,7 @@
 
   exports.markers = [];
 
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,
@@ -63,7 +64,6 @@
     }
     exports.markers = [];
   }
-  // [END maps_marker_animations_iteration]
 
   exports.addMarkerWithTimeout = addMarkerWithTimeout;
   exports.clearMarkers = clearMarkers;

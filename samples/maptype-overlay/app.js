@@ -61,7 +61,6 @@
       new CoordMapType(new google.maps.Size(256, 256))
     );
   }
-  // [END maps_maptype_overlay]
 
   exports.CoordMapType = CoordMapType;
   exports.initMap = initMap;

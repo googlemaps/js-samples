@@ -34,7 +34,6 @@
       }
     );
   }
-  // [END maps_streetview_controls]
 
   exports.initPano = initPano;
 

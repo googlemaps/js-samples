@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_control_custom_state]
+
   var chicago = {
     lat: 41.85,
     lng: -87.65
@@ -76,6 +77,7 @@
    * Define a property to hold the center state.
    * @private
    */
+
 
   CenterControl.prototype.center_ = null;
   /**

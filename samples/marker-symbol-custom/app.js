@@ -44,7 +44,6 @@
       map: map
     });
   }
-  // [END maps_marker_symbol_custom]
 
   exports.initMap = initMap;
 

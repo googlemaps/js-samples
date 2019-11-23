@@ -59,7 +59,6 @@
       ])
     });
   }
-  // [END maps_layer_data_polygon]
 
   exports.initMap = initMap;
 

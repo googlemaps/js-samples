@@ -119,7 +119,6 @@
       stepDisplay.open(map, marker);
     });
   }
-  // [END maps_directions_complex]
 
   exports.attachInstructionText = attachInstructionText;
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;

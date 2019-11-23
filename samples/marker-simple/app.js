@@ -32,7 +32,6 @@
       title: "Hello World!"
     });
   }
-  // [END maps_marker_simple]
 
   exports.initMap = initMap;
 

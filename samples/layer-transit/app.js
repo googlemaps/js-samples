@@ -27,7 +27,6 @@
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
   }
-  // [END maps_layer_transit]
 
   exports.initMap = initMap;
 

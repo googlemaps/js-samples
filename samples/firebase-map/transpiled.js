@@ -41,6 +41,7 @@
     lat: null,
     lng: null
   };
+
   function makeInfoBox(controlDiv, map) {
     // Set CSS for the control border.
     var controlUI = document.createElement("div");
@@ -66,6 +67,7 @@
    * @param {function()} onAuthSuccess - Called when authentication succeeds.
    */
 
+
   function initAuthentication(onAuthSuccess) {
     firebase.auth().signInAnonymously().catch(function (error) {
       console.log(error.code + ", " + error.message);
@@ -82,6 +84,7 @@
   /**
    * Creates a map object with a click listener and a heatmap.
    */
+
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -130,6 +133,7 @@
    * @param {!google.maps.visualization.HeatmapLayer} heatmap The heatmap to
    */
 
+
   function initFirebase(heatmap) {
     // 10 minutes before current time.
     var startTime = new Date().getTime() - 60 * 10 * 1000; // Reference to the clicks in Firebase.
@@ -170,6 +174,7 @@
    *     click to the firebase.
    */
 
+
   function getTimestamp(addClick) {
     // Reference to location for saving the last click time.
     var ref = firebase.database().ref("last_message/" + data.sender);
@@ -195,6 +200,7 @@
    * @param {Object} data The data to be added to firebase.
    *     It contains the lat, lng, sender and timestamp.
    */
+
 
   function addToFirebase(data) {
     getTimestamp(function (timestamp) {

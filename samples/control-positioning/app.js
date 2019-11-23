@@ -39,7 +39,6 @@
       fullscreenControl: true
     });
   }
-  // [END maps_control_positioning]
 
   exports.initMap = initMap;
 

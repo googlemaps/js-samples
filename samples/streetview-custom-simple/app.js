@@ -67,7 +67,6 @@
       };
     }
   }
-  // [END maps_streetview_custom_simple]
 
   exports.getCustomPanorama = getCustomPanorama;
   exports.getCustomPanoramaTileUrl = getCustomPanoramaTileUrl;

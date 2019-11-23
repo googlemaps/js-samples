@@ -18,6 +18,11 @@
   'use strict';
 
   // [START maps_layer_heatmap]
+  // This example requires the Visualization library. Include the libraries=visualization
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+
+  var heatmap;
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -26,14 +31,14 @@
       mapTypeId: "satellite"
     });
 
-    exports.heatmap = new google.maps.visualization.HeatmapLayer({
+    heatmap = new google.maps.visualization.HeatmapLayer({
       data: getPoints(),
       map: exports.map
     });
   }
 
   function toggleHeatmap() {
-    exports.heatmap.setMap(exports.heatmap.getMap() ? null : exports.map);
+    heatmap.setMap(heatmap.getMap() ? null : exports.map);
   }
 
   function changeGradient() {
@@ -53,15 +58,15 @@
       "rgba(191, 0, 31, 1)",
       "rgba(255, 0, 0, 1)"
     ];
-    exports.heatmap.set("gradient", exports.heatmap.get("gradient") ? null : gradient);
+    heatmap.set("gradient", heatmap.get("gradient") ? null : gradient);
   }
 
   function changeRadius() {
-    exports.heatmap.set("radius", exports.heatmap.get("radius") ? null : 20);
+    heatmap.set("radius", heatmap.get("radius") ? null : 20);
   }
 
   function changeOpacity() {
-    exports.heatmap.set("opacity", exports.heatmap.get("opacity") ? null : 0.2);
+    heatmap.set("opacity", heatmap.get("opacity") ? null : 0.2);
   }
 
   // Heatmap data: 500 Points
@@ -569,7 +574,6 @@
       new google.maps.LatLng(37.751266, -122.403355)
     ];
   }
-  // [END maps_layer_heatmap]
 
   exports.changeGradient = changeGradient;
   exports.changeOpacity = changeOpacity;

@@ -51,7 +51,6 @@
     });
     // [END maps_overlay_symbol_arrow_region_polyline]
   }
-  // [END maps_overlay_symbol_arrow]
 
   exports.initMap = initMap;
 

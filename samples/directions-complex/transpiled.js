@@ -46,6 +46,7 @@
     document.getElementById("start").addEventListener("change", onChangeHandler);
     document.getElementById("end").addEventListener("change", onChangeHandler);
   }
+
   function calculateAndDisplayRoute(directionsRenderer, directionsService, markerArray, stepDisplay, map) {
     // First, remove any existing markers from the map.
     for (var i = 0; i < markerArray.length; i++) {
@@ -70,6 +71,7 @@
       }
     });
   }
+
   function showSteps(directionResult, markerArray, stepDisplay, map) {
     // For each step, place a marker, and add the text to the marker's infowindow.
     // Also attach the marker to an array so we can keep track of it and remove it
@@ -83,6 +85,7 @@
       attachInstructionText(stepDisplay, marker, myRoute.steps[i].instructions, map);
     }
   }
+
   function attachInstructionText(stepDisplay, marker, text, map) {
     google.maps.event.addListener(marker, "click", function () {
       // Open an info window when the marker is clicked on, containing the text

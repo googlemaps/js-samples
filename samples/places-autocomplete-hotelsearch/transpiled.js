@@ -18,7 +18,16 @@
   'use strict';
 
   // [START maps_places_autocomplete_hotelsearch]
+  // This example uses the autocomplete feature of the Google Places API.
+  // It allows the user to find all hotels in a given place, within a given
+  // country. It then displays markers for all the hotels returned,
+  // with on-click details for each hotel.
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+  var places, infoWindow;
   exports.markers = [];
+
   var countryRestrict = {
     country: "us"
   };
@@ -117,6 +126,7 @@
       zoom: 5
     }
   };
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: countries["us"].zoom,
@@ -126,7 +136,7 @@
       zoomControl: false,
       streetViewControl: false
     });
-    exports.infoWindow = new google.maps.InfoWindow({
+    infoWindow = new google.maps.InfoWindow({
       content: document.getElementById("info-content")
     }); // Create the autocomplete object and associate it with the UI input control.
     // Restrict the search to the default country, and to place type "cities".
@@ -137,12 +147,13 @@
       types: ["(cities)"],
       componentRestrictions: countryRestrict
     });
-    exports.places = new google.maps.places.PlacesService(exports.map);
+    places = new google.maps.places.PlacesService(exports.map);
     exports.autocomplete.addListener("place_changed", onPlaceChanged); // Add a DOM event listener to react when the user selects a country.
 
     document.getElementById("country").addEventListener("change", setAutocompleteCountry);
   } // When the user selects a city, get the place details for the city and
   // zoom the map in on the city.
+
 
   function onPlaceChanged() {
     var place = exports.autocomplete.getPlace();
@@ -156,12 +167,13 @@
     }
   } // Search for hotels in the selected city, within the viewport of the map.
 
+
   function search() {
     var search = {
       bounds: exports.map.getBounds(),
       types: ["lodging"]
     };
-    exports.places.nearbySearch(search, function (results, status) {
+    places.nearbySearch(search, function (results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         clearResults();
         clearMarkers(); // Create a marker for each hotel found, and
@@ -186,6 +198,7 @@
       }
     });
   }
+
   function clearMarkers() {
     for (var i = 0; i < exports.markers.length; i++) {
       if (exports.markers[i]) {
@@ -197,6 +210,7 @@
   } // [START maps_places_autocomplete_hotelsearch]
   // Set the country restriction based on user input.
   // Also center and zoom the map on the given country.
+
 
   function setAutocompleteCountry() {
     var country = document.getElementById("country").value;
@@ -222,11 +236,13 @@
     clearMarkers();
   } // [END maps_places_autocomplete_hotelsearch]
 
+
   function dropMarker(i) {
     return function () {
       exports.markers[i].setMap(exports.map);
     };
   }
+
   function addResult(result, i) {
     var results = document.getElementById("results");
     var markerLetter = String.fromCharCode("A".charCodeAt(0) + i % 26);
@@ -251,6 +267,7 @@
     tr.appendChild(nameTd);
     results.appendChild(tr);
   }
+
   function clearResults() {
     var results = document.getElementById("results");
 
@@ -260,19 +277,21 @@
   } // Get the place details for a hotel. Show the information in an info window,
   // anchored on the marker for the hotel that the user selected.
 
+
   function showInfoWindow() {
     var marker = this;
-    exports.places.getDetails({
+    places.getDetails({
       placeId: marker.placeResult.place_id
     }, function (place, status) {
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
         return;
       }
 
-      exports.infoWindow.open(exports.map, marker);
+      infoWindow.open(exports.map, marker);
       buildIWContent(place);
     });
   } // Load the place information into the HTML elements used by the info window.
+
 
   function buildIWContent(place) {
     document.getElementById("iw-icon").innerHTML = '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';

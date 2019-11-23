@@ -35,7 +35,6 @@
       }
     });
   }
-  // [END maps_geocoding_region]
 
   exports.initMap = initMap;
 

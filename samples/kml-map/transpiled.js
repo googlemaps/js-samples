@@ -22,7 +22,10 @@
    *   and displaying the contents in a side panel instead of
    *   an InfoWindow
    */
+  // [START maps_kml_map]
+
   var src = "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: new google.maps.LatLng(-19.257753, 146.823688),

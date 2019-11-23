@@ -78,7 +78,6 @@
       });
     }
   }
-  // [END maps_icon_complex]
 
   exports.beaches = beaches;
   exports.initMap = initMap;

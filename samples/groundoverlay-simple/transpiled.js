@@ -18,6 +18,10 @@
   'use strict';
 
   // [START maps_groundoverlay_simple]
+  // This example uses a GroundOverlay to place an image on the map
+  // showing an antique map of Newark, NJ.
+
+
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 13,

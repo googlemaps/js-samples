@@ -18,6 +18,13 @@
   'use strict';
 
   // [START maps_streetview_service]
+
+  /*
+   * Click the map to set a new location for the Street View camera.
+   */
+
+
+
   function initMap() {
     var berkeley = {
       lat: 37.869085,
@@ -46,6 +53,7 @@
       }, processSVData);
     });
   }
+
   function processSVData(data, status) {
     if (status === "OK") {
       var marker = new google.maps.Marker({

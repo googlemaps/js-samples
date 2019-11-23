@@ -27,6 +27,7 @@
    */
   function MarkerClusterer(map, markers, options) {} // [START maps_landing_page_marker_clustering]
 
+
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 3,
@@ -52,6 +53,7 @@
       });
     }); // Add a marker clusterer to manage the markers.
   }
+
   var locations = [{
     lat: -31.56391,
     lng: 147.154312

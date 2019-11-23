@@ -32,7 +32,6 @@
       }
     });
   }
-  // [END maps_control_options]
 
   exports.initMap = initMap;
 

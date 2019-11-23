@@ -19,6 +19,7 @@
 
   // [START maps_layer_data_quakes]
 
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 20, lng: -160 },
@@ -102,7 +103,6 @@
       stylers: [{ visibility: "on" }, { hue: "#5f94ff" }, { lightness: 60 }]
     }
   ];
-  // [END maps_layer_data_quakes]
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.initMap = initMap;

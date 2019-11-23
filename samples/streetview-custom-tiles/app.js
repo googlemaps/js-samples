@@ -19,6 +19,10 @@
 
   // [START maps_streetview_custom_tiles]
 
+
+  // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
+
+
   // StreetViewPanoramaData for a custom panorama: the Google Sydney reception.
   function getReceptionPanoramaData() {
     return {
@@ -94,7 +98,6 @@
       }
     );
   }
-  // [END maps_streetview_custom_tiles]
 
   exports.getReceptionPanoramaData = getReceptionPanoramaData;
   exports.initMap = initMap;

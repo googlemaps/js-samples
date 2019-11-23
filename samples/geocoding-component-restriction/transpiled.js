@@ -31,6 +31,7 @@
       geocodeAddress(geocoder, map);
     });
   }
+
   function geocodeAddress(geocoder, map) {
     geocoder.geocode({
       componentRestrictions: {

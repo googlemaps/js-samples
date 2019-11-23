@@ -74,7 +74,6 @@
     total = total / 1000;
     document.getElementById("total").innerHTML = total + " km";
   }
-  // [END maps_directions_draggable]
 
   exports.computeTotalDistance = computeTotalDistance;
   exports.displayRoute = displayRoute;

@@ -97,8 +97,6 @@
     // [END maps_places_searchbox_getplaces]
   }
 
-  // [END maps_places_searchbox]
-
   exports.initAutocomplete = initAutocomplete;
 
 }(this.window = this.window || {}));

@@ -18,6 +18,12 @@
   'use strict';
 
   // [START maps_overlay_hideshow]
+  // This example adds hide() and show() methods to a custom overlay's prototype.
+  // These methods toggle the visibility of the container <div>.
+  // Additionally, we add a toggleDOM() method, which attaches or detaches the
+  // overlay to or from the map.
+
+
 
   USGSOverlay.prototype = new google.maps.OverlayView();
 
@@ -140,8 +146,6 @@
       this.setMap(this.map_);
     }
   };
-  // [END maps_overlay_hideshow_snippet]
-  // [END maps_overlay_hideshow]
 
   exports.USGSOverlay = USGSOverlay;
   exports.initMap = initMap;

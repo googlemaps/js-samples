@@ -18,6 +18,10 @@
   'use strict';
 
   // [START maps_maxzoom_simple]
+
+
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
@@ -31,6 +35,7 @@
     exports.maxZoomService = new google.maps.MaxZoomService();
     exports.map.addListener("click", showMaxZoom);
   }
+
   function showMaxZoom(e) {
     exports.maxZoomService.getMaxZoomAtLatLng(e.latLng, function (response) {
       if (response.status !== "OK") {

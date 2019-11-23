@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_style_selector]
+
   function initMap() {
     // Create the map with no initial style specified.
     // It therefore has default styling.
@@ -336,8 +337,6 @@
       }
     ]
   };
-
-  // [END maps_style_selector]
 
   exports.initMap = initMap;
   exports.styles = styles;

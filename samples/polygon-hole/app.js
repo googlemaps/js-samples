@@ -53,7 +53,6 @@
     });
     bermudaTriangle.setMap(map);
   }
-  // [END maps_polygon_hole]
 
   exports.initMap = initMap;
 

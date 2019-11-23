@@ -71,7 +71,6 @@
 
     map.overlayMapTypes.push(imageMapType);
   }
-  // [END maps_maptype_image_overlay]
 
   exports.initMap = initMap;
 

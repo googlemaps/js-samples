@@ -65,7 +65,6 @@
       line.set("icons", icons);
     }, 20);
   }
-  // [END maps_overlay_symbol_animate]
 
   exports.animateCircle = animateCircle;
   exports.initMap = initMap;

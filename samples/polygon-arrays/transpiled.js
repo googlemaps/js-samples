@@ -18,6 +18,12 @@
   'use strict';
 
   // [START maps_polygon_arrays]
+  // This example creates a simple polygon representing the Bermuda Triangle.
+  // When the user clicks on the polygon an info window opens, showing
+  // information about the polygon's coordinates.
+
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 5,
@@ -53,6 +59,7 @@
     exports.infoWindow = new google.maps.InfoWindow();
   }
   /** @this {google.maps.Polygon} */
+
 
   function showArrays(event) {
     // Since this polygon has only one path, we can call getPath() to return the

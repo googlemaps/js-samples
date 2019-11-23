@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_earthquake_markers]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 2,
@@ -32,6 +34,7 @@
     document.getElementsByTagName("head")[0].appendChild(script);
   } // Loop through the results array and place a marker for each
   // set of coordinates.
+
 
   window.eqfeed_callback = function (results) {
     for (var i = 0; i < results.features.length; i++) {

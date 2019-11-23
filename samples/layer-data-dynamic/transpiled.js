@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_layer_data_dynamic]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,

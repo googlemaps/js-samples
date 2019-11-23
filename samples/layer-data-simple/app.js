@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_layer_data_simple]
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
@@ -29,7 +30,6 @@
       "https://storage.googleapis.com/mapsdevsite/json/google.json"
     );
   }
-  // [END maps_layer_data_simple]
 
   exports.initMap = initMap;
 

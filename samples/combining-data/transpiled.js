@@ -39,8 +39,10 @@
       color: "#bfd4ff"
     }]
   }];
+
   exports.censusMin = Number.MAX_VALUE;
-      exports.censusMax = -Number.MAX_VALUE;
+      var censusMax = -Number.MAX_VALUE;
+
   function initMap() {
     // load the map
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -66,6 +68,7 @@
   }
   /** Loads the state boundary polygons from a GeoJSON source. */
 
+
   function loadMapShapes() {
     // load US state outline polygons from a GeoJson file
     exports.map.data.loadGeoJson("https://storage.googleapis.com/mapsdevsite/json/states.js", {
@@ -82,6 +85,7 @@
    *
    * @param {string} variable
    */
+
 
   function loadCensusData(variable) {
     // load the requested variable from the census API (using local copies)
@@ -100,8 +104,8 @@
           exports.censusMin = censusVariable;
         }
 
-        if (censusVariable > exports.censusMax) {
-          exports.censusMax = censusVariable;
+        if (censusVariable > censusMax) {
+          censusMax = censusVariable;
         } // update the existing row with the new data
 
 
@@ -109,16 +113,17 @@
       }); // update and display the legend
 
       document.getElementById("census-min").textContent = exports.censusMin.toLocaleString();
-      document.getElementById("census-max").textContent = exports.censusMax.toLocaleString();
+      document.getElementById("census-max").textContent = censusMax.toLocaleString();
     };
 
     xhr.send(); // [END maps_combining_data_snippet_loadcensus]
   }
   /** Removes census data from each shape on the map and resets the UI. */
 
+
   function clearCensusData() {
     exports.censusMin = Number.MAX_VALUE;
-    exports.censusMax = -Number.MAX_VALUE;
+    censusMax = -Number.MAX_VALUE;
     exports.map.data.forEach(function (row) {
       row.setProperty("census_variable", undefined);
     });
@@ -134,13 +139,14 @@
    */
   // [START maps_combining_data_snippet_stylefeature]
 
+
   function styleFeature(feature) {
     var low = [5, 69, 54]; // color of smallest datum
 
     var high = [151, 83, 34]; // color of largest datum
     // delta represents where the value sits between the min and max
 
-    var delta = (feature.getProperty("census_variable") - exports.censusMin) / (exports.censusMax - exports.censusMin);
+    var delta = (feature.getProperty("census_variable") - exports.censusMin) / (censusMax - exports.censusMin);
     var color = [];
 
     for (var i = 0; i < 3; i++) {
@@ -179,10 +185,11 @@
    * @param {?google.maps.MouseEvent} e
    */
 
+
   function mouseInToRegion(e) {
     // set the hover state so the setStyle function can change the border
     e.feature.setProperty("state", "hover");
-    var percent = (e.feature.getProperty("census_variable") - exports.censusMin) / (exports.censusMax - exports.censusMin) * 100; // update the label
+    var percent = (e.feature.getProperty("census_variable") - exports.censusMin) / (censusMax - exports.censusMin) * 100; // update the label
 
     document.getElementById("data-label").textContent = e.feature.getProperty("NAME");
     document.getElementById("data-value").textContent = e.feature.getProperty("census_variable").toLocaleString();
@@ -196,11 +203,11 @@
    * @param {?google.maps.MouseEvent} e
    */
 
+
   function mouseOutOfRegion(e) {
     // reset the hover state, returning the border to normal
     e.feature.setProperty("state", "normal");
   } // [END maps_combining_data_snippet_mouseevents]
-  // [END maps_combining_data]
 
   exports.clearCensusData = clearCensusData;
   exports.initMap = initMap;

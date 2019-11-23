@@ -55,7 +55,6 @@
       }
     });
   }
-  // [END maps_geocoding_place_id]
 
   exports.geocodePlaceId = geocodePlaceId;
   exports.initMap = initMap;

@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_control_replacement]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.querySelector("#map"), {
       center: {
@@ -31,6 +33,7 @@
     initMapTypeControl(exports.map);
     initFullscreenControl(exports.map);
   }
+
   function initZoomControl(map) {
     document.querySelector(".zoom-control-in").onclick = function () {
       map.setZoom(map.getZoom() + 1);
@@ -42,6 +45,7 @@
 
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.querySelector(".zoom-control"));
   }
+
   function initMapTypeControl(map) {
     var mapTypeControlDiv = document.querySelector(".maptype-control");
 
@@ -59,6 +63,7 @@
 
     map.controls[google.maps.ControlPosition.LEFT_TOP].push(mapTypeControlDiv);
   }
+
   function initFullscreenControl(map) {
     var elementToSendFullscreen = map.getDiv().firstChild;
     var fullscreenControl = document.querySelector(".fullscreen-control");
@@ -80,9 +85,11 @@
       }
     };
   }
+
   function isFullscreen(element) {
     return (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) == element;
   }
+
   function requestFullscreen(element) {
     if (element.requestFullscreen) {
       element.requestFullscreen();
@@ -94,6 +101,7 @@
       element.msRequestFullScreen();
     }
   }
+
   function exitFullscreen() {
     if (document.exitFullscreen) {
       document.exitFullscreen();

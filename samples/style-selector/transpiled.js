@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_style_selector]
+
+
   function initMap() {
     // Create the map with no initial style specified.
     // It therefore has default styling.
@@ -44,6 +46,7 @@
       });
     });
   }
+
   var styles = {
     default: null,
     silver: [{

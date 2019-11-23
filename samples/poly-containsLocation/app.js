@@ -66,7 +66,6 @@
       });
     });
   }
-  // [END maps_poly_containsLocation]
 
   exports.initMap = initMap;
 

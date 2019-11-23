@@ -25,7 +25,6 @@
       disableDefaultUI: true
     });
   }
-  // [END maps_control_disableUI]
 
   exports.initMap = initMap;
 

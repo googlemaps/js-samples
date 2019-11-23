@@ -32,10 +32,7 @@
     });
   }
 
-  function calculateAndDisplayRoute(
-    directionsService,
-    directionsRenderer
-  ) {
+  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     var waypts = [];
     var checkboxArray = document.getElementById("waypoints");
     for (var i = 0; i < checkboxArray.length; i++) {
@@ -76,7 +73,6 @@
       }
     );
   }
-  // [END maps_directions_waypoints]
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;

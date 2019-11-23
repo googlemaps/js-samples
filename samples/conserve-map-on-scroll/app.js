@@ -33,7 +33,6 @@
       title: "Hello World!"
     });
   }
-  // [END maps_conserve_map_on_scroll]
 
   exports.initMap = initMap;
 

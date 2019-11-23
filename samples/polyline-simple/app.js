@@ -45,7 +45,6 @@
 
     flightPath.setMap(map);
   }
-  // [END maps_polyline_simple]
 
   exports.initMap = initMap;
 

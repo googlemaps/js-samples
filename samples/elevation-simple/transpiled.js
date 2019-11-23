@@ -38,6 +38,7 @@
       displayLocationElevation(event.latLng, elevator, infowindow);
     });
   }
+
   function displayLocationElevation(location, elevator, infowindow) {
     // Initiate the location request
     elevator.getElevationForLocations({

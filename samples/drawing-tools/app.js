@@ -50,7 +50,6 @@
     });
     drawingManager.setMap(map);
   }
-  // [END maps_drawing_tools]
 
   exports.initMap = initMap;
 

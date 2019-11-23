@@ -66,7 +66,6 @@
       pitchCell.firstChild.nodeValue = panorama.getPov().pitch + "";
     });
   }
-  // [END maps_streetview_events]
 
   exports.initPano = initPano;
 

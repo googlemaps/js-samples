@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_layer_data_event]
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
@@ -46,7 +47,6 @@
     });
     // [END maps_layer_data_event_snippet]
   }
-  // [END maps_layer_data_event]
 
   exports.initMap = initMap;
 

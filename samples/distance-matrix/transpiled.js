@@ -91,6 +91,7 @@
       }
     });
   }
+
   function deleteMarkers(markersArray) {
     for (var i = 0; i < markersArray.length; i++) {
       markersArray[i].setMap(null);

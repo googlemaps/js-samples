@@ -64,7 +64,6 @@
       infowindow.open(marker.get("map"), marker);
     });
   }
-  // [END maps_event_closure]
 
   exports.attachSecretMessage = attachSecretMessage;
   exports.initMap = initMap;

@@ -84,7 +84,6 @@
       });
     });
   }
-  // [END maps_places_placeid_geocoder]
 
   exports.initMap = initMap;
 

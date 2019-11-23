@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_control_custom]
+
   var chicago = {
     lat: 41.85,
     lng: -87.65
@@ -56,6 +57,7 @@
       map.setCenter(chicago);
     });
   }
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,

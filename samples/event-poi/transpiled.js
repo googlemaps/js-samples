@@ -33,6 +33,7 @@
    * @constructor
    */
 
+
   var ClickEventHandler = function ClickEventHandler(map, origin) {
     this.origin = origin;
     this.map = map;

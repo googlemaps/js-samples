@@ -18,6 +18,13 @@
   'use strict';
 
   // [START maps_rectangle_event]
+  // This example adds a user-editable rectangle to the map.
+  // When the user changes the bounds of the rectangle,
+  // an info window pops up displaying the new bounds.
+
+
+
+
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -72,7 +79,6 @@
 
     exports.infoWindow.open(exports.map);
   }
-  // [END maps_rectangle_event]
 
   exports.initMap = initMap;
   exports.showNewRect = showNewRect;

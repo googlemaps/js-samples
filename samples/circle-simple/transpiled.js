@@ -51,6 +51,7 @@
       population: 603502
     }
   };
+
   function initMap() {
     // Create the map.
     var map = new google.maps.Map(document.getElementById("map"), {

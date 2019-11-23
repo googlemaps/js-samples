@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_earthquake_heatmap]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 2,
@@ -34,6 +36,7 @@
     script.src = "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
     document.getElementsByTagName("head")[0].appendChild(script);
   }
+
   function eqfeed_callback(results) {
     var heatmapData = [];
 

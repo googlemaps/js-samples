@@ -18,6 +18,12 @@
   'use strict';
 
   // [START maps_streetview_service]
+  /*
+   * Click the map to set a new location for the Street View camera.
+   */
+
+
+
 
   function initMap() {
     var berkeley = { lat: 37.869085, lng: -122.254775 };
@@ -74,7 +80,6 @@
       console.error("Street View data not found for this location.");
     }
   }
-  // [END maps_streetview_service]
 
   exports.initMap = initMap;
   exports.processSVData = processSVData;

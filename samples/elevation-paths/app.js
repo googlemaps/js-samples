@@ -98,7 +98,6 @@
       titleY: "Elevation (m)"
     });
   }
-  // [END maps_elevation_paths]
 
   exports.displayPathElevation = displayPathElevation;
   exports.initMap = initMap;

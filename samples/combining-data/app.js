@@ -33,8 +33,9 @@
       stylers: [{ visibility: "on" }, { color: "#bfd4ff" }]
     }
   ];
+
   exports.censusMin = Number.MAX_VALUE;
-    exports.censusMax = -Number.MAX_VALUE;
+    var censusMax = -Number.MAX_VALUE;
 
   function initMap() {
     // load the map
@@ -99,8 +100,8 @@
         if (censusVariable < exports.censusMin) {
           exports.censusMin = censusVariable;
         }
-        if (censusVariable > exports.censusMax) {
-          exports.censusMax = censusVariable;
+        if (censusVariable > censusMax) {
+          censusMax = censusVariable;
         }
 
         // update the existing row with the new data
@@ -115,7 +116,7 @@
       ).textContent = exports.censusMin.toLocaleString();
       document.getElementById(
         "census-max"
-      ).textContent = exports.censusMax.toLocaleString();
+      ).textContent = censusMax.toLocaleString();
     };
     xhr.send();
     // [END maps_combining_data_snippet_loadcensus]
@@ -124,7 +125,7 @@
   /** Removes census data from each shape on the map and resets the UI. */
   function clearCensusData() {
     exports.censusMin = Number.MAX_VALUE;
-    exports.censusMax = -Number.MAX_VALUE;
+    censusMax = -Number.MAX_VALUE;
     exports.map.data.forEach(function(row) {
       row.setProperty("census_variable", undefined);
     });
@@ -147,7 +148,7 @@
     // delta represents where the value sits between the min and max
     var delta =
       (feature.getProperty("census_variable") - exports.censusMin) /
-      (exports.censusMax - exports.censusMin);
+      (censusMax - exports.censusMin);
 
     var color = [];
     for (var i = 0; i < 3; i++) {
@@ -193,7 +194,7 @@
 
     var percent =
       ((e.feature.getProperty("census_variable") - exports.censusMin) /
-        (exports.censusMax - exports.censusMin)) *
+        (censusMax - exports.censusMin)) *
       100;
 
     // update the label
@@ -217,9 +218,6 @@
     // reset the hover state, returning the border to normal
     e.feature.setProperty("state", "normal");
   }
-  // [END maps_combining_data_snippet_mouseevents]
-
-  // [END maps_combining_data]
 
   exports.clearCensusData = clearCensusData;
   exports.initMap = initMap;

@@ -45,7 +45,6 @@
       map.setCenter(marker.getPosition());
     });
   }
-  // [END maps_event_simple]
 
   exports.initMap = initMap;
 

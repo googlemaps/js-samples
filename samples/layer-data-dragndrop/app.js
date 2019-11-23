@@ -18,6 +18,9 @@
   'use strict';
 
   // [START maps_layer_data_dragndrop]
+  /* Map functions */
+
+
 
   function initMap() {
     // set up the map
@@ -128,7 +131,6 @@
     initMap();
     initEvents();
   }
-  // [END maps_layer_data_dragndrop]
 
   exports.handleDrop = handleDrop;
   exports.hidePanel = hidePanel;

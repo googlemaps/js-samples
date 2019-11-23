@@ -18,6 +18,10 @@
   'use strict';
 
   // [START maps_layer_data_dragndrop]
+
+  /* Map functions */
+
+
   function initMap() {
     // set up the map
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -25,6 +29,7 @@
       zoom: 2
     });
   }
+
   function loadGeoJsonString(geoString) {
     var geojson = JSON.parse(geoString);
     exports.map.data.addGeoJson(geojson);
@@ -34,6 +39,7 @@
    * Update a map's viewport to fit each geometry in a dataset
    * @param {google.maps.Map} map The map to adjust
    */
+
 
   function zoom(map) {
     var bounds = new google.maps.LatLngBounds();
@@ -51,6 +57,7 @@
    *     myArray)
    */
 
+
   function processPoints(geometry, callback, thisArg) {
     if (geometry instanceof google.maps.LatLng) {
       callback.call(thisArg, geometry);
@@ -64,6 +71,7 @@
   }
   /* DOM (drag/drop) functions */
 
+
   function initEvents() {
     // set up the drag & drop events
     var mapContainer = document.getElementById("map");
@@ -75,15 +83,18 @@
     dropContainer.addEventListener("drop", handleDrop, false);
     dropContainer.addEventListener("dragleave", hidePanel, false);
   }
+
   function showPanel(e) {
     e.stopPropagation();
     e.preventDefault();
     document.getElementById("drop-container").style.display = "block";
     return false;
   }
+
   function hidePanel(e) {
     document.getElementById("drop-container").style.display = "none";
   }
+
   function handleDrop(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -119,6 +130,7 @@
 
     return false;
   }
+
   function initialize() {
     initMap();
     initEvents();

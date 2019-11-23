@@ -227,7 +227,6 @@
         });
     });
   }
-  // [END maps_firebase_map]
 
   exports.addToFirebase = addToFirebase;
   exports.config = config;

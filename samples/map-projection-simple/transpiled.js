@@ -49,6 +49,9 @@
     });
     map.data.addGeoJson(cities);
   }
+
+
+
   function initGallPeters() {
     var GALL_PETERS_RANGE_X = 800;
     var GALL_PETERS_RANGE_Y = 512; // Fetch Gall-Peters tiles stored locally on our server.
@@ -81,6 +84,7 @@
       }
     };
   } // GeoJSON, describing the locations and names of some cities.
+
 
   var cities = {
     type: "FeatureCollection",

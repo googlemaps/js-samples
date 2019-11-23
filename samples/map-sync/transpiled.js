@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_map_sync]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: {

@@ -42,6 +42,7 @@
    * @private {number}
    */
 
+
   PuzzleDemo.NUM_PIECES_ = 10;
   /**
    * @private {string}

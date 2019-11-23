@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_streetview_embed]
+
+
   function initialize() {
     exports.panorama = new google.maps.StreetViewPanorama(document.getElementById("street-view"), {
       position: {

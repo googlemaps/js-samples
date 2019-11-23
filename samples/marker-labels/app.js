@@ -49,7 +49,6 @@
       map: map
     });
   }
-  // [END maps_marker_labels]
 
   exports.addMarker = addMarker;
   exports.initMap = initMap;

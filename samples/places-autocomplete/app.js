@@ -115,7 +115,6 @@
         autocomplete.setOptions({ strictBounds: this.checked });
       });
   }
-  // [END maps_places_autocomplete]
 
   exports.initMap = initMap;
 

@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_aerial_rotation]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: {
@@ -30,10 +32,12 @@
       tilt: 45
     });
   }
+
   function rotate90() {
     var heading = exports.map.getHeading() || 0;
     exports.map.setHeading(heading + 90);
   }
+
   function autoRotate() {
     // Determine if we're showing aerial imagery.
     if (exports.map.getTilt() !== 0) {

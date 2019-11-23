@@ -36,7 +36,6 @@
     });
     map.panTo(latLng);
   }
-  // [END maps_event_arguments]
 
   exports.initMap = initMap;
   exports.placeMarkerAndPanTo = placeMarkerAndPanTo;

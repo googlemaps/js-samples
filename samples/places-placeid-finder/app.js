@@ -84,7 +84,6 @@
       infowindow.open(map, marker);
     });
   }
-  // [END maps_places_placeid_finder]
 
   exports.initMap = initMap;
 

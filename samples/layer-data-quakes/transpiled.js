@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_layer_data_quakes]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: {
@@ -36,9 +38,11 @@
     document.getElementsByTagName("head")[0].appendChild(script);
   } // Defines the callback function referenced in the jsonp file.
 
+
   function eqfeed_callback(data) {
     exports.map.data.addGeoJson(data);
   }
+
   function styleFeature(feature) {
     var low = [151, 83, 34]; // color of mag 1.0
 
@@ -62,6 +66,7 @@
       zIndex: Math.floor(feature.getProperty("mag"))
     };
   }
+
   function interpolateHsl(lowHsl, highHsl, fraction) {
     var color = [];
 
@@ -72,6 +77,7 @@
 
     return "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)";
   }
+
   var mapStyle = [{
     featureType: "all",
     elementType: "all",

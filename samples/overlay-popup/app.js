@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_overlay_popup]
+  var popup, Popup;
 
   /** Initializes the map and the custom popup. */
   function initMap() {
@@ -26,12 +27,12 @@
       zoom: 10
     });
 
-    exports.Popup = createPopupClass();
-    exports.popup = new exports.Popup(
+    Popup = createPopupClass();
+    popup = new Popup(
       new google.maps.LatLng(-33.866, 151.196),
       document.getElementById("content")
     );
-    exports.popup.setMap(exports.map);
+    popup.setMap(exports.map);
   }
 
   /**
@@ -103,7 +104,6 @@
 
     return Popup;
   }
-  // [END maps_overlay_popup]
 
   exports.createPopupClass = createPopupClass;
   exports.initMap = initMap;

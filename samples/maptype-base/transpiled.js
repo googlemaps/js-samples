@@ -34,6 +34,7 @@
   function CoordMapType(tileSize) {
     this.tileSize = tileSize;
   }
+
   CoordMapType.prototype.maxZoom = 19;
   CoordMapType.prototype.name = "Tile #s";
   CoordMapType.prototype.alt = "Tile Coordinate Map Type";

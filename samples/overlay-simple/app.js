@@ -18,6 +18,18 @@
   'use strict';
 
   // [START maps_overlay_simple]
+  // [START maps_overlay_simple_region_initialization]
+  // This example creates a custom overlay called USGSOverlay, containing
+  // a U.S. Geological Survey (USGS) image of the relevant area on the map.
+
+  // Set the custom overlay object's prototype to a new instance
+  // of OverlayView. In effect, this will subclass the overlay class therefore
+  // it's simpler to load the API synchronously, using
+  // google.maps.event.addDomListener().
+  // Note that we set the prototype to an instance, rather than the
+  // parent class itself, because we do not wish to modify the parent class.
+
+
   USGSOverlay.prototype = new google.maps.OverlayView();
 
   // Initialize the map and the custom overlay.
@@ -119,8 +131,6 @@
     this.div_.parentNode.removeChild(this.div_);
     this.div_ = null;
   };
-  // [END maps_overlay_simple_region_removal]
-  // [END maps_overlay_simple]
 
   exports.USGSOverlay = USGSOverlay;
   exports.initMap = initMap;

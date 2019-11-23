@@ -27,7 +27,6 @@
     var bikeLayer = new google.maps.BicyclingLayer();
     bikeLayer.setMap(map);
   }
-  // [END maps_layer_bicycling]
 
   exports.initMap = initMap;
 

@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_earthquake_markers]
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 2,
@@ -46,7 +47,6 @@
       });
     }
   };
-  // [END maps_earthquake_markers]
 
   exports.initMap = initMap;
 

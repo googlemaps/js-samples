@@ -35,6 +35,7 @@
   } // This function is called when the user clicks the UI button requesting
   // a geocode of a place ID.
 
+
   function geocodePlaceId(geocoder, map, infowindow) {
     var placeId = document.getElementById("place-id").value;
     geocoder.geocode({

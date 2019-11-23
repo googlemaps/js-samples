@@ -30,6 +30,7 @@
       placeMarkerAndPanTo(e.latLng, map);
     });
   }
+
   function placeMarkerAndPanTo(latLng, map) {
     var marker = new google.maps.Marker({
       position: latLng,

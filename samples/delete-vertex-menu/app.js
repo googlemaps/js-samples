@@ -142,8 +142,6 @@
     this.close();
   };
 
-  // [END maps_delete_vertex_menu]
-
   exports.DeleteMenu = DeleteMenu;
   exports.initialize = initialize;
 

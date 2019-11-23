@@ -22,6 +22,7 @@
   // Each marker is labeled with a single alphabetical character.
   var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   exports.labelIndex = 0;
+
   function initMap() {
     var bangalore = {
       lat: 12.97,
@@ -38,6 +39,7 @@
 
     addMarker(bangalore, map);
   } // Adds a marker to the map.
+
 
   function addMarker(location, map) {
     // Add the marker at the clicked location, and add the next-available label

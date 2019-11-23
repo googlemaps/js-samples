@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_earthquake_heatmap]
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 2,
@@ -48,7 +49,6 @@
       map: exports.map
     });
   }
-  // [END maps_earthquake_heatmap]
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.initMap = initMap;

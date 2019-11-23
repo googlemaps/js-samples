@@ -32,6 +32,7 @@
       geocodeLatLng(geocoder, map, infowindow);
     });
   }
+
   function geocodeLatLng(geocoder, map, infowindow) {
     var input = document.getElementById("latlng").value;
     var latlngStr = input.split(",", 2);

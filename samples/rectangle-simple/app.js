@@ -42,7 +42,6 @@
       }
     });
   }
-  // [END maps_rectangle_simple]
 
   exports.initMap = initMap;
 

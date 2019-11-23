@@ -30,7 +30,6 @@
     // The marker, positioned at Uluru
     var marker = new google.maps.Marker({ position: uluru, map: map });
   }
-  // [END maps_add_map]
 
   exports.initMap = initMap;
 

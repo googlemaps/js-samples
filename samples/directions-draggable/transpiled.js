@@ -38,6 +38,7 @@
     });
     displayRoute("Perth, WA", "Sydney, NSW", directionsService, directionsRenderer);
   }
+
   function displayRoute(origin, destination, service, display) {
     service.route({
       origin: origin,
@@ -57,6 +58,7 @@
       }
     });
   }
+
   function computeTotalDistance(result) {
     var total = 0;
     var myroute = result.routes[0];

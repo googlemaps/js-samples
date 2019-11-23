@@ -91,7 +91,6 @@
   }
 
   function doNothing() {}
-  // [END maps_mysql_to_maps]
 
   exports.customLabel = customLabel;
   exports.doNothing = doNothing;

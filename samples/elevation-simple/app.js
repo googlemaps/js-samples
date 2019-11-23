@@ -60,7 +60,6 @@
       }
     );
   }
-  // [END maps_elevation_simple]
 
   exports.displayLocationElevation = displayLocationElevation;
   exports.initMap = initMap;

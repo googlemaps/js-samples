@@ -58,7 +58,6 @@
       }
     });
   }
-  // [END maps_place_details]
 
   exports.initMap = initMap;
 

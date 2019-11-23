@@ -33,7 +33,9 @@
       coordInfoWindow.open(map);
     });
   }
+
   var TILE_SIZE = 256;
+
   function createInfoWindowContent(latLng, zoom) {
     var scale = 1 << zoom;
     var worldCoordinate = project(latLng);
@@ -42,6 +44,7 @@
     return ["Chicago, IL", "LatLng: " + latLng, "Zoom level: " + zoom, "World Coordinate: " + worldCoordinate, "Pixel Coordinate: " + pixelCoordinate, "Tile Coordinate: " + tileCoordinate].join("<br>");
   } // The mapping between latitude, longitude and pixels is defined by the web
   // mercator projection.
+
 
   function project(latLng) {
     var siny = Math.sin(latLng.lat() * Math.PI / 180); // Truncating to 0.9999 effectively limits latitude to 89.189. This is

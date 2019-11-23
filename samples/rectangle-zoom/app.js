@@ -43,7 +43,6 @@
       });
     });
   }
-  // [END maps_rectangle_zoom]
 
   exports.initMap = initMap;
 

@@ -38,7 +38,6 @@
       map: map
     });
   }
-  // [END maps_marker_symbol_predefined]
 
   exports.initMap = initMap;
 

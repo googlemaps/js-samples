@@ -63,7 +63,6 @@
       infowindow.open(map, marker);
     });
   }
-  // [END maps_infowindow_simple]
 
   exports.initMap = initMap;
 

@@ -24,7 +24,6 @@
       zoom: 8
     });
   }
-  // [END maps_control_default]
 
   exports.initMap = initMap;
 

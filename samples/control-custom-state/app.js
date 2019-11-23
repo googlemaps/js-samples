@@ -18,6 +18,7 @@
   'use strict';
 
   // [START maps_control_custom_state]
+
   var chicago = { lat: 41.85, lng: -87.65 };
 
   /**
@@ -115,7 +116,6 @@
     centerControlDiv.style["padding-top"] = "10px";
     exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
   }
-  // [END maps_control_custom_state]
 
   exports.CenterControl = CenterControl;
   exports.chicago = chicago;

@@ -33,6 +33,7 @@
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     });
   }
+
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     var waypts = [];
     var checkboxArray = document.getElementById("waypoints");

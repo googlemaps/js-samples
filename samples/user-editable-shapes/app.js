@@ -41,7 +41,6 @@
     // [END maps_user_editable_shapes_rectangle]
     rectangle.setMap(map);
   }
-  // [END maps_user_editable_shapes]
 
   exports.initMap = initMap;
 

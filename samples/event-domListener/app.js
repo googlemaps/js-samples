@@ -31,7 +31,6 @@
       window.alert("Map was clicked!");
     });
   }
-  // [END maps_event_domListener]
 
   exports.initMap = initMap;
 

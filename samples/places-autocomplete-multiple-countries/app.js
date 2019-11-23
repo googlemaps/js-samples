@@ -111,7 +111,6 @@
       "mp"
     ]);
   }
-  // [END maps_places_autocomplete_multiple_countries]
 
   exports.initMap = initMap;
 

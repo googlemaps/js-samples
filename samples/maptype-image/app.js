@@ -79,7 +79,6 @@
 
     return { x: x, y: y };
   }
-  // [END maps_maptype_image]
 
   exports.getNormalizedCoord = getNormalizedCoord;
   exports.initMap = initMap;

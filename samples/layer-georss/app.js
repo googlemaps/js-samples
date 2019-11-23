@@ -30,7 +30,6 @@
     });
     georssLayer.setMap(map);
   }
-  // [END maps_layer_georss]
 
   exports.initMap = initMap;
 

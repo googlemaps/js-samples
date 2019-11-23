@@ -53,7 +53,6 @@
       }
     );
   }
-  // [END maps_geocoding_component_restriction]
 
   exports.geocodeAddress = geocodeAddress;
   exports.initMap = initMap;

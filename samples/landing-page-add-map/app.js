@@ -35,7 +35,6 @@
       map: map
     });
   }
-  // [END maps_landing_page_add_map]
 
   exports.initMap = initMap;
 

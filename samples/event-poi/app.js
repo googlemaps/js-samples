@@ -95,7 +95,6 @@
       }
     });
   };
-  // [END maps_event_poi]
 
   exports.ClickEventHandler = ClickEventHandler;
   exports.initMap = initMap;

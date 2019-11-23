@@ -37,6 +37,7 @@
     document.getElementById("start").addEventListener("change", onChangeHandler);
     document.getElementById("end").addEventListener("change", onChangeHandler);
   }
+
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     directionsService.route({
       origin: {

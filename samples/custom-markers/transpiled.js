@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_custom_markers]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: new google.maps.LatLng(-33.91722, 151.23064),

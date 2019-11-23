@@ -133,8 +133,6 @@
     );
   };
 
-  // [END maps_places_autocomplete_directions]
-
   exports.AutocompleteDirectionsHandler = AutocompleteDirectionsHandler;
   exports.initMap = initMap;
 

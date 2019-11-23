@@ -55,6 +55,8 @@
     });
     map.data.addGeoJson(cities);
   }
+
+
   function initGallPeters() {
     var GALL_PETERS_RANGE_X = 800;
     var GALL_PETERS_RANGE_Y = 512;
@@ -156,7 +158,6 @@
       }
     ]
   };
-  // [END maps_map_projection_simple]
 
   exports.cities = cities;
   exports.initGallPeters = initGallPeters;

@@ -37,6 +37,7 @@
    * @constructor
    */
 
+
   function AutocompleteDirectionsHandler(map) {
     this.map = map;
     this.originPlaceId = null;
@@ -64,6 +65,7 @@
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
   } // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
+
 
   AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
     var radioButton = document.getElementById(id);

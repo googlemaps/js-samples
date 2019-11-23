@@ -44,7 +44,6 @@
       }
     });
   }
-  // [END maps_geocoding_simple]
 
   exports.geocodeAddress = geocodeAddress;
   exports.initMap = initMap;

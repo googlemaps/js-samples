@@ -110,7 +110,6 @@
     }
     markersArray = [];
   }
-  // [END maps_distance_matrix]
 
   exports.deleteMarkers = deleteMarkers;
   exports.initMap = initMap;

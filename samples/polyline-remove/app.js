@@ -18,6 +18,11 @@
   'use strict';
 
   // [START maps_polyline_remove]
+  // This example adds a UI control allowing users to remove the polyline from the
+  // map.
+
+
+
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -50,7 +55,6 @@
   function removeLine() {
     exports.flightPath.setMap(null);
   }
-  // [END maps_polyline_remove]
 
   exports.addLine = addLine;
   exports.initMap = initMap;

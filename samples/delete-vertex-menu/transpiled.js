@@ -49,6 +49,7 @@
    * @constructor
    */
 
+
   function DeleteMenu() {
     this.div_ = document.createElement("div");
     this.div_.className = "delete-menu";
@@ -58,6 +59,7 @@
       menu.removeVertex();
     });
   }
+
   DeleteMenu.prototype = new google.maps.OverlayView();
 
   DeleteMenu.prototype.onAdd = function () {

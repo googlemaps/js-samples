@@ -423,7 +423,6 @@
 
     new PuzzleDemo().init(map);
   }
-  // [END maps_map_puzzle]
 
   exports.PuzzleDemo = PuzzleDemo;
   exports.initMap = initMap;

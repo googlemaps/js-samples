@@ -18,7 +18,18 @@
   'use strict';
 
   // [START maps_places_autocomplete_hotelsearch]
+  // This example uses the autocomplete feature of the Google Places API.
+  // It allows the user to find all hotels in a given place, within a given
+  // country. It then displays markers for all the hotels returned,
+  // with on-click details for each hotel.
+
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+  var places, infoWindow;
   exports.markers = [];
+
   var countryRestrict = { country: "us" };
   var MARKER_PATH =
     "https://developers.google.com/maps/documentation/javascript/images/marker_green";
@@ -89,7 +100,7 @@
       streetViewControl: false
     });
 
-    exports.infoWindow = new google.maps.InfoWindow({
+    infoWindow = new google.maps.InfoWindow({
       content: document.getElementById("info-content")
     });
 
@@ -102,7 +113,7 @@
         componentRestrictions: countryRestrict
       }
     );
-    exports.places = new google.maps.places.PlacesService(exports.map);
+    places = new google.maps.places.PlacesService(exports.map);
 
     exports.autocomplete.addListener("place_changed", onPlaceChanged);
 
@@ -132,7 +143,7 @@
       types: ["lodging"]
     };
 
-    exports.places.nearbySearch(search, function(results, status) {
+    places.nearbySearch(search, function(results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         clearResults();
         clearMarkers();
@@ -228,14 +239,14 @@
   // anchored on the marker for the hotel that the user selected.
   function showInfoWindow() {
     var marker = this;
-    exports.places.getDetails({ placeId: marker.placeResult.place_id }, function(
+    places.getDetails({ placeId: marker.placeResult.place_id }, function(
       place,
       status
     ) {
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
         return;
       }
-      exports.infoWindow.open(exports.map, marker);
+      infoWindow.open(exports.map, marker);
       buildIWContent(place);
     });
   }
@@ -289,7 +300,6 @@
       document.getElementById("iw-website-row").style.display = "none";
     }
   }
-  // [END maps_places_autocomplete_hotelsearch]
 
   exports.MARKER_PATH = MARKER_PATH;
   exports.addResult = addResult;

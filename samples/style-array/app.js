@@ -105,7 +105,6 @@
       ]
     });
   }
-  // [END maps_style_array]
 
   exports.initMap = initMap;
 

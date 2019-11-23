@@ -56,7 +56,6 @@
       document.getElementById("encoded-polyline").value = encodeString;
     }
   }
-  // [END maps_geometry_encodings]
 
   exports.addLatLngToPoly = addLatLngToPoly;
   exports.initMap = initMap;

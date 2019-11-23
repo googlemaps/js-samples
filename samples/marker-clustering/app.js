@@ -72,7 +72,6 @@
     { lat: -42.735258, lng: 147.438 },
     { lat: -43.999792, lng: 170.463352 }
   ];
-  // [END maps_marker_clustering]
 
   exports.MarkerClusterer = MarkerClusterer;
   exports.initMap = initMap;

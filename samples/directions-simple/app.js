@@ -34,10 +34,7 @@
     document.getElementById("end").addEventListener("change", onChangeHandler);
   }
 
-  function calculateAndDisplayRoute(
-    directionsService,
-    directionsRenderer
-  ) {
+  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     directionsService.route(
       {
         origin: { query: document.getElementById("start").value },
@@ -53,7 +50,6 @@
       }
     );
   }
-  // [END maps_directions_simple]
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;

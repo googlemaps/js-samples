@@ -49,7 +49,6 @@
     });
     bermudaTriangle.setMap(map);
   }
-  // [END maps_polygon_autoclose]
 
   exports.initMap = initMap;
 

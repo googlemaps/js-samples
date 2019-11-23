@@ -29,7 +29,6 @@
       map: map
     });
   }
-  // [END maps_layer_kml]
 
   exports.initMap = initMap;
 

@@ -54,6 +54,7 @@
   } // Use the DOM setInterval() function to change the offset of the symbol
   // at fixed intervals.
 
+
   function animateCircle(line) {
     var count = 0;
     window.setInterval(function () {

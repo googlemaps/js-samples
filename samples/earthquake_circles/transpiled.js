@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_earthquake_circles]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 2,
@@ -40,6 +42,7 @@
       };
     });
   }
+
   function getCircle(magnitude) {
     return {
       path: google.maps.SymbolPath.CIRCLE,
@@ -50,6 +53,7 @@
       strokeWeight: 0.5
     };
   }
+
   function eqfeed_callback(results) {
     exports.map.data.addGeoJson(results);
   } // [END maps_earthquake_circles]

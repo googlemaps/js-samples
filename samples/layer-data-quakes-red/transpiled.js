@@ -18,6 +18,8 @@
   'use strict';
 
   // [START maps_layer_data_quakes_red]
+
+
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: {
@@ -49,6 +51,7 @@
       );
     });
   } // Defines the callback function referenced in the jsonp file.
+
 
   function eqfeed_callback(data) {
     exports.map.data.addGeoJson(data);

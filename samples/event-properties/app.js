@@ -35,7 +35,6 @@
       infowindow.setContent("Zoom: " + map.getZoom());
     });
   }
-  // [END maps_event_properties]
 
   exports.initMap = initMap;
 

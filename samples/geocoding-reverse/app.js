@@ -53,7 +53,6 @@
       }
     });
   }
-  // [END maps_geocoding_reverse]
 
   exports.geocodeLatLng = geocodeLatLng;
   exports.initMap = initMap;

@@ -34,6 +34,7 @@
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     });
   }
+
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     var selectedMode = document.getElementById("mode").value;
     directionsService.route({

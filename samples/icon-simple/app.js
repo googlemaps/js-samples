@@ -34,7 +34,6 @@
       icon: image
     });
   }
-  // [END maps_icon_simple]
 
   exports.initMap = initMap;
 

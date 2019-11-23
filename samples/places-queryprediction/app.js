@@ -42,7 +42,6 @@
     var service = new google.maps.places.AutocompleteService();
     service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
   }
-  // [END maps_places_queryprediction]
 
   exports.initService = initService;
 

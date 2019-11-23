@@ -19,6 +19,7 @@
 
   // [START maps_streetview_overlays]
 
+
   function initMap() {
     var astorPlace = { lat: 40.729884, lng: -73.990988 };
 
@@ -74,7 +75,6 @@
       exports.panorama.setVisible(false);
     }
   }
-  // [END maps_streetview_overlays]
 
   exports.initMap = initMap;
   exports.toggleStreetView = toggleStreetView;
