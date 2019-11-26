@@ -26,7 +26,7 @@
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "run-s build:clean build:html build:css build:js",
+    "build": "run-s build:clean build:html build:css build:js build:format",
     "build:clean": "rm -rf dist",
     "build:css": "sass --no-source-map src/style.scss dist/style.css",
     "build:format": "run-s build format:dist",

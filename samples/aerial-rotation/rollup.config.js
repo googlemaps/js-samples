@@ -49,10 +49,16 @@ export default [
       babel({
         include: include,
         rootMode: "upward"
-      })
+      }),
+      {
+        name: 'strip-region-tags',
+        renderChunk(code) {
+          return code.replace(/\/\/\s*\[(?:START|END|START_EXCLUDE|END_EXCLUDE) [a-zA-Z0-9_]*\]/g, "")
+        }
+      }
     ],
     output: {
-      file: "dist/transpiled.js",
+      file: "dist/jsfiddle.js",
       ...output
     }
   },
