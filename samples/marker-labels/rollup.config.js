@@ -64,7 +64,13 @@ export default [
   },
   {
     input: "src/index.js",
-    plugins: plugins,
+    plugins: [
+      ...plugins,
+      babel({
+        include: include,
+        rootMode: "upward"
+      })
+    ],
     output: {
       file: "dist/app.js",
       ...output
