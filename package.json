@@ -35,7 +35,7 @@
     "serve:firebase": "npm run build && firebase serve",
     "deploy": "npm run build && firebase deploy",
     "deploy:ci": "npm run build && firebase deploy --token $FIREBASE_TOKEN",
-    "test": "bazel test //... && lerna run test && npm run test:tags",
+    "test": "lerna run test && npm run test:tags",
     "test:tags": "./build/test_tags.sh"
   },
   "dependencies": {},
