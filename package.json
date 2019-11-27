@@ -17,37 +17,36 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "bootstrap": "lerna bootstrap",
-    "build": "rm -rf dist && lerna run build && ./build/index.sh && npm run build:move",
-    "build:clean": "lerna run build:clean",
-    "build:css": "lerna run build:css",
+    "bazel:format": "find . -type f \\( -name \"*.bzl\" -or -name WORKSPACE -or -name BUILD -or -name BUILD.bazel \\) ! -path \"*/node_modules/*\" ! -path \"./dist/*\" ! -path \"./release/*\" ! -path \"./third_party/*\" | xargs buildifier -v --warnings=attr-cfg,attr-license,attr-non-empty,attr-output-default,attr-single-file,confusing-name,constant-glob,ctx-actions,ctx-args,depset-iteration,depset-union,dict-concatenation,duplicated-name,filetype,function-docstring,git-repository,http-archive,integer-division,load,load-on-top,module-docstring,name-conventions,native-build,native-package,out-of-order-load,output-group,package-name,package-on-top,positional-args,redefined-variable,repository-name,return-value,same-origin-load,string-iteration,unreachable,unsorted-dict-items,unused-variable",
+    "bazel:format-check": "npm bazel:format --mode=check",
+    "bazel:lint": "npm run bazel:format --lint=warn",
+    "bazel:lint-fix": "npm run bazel:format --lint=fix",
+    "build": "bazel build //...",
+    "build:clean": "bazel clean",
     "build:format": "lerna run build:format",
-    "build:html": "lerna run build:html",
-    "build:index": "./build/index.sh",
-    "build:js": "lerna run build:js",
-    "build:move": "lerna run build:move && cp index.html dist/index.html",
-    "build:watch": "npm-watch build",
     "ci": "npm run lint && npm run test && npm build",
     "defaults:data:merge": "lerna exec '../../build/merge_default_data.sh'",
     "defaults:package:merge": "lerna exec '../../build/merge_default_package.sh'",
     "format": "npm run format:root && lerna run format",
     "format:dist": "lerna run format:dist",
     "format:root": "sort-package-json && prettier *.json *.js shared/**/*.scss --write --loglevel error",
-    "lint": "lerna run lint",
-    "serve": "firebase serve --port 8080",
-    "serve:watch": "run-p build:watch serve",
-    "test": "lerna run test && npm run test:tags",
+    "lint": "lerna run lint && npm run bazel:lint",
+    "serve": "bazel run :serve",
+    "serve:firebase": "npm run build && firebase serve",
+    "deploy": "npm run build && firebase deploy",
+    "deploy:ci": "npm run build && firebase deploy --token $FIREBASE_TOKEN",
+    "test": "bazel test //... && lerna run test && npm run test:tags",
     "test:tags": "./build/test_tags.sh"
   },
   "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.7.1",
     "@babel/preset-env": "^7.7.1",
-    "@bazel/bazel": "latest",
-    "@bazel/buildifier": "latest",
-    "@bazel/ibazel": "latest",
-    "@bazel/rollup": "latest",
-    "@bazel/typescript": "latest",
+    "@bazel/bazel": "^1.1.0",
+    "@bazel/buildifier": "^0.26.0",
+    "@bazel/buildozer": "^0.29.0",
+    "@bazel/rollup": "^0.42.1",
+    "@bazel/typescript": "^0.42.1",
     "@types/googlemaps": "^3.37.7",
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
@@ -64,7 +63,6 @@
     "lerna": "^3.16.4",
     "license-check-and-add": "^3.0.3",
     "npm-run-all": "^4.1.5",
-    "npm-watch": "^0.6.0",
     "nunjucks-cli": "git+https://github.com/jpoehnelt/nunjucks-cli.git#a6c17c60a5e7fda4fbc8a73c0abf8af5750ff48c",
     "prettier": "^1.18.2",
     "rollup": "^1.24.0",
@@ -76,15 +74,5 @@
     "sort-package-json": "^1.22.1",
     "ts-jest": "^24.1.0",
     "typescript": "^3.7.2"
-  },
-  "watch": {
-    "build": {
-      "patterns": [
-        "samples/**/src",
-        "shared/**"
-      ],
-      "extensions": "ts,scss,njk",
-      "quiet": false
-    }
   }
 }

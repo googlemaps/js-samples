@@ -1,13 +1,65 @@
 load("@npm//http-server:index.bzl", "http_server")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
-exports_files(["tsconfig.json", "LICENSE", "package.json", "babel.config.json", "rollup.config.js"], visibility = ["//:__subpackages__"])
+exports_files(
+    [
+        "tsconfig.json",
+        "LICENSE",
+        "package.json",
+        "babel.config.json",
+        "rollup.config.js",
+    ],
+    visibility = ["//:__subpackages__"],
+)
 
 http_server(
     name = "serve",
-    args = [        
+    args = [
     ],
     data = [
         "//:index.html",
-        "//samples/circle-simple:group"
-    ]
+        "//samples",
+    ],
+)
+
+CMD = '''
+set -e
+context="{\\"packages\\": {\n"
+packages=$$($(location @npm//lerna/bin:lerna) list)
+i=0
+for p in $$packages; do
+  if ((i > 0)); then
+    context="$${context},\\n"
+  fi
+  context="$${context}\\"$$($(location @npm//json/bin:json) -f samples/$$p/data.json title)\\": \\"$$p\\""
+  i=$$((i + 1))
+done
+
+context="$${context}}}"
+echo -e $${context} > $@
+'''
+
+# Used to generate data.json
+#
+# genrule(
+#     name = "data",
+#     outs = ["data.json"],
+#     cmd = CMD,
+#     local = 1,
+#     tools = [
+#         "@npm//json/bin:json",
+#         "@npm//lerna/bin:lerna",
+#     ],
+# )
+
+genrule(
+    name = "index",
+    srcs = [
+        ":data.json",
+        ":index.njk",
+        "//shared:templates",
+    ],
+    outs = ["index.html"],
+    cmd = "$(location @npm//nunjucks-cli/bin:nunjucks) $(location index.njk) $(location data.json) -p . && cat index.html > $@",
+    tools = ["@npm//nunjucks-cli/bin:nunjucks"],
 )

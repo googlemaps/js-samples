@@ -11,6 +11,11 @@
         "njk": {
             "prepend": "<!--",
             "append": "-->"
+        },
+        "bazel|bzl": {
+            "eachLine": {
+                "prepend": " # "
+            }
         }
     }
 }

@@ -6,16 +6,15 @@ cache:
   - ".firebase"
   - "~/.cache/bazel-disk-cache"
 script:
-- npx bazel build samples/...
-- ls dist/bin/samples
+- npm run ci
 deploy:
 - provider: script
   skip_cleanup: true
-  script: firebase deploy --token "$FIREBASE_TOKEN"
+  script: npm run deploy:ci
   on:
     branch: dev
 - provider: pages
-  local_dir: dist
+  local_dir: dist/bin
   target_branch: master
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"

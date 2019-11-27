@@ -12,7 +12,7 @@ def sample():
         config_file = "//:rollup.config.js",
         format = "iife",
         sourcemap = "false",
-        visibility= ["//visibility:public"]
+        visibility = ["//visibility:public"],
     )
 
     babel(
@@ -25,14 +25,14 @@ def sample():
         data = [
             ":app",
             "@npm//@babel/preset-env",
-            "//:babel.config.json"
+            "//:babel.config.json",
         ],
-        outs =["transpiled.js"],
-        visibility= ["//visibility:public"]
+        outs = ["transpiled.js"],
+        visibility = ["//visibility:public"],
     )
 
     sass_binary(
-        name = "css",
+        name = "_css",
         src = "src/style.scss",
         deps = [
             "//shared/scss:default",
@@ -40,18 +40,43 @@ def sample():
         output_name = "style.css",
         sourcemap = False,
         output_style = "expanded",
-        visibility= ["//visibility:public"]
+        visibility = ["//visibility:public"],
     )
 
     nunjucks()
 
     native.filegroup(
-        name="group",
-        srcs=[
-            ":index.html",
+        name = "js",
+        srcs = [
             ":transpiled.js",
             ":app.js",
+        ],
+        visibility = ["//visibility:public"],
+    )
+    
+    native.filegroup(
+        name="html",
+        srcs=[
+            ":index.html",
+            ":jsfiddle.html",
+            ],
+        visibility= ["//visibility:public"]
+    )
+
+    native.filegroup(
+        name="css",
+        srcs=[
             ":style.css",
+            ],
+        visibility= ["//visibility:public"]
+    )
+
+    native.filegroup(
+        name="group",
+        srcs=[
+            ":css",
+            ":html",
+            ":js",
             ],
         visibility= ["//visibility:public"]
     )
