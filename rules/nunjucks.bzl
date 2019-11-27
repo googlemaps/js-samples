@@ -56,5 +56,6 @@ def _nunjucks(jsfiddle):
         name=html,
         srcs=[_html],
         cmd="cat $(location {})/{}/src/index.html > $@".format(_html, native.package_name()),
-        outs=[out]
+        outs=[out],
+        visibility= ["//visibility:public"]
     ) 

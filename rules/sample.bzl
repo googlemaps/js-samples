@@ -11,7 +11,8 @@ def sample():
         entry_point = "src/index.js",
         config_file = "//:rollup.config.js",
         format = "iife",
-        sourcemap = "false"
+        sourcemap = "false",
+        visibility= ["//visibility:public"]
     )
 
     babel(
@@ -26,7 +27,8 @@ def sample():
             "@npm//@babel/preset-env",
             "//:babel.config.json"
         ],
-        outs =["transpiled.js"]
+        outs =["transpiled.js"],
+        visibility= ["//visibility:public"]
     )
 
     sass_binary(
@@ -37,7 +39,19 @@ def sample():
         ],
         output_name = "style.css",
         sourcemap = False,
-        output_style = "expanded"
+        output_style = "expanded",
+        visibility= ["//visibility:public"]
     )
 
     nunjucks()
+
+    native.filegroup(
+        name="group",
+        srcs=[
+            ":index.html",
+            ":transpiled.js",
+            ":app.js",
+            ":style.css",
+            ],
+        visibility= ["//visibility:public"]
+    )

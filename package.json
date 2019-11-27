@@ -41,13 +41,13 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/preset-env": "^7.7.1",
     "@babel/cli": "^7.7.1",
+    "@babel/preset-env": "^7.7.1",
     "@bazel/bazel": "latest",
     "@bazel/buildifier": "latest",
     "@bazel/ibazel": "latest",
-    "@bazel/typescript": "latest",
     "@bazel/rollup": "latest",
+    "@bazel/typescript": "latest",
     "@types/googlemaps": "^3.37.7",
     "@types/jest": "^24.0.19",
     "@typescript-eslint/eslint-plugin": "^2.4.0",
@@ -58,6 +58,7 @@
     "eslint-plugin-jest": "^22.19.0",
     "eslint-plugin-prettier": "^3.1.1",
     "firebase-tools": "^7.8.0",
+    "http-server": "^0.11.1",
     "jest": "^24.9.0",
     "json": "^9.0.6",
     "lerna": "^3.16.4",
@@ -74,8 +75,7 @@
     "sass": "^1.23.3",
     "sort-package-json": "^1.22.1",
     "ts-jest": "^24.1.0",
-    "typescript": "^3.7.2",
-    "http-server": "^0.11.1"
+    "typescript": "^3.7.2"
   },
   "watch": {
     "build": {
