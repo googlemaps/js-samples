@@ -4,10 +4,10 @@ node_js:
 cache:
   directories:
   - ".firebase"
+  - "~/.cache/bazel-disk-cache"
 script:
-- npm run bootstrap
-- npm run ci
-- npm run build
+- npx bazel build samples/...
+- ls dist/bin/samples
 deploy:
 - provider: script
   skip_cleanup: true
