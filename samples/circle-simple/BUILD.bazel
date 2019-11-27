@@ -1,0 +1,69 @@
+load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
+load("@npm//@babel/cli:index.bzl", "babel")
+load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
+load("@npm//nunjucks-cli:index.bzl", "nunjucks")
+
+rollup_bundle(
+    name = "app",
+    srcs = ["src/index.js"],
+    entry_point = "src/index.js",
+    config_file = "//:rollup.config.js",
+    format = "iife",
+    sourcemap = "false"
+)
+
+babel(
+    name = "transpiled",
+    args = [
+        "$(location :app)",
+        "--out-file",
+        "$@/transpiled.js",
+    ],
+    data = [
+        ":app",
+        "@npm//@babel/preset-env",
+        "//:babel.config.json"
+    ],
+    outs =["transpiled.js"]
+)
+
+sass_binary(
+    name = "css",
+    src = "src/style.scss",
+    deps = [
+         "//shared/scss:default",
+    ],
+    output_name = "style.css",
+    sourcemap = False,
+    output_style = "expanded"
+)
+
+nunjucks(
+    name = "html",
+    args = [
+        "$(location src/index.njk)",
+        "-p",
+        ".",
+        "$(location data.json)", 
+        "--out",
+        "$@"       
+    ],
+    data = [
+        ":src/index.njk",
+        ":data.json",
+        "//shared:templates"
+        
+    ],
+    output_dir = True
+)
+
+# this genrule moves the generated html file to the correct location
+# nunjucks-cli does not allow specifying a single output file
+# nunjucks-cli converts the .njk to a .html by default
+genrule(
+    name="html2",
+    srcs=[":html"],
+    cmd="find $(location :html) -name 'index.html' | xargs cat > $@",
+    outs=["index.html"]
+)
