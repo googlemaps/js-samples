@@ -80,3 +80,9 @@ def sample():
             ],
         visibility= ["//visibility:public"]
     )
+
+    native.filegroup(
+        name="inputs",
+        srcs=["src/index.js", "src/style.css", "src/index.njk"],
+        visibility= ["//visibility:public"]
+    )

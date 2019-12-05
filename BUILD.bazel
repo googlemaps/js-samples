@@ -1,3 +1,4 @@
+load("@npm//eslint:index.bzl", "eslint")
 load("@npm//http-server:index.bzl", "http_server")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
@@ -62,4 +63,25 @@ genrule(
     outs = ["index.html"],
     cmd = "$(location @npm//nunjucks-cli/bin:nunjucks) $(location index.njk) $(location data.json) -p . && cat index.html > $@",
     tools = ["@npm//nunjucks-cli/bin:nunjucks"],
+)
+
+sh_test(
+    name = "eslint",
+    srcs = ["//rules:lint.sh"],
+    data = [
+        ":.eslintrc.json",
+        ":_eslint",
+        "//samples:.eslintrc.json",
+        "//samples:inputs",
+    ],
+)
+
+eslint(
+    name = "_eslint",
+    data = [
+        "@npm//eslint-config-prettier",
+        "@npm//eslint-plugin-jest",
+        "@npm//eslint-plugin-prettier",
+        "@npm//eslint/bin:eslint",
+    ],
 )

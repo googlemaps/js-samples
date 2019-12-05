@@ -1,0 +1,6 @@
+exports_files(
+    [
+        "lint.sh",
+    ],
+    visibility = ["//visibility:public"],
+)
