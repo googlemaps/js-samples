@@ -53,36 +53,36 @@ def sample():
         ],
         visibility = ["//visibility:public"],
     )
-    
+
     native.filegroup(
-        name="html",
-        srcs=[
+        name = "html",
+        srcs = [
             ":index.html",
             ":jsfiddle.html",
-            ],
-        visibility= ["//visibility:public"]
+        ],
+        visibility = ["//visibility:public"],
     )
 
     native.filegroup(
-        name="css",
-        srcs=[
+        name = "css",
+        srcs = [
             ":style.css",
-            ],
-        visibility= ["//visibility:public"]
+        ],
+        visibility = ["//visibility:public"],
     )
 
     native.filegroup(
-        name="group",
-        srcs=[
+        name = "outputs",
+        srcs = [
             ":css",
             ":html",
             ":js",
-            ],
-        visibility= ["//visibility:public"]
+        ],
+        visibility = ["//visibility:public"],
     )
 
     native.filegroup(
-        name="inputs",
-        srcs=["src/index.js", "src/style.css", "src/index.njk"],
-        visibility= ["//visibility:public"]
+        name = "inputs",
+        srcs = ["src/index.js", "src/style.scss", "src/index.njk"],
+        visibility = ["//visibility:public"],
     )

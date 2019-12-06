@@ -1,5 +1,5 @@
 {
-    "license": "../../LICENSE",
+    "license": "LICENSE",
     "licenseFormats": {
         "js|ts|css|scss|less|php|as|c|java|cpp|go|cto|acl": {
             "prepend": "/*",
@@ -17,5 +17,6 @@
                 "prepend": " # "
             }
         }
-    }
+    },
+    "ignore": ["license_check*"]
 }
