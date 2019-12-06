@@ -2,16 +2,15 @@ language: node_js
 node_js:
 - stable
 cache:
-  npm: false
   directories:
   - ".firebase"
-  # - "~/.cache/bazel-disk-cache"
+  - "~/.cache/bazel-disk-cache"
 script:
-- yarn run ci
+- npm run ci
 deploy:
 - provider: script
   skip_cleanup: true
-  script: yarn run deploy:ci
+  script: npm run deploy:ci
   on:
     branch: dev
 - provider: pages
