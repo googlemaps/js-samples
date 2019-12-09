@@ -2,6 +2,7 @@ load("@npm//eslint:index.bzl", "eslint", "eslint_test")
 load("@npm//license-check-and-add:index.bzl", "license_check_and_add_test")
 load("@npm//http-server:index.bzl", "http_server")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "nodejs_test")
+load("@rules_pkg//:pkg.bzl", "pkg_deb", "pkg_tar")
 
 exports_files(
     [
@@ -66,7 +67,6 @@ genrule(
     tools = ["@npm//nunjucks-cli/bin:nunjucks"],
 )
 
-
 eslint_test(
     name = "eslint",
     args = ["samples/**/*.js"],
@@ -96,4 +96,14 @@ license_check_and_add_test(
         ":LICENSE",
         "//samples:inputs",
     ],
+)
+
+pkg_tar(
+    name = "public",
+    srcs = [
+        "//:index.html",
+        "//samples:inputs",
+        "//samples:outputs",
+    ],
+    strip_prefix = ".",
 )

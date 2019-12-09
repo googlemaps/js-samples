@@ -7,7 +7,10 @@ cache:
   - ".firebase"
   - ".cache/bazel-disk-cache"
 script:
-- yarn run ci
+- yarn run build
+- yarn run test
+before_deploy:
+- yarn run deploy:extract
 deploy:
 - provider: script
   skip_cleanup: true
@@ -15,7 +18,7 @@ deploy:
   on:
     branch: dev
 - provider: pages
-  local_dir: dist/bin
+  local_dir: public
   target_branch: master
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
