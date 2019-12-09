@@ -1,7 +1,0 @@
-{
-  "title": "Disable Zoom and Pan",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

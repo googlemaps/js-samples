@@ -1,7 +1,0 @@
-{
-  "title": "Simple Markers",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

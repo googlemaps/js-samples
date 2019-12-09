@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/rectangle-zoom/src/index.js

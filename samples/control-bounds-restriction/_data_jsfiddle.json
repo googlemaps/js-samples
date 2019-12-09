@@ -1,7 +1,0 @@
-{
-  "title": "Map Bounds Restriction",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

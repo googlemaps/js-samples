@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/map-latlng-literal/src/index.js

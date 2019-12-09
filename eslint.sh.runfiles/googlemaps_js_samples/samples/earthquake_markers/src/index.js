@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/earthquake_markers/src/index.js

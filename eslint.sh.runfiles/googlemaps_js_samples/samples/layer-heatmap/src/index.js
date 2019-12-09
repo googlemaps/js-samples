@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/layer-heatmap/src/index.js

@@ -1,7 +1,0 @@
-{
-  "title": "Localizing the Map",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

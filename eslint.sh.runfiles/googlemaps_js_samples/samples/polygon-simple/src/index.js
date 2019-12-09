@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/polygon-simple/src/index.js

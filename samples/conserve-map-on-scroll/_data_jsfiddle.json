@@ -1,7 +1,0 @@
-{
-  "title": "Conserve Map on Scroll",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

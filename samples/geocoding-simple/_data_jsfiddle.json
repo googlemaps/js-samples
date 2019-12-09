@@ -1,7 +1,0 @@
-{
-  "title": "Geocoding Service",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

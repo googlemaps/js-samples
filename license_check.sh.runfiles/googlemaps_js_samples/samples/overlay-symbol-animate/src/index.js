@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/overlay-symbol-animate/src/index.js

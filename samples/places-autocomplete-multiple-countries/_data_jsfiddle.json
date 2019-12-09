@@ -1,9 +1,0 @@
-{
-  "title": "Place Autocomplete Restricted to Multiple Countries",
-  "libraries": [
-    "places"
-  ],
-  "callback": "initMap",
-  "version": "weekly",
-  "jsfiddle": true
-}

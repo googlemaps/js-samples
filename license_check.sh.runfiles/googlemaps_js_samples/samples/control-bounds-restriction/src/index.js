@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/control-bounds-restriction/src/index.js

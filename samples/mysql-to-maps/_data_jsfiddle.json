@@ -1,7 +1,0 @@
-{
-  "title": "Using MySQL and PHP with Google Maps",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

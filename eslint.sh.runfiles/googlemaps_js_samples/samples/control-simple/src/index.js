@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/control-simple/src/index.js

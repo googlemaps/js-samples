@@ -1,9 +1,0 @@
-{
-  "title": "Heatmaps",
-  "libraries": [
-    "visualization"
-  ],
-  "callback": "initMap",
-  "version": "weekly",
-  "jsfiddle": true
-}

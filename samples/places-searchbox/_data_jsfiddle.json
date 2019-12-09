@@ -1,9 +1,0 @@
-{
-  "title": "Places Search Box",
-  "libraries": [
-    "places"
-  ],
-  "callback": "initAutocomplete",
-  "version": "weekly",
-  "jsfiddle": true
-}

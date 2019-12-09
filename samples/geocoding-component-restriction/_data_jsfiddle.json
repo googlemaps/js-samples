@@ -1,7 +1,0 @@
-{
-  "title": "Geocoding Component Restriction",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

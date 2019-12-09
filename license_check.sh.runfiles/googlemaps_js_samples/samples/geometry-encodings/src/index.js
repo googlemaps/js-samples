@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/geometry-encodings/src/index.js

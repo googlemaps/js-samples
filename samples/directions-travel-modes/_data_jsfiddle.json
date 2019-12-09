@@ -1,7 +1,0 @@
-{
-  "title": "Travel Modes in Directions",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

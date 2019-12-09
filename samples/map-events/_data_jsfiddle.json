@@ -1,7 +1,0 @@
-{
-  "title": "Map Events Explorer",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

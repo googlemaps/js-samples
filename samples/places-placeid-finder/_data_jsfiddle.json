@@ -1,9 +1,0 @@
-{
-  "title": "Place ID Finder",
-  "libraries": [
-    "places"
-  ],
-  "callback": "initMap",
-  "version": "weekly",
-  "jsfiddle": true
-}

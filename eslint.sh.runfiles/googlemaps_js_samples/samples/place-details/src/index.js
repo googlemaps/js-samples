@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/place-details/src/index.js

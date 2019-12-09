@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/delete-vertex-menu/src/index.js

@@ -1,7 +1,0 @@
-{
-  "title": "Custom Symbols (Polyline)",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Styled Maps - Night Mode",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "jsfiddle": true
-}

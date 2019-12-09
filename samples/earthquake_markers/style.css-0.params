@@ -1,7 +1,0 @@
---style=expanded
---no-source-map
---load-path=./
---load-path=bazel-out/k8-fastbuild/bin/
---load-path=bazel-out/k8-fastbuild/bin/
-samples/earthquake_markers/src/style.scss
-bazel-out/k8-fastbuild/bin/samples/earthquake_markers/style.css

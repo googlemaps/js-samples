@@ -1,9 +1,0 @@
-{
-  "title": "Place Autocomplete and Directions",
-  "libraries": [
-    "places"
-  ],
-  "callback": "initMap",
-  "version": "weekly",
-  "jsfiddle": true
-}

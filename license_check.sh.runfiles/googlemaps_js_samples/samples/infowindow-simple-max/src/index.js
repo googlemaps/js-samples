@@ -1,1 +1,0 @@
-/home/travis/build/googlemaps/js-samples/samples/infowindow-simple-max/src/index.js

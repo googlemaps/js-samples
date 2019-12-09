@@ -1,1 +1,0 @@
-{"bin": "bazel-out/k8-fastbuild/bin", "modules": {"googlemaps_js_samples": ["bin", "googlemaps_js_samples"]}, "root": "npm/node_modules", "workspace": "googlemaps_js_samples"}
