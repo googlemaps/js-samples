@@ -5,6 +5,7 @@
 **/docs
 **/src/*.html
 index.html
+bazel-*
 # Logs
 logs
 *.log

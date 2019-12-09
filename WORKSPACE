@@ -36,11 +36,6 @@ load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
 
 install_bazel_dependencies()
 
-# Setup TypeScript toolchain
-load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
-
-ts_setup_workspace()
-
 http_archive(
     name = "io_bazel_rules_sass",
     sha256 = "617e444f47a1f3e25eb1b6f8e88a2451d54a2afdc7c50518861d9f706fc8baaa",
