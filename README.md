@@ -18,7 +18,7 @@ Samples for the Google Maps JavaScript API.
 Start a server with all samples.
 
 ```
-npm run serve
+yarn run serve
 ```
 
 Bazel is used for the build system and can be called similar to `npx bazel build //...`.

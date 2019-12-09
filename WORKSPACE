@@ -20,15 +20,12 @@ http_archive(
     urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.41.0/rules_nodejs-0.41.0.tar.gz"],
 )
 
-# The npm_install rule runs yarn anytime the package.json or package-lock.json file changes.
-# It also extracts any Bazel rules distributed in an npm package.
-load("@build_bazel_rules_nodejs//:index.bzl", "npm_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
-npm_install(
-    # Name this npm so that Bazel Label references look like @npm//package
+yarn_install(
     name = "npm",
     package_json = "//:package.json",
-    package_lock_json = "//:package-lock.json",
+    yarn_lock = "//:yarn.lock",
 )
 
 # Install any Bazel rules which were extracted earlier by the npm_install rule.
