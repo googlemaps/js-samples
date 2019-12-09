@@ -1,0 +1,9 @@
+{
+  "title": "Place ID Geocoder",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "jsfiddle": true
+}

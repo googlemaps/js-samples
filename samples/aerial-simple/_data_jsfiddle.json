@@ -1,0 +1,7 @@
+{
+  "title": "45° Imagery",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

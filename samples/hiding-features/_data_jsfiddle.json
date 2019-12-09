@@ -1,0 +1,7 @@
+{
+  "title": "Hiding Map Features With Styling",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

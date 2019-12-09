@@ -1,0 +1,1 @@
+/home/travis/build/googlemaps/js-samples/samples/streetview-simple/src/index.js

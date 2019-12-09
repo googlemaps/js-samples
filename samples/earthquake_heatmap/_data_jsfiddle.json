@@ -1,0 +1,9 @@
+{
+  "title": "Earthquake Heatmap",
+  "libraries": [
+    "visualization"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "jsfiddle": true
+}

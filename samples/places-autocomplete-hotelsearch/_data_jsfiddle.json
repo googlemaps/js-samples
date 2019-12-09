@@ -1,0 +1,9 @@
+{
+  "title": "Place Autocomplete Hotel Search",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "jsfiddle": true
+}

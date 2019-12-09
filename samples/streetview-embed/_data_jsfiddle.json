@@ -1,0 +1,7 @@
+{
+  "title": "Street View Containers",
+  "callback": "initialize",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

@@ -1,0 +1,7 @@
+{
+  "title": "Custom Street View Panoramas",
+  "callback": "initPano",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

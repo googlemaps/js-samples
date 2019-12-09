@@ -1,0 +1,1 @@
+/home/travis/build/googlemaps/js-samples/samples/places-queryprediction/src/index.js

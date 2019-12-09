@@ -1,0 +1,7 @@
+{
+  "title": "Geocoding Region",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

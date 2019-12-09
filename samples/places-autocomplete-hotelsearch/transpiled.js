@@ -1,22 +1,20 @@
-/**
- * Copyright 2019 Google LLC. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 (function (exports) {
   'use strict';
-
+  /*
+   * Copyright 2019 Google LLC. All Rights Reserved.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *     http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   */
   // [START maps_places_autocomplete_hotelsearch]
   // This example uses the autocomplete feature of the Google Places API.
   // It allows the user to find all hotels in a given place, within a given
@@ -25,9 +23,9 @@
   // This example requires the Places library. Include the libraries=places
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
   var places, infoWindow;
   exports.markers = [];
-
   var countryRestrict = {
     country: "us"
   };
@@ -341,7 +339,7 @@
     } else {
       document.getElementById("iw-website-row").style.display = "none";
     }
-  } // [END maps_places_autocomplete_hotelsearch]
+  }
 
   exports.MARKER_PATH = MARKER_PATH;
   exports.addResult = addResult;
@@ -357,5 +355,4 @@
   exports.search = search;
   exports.setAutocompleteCountry = setAutocompleteCountry;
   exports.showInfoWindow = showInfoWindow;
-
-}(this.window = this.window || {}));
+})(this.window = this.window || {});

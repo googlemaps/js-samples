@@ -1,0 +1,9 @@
+{
+  "title": "Place Search Pagination",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "jsfiddle": true
+}

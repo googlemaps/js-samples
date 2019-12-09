@@ -1,26 +1,25 @@
-/**
- * Copyright 2019 Google LLC. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 (function (exports) {
   'use strict';
-
+  /*
+   * Copyright 2019 Google LLC. All Rights Reserved.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *     http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   */
   // [START maps_map_projection_simple]
   // This example defines an image map type using the Gall-Peters
   // projection.
   // https://en.wikipedia.org/wiki/Gall%E2%80%93Peters_projection
+
   function initMap() {
     // Create a map. Use the Gall-Peters map type.
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -49,8 +48,6 @@
     });
     map.data.addGeoJson(cities);
   }
-
-
 
   function initGallPeters() {
     var GALL_PETERS_RANGE_X = 800;
@@ -161,10 +158,8 @@
         name: "0°N 0°E"
       }
     }]
-  }; // [END maps_map_projection_simple]
-
+  };
   exports.cities = cities;
   exports.initGallPeters = initGallPeters;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})(this.window = this.window || {});

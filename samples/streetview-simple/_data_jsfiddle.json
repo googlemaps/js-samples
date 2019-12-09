@@ -1,0 +1,7 @@
+{
+  "title": "Street View Side-By-Side",
+  "callback": "initialize",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

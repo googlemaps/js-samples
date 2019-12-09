@@ -1,0 +1,7 @@
+{
+  "title": "Disabling the Default UI",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

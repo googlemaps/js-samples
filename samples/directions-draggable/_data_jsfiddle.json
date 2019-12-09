@@ -1,0 +1,7 @@
+{
+  "title": "Draggable Directions",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

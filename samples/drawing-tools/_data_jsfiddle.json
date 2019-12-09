@@ -1,0 +1,9 @@
+{
+  "title": "Drawing Tools",
+  "libraries": [
+    "drawing"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "jsfiddle": true
+}

@@ -1,0 +1,9 @@
+{
+  "title": "Navigation Functions (Heading)",
+  "libraries": [
+    "geometry"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "jsfiddle": true
+}

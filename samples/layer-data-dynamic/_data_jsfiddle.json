@@ -1,0 +1,7 @@
+{
+  "title": "Data Layer: Dynamic Styling",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

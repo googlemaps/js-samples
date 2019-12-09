@@ -1,0 +1,7 @@
+{
+  "title": "Marker Animations",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

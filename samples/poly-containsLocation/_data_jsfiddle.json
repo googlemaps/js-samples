@@ -1,0 +1,9 @@
+{
+  "title": "Polygon Contains Location",
+  "libraries": [
+    "geometry"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "jsfiddle": true
+}

@@ -1,0 +1,1 @@
+/home/travis/build/googlemaps/js-samples/samples/combining-data/src/index.js

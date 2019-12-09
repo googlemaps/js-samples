@@ -1,0 +1,7 @@
+{
+  "title": "GeoRSS Layers",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

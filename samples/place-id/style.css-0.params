@@ -1,0 +1,7 @@
+--style=expanded
+--no-source-map
+--load-path=./
+--load-path=bazel-out/k8-fastbuild/bin/
+--load-path=bazel-out/k8-fastbuild/bin/
+samples/place-id/src/style.scss
+bazel-out/k8-fastbuild/bin/samples/place-id/style.css

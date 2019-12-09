@@ -1,0 +1,7 @@
+--style=expanded
+--no-source-map
+--load-path=./
+--load-path=bazel-out/k8-fastbuild/bin/
+--load-path=bazel-out/k8-fastbuild/bin/
+samples/marker-symbol-custom/src/style.scss
+bazel-out/k8-fastbuild/bin/samples/marker-symbol-custom/style.css

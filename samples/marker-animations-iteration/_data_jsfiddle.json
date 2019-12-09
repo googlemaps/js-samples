@@ -1,0 +1,7 @@
+{
+  "title": "Marker Animations With setTimeout()",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

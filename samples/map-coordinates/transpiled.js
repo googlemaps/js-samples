@@ -1,23 +1,22 @@
-/**
- * Copyright 2019 Google LLC. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 (function (exports) {
   'use strict';
-
+  /*
+   * Copyright 2019 Google LLC. All Rights Reserved.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *     http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   */
   // [START maps_map_coordinates]
+
   function initMap() {
     var chicago = new google.maps.LatLng(41.85, -87.65);
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -52,11 +51,10 @@
 
     siny = Math.min(Math.max(siny, -0.9999), 0.9999);
     return new google.maps.Point(TILE_SIZE * (0.5 + latLng.lng() / 360), TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI)));
-  } // [END maps_map_coordinates]
+  }
 
   exports.TILE_SIZE = TILE_SIZE;
   exports.createInfoWindowContent = createInfoWindowContent;
   exports.initMap = initMap;
   exports.project = project;
-
-}(this.window = this.window || {}));
+})(this.window = this.window || {});

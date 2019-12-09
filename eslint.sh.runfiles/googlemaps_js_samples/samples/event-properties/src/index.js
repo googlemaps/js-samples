@@ -1,0 +1,1 @@
+/home/travis/build/googlemaps/js-samples/samples/event-properties/src/index.js

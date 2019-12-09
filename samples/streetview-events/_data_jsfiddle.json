@@ -1,0 +1,7 @@
+{
+  "title": "Street View Events",
+  "callback": "initPano",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

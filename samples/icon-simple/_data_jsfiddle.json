@@ -1,0 +1,7 @@
+{
+  "title": "Simple Marker Icons",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "jsfiddle": true
+}

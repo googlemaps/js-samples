@@ -1,0 +1,1 @@
+/home/travis/build/googlemaps/js-samples/samples/user-editable-shapes/src/index.js
