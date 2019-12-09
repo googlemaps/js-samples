@@ -5,7 +5,7 @@
 # The full list of Bazel options: https://docs.bazel.build/versions/master/command-line-reference.html
 
 # Cache action outputs on disk so they persist across output_base and bazel shutdown (eg. changing branches)
-build --disk_cache=~/.cache/bazel-disk-cache
+build --disk_cache=.cache/bazel-disk-cache
 
 # Bazel will create symlinks from the workspace directory to output artifacts.
 # Build results will be placed in a directory called "dist/bin"

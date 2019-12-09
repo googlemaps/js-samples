@@ -5,7 +5,7 @@ cache:
   yarn: true
   directories:
   - ".firebase"
-  - "~/.cache/bazel-disk-cache"
+  - ".cache/bazel-disk-cache"
 script:
 - yarn run ci
 deploy:

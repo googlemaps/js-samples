@@ -6,6 +6,7 @@
 **/src/*.html
 index.html
 bazel-*
+.cache
 # Logs
 logs
 *.log
