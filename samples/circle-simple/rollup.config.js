@@ -14,24 +14,13 @@
  * limitations under the License.
  */
 
-import stripBanner from "rollup-plugin-strip-banner";
-import babel from "rollup-plugin-babel";
-import license from "rollup-plugin-license";
 
 const include = ["src/*.js", "src/*.ts"];
 
 const plugins = [
-  stripBanner({
-    include: include
-  }),
-  license({
-    sourcemap: true,
-    banner: {
-      content: {
-        file: "../../LICENSE"
-      }
-    }
-  })
+  // stripBanner({
+  //   include: include
+  // })
 ];
 
 const output = {
@@ -44,13 +33,6 @@ const output = {
 export default [
   {
     input: "src/index.js",
-    plugins: [
-      ...plugins,
-      babel({
-        include: include,
-        rootMode: "upward"
-      })
-    ],
     output: {
       file: "dist/transpiled.js",
       ...output

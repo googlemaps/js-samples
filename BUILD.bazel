@@ -1,0 +1,99 @@
+load("@npm//eslint:index.bzl", "eslint", "eslint_test")
+load("@npm//license-check-and-add:index.bzl", "license_check_and_add_test")
+load("@npm//http-server:index.bzl", "http_server")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "nodejs_test")
+
+exports_files(
+    [
+        "tsconfig.json",
+        "LICENSE",
+        "package.json",
+        "babel.config.json",
+        "rollup.config.js",
+    ],
+    visibility = ["//:__subpackages__"],
+)
+
+http_server(
+    name = "serve",
+    args = [
+    ],
+    data = [
+        "//:index.html",
+        "//samples:outputs",
+    ],
+)
+
+CMD = '''
+set -e
+context="{\\"packages\\": {\n"
+packages=$$($(location @npm//lerna/bin:lerna) list)
+i=0
+for p in $$packages; do
+  if ((i > 0)); then
+    context="$${context},\\n"
+  fi
+  context="$${context}\\"$$($(location @npm//json/bin:json) -f samples/$$p/data.json title)\\": \\"$$p\\""
+  i=$$((i + 1))
+done
+
+context="$${context}}}"
+echo -e $${context} > $@
+'''
+
+# Used to generate data.json
+#
+# genrule(
+#     name = "data",
+#     outs = ["data.json"],
+#     cmd = CMD,
+#     local = 1,
+#     tools = [
+#         "@npm//json/bin:json",
+#         "@npm//lerna/bin:lerna",
+#     ],
+# )
+
+genrule(
+    name = "index",
+    srcs = [
+        ":data.json",
+        ":index.njk",
+        "//shared:templates",
+    ],
+    outs = ["index.html"],
+    cmd = "$(location @npm//nunjucks-cli/bin:nunjucks) $(location index.njk) $(location data.json) -p . && cat index.html > $@",
+    tools = ["@npm//nunjucks-cli/bin:nunjucks"],
+)
+
+
+eslint_test(
+    name = "eslint",
+    args = ["samples/**/*.js"],
+    data = [
+        # config files
+        ":.eslintrc.json",
+        "//samples:.eslintrc.json",
+        # files to test
+        "//samples:inputs",
+        # plugins
+        "@npm//eslint-config-prettier",
+        "@npm//eslint-plugin-jest",
+        "@npm//eslint-plugin-prettier",
+    ],
+)
+
+license_check_and_add_test(
+    name = "license_check",
+    args = [
+        "check",
+        "**/*.js",
+        "-f",
+        ".license-check.json",
+    ],
+    data = [
+        ":.license-check.json",
+        ":LICENSE",
+        "//samples:inputs",
+    ],
+)

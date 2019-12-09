@@ -1,5 +1,5 @@
 {
-  "title": "Visualize Data",
+  "title": "Visualize Data (Landing Page)",
   "callback": "initMap",
   "libraries": [],
   "version": "weekly"

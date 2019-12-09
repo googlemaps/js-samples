@@ -73,22 +73,22 @@
         <aside class="menu has-text-left">
           <p class="menu-label">Samples</p>
           <ul class="menu-list">
-            {% for item in packages | dictsort %}
+            {% for title, path in packages|dictsort %}
               <li>
-                <a id="{{ item[1] }}" onClick="setIframe('{{ item[1] }}')">{{ item[0] }}</a>
+                <a id="{{ path }}" onClick="setIframe('{{ path }}')">{{ title }}</a>
                 <ul>
                   <li>
-                    <a href="https://github.com/googlemaps/js-samples/tree/dev/samples/{{ item[1] }}/src" target="_blank">
+                    <a href="https://github.com/googlemaps/js-samples/tree/dev/samples/{{ path }}/src" target="_blank">
                       <i class="fab fa-github"></i>&nbsp;
                       View Source</a>
                   </li>
                   <li>
-                    <a href="https://github.com/googlemaps/js-samples/issues/new?assignees=&labels=type%3A+bug%2C+triage+me&template=bug_report.md&title={{ '[sample] '|urlencode }}{{ item[0]|urlencode}}" target="_blank">
+                    <a href="https://github.com/googlemaps/js-samples/issues/new?assignees=&labels=type%3A+bug%2C+triage+me&template=bug_report.md&title={{ '[sample] '|urlencode }}{{ title|urlencode}}" target="_blank">
                       <i class="fas fa-bug"></i>&nbsp;
                       Report Bug</a>
                   </li>
                   <li>
-                    <a href="/samples/{{ item[1] }}/index.html" target="_blank">
+                    <a href="/samples/{{ path }}/index.html" target="_blank">
                       <i class="fas fa-external-link-alt"></i>&nbsp;
                       Open in New Window</a>
                   </li>
@@ -112,6 +112,7 @@
       </div>
     </div>
   </div>
+  {{packages|dump}}
   <script>
     let active = "";
 
