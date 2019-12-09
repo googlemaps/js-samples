@@ -1,5 +1,5 @@
 {
-    "license": "../../LICENSE",
+    "license": "LICENSE",
     "licenseFormats": {
         "js|ts|css|scss|less|php|as|c|java|cpp|go|cto|acl": {
             "prepend": "/*",
@@ -11,6 +11,12 @@
         "njk": {
             "prepend": "<!--",
             "append": "-->"
+        },
+        "bazel|bzl": {
+            "eachLine": {
+                "prepend": " # "
+            }
         }
-    }
+    },
+    "ignore": ["license_check*"]
 }

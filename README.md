@@ -15,23 +15,18 @@ Samples for the Google Maps JavaScript API.
 ## Development
 **Note**: The default branch for this repo is dev and **not** master.
 
-Start a server that will reload as built files change.
+Start a server with all samples.
 
 ```
-npm run serve
+yarn run serve
 ```
 
-Build files as they change using one of these options:
-1. Limited to a single sample: `lerna --scope circle-simple run build:watch`
-2. Building all samples on change: `npm run build:watch`
-3. Limited to matching scope: `lerna --scope control-* --concurrency 16 run build:watch` Requires a concurrency value > # of samples.
-
-Alternatively, `npm run serve:watch` can be called to wrap `npm run serve` and `npm build:watch`.
+Bazel is used for the build system and can be called similar to `npx bazel build //...`.
 
 ## Other Resources
 - [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
 - [Google Maps Reference Documenations](https://developers.google.com/maps/documentation/javascript/reference/)
-- [Google Maps Typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/googlemaps) - Community supported `npm i -D @types/googlemaps`
+- [Google Maps Typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/googlemaps) - Community supported `yarn i -D @types/googlemaps`
 - [Google Maps Utilitiies](https://github.com/googlemaps/v3-utility-library)
 
 ## Support

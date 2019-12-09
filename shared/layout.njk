@@ -27,7 +27,7 @@
     <meta charset="utf-8"/>
     <title>{{ title }}</title>
     {% block external %}{% endblock %}
-    {% if env.JSFIDDLE %}
+    {% if jsfiddle %}
       <!-- jsFiddle will insert css and js -->
     {% else %}
       {% block css %}
@@ -43,7 +43,7 @@
   </head>
   <body>
     {% block html %}{% endblock %}
-    {% if env.JSFIDDLE %}
+    {% if jsfiddle %}
       {{ api() }}
     {% endif %}
   </body>

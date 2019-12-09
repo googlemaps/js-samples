@@ -14,30 +14,11 @@
     "src/*"
   ],
   "scripts": {
-    "build": "run-s build:clean build:html build:css build:js",
-    "build:clean": "rm -rf dist",
-    "build:css": "sass --no-source-map src/style.scss dist/style.css",
-    "build:html": "../../build/render_template.sh && JSFIDDLE=1 ../../build/render_template.sh",
-    "build:js": "rollup -c",
-    "build:format": "run-s build format:dist",
-    "build:watch": "npm-watch build",
-    "build:move": "../../build/move_dist.sh",
+    "build": "bazel build ...",
+    "build:css": "bazel build :css",
+    "build:html": "bazel build :html",
+    "build:js": "bazel build :js",
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write --loglevel error",
-    "format:dist": "prettier dist/* --write --loglevel error",
-    "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
-    "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
-    "lint": "eslint src/*.js && npm run license:check",
-    "test": "run-p test:callback",
-    "test:callback": "../../build/test_callback.sh"
-  },
-  "watch": {
-    "build": {
-      "patterns": [
-        "src/**",
-        "data",
-        "../../shared/**"
-      ],
-      "extensions": "ts,scss,njk,json"
-    }
-  }
+    "test": "../../build/test_callback.sh"
+  }  
 }
