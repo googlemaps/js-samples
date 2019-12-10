@@ -31,6 +31,18 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    native.genrule(
+        name = "_without_region_tags",
+        cmd = """
+                cp $(location :transpiled) $@
+
+                sed -i 's/\\/\\/ \\[START .*\\]//g' $@
+                sed -i 's/\\/\\/ \\[END .*\\]//g' $@
+                """,
+        srcs = [":transpiled"],
+        outs = ["jsfiddle.js"],
+    )
+
     sass_binary(
         name = "_css",
         src = "src/style.scss",
@@ -48,6 +60,7 @@ def sample():
     native.filegroup(
         name = "js",
         srcs = [
+            ":jsfiddle.js",
             ":transpiled.js",
             ":app.js",
         ],
