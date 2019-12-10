@@ -1,5 +1,7 @@
 load("@npm//nunjucks-cli:index.bzl", npm_nunjucks = "nunjucks")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("//rules:strip_region_tags.bzl", "strip_region_tags")
+
 
 def nunjucks():
     [_nunjucks(jsfiddle) for jsfiddle in [False, True]]
@@ -7,7 +9,7 @@ def nunjucks():
 def _nunjucks(jsfiddle):
     _html = "_html_jsfiddle" if jsfiddle else "_html"
     html = "html_jsfiddle" if jsfiddle else "html_"
-    out = "jsfiddle.html" if jsfiddle else "index.html"
+    out = "_jsfiddle.html" if jsfiddle else "index.html"
 
     if jsfiddle:
         nodejs_binary(
@@ -57,3 +59,10 @@ def _nunjucks(jsfiddle):
         outs = [out],
         visibility = ["//visibility:public"],
     )
+
+    if jsfiddle:
+        strip_region_tags(
+            name="_html_strip_region_tags",
+            input=out,
+            output="jsfiddle.html"
+        )
