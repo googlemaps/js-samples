@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_custom_markers]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {

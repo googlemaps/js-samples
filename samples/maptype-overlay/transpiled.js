@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_maptype_overlay]
 
   /*
    * This demo illustrates the coordinate system used to display map tiles in the

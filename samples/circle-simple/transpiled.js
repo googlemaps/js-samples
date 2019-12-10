@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_circle_simple]
   // This example creates circles on the map, representing populations in North
   // America.
   // First, create an object containing LatLng and population for each city.

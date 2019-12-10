@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_polygon_simple]
   // This example creates a simple polygon representing the Bermuda Triangle.
 
   function initMap() {

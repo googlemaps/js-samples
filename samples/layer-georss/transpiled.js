@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_layer_georss]
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {

@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_control_bounds_restriction]
 
   var NEW_ZEALAND_BOUNDS = {
     north: -34.36,

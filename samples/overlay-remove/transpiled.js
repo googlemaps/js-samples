@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_overlay_remove]
   // This example adds a UI control allowing users to remove the
   // ground overlay from the map.
 
@@ -39,8 +38,7 @@
 
   function addOverlay() {
     exports.historicalOverlay.setMap(exports.map);
-  } // [START maps_overlay_remove_region_removal]
-
+  }
 
   function removeOverlay() {
     exports.historicalOverlay.setMap(null);

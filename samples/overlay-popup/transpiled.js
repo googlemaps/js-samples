@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_overlay_popup]
 
   var popup, Popup;
   /** Initializes the map and the custom popup. */

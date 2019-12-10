@@ -21,7 +21,6 @@
    *   and displaying the contents in a side panel instead of
    *   an InfoWindow
    */
-  // [START maps_kml_map]
 
   var src = "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
 

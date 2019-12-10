@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_layer_data_dynamic]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -26,8 +25,7 @@
       }
     }); // Load GeoJSON.
 
-    exports.map.data.loadGeoJson("https://storage.googleapis.com/mapsdevsite/json/google.json"); // [START maps_layer_data_dynamic_snippet]
-    // Color each letter gray. Change the color when the isColorful property
+    exports.map.data.loadGeoJson("https://storage.googleapis.com/mapsdevsite/json/google.json"); // Color each letter gray. Change the color when the isColorful property
     // is set to true.
 
     exports.map.data.setStyle(function (feature) {
@@ -61,7 +59,7 @@
     });
     exports.map.data.addListener("mouseout", function (event) {
       exports.map.data.revertStyle();
-    }); // [END maps_layer_data_dynamic_snippet]
+    });
   }
 
   exports.initMap = initMap;

@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_layer_data_event]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -36,12 +35,11 @@
           strokeWeight: 1
         }
       );
-    }); // [START maps_layer_data_event_snippet]
-    // Set mouseover event for each feature.
+    }); // Set mouseover event for each feature.
 
     exports.map.data.addListener("mouseover", function (event) {
       document.getElementById("info-box").textContent = event.feature.getProperty("letter");
-    }); // [END maps_layer_data_event_snippet]
+    });
   }
 
   exports.initMap = initMap;

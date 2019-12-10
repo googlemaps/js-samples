@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_rectangle_simple]
   // This example adds a red rectangle to a map.
 
   function initMap() {

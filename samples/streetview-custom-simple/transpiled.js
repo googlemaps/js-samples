@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_streetview_custom_simple]
 
   function initPano() {
     // Set up Street View and initially set it visible. Register the

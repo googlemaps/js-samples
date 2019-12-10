@@ -15,8 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_conserve_map_on_scroll]
-  // [START maps_conserve_map_script_snippet]
 
   function initMap() {
     var locationRio = {
@@ -27,8 +25,7 @@
       zoom: 13,
       center: locationRio,
       gestureHandling: "cooperative"
-    }); // [END maps_conserve_map_script_snippet]
-
+    });
     var marker = new google.maps.Marker({
       position: locationRio,
       map: map,

@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_marker_symbol_custom]
   // This example uses SVG path notation to add a vector-based symbol
   // as the icon for a marker. The resulting icon is a star-shaped symbol
   // with a pale yellow fill and a thick yellow border.

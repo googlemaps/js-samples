@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_control_options]
   // You can set control options to change the default position or style of many
   // of the map controls.
 

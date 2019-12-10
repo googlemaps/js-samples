@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_marker_remove]
   // In the following example, markers appear when the user clicks on the map.
   // The markers are stored in an array.
   // The user can then click an option to hide, show or delete the markers.

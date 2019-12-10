@@ -24,8 +24,7 @@
    * @constructor
    */
 
-  function MarkerClusterer(map, markers, options) {} // [START maps_marker_clustering]
-
+  function MarkerClusterer(map, markers, options) {}
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {

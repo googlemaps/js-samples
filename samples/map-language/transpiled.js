@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_map_language]
   // This example displays a map with the language and region set
   // to Japan. These settings are specified in the HTML script element
   // when loading the Google Maps JavaScript API.

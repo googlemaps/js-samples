@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_polyline_remove]
   // This example adds a UI control allowing users to remove the polyline from the
   // map.
 

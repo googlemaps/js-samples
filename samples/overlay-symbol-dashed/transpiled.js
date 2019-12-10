@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_overlay_symbol_dashed]
   // This example converts a polyline to a dashed line, by
   // setting the opacity of the polyline to 0, and drawing an opaque symbol
   // at a regular interval on the polyline.
@@ -28,8 +27,7 @@
         lng: 153.027
       },
       mapTypeId: "terrain"
-    }); // [START maps_overlay_symbol_dashed_region_polyline]
-    // Define a symbol using SVG path notation, with an opacity of 1.
+    }); // Define a symbol using SVG path notation, with an opacity of 1.
 
     var lineSymbol = {
       path: "M 0,-1 0,1",
@@ -54,7 +52,7 @@
         repeat: "20px"
       }],
       map: map
-    }); // [END maps_overlay_symbol_dashed_region_polyline]
+    });
   }
 
   exports.initMap = initMap;

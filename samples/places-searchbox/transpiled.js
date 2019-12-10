@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_places_searchbox]
   // This example adds a search box to a map, using the Google Place Autocomplete
   // feature. People can enter geographical searches. The search box will return a
   // pick list containing a mix of places and predicted search terms.
@@ -40,8 +39,7 @@
     map.addListener("bounds_changed", function () {
       searchBox.setBounds(map.getBounds());
     });
-    var markers = []; // [START maps_places_searchbox_getplaces]
-    // Listen for the event fired when the user selects a prediction and retrieve
+    var markers = []; // Listen for the event fired when the user selects a prediction and retrieve
     // more details for that place.
 
     searchBox.addListener("places_changed", function () {
@@ -87,7 +85,7 @@
         }
       });
       map.fitBounds(bounds);
-    }); // [END maps_places_searchbox_getplaces]
+    });
   }
 
   exports.initAutocomplete = initAutocomplete;

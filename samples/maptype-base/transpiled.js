@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_maptype_base]
 
   /*
    * This demo demonstrates how to replace default map tiles with custom imagery.

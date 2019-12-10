@@ -15,7 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_delete_vertex_menu]
 
   function initialize() {
     var mapOptions = {

@@ -15,8 +15,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_disable_zoom_and_pan]
-  // [START maps_disable_zoom_and_pan_script_snippet]
 
   function initMap() {
     var locationRio = {
@@ -28,8 +26,7 @@
       center: locationRio,
       gestureHandling: "none",
       zoomControl: false
-    }); // [END maps_disable_zoom_and_pan_script_snippet]
-
+    });
     var marker = new google.maps.Marker({
       position: locationRio,
       map: map,
