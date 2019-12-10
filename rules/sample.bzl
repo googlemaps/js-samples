@@ -3,6 +3,8 @@ load("@npm//@babel/cli:index.bzl", "babel")
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
+load("//rules:strip_region_tags.bzl", "strip_region_tags")
+
 
 def sample():
     rollup_bundle(
@@ -15,15 +17,21 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    strip_region_tags(
+        name = "_js_without_region_tags",
+        input = ":app",
+        output = "_without_region_tags.js",
+    )
+
     babel(
         name = "transpiled",
         args = [
-            "$(location :app)",
+            "$(location :_js_without_region_tags)",
             "--out-file",
             "$@/transpiled.js",
         ],
         data = [
-            ":app",
+            ":_js_without_region_tags",
             "@npm//@babel/preset-env",
             "//:babel.config.json",
         ],
