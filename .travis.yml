@@ -9,7 +9,7 @@ cache:
 script:
   - ./.travis.sh
 before_deploy: # this is to mirror the public folder only
-  - mkdir master
+  - mkdir -p master
   - cp -r public master/public
   - cp .travis.yml master/.travis.yml
   - cp .travis.sh master/.travis.sh
