@@ -28,7 +28,7 @@ deploy:
   secret_access_key: "$GCS_SECRET"
   bucket: js-samples
   skip_cleanup: true
-  local_dir: master/public
+  local_dir: public
   upload_dir: "$TRAVIS_COMMIT"
   cache_control: max-age=31536000
   edge:
@@ -46,7 +46,7 @@ deploy:
     source: jpoehnelt/dpl
     branch: feat/gcs_parallel
   acl: public-read
-  local_dir: master/public
+  local_dir: public
   upload_dir: "$TRAVIS_TAG"
   cache_control: max-age=31536000
   on:
