@@ -7,4 +7,5 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
     yarn run test; 
     yarn run deploy:extract;
     cp .travis.yml public/.travis.yml;
+    cp .travis.sh public/.travis.sh;
 fi
