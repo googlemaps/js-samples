@@ -10,7 +10,7 @@ script:
   - ./.travis.sh
 before_deploy: # this is to mirror the public folder only
   - mkdir -p master
-  - cp -r public master/public
+  - cp -r public/ master/public/
   - cp .travis.yml master/.travis.yml
   - cp .travis.sh master/.travis.sh
   - cp README.md master/README.md
