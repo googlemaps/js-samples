@@ -13,7 +13,7 @@ if [ "$TRAVIS_BRANCH" != "master" ]; then
     yarn run extract:master;
 
     # Copy the files over for publishing to master branch
-    cp .nojeklyll master/.nojeklyll
+    cp .nojekyll master/.nojekyll
     cp .travis.yml master/.travis.yml
     cp .travis.sh master/.travis.sh
     cp CONTRIB.md master/CONTRIB.md
