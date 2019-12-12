@@ -8,6 +8,12 @@ cache:
   - ".cache/bazel-disk-cache"
 script:
   - ./.travis.sh
+before_deploy: # this is to mirror the public folder only
+  - mkdir master
+  - cp -r public master/public
+  - cp .travis.yml master/.travis.yml
+  - cp .travis.sh master/.travis.sh
+  - cp README.md master/README.md
 deploy:
 - provider: script
   skip_cleanup: true
@@ -15,7 +21,7 @@ deploy:
   on:
     branch: dev
 - provider: pages
-  local_dir: public
+  local_dir: master
   target_branch: master
   skip_cleanup: true
   github_token: "$GITHUB_TOKEN"
