@@ -8,6 +8,9 @@ cache:
   - ".cache/bazel-disk-cache"
 script:
   - ./.travis.sh
+before_deploy:
+  - echo $TRAVIS_COMMIT
+  - echo $TRAVIS_TAG
 deploy:
 - provider: script
   skip_cleanup: true
