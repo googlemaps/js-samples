@@ -2,7 +2,9 @@
 
 set -euo pipefail
 
-if [ "$TRAVIS_BRANCH" != "master" ]; then 
+
+# Run on all builds except master and tag
+if [ "$TRAVIS_BRANCH" != "master" ] && [ "$TRAVIS_TAG" = "" ]; then 
     yarn run build;
     yarn run test; 
 
