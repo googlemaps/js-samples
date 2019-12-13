@@ -3,8 +3,8 @@
 set -euo pipefail
 
 
-# Run on all builds except master and tag
-if [ "$TRAVIS_BRANCH" != "master" ] && [ "$TRAVIS_TAG" = "" ]; then 
+# Run on all builds except master by using presence of public dir
+if [ ! -d "public" ]; then
     yarn run build;
     yarn run test; 
 
