@@ -32,7 +32,7 @@ deploy:
   bucket: js-samples
   skip_cleanup: true
   local_dir: public
-  upload_dir: "foo"
+  upload_dir: "$TRAVIS_COMMIT"
   cache_control: max-age=31536000
   edge:
     source: jpoehnelt/dpl
