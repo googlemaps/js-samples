@@ -14,9 +14,12 @@
   limitations under the License.
 -->
 
+{# path of include must be from root template context #}
+{% include "shared/context.njk" %}
+
 {% macro api() %}
   <script 
-    src="https://maps.googleapis.com/maps/api/js?key={{ env.GOOGLE_MAPS_KEY }}&callback={{ callback }}&libraries={{ libraries }}&version={{ version }}" 
+    src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback={{ callback }}&libraries={{ libraries }}&version={{ version }}" 
     async defer></script>
 {% endmacro %}
 
