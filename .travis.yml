@@ -51,6 +51,20 @@ deploy:
   cache_control: max-age=31536000
   on:
     tags: true
+- provider: gcs
+  access_key_id: "$GCS_ACCESS_KEY"
+  secret_access_key: "$GCS_SECRET"
+  bucket: js-samples
+  skip_cleanup: true
+  edge:
+    source: jpoehnelt/dpl
+    branch: feat/gcs_parallel
+  acl: public-read
+  local_dir: public
+  upload_dir: master
+  cache_control: max-age=31536000
+  on:
+    branch: master
 env:
   global:
   - secure: PrUOO7uKgrGAcE9TII9m3/+UmlDO852BRuB3FxvvqWlnKOLi3ah9TObeol4xsXBP3eQbEE2YXpGzqPnb5DP2kmyarpelijhkJRkOhVaJlMY0+rNRJeuPRxlDYyQyUgRVsfBXqHwBfjVCREGjlJF7K93OoHAPdULeBzC3cog529/TVLrFFQ23f2fSrjMyziwcW5IqFlZDstUdrGq61rNrut5KjNyOA0mBZkMryZazU1bVB7KqGSo7kCPKhdmr0DKOSm/BKB99dQYfZv8hIeF7mSE/EUkPQkuSy56DySjnQzVOFnkC0hUWF30+aD2uNaAxyZMqam7VDSfUcnQYbIVwzgaI5OKAD9P1mnywsmESfpTi36U7ZkDROxTLe/SF7ZYJ4O/Nvly6O+gBsjjqvoAakvd21ceTdYmY2m+gbixo38IsLND/E5Ab3uJgDE1lKRGBkdfJ7b6qi2Dh0b2+G72sBUREhd5ls3RfFCA5PBLUPQ8azf7VjxPCi3Zjv4iAqvWAMB89yvRYUfz0+UaoymQ5QK48hOxtQJi2qmTLGwk+/AW5IiGM60iH7Cdv6LF+P78Yf0ESMIswbLo6vVIv/0LBqQFk/nYAQizZm4yMRrLHciItpW3PHlhVK8badqpPBW29dWEvajd56z0Wio+N6od7/AV9Fv25PrMdEisFQxsWE7M=
