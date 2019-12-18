@@ -33,6 +33,8 @@ def _nunjucks(jsfiddle):
         name = _html,
         args = [
             "$(location src/index.njk)",
+            "--loglevel",
+            "silent",
             "-p",
             ".",
             "$(location {})".format(_data),
