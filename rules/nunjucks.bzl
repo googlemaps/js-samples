@@ -10,7 +10,7 @@ def _nunjucks(jsfiddle):
     _html = "_html_jsfiddle" if jsfiddle else "_html"
     html = "html_jsfiddle" if jsfiddle else "html_"
     out = "_jsfiddle.html" if jsfiddle else "index.html"
-
+    
     if jsfiddle:
         nodejs_binary(
             name = "json",
@@ -19,16 +19,15 @@ def _nunjucks(jsfiddle):
 
         native.genrule(
             name = "_data_jsfiddle_file",
-            cmd = "./$(location json) -f $(location data.json) -e 'this.jsfiddle=true' > $@",
-            srcs = [":data.json"],
+            cmd = "./$(location json) -f $(location _data.json) -e 'this.jsfiddle=true' > $@",
+            srcs = [":_data.json"],
             tools = [":json"],
             outs = ["_data_jsfiddle.json"],
-            local = 1,
         )
 
         _data = "_data_jsfiddle.json"
     else:
-        _data = "data.json"
+        _data = "_data.json"
 
     npm_nunjucks(
         name = _html,
