@@ -8,20 +8,17 @@ js-samples
 ## Description
 Samples for the Google Maps JavaScript API.
 
-**[View the samples](https://geo-devrel-259418.firebaseapp.com/)**
+**[View the samples](https://storage.googleapis.com/js-samples/master/index.html)**
 
 **Note::** Many of these samples were written in 2010-2012. Many are still functional and are in the samples folder. Others that do not run have been moved to archive.
 
 ## Development
 **Note**: The default branch for this repo is dev and **not** master.
+1. Set the environment variable `GOOGLE_MAPS_JS_SAMPLES_KEY`.
+2. Start a server with all samples. `yarn run serve`
 
-Start a server with all samples.
 
-```
-yarn run serve
-```
-
-Bazel is used for the build system and can be called similar to `npx bazel build //...`.
+Bazel is used for the build system and can be called with `npx bazel`.
 
 ## Other Resources
 - [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
