@@ -1,0 +1,19 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+
+nodejs_binary(
+    name = "json",
+    entry_point = "@npm//:node_modules/json/lib/json.js",
+    visibility = ["//visibility:public"],
+)
+
+nodejs_binary(
+    name = "prettier",
+    data = [
+        "@npm//:node_modules/prettier/parser-babylon.js",
+        "@npm//:node_modules/prettier/parser-html.js",
+        "@npm//:node_modules/prettier/parser-postcss.js",
+        "@npm//:node_modules/prettier/third-party.js",
+    ],
+    entry_point = "@npm//:node_modules/prettier/bin-prettier.js",
+    visibility = ["//visibility:public"],
+)

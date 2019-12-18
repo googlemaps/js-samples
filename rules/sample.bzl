@@ -5,37 +5,36 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:strip_region_tags.bzl", "strip_region_tags")
 
-
 def sample():
+    strip_region_tags(
+        name = "_js_without_region_tags",
+        input = ":src/index.js",
+        output = "_without_region_tags.js",
+    )
+
     rollup_bundle(
-        name = "app",
-        srcs = ["src/index.js"],
-        entry_point = "src/index.js",
+        name = "app_ugly",
+        srcs = [":_js_without_region_tags"],
+        entry_point = "_without_region_tags.js",
         config_file = "//:rollup.config.js",
         format = "iife",
         sourcemap = "false",
         visibility = ["//visibility:public"],
     )
 
-    strip_region_tags(
-        name = "_js_without_region_tags",
-        input = ":app",
-        output = "_without_region_tags.js",
-    )
-
     babel(
         name = "transpiled",
         args = [
-            "$(location :_js_without_region_tags)",
+            "$(location :app_ugly)",
             "--out-file",
-            "$@/transpiled.js",
+            "$@/transpiled_ugly.js",
         ],
         data = [
-            ":_js_without_region_tags",
+            ":app_ugly",
             "@npm//@babel/preset-env",
             "//:babel.config.json",
         ],
-        outs = ["transpiled.js"],
+        outs = ["transpiled_ugly.js"],
         visibility = ["//visibility:public"],
     )
 
@@ -45,7 +44,7 @@ def sample():
         deps = [
             "//shared/scss:default",
         ],
-        output_name = "style.css",
+        output_name = "style_ugly.css",
         sourcemap = False,
         output_style = "expanded",
         visibility = ["//visibility:public"],
@@ -53,13 +52,30 @@ def sample():
 
     native.genrule(
         name = "_data_file",
-        cmd = "./$(location json) -f $(location data.json) -e \"this.key='$$GOOGLE_MAPS_JS_SAMPLES_KEY'\" > $@",
+        cmd = "$(location //rules:json) -f $(location data.json) -e \"this.key='$$GOOGLE_MAPS_JS_SAMPLES_KEY'\" > $@",
         srcs = [":data.json"],
-        tools = [":json"],
-        outs = ["_data.json"], 
+        tools = ["//rules:json"],
+        outs = ["_data.json"],
     )
 
     nunjucks()
+
+    [
+        native.genrule(
+            name = "prettier_" + src.replace(":", "").split(".")[0],
+            srcs = [src],
+            outs = [out],
+            cmd = "./$(location //rules:prettier) $(location {}) > $@".format(src),
+            tools = ["//rules:prettier"],
+        )
+        for src, out in [
+            (":index_ugly.html", "index.html"),
+            (":jsfiddle_ugly.html", "jsfiddle.html"),
+            (":style_ugly.css", "style.css"),
+            (":transpiled_ugly.js", "transpiled.js"),
+            (":app_ugly.js", "app.js"),
+        ]
+    ]
 
     native.filegroup(
         name = "js",
