@@ -1,7 +1,5 @@
 load("@npm//nunjucks-cli:index.bzl", npm_nunjucks = "nunjucks")
-load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 load("//rules:strip_region_tags.bzl", "strip_region_tags")
-
 
 def nunjucks():
     [_nunjucks(jsfiddle) for jsfiddle in [False, True]]
@@ -9,19 +7,14 @@ def nunjucks():
 def _nunjucks(jsfiddle):
     _html = "_html_jsfiddle" if jsfiddle else "_html"
     html = "html_jsfiddle" if jsfiddle else "html_"
-    out = "_jsfiddle.html" if jsfiddle else "index.html"
-    
-    if jsfiddle:
-        nodejs_binary(
-            name = "json",
-            entry_point = "@npm//:node_modules/json/lib/json.js",
-        )
+    out = "_jsfiddle.html" if jsfiddle else "index_ugly.html"
 
+    if jsfiddle:
         native.genrule(
             name = "_data_jsfiddle_file",
-            cmd = "./$(location json) -f $(location _data.json) -e 'this.jsfiddle=true' > $@",
+            cmd = "$(location //rules:json) -f $(location _data.json) -e 'this.jsfiddle=true' > $@",
             srcs = [":_data.json"],
-            tools = [":json"],
+            tools = ["//rules:json"],
             outs = ["_data_jsfiddle.json"],
         )
 
@@ -61,7 +54,7 @@ def _nunjucks(jsfiddle):
 
     if jsfiddle:
         strip_region_tags(
-            name="_html_strip_region_tags",
-            input=out,
-            output="jsfiddle.html"
+            name = "_html_strip_region_tags",
+            input = out,
+            output = "jsfiddle_ugly.html",
         )
