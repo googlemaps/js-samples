@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_place_details]
   // This example requires the Places library. Include the libraries=places
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -60,5 +59,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_combining_data]
   var mapStyle = [
     {
       stylers: [{ visibility: "off" }]
@@ -35,7 +34,7 @@
   ];
 
   exports.censusMin = Number.MAX_VALUE;
-    var censusMax = -Number.MAX_VALUE;
+  var censusMax = -Number.MAX_VALUE;
 
   function initMap() {
     // load the map
@@ -71,12 +70,16 @@
 
     // wait for the request to complete by listening for the first feature to be
     // added
-    google.maps.event.addListenerOnce(exports.map.data, "addfeature", function() {
-      google.maps.event.trigger(
-        document.getElementById("census-variable"),
-        "change"
-      );
-    });
+    google.maps.event.addListenerOnce(
+      exports.map.data,
+      "addfeature",
+      function() {
+        google.maps.event.trigger(
+          document.getElementById("census-variable"),
+          "change"
+        );
+      }
+    );
   }
 
   /**
@@ -88,7 +91,7 @@
     // load the requested variable from the census API (using local copies)
     var xhr = new XMLHttpRequest();
     xhr.open("GET", variable + ".json");
-    // [START maps_combining_data_snippet_loadcensus]
+
     xhr.onload = function() {
       var censusData = JSON.parse(xhr.responseText);
       censusData.shift(); // the first row contains column names
@@ -119,7 +122,6 @@
       ).textContent = censusMax.toLocaleString();
     };
     xhr.send();
-    // [END maps_combining_data_snippet_loadcensus]
   }
 
   /** Removes census data from each shape on the map and resets the UI. */
@@ -140,7 +142,7 @@
    *
    * @param {google.maps.Data.Feature} feature
    */
-  // [START maps_combining_data_snippet_stylefeature]
+
   function styleFeature(feature) {
     var low = [5, 69, 54]; // color of smallest datum
     var high = [151, 83, 34]; // color of largest datum
@@ -180,9 +182,7 @@
       visible: showRow
     };
   }
-  // [END maps_combining_data_snippet_stylefeature]
 
-  // [START maps_combining_data_snippet_mouseevents]
   /**
    * Responds to the mouse-in event on a map shape (state).
    *
@@ -227,5 +227,4 @@
   exports.mouseInToRegion = mouseInToRegion;
   exports.mouseOutOfRegion = mouseOutOfRegion;
   exports.styleFeature = styleFeature;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

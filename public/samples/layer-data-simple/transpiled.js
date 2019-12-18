@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -25,8 +25,10 @@
       }
     }); // NOTE: This uses cross-domain XHR, and may not work on older browsers.
 
-    exports.map.data.loadGeoJson("https://storage.googleapis.com/mapsdevsite/json/google.json");
+    exports.map.data.loadGeoJson(
+      "https://storage.googleapis.com/mapsdevsite/json/google.json"
+    );
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

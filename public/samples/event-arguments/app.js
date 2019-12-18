@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_event_arguments]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
@@ -39,5 +38,4 @@
 
   exports.initMap = initMap;
   exports.placeMarkerAndPanTo = placeMarkerAndPanTo;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

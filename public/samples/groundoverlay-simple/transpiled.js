@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -32,9 +32,12 @@
       east: -74.12544,
       west: -74.22655
     };
-    exports.historicalOverlay = new google.maps.GroundOverlay("https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg", imageBounds);
+    exports.historicalOverlay = new google.maps.GroundOverlay(
+      "https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+      imageBounds
+    );
     exports.historicalOverlay.setMap(map);
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

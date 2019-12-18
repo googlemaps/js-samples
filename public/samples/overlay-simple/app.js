@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,8 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_overlay_simple]
-  // [START maps_overlay_simple_region_initialization]
   // This example creates a custom overlay called USGSOverlay, containing
   // a U.S. Geological Survey (USGS) image of the relevant area on the map.
 
@@ -28,7 +26,6 @@
   // google.maps.event.addDomListener().
   // Note that we set the prototype to an instance, rather than the
   // parent class itself, because we do not wish to modify the parent class.
-
 
   USGSOverlay.prototype = new google.maps.OverlayView();
 
@@ -55,9 +52,7 @@
     // the bounds of the image, and a reference to the map.
     exports.overlay = new USGSOverlay(bounds, srcImage, map);
   }
-  // [END maps_overlay_simple_region_initialization]
 
-  // [START maps_overlay_simple_region_constructor]
   /** @constructor */
   function USGSOverlay(bounds, image, map) {
     // Initialize all properties.
@@ -73,9 +68,7 @@
     // Explicitly call setMap on this overlay.
     this.setMap(map);
   }
-  // [END maps_overlay_simple_region_constructor]
 
-  // [START maps_overlay_simple_region_attachment]
   /**
    * onAdd is called when the map's panes are ready and the overlay has been
    * added to the map.
@@ -100,9 +93,7 @@
     var panes = this.getPanes();
     panes.overlayLayer.appendChild(div);
   };
-  // [END maps_overlay_simple_region_attachment]
 
-  // [START maps_overlay_simple_region_drawing]
   USGSOverlay.prototype.draw = function() {
     // We use the south-west and north-east
     // coordinates of the overlay to peg it to the correct position and size.
@@ -112,8 +103,12 @@
     // Retrieve the south-west and north-east coordinates of this overlay
     // in LatLngs and convert them to pixel coordinates.
     // We'll use these coordinates to resize the div.
-    var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-    var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+    var sw = overlayProjection.fromLatLngToDivPixel(
+      this.bounds_.getSouthWest()
+    );
+    var ne = overlayProjection.fromLatLngToDivPixel(
+      this.bounds_.getNorthEast()
+    );
 
     // Resize the image's div to fit the indicated dimensions.
     var div = this.div_;
@@ -122,9 +117,7 @@
     div.style.width = ne.x - sw.x + "px";
     div.style.height = sw.y - ne.y + "px";
   };
-  // [END maps_overlay_simple_region_drawing]
 
-  // [START maps_overlay_simple_region_removal]
   // The onRemove() method will be called automatically from the API if
   // we ever set the overlay's map property to 'null'.
   USGSOverlay.prototype.onRemove = function() {
@@ -134,5 +127,4 @@
 
   exports.USGSOverlay = USGSOverlay;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_layer_data_polygon]
   // This example uses the Google Maps JavaScript API's Data layer
   // to create a rectangular polygon with 2 holes in it.
 
@@ -61,5 +60,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

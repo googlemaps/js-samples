@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -27,7 +27,7 @@
       }
     });
     directionsRenderer.setMap(map);
-    document.getElementById("submit").addEventListener("click", function () {
+    document.getElementById("submit").addEventListener("click", function() {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     });
   }
@@ -45,32 +45,36 @@
       }
     }
 
-    directionsService.route({
-      origin: document.getElementById("start").value,
-      destination: document.getElementById("end").value,
-      waypoints: waypts,
-      optimizeWaypoints: true,
-      travelMode: "DRIVING"
-    }, function (response, status) {
-      if (status === "OK") {
-        directionsRenderer.setDirections(response);
-        var route = response.routes[0];
-        var summaryPanel = document.getElementById("directions-panel");
-        summaryPanel.innerHTML = ""; // For each route, display summary information.
+    directionsService.route(
+      {
+        origin: document.getElementById("start").value,
+        destination: document.getElementById("end").value,
+        waypoints: waypts,
+        optimizeWaypoints: true,
+        travelMode: "DRIVING"
+      },
+      function(response, status) {
+        if (status === "OK") {
+          directionsRenderer.setDirections(response);
+          var route = response.routes[0];
+          var summaryPanel = document.getElementById("directions-panel");
+          summaryPanel.innerHTML = ""; // For each route, display summary information.
 
-        for (var i = 0; i < route.legs.length; i++) {
-          var routeSegment = i + 1;
-          summaryPanel.innerHTML += "<b>Route Segment: " + routeSegment + "</b><br>";
-          summaryPanel.innerHTML += route.legs[i].start_address + " to ";
-          summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
-          summaryPanel.innerHTML += route.legs[i].distance.text + "<br><br>";
+          for (var i = 0; i < route.legs.length; i++) {
+            var routeSegment = i + 1;
+            summaryPanel.innerHTML +=
+              "<b>Route Segment: " + routeSegment + "</b><br>";
+            summaryPanel.innerHTML += route.legs[i].start_address + " to ";
+            summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+            summaryPanel.innerHTML += route.legs[i].distance.text + "<br><br>";
+          }
+        } else {
+          window.alert("Directions request failed due to " + status);
         }
-      } else {
-        window.alert("Directions request failed due to " + status);
       }
-    });
+    );
   }
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

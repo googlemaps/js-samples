@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -22,7 +22,8 @@
    *   an InfoWindow
    */
 
-  var src = "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
+  var src =
+    "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -35,7 +36,7 @@
       preserveViewport: false,
       map: exports.map
     });
-    kmlLayer.addListener("click", function (event) {
+    kmlLayer.addListener("click", function(event) {
       var content = event.featureData.infoWindowHtml;
       var testimonial = document.getElementById("capture");
       testimonial.innerHTML = content;
@@ -44,4 +45,4 @@
 
   exports.initMap = initMap;
   exports.src = src;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

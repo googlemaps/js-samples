@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -28,26 +28,34 @@
       },
       mapTypeId: "terrain"
     });
-    var blueCoords = [{
-      lat: 25.774,
-      lng: -60.19
-    }, {
-      lat: 18.466,
-      lng: -46.118
-    }, {
-      lat: 32.321,
-      lng: -44.757
-    }];
-    var redCoords = [{
-      lat: 25.774,
-      lng: -80.19
-    }, {
-      lat: 18.466,
-      lng: -66.118
-    }, {
-      lat: 32.321,
-      lng: -64.757
-    }]; // Construct a draggable red triangle with geodesic set to true.
+    var blueCoords = [
+      {
+        lat: 25.774,
+        lng: -60.19
+      },
+      {
+        lat: 18.466,
+        lng: -46.118
+      },
+      {
+        lat: 32.321,
+        lng: -44.757
+      }
+    ];
+    var redCoords = [
+      {
+        lat: 25.774,
+        lng: -80.19
+      },
+      {
+        lat: 18.466,
+        lng: -66.118
+      },
+      {
+        lat: 32.321,
+        lng: -64.757
+      }
+    ]; // Construct a draggable red triangle with geodesic set to true.
 
     new google.maps.Polygon({
       map: map,
@@ -75,4 +83,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

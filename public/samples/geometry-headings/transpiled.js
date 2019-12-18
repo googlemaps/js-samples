@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -30,7 +30,9 @@
         lng: -40.605
       }
     });
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(document.getElementById("info"));
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+      document.getElementById("info")
+    );
     exports.marker1 = new google.maps.Marker({
       map: map,
       draggable: true,
@@ -47,7 +49,10 @@
         lng: 2.352
       }
     });
-    var bounds = new google.maps.LatLngBounds(exports.marker1.getPosition(), marker2.getPosition());
+    var bounds = new google.maps.LatLngBounds(
+      exports.marker1.getPosition(),
+      marker2.getPosition()
+    );
     map.fitBounds(bounds);
     google.maps.event.addListener(exports.marker1, "position_changed", update);
     google.maps.event.addListener(marker2, "position_changed", update);
@@ -71,7 +76,10 @@
     var path = [exports.marker1.getPosition(), marker2.getPosition()];
     exports.poly.setPath(path);
     geodesicPoly.setPath(path);
-    var heading = google.maps.geometry.spherical.computeHeading(path[0], path[1]);
+    var heading = google.maps.geometry.spherical.computeHeading(
+      path[0],
+      path[1]
+    );
     document.getElementById("heading").value = heading;
     document.getElementById("origin").value = path[0].toString();
     document.getElementById("destination").value = path[1].toString();
@@ -79,4 +87,4 @@
 
   exports.initMap = initMap;
   exports.update = update;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -25,10 +25,11 @@
       }
     });
     var georssLayer = new google.maps.KmlLayer({
-      url: "http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss"
+      url:
+        "http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss"
     });
     georssLayer.setMap(map);
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

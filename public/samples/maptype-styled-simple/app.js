@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_maptype_styled_simple]
   function initMap() {
     // Create a new StyledMapType object, passing it an array of styles,
     // and the name to be displayed on the map type control.
@@ -151,5 +150,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

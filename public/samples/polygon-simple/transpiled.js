@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -27,19 +27,24 @@
       mapTypeId: "terrain"
     }); // Define the LatLng coordinates for the polygon's path.
 
-    var triangleCoords = [{
-      lat: 25.774,
-      lng: -80.19
-    }, {
-      lat: 18.466,
-      lng: -66.118
-    }, {
-      lat: 32.321,
-      lng: -64.757
-    }, {
-      lat: 25.774,
-      lng: -80.19
-    }]; // Construct the polygon.
+    var triangleCoords = [
+      {
+        lat: 25.774,
+        lng: -80.19
+      },
+      {
+        lat: 18.466,
+        lng: -66.118
+      },
+      {
+        lat: 32.321,
+        lng: -64.757
+      },
+      {
+        lat: 25.774,
+        lng: -80.19
+      }
+    ]; // Construct the polygon.
 
     var bermudaTriangle = new google.maps.Polygon({
       paths: triangleCoords,
@@ -53,4 +58,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

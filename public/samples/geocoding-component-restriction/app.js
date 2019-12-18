@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_geocoding_component_restriction]
   function initMap() {
     var geocoder = new google.maps.Geocoder();
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -56,5 +55,4 @@
 
   exports.geocodeAddress = geocodeAddress;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

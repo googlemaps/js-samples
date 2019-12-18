@@ -80,11 +80,15 @@ body {
   padding: 0 6px;
 }
 
-.gm-style .controls.maptype-control.maptype-control-is-map .maptype-control-map {
+.gm-style
+  .controls.maptype-control.maptype-control-is-map
+  .maptype-control-map {
   font-weight: 700;
 }
 
-.gm-style .controls.maptype-control.maptype-control-is-satellite .maptype-control-satellite {
+.gm-style
+  .controls.maptype-control.maptype-control-is-satellite
+  .maptype-control-satellite {
   font-weight: 700;
 }
 
@@ -102,43 +106,59 @@ body {
   width: 0.25em;
 }
 
-.gm-style .controls.fullscreen-control .fullscreen-control-icon.fullscreen-control-top-left {
+.gm-style
+  .controls.fullscreen-control
+  .fullscreen-control-icon.fullscreen-control-top-left {
   border-width: 2px 0 0 2px;
   left: 0.1em;
   top: 0.1em;
 }
 
-.gm-style .controls.fullscreen-control.is-fullscreen .fullscreen-control-icon.fullscreen-control-top-left {
+.gm-style
+  .controls.fullscreen-control.is-fullscreen
+  .fullscreen-control-icon.fullscreen-control-top-left {
   border-width: 0 2px 2px 0;
 }
 
-.gm-style .controls.fullscreen-control .fullscreen-control-icon.fullscreen-control-top-right {
+.gm-style
+  .controls.fullscreen-control
+  .fullscreen-control-icon.fullscreen-control-top-right {
   border-width: 2px 2px 0 0;
   right: 0.1em;
   top: 0.1em;
 }
 
-.gm-style .controls.fullscreen-control.is-fullscreen .fullscreen-control-icon.fullscreen-control-top-right {
+.gm-style
+  .controls.fullscreen-control.is-fullscreen
+  .fullscreen-control-icon.fullscreen-control-top-right {
   border-width: 0 0 2px 2px;
 }
 
-.gm-style .controls.fullscreen-control .fullscreen-control-icon.fullscreen-control-bottom-left {
+.gm-style
+  .controls.fullscreen-control
+  .fullscreen-control-icon.fullscreen-control-bottom-left {
   border-width: 0 0 2px 2px;
   left: 0.1em;
   bottom: 0.1em;
 }
 
-.gm-style .controls.fullscreen-control.is-fullscreen .fullscreen-control-icon.fullscreen-control-bottom-left {
+.gm-style
+  .controls.fullscreen-control.is-fullscreen
+  .fullscreen-control-icon.fullscreen-control-bottom-left {
   border-width: 2px 2px 0 0;
 }
 
-.gm-style .controls.fullscreen-control .fullscreen-control-icon.fullscreen-control-bottom-right {
+.gm-style
+  .controls.fullscreen-control
+  .fullscreen-control-icon.fullscreen-control-bottom-right {
   border-width: 0 2px 2px 0;
   right: 0.1em;
   bottom: 0.1em;
 }
 
-.gm-style .controls.fullscreen-control.is-fullscreen .fullscreen-control-icon.fullscreen-control-bottom-right {
+.gm-style
+  .controls.fullscreen-control.is-fullscreen
+  .fullscreen-control-icon.fullscreen-control-bottom-right {
   border-width: 2px 0 0 2px;
 }
 

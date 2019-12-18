@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_maptype_base]
   /*
    * This demo demonstrates how to replace default map tiles with custom imagery.
    * In this case, the CoordMapType displays gray tiles annotated with the tile
@@ -79,5 +78,4 @@
 
   exports.CoordMapType = CoordMapType;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

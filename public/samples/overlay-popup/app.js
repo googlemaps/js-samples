@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_overlay_popup]
   var popup, Popup;
 
   /** Initializes the map and the custom popup. */
@@ -85,7 +84,9 @@
 
     /** Called each frame when the popup needs to draw itself. */
     Popup.prototype.draw = function() {
-      var divPosition = this.getProjection().fromLatLngToDivPixel(this.position);
+      var divPosition = this.getProjection().fromLatLngToDivPixel(
+        this.position
+      );
 
       // Hide the popup when it is far out of view.
       var display =
@@ -107,5 +108,4 @@
 
   exports.createPopupClass = createPopupClass;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -36,7 +36,8 @@
       fillOpacity: 1
     };
     var symbolTwo = {
-      path: "M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3",
+      path:
+        "M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3",
       strokeColor: "#00F",
       rotation: 45
     };
@@ -47,26 +48,33 @@
     }; // Create the polyline and add the symbols via the 'icons' property.
 
     var line = new google.maps.Polyline({
-      path: [{
-        lat: 22.291,
-        lng: 153.027
-      }, {
-        lat: 18.291,
-        lng: 153.027
-      }],
-      icons: [{
-        icon: symbolOne,
-        offset: "0%"
-      }, {
-        icon: symbolTwo,
-        offset: "50%"
-      }, {
-        icon: symbolThree,
-        offset: "100%"
-      }],
+      path: [
+        {
+          lat: 22.291,
+          lng: 153.027
+        },
+        {
+          lat: 18.291,
+          lng: 153.027
+        }
+      ],
+      icons: [
+        {
+          icon: symbolOne,
+          offset: "0%"
+        },
+        {
+          icon: symbolTwo,
+          offset: "50%"
+        },
+        {
+          icon: symbolThree,
+          offset: "100%"
+        }
+      ],
       map: map
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

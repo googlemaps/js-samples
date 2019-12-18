@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -27,19 +27,24 @@
       },
       mapTypeId: "terrain"
     });
-    var flightPathCoordinates = [{
-      lat: 37.772,
-      lng: -122.214
-    }, {
-      lat: 21.291,
-      lng: -157.821
-    }, {
-      lat: -18.142,
-      lng: 178.431
-    }, {
-      lat: -27.467,
-      lng: 153.027
-    }];
+    var flightPathCoordinates = [
+      {
+        lat: 37.772,
+        lng: -122.214
+      },
+      {
+        lat: 21.291,
+        lng: -157.821
+      },
+      {
+        lat: -18.142,
+        lng: 178.431
+      },
+      {
+        lat: -27.467,
+        lng: 153.027
+      }
+    ];
     exports.flightPath = new google.maps.Polyline({
       path: flightPathCoordinates,
       strokeColor: "#FF0000",
@@ -60,4 +65,4 @@
   exports.addLine = addLine;
   exports.initMap = initMap;
   exports.removeLine = removeLine;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

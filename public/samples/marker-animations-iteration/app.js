@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_marker_animations_iteration]
   // If you're adding a number of markers, you may want to drop them on the map
   // consecutively rather than all at once. This example shows how to use
   // window.setTimeout() to space your markers' animation.
@@ -30,7 +29,6 @@
   ];
 
   exports.markers = [];
-
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -70,5 +68,4 @@
   exports.drop = drop;
   exports.initMap = initMap;
   exports.neighborhoods = neighborhoods;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

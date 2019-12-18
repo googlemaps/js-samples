@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -16,9 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
-  // [START maps_streetview_overlays]
-
 
   function initMap() {
     var astorPlace = { lat: 40.729884, lng: -73.990988 };
@@ -78,5 +75,4 @@
 
   exports.initMap = initMap;
   exports.toggleStreetView = toggleStreetView;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

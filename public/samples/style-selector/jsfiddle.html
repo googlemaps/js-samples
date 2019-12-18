@@ -15,28 +15,27 @@
 --><!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
     <title>Styled Map Selection</title>
-      <!-- jsFiddle will insert css and js -->
+    <!-- jsFiddle will insert css and js -->
   </head>
   <body>
+    <div id="style-selector-control" class="map-control">
+      <select id="style-selector" class="selector-control">
+        <option value="default">Default</option>
+        <option value="silver">Silver</option>
+        <option value="night">Night mode</option>
+        <option value="retro" selected="selected">Retro</option>
+        <option value="hiding">Hide features</option>
+      </select>
+    </div>
+    <div id="map"></div>
 
-<div id="style-selector-control" class="map-control">
-  <select id="style-selector" class="selector-control">
-    <option value="default">Default</option>
-    <option value="silver">Silver</option>
-    <option value="night">Night mode</option>
-    <option value="retro" selected="selected">Retro</option>
-    <option value="hiding">Hide features</option>
-  </select>
-</div>
-<div id="map"></div>
-
-
-      <script 
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&version=weekly" 
-    async defer></script>
-
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&version=weekly"
+      async
+      defer
+    ></script>
   </body>
 </html>

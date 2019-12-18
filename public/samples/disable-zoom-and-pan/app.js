@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,8 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_disable_zoom_and_pan]
-  // [START maps_disable_zoom_and_pan_script_snippet]
   function initMap() {
     var locationRio = { lat: -22.915, lng: -43.197 };
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -27,7 +25,7 @@
       gestureHandling: "none",
       zoomControl: false
     });
-    // [END maps_disable_zoom_and_pan_script_snippet]
+
     var marker = new google.maps.Marker({
       position: locationRio,
       map: map,
@@ -36,5 +34,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

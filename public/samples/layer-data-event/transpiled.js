@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -25,22 +25,26 @@
       }
     }); // Load GeoJSON.
 
-    exports.map.data.loadGeoJson("https://storage.googleapis.com/maps-devrel/google.json"); // Add some style.
+    exports.map.data.loadGeoJson(
+      "https://storage.googleapis.com/maps-devrel/google.json"
+    ); // Add some style.
 
-    exports.map.data.setStyle(function (feature) {
+    exports.map.data.setStyle(function(feature) {
       return (
         /** @type {google.maps.Data.StyleOptions} */
-        {
+        ({
           fillColor: feature.getProperty("color"),
           strokeWeight: 1
-        }
+        })
       );
     }); // Set mouseover event for each feature.
 
-    exports.map.data.addListener("mouseover", function (event) {
-      document.getElementById("info-box").textContent = event.feature.getProperty("letter");
+    exports.map.data.addListener("mouseover", function(event) {
+      document.getElementById(
+        "info-box"
+      ).textContent = event.feature.getProperty("letter");
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

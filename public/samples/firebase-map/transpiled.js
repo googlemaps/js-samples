@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -57,7 +57,8 @@
     controlText.style.fontFamily = "Roboto,Arial,sans-serif";
     controlText.style.fontSize = "100%";
     controlText.style.padding = "6px";
-    controlText.textContent = "The map shows all clicks made in the last 10 minutes.";
+    controlText.textContent =
+      "The map shows all clicks made in the last 10 minutes.";
     controlUI.appendChild(controlText);
   }
   /**
@@ -65,14 +66,19 @@
    * @param {function()} onAuthSuccess - Called when authentication succeeds.
    */
 
-
   function initAuthentication(onAuthSuccess) {
-    firebase.auth().signInAnonymously().catch(function (error) {
-      console.log(error.code + ", " + error.message);
-    }, {
-      remember: "sessionOnly"
-    });
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase
+      .auth()
+      .signInAnonymously()
+      .catch(
+        function(error) {
+          console.log(error.code + ", " + error.message);
+        },
+        {
+          remember: "sessionOnly"
+        }
+      );
+    firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         data.sender = user.uid;
         onAuthSuccess();
@@ -83,7 +89,6 @@
    * Creates a map object with a click listener and a heatmap.
    */
 
-
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       center: {
@@ -91,19 +96,24 @@
         lng: 0
       },
       zoom: 3,
-      styles: [{
-        featureType: "poi",
-        stylers: [{
-          visibility: "off"
-        }] // Turn off POI.
-
-      }, {
-        featureType: "transit.station",
-        stylers: [{
-          visibility: "off"
-        }] // Turn off bus, train stations etc.
-
-      }],
+      styles: [
+        {
+          featureType: "poi",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ] // Turn off POI.
+        },
+        {
+          featureType: "transit.station",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ] // Turn off bus, train stations etc.
+        }
+      ],
       disableDoubleClickZoom: true,
       streetViewControl: false
     }); // Create the DIV to hold the control and call the makeInfoBox() constructor
@@ -113,7 +123,7 @@
     makeInfoBox(infoBoxDiv);
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(infoBoxDiv); // Listen for clicks and add the location of the click to firebase.
 
-    map.addListener("click", function (e) {
+    map.addListener("click", function(e) {
       data.lat = e.latLng.lat();
       data.lng = e.latLng.lng();
       addToFirebase(data);
@@ -131,34 +141,39 @@
    * @param {!google.maps.visualization.HeatmapLayer} heatmap The heatmap to
    */
 
-
   function initFirebase(heatmap) {
     // 10 minutes before current time.
     var startTime = new Date().getTime() - 60 * 10 * 1000; // Reference to the clicks in Firebase.
 
     var clicks = firebase.database().ref("clicks"); // Listen for clicks and add them to the heatmap.
 
-    clicks.orderByChild("timestamp").startAt(startTime).on("child_added", function (snapshot) {
-      // Get that click from firebase.
-      var newPosition = snapshot.val();
-      var point = new google.maps.LatLng(newPosition.lat, newPosition.lng);
-      var elapsedMs = Date.now() - newPosition.timestamp; // Add the point to the heatmap.
+    clicks
+      .orderByChild("timestamp")
+      .startAt(startTime)
+      .on("child_added", function(snapshot) {
+        // Get that click from firebase.
+        var newPosition = snapshot.val();
+        var point = new google.maps.LatLng(newPosition.lat, newPosition.lng);
+        var elapsedMs = Date.now() - newPosition.timestamp; // Add the point to the heatmap.
 
-      heatmap.getData().push(point); // Request entries older than expiry time (10 minutes).
+        heatmap.getData().push(point); // Request entries older than expiry time (10 minutes).
 
-      var expiryMs = Math.max(60 * 10 * 1000 - elapsedMs, 0); // Set client timeout to remove the point after a certain time.
+        var expiryMs = Math.max(60 * 10 * 1000 - elapsedMs, 0); // Set client timeout to remove the point after a certain time.
 
-      window.setTimeout(function () {
-        // Delete the old point from the database.
-        snapshot.ref.remove();
-      }, expiryMs);
-    }); // Remove old data from the heatmap when a point is removed from firebase.
+        window.setTimeout(function() {
+          // Delete the old point from the database.
+          snapshot.ref.remove();
+        }, expiryMs);
+      }); // Remove old data from the heatmap when a point is removed from firebase.
 
-    clicks.on("child_removed", function (snapshot, prevChildKey) {
+    clicks.on("child_removed", function(snapshot, prevChildKey) {
       var heatmapData = heatmap.getData();
       var i = 0;
 
-      while (snapshot.val().lat != heatmapData.getAt(i).lat() || snapshot.val().lng != heatmapData.getAt(i).lng()) {
+      while (
+        snapshot.val().lat != heatmapData.getAt(i).lat() ||
+        snapshot.val().lng != heatmapData.getAt(i).lng()
+      ) {
         i++;
       }
 
@@ -172,24 +187,27 @@
    *     click to the firebase.
    */
 
-
   function getTimestamp(addClick) {
     // Reference to location for saving the last click time.
     var ref = firebase.database().ref("last_message/" + data.sender);
     ref.onDisconnect().remove(); // Delete reference from firebase on disconnect.
     // Set value to timestamp.
 
-    ref.set(firebase.database.ServerValue.TIMESTAMP, function (err) {
+    ref.set(firebase.database.ServerValue.TIMESTAMP, function(err) {
       if (err) {
         // Write to last message was unsuccessful.
         console.log(err);
       } else {
         // Write to last message was successful.
-        ref.once("value", function (snap) {
-          addClick(snap.val()); // Add click with same timestamp.
-        }, function (err) {
-          console.warn(err);
-        });
+        ref.once(
+          "value",
+          function(snap) {
+            addClick(snap.val()); // Add click with same timestamp.
+          },
+          function(err) {
+            console.warn(err);
+          }
+        );
       }
     });
   }
@@ -199,17 +217,19 @@
    *     It contains the lat, lng, sender and timestamp.
    */
 
-
   function addToFirebase(data) {
-    getTimestamp(function (timestamp) {
+    getTimestamp(function(timestamp) {
       // Add the new timestamp to the record data.
       data.timestamp = timestamp;
-      var ref = firebase.database().ref("clicks").push(data, function (err) {
-        if (err) {
-          // Data was not written to firebase.
-          console.warn(err);
-        }
-      });
+      var ref = firebase
+        .database()
+        .ref("clicks")
+        .push(data, function(err) {
+          if (err) {
+            // Data was not written to firebase.
+            console.warn(err);
+          }
+        });
     });
   }
 
@@ -221,4 +241,4 @@
   exports.initFirebase = initFirebase;
   exports.initMap = initMap;
   exports.makeInfoBox = makeInfoBox;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

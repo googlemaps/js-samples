@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -29,9 +29,10 @@
     var script = document.createElement("script"); // This example uses a local copy of the GeoJSON stored at
     // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
 
-    script.src = "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
+    script.src =
+      "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
     document.getElementsByTagName("head")[0].appendChild(script);
-    exports.map.data.setStyle(function (feature) {
+    exports.map.data.setStyle(function(feature) {
       var magnitude = feature.getProperty("mag");
       return {
         icon: getCircle(magnitude)
@@ -57,4 +58,4 @@
   exports.eqfeed_callback = eqfeed_callback;
   exports.getCircle = getCircle;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

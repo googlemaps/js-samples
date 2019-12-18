@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -26,7 +26,9 @@
       lng: -122.254775
     };
     var sv = new google.maps.StreetViewService();
-    exports.panorama = new google.maps.StreetViewPanorama(document.getElementById("pano")); // Set up the map.
+    exports.panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("pano")
+    ); // Set up the map.
 
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: berkeley,
@@ -34,18 +36,24 @@
       streetViewControl: false
     }); // Set the initial Street View camera to the center of the map
 
-    sv.getPanorama({
-      location: berkeley,
-      radius: 50
-    }, processSVData); // Look for a nearby Street View panorama when the map is clicked.
+    sv.getPanorama(
+      {
+        location: berkeley,
+        radius: 50
+      },
+      processSVData
+    ); // Look for a nearby Street View panorama when the map is clicked.
     // getPanorama will return the nearest pano when the given
     // radius is 50 meters or less.
 
-    exports.map.addListener("click", function (event) {
-      sv.getPanorama({
-        location: event.latLng,
-        radius: 50
-      }, processSVData);
+    exports.map.addListener("click", function(event) {
+      sv.getPanorama(
+        {
+          location: event.latLng,
+          radius: 50
+        },
+        processSVData
+      );
     });
   }
 
@@ -62,7 +70,7 @@
         pitch: 0
       });
       exports.panorama.setVisible(true);
-      marker.addListener("click", function () {
+      marker.addListener("click", function() {
         var markerPanoID = data.location.pano; // Set the Pano to use the passed panoID.
 
         exports.panorama.setPano(markerPanoID);
@@ -79,4 +87,4 @@
 
   exports.initMap = initMap;
   exports.processSVData = processSVData;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

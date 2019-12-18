@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -29,16 +29,20 @@
       mapTypeId: "terrain"
     }); // Define the LatLng coordinates for the polygon.
 
-    var triangleCoords = [{
-      lat: 25.774,
-      lng: -80.19
-    }, {
-      lat: 18.466,
-      lng: -66.118
-    }, {
-      lat: 32.321,
-      lng: -64.757
-    }]; // Construct the polygon.
+    var triangleCoords = [
+      {
+        lat: 25.774,
+        lng: -80.19
+      },
+      {
+        lat: 18.466,
+        lng: -66.118
+      },
+      {
+        lat: 32.321,
+        lng: -64.757
+      }
+    ]; // Construct the polygon.
 
     var bermudaTriangle = new google.maps.Polygon({
       paths: triangleCoords,
@@ -55,18 +59,23 @@
   }
   /** @this {google.maps.Polygon} */
 
-
   function showArrays(event) {
     // Since this polygon has only one path, we can call getPath() to return the
     // MVCArray of LatLngs.
     var vertices = this.getPath();
-    var contentString = "<b>Bermuda Triangle polygon</b><br>" + "Clicked location: <br>" + event.latLng.lat() + "," + event.latLng.lng() + "<br>"; // Iterate over the vertices.
+    var contentString =
+      "<b>Bermuda Triangle polygon</b><br>" +
+      "Clicked location: <br>" +
+      event.latLng.lat() +
+      "," +
+      event.latLng.lng() +
+      "<br>"; // Iterate over the vertices.
 
     for (var i = 0; i < vertices.getLength(); i++) {
       var xy = vertices.getAt(i);
-      contentString += "<br>" + "Coordinate " + i + ":<br>" + xy.lat() + "," + xy.lng();
+      contentString +=
+        "<br>" + "Coordinate " + i + ":<br>" + xy.lat() + "," + xy.lng();
     } // Replace the info window's content and position.
-
 
     exports.infoWindow.setContent(contentString);
     exports.infoWindow.setPosition(event.latLng);
@@ -75,4 +84,4 @@
 
   exports.initMap = initMap;
   exports.showArrays = showArrays;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

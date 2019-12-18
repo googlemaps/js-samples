@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_geometry_headings]
   // This example requires the Geometry library. Include the libraries=geometry
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
@@ -78,7 +77,10 @@
     var path = [exports.marker1.getPosition(), marker2.getPosition()];
     exports.poly.setPath(path);
     geodesicPoly.setPath(path);
-    var heading = google.maps.geometry.spherical.computeHeading(path[0], path[1]);
+    var heading = google.maps.geometry.spherical.computeHeading(
+      path[0],
+      path[1]
+    );
     document.getElementById("heading").value = heading;
     document.getElementById("origin").value = path[0].toString();
     document.getElementById("destination").value = path[1].toString();
@@ -86,5 +88,4 @@
 
   exports.initMap = initMap;
   exports.update = update;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_layer_heatmap]
   // This example requires the Visualization library. Include the libraries=visualization
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
@@ -581,5 +580,4 @@
   exports.getPoints = getPoints;
   exports.initMap = initMap;
   exports.toggleHeatmap = toggleHeatmap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

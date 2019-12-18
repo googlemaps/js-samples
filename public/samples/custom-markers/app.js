@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -16,8 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
-  // [START maps_custom_markers]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -86,11 +84,17 @@
         type: "info"
       },
       {
-        position: new google.maps.LatLng(-33.91662347903106, 151.22879464019775),
+        position: new google.maps.LatLng(
+          -33.91662347903106,
+          151.22879464019775
+        ),
         type: "parking"
       },
       {
-        position: new google.maps.LatLng(-33.916365282092855, 151.22937399734496),
+        position: new google.maps.LatLng(
+          -33.916365282092855,
+          151.22937399734496
+        ),
         type: "parking"
       },
       {
@@ -98,11 +102,17 @@
         type: "parking"
       },
       {
-        position: new google.maps.LatLng(-33.919543720969806, 151.23112279762267),
+        position: new google.maps.LatLng(
+          -33.919543720969806,
+          151.23112279762267
+        ),
         type: "parking"
       },
       {
-        position: new google.maps.LatLng(-33.91608037421864, 151.23288232673644),
+        position: new google.maps.LatLng(
+          -33.91608037421864,
+          151.23288232673644
+        ),
         type: "parking"
       },
       {
@@ -114,7 +124,10 @@
         type: "parking"
       },
       {
-        position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
+        position: new google.maps.LatLng(
+          -33.91727341958453,
+          151.23348314155578
+        ),
         type: "library"
       }
     ];
@@ -130,5 +143,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

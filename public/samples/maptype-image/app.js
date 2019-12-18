@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_maptype_image]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: 0, lng: 0 },
@@ -82,5 +81,4 @@
 
   exports.getNormalizedCoord = getNormalizedCoord;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

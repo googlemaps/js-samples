@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -24,10 +24,10 @@
     }); // We add a DOM event here to show an alert if the DIV containing the
     // map is clicked.
 
-    google.maps.event.addDomListener(mapDiv, "click", function () {
+    google.maps.event.addDomListener(mapDiv, "click", function() {
       window.alert("Map was clicked!");
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

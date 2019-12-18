@@ -15,34 +15,42 @@
 --><!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
     <title>Place Details</title>
-        <link rel="stylesheet" type="text/css" href="./style.css">
-        <script src="./transpiled.js"></script>
-        <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly" 
-    async defer></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./transpiled.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly"
+      async
+      defer
+    ></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152595271-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-152595271-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
         dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'UA-152595271-1');
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/stackdriver-errors-js@0.7.0/dist/stackdriver-errors-concat.min.js"></script>
-<script type="text/javascript">
-    function uuid4() {
+      gtag("config", "UA-152595271-1");
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/stackdriver-errors-js@0.7.0/dist/stackdriver-errors-concat.min.js"
+    ></script>
+    <script type="text/javascript">
+      function uuid4() {
         // http://www.ietf.org/rfc/rfc4122.txt
         var s = [];
         var hexDigits = "0123456789abcdef";
         for (var i = 0; i < 36; i++) {
-            s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+          s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
         }
         s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
         s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
@@ -50,34 +58,35 @@
 
         var uuid = s.join("");
         return uuid;
-    }
-    
-    if (window.location.hostname !== "127.0.0.1") {
-        window.addEventListener('DOMContentLoaded', function () {
-            const errorHandler = new StackdriverErrorReporter();
-            let uuid = localStorage.getItem("uuid");
+      }
 
-            if (!uuid) {
-                uuid = uuid4();
-                localStorage.setItem("uuid", uuid);
+      if (window.location.hostname !== "127.0.0.1") {
+        window.addEventListener("DOMContentLoaded", function() {
+          const errorHandler = new StackdriverErrorReporter();
+          let uuid = localStorage.getItem("uuid");
+
+          if (!uuid) {
+            uuid = uuid4();
+            localStorage.setItem("uuid", uuid);
+          }
+
+          errorHandler.start({
+            key: "AIzaSyD298H_8hrIigzJbFPTnHaAUGABMWJZBMA",
+            projectId: "geo-devrel-259418",
+            service: "js-samples",
+            reportUncaughtExceptions: true,
+            reportUnhandledPromiseRejections: true,
+            context: {
+              user: uuid
             }
-
-            errorHandler.start({
-                key: 'AIzaSyD298H_8hrIigzJbFPTnHaAUGABMWJZBMA',
-                projectId: 'geo-devrel-259418',
-                service: 'js-samples',
-                reportUncaughtExceptions: true,
-                reportUnhandledPromiseRejections: true,
-                context: {
-                    user: uuid
-                }
-            });
+          });
         });
-    }
-</script>  </head>
+      }
+    </script>
+  </head>
   <body>
-<!-- [START maps_place_details] -->
-<div id="map"></div>
-<!-- [END maps_place_details] -->
+    <!-- [START maps_place_details] -->
+    <div id="map"></div>
+    <!-- [END maps_place_details] -->
   </body>
 </html>

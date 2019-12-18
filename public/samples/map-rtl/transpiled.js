@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -39,10 +39,10 @@
       map: map,
       position: cairo
     });
-    marker.addListener("click", function () {
+    marker.addListener("click", function() {
       infowindow.open(map, marker);
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_overlay_symbol_arrow]
   // This example adds a predefined symbol (an arrow) to a polyline.
   // Setting offset to 100% places the arrow at the end of the line.
 
@@ -28,7 +27,6 @@
       mapTypeId: "terrain"
     });
 
-    // [START maps_overlay_symbol_arrow_region_polyline]
     // Define a symbol using a predefined path (an arrow)
     // supplied by the Google Maps JavaScript API.
     var lineSymbol = {
@@ -49,9 +47,7 @@
       ],
       map: map
     });
-    // [END maps_overlay_symbol_arrow_region_polyline]
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

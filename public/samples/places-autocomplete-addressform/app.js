@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_places_autocomplete_addressform]
   // This sample uses the Autocomplete widget to help the user select a
   // place, then it retrieves the address components associated with that
   // place, and then it populates the form fields with those details.
@@ -54,7 +53,6 @@
     autocomplete.addListener("place_changed", fillInAddress);
   }
 
-  // [START maps_places_autocomplete_addressform_fillform]
   function fillInAddress() {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
@@ -74,9 +72,7 @@
       }
     }
   }
-  // [END maps_places_autocomplete_addressform_fillform]
 
-  // [START maps_places_autocomplete_addressform_geolocation]
   // Bias the autocomplete object to the user's geographical location,
   // as supplied by the browser's 'navigator.geolocation' object.
   function geolocate() {
@@ -100,5 +96,4 @@
   exports.geolocate = geolocate;
   exports.initAutocomplete = initAutocomplete;
   exports.placeSearch = placeSearch;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

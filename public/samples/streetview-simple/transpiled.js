@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -25,15 +25,18 @@
       center: fenway,
       zoom: 14
     });
-    var panorama = new google.maps.StreetViewPanorama(document.getElementById("pano"), {
-      position: fenway,
-      pov: {
-        heading: 34,
-        pitch: 10
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("pano"),
+      {
+        position: fenway,
+        pov: {
+          heading: 34,
+          pitch: 10
+        }
       }
-    });
+    );
     map.setStreetView(panorama);
   }
 
   exports.initialize = initialize;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

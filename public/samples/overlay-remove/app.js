@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,12 +17,8 @@
    * limitations under the License.
    */
 
-  // [START maps_overlay_remove]
   // This example adds a UI control allowing users to remove the
   // ground overlay from the map.
-
-
-
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -49,7 +45,6 @@
     exports.historicalOverlay.setMap(exports.map);
   }
 
-  // [START maps_overlay_remove_region_removal]
   function removeOverlay() {
     exports.historicalOverlay.setMap(null);
   }
@@ -57,5 +52,4 @@
   exports.addOverlay = addOverlay;
   exports.initMap = initMap;
   exports.removeOverlay = removeOverlay;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

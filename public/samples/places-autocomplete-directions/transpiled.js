@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -35,7 +35,6 @@
    * @constructor
    */
 
-
   function AutocompleteDirectionsHandler(map) {
     this.map = map;
     this.originPlaceId = null;
@@ -50,7 +49,9 @@
     var originAutocomplete = new google.maps.places.Autocomplete(originInput); // Specify just the place data fields that you need.
 
     originAutocomplete.setFields(["place_id"]);
-    var destinationAutocomplete = new google.maps.places.Autocomplete(destinationInput); // Specify just the place data fields that you need.
+    var destinationAutocomplete = new google.maps.places.Autocomplete(
+      destinationInput
+    ); // Specify just the place data fields that you need.
 
     destinationAutocomplete.setFields(["place_id"]);
     this.setupClickListener("changemode-walking", "WALKING");
@@ -59,25 +60,32 @@
     this.setupPlaceChangedListener(originAutocomplete, "ORIG");
     this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+      destinationInput
+    );
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
   } // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
 
-
-  AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
+  AutocompleteDirectionsHandler.prototype.setupClickListener = function(
+    id,
+    mode
+  ) {
     var radioButton = document.getElementById(id);
     var me = this;
-    radioButton.addEventListener("click", function () {
+    radioButton.addEventListener("click", function() {
       me.travelMode = mode;
       me.route();
     });
   };
 
-  AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
+  AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function(
+    autocomplete,
+    mode
+  ) {
     var me = this;
     autocomplete.bindTo("bounds", this.map);
-    autocomplete.addListener("place_changed", function () {
+    autocomplete.addListener("place_changed", function() {
       var place = autocomplete.getPlace();
 
       if (!place.place_id) {
@@ -95,29 +103,32 @@
     });
   };
 
-  AutocompleteDirectionsHandler.prototype.route = function () {
+  AutocompleteDirectionsHandler.prototype.route = function() {
     if (!this.originPlaceId || !this.destinationPlaceId) {
       return;
     }
 
     var me = this;
-    this.directionsService.route({
-      origin: {
-        placeId: this.originPlaceId
+    this.directionsService.route(
+      {
+        origin: {
+          placeId: this.originPlaceId
+        },
+        destination: {
+          placeId: this.destinationPlaceId
+        },
+        travelMode: this.travelMode
       },
-      destination: {
-        placeId: this.destinationPlaceId
-      },
-      travelMode: this.travelMode
-    }, function (response, status) {
-      if (status === "OK") {
-        me.directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
+      function(response, status) {
+        if (status === "OK") {
+          me.directionsRenderer.setDirections(response);
+        } else {
+          window.alert("Directions request failed due to " + status);
+        }
       }
-    });
+    );
   };
 
   exports.AutocompleteDirectionsHandler = AutocompleteDirectionsHandler;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

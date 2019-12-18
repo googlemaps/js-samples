@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -25,7 +25,7 @@
    * @constructor
    */
   function MarkerClusterer(map, markers, options) {}
-  // [START maps_landing_page_marker_clustering]
+
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 3,
@@ -79,5 +79,4 @@
   exports.MarkerClusterer = MarkerClusterer;
   exports.initMap = initMap;
   exports.locations = locations;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

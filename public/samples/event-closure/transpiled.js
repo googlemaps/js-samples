@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -53,16 +53,15 @@
   } // Attaches an info window to a marker with the provided message. When the
   // marker is clicked, the info window will open with the secret message.
 
-
   function attachSecretMessage(marker, secretMessage) {
     var infowindow = new google.maps.InfoWindow({
       content: secretMessage
     });
-    marker.addListener("click", function () {
+    marker.addListener("click", function() {
       infowindow.open(marker.get("map"), marker);
     });
   }
 
   exports.attachSecretMessage = attachSecretMessage;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

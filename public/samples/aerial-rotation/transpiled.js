@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -44,4 +44,4 @@
   exports.autoRotate = autoRotate;
   exports.initMap = initMap;
   exports.rotate90 = rotate90;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

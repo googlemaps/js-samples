@@ -15,19 +15,24 @@
 --><!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
     <title>Places Search Box</title>
-      <!-- jsFiddle will insert css and js -->
+    <!-- jsFiddle will insert css and js -->
   </head>
   <body>
+    <input
+      id="pac-input"
+      class="controls"
+      type="text"
+      placeholder="Search Box"
+    />
+    <div id="map"></div>
 
-<input id="pac-input" class="controls" type="text" placeholder="Search Box" />
-<div id="map"></div>
-
-      <script 
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initAutocomplete&libraries=places&version=weekly" 
-    async defer></script>
-
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initAutocomplete&libraries=places&version=weekly"
+      async
+      defer
+    ></script>
   </body>
 </html>

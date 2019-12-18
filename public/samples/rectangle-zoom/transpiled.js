@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -28,7 +28,7 @@
       mapTypeId: "terrain"
     });
     var rectangle = new google.maps.Rectangle();
-    map.addListener("zoom_changed", function () {
+    map.addListener("zoom_changed", function() {
       // Get the current bounds, which reflect the bounds before the zoom.
       rectangle.setOptions({
         strokeColor: "#FF0000",
@@ -43,4 +43,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

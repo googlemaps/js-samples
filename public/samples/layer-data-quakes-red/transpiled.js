@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -28,14 +28,17 @@
     //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
 
     var script = document.createElement("script");
-    script.setAttribute("src", "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json");
+    script.setAttribute(
+      "src",
+      "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
+    );
     document.getElementsByTagName("head")[0].appendChild(script); // Add a basic style.
 
-    exports.map.data.setStyle(function (feature) {
+    exports.map.data.setStyle(function(feature) {
       var mag = Math.exp(parseFloat(feature.getProperty("mag"))) * 0.1;
       return (
         /** @type {google.maps.Data.StyleOptions} */
-        {
+        ({
           icon: {
             path: google.maps.SymbolPath.CIRCLE,
             scale: mag,
@@ -43,11 +46,10 @@
             fillOpacity: 0.35,
             strokeWeight: 0
           }
-        }
+        })
       );
     });
   } // Defines the callback function referenced in the jsonp file.
-
 
   function eqfeed_callback(data) {
     exports.map.data.addGeoJson(data);
@@ -55,4 +57,4 @@
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

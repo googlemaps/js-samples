@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_directions_travel_modes]
   function initMap() {
     var directionsRenderer = new google.maps.DirectionsRenderer();
     var directionsService = new google.maps.DirectionsService();
@@ -56,5 +55,4 @@
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

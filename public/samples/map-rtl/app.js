@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_map_rtl]
   // This example displays a map with the language set to Arabic and the
   // regions set to Egypt. These settings are specified in the HTML script
   // element when loading the Google Maps JavaScript API.
@@ -44,5 +43,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

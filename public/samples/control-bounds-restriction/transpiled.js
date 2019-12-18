@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -41,4 +41,4 @@
   exports.AUCKLAND = AUCKLAND;
   exports.NEW_ZEALAND_BOUNDS = NEW_ZEALAND_BOUNDS;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

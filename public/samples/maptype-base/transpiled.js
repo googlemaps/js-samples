@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -37,7 +37,7 @@
   CoordMapType.prototype.name = "Tile #s";
   CoordMapType.prototype.alt = "Tile Coordinate Map Type";
 
-  CoordMapType.prototype.getTile = function (coord, zoom, ownerDocument) {
+  CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
     var div = ownerDocument.createElement("div");
     div.innerHTML = coord;
     div.style.width = this.tileSize.width + "px";
@@ -64,16 +64,19 @@
         style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
       }
     });
-    map.addListener("maptypeid_changed", function () {
+    map.addListener("maptypeid_changed", function() {
       var showStreetViewControl = map.getMapTypeId() !== "coordinate";
       map.setOptions({
         streetViewControl: showStreetViewControl
       });
     }); // Now attach the coordinate map type to the map's registry.
 
-    map.mapTypes.set("coordinate", new CoordMapType(new google.maps.Size(256, 256)));
+    map.mapTypes.set(
+      "coordinate",
+      new CoordMapType(new google.maps.Size(256, 256))
+    );
   }
 
   exports.CoordMapType = CoordMapType;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

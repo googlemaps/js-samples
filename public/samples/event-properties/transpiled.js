@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -27,10 +27,10 @@
       position: originalMapCenter
     });
     infowindow.open(map);
-    map.addListener("zoom_changed", function () {
+    map.addListener("zoom_changed", function() {
       infowindow.setContent("Zoom: " + map.getZoom());
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

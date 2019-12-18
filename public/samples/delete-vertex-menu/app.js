@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_delete_vertex_menu]
   function initialize() {
     var mapOptions = {
       zoom: 3,
@@ -144,5 +143,4 @@
 
   exports.DeleteMenu = DeleteMenu;
   exports.initialize = initialize;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -31,7 +31,7 @@
       fields: ["name", "geometry"]
     };
     exports.service = new google.maps.places.PlacesService(exports.map);
-    exports.service.findPlaceFromQuery(request, function (results, status) {
+    exports.service.findPlaceFromQuery(request, function(results, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
           createMarker(results[i]);
@@ -47,7 +47,7 @@
       map: exports.map,
       position: place.geometry.location
     });
-    google.maps.event.addListener(marker, "click", function () {
+    google.maps.event.addListener(marker, "click", function() {
       exports.infowindow.setContent(place.name);
       exports.infowindow.open(exports.map, this);
     });
@@ -55,4 +55,4 @@
 
   exports.createMarker = createMarker;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

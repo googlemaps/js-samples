@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -31,8 +31,13 @@
   } // Data for the markers consisting of a name, a LatLng and a zIndex for the
   // order in which these markers should display on top of each other.
 
-
-  var beaches = [["Bondi Beach", -33.890542, 151.274856, 4], ["Coogee Beach", -33.923036, 151.259052, 5], ["Cronulla Beach", -34.028249, 151.157507, 3], ["Manly Beach", -33.80010128657071, 151.28747820854187, 2], ["Maroubra Beach", -33.950198, 151.259302, 1]];
+  var beaches = [
+    ["Bondi Beach", -33.890542, 151.274856, 4],
+    ["Coogee Beach", -33.923036, 151.259052, 5],
+    ["Cronulla Beach", -34.028249, 151.157507, 3],
+    ["Manly Beach", -33.80010128657071, 151.28747820854187, 2],
+    ["Maroubra Beach", -33.950198, 151.259302, 1]
+  ];
 
   function setMarkers(map) {
     // Adds markers to the map.
@@ -41,7 +46,8 @@
     // Origins, anchor positions and coordinates of the marker increase in the X
     // direction to the right and in the Y direction down.
     var image = {
-      url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+      url:
+        "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
       // This marker is 20 pixels wide by 32 pixels high.
       size: new google.maps.Size(20, 32),
       // The origin for this image is (0, 0).
@@ -76,4 +82,4 @@
   exports.beaches = beaches;
   exports.initMap = initMap;
   exports.setMarkers = setMarkers;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -16,9 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
-  // [START maps_layer_data_quakes]
-
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -53,7 +50,8 @@
 
     // fraction represents where the value sits between the min and max
     var fraction =
-      (Math.min(feature.getProperty("mag"), maxMag) - minMag) / (maxMag - minMag);
+      (Math.min(feature.getProperty("mag"), maxMag) - minMag) /
+      (maxMag - minMag);
 
     var color = interpolateHsl(low, high, fraction);
 
@@ -109,5 +107,4 @@
   exports.interpolateHsl = interpolateHsl;
   exports.mapStyle = mapStyle;
   exports.styleFeature = styleFeature;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_places_placeid_geocoder]
   // This sample requires the Places library. Include the libraries=places
   // parameter when you first load the API. For example:
   // <script
@@ -36,7 +35,12 @@
     autocomplete.bindTo("bounds", map);
 
     // Specify just the place data fields that you need.
-    autocomplete.setFields(["place_id", "geometry", "name", "formatted_address"]);
+    autocomplete.setFields([
+      "place_id",
+      "geometry",
+      "name",
+      "formatted_address"
+    ]);
 
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
@@ -86,5 +90,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

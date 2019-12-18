@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -26,7 +26,8 @@
         lng: 151
       }
     });
-    var image = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+    var image =
+      "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
     var beachMarker = new google.maps.Marker({
       position: {
         lat: -33.89,
@@ -38,4 +39,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

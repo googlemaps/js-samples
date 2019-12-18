@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -22,7 +22,6 @@
    *   and displaying the contents in a side panel instead of
    *   an InfoWindow
    */
-  // [START maps_kml_map]
 
   var src =
     "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
@@ -48,5 +47,4 @@
 
   exports.initMap = initMap;
   exports.src = src;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

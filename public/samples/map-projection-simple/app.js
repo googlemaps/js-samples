@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_map_projection_simple]
   // This example defines an image map type using the Gall-Peters
   // projection.
   // https://en.wikipedia.org/wiki/Gall%E2%80%93Peters_projection
@@ -55,7 +54,6 @@
     });
     map.data.addGeoJson(cities);
   }
-
 
   function initGallPeters() {
     var GALL_PETERS_RANGE_X = 800;
@@ -162,5 +160,4 @@
   exports.cities = cities;
   exports.initGallPeters = initGallPeters;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,19 +17,20 @@
    * limitations under the License.
    */
 
-  // [START maps_map_latlng_literal]
   // In this example, we center the map, and add a marker, using a LatLng object
   // literal instead of a google.maps.LatLng object. LatLng object literals are
   // a convenient way to add a LatLng coordinate and, in most cases, can be used
   // in place of a google.maps.LatLng object.
-
 
   function initMap() {
     var mapOptions = {
       zoom: 8,
       center: { lat: -34.397, lng: 150.644 }
     };
-    exports.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    exports.map = new google.maps.Map(
+      document.getElementById("map"),
+      mapOptions
+    );
 
     var marker = new google.maps.Marker({
       // The below line is equivalent to writing:
@@ -53,5 +54,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

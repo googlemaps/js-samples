@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_elevation_paths]
   // Load the Visualization API and the columnchart package.
   google.load("visualization", "1", { packages: ["columnchart"] });
 
@@ -102,5 +101,4 @@
   exports.displayPathElevation = displayPathElevation;
   exports.initMap = initMap;
   exports.plotElevation = plotElevation;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

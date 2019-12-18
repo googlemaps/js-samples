@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_streetview_events]
   function initPano() {
     var panorama = new google.maps.StreetViewPanorama(
       document.getElementById("pano"),
@@ -68,5 +67,4 @@
   }
 
   exports.initPano = initPano;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

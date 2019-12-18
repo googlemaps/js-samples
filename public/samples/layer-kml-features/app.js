@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_layer_kml_features]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,
@@ -25,7 +24,8 @@
     });
 
     var kmlLayer = new google.maps.KmlLayer({
-      url: "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
+      url:
+        "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
       suppressInfoWindows: true,
       map: map
     });
@@ -42,5 +42,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

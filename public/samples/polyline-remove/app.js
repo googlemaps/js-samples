@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,12 +17,8 @@
    * limitations under the License.
    */
 
-  // [START maps_polyline_remove]
   // This example adds a UI control allowing users to remove the polyline from the
   // map.
-
-
-
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -59,5 +55,4 @@
   exports.addLine = addLine;
   exports.initMap = initMap;
   exports.removeLine = removeLine;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

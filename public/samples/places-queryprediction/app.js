@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_places_queryprediction]
   // This example retrieves autocomplete predictions programmatically from the
   // autocomplete service, and displays them as an HTML list.
 
@@ -40,9 +39,11 @@
     };
 
     var service = new google.maps.places.AutocompleteService();
-    service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
+    service.getQueryPredictions(
+      { input: "pizza near Syd" },
+      displaySuggestions
+    );
   }
 
   exports.initService = initService;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

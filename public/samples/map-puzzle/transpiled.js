@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -40,7 +40,6 @@
    * @private {number}
    */
 
-
   PuzzleDemo.NUM_PIECES_ = 10;
   /**
    * @private {string}
@@ -56,7 +55,7 @@
    * @param {!google.maps.Map} map
    */
 
-  PuzzleDemo.prototype.init = function (map) {
+  PuzzleDemo.prototype.init = function(map) {
     this.map_ = map;
     this.createMenu_(map);
     this.setDifficultyStyle_();
@@ -66,43 +65,51 @@
    * @param {!google.maps.Map} map
    */
 
-
-  PuzzleDemo.prototype.createMenu_ = function (map) {
+  PuzzleDemo.prototype.createMenu_ = function(map) {
     var menuDiv = document.createElement("div");
-    menuDiv.style.cssText = "margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;" + "background-color: white; font-size: 14px; font-family: Roboto;" + "text-align: center; color: grey;line-height: 32px; overflow: hidden";
+    menuDiv.style.cssText =
+      "margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;" +
+      "background-color: white; font-size: 14px; font-family: Roboto;" +
+      "text-align: center; color: grey;line-height: 32px; overflow: hidden";
     var titleDiv = document.createElement("div");
-    titleDiv.style.cssText = "width: 100%; background-color: #4285f4; color: white; font-size: 20px;" + "line-height: 40px;margin-bottom: 24px";
+    titleDiv.style.cssText =
+      "width: 100%; background-color: #4285f4; color: white; font-size: 20px;" +
+      "line-height: 40px;margin-bottom: 24px";
     titleDiv.innerText = "Game Options";
     var pieceTitleDiv = document.createElement("div");
     pieceTitleDiv.innerText = "PIECE:";
     pieceTitleDiv.style.fontWeight = "800";
-    var pieceDiv = this.pieceDiv_ = document.createElement("div");
+    var pieceDiv = (this.pieceDiv_ = document.createElement("div"));
     pieceDiv.innerText = "0 / " + PuzzleDemo.NUM_PIECES_;
     var timeTitleDiv = document.createElement("div");
     timeTitleDiv.innerText = "TIME:";
     timeTitleDiv.style.fontWeight = "800";
-    var timeDiv = this.timeDiv_ = document.createElement("div");
+    var timeDiv = (this.timeDiv_ = document.createElement("div"));
     timeDiv.innerText = "0.0 seconds";
     var difficultyTitleDiv = document.createElement("div");
     difficultyTitleDiv.innerText = "DIFFICULTY:";
     difficultyTitleDiv.style.fontWeight = "800";
     var difficultySelect = document.createElement("select");
-    ["Easy", "Moderate", "Hard", "Extreme"].forEach(function (level) {
+    ["Easy", "Moderate", "Hard", "Extreme"].forEach(function(level) {
       var option = document.createElement("option");
       option.value = level.toLowerCase();
       option.innerText = level;
       difficultySelect.appendChild(option);
     });
-    difficultySelect.style.cssText = "border: 2px solid lightgrey; background-color: white; color: #4275f4;" + "padding: 6px;";
+    difficultySelect.style.cssText =
+      "border: 2px solid lightgrey; background-color: white; color: #4275f4;" +
+      "padding: 6px;";
 
-    difficultySelect.onchange = function () {
+    difficultySelect.onchange = function() {
       this.setDifficulty_(difficultySelect.value);
       this.resetGame_();
     }.bind(this);
 
     var resetDiv = document.createElement("div");
     resetDiv.innerText = "Reset";
-    resetDiv.style.cssText = "cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;" + "color: #4275f4; line-height: 40px; font-weight: 800";
+    resetDiv.style.cssText =
+      "cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;" +
+      "color: #4275f4; line-height: 40px; font-weight: 800";
     resetDiv.onclick = this.resetGame_.bind(this);
     menuDiv.appendChild(titleDiv);
     menuDiv.appendChild(pieceTitleDiv);
@@ -118,8 +125,7 @@
    * @param {!google.maps.Map} map
    */
 
-
-  PuzzleDemo.prototype.render = function (map) {
+  PuzzleDemo.prototype.render = function(map) {
     if (!this.dataLoaded_) {
       return;
     }
@@ -130,16 +136,23 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.loadData_ = function () {
+  PuzzleDemo.prototype.loadData_ = function() {
     var xmlhttpRequest = new XMLHttpRequest();
 
-    xmlhttpRequest.onreadystatechange = function () {
-      if (xmlhttpRequest.status != 200 || xmlhttpRequest.readyState != XMLHttpRequest.DONE) return;
+    xmlhttpRequest.onreadystatechange = function() {
+      if (
+        xmlhttpRequest.status != 200 ||
+        xmlhttpRequest.readyState != XMLHttpRequest.DONE
+      )
+        return;
       this.loadDataComplete_(JSON.parse(xmlhttpRequest.responseText));
     }.bind(this);
 
-    xmlhttpRequest.open("GET", "https://storage.googleapis.com/mapsdevsite/json/puzzle.json", true);
+    xmlhttpRequest.open(
+      "GET",
+      "https://storage.googleapis.com/mapsdevsite/json/puzzle.json",
+      true
+    );
     xmlhttpRequest.send(null);
   };
   /**
@@ -152,8 +165,7 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.loadDataComplete_ = function (data) {
+  PuzzleDemo.prototype.loadDataComplete_ = function(data) {
     this.dataLoaded_ = true;
     this.countries_ = data;
     this.start_();
@@ -163,8 +175,7 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.setDifficulty_ = function (difficulty) {
+  PuzzleDemo.prototype.setDifficulty_ = function(difficulty) {
     this.difficulty_ = difficulty;
 
     if (this.map_) {
@@ -175,92 +186,141 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.setDifficultyStyle_ = function () {
+  PuzzleDemo.prototype.setDifficultyStyle_ = function() {
     var styles = {
-      easy: [{
-        stylers: [{
-          visibility: "off"
-        }]
-      }, {
-        featureType: "water",
-        stylers: [{
-          visibility: "on"
-        }, {
-          color: "#d4d4d4"
-        }]
-      }, {
-        featureType: "landscape",
-        stylers: [{
-          visibility: "on"
-        }, {
-          color: "#e5e3df"
-        }]
-      }, {
-        featureType: "administrative.country",
-        elementType: "labels",
-        stylers: [{
-          visibility: "on"
-        }]
-      }, {
-        featureType: "administrative.country",
-        elementType: "geometry",
-        stylers: [{
-          visibility: "on"
-        }, {
-          weight: 1.3
-        }]
-      }],
-      moderate: [{
-        stylers: [{
-          visibility: "off"
-        }]
-      }, {
-        featureType: "water",
-        stylers: [{
-          visibility: "on"
-        }, {
-          color: "#d4d4d4"
-        }]
-      }, {
-        featureType: "landscape",
-        stylers: [{
-          visibility: "on"
-        }, {
-          color: "#e5e3df"
-        }]
-      }, {
-        featureType: "administrative.country",
-        elementType: "labels",
-        stylers: [{
-          visibility: "on"
-        }]
-      }],
-      hard: [{
-        stylers: [{
-          visibility: "off"
-        }]
-      }, {
-        featureType: "water",
-        stylers: [{
-          visibility: "on"
-        }, {
-          color: "#d4d4d4"
-        }]
-      }, {
-        featureType: "landscape",
-        stylers: [{
-          visibility: "on"
-        }, {
-          color: "#e5e3df"
-        }]
-      }],
-      extreme: [{
-        elementType: "geometry",
-        stylers: [{
-          visibility: "off"
-        }]
-      }]
+      easy: [
+        {
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "water",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#d4d4d4"
+            }
+          ]
+        },
+        {
+          featureType: "landscape",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#e5e3df"
+            }
+          ]
+        },
+        {
+          featureType: "administrative.country",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "on"
+            }
+          ]
+        },
+        {
+          featureType: "administrative.country",
+          elementType: "geometry",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              weight: 1.3
+            }
+          ]
+        }
+      ],
+      moderate: [
+        {
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "water",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#d4d4d4"
+            }
+          ]
+        },
+        {
+          featureType: "landscape",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#e5e3df"
+            }
+          ]
+        },
+        {
+          featureType: "administrative.country",
+          elementType: "labels",
+          stylers: [
+            {
+              visibility: "on"
+            }
+          ]
+        }
+      ],
+      hard: [
+        {
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        },
+        {
+          featureType: "water",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#d4d4d4"
+            }
+          ]
+        },
+        {
+          featureType: "landscape",
+          stylers: [
+            {
+              visibility: "on"
+            },
+            {
+              color: "#e5e3df"
+            }
+          ]
+        }
+      ],
+      extreme: [
+        {
+          elementType: "geometry",
+          stylers: [
+            {
+              visibility: "off"
+            }
+          ]
+        }
+      ]
     };
     this.map_.set("styles", styles[this.difficulty_]);
   };
@@ -268,8 +328,7 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.resetGame_ = function () {
+  PuzzleDemo.prototype.resetGame_ = function() {
     this.removeCountries_();
     this.count_ = 0;
     this.setCount_();
@@ -280,8 +339,7 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.setCount_ = function () {
+  PuzzleDemo.prototype.setCount_ = function() {
     this.pieceDiv_.innerText = this.count_ + " / " + PuzzleDemo.NUM_PIECES_;
 
     if (this.count_ == PuzzleDemo.NUM_PIECES_) {
@@ -292,21 +350,19 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.stopClock_ = function () {
+  PuzzleDemo.prototype.stopClock_ = function() {
     window.clearInterval(this.timer_);
   };
   /**
    * @private
    */
 
-
-  PuzzleDemo.prototype.startClock_ = function () {
+  PuzzleDemo.prototype.startClock_ = function() {
     this.stopClock_();
     var timeDiv = this.timeDiv_;
     if (timeDiv) timeDiv.textContent = "0.0 seconds";
     var t = new Date();
-    this.timer_ = window.setInterval(function () {
+    this.timer_ = window.setInterval(function() {
       var diff = new Date() - t;
       if (timeDiv) timeDiv.textContent = (diff / 1000).toFixed(2) + " seconds";
     }, 100);
@@ -315,15 +371,14 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.addRandomCountries_ = function () {
+  PuzzleDemo.prototype.addRandomCountries_ = function() {
     // Shuffle countries
-    this.countries_.sort(function () {
+    this.countries_.sort(function() {
       return Math.round(Math.random()) - 0.5;
     });
     var countries = this.countries_.slice(0, PuzzleDemo.NUM_PIECES_);
 
-    for (var i = 0, country; country = countries[i]; i++) {
+    for (var i = 0, country; (country = countries[i]); i++) {
       this.addCountry_(country);
     }
   };
@@ -337,8 +392,7 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.addCountry_ = function (country) {
+  PuzzleDemo.prototype.addCountry_ = function(country) {
     var options = {
       strokeColor: PuzzleDemo.START_COLOR_,
       strokeOpacity: 0.8,
@@ -352,9 +406,13 @@
       paths: country.start.map(google.maps.geometry.encoding.decodePath)
     };
     var poly = new google.maps.Polygon(options);
-    google.maps.event.addListener(poly, "dragend", function () {
-      this.checkPosition_(poly, country);
-    }.bind(this));
+    google.maps.event.addListener(
+      poly,
+      "dragend",
+      function() {
+        this.checkPosition_(poly, country);
+      }.bind(this)
+    );
     this.polys_.push(poly);
   };
   /**
@@ -364,9 +422,11 @@
    * @returns {boolean}
    */
 
-
-  PuzzleDemo.prototype.boundsContainsPoly_ = function (bounds, poly) {
-    var b = new google.maps.LatLngBounds(new google.maps.LatLng(bounds[0][0], bounds[0][1]), new google.maps.LatLng(bounds[1][0], bounds[1][1]));
+  PuzzleDemo.prototype.boundsContainsPoly_ = function(bounds, poly) {
+    var b = new google.maps.LatLngBounds(
+      new google.maps.LatLng(bounds[0][0], bounds[0][1]),
+      new google.maps.LatLng(bounds[1][0], bounds[1][1])
+    );
     var paths = poly.getPaths().getArray();
 
     for (var i = 0; i < paths.length; i++) {
@@ -388,8 +448,7 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.replacePiece_ = function (poly, country) {
+  PuzzleDemo.prototype.replacePiece_ = function(poly, country) {
     var options = {
       strokeColor: PuzzleDemo.END_COLOR_,
       fillColor: PuzzleDemo.END_COLOR_,
@@ -407,8 +466,7 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.checkPosition_ = function (poly, country) {
+  PuzzleDemo.prototype.checkPosition_ = function(poly, country) {
     if (this.boundsContainsPoly_(country.bounds, poly)) {
       this.replacePiece_(poly, country);
     }
@@ -417,8 +475,7 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.start_ = function () {
+  PuzzleDemo.prototype.start_ = function() {
     this.setDifficultyStyle_();
     this.resetGame_();
   };
@@ -426,9 +483,8 @@
    * @private
    */
 
-
-  PuzzleDemo.prototype.removeCountries_ = function () {
-    for (var i = 0, poly; poly = this.polys_[i]; i++) {
+  PuzzleDemo.prototype.removeCountries_ = function() {
+    for (var i = 0, poly; (poly = this.polys_[i]); i++) {
       poly.setMap(null);
     }
 
@@ -449,4 +505,4 @@
 
   exports.PuzzleDemo = PuzzleDemo;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

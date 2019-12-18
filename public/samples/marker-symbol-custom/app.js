@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_marker_symbol_custom]
   // This example uses SVG path notation to add a vector-based symbol
   // as the icon for a marker. The resulting icon is a star-shaped symbol
   // with a pale yellow fill and a thick yellow border.
@@ -46,5 +45,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

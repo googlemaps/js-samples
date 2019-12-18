@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,12 +17,9 @@
    * limitations under the License.
    */
 
-  // [START maps_marker_animations]
   // The following example creates a marker in Stockholm, Sweden using a DROP
   // animation. Clicking on the marker will toggle the animation between a BOUNCE
   // animation and no animation.
-
-
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -49,5 +46,4 @@
 
   exports.initMap = initMap;
   exports.toggleBounce = toggleBounce;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

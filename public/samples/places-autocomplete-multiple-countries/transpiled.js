@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -45,7 +45,7 @@
       map: map,
       anchorPoint: new google.maps.Point(0, -29)
     });
-    autocomplete.addListener("place_changed", function () {
+    autocomplete.addListener("place_changed", function() {
       infowindow.close();
       marker.setVisible(false);
       var place = autocomplete.getPlace();
@@ -56,7 +56,6 @@
         window.alert("No details available for input: '" + place.name + "'");
         return;
       } // If the place has a geometry, then present it on a map.
-
 
       if (place.geometry.viewport) {
         map.fitBounds(place.geometry.viewport);
@@ -70,7 +69,17 @@
       var address = "";
 
       if (place.address_components) {
-        address = [place.address_components[0] && place.address_components[0].short_name || "", place.address_components[1] && place.address_components[1].short_name || "", place.address_components[2] && place.address_components[2].short_name || ""].join(" ");
+        address = [
+          (place.address_components[0] &&
+            place.address_components[0].short_name) ||
+            "",
+          (place.address_components[1] &&
+            place.address_components[1].short_name) ||
+            "",
+          (place.address_components[2] &&
+            place.address_components[2].short_name) ||
+            ""
+        ].join(" ");
       }
 
       infowindowContent.children["place-icon"].src = place.icon;
@@ -82,7 +91,7 @@
 
     function setupClickListener(id, countries) {
       var radioButton = document.getElementById(id);
-      radioButton.addEventListener("click", function () {
+      radioButton.addEventListener("click", function() {
         autocomplete.setComponentRestrictions({
           country: countries
         });
@@ -90,8 +99,14 @@
     }
 
     setupClickListener("changecountry-usa", "us");
-    setupClickListener("changecountry-usa-and-uot", ["us", "pr", "vi", "gu", "mp"]);
+    setupClickListener("changecountry-usa-and-uot", [
+      "us",
+      "pr",
+      "vi",
+      "gu",
+      "mp"
+    ]);
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

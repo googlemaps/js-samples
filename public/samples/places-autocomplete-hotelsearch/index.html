@@ -15,34 +15,42 @@
 --><!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
     <title>Place Autocomplete Hotel Search</title>
-        <link rel="stylesheet" type="text/css" href="./style.css">
-        <script src="./transpiled.js"></script>
-        <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly" 
-    async defer></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./transpiled.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly"
+      async
+      defer
+    ></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-152595271-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-152595271-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
         dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'UA-152595271-1');
-</script>
-<script defer src="https://cdn.jsdelivr.net/npm/stackdriver-errors-js@0.7.0/dist/stackdriver-errors-concat.min.js"></script>
-<script type="text/javascript">
-    function uuid4() {
+      gtag("config", "UA-152595271-1");
+    </script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/stackdriver-errors-js@0.7.0/dist/stackdriver-errors-concat.min.js"
+    ></script>
+    <script type="text/javascript">
+      function uuid4() {
         // http://www.ietf.org/rfc/rfc4122.txt
         var s = [];
         var hexDigits = "0123456789abcdef";
         for (var i = 0; i < 36; i++) {
-            s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+          s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
         }
         s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
         s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
@@ -50,97 +58,97 @@
 
         var uuid = s.join("");
         return uuid;
-    }
-    
-    if (window.location.hostname !== "127.0.0.1") {
-        window.addEventListener('DOMContentLoaded', function () {
-            const errorHandler = new StackdriverErrorReporter();
-            let uuid = localStorage.getItem("uuid");
+      }
 
-            if (!uuid) {
-                uuid = uuid4();
-                localStorage.setItem("uuid", uuid);
+      if (window.location.hostname !== "127.0.0.1") {
+        window.addEventListener("DOMContentLoaded", function() {
+          const errorHandler = new StackdriverErrorReporter();
+          let uuid = localStorage.getItem("uuid");
+
+          if (!uuid) {
+            uuid = uuid4();
+            localStorage.setItem("uuid", uuid);
+          }
+
+          errorHandler.start({
+            key: "AIzaSyD298H_8hrIigzJbFPTnHaAUGABMWJZBMA",
+            projectId: "geo-devrel-259418",
+            service: "js-samples",
+            reportUncaughtExceptions: true,
+            reportUnhandledPromiseRejections: true,
+            context: {
+              user: uuid
             }
-
-            errorHandler.start({
-                key: 'AIzaSyD298H_8hrIigzJbFPTnHaAUGABMWJZBMA',
-                projectId: 'geo-devrel-259418',
-                service: 'js-samples',
-                reportUncaughtExceptions: true,
-                reportUnhandledPromiseRejections: true,
-                context: {
-                    user: uuid
-                }
-            });
+          });
         });
-    }
-</script>  </head>
+      }
+    </script>
+  </head>
   <body>
-<!-- [START maps_places_autocomplete_hotelsearch] -->
-<div class="hotel-search">
-  <div id="findhotels">
-    Find hotels in:
-  </div>
+    <!-- [START maps_places_autocomplete_hotelsearch] -->
+    <div class="hotel-search">
+      <div id="findhotels">
+        Find hotels in:
+      </div>
 
-  <div id="locationField">
-    <input id="autocomplete" placeholder="Enter a city" type="text" />
-  </div>
+      <div id="locationField">
+        <input id="autocomplete" placeholder="Enter a city" type="text" />
+      </div>
 
-  <div id="controls">
-    <select id="country">
-      <option value="all">All</option>
-      <option value="au">Australia</option>
-      <option value="br">Brazil</option>
-      <option value="ca">Canada</option>
-      <option value="fr">France</option>
-      <option value="de">Germany</option>
-      <option value="mx">Mexico</option>
-      <option value="nz">New Zealand</option>
-      <option value="it">Italy</option>
-      <option value="za">South Africa</option>
-      <option value="es">Spain</option>
-      <option value="pt">Portugal</option>
-      <option value="us" selected>U.S.A.</option>
-      <option value="uk">United Kingdom</option>
-    </select>
-  </div>
-</div>
+      <div id="controls">
+        <select id="country">
+          <option value="all">All</option>
+          <option value="au">Australia</option>
+          <option value="br">Brazil</option>
+          <option value="ca">Canada</option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="mx">Mexico</option>
+          <option value="nz">New Zealand</option>
+          <option value="it">Italy</option>
+          <option value="za">South Africa</option>
+          <option value="es">Spain</option>
+          <option value="pt">Portugal</option>
+          <option value="us" selected>U.S.A.</option>
+          <option value="uk">United Kingdom</option>
+        </select>
+      </div>
+    </div>
 
-<div id="map"></div>
+    <div id="map"></div>
 
-<div id="listing">
-  <table id="resultsTable">
-    <tbody id="results"></tbody>
-  </table>
-</div>
+    <div id="listing">
+      <table id="resultsTable">
+        <tbody id="results"></tbody>
+      </table>
+    </div>
 
-<div style="display: none">
-  <div id="info-content">
-    <table>
-      <tr id="iw-url-row" class="iw_table_row">
-        <td id="iw-icon" class="iw_table_icon"></td>
-        <td id="iw-url"></td>
-      </tr>
-      <tr id="iw-address-row" class="iw_table_row">
-        <td class="iw_attribute_name">Address:</td>
-        <td id="iw-address"></td>
-      </tr>
-      <tr id="iw-phone-row" class="iw_table_row">
-        <td class="iw_attribute_name">Telephone:</td>
-        <td id="iw-phone"></td>
-      </tr>
-      <tr id="iw-rating-row" class="iw_table_row">
-        <td class="iw_attribute_name">Rating:</td>
-        <td id="iw-rating"></td>
-      </tr>
-      <tr id="iw-website-row" class="iw_table_row">
-        <td class="iw_attribute_name">Website:</td>
-        <td id="iw-website"></td>
-      </tr>
-    </table>
-  </div>
-</div>
-<!-- [END maps_places_autocomplete_hotelsearch] -->
-
+    <div style="display: none">
+      <div id="info-content">
+        <table>
+          <tr id="iw-url-row" class="iw_table_row">
+            <td id="iw-icon" class="iw_table_icon"></td>
+            <td id="iw-url"></td>
+          </tr>
+          <tr id="iw-address-row" class="iw_table_row">
+            <td class="iw_attribute_name">Address:</td>
+            <td id="iw-address"></td>
+          </tr>
+          <tr id="iw-phone-row" class="iw_table_row">
+            <td class="iw_attribute_name">Telephone:</td>
+            <td id="iw-phone"></td>
+          </tr>
+          <tr id="iw-rating-row" class="iw_table_row">
+            <td class="iw_attribute_name">Rating:</td>
+            <td id="iw-rating"></td>
+          </tr>
+          <tr id="iw-website-row" class="iw_table_row">
+            <td class="iw_attribute_name">Website:</td>
+            <td id="iw-website"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- [END maps_places_autocomplete_hotelsearch] -->
   </body>
 </html>

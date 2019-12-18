@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -35,11 +35,16 @@
 
     var coordsDiv = document.getElementById("coords");
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
-    map.addListener("mousemove", function (event) {
-      coordsDiv.textContent = "lat: " + Math.round(event.latLng.lat()) + ", " + "lng: " + Math.round(event.latLng.lng());
+    map.addListener("mousemove", function(event) {
+      coordsDiv.textContent =
+        "lat: " +
+        Math.round(event.latLng.lat()) +
+        ", " +
+        "lng: " +
+        Math.round(event.latLng.lng());
     }); // Add some markers to the map.
 
-    map.data.setStyle(function (feature) {
+    map.data.setStyle(function(feature) {
       return {
         title: feature.getProperty("name"),
         optimized: false
@@ -56,11 +61,20 @@
       getTileUrl: function getTileUrl(coord, zoom) {
         var scale = 1 << zoom; // Wrap tiles horizontally.
 
-        var x = (coord.x % scale + scale) % scale; // Don't wrap tiles vertically.
+        var x = ((coord.x % scale) + scale) % scale; // Don't wrap tiles vertically.
 
         var y = coord.y;
         if (y < 0 || y >= scale) return null;
-        return "https://developers.google.com/maps/documentation/" + "javascript/examples/full/images/gall-peters_" + zoom + "_" + x + "_" + y + ".png";
+        return (
+          "https://developers.google.com/maps/documentation/" +
+          "javascript/examples/full/images/gall-peters_" +
+          zoom +
+          "_" +
+          x +
+          "_" +
+          y +
+          ".png"
+        );
       },
       tileSize: new google.maps.Size(GALL_PETERS_RANGE_X, GALL_PETERS_RANGE_Y),
       minZoom: 0,
@@ -70,95 +84,110 @@
 
     exports.gallPetersMapType.projection = {
       fromLatLngToPoint: function fromLatLngToPoint(latLng) {
-        var latRadians = latLng.lat() * Math.PI / 180;
-        return new google.maps.Point(GALL_PETERS_RANGE_X * (0.5 + latLng.lng() / 360), GALL_PETERS_RANGE_Y * (0.5 - 0.5 * Math.sin(latRadians)));
+        var latRadians = (latLng.lat() * Math.PI) / 180;
+        return new google.maps.Point(
+          GALL_PETERS_RANGE_X * (0.5 + latLng.lng() / 360),
+          GALL_PETERS_RANGE_Y * (0.5 - 0.5 * Math.sin(latRadians))
+        );
       },
       fromPointToLatLng: function fromPointToLatLng(point, noWrap) {
         var x = point.x / GALL_PETERS_RANGE_X;
         var y = Math.max(0, Math.min(1, point.y / GALL_PETERS_RANGE_Y));
-        return new google.maps.LatLng(Math.asin(1 - 2 * y) * 180 / Math.PI, -180 + 360 * x, noWrap);
+        return new google.maps.LatLng(
+          (Math.asin(1 - 2 * y) * 180) / Math.PI,
+          -180 + 360 * x,
+          noWrap
+        );
       }
     };
   } // GeoJSON, describing the locations and names of some cities.
 
-
   var cities = {
     type: "FeatureCollection",
-    features: [{
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [-87.65, 41.85]
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-87.65, 41.85]
+        },
+        properties: {
+          name: "Chicago"
+        }
       },
-      properties: {
-        name: "Chicago"
-      }
-    }, {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [-149.9, 61.218]
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-149.9, 61.218]
+        },
+        properties: {
+          name: "Anchorage"
+        }
       },
-      properties: {
-        name: "Anchorage"
-      }
-    }, {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [-99.127, 19.427]
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-99.127, 19.427]
+        },
+        properties: {
+          name: "Mexico City"
+        }
       },
-      properties: {
-        name: "Mexico City"
-      }
-    }, {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [-0.126, 51.5]
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [-0.126, 51.5]
+        },
+        properties: {
+          name: "London"
+        }
       },
-      properties: {
-        name: "London"
-      }
-    }, {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [28.045, -26.201]
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [28.045, -26.201]
+        },
+        properties: {
+          name: "Johannesburg"
+        }
       },
-      properties: {
-        name: "Johannesburg"
-      }
-    }, {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [15.322, -4.325]
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [15.322, -4.325]
+        },
+        properties: {
+          name: "Kinshasa"
+        }
       },
-      properties: {
-        name: "Kinshasa"
-      }
-    }, {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [151.207, -33.867]
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [151.207, -33.867]
+        },
+        properties: {
+          name: "Sydney"
+        }
       },
-      properties: {
-        name: "Sydney"
+      {
+        type: "Feature",
+        geometry: {
+          type: "Point",
+          coordinates: [0, 0]
+        },
+        properties: {
+          name: "0°N 0°E"
+        }
       }
-    }, {
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [0, 0]
-      },
-      properties: {
-        name: "0°N 0°E"
-      }
-    }]
+    ]
   };
   exports.cities = cities;
   exports.initGallPeters = initGallPeters;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

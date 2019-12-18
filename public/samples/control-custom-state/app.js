@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -16,8 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
-  // [START maps_control_custom_state]
 
   var chicago = { lat: 41.85, lng: -87.65 };
 
@@ -110,15 +108,20 @@
     // constructor
     // passing in this DIV.
     var centerControlDiv = document.createElement("div");
-    var centerControl = new CenterControl(centerControlDiv, exports.map, chicago);
+    var centerControl = new CenterControl(
+      centerControlDiv,
+      exports.map,
+      chicago
+    );
 
     centerControlDiv.index = 1;
     centerControlDiv.style["padding-top"] = "10px";
-    exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+    exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+      centerControlDiv
+    );
   }
 
   exports.CenterControl = CenterControl;
   exports.chicago = chicago;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

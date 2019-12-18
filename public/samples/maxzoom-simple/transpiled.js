@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -31,11 +31,13 @@
   }
 
   function showMaxZoom(e) {
-    exports.maxZoomService.getMaxZoomAtLatLng(e.latLng, function (response) {
+    exports.maxZoomService.getMaxZoomAtLatLng(e.latLng, function(response) {
       if (response.status !== "OK") {
         exports.infoWindow.setContent("Error in MaxZoomService");
       } else {
-        exports.infoWindow.setContent("The maximum zoom at this location is: " + response.zoom);
+        exports.infoWindow.setContent(
+          "The maximum zoom at this location is: " + response.zoom
+        );
       }
 
       exports.infoWindow.setPosition(e.latLng);
@@ -45,4 +47,4 @@
 
   exports.initMap = initMap;
   exports.showMaxZoom = showMaxZoom;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

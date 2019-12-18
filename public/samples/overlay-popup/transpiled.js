@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -28,7 +28,10 @@
       zoom: 10
     });
     Popup = createPopupClass();
-    popup = new Popup(new google.maps.LatLng(-33.866, 151.196), document.getElementById("content"));
+    popup = new Popup(
+      new google.maps.LatLng(-33.866, 151.196),
+      document.getElementById("content")
+    );
     popup.setMap(exports.map);
   }
   /**
@@ -38,7 +41,6 @@
    * google.maps.OverlayView is defined, when the Maps API is loaded.
    * This function should be called by initMap.
    */
-
 
   function createPopupClass() {
     /**
@@ -63,28 +65,30 @@
       google.maps.OverlayView.preventMapHitsAndGesturesFrom(this.containerDiv);
     } // ES5 magic to extend google.maps.OverlayView.
 
-
     Popup.prototype = Object.create(google.maps.OverlayView.prototype);
     /** Called when the popup is added to the map. */
 
-    Popup.prototype.onAdd = function () {
+    Popup.prototype.onAdd = function() {
       this.getPanes().floatPane.appendChild(this.containerDiv);
     };
     /** Called when the popup is removed from the map. */
 
-
-    Popup.prototype.onRemove = function () {
+    Popup.prototype.onRemove = function() {
       if (this.containerDiv.parentElement) {
         this.containerDiv.parentElement.removeChild(this.containerDiv);
       }
     };
     /** Called each frame when the popup needs to draw itself. */
 
+    Popup.prototype.draw = function() {
+      var divPosition = this.getProjection().fromLatLngToDivPixel(
+        this.position
+      ); // Hide the popup when it is far out of view.
 
-    Popup.prototype.draw = function () {
-      var divPosition = this.getProjection().fromLatLngToDivPixel(this.position); // Hide the popup when it is far out of view.
-
-      var display = Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000 ? "block" : "none";
+      var display =
+        Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000
+          ? "block"
+          : "none";
 
       if (display === "block") {
         this.containerDiv.style.left = divPosition.x + "px";
@@ -101,4 +105,4 @@
 
   exports.createPopupClass = createPopupClass;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

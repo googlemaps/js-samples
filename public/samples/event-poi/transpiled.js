@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -31,7 +31,6 @@
    * @constructor
    */
 
-
   var ClickEventHandler = function ClickEventHandler(map, origin) {
     this.origin = origin;
     this.map = map;
@@ -46,7 +45,7 @@
     this.map.addListener("click", this.handleClick.bind(this));
   };
 
-  ClickEventHandler.prototype.handleClick = function (event) {
+  ClickEventHandler.prototype.handleClick = function(event) {
     console.log("You clicked on: " + event.latLng); // If the event has a placeId, use it.
 
     if (event.placeId) {
@@ -61,40 +60,48 @@
     }
   };
 
-  ClickEventHandler.prototype.calculateAndDisplayRoute = function (placeId) {
+  ClickEventHandler.prototype.calculateAndDisplayRoute = function(placeId) {
     var me = this;
-    this.directionsService.route({
-      origin: this.origin,
-      destination: {
-        placeId: placeId
+    this.directionsService.route(
+      {
+        origin: this.origin,
+        destination: {
+          placeId: placeId
+        },
+        travelMode: "WALKING"
       },
-      travelMode: "WALKING"
-    }, function (response, status) {
-      if (status === "OK") {
-        me.directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
+      function(response, status) {
+        if (status === "OK") {
+          me.directionsRenderer.setDirections(response);
+        } else {
+          window.alert("Directions request failed due to " + status);
+        }
       }
-    });
+    );
   };
 
-  ClickEventHandler.prototype.getPlaceInformation = function (placeId) {
+  ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
     var me = this;
-    this.placesService.getDetails({
-      placeId: placeId
-    }, function (place, status) {
-      if (status === "OK") {
-        me.infowindow.close();
-        me.infowindow.setPosition(place.geometry.location);
-        me.infowindowContent.children["place-icon"].src = place.icon;
-        me.infowindowContent.children["place-name"].textContent = place.name;
-        me.infowindowContent.children["place-id"].textContent = place.place_id;
-        me.infowindowContent.children["place-address"].textContent = place.formatted_address;
-        me.infowindow.open(me.map);
+    this.placesService.getDetails(
+      {
+        placeId: placeId
+      },
+      function(place, status) {
+        if (status === "OK") {
+          me.infowindow.close();
+          me.infowindow.setPosition(place.geometry.location);
+          me.infowindowContent.children["place-icon"].src = place.icon;
+          me.infowindowContent.children["place-name"].textContent = place.name;
+          me.infowindowContent.children["place-id"].textContent =
+            place.place_id;
+          me.infowindowContent.children["place-address"].textContent =
+            place.formatted_address;
+          me.infowindow.open(me.map);
+        }
       }
-    });
+    );
   };
 
   exports.ClickEventHandler = ClickEventHandler;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

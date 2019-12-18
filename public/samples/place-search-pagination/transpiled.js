@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -34,32 +34,36 @@
     var getNextPage = null;
     var moreButton = document.getElementById("more");
 
-    moreButton.onclick = function () {
+    moreButton.onclick = function() {
       moreButton.disabled = true;
       if (getNextPage) getNextPage();
     }; // Perform a nearby search.
 
+    service.nearbySearch(
+      {
+        location: pyrmont,
+        radius: 500,
+        type: ["store"]
+      },
+      function(results, status, pagination) {
+        if (status !== "OK") return;
+        createMarkers(results);
+        moreButton.disabled = !pagination.hasNextPage;
 
-    service.nearbySearch({
-      location: pyrmont,
-      radius: 500,
-      type: ["store"]
-    }, function (results, status, pagination) {
-      if (status !== "OK") return;
-      createMarkers(results);
-      moreButton.disabled = !pagination.hasNextPage;
-
-      getNextPage = pagination.hasNextPage && function () {
-        pagination.nextPage();
-      };
-    });
+        getNextPage =
+          pagination.hasNextPage &&
+          function() {
+            pagination.nextPage();
+          };
+      }
+    );
   }
 
   function createMarkers(places) {
     var bounds = new google.maps.LatLngBounds();
     var placesList = document.getElementById("places");
 
-    for (var i = 0, place; place = places[i]; i++) {
+    for (var i = 0, place; (place = places[i]); i++) {
       var image = {
         url: place.icon,
         size: new google.maps.Size(71, 71),
@@ -84,4 +88,4 @@
 
   exports.createMarkers = createMarkers;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

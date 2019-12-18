@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -32,28 +32,33 @@
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     };
 
-    document.getElementById("start").addEventListener("change", onChangeHandler);
+    document
+      .getElementById("start")
+      .addEventListener("change", onChangeHandler);
     document.getElementById("end").addEventListener("change", onChangeHandler);
   }
 
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-    directionsService.route({
-      origin: {
-        query: document.getElementById("start").value
+    directionsService.route(
+      {
+        origin: {
+          query: document.getElementById("start").value
+        },
+        destination: {
+          query: document.getElementById("end").value
+        },
+        travelMode: "DRIVING"
       },
-      destination: {
-        query: document.getElementById("end").value
-      },
-      travelMode: "DRIVING"
-    }, function (response, status) {
-      if (status === "OK") {
-        directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
+      function(response, status) {
+        if (status === "OK") {
+          directionsRenderer.setDirections(response);
+        } else {
+          window.alert("Directions request failed due to " + status);
+        }
       }
-    });
+    );
   }
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

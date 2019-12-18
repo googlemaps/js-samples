@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -43,10 +43,10 @@
     var marker = new google.maps.Marker({
       map: map
     });
-    marker.addListener("click", function () {
+    marker.addListener("click", function() {
       infowindow.open(map, marker);
     });
-    autocomplete.addListener("place_changed", function () {
+    autocomplete.addListener("place_changed", function() {
       infowindow.close();
       var place = autocomplete.getPlace();
 
@@ -61,7 +61,6 @@
         map.setZoom(17);
       } // Set the position of the marker using the place ID and location.
 
-
       marker.setPlace({
         placeId: place.place_id,
         location: place.geometry.location
@@ -69,10 +68,11 @@
       marker.setVisible(true);
       infowindowContent.children["place-name"].textContent = place.name;
       infowindowContent.children["place-id"].textContent = place.place_id;
-      infowindowContent.children["place-address"].textContent = place.formatted_address;
+      infowindowContent.children["place-address"].textContent =
+        place.formatted_address;
       infowindow.open(map, marker);
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

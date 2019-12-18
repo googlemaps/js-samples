@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_directions_complex]
   function initMap() {
     var markerArray = [];
 
@@ -54,7 +53,9 @@
         map
       );
     };
-    document.getElementById("start").addEventListener("change", onChangeHandler);
+    document
+      .getElementById("start")
+      .addEventListener("change", onChangeHandler);
     document.getElementById("end").addEventListener("change", onChangeHandler);
   }
 
@@ -99,7 +100,8 @@
     // when calculating new routes.
     var myRoute = directionResult.routes[0].legs[0];
     for (var i = 0; i < myRoute.steps.length; i++) {
-      var marker = (markerArray[i] = markerArray[i] || new google.maps.Marker());
+      var marker = (markerArray[i] =
+        markerArray[i] || new google.maps.Marker());
       marker.setMap(map);
       marker.setPosition(myRoute.steps[i].start_location);
       attachInstructionText(
@@ -124,5 +126,4 @@
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;
   exports.showSteps = showSteps;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

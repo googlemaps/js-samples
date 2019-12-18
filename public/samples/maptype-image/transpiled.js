@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -37,7 +37,16 @@
         }
 
         var bound = Math.pow(2, zoom);
-        return "//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw" + "/" + zoom + "/" + normalizedCoord.x + "/" + (bound - normalizedCoord.y - 1) + ".jpg";
+        return (
+          "//mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw" +
+          "/" +
+          zoom +
+          "/" +
+          normalizedCoord.x +
+          "/" +
+          (bound - normalizedCoord.y - 1) +
+          ".jpg"
+        );
       },
       tileSize: new google.maps.Size(256, 256),
       maxZoom: 9,
@@ -50,7 +59,6 @@
   } // Normalizes the coords that tiles repeat across the x axis (horizontally)
   // like the standard Google map tiles.
 
-
   function getNormalizedCoord(coord, zoom) {
     var y = coord.y;
     var x = coord.x; // tile range in one direction range is dependent on zoom level
@@ -62,9 +70,8 @@
       return null;
     } // repeat across x-axis
 
-
     if (x < 0 || x >= tileRange) {
-      x = (x % tileRange + tileRange) % tileRange;
+      x = ((x % tileRange) + tileRange) % tileRange;
     }
 
     return {
@@ -75,4 +82,4 @@
 
   exports.getNormalizedCoord = getNormalizedCoord;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

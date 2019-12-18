@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_places_placeid_finder]
   // This sample uses the Place Autocomplete widget to allow the user to search
   // for and select a place. The sample then displays an info window containing
   // the place ID and other information about the place that the user has
@@ -86,5 +85,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

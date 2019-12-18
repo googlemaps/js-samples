@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -23,7 +23,6 @@
         lat: -24.345,
         lng: 134.46
       } // Australia.
-
     });
     var directionsService = new google.maps.DirectionsService();
     var directionsRenderer = new google.maps.DirectionsRenderer({
@@ -31,30 +30,41 @@
       map: map,
       panel: document.getElementById("right-panel")
     });
-    directionsRenderer.addListener("directions_changed", function () {
+    directionsRenderer.addListener("directions_changed", function() {
       computeTotalDistance(directionsRenderer.getDirections());
     });
-    displayRoute("Perth, WA", "Sydney, NSW", directionsService, directionsRenderer);
+    displayRoute(
+      "Perth, WA",
+      "Sydney, NSW",
+      directionsService,
+      directionsRenderer
+    );
   }
 
   function displayRoute(origin, destination, service, display) {
-    service.route({
-      origin: origin,
-      destination: destination,
-      waypoints: [{
-        location: "Adelaide, SA"
-      }, {
-        location: "Broken Hill, NSW"
-      }],
-      travelMode: "DRIVING",
-      avoidTolls: true
-    }, function (response, status) {
-      if (status === "OK") {
-        display.setDirections(response);
-      } else {
-        alert("Could not display directions due to: " + status);
+    service.route(
+      {
+        origin: origin,
+        destination: destination,
+        waypoints: [
+          {
+            location: "Adelaide, SA"
+          },
+          {
+            location: "Broken Hill, NSW"
+          }
+        ],
+        travelMode: "DRIVING",
+        avoidTolls: true
+      },
+      function(response, status) {
+        if (status === "OK") {
+          display.setDirections(response);
+        } else {
+          alert("Could not display directions due to: " + status);
+        }
       }
-    });
+    );
   }
 
   function computeTotalDistance(result) {
@@ -72,4 +82,4 @@
   exports.computeTotalDistance = computeTotalDistance;
   exports.displayRoute = displayRoute;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

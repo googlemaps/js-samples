@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -33,18 +33,21 @@
     infoWindow = new google.maps.InfoWindow(); // Try HTML5 geolocation.
 
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        var pos = {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        };
-        infoWindow.setPosition(pos);
-        infoWindow.setContent("Location found.");
-        infoWindow.open(exports.map);
-        exports.map.setCenter(pos);
-      }, function () {
-        handleLocationError(true, infoWindow, exports.map.getCenter());
-      });
+      navigator.geolocation.getCurrentPosition(
+        function(position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+          infoWindow.setPosition(pos);
+          infoWindow.setContent("Location found.");
+          infoWindow.open(exports.map);
+          exports.map.setCenter(pos);
+        },
+        function() {
+          handleLocationError(true, infoWindow, exports.map.getCenter());
+        }
+      );
     } else {
       // Browser doesn't support Geolocation
       handleLocationError(false, infoWindow, exports.map.getCenter());
@@ -53,10 +56,14 @@
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ? "Error: The Geolocation service failed." : "Error: Your browser doesn't support geolocation.");
+    infoWindow.setContent(
+      browserHasGeolocation
+        ? "Error: The Geolocation service failed."
+        : "Error: Your browser doesn't support geolocation."
+    );
     infoWindow.open(exports.map);
   }
 
   exports.handleLocationError = handleLocationError;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

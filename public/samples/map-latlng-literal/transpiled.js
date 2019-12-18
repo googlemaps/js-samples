@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -28,7 +28,10 @@
         lng: 150.644
       }
     };
-    exports.map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    exports.map = new google.maps.Map(
+      document.getElementById("map"),
+      mapOptions
+    );
     var marker = new google.maps.Marker({
       // The below line is equivalent to writing:
       // position: new google.maps.LatLng(-34.397, 150.644)
@@ -46,10 +49,10 @@
     var infowindow = new google.maps.InfoWindow({
       content: "<p>Marker Location:" + marker.getPosition() + "</p>"
     });
-    google.maps.event.addListener(marker, "click", function () {
+    google.maps.event.addListener(marker, "click", function() {
       infowindow.open(exports.map, marker);
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

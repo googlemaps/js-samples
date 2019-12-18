@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -31,14 +31,17 @@
       },
       mapTypeId: "satellite"
     });
-    var bounds = new google.maps.LatLngBounds(new google.maps.LatLng(62.281819, -150.287132), new google.maps.LatLng(62.400471, -150.005608)); // The photograph is courtesy of the U.S. Geological Survey.
+    var bounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(62.281819, -150.287132),
+      new google.maps.LatLng(62.400471, -150.005608)
+    ); // The photograph is courtesy of the U.S. Geological Survey.
 
-    var srcImage = "https://developers.google.com/maps/documentation/javascript/";
+    var srcImage =
+      "https://developers.google.com/maps/documentation/javascript/";
     srcImage += "examples/full/images/talkeetna.png";
     exports.overlay = new USGSOverlay(bounds, srcImage, map);
   }
   /** @constructor */
-
 
   function USGSOverlay(bounds, image, map) {
     // Now initialize all properties.
@@ -57,8 +60,7 @@
    * added to the map.
    */
 
-
-  USGSOverlay.prototype.onAdd = function () {
+  USGSOverlay.prototype.onAdd = function() {
     var div = document.createElement("div");
     div.style.border = "none";
     div.style.borderWidth = "0px";
@@ -75,7 +77,7 @@
     panes.overlayImage.appendChild(this.div_);
   };
 
-  USGSOverlay.prototype.draw = function () {
+  USGSOverlay.prototype.draw = function() {
     // We use the south-west and north-east
     // coordinates of the overlay to peg it to the correct position and size.
     // To do this, we need to retrieve the projection from the overlay.
@@ -83,8 +85,12 @@
     // in LatLngs and convert them to pixel coordinates.
     // We'll use these coordinates to resize the div.
 
-    var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-    var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast()); // Resize the image's div to fit the indicated dimensions.
+    var sw = overlayProjection.fromLatLngToDivPixel(
+      this.bounds_.getSouthWest()
+    );
+    var ne = overlayProjection.fromLatLngToDivPixel(
+      this.bounds_.getNorthEast()
+    ); // Resize the image's div to fit the indicated dimensions.
 
     var div = this.div_;
     div.style.left = sw.x + "px";
@@ -93,25 +99,24 @@
     div.style.height = sw.y - ne.y + "px";
   };
 
-  USGSOverlay.prototype.onRemove = function () {
+  USGSOverlay.prototype.onRemove = function() {
     this.div_.parentNode.removeChild(this.div_);
   }; // Set the visibility to 'hidden' or 'visible'.
 
-
-  USGSOverlay.prototype.hide = function () {
+  USGSOverlay.prototype.hide = function() {
     if (this.div_) {
       // The visibility property must be a string enclosed in quotes.
       this.div_.style.visibility = "hidden";
     }
   };
 
-  USGSOverlay.prototype.show = function () {
+  USGSOverlay.prototype.show = function() {
     if (this.div_) {
       this.div_.style.visibility = "visible";
     }
   };
 
-  USGSOverlay.prototype.toggle = function () {
+  USGSOverlay.prototype.toggle = function() {
     if (this.div_) {
       if (this.div_.style.visibility === "hidden") {
         this.show();
@@ -123,8 +128,7 @@
   // Note that if we later reattach the map, it will be visible again,
   // because the containing <div> is recreated in the overlay's onAdd() method.
 
-
-  USGSOverlay.prototype.toggleDOM = function () {
+  USGSOverlay.prototype.toggleDOM = function() {
     if (this.getMap()) {
       // Note: setMap(null) calls OverlayView.onRemove()
       this.setMap(null);
@@ -135,4 +139,4 @@
 
   exports.USGSOverlay = USGSOverlay;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

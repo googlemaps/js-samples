@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_event_poi]
   function initMap() {
     var origin = { lat: -33.871, lng: 151.197 };
 
@@ -82,7 +81,10 @@
 
   ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
     var me = this;
-    this.placesService.getDetails({ placeId: placeId }, function(place, status) {
+    this.placesService.getDetails({ placeId: placeId }, function(
+      place,
+      status
+    ) {
       if (status === "OK") {
         me.infowindow.close();
         me.infowindow.setPosition(place.geometry.location);
@@ -98,5 +100,4 @@
 
   exports.ClickEventHandler = ClickEventHandler;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

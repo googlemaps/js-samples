@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_map_coordinates]
   function initMap() {
     var chicago = new google.maps.LatLng(41.85, -87.65);
 
@@ -32,7 +31,9 @@
     coordInfoWindow.open(map);
 
     map.addListener("zoom_changed", function() {
-      coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
+      coordInfoWindow.setContent(
+        createInfoWindowContent(chicago, map.getZoom())
+      );
       coordInfoWindow.open(map);
     });
   }
@@ -83,5 +84,4 @@
   exports.createInfoWindowContent = createInfoWindowContent;
   exports.initMap = initMap;
   exports.project = project;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

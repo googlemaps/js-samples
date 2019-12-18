@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -33,14 +33,23 @@
     };
     var infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
-    service.getDetails(request, function (place, status) {
+    service.getDetails(request, function(place, status) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         var marker = new google.maps.Marker({
           map: map,
           position: place.geometry.location
         });
-        google.maps.event.addListener(marker, "click", function () {
-          infowindow.setContent("<div><strong>" + place.name + "</strong><br>" + "Place ID: " + place.place_id + "<br>" + place.formatted_address + "</div>");
+        google.maps.event.addListener(marker, "click", function() {
+          infowindow.setContent(
+            "<div><strong>" +
+              place.name +
+              "</strong><br>" +
+              "Place ID: " +
+              place.place_id +
+              "<br>" +
+              place.formatted_address +
+              "</div>"
+          );
           infowindow.open(map, this);
         });
       }
@@ -48,4 +57,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

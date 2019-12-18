@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -26,29 +26,37 @@
       }
     }); // Define the LatLng coordinates for the polygon's  outer path.
 
-    var outerCoords = [{
-      lat: 25.774,
-      lng: -80.19
-    }, {
-      lat: 18.466,
-      lng: -66.118
-    }, {
-      lat: 32.321,
-      lng: -64.757
-    }]; // Define the LatLng coordinates for the polygon's inner path.
+    var outerCoords = [
+      {
+        lat: 25.774,
+        lng: -80.19
+      },
+      {
+        lat: 18.466,
+        lng: -66.118
+      },
+      {
+        lat: 32.321,
+        lng: -64.757
+      }
+    ]; // Define the LatLng coordinates for the polygon's inner path.
     // Note that the points forming the inner path are wound in the
     // opposite direction to those in the outer path, to form the hole.
 
-    var innerCoords = [{
-      lat: 28.745,
-      lng: -70.579
-    }, {
-      lat: 29.57,
-      lng: -67.514
-    }, {
-      lat: 27.339,
-      lng: -66.668
-    }]; // Construct the polygon, including both paths.
+    var innerCoords = [
+      {
+        lat: 28.745,
+        lng: -70.579
+      },
+      {
+        lat: 29.57,
+        lng: -67.514
+      },
+      {
+        lat: 27.339,
+        lng: -66.668
+      }
+    ]; // Construct the polygon, including both paths.
 
     var bermudaTriangle = new google.maps.Polygon({
       paths: [outerCoords, innerCoords],
@@ -62,4 +70,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

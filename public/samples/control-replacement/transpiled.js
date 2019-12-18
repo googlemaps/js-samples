@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -31,27 +31,29 @@
   }
 
   function initZoomControl(map) {
-    document.querySelector(".zoom-control-in").onclick = function () {
+    document.querySelector(".zoom-control-in").onclick = function() {
       map.setZoom(map.getZoom() + 1);
     };
 
-    document.querySelector(".zoom-control-out").onclick = function () {
+    document.querySelector(".zoom-control-out").onclick = function() {
       map.setZoom(map.getZoom() - 1);
     };
 
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.querySelector(".zoom-control"));
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+      document.querySelector(".zoom-control")
+    );
   }
 
   function initMapTypeControl(map) {
     var mapTypeControlDiv = document.querySelector(".maptype-control");
 
-    document.querySelector(".maptype-control-map").onclick = function () {
+    document.querySelector(".maptype-control-map").onclick = function() {
       mapTypeControlDiv.classList.add("maptype-control-is-map");
       mapTypeControlDiv.classList.remove("maptype-control-is-satellite");
       map.setMapTypeId("roadmap");
     };
 
-    document.querySelector(".maptype-control-satellite").onclick = function () {
+    document.querySelector(".maptype-control-satellite").onclick = function() {
       mapTypeControlDiv.classList.remove("maptype-control-is-map");
       mapTypeControlDiv.classList.add("maptype-control-is-satellite");
       map.setMapTypeId("hybrid");
@@ -65,7 +67,7 @@
     var fullscreenControl = document.querySelector(".fullscreen-control");
     map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
 
-    fullscreenControl.onclick = function () {
+    fullscreenControl.onclick = function() {
       if (isFullscreen(elementToSendFullscreen)) {
         exitFullscreen();
       } else {
@@ -73,7 +75,7 @@
       }
     };
 
-    document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function () {
+    document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function() {
       if (isFullscreen(elementToSendFullscreen)) {
         fullscreenControl.classList.add("is-fullscreen");
       } else {
@@ -83,7 +85,12 @@
   }
 
   function isFullscreen(element) {
-    return (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) == element;
+    return (
+      (document.fullscreenElement ||
+        document.webkitFullscreenElement ||
+        document.mozFullScreenElement ||
+        document.msFullscreenElement) == element
+    );
   }
 
   function requestFullscreen(element) {
@@ -117,4 +124,4 @@
   exports.initZoomControl = initZoomControl;
   exports.isFullscreen = isFullscreen;
   exports.requestFullscreen = requestFullscreen;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -32,32 +32,39 @@
     }); // Add a listener for the click event. Display the elevation for the LatLng of
     // the click inside the infowindow.
 
-    map.addListener("click", function (event) {
+    map.addListener("click", function(event) {
       displayLocationElevation(event.latLng, elevator, infowindow);
     });
   }
 
   function displayLocationElevation(location, elevator, infowindow) {
     // Initiate the location request
-    elevator.getElevationForLocations({
-      locations: [location]
-    }, function (results, status) {
-      infowindow.setPosition(location);
+    elevator.getElevationForLocations(
+      {
+        locations: [location]
+      },
+      function(results, status) {
+        infowindow.setPosition(location);
 
-      if (status === "OK") {
-        // Retrieve the first result
-        if (results[0]) {
-          // Open the infowindow indicating the elevation at the clicked position.
-          infowindow.setContent("The elevation at this point <br>is " + results[0].elevation + " meters.");
+        if (status === "OK") {
+          // Retrieve the first result
+          if (results[0]) {
+            // Open the infowindow indicating the elevation at the clicked position.
+            infowindow.setContent(
+              "The elevation at this point <br>is " +
+                results[0].elevation +
+                " meters."
+            );
+          } else {
+            infowindow.setContent("No results found");
+          }
         } else {
-          infowindow.setContent("No results found");
+          infowindow.setContent("Elevation service failed due to: " + status);
         }
-      } else {
-        infowindow.setContent("Elevation service failed due to: " + status);
       }
-    });
+    );
   }
 
   exports.displayLocationElevation = displayLocationElevation;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

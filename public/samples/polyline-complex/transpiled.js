@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -26,7 +26,6 @@
         lat: 41.879,
         lng: -87.624
       } // Center the map on Chicago, USA.
-
     });
     exports.poly = new google.maps.Polyline({
       strokeColor: "#000000",
@@ -37,7 +36,6 @@
 
     exports.map.addListener("click", addLatLng);
   } // Handles click events on a map, and adds a new point to the Polyline.
-
 
   function addLatLng(event) {
     var path = exports.poly.getPath(); // Because path is an MVCArray, we can simply append a new coordinate
@@ -54,4 +52,4 @@
 
   exports.addLatLng = addLatLng;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

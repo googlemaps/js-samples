@@ -15,25 +15,24 @@
 --><!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
     <title>POI Click Events</title>
-      <!-- jsFiddle will insert css and js -->
+    <!-- jsFiddle will insert css and js -->
   </head>
   <body>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img id="place-icon" src="" height="16" width="16" />
+      <span id="place-name" class="title"></span><br />
+      Place ID <span id="place-id"></span><br />
+      <span id="place-address"></span>
+    </div>
 
-<div id="map"></div>
-<div id="infowindow-content">
-  <img id="place-icon" src="" height="16" width="16" />
-  <span id="place-name" class="title"></span><br />
-  Place ID <span id="place-id"></span><br />
-  <span id="place-address"></span>
-</div>
-
-
-      <script 
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=places&version=weekly" 
-    async defer></script>
-
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=places&version=weekly"
+      async
+      defer
+    ></script>
   </body>
 </html>

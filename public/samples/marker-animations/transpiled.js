@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -49,4 +49,4 @@
 
   exports.initMap = initMap;
   exports.toggleBounce = toggleBounce;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

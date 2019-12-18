@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_places_autocomplete_hotelsearch]
   // This example uses the autocomplete feature of the Google Places API.
   // It allows the user to find all hotels in a given place, within a given
   // country. It then displays markers for all the hotels returned,
@@ -107,7 +106,9 @@
     // Create the autocomplete object and associate it with the UI input control.
     // Restrict the search to the default country, and to place type "cities".
     exports.autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */ (document.getElementById("autocomplete")),
+      /** @type {!HTMLInputElement} */ (document.getElementById(
+        "autocomplete"
+      )),
       {
         types: ["(cities)"],
         componentRestrictions: countryRestrict
@@ -161,7 +162,11 @@
           // If the user clicks a hotel marker, show the details of that hotel
           // in an info window.
           exports.markers[i].placeResult = results[i];
-          google.maps.event.addListener(exports.markers[i], "click", showInfoWindow);
+          google.maps.event.addListener(
+            exports.markers[i],
+            "click",
+            showInfoWindow
+          );
           setTimeout(dropMarker(i), i * 100);
           addResult(results[i], i);
         }
@@ -178,7 +183,6 @@
     exports.markers = [];
   }
 
-  // [START maps_places_autocomplete_hotelsearch]
   // Set the country restriction based on user input.
   // Also center and zoom the map on the given country.
   function setAutocompleteCountry() {
@@ -195,7 +199,6 @@
     clearResults();
     clearMarkers();
   }
-  // [END maps_places_autocomplete_hotelsearch]
 
   function dropMarker(i) {
     return function() {
@@ -315,5 +318,4 @@
   exports.search = search;
   exports.setAutocompleteCountry = setAutocompleteCountry;
   exports.showInfoWindow = showInfoWindow;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -15,48 +15,47 @@
 --><!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
     <title>Place Autocomplete Restricted to Multiple Countries</title>
-      <!-- jsFiddle will insert css and js -->
+    <!-- jsFiddle will insert css and js -->
   </head>
   <body>
+    <div class="pac-card" id="pac-card">
+      <div>
+        <div id="title">
+          Countries
+        </div>
+        <div id="country-selector" class="pac-controls">
+          <input type="radio" name="type" id="changecountry-usa" />
+          <label for="changecountry-usa">USA</label>
 
-<div class="pac-card" id="pac-card">
-  <div>
-    <div id="title">
-      Countries
+          <input
+            type="radio"
+            name="type"
+            id="changecountry-usa-and-uot"
+            checked="checked"
+          />
+          <label for="changecountry-usa-and-uot"
+            >USA and unincorporated organized territories</label
+          >
+        </div>
+      </div>
+      <div id="pac-container">
+        <input id="pac-input" type="text" placeholder="Enter a location" />
+      </div>
     </div>
-    <div id="country-selector" class="pac-controls">
-      <input type="radio" name="type" id="changecountry-usa" />
-      <label for="changecountry-usa">USA</label>
-
-      <input
-        type="radio"
-        name="type"
-        id="changecountry-usa-and-uot"
-        checked="checked"
-      />
-      <label for="changecountry-usa-and-uot"
-        >USA and unincorporated organized territories</label
-      >
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon" />
+      <span id="place-name" class="title"></span><br />
+      <span id="place-address"></span>
     </div>
-  </div>
-  <div id="pac-container">
-    <input id="pac-input" type="text" placeholder="Enter a location" />
-  </div>
-</div>
-<div id="map"></div>
-<div id="infowindow-content">
-  <img src="" width="16" height="16" id="place-icon" />
-  <span id="place-name" class="title"></span><br />
-  <span id="place-address"></span>
-</div>
 
-
-      <script 
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=places&version=weekly" 
-    async defer></script>
-
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=places&version=weekly"
+      async
+      defer
+    ></script>
   </body>
 </html>

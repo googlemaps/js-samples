@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -31,13 +31,12 @@
       center: bangalore
     }); // This event listener calls addMarker() when the map is clicked.
 
-    google.maps.event.addListener(map, "click", function (event) {
+    google.maps.event.addListener(map, "click", function(event) {
       addMarker(event.latLng, map);
     }); // Add a marker at the center of the map.
 
     addMarker(bangalore, map);
   } // Adds a marker to the map.
-
 
   function addMarker(location, map) {
     // Add the marker at the clicked location, and add the next-available label
@@ -52,4 +51,4 @@
   exports.addMarker = addMarker;
   exports.initMap = initMap;
   exports.labels = labels;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

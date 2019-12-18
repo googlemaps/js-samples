@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_user_editable_shapes]
   // This example adds a user-editable rectangle to the map.
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -25,7 +24,6 @@
       zoom: 9
     });
 
-    // [START maps_user_editable_shapes_rectangle]
     var bounds = {
       north: 44.599,
       south: 44.49,
@@ -38,10 +36,9 @@
       bounds: bounds,
       editable: true
     });
-    // [END maps_user_editable_shapes_rectangle]
+
     rectangle.setMap(map);
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

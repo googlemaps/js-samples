@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,10 +17,7 @@
    * limitations under the License.
    */
 
-  // [START maps_layer_data_dragndrop]
   /* Map functions */
-
-
 
   function initMap() {
     // set up the map
@@ -141,5 +138,4 @@
   exports.processPoints = processPoints;
   exports.showPanel = showPanel;
   exports.zoom = zoom;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

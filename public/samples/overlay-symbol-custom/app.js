@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_overlay_symbol_custom]
   // This example adds three custom symbols to a polyline.
 
   function initMap() {
@@ -27,7 +26,6 @@
       mapTypeId: "terrain"
     });
 
-    // [START maps_overlay_symbol_custom_region_polyline]
     // Define the custom symbols. All symbols are defined via SVG path notation.
     // They have varying stroke color, fill color, stroke weight,
     // opacity and rotation properties.
@@ -73,9 +71,7 @@
       ],
       map: map
     });
-    // [END maps_overlay_symbol_custom_region_polyline]
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -26,29 +26,43 @@
         description: "Google Sydney - Reception",
         latLng: new google.maps.LatLng(-33.86684, 151.19583)
       },
-      links: [{
-        heading: 195,
-        description: "Exit",
-        pano: exports.outsideGoogle.location.pano
-      }],
+      links: [
+        {
+          heading: 195,
+          description: "Exit",
+          pano: exports.outsideGoogle.location.pano
+        }
+      ],
       copyright: "Imagery (c) 2010 Google",
       tiles: {
         tileSize: new google.maps.Size(1024, 512),
         worldSize: new google.maps.Size(2048, 1024),
         centerHeading: 105,
         getTileUrl: function getTileUrl(pano, zoom, tileX, tileY) {
-          return "https://developers.google.com/maps/documentation/javascript/examples/full/images/" + "panoReception1024-" + zoom + "-" + tileX + "-" + tileY + ".jpg";
+          return (
+            "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
+            "panoReception1024-" +
+            zoom +
+            "-" +
+            tileX +
+            "-" +
+            tileY +
+            ".jpg"
+          );
         }
       }
     };
   }
 
   function initPanorama() {
-    exports.panorama = new google.maps.StreetViewPanorama(document.getElementById("street-view"), {
-      pano: exports.outsideGoogle.location.pano
-    }); // Register a provider for the custom panorama.
+    exports.panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("street-view"),
+      {
+        pano: exports.outsideGoogle.location.pano
+      }
+    ); // Register a provider for the custom panorama.
 
-    exports.panorama.registerPanoProvider(function (pano) {
+    exports.panorama.registerPanoProvider(function(pano) {
       if (pano === "reception") {
         return getReceptionPanoramaData();
       }
@@ -56,7 +70,7 @@
       return null;
     }); // Add a link to our custom panorama from outside the Google Sydney office.
 
-    exports.panorama.addListener("links_changed", function () {
+    exports.panorama.addListener("links_changed", function() {
       if (exports.panorama.getPano() === exports.outsideGoogle.location.pano) {
         exports.panorama.getLinks().push({
           description: "Google Sydney",
@@ -71,20 +85,23 @@
     // Use the Street View service to find a pano ID on Pirrama Rd, outside the
     // Google office.
     var streetviewService = new google.maps.StreetViewService();
-    streetviewService.getPanorama({
-      location: {
-        lat: -33.867386,
-        lng: 151.195767
+    streetviewService.getPanorama(
+      {
+        location: {
+          lat: -33.867386,
+          lng: 151.195767
+        }
+      },
+      function(result, status) {
+        if (status === "OK") {
+          exports.outsideGoogle = result;
+          initPanorama();
+        }
       }
-    }, function (result, status) {
-      if (status === "OK") {
-        exports.outsideGoogle = result;
-        initPanorama();
-      }
-    });
+    );
   }
 
   exports.getReceptionPanoramaData = getReceptionPanoramaData;
   exports.initMap = initMap;
   exports.initPanorama = initPanorama;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

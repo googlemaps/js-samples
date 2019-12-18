@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -34,7 +34,7 @@
     this.tileSize = tileSize;
   }
 
-  CoordMapType.prototype.getTile = function (coord, zoom, ownerDocument) {
+  CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
     var div = ownerDocument.createElement("div");
     div.innerHTML = coord;
     div.style.width = this.tileSize.width + "px";
@@ -57,9 +57,12 @@
     // position 0. Note that all overlay map types appear on top of
     // their parent base map.
 
-    map.overlayMapTypes.insertAt(0, new CoordMapType(new google.maps.Size(256, 256)));
+    map.overlayMapTypes.insertAt(
+      0,
+      new CoordMapType(new google.maps.Size(256, 256))
+    );
   }
 
   exports.CoordMapType = CoordMapType;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -20,19 +20,29 @@
     // Set up Street View and initially set it visible. Register the
     // custom panorama provider function. Set the StreetView to display
     // the custom panorama 'reception' which we check for below.
-    var panorama = new google.maps.StreetViewPanorama(document.getElementById("map"), {
-      pano: "reception",
-      visible: true
-    });
+    var panorama = new google.maps.StreetViewPanorama(
+      document.getElementById("map"),
+      {
+        pano: "reception",
+        visible: true
+      }
+    );
     panorama.registerPanoProvider(getCustomPanorama);
   } // Return a pano image given the panoID.
 
-
   function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
-    return "https://developers.google.com/maps/documentation/javascript/examples/full/images/" + "panoReception1024-" + zoom + "-" + tileX + "-" + tileY + ".jpg";
+    return (
+      "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
+      "panoReception1024-" +
+      zoom +
+      "-" +
+      tileX +
+      "-" +
+      tileY +
+      ".jpg"
+    );
   } // Construct the appropriate StreetViewPanoramaData given
   // the passed pano IDs.
-
 
   function getCustomPanorama(pano) {
     if (pano === "reception") {
@@ -60,4 +70,4 @@
   exports.getCustomPanorama = getCustomPanorama;
   exports.getCustomPanoramaTileUrl = getCustomPanoramaTileUrl;
   exports.initPano = initPano;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -59,13 +59,13 @@
     // the map
     // to the current center of the control.
 
-    goCenterUI.addEventListener("click", function () {
+    goCenterUI.addEventListener("click", function() {
       var currentCenter = control.getCenter();
       map.setCenter(currentCenter);
     }); // Set up the click event listener for 'Set Center': Set the center of
     // the control to the current center of the map.
 
-    setCenterUI.addEventListener("click", function () {
+    setCenterUI.addEventListener("click", function() {
       var newCenter = map.getCenter();
       control.setCenter(newCenter);
     });
@@ -75,14 +75,13 @@
    * @private
    */
 
-
   CenterControl.prototype.center_ = null;
   /**
    * Gets the map center.
    * @return {?google.maps.LatLng}
    */
 
-  CenterControl.prototype.getCenter = function () {
+  CenterControl.prototype.getCenter = function() {
     return this.center_;
   };
   /**
@@ -90,8 +89,7 @@
    * @param {?google.maps.LatLng} center
    */
 
-
-  CenterControl.prototype.setCenter = function (center) {
+  CenterControl.prototype.setCenter = function(center) {
     this.center_ = center;
   };
 
@@ -104,13 +102,19 @@
     // passing in this DIV.
 
     var centerControlDiv = document.createElement("div");
-    var centerControl = new CenterControl(centerControlDiv, exports.map, chicago);
+    var centerControl = new CenterControl(
+      centerControlDiv,
+      exports.map,
+      chicago
+    );
     centerControlDiv.index = 1;
     centerControlDiv.style["padding-top"] = "10px";
-    exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+    exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+      centerControlDiv
+    );
   }
 
   exports.CenterControl = CenterControl;
   exports.chicago = chicago;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

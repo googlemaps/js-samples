@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,8 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_streetview_embed]
-
   function initialize() {
     exports.panorama = new google.maps.StreetViewPanorama(
       document.getElementById("street-view"),
@@ -31,5 +29,4 @@
   }
 
   exports.initialize = initialize;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

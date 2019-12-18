@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,8 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_style_selector]
-
   function initMap() {
     // Create the map with no initial style specified.
     // It therefore has default styling.
@@ -30,7 +28,9 @@
 
     // Add a style-selector control to the map.
     var styleControl = document.getElementById("style-selector-control");
-    exports.map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
+    exports.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+      styleControl
+    );
 
     // Set the map's style to the initial value of the selector.
     var styleSelector = document.getElementById("style-selector");
@@ -340,5 +340,4 @@
 
   exports.initMap = initMap;
   exports.styles = styles;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

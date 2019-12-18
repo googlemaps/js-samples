@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_mysql_to_maps]
   var customLabel = {
     restaurant: {
       label: "R"
@@ -96,5 +95,4 @@
   exports.doNothing = doNothing;
   exports.downloadUrl = downloadUrl;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

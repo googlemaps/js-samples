@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,13 +17,10 @@
    * limitations under the License.
    */
 
-  // [START maps_overlay_hideshow]
   // This example adds hide() and show() methods to a custom overlay's prototype.
   // These methods toggle the visibility of the container <div>.
   // Additionally, we add a toggleDOM() method, which attaches or detaches the
   // overlay to or from the map.
-
-
 
   USGSOverlay.prototype = new google.maps.OverlayView();
 
@@ -40,7 +37,8 @@
     );
 
     // The photograph is courtesy of the U.S. Geological Survey.
-    var srcImage = "https://developers.google.com/maps/documentation/javascript/";
+    var srcImage =
+      "https://developers.google.com/maps/documentation/javascript/";
     srcImage += "examples/full/images/talkeetna.png";
 
     exports.overlay = new USGSOverlay(bounds, srcImage, map);
@@ -95,8 +93,12 @@
     // Retrieve the south-west and north-east coordinates of this overlay
     // in LatLngs and convert them to pixel coordinates.
     // We'll use these coordinates to resize the div.
-    var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-    var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+    var sw = overlayProjection.fromLatLngToDivPixel(
+      this.bounds_.getSouthWest()
+    );
+    var ne = overlayProjection.fromLatLngToDivPixel(
+      this.bounds_.getNorthEast()
+    );
 
     // Resize the image's div to fit the indicated dimensions.
     var div = this.div_;
@@ -110,7 +112,6 @@
     this.div_.parentNode.removeChild(this.div_);
   };
 
-  // [START maps_overlay_hideshow_snippet]
   // Set the visibility to 'hidden' or 'visible'.
   USGSOverlay.prototype.hide = function() {
     if (this.div_) {
@@ -149,5 +150,4 @@
 
   exports.USGSOverlay = USGSOverlay;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

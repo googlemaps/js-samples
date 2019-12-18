@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -34,7 +34,7 @@
       map: map
     }); // Add a listener for the click event
 
-    google.maps.event.addListener(map, "click", function (event) {
+    google.maps.event.addListener(map, "click", function(event) {
       addLatLngToPoly(event.latLng, poly);
     });
   }
@@ -42,7 +42,6 @@
    * Handles click events on a map, and adds a new point to the Polyline.
    * Updates the encoding text area with the path's encoded values.
    */
-
 
   function addLatLngToPoly(latLng, poly) {
     var path = poly.getPath(); // Because path is an MVCArray, we can simply append a new coordinate
@@ -59,4 +58,4 @@
 
   exports.addLatLngToPoly = addLatLngToPoly;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

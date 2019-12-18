@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_infowindow_simple_max]
   // This example displays a marker at the center of Australia.
   // When the user clicks the marker, an info window opens.
   // The maximum width of the info window is set to 200 pixels.
@@ -67,5 +66,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

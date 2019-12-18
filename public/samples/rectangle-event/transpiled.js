@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -48,11 +48,20 @@
 
   /** @this {google.maps.Rectangle} */
 
-
   function showNewRect(event) {
     var ne = exports.rectangle.getBounds().getNorthEast();
     var sw = exports.rectangle.getBounds().getSouthWest();
-    var contentString = "<b>Rectangle moved.</b><br>" + "New north-east corner: " + ne.lat() + ", " + ne.lng() + "<br>" + "New south-west corner: " + sw.lat() + ", " + sw.lng(); // Set the info window's content and position.
+    var contentString =
+      "<b>Rectangle moved.</b><br>" +
+      "New north-east corner: " +
+      ne.lat() +
+      ", " +
+      ne.lng() +
+      "<br>" +
+      "New south-west corner: " +
+      sw.lat() +
+      ", " +
+      sw.lng(); // Set the info window's content and position.
 
     exports.infoWindow.setContent(contentString);
     exports.infoWindow.setPosition(ne);
@@ -61,4 +70,4 @@
 
   exports.initMap = initMap;
   exports.showNewRect = showNewRect;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -32,16 +32,20 @@
     // no need to specify the final coordinates to complete the polygon, because
     // The Google Maps JavaScript API will automatically draw the closing side.
 
-    var triangleCoords = [{
-      lat: 25.774,
-      lng: -80.19
-    }, {
-      lat: 18.466,
-      lng: -66.118
-    }, {
-      lat: 32.321,
-      lng: -64.757
-    }];
+    var triangleCoords = [
+      {
+        lat: 25.774,
+        lng: -80.19
+      },
+      {
+        lat: 18.466,
+        lng: -66.118
+      },
+      {
+        lat: 32.321,
+        lng: -64.757
+      }
+    ];
     var bermudaTriangle = new google.maps.Polygon({
       paths: triangleCoords,
       strokeColor: "#FF0000",
@@ -54,4 +58,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

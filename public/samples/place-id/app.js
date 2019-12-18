@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -16,8 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
-
 
   function initMap() {
     // Create a map centered in Pyrmont, Sydney (Australia).
@@ -53,5 +51,4 @@
 
   exports.callback = callback;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

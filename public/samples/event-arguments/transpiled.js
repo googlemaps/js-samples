@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -24,7 +24,7 @@
         lng: 131.044922
       }
     });
-    map.addListener("click", function (e) {
+    map.addListener("click", function(e) {
       placeMarkerAndPanTo(e.latLng, map);
     });
   }
@@ -39,4 +39,4 @@
 
   exports.initMap = initMap;
   exports.placeMarkerAndPanTo = placeMarkerAndPanTo;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

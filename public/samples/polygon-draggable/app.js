@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_polygon_draggable]
   // This example creates draggable triangles on the map.
   // Note also that the red triangle is geodesic, so its shape changes
   // as you drag it north or south.
@@ -35,7 +34,6 @@
       { lat: 32.321, lng: -44.757 }
     ];
 
-    // [START maps_polygon_draggable_red_triangle]
     var redCoords = [
       { lat: 25.774, lng: -80.19 },
       { lat: 18.466, lng: -66.118 },
@@ -54,7 +52,6 @@
       draggable: true,
       geodesic: true
     });
-    // [END maps_polygon_draggable_red_triangle]
 
     // Construct a draggable blue triangle with geodesic set to false.
     new google.maps.Polygon({
@@ -71,5 +68,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

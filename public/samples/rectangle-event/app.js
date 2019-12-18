@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,14 +17,9 @@
    * limitations under the License.
    */
 
-  // [START maps_rectangle_event]
   // This example adds a user-editable rectangle to the map.
   // When the user changes the bounds of the rectangle,
   // an info window pops up displaying the new bounds.
-
-
-
-
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -82,5 +77,4 @@
 
   exports.initMap = initMap;
   exports.showNewRect = showNewRect;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

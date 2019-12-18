@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -28,37 +28,40 @@
     });
     directionsRenderer.setMap(map);
     calculateAndDisplayRoute(directionsService, directionsRenderer);
-    document.getElementById("mode").addEventListener("change", function () {
+    document.getElementById("mode").addEventListener("change", function() {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     });
   }
 
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     var selectedMode = document.getElementById("mode").value;
-    directionsService.route({
-      origin: {
-        lat: 37.77,
-        lng: -122.447
+    directionsService.route(
+      {
+        origin: {
+          lat: 37.77,
+          lng: -122.447
+        },
+        // Haight.
+        destination: {
+          lat: 37.768,
+          lng: -122.511
+        },
+        // Ocean Beach.
+        // Note that Javascript allows us to access the constant
+        // using square brackets and a string value as its
+        // "property."
+        travelMode: google.maps.TravelMode[selectedMode]
       },
-      // Haight.
-      destination: {
-        lat: 37.768,
-        lng: -122.511
-      },
-      // Ocean Beach.
-      // Note that Javascript allows us to access the constant
-      // using square brackets and a string value as its
-      // "property."
-      travelMode: google.maps.TravelMode[selectedMode]
-    }, function (response, status) {
-      if (status == "OK") {
-        directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
+      function(response, status) {
+        if (status == "OK") {
+          directionsRenderer.setDirections(response);
+        } else {
+          window.alert("Directions request failed due to " + status);
+        }
       }
-    });
+    );
   }
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

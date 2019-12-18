@@ -63,7 +63,16 @@ body,
 }
 
 .color-key {
-  background: linear-gradient(to right, #db4639 0%, #db7f29 17%, #d1bf1f 33%, #92c51b 50%, #48ba17 67%, #12ab24 83%, #0f9f59 100%);
+  background: linear-gradient(
+    to right,
+    #db4639 0%,
+    #db7f29 17%,
+    #d1bf1f 33%,
+    #92c51b 50%,
+    #48ba17 67%,
+    #12ab24 83%,
+    #0f9f59 100%
+  );
   flex: 1;
   -webkit-box-flex: 1;
   margin: 0 5px;

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -27,23 +27,36 @@
       },
       zoom: 5
     });
-    var triangleCoords = [{
-      lat: 25.774,
-      lng: -80.19
-    }, {
-      lat: 18.466,
-      lng: -66.118
-    }, {
-      lat: 32.321,
-      lng: -64.757
-    }];
+    var triangleCoords = [
+      {
+        lat: 25.774,
+        lng: -80.19
+      },
+      {
+        lat: 18.466,
+        lng: -66.118
+      },
+      {
+        lat: 32.321,
+        lng: -64.757
+      }
+    ];
     var bermudaTriangle = new google.maps.Polygon({
       paths: triangleCoords
     });
-    google.maps.event.addListener(map, "click", function (e) {
-      var resultColor = google.maps.geometry.poly.containsLocation(e.latLng, bermudaTriangle) ? "blue" : "red";
-      var resultPath = google.maps.geometry.poly.containsLocation(e.latLng, bermudaTriangle) ? // A triangle.
-      "m 0 -1 l 1 2 -2 0 z" : google.maps.SymbolPath.CIRCLE;
+    google.maps.event.addListener(map, "click", function(e) {
+      var resultColor = google.maps.geometry.poly.containsLocation(
+        e.latLng,
+        bermudaTriangle
+      )
+        ? "blue"
+        : "red";
+      var resultPath = google.maps.geometry.poly.containsLocation(
+        e.latLng,
+        bermudaTriangle
+      ) // A triangle.
+        ? "m 0 -1 l 1 2 -2 0 z"
+        : google.maps.SymbolPath.CIRCLE;
       new google.maps.Marker({
         position: e.latLng,
         map: map,
@@ -60,4 +73,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

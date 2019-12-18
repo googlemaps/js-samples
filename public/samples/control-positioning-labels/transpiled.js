@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -53,7 +53,20 @@
       disableDefaultUI: true
     };
     var map = new google.maps.Map(mapDiv, mapOptions);
-    var controlText = [["TOP_LEFT", google.maps.ControlPosition.TOP_LEFT], ["LEFT_TOP", google.maps.ControlPosition.LEFT_TOP], ["TOP_CENTER", google.maps.ControlPosition.TOP_CENTER], ["TOP_RIGHT", google.maps.ControlPosition.TOP_RIGHT], ["RIGHT_TOP", google.maps.ControlPosition.RIGHT_TOP], ["LEFT_CENTER", google.maps.ControlPosition.LEFT_CENTER], ["RIGHT_CENTER", google.maps.ControlPosition.RIGHT_CENTER], ["BOTTOM_LEFT", google.maps.ControlPosition.BOTTOM_LEFT], ["LEFT_BOTTOM", google.maps.ControlPosition.LEFT_BOTTOM], ["BOTTOM_CENTER", google.maps.ControlPosition.BOTTOM_CENTER], ["BOTTOM_RIGHT", google.maps.ControlPosition.BOTTOM_RIGHT], ["RIGHT_BOTTOM", google.maps.ControlPosition.RIGHT_BOTTOM]];
+    var controlText = [
+      ["TOP_LEFT", google.maps.ControlPosition.TOP_LEFT],
+      ["LEFT_TOP", google.maps.ControlPosition.LEFT_TOP],
+      ["TOP_CENTER", google.maps.ControlPosition.TOP_CENTER],
+      ["TOP_RIGHT", google.maps.ControlPosition.TOP_RIGHT],
+      ["RIGHT_TOP", google.maps.ControlPosition.RIGHT_TOP],
+      ["LEFT_CENTER", google.maps.ControlPosition.LEFT_CENTER],
+      ["RIGHT_CENTER", google.maps.ControlPosition.RIGHT_CENTER],
+      ["BOTTOM_LEFT", google.maps.ControlPosition.BOTTOM_LEFT],
+      ["LEFT_BOTTOM", google.maps.ControlPosition.LEFT_BOTTOM],
+      ["BOTTOM_CENTER", google.maps.ControlPosition.BOTTOM_CENTER],
+      ["BOTTOM_RIGHT", google.maps.ControlPosition.BOTTOM_RIGHT],
+      ["RIGHT_BOTTOM", google.maps.ControlPosition.RIGHT_BOTTOM]
+    ];
 
     for (var i = 0; i < controlText.length; i++) {
       var divLabel = controlText[i][0];
@@ -65,4 +78,4 @@
 
   exports.MakeControl = MakeControl;
   exports.initialize = initialize;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

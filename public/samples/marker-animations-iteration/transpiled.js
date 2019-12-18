@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -19,19 +19,24 @@
   // consecutively rather than all at once. This example shows how to use
   // window.setTimeout() to space your markers' animation.
 
-  var neighborhoods = [{
-    lat: 52.511,
-    lng: 13.447
-  }, {
-    lat: 52.549,
-    lng: 13.422
-  }, {
-    lat: 52.497,
-    lng: 13.396
-  }, {
-    lat: 52.517,
-    lng: 13.394
-  }];
+  var neighborhoods = [
+    {
+      lat: 52.511,
+      lng: 13.447
+    },
+    {
+      lat: 52.549,
+      lng: 13.422
+    },
+    {
+      lat: 52.497,
+      lng: 13.396
+    },
+    {
+      lat: 52.517,
+      lng: 13.394
+    }
+  ];
   exports.markers = [];
 
   function initMap() {
@@ -53,12 +58,14 @@
   }
 
   function addMarkerWithTimeout(position, timeout) {
-    window.setTimeout(function () {
-      exports.markers.push(new google.maps.Marker({
-        position: position,
-        map: exports.map,
-        animation: google.maps.Animation.DROP
-      }));
+    window.setTimeout(function() {
+      exports.markers.push(
+        new google.maps.Marker({
+          position: position,
+          map: exports.map,
+          animation: google.maps.Animation.DROP
+        })
+      );
     }, timeout);
   }
 
@@ -75,4 +82,4 @@
   exports.drop = drop;
   exports.initMap = initMap;
   exports.neighborhoods = neighborhoods;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

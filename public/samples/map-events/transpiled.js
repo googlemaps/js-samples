@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -16,13 +16,33 @@
    * limitations under the License.
    */
 
-  var events = ["bounds_changed", "center_changed", "click", "dblclick", "drag", "dragend", "dragstart", "heading_changed", "idle", "maptypeid_changed", "mousemove", "mouseout", "mouseover", "projection_changed", "resize", "rightclick", "tilesloaded", "tilt_changed", "zoom_changed"];
+  var events = [
+    "bounds_changed",
+    "center_changed",
+    "click",
+    "dblclick",
+    "drag",
+    "dragend",
+    "dragstart",
+    "heading_changed",
+    "idle",
+    "maptypeid_changed",
+    "mousemove",
+    "mouseout",
+    "mouseover",
+    "projection_changed",
+    "resize",
+    "rightclick",
+    "tilesloaded",
+    "tilt_changed",
+    "zoom_changed"
+  ];
 
   function setupListener(map, name) {
     var eventRow = document.getElementById(name);
-    google.maps.event.addListener(map, name, function () {
+    google.maps.event.addListener(map, name, function() {
       eventRow.className = "event active";
-      var timeout = setTimeout(function () {
+      var timeout = setTimeout(function() {
         eventRow.className = "event inactive";
       }, 1000);
     });
@@ -42,13 +62,13 @@
     }
   } // Dynamically create the table of events from the defined hashmap
 
-
   function populateTable() {
     var eventsTable = document.getElementById("events");
     var content = "";
 
     for (var i = 0; i < events.length; i++) {
-      content += '<div class="event" id="' + events[i] + '">' + events[i] + "</div>";
+      content +=
+        '<div class="event" id="' + events[i] + '">' + events[i] + "</div>";
     }
 
     eventsTable.innerHTML = content;
@@ -58,4 +78,4 @@
   exports.initMap = initMap;
   exports.populateTable = populateTable;
   exports.setupListener = setupListener;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

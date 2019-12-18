@@ -15,32 +15,31 @@
 --><!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
     <title>Place ID Finder</title>
-      <!-- jsFiddle will insert css and js -->
+    <!-- jsFiddle will insert css and js -->
   </head>
   <body>
+    <div style="display: none">
+      <input
+        id="pac-input"
+        class="controls"
+        type="text"
+        placeholder="Enter a location"
+      />
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <span id="place-name" class="title"></span><br />
+      <strong>Place ID:</strong> <span id="place-id"></span><br />
+      <span id="place-address"></span>
+    </div>
 
-<div style="display: none">
-  <input
-    id="pac-input"
-    class="controls"
-    type="text"
-    placeholder="Enter a location"
-  />
-</div>
-<div id="map"></div>
-<div id="infowindow-content">
-  <span id="place-name" class="title"></span><br />
-  <strong>Place ID:</strong> <span id="place-id"></span><br />
-  <span id="place-address"></span>
-</div>
-
-
-      <script 
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=places&version=weekly" 
-    async defer></script>
-
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=places&version=weekly"
+      async
+      defer
+    ></script>
   </body>
 </html>

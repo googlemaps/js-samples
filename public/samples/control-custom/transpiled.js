@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -50,7 +50,7 @@
     controlText.innerHTML = "Center Map";
     controlUI.appendChild(controlText); // Setup the click event listeners: simply set the map to Chicago.
 
-    controlUI.addEventListener("click", function () {
+    controlUI.addEventListener("click", function() {
       map.setCenter(chicago);
     });
   }
@@ -65,10 +65,12 @@
     var centerControlDiv = document.createElement("div");
     var centerControl = new CenterControl(centerControlDiv, exports.map);
     centerControlDiv.index = 1;
-    exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+    exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+      centerControlDiv
+    );
   }
 
   exports.CenterControl = CenterControl;
   exports.chicago = chicago;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

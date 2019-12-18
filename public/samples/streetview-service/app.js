@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,13 +17,9 @@
    * limitations under the License.
    */
 
-  // [START maps_streetview_service]
   /*
    * Click the map to set a new location for the Street View camera.
    */
-
-
-
 
   function initMap() {
     var berkeley = { lat: 37.869085, lng: -122.254775 };
@@ -83,5 +79,4 @@
 
   exports.initMap = initMap;
   exports.processSVData = processSVData;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

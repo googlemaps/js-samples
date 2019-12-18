@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_overlay_symbol_dashed]
   // This example converts a polyline to a dashed line, by
   // setting the opacity of the polyline to 0, and drawing an opaque symbol
   // at a regular interval on the polyline.
@@ -29,7 +28,6 @@
       mapTypeId: "terrain"
     });
 
-    // [START maps_overlay_symbol_dashed_region_polyline]
     // Define a symbol using SVG path notation, with an opacity of 1.
     var lineSymbol = {
       path: "M 0,-1 0,1",
@@ -55,9 +53,7 @@
       ],
       map: map
     });
-    // [END maps_overlay_symbol_dashed_region_polyline]
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

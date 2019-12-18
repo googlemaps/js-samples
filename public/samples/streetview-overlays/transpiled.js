@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -34,7 +34,8 @@
         lng: -73.991428
       },
       map: map,
-      icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
+      icon:
+        "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
       title: "Cafe"
     });
     var bankMarker = new google.maps.Marker({
@@ -43,7 +44,8 @@
         lng: -73.991138
       },
       map: map,
-      icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
+      icon:
+        "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
       title: "Bank"
     });
     var busMarker = new google.maps.Marker({
@@ -52,7 +54,8 @@
         lng: -73.990741
       },
       map: map,
-      icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
+      icon:
+        "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
       title: "Bus Stop"
     }); // We get the map's default panorama and set up some defaults.
     // Note that we don't yet set it visible.
@@ -60,11 +63,12 @@
     exports.panorama = map.getStreetView();
     exports.panorama.setPosition(astorPlace);
     exports.panorama.setPov(
-    /** @type {google.maps.StreetViewPov} */
-    {
-      heading: 265,
-      pitch: 0
-    });
+      /** @type {google.maps.StreetViewPov} */
+      {
+        heading: 265,
+        pitch: 0
+      }
+    );
   }
 
   function toggleStreetView() {
@@ -79,4 +83,4 @@
 
   exports.initMap = initMap;
   exports.toggleStreetView = toggleStreetView;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

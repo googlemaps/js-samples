@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,11 +17,7 @@
    * limitations under the License.
    */
 
-  // [START maps_streetview_custom_tiles]
-
-
   // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
-
 
   // StreetViewPanoramaData for a custom panorama: the Google Sydney reception.
   function getReceptionPanoramaData() {
@@ -102,5 +98,4 @@
   exports.getReceptionPanoramaData = getReceptionPanoramaData;
   exports.initMap = initMap;
   exports.initPanorama = initPanorama;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

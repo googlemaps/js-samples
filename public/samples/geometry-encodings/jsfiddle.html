@@ -15,22 +15,22 @@
 --><!DOCTYPE html>
 <html>
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
-    <meta charset="utf-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
     <title>Encoding Methods</title>
-      <!-- jsFiddle will insert css and js -->
+    <!-- jsFiddle will insert css and js -->
   </head>
   <body>
+    <div id="map"></div>
+    <div id="right-panel">
+      <div>Encoding:</div>
+      <textarea id="encoded-polyline"></textarea>
+    </div>
 
-<div id="map"></div>
-<div id="right-panel">
-  <div>Encoding:</div>
-  <textarea id="encoded-polyline"></textarea>
-</div>
-
-      <script 
-    src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=geometry&version=weekly" 
-    async defer></script>
-
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=geometry&version=weekly"
+      async
+      defer
+    ></script>
   </body>
 </html>

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_streetview_custom_simple]
   function initPano() {
     // Set up Street View and initially set it visible. Register the
     // custom panorama provider function. Set the StreetView to display
@@ -71,5 +70,4 @@
   exports.getCustomPanorama = getCustomPanorama;
   exports.getCustomPanoramaTileUrl = getCustomPanoramaTileUrl;
   exports.initPano = initPano;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

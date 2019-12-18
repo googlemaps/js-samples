@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_marker_labels]
   // In the following example, markers appear when the user clicks on the map.
   // Each marker is labeled with a single alphabetical character.
   var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -53,5 +52,4 @@
   exports.addMarker = addMarker;
   exports.initMap = initMap;
   exports.labels = labels;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

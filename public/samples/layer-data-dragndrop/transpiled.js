@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -36,10 +36,9 @@
    * @param {google.maps.Map} map The map to adjust
    */
 
-
   function zoom(map) {
     var bounds = new google.maps.LatLngBounds();
-    map.data.forEach(function (feature) {
+    map.data.forEach(function(feature) {
       processPoints(feature.getGeometry(), bounds.extend, bounds);
     });
     map.fitBounds(bounds);
@@ -53,20 +52,18 @@
    *     myArray)
    */
 
-
   function processPoints(geometry, callback, thisArg) {
     if (geometry instanceof google.maps.LatLng) {
       callback.call(thisArg, geometry);
     } else if (geometry instanceof google.maps.Data.Point) {
       callback.call(thisArg, geometry.get());
     } else {
-      geometry.getArray().forEach(function (g) {
+      geometry.getArray().forEach(function(g) {
         processPoints(g, callback, thisArg);
       });
     }
   }
   /* DOM (drag/drop) functions */
-
 
   function initEvents() {
     // set up the drag & drop events
@@ -100,14 +97,14 @@
     if (files.length) {
       // process file(s) being dropped
       // grab the file data from each file
-      for (var i = 0, file; file = files[i]; i++) {
+      for (var i = 0, file; (file = files[i]); i++) {
         var reader = new FileReader();
 
-        reader.onload = function (e) {
+        reader.onload = function(e) {
           loadGeoJsonString(e.target.result);
         };
 
-        reader.onerror = function (e) {
+        reader.onerror = function(e) {
           console.error("reading failed");
         };
 
@@ -122,7 +119,6 @@
         loadGeoJsonString(plainText);
       }
     } // prevent drag event from bubbling further
-
 
     return false;
   }
@@ -141,4 +137,4 @@
   exports.processPoints = processPoints;
   exports.showPanel = showPanel;
   exports.zoom = zoom;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

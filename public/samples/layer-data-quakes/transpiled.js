@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -30,10 +30,12 @@
     //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
 
     var script = document.createElement("script");
-    script.setAttribute("src", "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json");
+    script.setAttribute(
+      "src",
+      "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
+    );
     document.getElementsByTagName("head")[0].appendChild(script);
   } // Defines the callback function referenced in the jsonp file.
-
 
   function eqfeed_callback(data) {
     exports.map.data.addGeoJson(data);
@@ -47,7 +49,9 @@
     var minMag = 1.0;
     var maxMag = 6.0; // fraction represents where the value sits between the min and max
 
-    var fraction = (Math.min(feature.getProperty("mag"), maxMag) - minMag) / (maxMag - minMag);
+    var fraction =
+      (Math.min(feature.getProperty("mag"), maxMag) - minMag) /
+      (maxMag - minMag);
     var color = interpolateHsl(low, high, fraction);
     return {
       icon: {
@@ -74,40 +78,56 @@
     return "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)";
   }
 
-  var mapStyle = [{
-    featureType: "all",
-    elementType: "all",
-    stylers: [{
-      visibility: "off"
-    }]
-  }, {
-    featureType: "landscape",
-    elementType: "geometry",
-    stylers: [{
-      visibility: "on"
-    }, {
-      color: "#fcfcfc"
-    }]
-  }, {
-    featureType: "water",
-    elementType: "labels",
-    stylers: [{
-      visibility: "off"
-    }]
-  }, {
-    featureType: "water",
-    elementType: "geometry",
-    stylers: [{
-      visibility: "on"
-    }, {
-      hue: "#5f94ff"
-    }, {
-      lightness: 60
-    }]
-  }];
+  var mapStyle = [
+    {
+      featureType: "all",
+      elementType: "all",
+      stylers: [
+        {
+          visibility: "off"
+        }
+      ]
+    },
+    {
+      featureType: "landscape",
+      elementType: "geometry",
+      stylers: [
+        {
+          visibility: "on"
+        },
+        {
+          color: "#fcfcfc"
+        }
+      ]
+    },
+    {
+      featureType: "water",
+      elementType: "labels",
+      stylers: [
+        {
+          visibility: "off"
+        }
+      ]
+    },
+    {
+      featureType: "water",
+      elementType: "geometry",
+      stylers: [
+        {
+          visibility: "on"
+        },
+        {
+          hue: "#5f94ff"
+        },
+        {
+          lightness: 60
+        }
+      ]
+    }
+  ];
   exports.eqfeed_callback = eqfeed_callback;
   exports.initMap = initMap;
   exports.interpolateHsl = interpolateHsl;
   exports.mapStyle = mapStyle;
   exports.styleFeature = styleFeature;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

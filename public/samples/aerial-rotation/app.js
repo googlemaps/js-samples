@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -16,9 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
-  // [START maps_aerial_rotation]
-
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -45,5 +42,4 @@
   exports.autoRotate = autoRotate;
   exports.initMap = initMap;
   exports.rotate90 = rotate90;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

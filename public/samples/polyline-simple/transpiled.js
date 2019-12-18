@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -28,19 +28,24 @@
       },
       mapTypeId: "terrain"
     });
-    var flightPlanCoordinates = [{
-      lat: 37.772,
-      lng: -122.214
-    }, {
-      lat: 21.291,
-      lng: -157.821
-    }, {
-      lat: -18.142,
-      lng: 178.431
-    }, {
-      lat: -27.467,
-      lng: 153.027
-    }];
+    var flightPlanCoordinates = [
+      {
+        lat: 37.772,
+        lng: -122.214
+      },
+      {
+        lat: 21.291,
+        lng: -157.821
+      },
+      {
+        lat: -18.142,
+        lng: 178.431
+      },
+      {
+        lat: -27.467,
+        lng: 153.027
+      }
+    ];
     var flightPath = new google.maps.Polyline({
       path: flightPlanCoordinates,
       geodesic: true,
@@ -52,4 +57,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

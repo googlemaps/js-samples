@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -25,11 +25,12 @@
       }
     });
     var kmlLayer = new google.maps.KmlLayer({
-      url: "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
+      url:
+        "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
       suppressInfoWindows: true,
       map: map
     });
-    kmlLayer.addListener("click", function (kmlEvent) {
+    kmlLayer.addListener("click", function(kmlEvent) {
       var text = kmlEvent.featureData.description;
       showInContentWindow(text);
     });
@@ -41,4 +42,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

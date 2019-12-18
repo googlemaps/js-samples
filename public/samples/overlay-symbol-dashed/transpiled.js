@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -38,22 +38,27 @@
     // Repeat the symbol at intervals of 20 pixels to create the dashed effect.
 
     var line = new google.maps.Polyline({
-      path: [{
-        lat: 22.291,
-        lng: 153.027
-      }, {
-        lat: 18.291,
-        lng: 153.027
-      }],
+      path: [
+        {
+          lat: 22.291,
+          lng: 153.027
+        },
+        {
+          lat: 18.291,
+          lng: 153.027
+        }
+      ],
       strokeOpacity: 0,
-      icons: [{
-        icon: lineSymbol,
-        offset: "0",
-        repeat: "20px"
-      }],
+      icons: [
+        {
+          icon: lineSymbol,
+          offset: "0",
+          repeat: "20px"
+        }
+      ],
       map: map
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

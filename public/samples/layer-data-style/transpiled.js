@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -25,7 +25,9 @@
       }
     }); // Load GeoJSON.
 
-    exports.map.data.loadGeoJson("https://storage.googleapis.com/mapsdevsite/json/google.json"); // Set the stroke width, and fill color for each polygon
+    exports.map.data.loadGeoJson(
+      "https://storage.googleapis.com/mapsdevsite/json/google.json"
+    ); // Set the stroke width, and fill color for each polygon
 
     exports.map.data.setStyle({
       fillColor: "green",
@@ -34,4 +36,4 @@
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

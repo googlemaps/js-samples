@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -28,7 +28,7 @@
         return;
       }
 
-      predictions.forEach(function (prediction) {
+      predictions.forEach(function(prediction) {
         var li = document.createElement("li");
         li.appendChild(document.createTextNode(prediction.description));
         document.getElementById("results").appendChild(li);
@@ -36,10 +36,13 @@
     };
 
     var service = new google.maps.places.AutocompleteService();
-    service.getQueryPredictions({
-      input: "pizza near Syd"
-    }, displaySuggestions);
+    service.getQueryPredictions(
+      {
+        input: "pizza near Syd"
+      },
+      displaySuggestions
+    );
   }
 
   exports.initService = initService;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,11 +17,8 @@
    * limitations under the License.
    */
 
-  // [START maps_groundoverlay_simple]
   // This example uses a GroundOverlay to place an image on the map
   // showing an antique map of Newark, NJ.
-
-
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -44,5 +41,4 @@
   }
 
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

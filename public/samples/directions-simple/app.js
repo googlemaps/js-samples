@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_directions_simple]
   function initMap() {
     var directionsService = new google.maps.DirectionsService();
     var directionsRenderer = new google.maps.DirectionsRenderer();
@@ -30,7 +29,9 @@
     var onChangeHandler = function() {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     };
-    document.getElementById("start").addEventListener("change", onChangeHandler);
+    document
+      .getElementById("start")
+      .addEventListener("change", onChangeHandler);
     document.getElementById("end").addEventListener("change", onChangeHandler);
   }
 
@@ -53,5 +54,4 @@
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));

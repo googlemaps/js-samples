@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -30,18 +30,18 @@
       map: map,
       title: "Click to zoom"
     });
-    map.addListener("center_changed", function () {
+    map.addListener("center_changed", function() {
       // 3 seconds after the center of the map has changed, pan back to the
       // marker.
-      window.setTimeout(function () {
+      window.setTimeout(function() {
         map.panTo(marker.getPosition());
       }, 3000);
     });
-    marker.addListener("click", function () {
+    marker.addListener("click", function() {
       map.setZoom(8);
       map.setCenter(marker.getPosition());
     });
   }
 
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

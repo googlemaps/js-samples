@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
    *
@@ -26,7 +26,7 @@
     });
     var geocoder = new google.maps.Geocoder();
     var infowindow = new google.maps.InfoWindow();
-    document.getElementById("submit").addEventListener("click", function () {
+    document.getElementById("submit").addEventListener("click", function() {
       geocodeLatLng(geocoder, map, infowindow);
     });
   }
@@ -38,27 +38,30 @@
       lat: parseFloat(latlngStr[0]),
       lng: parseFloat(latlngStr[1])
     };
-    geocoder.geocode({
-      location: latlng
-    }, function (results, status) {
-      if (status === "OK") {
-        if (results[0]) {
-          map.setZoom(11);
-          var marker = new google.maps.Marker({
-            position: latlng,
-            map: map
-          });
-          infowindow.setContent(results[0].formatted_address);
-          infowindow.open(map, marker);
+    geocoder.geocode(
+      {
+        location: latlng
+      },
+      function(results, status) {
+        if (status === "OK") {
+          if (results[0]) {
+            map.setZoom(11);
+            var marker = new google.maps.Marker({
+              position: latlng,
+              map: map
+            });
+            infowindow.setContent(results[0].formatted_address);
+            infowindow.open(map, marker);
+          } else {
+            window.alert("No results found");
+          }
         } else {
-          window.alert("No results found");
+          window.alert("Geocoder failed due to: " + status);
         }
-      } else {
-        window.alert("Geocoder failed due to: " + status);
       }
-    });
+    );
   }
 
   exports.geocodeLatLng = geocodeLatLng;
   exports.initMap = initMap;
-})(this.window = this.window || {});
+})((this.window = this.window || {}));

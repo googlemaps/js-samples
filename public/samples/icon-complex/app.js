@@ -1,5 +1,5 @@
-(function (exports) {
-  'use strict';
+(function(exports) {
+  "use strict";
 
   /*
    * Copyright 2019 Google LLC. All Rights Reserved.
@@ -17,7 +17,6 @@
    * limitations under the License.
    */
 
-  // [START maps_icon_complex]
   // The following example creates complex markers to indicate beaches near
   // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
   // to the base of the flagpole.
@@ -82,5 +81,4 @@
   exports.beaches = beaches;
   exports.initMap = initMap;
   exports.setMarkers = setMarkers;
-
-}(this.window = this.window || {}));
+})((this.window = this.window || {}));
