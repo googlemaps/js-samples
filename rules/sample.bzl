@@ -51,6 +51,14 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    native.genrule(
+        name = "_data_file",
+        cmd = "./$(location json) -f $(location data.json) -e \"this.key='$$GOOGLE_MAPS_JS_SAMPLES_KEY'\" > $@",
+        srcs = [":data.json"],
+        tools = [":json"],
+        outs = ["_data.json"], 
+    )
+
     nunjucks()
 
     native.filegroup(
