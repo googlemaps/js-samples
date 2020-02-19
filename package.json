@@ -40,7 +40,7 @@
     "@babel/cli": "^7.7.1",
     "@babel/core": "^7.7.5",
     "@babel/preset-env": "^7.7.1",
-    "@bazel/bazel": "^1.1.0",
+    "@bazel/bazel": "^2.1.0",
     "@bazel/buildifier": "^0.26.0",
     "@bazel/buildozer": "^0.29.0",
     "@bazel/rollup": "0.42.1",
