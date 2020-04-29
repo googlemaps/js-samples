@@ -20,9 +20,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      GOOGLE_MAPS_JS_SAMPLES_KEY: "foo"
     steps:
       - name: Setup Bazel
         uses: abhinavsingh/setup-bazel@1fe920bf5df3791aab606c06a3608f4bb600c4f2
       - run: bazel version
       - uses: actions/checkout@v2
+      - run: bazel build //...
+      - run: bazel test //...
       
