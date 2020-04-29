@@ -27,6 +27,13 @@ jobs:
         uses: abhinavsingh/setup-bazel@1fe920bf5df3791aab606c06a3608f4bb600c4f2
       - run: bazel version
       - uses: actions/checkout@v2
+      - run: |
+          BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
+          echo "${BAZEL_CACHE_SERVICE_ACCOUNT}" > "${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}"
+          echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc 
+          echo "build --remote_http_cache=https://storage.googleapis.com/${INPUT_CACHE_BUCKET}" >> .bazelrc
+        env:
+          BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
+          BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build //...
       - run: bazel test //...
-      
