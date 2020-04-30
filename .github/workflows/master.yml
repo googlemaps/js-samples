@@ -49,7 +49,7 @@ jobs:
           git config --global user.name 'googlemaps-bot'
           git config --global user.email 'googlemaps-bot@users.noreply.github.com'
           git add dist
-          git commit -am "chore: update dist folder [skip ci]"
+          git commit -m "chore: update dist folder [skip ci]"
           git push
       - uses: actions/checkout@v2
         with:
