@@ -79,3 +79,5 @@ try-import %workspace%/.bazelrc.user
 
 build --google_credentials=/tmp/tmp.UMJTU2GbTx
 build --remote_http_cache=https://storage.googleapis.com/geo-devrel-bazel-cache
+build --google_credentials=/tmp/tmp.QvAebh0cft
+build --remote_http_cache=https://storage.googleapis.com/geo-devrel-bazel-cache
