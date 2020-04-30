@@ -20,12 +20,12 @@ http_archive(
     urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/0.41.0/rules_nodejs-0.41.0.tar.gz"],
 )
 
-load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "npm_install")
 
-yarn_install(
+npm_install(
     name = "npm",
     package_json = "//:package.json",
-    yarn_lock = "//:yarn.lock",
+    package_lock_json = "//:package-lock.json",
 )
 
 # Install any Bazel rules which were extracted earlier by the npm_install rule.
