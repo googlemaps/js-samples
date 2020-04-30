@@ -1,10 +1,9 @@
 **/node_modules
 **/package-lock.json
-**/dist/
 **/.npmrc
 **/docs
 **/src/*.html
-index.html
+/index.html
 bazel-*
 .cache
 master
