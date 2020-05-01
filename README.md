@@ -9,9 +9,9 @@ js-samples
 ## Description
 Samples for the Google Maps JavaScript API.
 
-**[View the samples](https://storage.googleapis.com/js-samples/master/public/index.html)**
+**[View the samples](https://googlemaps.github.io/js-samples/dist/)**
 
-**Note::** Many of these samples were written in 2010-2012. Many are still functional and are in the samples folder. Others that do not run have been moved to archive.
+**Note::** Many of these samples were written in 2010-2012. Many are still functional and are in the samples folder.
 
 ## Development
 1. Set the environment variable `export GOOGLE_MAPS_JS_SAMPLES_KEY=YOUR_KEY`.
