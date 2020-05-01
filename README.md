@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/googlemaps/js-samples.svg?branch=master)](https://travis-ci.org/googlemaps/js-samples)
+![Build](https://github.com/googlemaps/js-samples/workflows/Build/badge.svg)
+![Release](https://github.com/googlemaps/js-samples/workflows/Release/badge.svg)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/js-samples)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
@@ -13,12 +14,11 @@ Samples for the Google Maps JavaScript API.
 **Note::** Many of these samples were written in 2010-2012. Many are still functional and are in the samples folder. Others that do not run have been moved to archive.
 
 ## Development
-**Note**: The default branch for this repo is dev and **not** master.
-1. Set the environment variable `GOOGLE_MAPS_JS_SAMPLES_KEY`.
-2. Start a server with all samples. `yarn run serve`
+1. Set the environment variable `export GOOGLE_MAPS_JS_SAMPLES_KEY=YOUR_KEY`.
+1. Install with `yarn install`.
+1. Start a server with all samples using `yarn run serve`.
 
-
-Bazel is used for the build system and can be called with `npx bazel`.
+Bazel is used for the build system and can be called with `yarn run bazel`.
 
 ## Other Resources
 - [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
