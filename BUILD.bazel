@@ -24,22 +24,22 @@ http_server(
     ],
 )
 
-CMD = '''
-set -e
-context="{\\"packages\\": {\n"
-packages=$$($(location @npm//lerna/bin:lerna) list)
-i=0
-for p in $$packages; do
-  if ((i > 0)); then
-    context="$${context},\\n"
-  fi
-  context="$${context}\\"$$($(location @npm//json/bin:json) -f samples/$$p/data.json title)\\": \\"$$p\\""
-  i=$$((i + 1))
-done
+# CMD = '''
+# set -e
+# context="{\\"packages\\": {\n"
+# packages=$$($(location @npm//lerna/bin:lerna) list)
+# i=0
+# for p in $$packages; do
+#   if ((i > 0)); then
+#     context="$${context},\\n"
+#   fi
+#   context="$${context}\\"$$($(location @npm//json/bin:json) -f samples/$$p/data.json title)\\": \\"$$p\\""
+#   i=$$((i + 1))
+# done
 
-context="$${context}}}"
-echo -e $${context} > $@
-'''
+# context="$${context}}}"
+# echo -e $${context} > $@
+# '''
 
 # Used to generate data.json
 #

@@ -27,7 +27,7 @@ def sample():
         args = [
             "$(location :app_ugly)",
             "--out-file",
-            "$@/transpiled_ugly.js",
+            "$@",
         ],
         data = [
             ":app_ugly",
@@ -65,7 +65,7 @@ def sample():
             name = "prettier_" + src.replace(":", "").split(".")[0],
             srcs = [src],
             outs = [out],
-            cmd = "./$(location //rules:prettier) $(location {}) > $@".format(src),
+            cmd = "$(location //rules:prettier) $(location {}) > $@".format(src),
             tools = ["//rules:prettier"],
         )
         for src, out in [
