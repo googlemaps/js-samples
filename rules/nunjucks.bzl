@@ -30,7 +30,7 @@ def _nunjucks(jsfiddle):
             ".",
             "$(location {})".format(_data),
             "--out",
-            "$@",
+            "$(@D)",
         ],
         data = [
             ":src/index.njk",

@@ -32,7 +32,7 @@
     "format:root": "sort-package-json && prettier *.json *.js shared/**/*.scss --write --loglevel error",
     "serve": "bazel run :serve",
     "serve:firebase": "yarn run build && yarn run extract:public && firebase serve",
-    "test": "lerna run test && yarn run test:tags && bazel test //...",
+    "test": "bazel test //...",
     "test:tags": "./build/test_tags.sh"
   },
   "dependencies": {},
