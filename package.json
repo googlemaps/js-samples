@@ -17,7 +17,7 @@
   },
   "license": "Apache-2.0",
   "scripts": {
-    "build": "bazel build //...",
+    "build": "bazel build :public.tar",
     "build:clean": "bazel clean",
     "build:format": "lerna run build:format",
     "ci": "yarn run build && yarn run test",
