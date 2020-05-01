@@ -1,5 +1,5 @@
 **/node_modules
-**/package-lock.json
+samples/**/package-lock.json
 **/.npmrc
 **/docs
 **/src/*.html
