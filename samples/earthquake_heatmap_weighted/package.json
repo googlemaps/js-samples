@@ -33,7 +33,7 @@
     "format": "sort-package-json && prettier *.json *.js src/* examples/* --write --loglevel error",
     "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
     "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
-    "lint": "yarn run license:check",
+    "lint": "npm run license:check",
     "test": "run-p test:callback",
     "test:callback": "../../build/test_callback.sh"
   },

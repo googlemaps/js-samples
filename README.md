@@ -15,15 +15,15 @@ Samples for the Google Maps JavaScript API.
 
 ## Development
 1. Set the environment variable `export GOOGLE_MAPS_JS_SAMPLES_KEY=YOUR_KEY`.
-1. Install with `yarn install`.
-1. Start a server with all samples using `yarn run serve`.
+1. Install with `npm install`.
+1. Start a server with all samples using `npm run serve`.
 
-Bazel is used for the build system and can be called with `yarn run bazel`.
+Bazel is used for the build system and can be called with `npm run bazel`.
 
 ## Other Resources
 - [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
 - [Google Maps Reference Documenations](https://developers.google.com/maps/documentation/javascript/reference/)
-- [Google Maps Typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/googlemaps) - Community supported `yarn i -D @types/googlemaps`
+- [Google Maps Typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/googlemaps) - Community supported `npm i -D @types/googlemaps`
 - [Google Maps Utilitiies](https://github.com/googlemaps/v3-utility-library)
 
 ## Support
