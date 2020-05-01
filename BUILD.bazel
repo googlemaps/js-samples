@@ -1,5 +1,4 @@
 load("@npm//eslint:index.bzl", "eslint", "eslint_test")
-load("@npm//license-check-and-add:index.bzl", "license_check_and_add_test")
 load("@npm//http-server:index.bzl", "http_server")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "nodejs_test")
 load("@rules_pkg//:pkg.bzl", "pkg_deb", "pkg_tar")
@@ -80,21 +79,6 @@ eslint_test(
         "@npm//eslint-config-prettier",
         "@npm//eslint-plugin-jest",
         "@npm//eslint-plugin-prettier",
-    ],
-)
-
-license_check_and_add_test(
-    name = "license_check",
-    args = [
-        "check",
-        "**/*.js",
-        "-f",
-        ".license-check.json",
-    ],
-    data = [
-        ":.license-check.json",
-        ":LICENSE",
-        "//samples:inputs",
     ],
 )
 
