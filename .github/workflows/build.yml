@@ -12,14 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Master
+name: Build
+
 on:
-  push:
-    branches:
-      - master
+  - push
+  - pull_request
 jobs:
-  release:
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+  build:
     runs-on: ubuntu-latest
     env:
       GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
@@ -28,8 +27,6 @@ jobs:
         uses: abhinavsingh/setup-bazel@1fe920bf5df3791aab606c06a3608f4bb600c4f2
       - run: bazel version
       - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - name: Setup Bazel Cache
         run: |
           BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
@@ -41,26 +38,4 @@ jobs:
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: yarn install
       - run: yarn build
-      - name: Update dist
-        run: |
-          mkdir -p dist
-          tar -xf bazel-bin/public.tar -C dist
-          git config --global user.name 'googlemaps-bot'
-          git config --global user.email 'googlemaps-bot@users.noreply.github.com'
-          git add dist
-          git commit -m "chore: update dist folder [skip ci]" || true
-          git push
-      - uses: actions/checkout@v2
-        with:
-          ref: master
-          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2
-        with:
-          extra_plugins: |
-            "@semantic-release/commit-analyzer"
-            "@semantic-release/release-notes-generator"
-            "@semantic-release/git
-            "@semantic-release/github
-        env:
-          GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+      - run: yarn test
