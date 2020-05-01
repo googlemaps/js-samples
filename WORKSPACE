@@ -33,13 +33,13 @@ http_archive(
 )
 
 # Check the bazel version and download npm dependencies
-load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "npm_install")
 
 # Setup the Node.js toolchain & install our npm dependencies into @npm
-yarn_install(
+npm_install(
     name = "npm",
     package_json = "//:package.json",
-    yarn_lock = "//:yarn.lock",
+    package_lock_json = "//:package-lock.json",
 )
 
 # Install all bazel dependencies of our npm packages
