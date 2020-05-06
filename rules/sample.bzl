@@ -4,6 +4,16 @@ load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:strip_region_tags.bzl", "strip_region_tags")
+load("//rules:prettier.bzl", "prettier")
+
+def _set_data_field(name, src, out, field, value):
+    native.genrule(
+        name = name,
+        cmd = "./$(location //rules:json) -f $(location {}) -e 'this.{}={}' > $@".format(src, field, value),
+        srcs = [src],
+        tools = ["//rules:json"],
+        outs = [out],
+    )
 
 def sample():
     """ generates the various outputs"""
@@ -60,12 +70,12 @@ def sample():
     )
 
     ## jsfiddle output
-    native.genrule(
+    _set_data_field(
         name = "_data_jsfiddle_file",
-        cmd = "$(location //rules:json) -f $(location _data.json) -e 'this.jsfiddle=true' > $@",
-        srcs = [":_data.json"],
-        tools = ["//rules:json"],
-        outs = ["_data_jsfiddle.json"],
+        src = ":_data.json",
+        out = "_data_jsfiddle.json",
+        field = "jsfiddle",
+        value = "true",
     )
 
     nunjucks(
@@ -99,6 +109,28 @@ def sample():
         outs = ["index_ugly.html"],
     )
 
+    ## inline output
+    _set_data_field(
+        name = "_data_inline_file",
+        src = ":_data.json",
+        out = "_data_inline.json",
+        field = "inline",
+        value = "true",
+    )
+
+    # ## normal index.html output
+    nunjucks(
+        name = "inline_rendered",
+        template = ":src/index.njk",
+        json = ":_data_inline.json",
+        data = [
+            ":src/index.njk",
+            ":_data_inline.json",
+            "//shared:templates",
+        ],
+        outs = ["inline_rendered.html"],
+    )
+
     for src, out in [
         (":index_ugly.html", "index.html"),
         (":jsfiddle_ugly.html", "jsfiddle.html"),
@@ -106,13 +138,23 @@ def sample():
         (":transpiled_ugly.js", "transpiled.js"),
         (":app_ugly.js", "app.js"),
     ]:
-        native.genrule(
-            name = "prettier_" + src.replace(":", "").split(".")[0],
-            srcs = [src],
-            outs = [out],
-            cmd = "$(location //rules:prettier) $(location {}) > $@".format(src),
-            tools = ["//rules:prettier"],
+        prettier(
+            src = src,
+            out = out,
         )
+
+    native.genrule(
+        name = "inline_ugly",
+        srcs = [":inline_rendered.html", ":app.js", ":style.css"],
+        outs = ["inline_ugly.html"],
+        cmd = "$(location //rules:inline) $(location :inline_rendered.html) $@",
+        tools = ["//rules:inline"],
+    )
+
+    prettier(
+        src = "inline_ugly.html",
+        out = "inline.html",
+    )
 
     native.filegroup(
         name = "js",
@@ -146,6 +188,7 @@ def sample():
             ":css",
             ":html",
             ":js",
+            ":inline.html",
         ],
         visibility = ["//visibility:public"],
     )

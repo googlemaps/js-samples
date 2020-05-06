@@ -37,14 +37,16 @@
       <!-- jsFiddle will insert css and js -->
     {% else %}
       {% block css %}
-        <link rel="stylesheet" type="text/css" href="./style.css">
+        <link rel="stylesheet" type="text/css" href="./style.css"{% if inline %} data-inline{% endif -%}>
       {% endblock %}
       {% block js %}
-        <script src="./transpiled.js"></script>
+        <script {% if inline %}src="./app.js" data-inline{% else %}src="./transpiled.js"{% endif %}></script>
       {% endblock %}
       {{ api() }}
+      {% if not inline %}
       {% include 'shared/analytics.njk' %}
       {% include 'shared/errors.njk' %}
+      {% endif %}
     {% endif %}
   </head>
   <body>
