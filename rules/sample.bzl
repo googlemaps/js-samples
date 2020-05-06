@@ -90,10 +90,10 @@ def sample():
     nunjucks(
         name = "_html",
         template = ":src/index.njk",
-        json = ":data.json",
+        json = ":_data.json",
         data = [
             ":src/index.njk",
-            ":data.json",
+            ":_data.json",
             "//shared:templates",
         ],
         outs = ["index_ugly.html"],
