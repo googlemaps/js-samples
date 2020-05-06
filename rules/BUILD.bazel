@@ -17,3 +17,14 @@ nodejs_binary(
     entry_point = "@npm//:node_modules/prettier/bin-prettier.js",
     visibility = ["//visibility:public"],
 )
+
+nodejs_binary(
+    name = "inline",
+    data = [
+        "@npm//:node_modules",
+        "inline.js",
+    ],
+    entry_point = ":inline.js",
+        visibility = ["//visibility:public"],
+
+)
