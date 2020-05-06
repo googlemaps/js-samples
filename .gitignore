@@ -5,6 +5,7 @@ samples/**/package-lock.json
 **/src/*.html
 /index.html
 bazel-*
+.bazelrc.user
 .cache
 master
 # Logs
