@@ -6,6 +6,7 @@ load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:strip_region_tags.bzl", "strip_region_tags")
 
 def sample():
+    """ generates the various outputs"""
     strip_region_tags(
         name = "_js_without_region_tags",
         input = ":src/index.js",
@@ -58,9 +59,53 @@ def sample():
         outs = ["_data.json"],
     )
 
-    nunjucks()
+    ## jsfiddle output
+    native.genrule(
+        name = "_data_jsfiddle_file",
+        cmd = "$(location //rules:json) -f $(location _data.json) -e 'this.jsfiddle=true' > $@",
+        srcs = [":_data.json"],
+        tools = ["//rules:json"],
+        outs = ["_data_jsfiddle.json"],
+    )
 
-    [
+    nunjucks(
+        name = "_html_jsfiddle",
+        template = ":src/index.njk",
+        json = ":_data_jsfiddle.json",
+        data = [
+            ":src/index.njk",
+            ":_data_jsfiddle.json",
+            "//shared:templates",
+        ],
+        outs = ["_jsfiddle.html"],
+    )
+
+    strip_region_tags(
+        name = "_html_strip_region_tags",
+        input = ":_jsfiddle.html",
+        output = "jsfiddle_ugly.html",
+    )
+
+    ## normal index.html output
+    nunjucks(
+        name = "_html",
+        template = ":src/index.njk",
+        json = ":data.json",
+        data = [
+            ":src/index.njk",
+            ":data.json",
+            "//shared:templates",
+        ],
+        outs = ["index_ugly.html"],
+    )
+
+    for src, out in [
+        (":index_ugly.html", "index.html"),
+        (":jsfiddle_ugly.html", "jsfiddle.html"),
+        (":style_ugly.css", "style.css"),
+        (":transpiled_ugly.js", "transpiled.js"),
+        (":app_ugly.js", "app.js"),
+    ]:
         native.genrule(
             name = "prettier_" + src.replace(":", "").split(".")[0],
             srcs = [src],
@@ -68,14 +113,6 @@ def sample():
             cmd = "$(location //rules:prettier) $(location {}) > $@".format(src),
             tools = ["//rules:prettier"],
         )
-        for src, out in [
-            (":index_ugly.html", "index.html"),
-            (":jsfiddle_ugly.html", "jsfiddle.html"),
-            (":style_ugly.css", "style.css"),
-            (":transpiled_ugly.js", "transpiled.js"),
-            (":app_ugly.js", "app.js"),
-        ]
-    ]
 
     native.filegroup(
         name = "js",

@@ -1,60 +1,30 @@
 load("@npm//nunjucks-cli:index.bzl", npm_nunjucks = "nunjucks")
 load("//rules:strip_region_tags.bzl", "strip_region_tags")
 
-def nunjucks():
-    [_nunjucks(jsfiddle) for jsfiddle in [False, True]]
-
-def _nunjucks(jsfiddle):
-    _html = "_html_jsfiddle" if jsfiddle else "_html"
-    html = "html_jsfiddle" if jsfiddle else "html_"
-    out = "_jsfiddle.html" if jsfiddle else "index_ugly.html"
-
-    if jsfiddle:
-        native.genrule(
-            name = "_data_jsfiddle_file",
-            cmd = "$(location //rules:json) -f $(location _data.json) -e 'this.jsfiddle=true' > $@",
-            srcs = [":_data.json"],
-            tools = ["//rules:json"],
-            outs = ["_data_jsfiddle.json"],
-        )
-
-        _data = "_data_jsfiddle.json"
-    else:
-        _data = "_data.json"
+def nunjucks(name, outs, template, json, data):
+    intermediate = "_" + name
 
     npm_nunjucks(
-        name = _html,
+        name = intermediate,
         args = [
-            "$(location src/index.njk)",
+            "$(location {})".format(template),
             "-p",
             ".",
-            "$(location {})".format(_data),
+            "$(location {})".format(json),
             "--out",
             "$(@D)",
         ],
-        data = [
-            ":src/index.njk",
-            _data,
-            "//shared:templates",
-        ],
+        data = data,
         output_dir = True,
     )
 
     # this genrule moves the generated html file to the correct location
     # nunjucks-cli does not allow specifying a single output file
     # nunjucks-cli converts the .njk to a .html by default
-    # TODO: consider an alias? wrap nodejs_binary in genrule?
     native.genrule(
-        name = html,
-        srcs = [_html],
-        cmd = "cat $(location {})/{}/src/index.html > $@".format(_html, native.package_name()),
-        outs = [out],
+        name = name,
+        srcs = [intermediate],
+        cmd = "cat $(location {})/{}/src/index.html > $@".format(intermediate, native.package_name()),
+        outs = outs,
         visibility = ["//visibility:public"],
     )
-
-    if jsfiddle:
-        strip_region_tags(
-            name = "_html_strip_region_tags",
-            input = out,
-            output = "jsfiddle_ugly.html",
-        )
