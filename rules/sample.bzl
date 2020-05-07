@@ -1,6 +1,5 @@
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@npm//@babel/cli:index.bzl", "babel")
-load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:strip_region_tags.bzl", "strip_region_tags")
@@ -93,76 +92,65 @@ def sample():
     )
 
     strip_region_tags(
-        name = "_html_strip_region_tags",
+        name = "_jsfiddle_strip_region_tags",
         input = ":_jsfiddle.html",
         output = "jsfiddle_ugly.html",
     )
 
-    ## normal index.html output
-    nunjucks(
-        name = "_html",
-        template = ":src/index.njk",
-        json = ":_data.json",
-        data = [
-            ":src/index.njk",
-            ":_data.json",
-            "//shared:templates",
-        ],
-        outs = ["index_ugly.html"],
-    )
-
-    ## inline output
-    _set_data_field(
-        name = "_data_inline_file",
-        src = ":_data.json",
-        out = "_data_inline.json",
-        field = "inline",
-        value = "true",
-    )
-
-    # ## normal index.html output
-    nunjucks(
-        name = "inline_rendered",
-        template = ":src/index.njk",
-        json = ":_data_inline.json",
-        data = [
-            ":src/index.njk",
-            ":_data_inline.json",
-            "//shared:templates",
-        ],
-        outs = ["inline_rendered.html"],
-    )
-
     for src, out in [
-        (":index_ugly.html", "index.html"),
         (":jsfiddle_ugly.html", "jsfiddle.html"),
         (":style_ugly.css", "style.css"),
         (":transpiled_ugly.js", "transpiled.js"),
-        (":app_ugly.js", "app.js"),
     ]:
         prettier(
             src = src,
             out = out,
         )
 
+    ## index
+    _set_data_field(
+        name = "_data_index_file",
+        src = ":_data.json",
+        out = "_data_index.json",
+        field = "inline",
+        value = "true",
+    )
+
+    nunjucks(
+        name = "_index_rendered",
+        template = ":src/index.njk",
+        json = ":_data_index.json",
+        data = [
+            ":src/index.njk",
+            ":_data_index.json",
+            "//shared:templates",
+        ],
+        outs = ["_index_rendered.html"],
+    )
+
     native.genrule(
-        name = "inline_ugly",
-        srcs = [":inline_rendered.html", ":app.js", ":style.css"],
-        outs = ["inline_ugly.html"],
-        cmd = "$(location //rules:inline) $(location :inline_rendered.html) $@",
+        name = "_index_with_tags",
+        srcs = [":_index_rendered.html", ":transpiled.js", ":style.css"],
+        outs = ["_index_with_tags.html"],
+        cmd = "$(location //rules:inline) $(location :_index_rendered.html) $@",
         tools = ["//rules:inline"],
     )
 
+    strip_region_tags(
+        name = "_index_rendered_no_tags",
+        input = ":_index_with_tags.html",
+        output = "_index_rendered_no_tags.html",
+    )
+
     prettier(
-        src = "inline_ugly.html",
-        out = "inline.html",
+        src = "_index_rendered_no_tags.html",
+        out = "index.html",
     )
 
     native.filegroup(
         name = "js",
         srcs = [
             ":transpiled.js",
-            ":app.js",
         ],
         visibility = ["//visibility:public"],
     )
@@ -190,7 +178,6 @@ def sample():
             ":css",
             ":html",
             ":js",
-            ":inline.html",
         ],
         visibility = ["//visibility:public"],
     )
