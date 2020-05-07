@@ -16,6 +16,7 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_maptype_overlay]
 
   /*
    * This demo illustrates the coordinate system used to display map tiles in the
@@ -49,17 +50,19 @@
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 10,
-      center: { lat: 41.85, lng: -87.65 }
-    });
-
-    // Insert this overlay map type as the first overlay map type at
+      center: {
+        lat: 41.85,
+        lng: -87.65
+      }
+    }); // Insert this overlay map type as the first overlay map type at
     // position 0. Note that all overlay map types appear on top of
     // their parent base map.
+
     map.overlayMapTypes.insertAt(
       0,
       new CoordMapType(new google.maps.Size(256, 256))
     );
-  }
+  } // [END maps_maptype_overlay]
 
   exports.CoordMapType = CoordMapType;
   exports.initMap = initMap;

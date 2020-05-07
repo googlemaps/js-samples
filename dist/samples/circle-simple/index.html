@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_circle_simple] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_circle_simple] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,10 +70,10 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_circle_simple]
         // This example creates circles on the map, representing populations in North
         // America.
         // First, create an object containing LatLng and population for each city.
-
         var citymap = {
           chicago: {
             center: {
@@ -126,7 +130,7 @@
               radius: Math.sqrt(citymap[city].population) * 100
             });
           }
-        }
+        } // [END maps_circle_simple]
 
         exports.citymap = citymap;
         exports.initMap = initMap;
@@ -139,6 +143,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_circle_simple] -->
     <div id="map"></div>
+    <!-- [END maps_circle_simple] -->
   </body>
 </html>

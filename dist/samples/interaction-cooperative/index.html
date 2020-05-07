@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_interaction_cooperative] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_interaction_cooperative] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,13 +70,13 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_interaction_cooperative]
 
         /**
          * This sample sets the gesture handling mode to 'cooperative',
          * which means that on a mobile device, the user must swipe with one
          * finger to scroll the page and two fingers to pan the map.
          */
-
         function initMap() {
           var myLatLng = {
             lat: -25.363,
@@ -88,7 +92,7 @@
             map: map,
             title: "Hello World!"
           });
-        }
+        } // [END maps_interaction_cooperative]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -100,6 +104,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_interaction_cooperative] -->
     <div id="map"></div>
+    <!-- [END maps_interaction_cooperative] -->
   </body>
 </html>

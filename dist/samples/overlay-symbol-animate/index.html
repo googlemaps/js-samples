@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_overlay_symbol_animate] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_overlay_symbol_animate] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,8 +70,8 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_overlay_symbol_animate]
         // This example adds an animated symbol to a polyline.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             center: {
@@ -116,7 +120,7 @@
             icons[0].offset = count / 2 + "%";
             line.set("icons", icons);
           }, 20);
-        }
+        } // [END maps_overlay_symbol_animate]
 
         exports.animateCircle = animateCircle;
         exports.initMap = initMap;
@@ -129,6 +133,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_overlay_symbol_animate] -->
     <div id="map"></div>
+    <!-- [END maps_overlay_symbol_animate] -->
   </body>
 </html>

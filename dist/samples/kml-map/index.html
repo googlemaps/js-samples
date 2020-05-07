@@ -34,12 +34,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_kml_map] */
+      /* [END maps_kml_map] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -61,6 +62,7 @@
          *   and displaying the contents in a side panel instead of
          *   an InfoWindow
          */
+        // [START maps_kml_map]
 
         var src =
           "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
@@ -81,7 +83,7 @@
             var testimonial = document.getElementById("capture");
             testimonial.innerHTML = content;
           });
-        }
+        } // [END maps_kml_map]
 
         exports.initMap = initMap;
         exports.src = src;
@@ -94,6 +96,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_kml_map] -->
     <div id="map"></div>
+    <!-- [END maps_kml_map] -->
   </body>
 </html>

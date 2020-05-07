@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_layer_data_dynamic] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,12 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_layer_data_dynamic] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -68,6 +70,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_layer_data_dynamic]
 
         function initMap() {
           exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -80,7 +83,8 @@
 
           exports.map.data.loadGeoJson(
             "https://storage.googleapis.com/mapsdevsite/json/google.json"
-          ); // Color each letter gray. Change the color when the isColorful property
+          ); // [START maps_layer_data_dynamic_snippet]
+          // Color each letter gray. Change the color when the isColorful property
           // is set to true.
 
           exports.map.data.setStyle(function(feature) {
@@ -114,8 +118,8 @@
           });
           exports.map.data.addListener("mouseout", function(event) {
             exports.map.data.revertStyle();
-          });
-        }
+          }); // [END maps_layer_data_dynamic_snippet]
+        } // [END maps_layer_data_dynamic]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -127,6 +131,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_layer_data_dynamic] -->
     <div id="map"></div>
+    <!-- [END maps_layer_data_dynamic] -->
   </body>
 </html>

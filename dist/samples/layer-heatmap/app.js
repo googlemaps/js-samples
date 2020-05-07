@@ -16,20 +16,21 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_layer_heatmap]
   // This example requires the Visualization library. Include the libraries=visualization
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
-
   var heatmap;
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 13,
-      center: { lat: 37.775, lng: -122.434 },
+      center: {
+        lat: 37.775,
+        lng: -122.434
+      },
       mapTypeId: "satellite"
     });
-
     heatmap = new google.maps.visualization.HeatmapLayer({
       data: getPoints(),
       map: exports.map
@@ -66,9 +67,8 @@
 
   function changeOpacity() {
     heatmap.set("opacity", heatmap.get("opacity") ? null : 0.2);
-  }
+  } // Heatmap data: 500 Points
 
-  // Heatmap data: 500 Points
   function getPoints() {
     return [
       new google.maps.LatLng(37.782551, -122.445368),
@@ -572,7 +572,7 @@
       new google.maps.LatLng(37.752986, -122.403112),
       new google.maps.LatLng(37.751266, -122.403355)
     ];
-  }
+  } // [END maps_layer_heatmap]
 
   exports.changeGradient = changeGradient;
   exports.changeOpacity = changeOpacity;

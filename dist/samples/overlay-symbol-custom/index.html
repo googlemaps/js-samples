@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_overlay_symbol_custom] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_overlay_symbol_custom] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,8 +70,8 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_overlay_symbol_custom]
         // This example adds three custom symbols to a polyline.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 6,
@@ -76,7 +80,8 @@
               lng: 153.027
             },
             mapTypeId: "terrain"
-          }); // Define the custom symbols. All symbols are defined via SVG path notation.
+          }); // [START maps_overlay_symbol_custom_region_polyline]
+          // Define the custom symbols. All symbols are defined via SVG path notation.
           // They have varying stroke color, fill color, stroke weight,
           // opacity and rotation properties.
 
@@ -124,8 +129,8 @@
               }
             ],
             map: map
-          });
-        }
+          }); // [END maps_overlay_symbol_custom_region_polyline]
+        } // [END maps_overlay_symbol_custom]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -137,6 +142,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_overlay_symbol_custom] -->
     <div id="map"></div>
+    <!-- [END maps_overlay_symbol_custom] -->
   </body>
 </html>

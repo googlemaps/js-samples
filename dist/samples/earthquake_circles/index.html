@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_earthquake_circles] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,12 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_earthquake_circles] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -68,6 +70,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_earthquake_circles]
 
         function initMap() {
           exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -106,7 +109,7 @@
 
         function eqfeed_callback(results) {
           exports.map.data.addGeoJson(results);
-        }
+        } // [END maps_earthquake_circles]
 
         exports.eqfeed_callback = eqfeed_callback;
         exports.getCircle = getCircle;
@@ -120,6 +123,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_earthquake_circles] -->
     <div id="map"></div>
+    <!-- [END maps_earthquake_circles] -->
   </body>
 </html>

@@ -16,16 +16,18 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_layer_transit]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 13,
-      center: { lat: 51.501904, lng: -0.115871 }
+      center: {
+        lat: 51.501904,
+        lng: -0.115871
+      }
     });
-
     var transitLayer = new google.maps.TransitLayer();
     transitLayer.setMap(map);
-  }
+  } // [END maps_layer_transit]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

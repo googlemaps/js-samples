@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_layer_data_polygon] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_layer_data_polygon] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,9 +70,9 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_layer_data_polygon]
         // This example uses the Google Maps JavaScript API's Data layer
         // to create a rectangular polygon with 2 holes in it.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 6,
@@ -141,7 +145,7 @@
               innerCoords2
             ])
           });
-        }
+        } // [END maps_layer_data_polygon]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -153,6 +157,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_layer_data_polygon] -->
     <div id="map"></div>
+    <!-- [END maps_layer_data_polygon] -->
   </body>
 </html>

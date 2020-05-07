@@ -16,14 +16,17 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_streetview_controls]
   function initPano() {
     // Note: constructed panorama objects have visible: true
     // set by default.
     var panorama = new google.maps.StreetViewPanorama(
       document.getElementById("map"),
       {
-        position: { lat: 42.345573, lng: -71.098326 },
+        position: {
+          lat: 42.345573,
+          lng: -71.098326
+        },
         addressControlOptions: {
           position: google.maps.ControlPosition.BOTTOM_CENTER
         },
@@ -32,7 +35,7 @@
         enableCloseButton: false
       }
     );
-  }
+  } // [END maps_streetview_controls]
 
   exports.initPano = initPano;
 })((this.window = this.window || {}));

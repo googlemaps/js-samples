@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_marker_labels] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_marker_labels] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,9 +70,9 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_marker_labels]
         // In the following example, markers appear when the user clicks on the map.
         // Each marker is labeled with a single alphabetical character.
-
         var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         exports.labelIndex = 0;
 
@@ -97,7 +101,7 @@
             label: labels[exports.labelIndex++ % labels.length],
             map: map
           });
-        }
+        } // [END maps_marker_labels]
 
         exports.addMarker = addMarker;
         exports.initMap = initMap;
@@ -111,6 +115,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_marker_labels] -->
     <div id="map"></div>
+    <!-- [END maps_marker_labels] -->
   </body>
 </html>

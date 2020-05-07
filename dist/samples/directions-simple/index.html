@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_directions_simple] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -61,10 +62,13 @@
         line-height: 30px;
         padding-left: 10px;
       }
+
+      /* [END maps_directions_simple] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -80,7 +84,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-
+        // [START maps_directions_simple]
         function initMap() {
           var directionsService = new google.maps.DirectionsService();
           var directionsRenderer = new google.maps.DirectionsRenderer();
@@ -127,7 +131,7 @@
               }
             }
           );
-        }
+        } // [END maps_directions_simple]
 
         exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
         exports.initMap = initMap;
@@ -140,6 +144,7 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_directions_simple] -->
     <div id="floating-panel">
       <b>Start: </b>
       <select id="start">
@@ -173,5 +178,6 @@
       </select>
     </div>
     <div id="map"></div>
+    <!-- [END maps_directions_simple] -->
   </body>
 </html>

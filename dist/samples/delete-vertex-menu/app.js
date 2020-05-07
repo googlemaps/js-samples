@@ -16,16 +16,14 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_delete_vertex_menu]
   function initialize() {
     var mapOptions = {
       zoom: 3,
       center: new google.maps.LatLng(0, -180),
       mapTypeId: "terrain"
     };
-
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
     var flightPlanCoordinates = [
       new google.maps.LatLng(37.772323, -122.214897),
       new google.maps.LatLng(21.291982, -157.821856),
@@ -40,41 +38,39 @@
       strokeWeight: 2,
       map: map
     });
-
     var deleteMenu = new DeleteMenu();
-
     google.maps.event.addListener(flightPath, "rightclick", function(e) {
       // Check if click was on a vertex control point
       if (e.vertex == undefined) {
         return;
       }
+
       deleteMenu.open(map, flightPath.getPath(), e.vertex);
     });
   }
-
   /**
    * A menu that lets a user delete a selected vertex of a path.
    * @constructor
    */
+
   function DeleteMenu() {
     this.div_ = document.createElement("div");
     this.div_.className = "delete-menu";
     this.div_.innerHTML = "Delete";
-
     var menu = this;
     google.maps.event.addDomListener(this.div_, "click", function() {
       menu.removeVertex();
     });
   }
+
   DeleteMenu.prototype = new google.maps.OverlayView();
 
   DeleteMenu.prototype.onAdd = function() {
     var deleteMenu = this;
     var map = this.getMap();
-    this.getPanes().floatPane.appendChild(this.div_);
-
-    // mousedown anywhere on the map except on the menu div will close the
+    this.getPanes().floatPane.appendChild(this.div_); // mousedown anywhere on the map except on the menu div will close the
     // menu.
+
     this.divListener_ = google.maps.event.addDomListener(
       map.getDiv(),
       "mousedown",
@@ -89,9 +85,8 @@
 
   DeleteMenu.prototype.onRemove = function() {
     google.maps.event.removeListener(this.divListener_);
-    this.div_.parentNode.removeChild(this.div_);
+    this.div_.parentNode.removeChild(this.div_); // clean up
 
-    // clean up
     this.set("position");
     this.set("path");
     this.set("vertex");
@@ -113,10 +108,10 @@
     this.div_.style.top = point.y + "px";
     this.div_.style.left = point.x + "px";
   };
-
   /**
    * Opens the menu at a vertex of a given path.
    */
+
   DeleteMenu.prototype.open = function(map, path, vertex) {
     this.set("position", path.getAt(vertex));
     this.set("path", path);
@@ -124,10 +119,10 @@
     this.setMap(map);
     this.draw();
   };
-
   /**
    * Deletes the vertex from the path.
    */
+
   DeleteMenu.prototype.removeVertex = function() {
     var path = this.get("path");
     var vertex = this.get("vertex");
@@ -139,7 +134,7 @@
 
     path.removeAt(vertex);
     this.close();
-  };
+  }; // [END maps_delete_vertex_menu]
 
   exports.DeleteMenu = DeleteMenu;
   exports.initialize = initialize;

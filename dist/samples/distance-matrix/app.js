@@ -16,16 +16,20 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_distance_matrix]
   function initMap() {
     var bounds = new google.maps.LatLngBounds();
     var markersArray = [];
-
-    var origin1 = { lat: 55.93, lng: -3.118 };
+    var origin1 = {
+      lat: 55.93,
+      lng: -3.118
+    };
     var origin2 = "Greenwich, England";
     var destinationA = "Stockholm, Sweden";
-    var destinationB = { lat: 50.087, lng: 14.421 };
-
+    var destinationB = {
+      lat: 50.087,
+      lng: 14.421
+    };
     var destinationIcon =
       "https://chart.googleapis.com/chart?" +
       "chst=d_map_pin_letter&chld=D|FF0000|000000";
@@ -33,11 +37,13 @@
       "https://chart.googleapis.com/chart?" +
       "chst=d_map_pin_letter&chld=O|FFFF00|000000";
     var map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: 55.53, lng: 9.4 },
+      center: {
+        lat: 55.53,
+        lng: 9.4
+      },
       zoom: 10
     });
     var geocoder = new google.maps.Geocoder();
-
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
       {
@@ -58,7 +64,9 @@
           outputDiv.innerHTML = "";
           deleteMarkers(markersArray);
 
-          var showGeocodedAddressOnMap = function(asDestination) {
+          var showGeocodedAddressOnMap = function showGeocodedAddressOnMap(
+            asDestination
+          ) {
             var icon = asDestination ? destinationIcon : originIcon;
             return function(results, status) {
               if (status === "OK") {
@@ -79,12 +87,17 @@
           for (var i = 0; i < originList.length; i++) {
             var results = response.rows[i].elements;
             geocoder.geocode(
-              { address: originList[i] },
+              {
+                address: originList[i]
+              },
               showGeocodedAddressOnMap(false)
             );
+
             for (var j = 0; j < results.length; j++) {
               geocoder.geocode(
-                { address: destinationList[j] },
+                {
+                  address: destinationList[j]
+                },
                 showGeocodedAddressOnMap(true)
               );
               outputDiv.innerHTML +=
@@ -107,8 +120,9 @@
     for (var i = 0; i < markersArray.length; i++) {
       markersArray[i].setMap(null);
     }
+
     markersArray = [];
-  }
+  } // [END maps_distance_matrix]
 
   exports.deleteMarkers = deleteMarkers;
   exports.initMap = initMap;

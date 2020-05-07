@@ -16,15 +16,19 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_control_custom]
 
-  var chicago = { lat: 41.85, lng: -87.65 };
-
+  var chicago = {
+    lat: 41.85,
+    lng: -87.65
+  };
   /**
    * The CenterControl adds a control to the map that recenters the map on
    * Chicago.
    * This constructor takes the control DIV as an argument.
    * @constructor
    */
+
   function CenterControl(controlDiv, map) {
     // Set CSS for the control border.
     var controlUI = document.createElement("div");
@@ -36,9 +40,8 @@
     controlUI.style.marginBottom = "22px";
     controlUI.style.textAlign = "center";
     controlUI.title = "Click to recenter the map";
-    controlDiv.appendChild(controlUI);
+    controlDiv.appendChild(controlUI); // Set CSS for the control interior.
 
-    // Set CSS for the control interior.
     var controlText = document.createElement("div");
     controlText.style.color = "rgb(25,25,25)";
     controlText.style.fontFamily = "Roboto,Arial,sans-serif";
@@ -47,9 +50,8 @@
     controlText.style.paddingLeft = "5px";
     controlText.style.paddingRight = "5px";
     controlText.innerHTML = "Center Map";
-    controlUI.appendChild(controlText);
+    controlUI.appendChild(controlText); // Setup the click event listeners: simply set the map to Chicago.
 
-    // Setup the click event listeners: simply set the map to Chicago.
     controlUI.addEventListener("click", function() {
       map.setCenter(chicago);
     });
@@ -59,18 +61,16 @@
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,
       center: chicago
-    });
-
-    // Create the DIV to hold the control and call the CenterControl()
+    }); // Create the DIV to hold the control and call the CenterControl()
     // constructor passing in this DIV.
+
     var centerControlDiv = document.createElement("div");
     var centerControl = new CenterControl(centerControlDiv, exports.map);
-
     centerControlDiv.index = 1;
     exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
       centerControlDiv
     );
-  }
+  } // [END maps_control_custom]
 
   exports.CenterControl = CenterControl;
   exports.chicago = chicago;

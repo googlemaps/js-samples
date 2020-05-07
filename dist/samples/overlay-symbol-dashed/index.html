@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_overlay_symbol_dashed] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_overlay_symbol_dashed] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,10 +70,10 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_overlay_symbol_dashed]
         // This example converts a polyline to a dashed line, by
         // setting the opacity of the polyline to 0, and drawing an opaque symbol
         // at a regular interval on the polyline.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 6,
@@ -78,7 +82,8 @@
               lng: 153.027
             },
             mapTypeId: "terrain"
-          }); // Define a symbol using SVG path notation, with an opacity of 1.
+          }); // [START maps_overlay_symbol_dashed_region_polyline]
+          // Define a symbol using SVG path notation, with an opacity of 1.
 
           var lineSymbol = {
             path: "M 0,-1 0,1",
@@ -108,8 +113,8 @@
               }
             ],
             map: map
-          });
-        }
+          }); // [END maps_overlay_symbol_dashed_region_polyline]
+        } // [END maps_overlay_symbol_dashed]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -121,6 +126,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_overlay_symbol_dashed] -->
     <div id="map"></div>
+    <!-- [END maps_overlay_symbol_dashed] -->
   </body>
 </html>

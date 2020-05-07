@@ -16,17 +16,24 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_streetview_embed]
 
   function initialize() {
     exports.panorama = new google.maps.StreetViewPanorama(
       document.getElementById("street-view"),
       {
-        position: { lat: 37.86926, lng: -122.254811 },
-        pov: { heading: 165, pitch: 0 },
+        position: {
+          lat: 37.86926,
+          lng: -122.254811
+        },
+        pov: {
+          heading: 165,
+          pitch: 0
+        },
         zoom: 1
       }
     );
-  }
+  } // [END maps_streetview_embed]
 
   exports.initialize = initialize;
 })((this.window = this.window || {}));

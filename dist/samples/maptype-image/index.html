@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_maptype_image] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_maptype_image] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,7 +70,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-
+        // [START maps_maptype_image]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             center: {
@@ -129,7 +133,7 @@
             x: x,
             y: y
           };
-        }
+        } // [END maps_maptype_image]
 
         exports.getNormalizedCoord = getNormalizedCoord;
         exports.initMap = initMap;
@@ -142,6 +146,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_maptype_image] -->
     <div id="map"></div>
+    <!-- [END maps_maptype_image] -->
   </body>
 </html>

@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_earthquake_markers] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,12 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_earthquake_markers] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -68,6 +70,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_earthquake_markers]
 
         function initMap() {
           exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -94,7 +97,7 @@
               map: exports.map
             });
           }
-        };
+        }; // [END maps_earthquake_markers]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -106,6 +109,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_earthquake_markers] -->
     <div id="map"></div>
+    <!-- [END maps_earthquake_markers] -->
   </body>
 </html>

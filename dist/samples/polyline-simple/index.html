@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_polyline_simple] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_polyline_simple] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,10 +70,10 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_polyline_simple]
         // This example creates a 2-pixel-wide red polyline showing the path of
         // the first trans-Pacific flight between Oakland, CA, and Brisbane,
         // Australia which was made by Charles Kingsford Smith.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 3,
@@ -105,7 +109,7 @@
             strokeWeight: 2
           });
           flightPath.setMap(map);
-        }
+        } // [END maps_polyline_simple]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -117,6 +121,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_polyline_simple] -->
     <div id="map"></div>
+    <!-- [END maps_polyline_simple] -->
   </body>
 </html>

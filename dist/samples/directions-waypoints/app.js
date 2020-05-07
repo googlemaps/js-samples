@@ -16,16 +16,18 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_directions_waypoints]
   function initMap() {
     var directionsService = new google.maps.DirectionsService();
     var directionsRenderer = new google.maps.DirectionsRenderer();
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 6,
-      center: { lat: 41.85, lng: -87.65 }
+      center: {
+        lat: 41.85,
+        lng: -87.65
+      }
     });
     directionsRenderer.setMap(map);
-
     document.getElementById("submit").addEventListener("click", function() {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     });
@@ -34,6 +36,7 @@
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     var waypts = [];
     var checkboxArray = document.getElementById("waypoints");
+
     for (var i = 0; i < checkboxArray.length; i++) {
       if (checkboxArray.options[i].selected) {
         waypts.push({
@@ -56,8 +59,8 @@
           directionsRenderer.setDirections(response);
           var route = response.routes[0];
           var summaryPanel = document.getElementById("directions-panel");
-          summaryPanel.innerHTML = "";
-          // For each route, display summary information.
+          summaryPanel.innerHTML = ""; // For each route, display summary information.
+
           for (var i = 0; i < route.legs.length; i++) {
             var routeSegment = i + 1;
             summaryPanel.innerHTML +=
@@ -71,7 +74,7 @@
         }
       }
     );
-  }
+  } // [END maps_directions_waypoints]
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;

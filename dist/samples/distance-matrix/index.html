@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_distance_matrix] */
       #right-panel {
         font-family: "Roboto", "sans-serif";
         line-height: 30px;
@@ -74,10 +75,13 @@
       #output {
         font-size: 11px;
       }
+
+      /* [END maps_distance_matrix] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -93,7 +97,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-
+        // [START maps_distance_matrix]
         function initMap() {
           var bounds = new google.maps.LatLngBounds();
           var markersArray = [];
@@ -201,7 +205,7 @@
           }
 
           markersArray = [];
-        }
+        } // [END maps_distance_matrix]
 
         exports.deleteMarkers = deleteMarkers;
         exports.initMap = initMap;
@@ -214,6 +218,7 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_distance_matrix] -->
     <div id="right-panel">
       <div id="inputs">
         <pre>
@@ -229,5 +234,6 @@ var destinationB = {lat: 50.087, lng: 14.421};
       <div id="output"></div>
     </div>
     <div id="map"></div>
+    <!-- [END maps_distance_matrix] -->
   </body>
 </html>

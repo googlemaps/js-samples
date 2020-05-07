@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_overlay_hideshow] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -61,10 +62,13 @@
         line-height: 30px;
         padding-left: 10px;
       }
+
+      /* [END maps_overlay_hideshow] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -80,6 +84,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_overlay_hideshow]
         // This example adds hide() and show() methods to a custom overlay's prototype.
         // These methods toggle the visibility of the container <div>.
         // Additionally, we add a toggleDOM() method, which attaches or detaches the
@@ -166,7 +171,8 @@
 
         USGSOverlay.prototype.onRemove = function() {
           this.div_.parentNode.removeChild(this.div_);
-        }; // Set the visibility to 'hidden' or 'visible'.
+        }; // [START maps_overlay_hideshow_snippet]
+        // Set the visibility to 'hidden' or 'visible'.
 
         USGSOverlay.prototype.hide = function() {
           if (this.div_) {
@@ -200,7 +206,7 @@
           } else {
             this.setMap(this.map_);
           }
-        };
+        }; // [END maps_overlay_hideshow_snippet]
 
         exports.USGSOverlay = USGSOverlay;
         exports.initMap = initMap;
@@ -213,6 +219,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_overlay_hideshow] -->
+    <!-- [START maps_overlay_hideshow_toolbar] -->
     <!-- Add an input button to initiate the toggle method on the overlay. -->
     <div id="floating-panel">
       <input
@@ -226,6 +234,8 @@
         onclick="overlay.toggleDOM();"
       />
     </div>
+    <!-- [END maps_overlay_hideshow_toolbar] -->
     <div id="map"></div>
+    <!-- [END maps_overlay_hideshow] -->
   </body>
 </html>

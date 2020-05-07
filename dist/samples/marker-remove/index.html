@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_marker_remove] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -61,12 +62,13 @@
         line-height: 30px;
         padding-left: 10px;
       }
+
+      /* [END maps_marker_remove] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -82,6 +84,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_marker_remove]
         // In the following example, markers appear when the user clicks on the map.
         // The markers are stored in an array.
         // The user can then click an option to hide, show or delete the markers.
@@ -131,7 +134,7 @@
         function deleteMarkers() {
           clearMarkers();
           exports.markers = [];
-        }
+        } // [END maps_marker_remove]
 
         exports.addMarker = addMarker;
         exports.clearMarkers = clearMarkers;
@@ -148,6 +151,7 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_marker_remove] -->
     <div id="floating-panel">
       <input onclick="clearMarkers();" type="button" value="Hide Markers" />
       <input onclick="showMarkers();" type="button" value="Show All Markers" />
@@ -155,5 +159,6 @@
     </div>
     <div id="map"></div>
     <p>Click on the map to add markers.</p>
+    <!-- [END maps_marker_remove] -->
   </body>
 </html>

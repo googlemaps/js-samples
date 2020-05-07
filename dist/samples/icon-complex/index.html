@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_icon_complex] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_icon_complex] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,10 +70,10 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_icon_complex]
         // The following example creates complex markers to indicate beaches near
         // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
         // to the base of the flagpole.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 10,
@@ -128,7 +132,7 @@
               zIndex: beach[3]
             });
           }
-        }
+        } // [END maps_icon_complex]
 
         exports.beaches = beaches;
         exports.initMap = initMap;
@@ -142,6 +146,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_icon_complex] -->
     <div id="map"></div>
+    <!-- [END maps_icon_complex] -->
   </body>
 </html>

@@ -16,16 +16,18 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_layer_bicycling]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 14,
-      center: { lat: 42.3726399, lng: -71.1096528 }
+      center: {
+        lat: 42.3726399,
+        lng: -71.1096528
+      }
     });
-
     var bikeLayer = new google.maps.BicyclingLayer();
     bikeLayer.setMap(map);
-  }
+  } // [END maps_layer_bicycling]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

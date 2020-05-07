@@ -16,62 +16,72 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_streetview_overlays]
 
   function initMap() {
-    var astorPlace = { lat: 40.729884, lng: -73.990988 };
+    var astorPlace = {
+      lat: 40.729884,
+      lng: -73.990988
+    }; // Set up the map
 
-    // Set up the map
     var map = new google.maps.Map(document.getElementById("map"), {
       center: astorPlace,
       zoom: 18,
       streetViewControl: false
-    });
+    }); // Set up the markers on the map
 
-    // Set up the markers on the map
     var cafeMarker = new google.maps.Marker({
-      position: { lat: 40.730031, lng: -73.991428 },
+      position: {
+        lat: 40.730031,
+        lng: -73.991428
+      },
       map: map,
       icon:
         "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
       title: "Cafe"
     });
-
     var bankMarker = new google.maps.Marker({
-      position: { lat: 40.729681, lng: -73.991138 },
+      position: {
+        lat: 40.729681,
+        lng: -73.991138
+      },
       map: map,
       icon:
         "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
       title: "Bank"
     });
-
     var busMarker = new google.maps.Marker({
-      position: { lat: 40.729559, lng: -73.990741 },
+      position: {
+        lat: 40.729559,
+        lng: -73.990741
+      },
       map: map,
       icon:
         "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
       title: "Bus Stop"
-    });
-
-    // We get the map's default panorama and set up some defaults.
+    }); // We get the map's default panorama and set up some defaults.
     // Note that we don't yet set it visible.
+
     exports.panorama = map.getStreetView();
     exports.panorama.setPosition(astorPlace);
     exports.panorama.setPov(
-      /** @type {google.maps.StreetViewPov} */ ({
+      /** @type {google.maps.StreetViewPov} */
+      {
         heading: 265,
         pitch: 0
-      })
+      }
     );
   }
 
   function toggleStreetView() {
     var toggle = exports.panorama.getVisible();
+
     if (toggle == false) {
       exports.panorama.setVisible(true);
     } else {
       exports.panorama.setVisible(false);
     }
-  }
+  } // [END maps_streetview_overlays]
 
   exports.initMap = initMap;
   exports.toggleStreetView = toggleStreetView;

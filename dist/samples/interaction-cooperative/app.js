@@ -16,6 +16,7 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_interaction_cooperative]
 
   /**
    * This sample sets the gesture handling mode to 'cooperative',
@@ -23,20 +24,21 @@
    * finger to scroll the page and two fingers to pan the map.
    */
   function initMap() {
-    var myLatLng = { lat: -25.363, lng: 131.044 };
-
+    var myLatLng = {
+      lat: -25.363,
+      lng: 131.044
+    };
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
       center: myLatLng,
       gestureHandling: "cooperative"
     });
-
     var marker = new google.maps.Marker({
       position: myLatLng,
       map: map,
       title: "Hello World!"
     });
-  }
+  } // [END maps_interaction_cooperative]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

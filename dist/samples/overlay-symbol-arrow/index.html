@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_overlay_symbol_arrow] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_overlay_symbol_arrow] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,9 +70,9 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_overlay_symbol_arrow]
         // This example adds a predefined symbol (an arrow) to a polyline.
         // Setting offset to 100% places the arrow at the end of the line.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 6,
@@ -77,7 +81,8 @@
               lng: 153.027
             },
             mapTypeId: "terrain"
-          }); // Define a symbol using a predefined path (an arrow)
+          }); // [START maps_overlay_symbol_arrow_region_polyline]
+          // Define a symbol using a predefined path (an arrow)
           // supplied by the Google Maps JavaScript API.
 
           var lineSymbol = {
@@ -102,8 +107,8 @@
               }
             ],
             map: map
-          });
-        }
+          }); // [END maps_overlay_symbol_arrow_region_polyline]
+        } // [END maps_overlay_symbol_arrow]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -115,6 +120,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_overlay_symbol_arrow] -->
     <div id="map"></div>
+    <!-- [END maps_overlay_symbol_arrow] -->
   </body>
 </html>

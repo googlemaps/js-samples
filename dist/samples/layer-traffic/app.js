@@ -16,16 +16,18 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_layer_traffic]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 13,
-      center: { lat: 34.04924594193164, lng: -118.24104309082031 }
+      center: {
+        lat: 34.04924594193164,
+        lng: -118.24104309082031
+      }
     });
-
     var trafficLayer = new google.maps.TrafficLayer();
     trafficLayer.setMap(map);
-  }
+  } // [END maps_layer_traffic]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

@@ -21,11 +21,13 @@
     <!-- jsFiddle will insert css and js -->
   </head>
   <body>
+    <!-- [START maps_geocoding_component_restriction] -->
     <div id="floating-panel">
       <pre>componentRestrictions: {country: "AU", postalCode: "2000"}</pre>
       <button id="submit">Geocode</button>
     </div>
     <div id="map"></div>
+    <!-- [END maps_geocoding_component_restriction] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&version=weekly"
       async

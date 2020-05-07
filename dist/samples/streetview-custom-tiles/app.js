@@ -16,14 +16,16 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_streetview_custom_tiles]
   // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
 
   // StreetViewPanoramaData for a custom panorama: the Google Sydney reception.
+
   function getReceptionPanoramaData() {
     return {
       location: {
-        pano: "reception", // The ID for this custom panorama.
+        pano: "reception",
+        // The ID for this custom panorama.
         description: "Google Sydney - Reception",
         latLng: new google.maps.LatLng(-33.86684, 151.19583)
       },
@@ -39,7 +41,7 @@
         tileSize: new google.maps.Size(1024, 512),
         worldSize: new google.maps.Size(2048, 1024),
         centerHeading: 105,
-        getTileUrl: function(pano, zoom, tileX, tileY) {
+        getTileUrl: function getTileUrl(pano, zoom, tileX, tileY) {
           return (
             "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
             "panoReception1024-" +
@@ -58,17 +60,19 @@
   function initPanorama() {
     exports.panorama = new google.maps.StreetViewPanorama(
       document.getElementById("street-view"),
-      { pano: exports.outsideGoogle.location.pano }
-    );
-    // Register a provider for the custom panorama.
+      {
+        pano: exports.outsideGoogle.location.pano
+      }
+    ); // Register a provider for the custom panorama.
+
     exports.panorama.registerPanoProvider(function(pano) {
       if (pano === "reception") {
         return getReceptionPanoramaData();
       }
-      return null;
-    });
 
-    // Add a link to our custom panorama from outside the Google Sydney office.
+      return null;
+    }); // Add a link to our custom panorama from outside the Google Sydney office.
+
     exports.panorama.addListener("links_changed", function() {
       if (exports.panorama.getPano() === exports.outsideGoogle.location.pano) {
         exports.panorama.getLinks().push({
@@ -85,7 +89,12 @@
     // Google office.
     var streetviewService = new google.maps.StreetViewService();
     streetviewService.getPanorama(
-      { location: { lat: -33.867386, lng: 151.195767 } },
+      {
+        location: {
+          lat: -33.867386,
+          lng: 151.195767
+        }
+      },
       function(result, status) {
         if (status === "OK") {
           exports.outsideGoogle = result;
@@ -93,7 +102,7 @@
         }
       }
     );
-  }
+  } // [END maps_streetview_custom_tiles]
 
   exports.getReceptionPanoramaData = getReceptionPanoramaData;
   exports.initMap = initMap;

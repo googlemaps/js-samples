@@ -16,18 +16,19 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_infowindow_simple_max]
   // This example displays a marker at the center of Australia.
   // When the user clicks the marker, an info window opens.
   // The maximum width of the info window is set to 200 pixels.
-
   function initMap() {
-    var uluru = { lat: -25.363, lng: 131.044 };
+    var uluru = {
+      lat: -25.363,
+      lng: 131.044
+    };
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
       center: uluru
     });
-
     var contentString =
       '<div id="content">' +
       '<div id="siteNotice">' +
@@ -49,12 +50,10 @@
       "(last visited June 22, 2009).</p>" +
       "</div>" +
       "</div>";
-
     var infowindow = new google.maps.InfoWindow({
       content: contentString,
       maxWidth: 200
     });
-
     var marker = new google.maps.Marker({
       position: uluru,
       map: map,
@@ -63,7 +62,7 @@
     marker.addListener("click", function() {
       infowindow.open(map, marker);
     });
-  }
+  } // [END maps_infowindow_simple_max]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));
