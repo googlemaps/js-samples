@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
+import babel from "@rollup/plugin-babel";
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
+
 module.exports = {
-    output: {
-        format: "iife",
-        extend: "window",
-        name: "window",
-        treeshake: false
-    }
+  output: {
+    format: "iife",
+    extend: "window",
+    name: "window"
+  },
+  plugins: [babel({ babelHelpers: "bundled" }), resolve(), commonjs()]
 };

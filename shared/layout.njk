@@ -45,9 +45,9 @@
       {% endblock %}
       {% block js %}
         {% if inline %}
-          <script src="./transpiled.js" data-inline></script>
+          <script src="./app.js" data-inline></script>
         {% else %}
-          <script src="./transpiled.js"></script>
+          <script src="./app.js"></script>
         {% endif %}
       {% endblock %}
       {{ api() }}

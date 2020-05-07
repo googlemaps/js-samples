@@ -23,8 +23,8 @@
     "ci": "npm run build && npm run test",
     "defaults:data:merge": "lerna exec '../../build/merge_default_data.sh'",
     "defaults:package:merge": "lerna exec '../../build/merge_default_package.sh'",
-    "extract:public": "mkdir -p public && tar -xf dist/bin/public.tar -C public",
     "extract:master": "mkdir -p master/public && tar -xf dist/bin/public.tar -C master/public",
+    "extract:public": "mkdir -p public && tar -xf dist/bin/public.tar -C public",
     "format": "npm run format:root && lerna run format",
     "format:dist": "lerna run format:dist",
     "format:root": "sort-package-json && prettier *.json *.js shared/**/*.scss --write --loglevel error",
@@ -34,7 +34,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "@babel/runtime-corejs3": "^7.9.6",
@@ -42,7 +41,11 @@
     "@bazel/buildifier": "^0.26.0",
     "@bazel/buildozer": "^0.29.0",
     "@bazel/rollup": "0.42.1",
+    "@rollup/plugin-babel": "^5.0.0",
+    "@rollup/plugin-commonjs": "^11.1.0",
+    "@rollup/plugin-node-resolve": "^7.1.3",
     "@types/googlemaps": "^3.37.7",
+    "core-js": "^3.6.5",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-jest": "^22.19.0",
@@ -55,7 +58,6 @@
     "nunjucks-cli": "git+https://github.com/jpoehnelt/nunjucks-cli.git#a6c17c60a5e7fda4fbc8a73c0abf8af5750ff48c",
     "prettier": "^1.18.2",
     "rollup": "^2.0.0",
-    "rollup-plugin-strip-banner": "^2.0.0",
     "web-resource-inliner": "^4.3.4"
   }
 }
