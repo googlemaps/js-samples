@@ -15,10 +15,9 @@
  */
 
 module.exports = {
-    output: {
-        format: "iife",
-        extend: "window",
-        name: "window",
-        treeshake: false
-    }
+  output: {
+    format: "iife",
+    extend: "window",
+    name: "window"
+  }
 };
