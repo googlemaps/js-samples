@@ -9,6 +9,7 @@ exports_files(
         "package.json",
         "rollup.config.js",
         ".babelrc",
+        "jest.config.js",
     ],
     visibility = ["//:__subpackages__"],
 )

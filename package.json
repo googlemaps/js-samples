@@ -30,9 +30,9 @@
     "format:root": "sort-package-json && prettier *.json *.js shared/**/*.scss --write --loglevel error",
     "serve": "bazel run :serve",
     "test": "bazel test //...",
-    "test:tags": "./build/test_tags.sh"
+    "test:tags": "./build/test_tags.sh",
+    "test:e2e": "bazel test //e2e:e2e"
   },
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
@@ -45,12 +45,15 @@
     "@rollup/plugin-commonjs": "^11.1.0",
     "@rollup/plugin-node-resolve": "^7.1.3",
     "@types/googlemaps": "^3.37.7",
+    "@types/jest": "^25.2.1",
     "core-js": "^3.6.5",
     "eslint": "^6.5.1",
     "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-jest": "^22.19.0",
     "eslint-plugin-prettier": "^3.1.1",
+    "glob": "^7.1.6",
     "http-server": "^0.12.3",
+    "jest": "^26.0.1",
     "json": "^9.0.6",
     "lerna": "^3.20.2",
     "make-dir": "^3.1.0",
@@ -58,6 +61,8 @@
     "nunjucks-cli": "git+https://github.com/jpoehnelt/nunjucks-cli.git#a6c17c60a5e7fda4fbc8a73c0abf8af5750ff48c",
     "prettier": "^1.18.2",
     "rollup": "^2.0.0",
+    "selenium-standalone": "^6.17.0",
+    "selenium-webdriver": "^4.0.0-alpha.7",
     "web-resource-inliner": "^4.3.4"
   }
 }
