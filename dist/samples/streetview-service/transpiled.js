@@ -1,3 +1,9 @@
+require("core-js/modules/es.symbol");
+
+require("core-js/modules/es.symbol.description");
+
+require("core-js/modules/es.array.map");
+
 (function(exports) {
   "use strict";
   /*

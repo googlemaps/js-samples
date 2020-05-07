@@ -1,3 +1,11 @@
+require("core-js/modules/es.symbol");
+
+require("core-js/modules/es.symbol.description");
+
+require("core-js/modules/es.array.for-each");
+
+require("core-js/modules/web.dom-collections.for-each");
+
 (function(exports) {
   "use strict";
   /*

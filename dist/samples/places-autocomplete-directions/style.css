@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*! [START maps_places_autocomplete_directions] */
+/* [START maps_places_autocomplete_directions] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -69,4 +69,4 @@ body {
   font-weight: 300;
 }
 
-/*! [END maps_places_autocomplete_directions] */
+/* [END maps_places_autocomplete_directions] */

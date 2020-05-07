@@ -1,3 +1,7 @@
+require("core-js/modules/es.symbol");
+
+require("core-js/modules/es.symbol.description");
+
 (function(exports) {
   "use strict";
   /*

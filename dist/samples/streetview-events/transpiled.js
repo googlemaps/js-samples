@@ -50,7 +50,6 @@
         var labelCell = document.createElement("td");
         labelCell.innerHTML = "<b>Link: " + i + "</b>";
         var valueCell = document.createElement("td");
-        valueCell.innerHTML = links[i].description;
         linksTable.appendChild(labelCell);
         linksTable.appendChild(valueCell);
       }

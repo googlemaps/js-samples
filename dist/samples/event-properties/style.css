@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*! [START maps_event_properties] */
+/* [START maps_event_properties] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -28,4 +28,4 @@ body {
   padding: 0;
 }
 
-/*! [END maps_event_properties] */
+/* [END maps_event_properties] */
