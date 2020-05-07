@@ -36,6 +36,5 @@ jobs:
         env:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
+      - run: bazel build ...
+      - run: bazel test ...
