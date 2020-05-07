@@ -16,18 +16,19 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_maxzoom_simple]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
-      center: { lat: 35.6894, lng: 139.692 },
+      center: {
+        lat: 35.6894,
+        lng: 139.692
+      },
       mapTypeId: "hybrid"
     });
-
     exports.infoWindow = new google.maps.InfoWindow();
-
     exports.maxZoomService = new google.maps.MaxZoomService();
-
     exports.map.addListener("click", showMaxZoom);
   }
 
@@ -40,10 +41,11 @@
           "The maximum zoom at this location is: " + response.zoom
         );
       }
+
       exports.infoWindow.setPosition(e.latLng);
       exports.infoWindow.open(exports.map);
     });
-  }
+  } // [END maps_maxzoom_simple]
 
   exports.initMap = initMap;
   exports.showMaxZoom = showMaxZoom;

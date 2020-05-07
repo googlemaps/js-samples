@@ -16,16 +16,15 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_custom_markers]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       center: new google.maps.LatLng(-33.91722, 151.23064),
       zoom: 16
     });
-
     var iconBase =
       "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
-
     var icons = {
       parking: {
         icon: iconBase + "parking_lot_maps.png"
@@ -37,7 +36,6 @@
         icon: iconBase + "info-i_maps.png"
       }
     };
-
     var features = [
       {
         position: new google.maps.LatLng(-33.91721, 151.2263),
@@ -130,9 +128,8 @@
         ),
         type: "library"
       }
-    ];
+    ]; // Create markers.
 
-    // Create markers.
     for (var i = 0; i < features.length; i++) {
       var marker = new google.maps.Marker({
         position: features[i].position,
@@ -140,7 +137,7 @@
         map: exports.map
       });
     }
-  }
+  } // [END maps_custom_markers]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

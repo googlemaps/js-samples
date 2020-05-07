@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
   var events = [
     "bounds_changed",
     "center_changed",
@@ -57,19 +56,21 @@
       zoom: 13,
       mapTypeId: "roadmap"
     });
+
     for (var i = 0; i < events.length; i++) {
       setupListener(map, events[i]);
     }
-  }
+  } // Dynamically create the table of events from the defined hashmap
 
-  // Dynamically create the table of events from the defined hashmap
   function populateTable() {
     var eventsTable = document.getElementById("events");
     var content = "";
+
     for (var i = 0; i < events.length; i++) {
       content +=
         '<div class="event" id="' + events[i] + '">' + events[i] + "</div>";
     }
+
     eventsTable.innerHTML = content;
   }
 

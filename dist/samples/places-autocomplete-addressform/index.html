@@ -39,6 +39,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_places_autocomplete_addressform] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -101,10 +102,13 @@
         height: 20px;
         margin-bottom: 2px;
       }
+
+      /* [END maps_places_autocomplete_addressform] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -120,6 +124,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_places_autocomplete_addressform]
         // This sample uses the Autocomplete widget to help the user select a
         // place, then it retrieves the address components associated with that
         // place, and then it populates the form fields with those details.
@@ -127,7 +132,6 @@
         // parameter when you first load the API. For example:
         // <script
         // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
         var placeSearch, autocomplete;
         var componentForm = {
           street_number: "short_name",
@@ -153,7 +157,7 @@
           // address fields in the form.
 
           autocomplete.addListener("place_changed", fillInAddress);
-        }
+        } // [START maps_places_autocomplete_addressform_fillform]
 
         function fillInAddress() {
           // Get the place details from the autocomplete object.
@@ -173,7 +177,9 @@
               document.getElementById(addressType).value = val;
             }
           }
-        } // Bias the autocomplete object to the user's geographical location,
+        } // [END maps_places_autocomplete_addressform_fillform]
+        // [START maps_places_autocomplete_addressform_geolocation]
+        // Bias the autocomplete object to the user's geographical location,
         // as supplied by the browser's 'navigator.geolocation' object.
 
         function geolocate() {
@@ -190,7 +196,7 @@
               autocomplete.setBounds(circle.getBounds());
             });
           }
-        }
+        } // [END maps_places_autocomplete_addressform_geolocation]
 
         exports.componentForm = componentForm;
         exports.fillInAddress = fillInAddress;
@@ -206,6 +212,7 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_places_autocomplete_addressform] -->
     <div id="locationField">
       <input
         id="autocomplete"
@@ -257,5 +264,7 @@
         </td>
       </tr>
     </table>
+
+    <!-- [END maps_places_autocomplete_addressform] -->
   </body>
 </html>

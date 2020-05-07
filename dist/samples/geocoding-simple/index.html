@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_geocoding_simple] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -61,10 +62,13 @@
         line-height: 30px;
         padding-left: 10px;
       }
+
+      /* [END maps_geocoding_simple] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -80,7 +84,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-
+        // [START maps_geocoding_simple]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
@@ -118,7 +122,7 @@
               }
             }
           );
-        }
+        } // [END maps_geocoding_simple]
 
         exports.geocodeAddress = geocodeAddress;
         exports.initMap = initMap;
@@ -131,10 +135,12 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_geocoding_simple] -->
     <div id="floating-panel">
       <input id="address" type="textbox" value="Sydney, NSW" />
       <input id="submit" type="button" value="Geocode" />
     </div>
     <div id="map"></div>
+    <!-- [END maps_geocoding_simple] -->
   </body>
 </html>

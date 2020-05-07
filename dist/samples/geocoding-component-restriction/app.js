@@ -16,14 +16,16 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_geocoding_component_restriction]
   function initMap() {
     var geocoder = new google.maps.Geocoder();
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 8,
-      center: { lat: -33.865, lng: 151.209 }
+      center: {
+        lat: -33.865,
+        lng: 151.209
+      }
     });
-
     document.getElementById("submit").addEventListener("click", function() {
       geocodeAddress(geocoder, map);
     });
@@ -51,7 +53,7 @@
         }
       }
     );
-  }
+  } // [END maps_geocoding_component_restriction]
 
   exports.geocodeAddress = geocodeAddress;
   exports.initMap = initMap;

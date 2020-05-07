@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_event_domListener] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_event_domListener] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,7 +70,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-
+        // [START maps_event_domListener]
         function initMap() {
           var mapDiv = document.getElementById("map");
           var map = new google.maps.Map(mapDiv, {
@@ -78,7 +82,7 @@
           google.maps.event.addDomListener(mapDiv, "click", function() {
             window.alert("Map was clicked!");
           });
-        }
+        } // [END maps_event_domListener]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -90,6 +94,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_event_domListener] -->
     <div id="map"></div>
+    <!-- [END maps_event_domListener] -->
   </body>
 </html>

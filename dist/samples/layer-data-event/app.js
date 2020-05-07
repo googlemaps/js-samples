@@ -16,33 +16,38 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_layer_data_event]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
-      center: { lat: -28, lng: 137 }
-    });
+      center: {
+        lat: -28,
+        lng: 137
+      }
+    }); // Load GeoJSON.
 
-    // Load GeoJSON.
     exports.map.data.loadGeoJson(
       "https://storage.googleapis.com/maps-devrel/google.json"
-    );
+    ); // Add some style.
 
-    // Add some style.
     exports.map.data.setStyle(function(feature) {
-      return /** @type {google.maps.Data.StyleOptions} */ ({
-        fillColor: feature.getProperty("color"),
-        strokeWeight: 1
-      });
-    });
-
+      return (
+        /** @type {google.maps.Data.StyleOptions} */
+        ({
+          fillColor: feature.getProperty("color"),
+          strokeWeight: 1
+        })
+      );
+    }); // [START maps_layer_data_event_snippet]
     // Set mouseover event for each feature.
+
     exports.map.data.addListener("mouseover", function(event) {
       document.getElementById(
         "info-box"
       ).textContent = event.feature.getProperty("letter");
-    });
-  }
+    }); // [END maps_layer_data_event_snippet]
+  } // [END maps_layer_data_event]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

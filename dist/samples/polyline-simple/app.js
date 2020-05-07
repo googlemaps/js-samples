@@ -16,23 +16,36 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_polyline_simple]
   // This example creates a 2-pixel-wide red polyline showing the path of
   // the first trans-Pacific flight between Oakland, CA, and Brisbane,
   // Australia which was made by Charles Kingsford Smith.
-
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 3,
-      center: { lat: 0, lng: -180 },
+      center: {
+        lat: 0,
+        lng: -180
+      },
       mapTypeId: "terrain"
     });
-
     var flightPlanCoordinates = [
-      { lat: 37.772, lng: -122.214 },
-      { lat: 21.291, lng: -157.821 },
-      { lat: -18.142, lng: 178.431 },
-      { lat: -27.467, lng: 153.027 }
+      {
+        lat: 37.772,
+        lng: -122.214
+      },
+      {
+        lat: 21.291,
+        lng: -157.821
+      },
+      {
+        lat: -18.142,
+        lng: 178.431
+      },
+      {
+        lat: -27.467,
+        lng: 153.027
+      }
     ];
     var flightPath = new google.maps.Polyline({
       path: flightPlanCoordinates,
@@ -41,9 +54,8 @@
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
-
     flightPath.setMap(map);
-  }
+  } // [END maps_polyline_simple]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

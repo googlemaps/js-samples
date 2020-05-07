@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_groundoverlay_simple] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_groundoverlay_simple] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,6 +70,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_groundoverlay_simple]
         // This example uses a GroundOverlay to place an image on the map
         // showing an antique map of Newark, NJ.
 
@@ -88,7 +93,7 @@
             imageBounds
           );
           exports.historicalOverlay.setMap(map);
-        }
+        } // [END maps_groundoverlay_simple]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -100,6 +105,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_groundoverlay_simple] -->
     <div id="map"></div>
+    <!-- [END maps_groundoverlay_simple] -->
   </body>
 </html>

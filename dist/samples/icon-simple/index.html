@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_icon_simple] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_icon_simple] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,9 +70,9 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_icon_simple]
         // This example adds a marker to indicate the position of Bondi Beach in Sydney,
         // Australia.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -87,7 +91,7 @@
             map: map,
             icon: image
           });
-        }
+        } // [END maps_icon_simple]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -99,6 +103,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_icon_simple] -->
     <div id="map"></div>
+    <!-- [END maps_icon_simple] -->
   </body>
 </html>

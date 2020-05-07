@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_delete_vertex_menu] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -66,10 +67,13 @@
       .delete-menu:hover {
         background: #eee;
       }
+
+      /* [END maps_delete_vertex_menu] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -85,7 +89,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-
+        // [START maps_delete_vertex_menu]
         function initialize() {
           var mapOptions = {
             zoom: 3,
@@ -206,7 +210,7 @@
 
           path.removeAt(vertex);
           this.close();
-        };
+        }; // [END maps_delete_vertex_menu]
 
         exports.DeleteMenu = DeleteMenu;
         exports.initialize = initialize;
@@ -219,6 +223,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_delete_vertex_menu] -->
     <div id="map"></div>
+    <!-- [END maps_delete_vertex_menu] -->
   </body>
 </html>

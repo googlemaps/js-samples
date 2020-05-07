@@ -16,11 +16,14 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_control_positioning]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,
-      center: { lat: -28.643387, lng: 153.612224 },
+      center: {
+        lat: -28.643387,
+        lng: 153.612224
+      },
       mapTypeControl: true,
       mapTypeControlOptions: {
         style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
@@ -37,7 +40,7 @@
       },
       fullscreenControl: true
     });
-  }
+  } // [END maps_control_positioning]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

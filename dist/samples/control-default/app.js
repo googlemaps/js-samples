@@ -16,13 +16,16 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_control_default]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
-      center: { lat: -34.397, lng: 150.644 },
+      center: {
+        lat: -34.397,
+        lng: 150.644
+      },
       zoom: 8
     });
-  }
+  } // [END maps_control_default]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

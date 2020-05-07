@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_control_custom_state] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -73,12 +74,13 @@
       #setCenterUI {
         margin-left: 12px;
       }
+
+      /* [END maps_control_custom_state] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -94,6 +96,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_control_custom_state]
 
         var chicago = {
           lat: 41.85,
@@ -191,7 +194,7 @@
           exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
             centerControlDiv
           );
-        }
+        } // [END maps_control_custom_state]
 
         exports.CenterControl = CenterControl;
         exports.chicago = chicago;
@@ -205,6 +208,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_control_custom_state] -->
     <div id="map"></div>
+    <!-- [END maps_control_custom_state] -->
   </body>
 </html>

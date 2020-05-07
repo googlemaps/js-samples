@@ -16,7 +16,7 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_marker_animations]
   // The following example creates a marker in Stockholm, Sweden using a DROP
   // animation. Clicking on the marker will toggle the animation between a BOUNCE
   // animation and no animation.
@@ -24,14 +24,19 @@
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 13,
-      center: { lat: 59.325, lng: 18.07 }
+      center: {
+        lat: 59.325,
+        lng: 18.07
+      }
     });
-
     exports.marker = new google.maps.Marker({
       map: map,
       draggable: true,
       animation: google.maps.Animation.DROP,
-      position: { lat: 59.327, lng: 18.067 }
+      position: {
+        lat: 59.327,
+        lng: 18.067
+      }
     });
     exports.marker.addListener("click", toggleBounce);
   }
@@ -42,7 +47,7 @@
     } else {
       exports.marker.setAnimation(google.maps.Animation.BOUNCE);
     }
-  }
+  } // [END maps_marker_animations]
 
   exports.initMap = initMap;
   exports.toggleBounce = toggleBounce;

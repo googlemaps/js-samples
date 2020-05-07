@@ -34,9 +34,8 @@
     var controlUI = document.createElement("div");
     controlUI.title = label;
     controlUI.className = "controlUI";
-    controlDiv.appendChild(controlUI);
+    controlDiv.appendChild(controlUI); // Set up the inner control.
 
-    // Set up the inner control.
     var controlText = document.createElement("div");
     controlText.innerHTML = label;
     controlText.className = "controlText";
@@ -47,11 +46,13 @@
     var mapDiv = document.getElementById("map");
     var mapOptions = {
       zoom: 11,
-      center: { lat: 47.46, lng: -122.52 },
+      center: {
+        lat: 47.46,
+        lng: -122.52
+      },
       disableDefaultUI: true
     };
     var map = new google.maps.Map(mapDiv, mapOptions);
-
     var controlText = [
       ["TOP_LEFT", google.maps.ControlPosition.TOP_LEFT],
       ["LEFT_TOP", google.maps.ControlPosition.LEFT_TOP],

@@ -16,27 +16,28 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_landing_page_visualize_data]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
       zoom: 2,
-      center: { lat: -33.865427, lng: 151.196123 },
+      center: {
+        lat: -33.865427,
+        lng: 151.196123
+      },
       mapTypeId: "terrain",
       zoomControl: false,
       scaleControl: false,
       streetViewControl: false,
       gestureHandling: "cooperative"
-    });
+    }); // Create a <script> tag and set the USGS URL as the source.
 
-    // Create a <script> tag and set the USGS URL as the source.
-    var script = document.createElement("script");
-
-    // This example uses a local copy of the GeoJSON stored at
+    var script = document.createElement("script"); // This example uses a local copy of the GeoJSON stored at
     // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+
     script.src =
       "/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
     document.getElementsByTagName("head")[0].appendChild(script);
-
     exports.map.data.setStyle(function(feature) {
       var magnitude = feature.getProperty("mag");
       return {
@@ -58,7 +59,7 @@
 
   function eqfeed_callback(results) {
     exports.map.data.addGeoJson(results);
-  }
+  } // [END maps_landing_page_visualize_data]
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.getCircle = getCircle;

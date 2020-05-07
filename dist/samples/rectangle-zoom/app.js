@@ -16,19 +16,19 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_rectangle_zoom]
   // This example creates a rectangle based on the viewport
   // on any 'zoom-changed' event.
-
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
-      center: { lat: 40.74852, lng: -73.981687 },
+      center: {
+        lat: 40.74852,
+        lng: -73.981687
+      },
       mapTypeId: "terrain"
     });
-
     var rectangle = new google.maps.Rectangle();
-
     map.addListener("zoom_changed", function() {
       // Get the current bounds, which reflect the bounds before the zoom.
       rectangle.setOptions({
@@ -41,7 +41,7 @@
         bounds: map.getBounds()
       });
     });
-  }
+  } // [END maps_rectangle_zoom]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

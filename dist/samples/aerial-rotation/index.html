@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_aerial_rotation] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -61,12 +62,13 @@
         line-height: 30px;
         padding-left: 10px;
       }
+
+      /* [END maps_aerial_rotation] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -82,6 +84,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_aerial_rotation]
 
         function initMap() {
           exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -106,7 +109,7 @@
           if (exports.map.getTilt() !== 0) {
             window.setInterval(rotate90, 3000);
           }
-        }
+        } // [END maps_aerial_rotation]
 
         exports.autoRotate = autoRotate;
         exports.initMap = initMap;
@@ -120,9 +123,11 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_aerial_rotation] -->
     <div id="floating-panel">
       <input type="button" value="Auto Rotate" onclick="autoRotate();" />
     </div>
     <div id="map"></div>
+    <!-- [END maps_aerial_rotation] -->
   </body>
 </html>

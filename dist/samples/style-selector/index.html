@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_style_selector] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -70,12 +71,13 @@
         padding-left: 5px;
         padding-right: 5px;
       }
+
+      /* [END maps_style_selector] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -91,6 +93,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_style_selector]
 
         function initMap() {
           // Create the map with no initial style specified.
@@ -678,7 +681,8 @@
               ]
             }
           ]
-        };
+        }; // [END maps_style_selector]
+
         exports.initMap = initMap;
         exports.styles = styles;
       })((this.window = this.window || {}));
@@ -690,6 +694,7 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_style_selector] -->
     <div id="style-selector-control" class="map-control">
       <select id="style-selector" class="selector-control">
         <option value="default">Default</option>
@@ -700,5 +705,6 @@
       </select>
     </div>
     <div id="map"></div>
+    <!-- [END maps_style_selector] -->
   </body>
 </html>

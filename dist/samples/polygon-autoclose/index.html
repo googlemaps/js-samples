@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_polygon_autoclose] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,10 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_polygon_autoclose] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -66,11 +70,11 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_polygon_autoclose]
         // This example creates a simple polygon representing the Bermuda Triangle. Note
         // that the code specifies only three LatLng coordinates for the polygon. The
         // API automatically draws a stroke connecting the last LatLng back to the first
         // LatLng.
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 5,
@@ -106,7 +110,7 @@
             fillOpacity: 0.35
           });
           bermudaTriangle.setMap(map);
-        }
+        } // [END maps_polygon_autoclose]
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
@@ -118,6 +122,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_polygon_autoclose] -->
     <div id="map"></div>
+    <!-- [END maps_polygon_autoclose] -->
   </body>
 </html>

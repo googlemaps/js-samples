@@ -16,14 +16,17 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
+  // [START maps_control_replacement]
 
   function initMap() {
     exports.map = new google.maps.Map(document.querySelector("#map"), {
-      center: { lat: -34.397, lng: 150.644 },
+      center: {
+        lat: -34.397,
+        lng: 150.644
+      },
       zoom: 8,
       disableDefaultUI: true
     });
-
     initZoomControl(exports.map);
     initMapTypeControl(exports.map);
     initFullscreenControl(exports.map);
@@ -33,9 +36,11 @@
     document.querySelector(".zoom-control-in").onclick = function() {
       map.setZoom(map.getZoom() + 1);
     };
+
     document.querySelector(".zoom-control-out").onclick = function() {
       map.setZoom(map.getZoom() - 1);
     };
+
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
       document.querySelector(".zoom-control")
     );
@@ -43,11 +48,13 @@
 
   function initMapTypeControl(map) {
     var mapTypeControlDiv = document.querySelector(".maptype-control");
+
     document.querySelector(".maptype-control-map").onclick = function() {
       mapTypeControlDiv.classList.add("maptype-control-is-map");
       mapTypeControlDiv.classList.remove("maptype-control-is-satellite");
       map.setMapTypeId("roadmap");
     };
+
     document.querySelector(".maptype-control-satellite").onclick = function() {
       mapTypeControlDiv.classList.remove("maptype-control-is-map");
       mapTypeControlDiv.classList.add("maptype-control-is-satellite");
@@ -87,6 +94,7 @@
         document.msFullscreenElement) == element
     );
   }
+
   function requestFullscreen(element) {
     if (element.requestFullscreen) {
       element.requestFullscreen();
@@ -98,6 +106,7 @@
       element.msRequestFullScreen();
     }
   }
+
   function exitFullscreen() {
     if (document.exitFullscreen) {
       document.exitFullscreen();
@@ -108,7 +117,7 @@
     } else if (document.msCancelFullScreen) {
       document.msCancelFullScreen();
     }
-  }
+  } // [END maps_control_replacement]
 
   exports.exitFullscreen = exitFullscreen;
   exports.initFullscreenControl = initFullscreenControl;

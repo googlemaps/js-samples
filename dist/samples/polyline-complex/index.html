@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_polyline_complex] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,12 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_polyline_complex] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -68,6 +70,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_polyline_complex]
         // This example creates an interactive map which constructs a polyline based on
         // user clicks. Note that the polyline only appears once its path property
         // contains two LatLng coordinates.
@@ -101,7 +104,7 @@
             title: "#" + path.getLength(),
             map: exports.map
           });
-        }
+        } // [END maps_polyline_complex]
 
         exports.addLatLng = addLatLng;
         exports.initMap = initMap;
@@ -114,6 +117,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_polyline_complex] -->
     <div id="map"></div>
+    <!-- [END maps_polyline_complex] -->
   </body>
 </html>

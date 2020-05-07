@@ -22,6 +22,7 @@
    *   and displaying the contents in a side panel instead of
    *   an InfoWindow
    */
+  // [START maps_kml_map]
 
   var src =
     "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
@@ -32,7 +33,6 @@
       zoom: 2,
       mapTypeId: "terrain"
     });
-
     var kmlLayer = new google.maps.KmlLayer(src, {
       suppressInfoWindows: true,
       preserveViewport: false,
@@ -43,7 +43,7 @@
       var testimonial = document.getElementById("capture");
       testimonial.innerHTML = content;
     });
-  }
+  } // [END maps_kml_map]
 
   exports.initMap = initMap;
   exports.src = src;

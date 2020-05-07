@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_streetview_embed] */
       html,
       body {
         height: 100%;
@@ -44,10 +45,13 @@
       #street-view {
         height: 100%;
       }
+
+      /* [END maps_streetview_embed] */
     </style>
     <script>
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -63,6 +67,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_streetview_embed]
 
         function initialize() {
           exports.panorama = new google.maps.StreetViewPanorama(
@@ -79,7 +84,7 @@
               zoom: 1
             }
           );
-        }
+        } // [END maps_streetview_embed]
 
         exports.initialize = initialize;
       })((this.window = this.window || {}));
@@ -91,6 +96,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_streetview_embed] -->
     <div id="street-view"></div>
+    <!-- [END maps_streetview_embed] -->
   </body>
 </html>

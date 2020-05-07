@@ -34,6 +34,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+      /* [START maps_layer_data_quakes] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -47,12 +48,13 @@
         margin: 0;
         padding: 0;
       }
+
+      /* [END maps_layer_data_quakes] */
     </style>
     <script>
-      require("core-js/modules/es.array.map");
-
       (function(exports) {
         "use strict";
+
         /*
          * Copyright 2019 Google LLC. All Rights Reserved.
          *
@@ -68,6 +70,7 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
+        // [START maps_layer_data_quakes]
 
         function initMap() {
           exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -177,7 +180,8 @@
               }
             ]
           }
-        ];
+        ]; // [END maps_layer_data_quakes]
+
         exports.eqfeed_callback = eqfeed_callback;
         exports.initMap = initMap;
         exports.interpolateHsl = interpolateHsl;
@@ -192,6 +196,8 @@
     ></script>
   </head>
   <body>
+    <!-- [START maps_layer_data_quakes] -->
     <div id="map"></div>
+    <!-- [END maps_layer_data_quakes] -->
   </body>
 </html>

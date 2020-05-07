@@ -16,7 +16,7 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_places_autocomplete_addressform]
   // This sample uses the Autocomplete widget to help the user select a
   // place, then it retrieves the address components associated with that
   // place, and then it populates the form fields with those details.
@@ -24,9 +24,7 @@
   // parameter when you first load the API. For example:
   // <script
   // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
   var placeSearch, autocomplete;
-
   var componentForm = {
     street_number: "short_name",
     route: "long_name",
@@ -41,17 +39,17 @@
     // geographical location types.
     autocomplete = new google.maps.places.Autocomplete(
       document.getElementById("autocomplete"),
-      { types: ["geocode"] }
-    );
-
-    // Avoid paying for data that you don't need by restricting the set of
+      {
+        types: ["geocode"]
+      }
+    ); // Avoid paying for data that you don't need by restricting the set of
     // place fields that are returned to just the address components.
-    autocomplete.setFields(["address_component"]);
 
-    // When the user selects an address from the drop-down, populate the
+    autocomplete.setFields(["address_component"]); // When the user selects an address from the drop-down, populate the
     // address fields in the form.
+
     autocomplete.addListener("place_changed", fillInAddress);
-  }
+  } // [START maps_places_autocomplete_addressform_fillform]
 
   function fillInAddress() {
     // Get the place details from the autocomplete object.
@@ -60,21 +58,22 @@
     for (var component in componentForm) {
       document.getElementById(component).value = "";
       document.getElementById(component).disabled = false;
-    }
-
-    // Get each component of the address from the place details,
+    } // Get each component of the address from the place details,
     // and then fill-in the corresponding field on the form.
+
     for (var i = 0; i < place.address_components.length; i++) {
       var addressType = place.address_components[i].types[0];
+
       if (componentForm[addressType]) {
         var val = place.address_components[i][componentForm[addressType]];
         document.getElementById(addressType).value = val;
       }
     }
-  }
-
+  } // [END maps_places_autocomplete_addressform_fillform]
+  // [START maps_places_autocomplete_addressform_geolocation]
   // Bias the autocomplete object to the user's geographical location,
   // as supplied by the browser's 'navigator.geolocation' object.
+
   function geolocate() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -89,7 +88,7 @@
         autocomplete.setBounds(circle.getBounds());
       });
     }
-  }
+  } // [END maps_places_autocomplete_addressform_geolocation]
 
   exports.componentForm = componentForm;
   exports.fillInAddress = fillInAddress;

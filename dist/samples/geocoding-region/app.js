@@ -16,24 +16,31 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_geocoding_region]
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), { zoom: 8 });
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({ address: "Toledo" }, function(results, status) {
-      if (status === "OK") {
-        map.setCenter(results[0].geometry.location);
-        new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-        });
-      } else {
-        window.alert(
-          "Geocode was not successful for the following reason: " + status
-        );
-      }
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 8
     });
-  }
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode(
+      {
+        address: "Toledo"
+      },
+      function(results, status) {
+        if (status === "OK") {
+          map.setCenter(results[0].geometry.location);
+          new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+          });
+        } else {
+          window.alert(
+            "Geocode was not successful for the following reason: " + status
+          );
+        }
+      }
+    );
+  } // [END maps_geocoding_region]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

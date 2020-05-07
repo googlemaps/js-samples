@@ -16,16 +16,17 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-
+  // [START maps_rectangle_simple]
   // This example adds a red rectangle to a map.
-
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
-      center: { lat: 33.678, lng: -116.243 },
+      center: {
+        lat: 33.678,
+        lng: -116.243
+      },
       mapTypeId: "terrain"
     });
-
     var rectangle = new google.maps.Rectangle({
       strokeColor: "#FF0000",
       strokeOpacity: 0.8,
@@ -40,7 +41,7 @@
         west: -116.251
       }
     });
-  }
+  } // [END maps_rectangle_simple]
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));
