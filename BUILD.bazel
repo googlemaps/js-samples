@@ -5,11 +5,10 @@ load("@rules_pkg//:pkg.bzl", "pkg_deb", "pkg_tar")
 
 exports_files(
     [
-        "tsconfig.json",
         "LICENSE",
         "package.json",
-        "babel.config.json",
         "rollup.config.js",
+        ".babelrc",
     ],
     visibility = ["//:__subpackages__"],
 )
