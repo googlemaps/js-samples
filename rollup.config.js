@@ -24,5 +24,5 @@ module.exports = {
     extend: "window",
     name: "window"
   },
-  plugins: [babel(), resolve(), commonjs()]
+  plugins: [babel({ babelHelpers: "bundled" }), resolve(), commonjs()]
 };
