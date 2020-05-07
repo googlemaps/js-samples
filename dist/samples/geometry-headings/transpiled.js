@@ -1,3 +1,7 @@
+require("core-js/modules/es.object.to-string");
+
+require("core-js/modules/es.regexp.to-string");
+
 (function(exports) {
   "use strict";
   /*

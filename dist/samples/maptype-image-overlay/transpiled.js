@@ -1,3 +1,5 @@
+require("core-js/modules/es.array.join");
+
 (function(exports) {
   "use strict";
   /*

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*! [START maps_directions_simple] */
+/* [START maps_directions_simple] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -42,4 +42,4 @@ body {
   padding-left: 10px;
 }
 
-/*! [END maps_directions_simple] */
+/* [END maps_directions_simple] */

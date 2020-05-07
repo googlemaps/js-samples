@@ -1,3 +1,15 @@
+require("core-js/modules/es.array.map");
+
+require("core-js/modules/es.function.name");
+
+require("core-js/modules/es.regexp.constructor");
+
+require("core-js/modules/es.regexp.exec");
+
+require("core-js/modules/es.regexp.to-string");
+
+require("core-js/modules/es.string.search");
+
 (function(exports) {
   "use strict";
   /*

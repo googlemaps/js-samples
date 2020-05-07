@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*! [START maps_conserve_map_on_scroll] */
+/* [START maps_conserve_map_on_scroll] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -28,4 +28,4 @@ body {
   padding: 0;
 }
 
-/*! [END maps_conserve_map_on_scroll] */
+/* [END maps_conserve_map_on_scroll] */

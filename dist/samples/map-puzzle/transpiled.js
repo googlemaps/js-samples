@@ -1,3 +1,11 @@
+require("core-js/modules/es.array.for-each");
+
+require("core-js/modules/es.array.map");
+
+require("core-js/modules/es.array.slice");
+
+require("core-js/modules/es.number.to-fixed");
+
 (function(exports) {
   "use strict";
   /*

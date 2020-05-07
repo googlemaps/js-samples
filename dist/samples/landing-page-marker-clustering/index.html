@@ -18,75 +18,186 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
     <title>Marker Clustering (Landing Page)</title>
-    <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script src="./transpiled.js"></script>
+    <style type="text/css">
+      /*
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+    </style>
+    <script>
+      require("core-js/modules/es.array.map");
+
+      (function(exports) {
+        "use strict";
+        /*
+         * Copyright 2019 Google LLC. All Rights Reserved.
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *     http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+        // Declarations to keep the compiler happy.
+
+        /**
+         * @param {!google.maps.Map} map
+         * @param {!Array<!google.maps.Marker>} markers
+         * @param {!Object} options
+         * @constructor
+         */
+
+        function MarkerClusterer(map, markers, options) {}
+
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 3,
+            center: {
+              lat: -28.024,
+              lng: 140.887
+            },
+            scrollwheel: false,
+            zoomControl: false,
+            scaleControl: false,
+            streetViewControl: false
+          }); // Create an array of alphabetical characters used to label the markers.
+
+          var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // Add some markers to the map.
+          // Note: The code uses the JavaScript Array.prototype.map() method to
+          // create an array of markers based on a given "locations" array.
+          // The map() method here has nothing to do with the Google Maps API.
+
+          var markers = locations.map(function(location, i) {
+            return new google.maps.Marker({
+              position: location,
+              label: labels[i % labels.length]
+            });
+          });
+        }
+
+        var locations = [
+          {
+            lat: -31.56391,
+            lng: 147.154312
+          },
+          {
+            lat: -33.718234,
+            lng: 150.363181
+          },
+          {
+            lat: -33.727111,
+            lng: 150.371124
+          },
+          {
+            lat: -33.848588,
+            lng: 151.209834
+          },
+          {
+            lat: -33.851702,
+            lng: 151.216968
+          },
+          {
+            lat: -34.671264,
+            lng: 150.863657
+          },
+          {
+            lat: -35.304724,
+            lng: 148.662905
+          },
+          {
+            lat: -36.817685,
+            lng: 175.699196
+          },
+          {
+            lat: -36.828611,
+            lng: 175.790222
+          },
+          {
+            lat: -37.75,
+            lng: 145.116667
+          },
+          {
+            lat: -37.759859,
+            lng: 145.128708
+          },
+          {
+            lat: -37.765015,
+            lng: 145.133858
+          },
+          {
+            lat: -37.770104,
+            lng: 145.143299
+          },
+          {
+            lat: -37.7737,
+            lng: 145.145187
+          },
+          {
+            lat: -37.774785,
+            lng: 145.137978
+          },
+          {
+            lat: -37.819616,
+            lng: 144.968119
+          },
+          {
+            lat: -38.330766,
+            lng: 144.695692
+          },
+          {
+            lat: -39.927193,
+            lng: 175.053218
+          },
+          {
+            lat: -41.330162,
+            lng: 174.865694
+          },
+          {
+            lat: -42.734358,
+            lng: 147.439506
+          },
+          {
+            lat: -42.734358,
+            lng: 147.501315
+          },
+          {
+            lat: -42.735258,
+            lng: 147.438
+          },
+          {
+            lat: -43.999792,
+            lng: 170.463352
+          }
+        ];
+        exports.MarkerClusterer = MarkerClusterer;
+        exports.initMap = initMap;
+        exports.locations = locations;
+      })((this.window = this.window || {}));
+    </script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async
       defer
     ></script>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=UA-152595271-1"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "UA-152595271-1");
-    </script>
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/stackdriver-errors-js@0.7.0/dist/stackdriver-errors-concat.min.js"
-    ></script>
-    <script type="text/javascript">
-      function uuid4() {
-        // http://www.ietf.org/rfc/rfc4122.txt
-        var s = [];
-        var hexDigits = "0123456789abcdef";
-        for (var i = 0; i < 36; i++) {
-          s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
-        }
-        s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
-        s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
-        s[8] = s[13] = s[18] = s[23] = "-";
-
-        var uuid = s.join("");
-        return uuid;
-      }
-
-      if (window.location.hostname !== "127.0.0.1") {
-        window.addEventListener("DOMContentLoaded", function() {
-          const errorHandler = new StackdriverErrorReporter();
-          let uuid = localStorage.getItem("uuid");
-
-          if (!uuid) {
-            uuid = uuid4();
-            localStorage.setItem("uuid", uuid);
-          }
-
-          errorHandler.start({
-            key: "AIzaSyD298H_8hrIigzJbFPTnHaAUGABMWJZBMA",
-            projectId: "geo-devrel-259418",
-            service: "js-samples",
-            reportUncaughtExceptions: true,
-            reportUnhandledPromiseRejections: true,
-            context: {
-              user: uuid
-            }
-          });
-        });
-      }
-    </script>
   </head>
   <body>
-    <!-- [START maps_landing_page_marker_clustering] -->
     <div id="map"></div>
-    <!-- [END maps_landing_page_marker_clustering] -->
   </body>
 </html>

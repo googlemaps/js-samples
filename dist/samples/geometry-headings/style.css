@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*! [START maps_geometry_headings] */
+/* [START maps_geometry_headings] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -42,4 +42,4 @@ body {
   padding-left: 10px;
 }
 
-/*! [END maps_geometry_headings] */
+/* [END maps_geometry_headings] */

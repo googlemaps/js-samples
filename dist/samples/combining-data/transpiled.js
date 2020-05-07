@@ -1,3 +1,11 @@
+require("core-js/modules/es.array.for-each");
+
+require("core-js/modules/es.array.map");
+
+require("core-js/modules/es.number.constructor");
+
+require("core-js/modules/web.dom-collections.for-each");
+
 (function(exports) {
   "use strict";
   /*

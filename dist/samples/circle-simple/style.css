@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/*! [START maps_circle_simple] */
+/* [START maps_circle_simple] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -28,4 +28,4 @@ body {
   padding: 0;
 }
 
-/*! [END maps_circle_simple] */
+/* [END maps_circle_simple] */
