@@ -1,7 +1,7 @@
 def _strip_region_tags_impl(ctx):
     STRIP_REGION_TAGS_CMD = """
         set -e
-        sed '/[[START|END][A-Z_]* .*\\]/d' $1 > $2
+        sed '/\\[(START|END) [a-z_]*\\]/d' $1 > $2
     """
     in_file = ctx.file.input
     out_file = ctx.outputs.output
