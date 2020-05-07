@@ -37,13 +37,15 @@ def sample():
         name = "transpiled",
         args = [
             "$(location :app_ugly)",
+            "-f",
+            "$(location //:.babelrc)",
             "--out-file",
             "$@",
         ],
         data = [
             ":app_ugly",
             "@npm//@babel/preset-env",
-            "//:babel.config.json",
+            "//:.babelrc",
         ],
         outs = ["transpiled_ugly.js"],
         visibility = ["//visibility:public"],

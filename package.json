@@ -34,9 +34,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/cli": "^7.7.1",
-    "@babel/core": "^7.7.5",
-    "@babel/preset-env": "^7.7.1",
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/runtime-corejs3": "^7.9.6",
     "@bazel/bazel": "^1.1.0",
     "@bazel/buildifier": "^0.26.0",
     "@bazel/buildozer": "^0.29.0",
