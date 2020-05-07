@@ -1,5 +1,4 @@
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
-load("@npm//@babel/cli:index.bzl", "babel")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:strip_region_tags.bzl", "strip_region_tags")
@@ -17,37 +16,27 @@ def _set_data_field(name, src, out, field, value):
 def sample():
     """ generates the various outputs"""
     strip_region_tags(
-        name = "_js_without_region_tags",
+        name = "_app_without_region_tags",
         input = ":src/index.js",
-        output = "_without_region_tags.js",
+        output = "_app_without_region_tags.js",
     )
-
     rollup_bundle(
-        name = "app_ugly",
-        srcs = [":_js_without_region_tags"],
-        entry_point = "_without_region_tags.js",
+        name = "_app_ugly",
+        srcs = [":_app_without_region_tags.js", "//:.babelrc"],
+        entry_point = "_app_without_region_tags.js",
         config_file = "//:rollup.config.js",
         format = "iife",
         sourcemap = "false",
         visibility = ["//visibility:public"],
-    )
-
-    babel(
-        name = "transpiled",
-        args = [
-            "$(location :app_ugly)",
-            "-f",
-            "$(location //:.babelrc)",
-            "--out-file",
-            "$@",
-        ],
-        data = [
-            ":app_ugly",
+        deps = [
+            "@npm//@rollup/plugin-commonjs",
+            "@npm//@rollup/plugin-babel",
+            "@npm//@babel/core",
+            "@npm//@babel/runtime-corejs3",
             "@npm//@babel/preset-env",
-            "//:.babelrc",
+            "@npm//@rollup/plugin-node-resolve",
+            "@npm//core-js",
         ],
-        outs = ["transpiled_ugly.js"],
-        visibility = ["//visibility:public"],
     )
 
     sass_binary(
@@ -94,13 +83,13 @@ def sample():
     strip_region_tags(
         name = "_jsfiddle_strip_region_tags",
         input = ":_jsfiddle.html",
-        output = "jsfiddle_ugly.html",
+        output = "_jsfiddle_ugly.html",
     )
 
     for src, out in [
-        (":jsfiddle_ugly.html", "jsfiddle.html"),
+        (":_jsfiddle_ugly.html", "jsfiddle.html"),
         (":style_ugly.css", "style.css"),
-        (":transpiled_ugly.js", "transpiled.js"),
+        (":_app_ugly.js", "app.js"),
     ]:
         prettier(
             src = src,
@@ -130,7 +119,7 @@ def sample():
 
     native.genrule(
         name = "_index_with_tags",
-        srcs = [":_index_rendered.html", ":transpiled.js", ":style.css"],
+        srcs = [":_index_rendered.html", ":app.js", ":style.css"],
         outs = ["_index_with_tags.html"],
         cmd = "$(location //rules:inline) $(location :_index_rendered.html) $@",
         tools = ["//rules:inline"],
@@ -150,7 +139,7 @@ def sample():
     native.filegroup(
         name = "js",
         srcs = [
-            ":transpiled.js",
+            ":app.js",
         ],
         visibility = ["//visibility:public"],
     )

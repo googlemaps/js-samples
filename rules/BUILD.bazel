@@ -21,10 +21,9 @@ nodejs_binary(
 nodejs_binary(
     name = "inline",
     data = [
-        "@npm//:node_modules",
         "inline.js",
+        "@npm//:node_modules",
     ],
     entry_point = ":inline.js",
-        visibility = ["//visibility:public"],
-
+    visibility = ["//visibility:public"],
 )
