@@ -54,11 +54,8 @@
     "npm-run-all": "^4.1.5",
     "nunjucks-cli": "git+https://github.com/jpoehnelt/nunjucks-cli.git#a6c17c60a5e7fda4fbc8a73c0abf8af5750ff48c",
     "prettier": "^1.18.2",
-    "rollup": "^1.24.0",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-license": "^2.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-strip-banner": "git+https://github.com/jpoehnelt/rollup-plugin-strip-banner.git#9ad97bb1a51a25e39de2c0341466e93e730c950d",
+    "rollup": "^2.0.0",
+    "rollup-plugin-strip-banner": "^2.0.0",
     "web-resource-inliner": "^4.3.4"
   }
 }
