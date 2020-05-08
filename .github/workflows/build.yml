@@ -23,12 +23,18 @@ jobs:
       GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
     services:
       hub:
-        image: selenium/standalone-chrome
-        volumes:
-          - ${{ github.workspace }}:${{ github.workspace }}
+        image: selenium/hub
+        options: --name hub
         ports:
           - 4444:4444
-        options: --name selenium -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
+      chrome:
+        image: selenium/chrome
+        volumes:
+          - ${{ github.workspace }}:${{ github.workspace }}
+        env:
+          HUB_HOST: hub
+          HUB_PORT: 4444
+        options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
     steps:
       - name: Setup Bazel
         uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
@@ -43,5 +49,5 @@ jobs:
         env:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-      - run: bazel build ...
-      - run: bazel test ...
+      # - run: bazel build ...
+      - run: bazel test e2e:__samples_add-map_outputs
