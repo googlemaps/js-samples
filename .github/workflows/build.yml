@@ -32,18 +32,15 @@ jobs:
       chrome1:
         image: selenium/node-chrome
         options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
+        env:
+          HUB_HOST: hub
+          HUB_PORT: 4444
       chrome2:
         image: selenium/node-chrome
         options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
-      chrome3:
-        image: selenium/node-chrome
-        options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
-      chrome4:
-        image: selenium/node-chrome
-        options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
-      chrome5:
-        image: selenium/node-chrome
-        options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
+        env:
+          HUB_HOST: hub
+          HUB_PORT: 4444
     steps:
       - name: Setup Bazel
         uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
