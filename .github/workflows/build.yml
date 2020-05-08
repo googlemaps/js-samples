@@ -30,10 +30,15 @@ jobs:
           - 4444:4444
         options: --name selenium -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: .cache
+          key: ${{ hashFiles('WORKSPACE') }}
       - name: Setup Bazel
         uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
       - run: bazel version
-      - uses: actions/checkout@v2
       - name: Setup Bazel Cache
         run: |
           BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
@@ -43,5 +48,5 @@ jobs:
         env:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-      - run: bazel build ...
+      - run: bazel build //:public.tar
       - run: bazel test ...
