@@ -50,4 +50,4 @@ jobs:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       # - run: bazel build ...
-      - run: bazel test e2e:__samples_add-map_outputs
+      - run: bazel test --cache_test_results=no e2e:__samples_add-map_outputs
