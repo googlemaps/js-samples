@@ -21,19 +21,28 @@ jobs:
     runs-on: ubuntu-latest
     env:
       GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
+      HUB_HOST: hub
+      HUB_PORT: 4444
     services:
       hub:
         image: selenium/hub
         options: --name hub
         ports:
           - 4444:4444
-      chrome:
+      chrome1:
         image: selenium/node-chrome
-        volumes:
-          - ${{ github.workspace }}:${{ github.workspace }}
-        env:
-          HUB_HOST: hub
-          HUB_PORT: 4444
+        options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
+      chrome2:
+        image: selenium/node-chrome
+        options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
+      chrome3:
+        image: selenium/node-chrome
+        options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
+      chrome4:
+        image: selenium/node-chrome
+        options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
+      chrome5:
+        image: selenium/node-chrome
         options: -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
     steps:
       - name: Setup Bazel
@@ -50,4 +59,4 @@ jobs:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       # - run: bazel build ...
-      - run: bazel test --cache_test_results=no e2e:__samples_add-map_outputs
+      - run: bazel test --cache_test_results=no e2e/...
