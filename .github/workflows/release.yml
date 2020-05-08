@@ -24,6 +24,9 @@ jobs:
     env:
       GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
     steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - uses: actions/cache@v1
         id: cache
         with:
@@ -32,9 +35,6 @@ jobs:
       - name: Setup Bazel
         uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
       - run: bazel version
-      - uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - name: Setup Bazel Cache
         run: |
           BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
