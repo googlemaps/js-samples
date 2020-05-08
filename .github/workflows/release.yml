@@ -44,7 +44,7 @@ jobs:
         env:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-      - run: bazel build ...
+      - run: bazel build //:public.tar
       - name: Update dist
         run: |
           rm -rf dist && mkdir dist
