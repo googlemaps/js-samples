@@ -1,0 +1,26 @@
+load("@npm//jest:index.bzl", "jest_test")
+load("//samples:samples.bzl", "OUTPUTS")
+
+[
+    jest_test(
+        name = output.replace(":", "_").replace("/", "_"),
+        size = "large",
+        data = [
+            "selenium.test.js",
+            "//:jest.config.js",
+            output,
+            "@npm//selenium-webdriver",
+            "@npm//glob",
+        ],
+        templated_args = [
+            "--no-cache",
+            "--no-watchman",
+            "--ci",
+            "--config",
+            "$(rootpath //:jest.config.js)",
+            "--runTestsByPath",
+            "$(rootpath :selenium.test.js)",
+        ],
+    )
+    for output in OUTPUTS
+]

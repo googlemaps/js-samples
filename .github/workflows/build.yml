@@ -16,15 +16,22 @@ name: Build
 
 on:
   - push
-  - pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
       GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
+    services:
+      hub:
+        image: selenium/standalone-chrome
+        volumes:
+          - ${{ github.workspace }}:${{ github.workspace }}
+        ports:
+          - 4444:4444
+        options: --name selenium -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
     steps:
       - name: Setup Bazel
-        uses: abhinavsingh/setup-bazel@1fe920bf5df3791aab606c06a3608f4bb600c4f2
+        uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
       - run: bazel version
       - uses: actions/checkout@v2
       - name: Setup Bazel Cache
@@ -36,6 +43,5 @@ jobs:
         env:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-      - run: npm ci
-      - run: npm run build
-      - run: npm test
+      - run: bazel build ...
+      - run: bazel test ...
