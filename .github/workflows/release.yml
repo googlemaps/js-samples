@@ -24,12 +24,17 @@ jobs:
     env:
       GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
     steps:
-      - name: Setup Bazel
-        uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
-      - run: bazel version
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: .cache
+          key: ${{ hashFiles('WORKSPACE') }}
+      - name: Setup Bazel
+        uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
+      - run: bazel version
       - name: Setup Bazel Cache
         run: |
           BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
@@ -39,7 +44,7 @@ jobs:
         env:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-      - run: bazel build ...
+      - run: bazel build //:public.tar
       - name: Update dist
         run: |
           rm -rf dist && mkdir dist
