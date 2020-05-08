@@ -40,7 +40,6 @@ jobs:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build ...
-      - run: bazel test ...
       - name: Update dist
         run: |
           mkdir -p dist

@@ -28,7 +28,7 @@ jobs:
         ports:
           - 4444:4444
       chrome:
-        image: selenium/chrome
+        image: selenium/node-chrome
         volumes:
           - ${{ github.workspace }}:${{ github.workspace }}
         env:
