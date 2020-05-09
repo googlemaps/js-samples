@@ -31,20 +31,20 @@ jobs:
         options: --name selenium -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/cache@v1
-        id: cache
-        with:
-          path: .cache
-          key: ${{ hashFiles('WORKSPACE') }}
+      # - uses: actions/cache@v1
+      #   id: cache
+      #   with:
+      #     path: .cache
+      #     key: ${{ hashFiles('WORKSPACE') }}
       - run: bazel version
-      - name: Setup Bazel Cache
-        run: |
-          BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
-          echo "${BAZEL_CACHE_SERVICE_ACCOUNT}" > "${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}"
-          echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc 
-          echo "build --remote_http_cache=https://storage.googleapis.com/${BAZEL_CACHE_BUCKET}" >> .bazelrc
-        env:
-          BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
-          BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
+      # - name: Setup Bazel Cache
+      #   run: |
+      #     BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
+      #     echo "${BAZEL_CACHE_SERVICE_ACCOUNT}" > "${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}"
+      #     echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc 
+      #     echo "build --remote_http_cache=https://storage.googleapis.com/${BAZEL_CACHE_BUCKET}" >> .bazelrc
+      #   env:
+      #     BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
+      #     BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build --jobs 64 //:public.tar
       - run: bazel test ...
