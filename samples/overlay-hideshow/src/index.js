@@ -22,7 +22,6 @@
 
 var overlay;
 
-
 function initMap() {
   USGSOverlay.prototype = new google.maps.OverlayView();
 
