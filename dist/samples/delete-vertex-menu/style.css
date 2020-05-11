@@ -13,26 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/* [START maps_distance_matrix] */
-#right-panel {
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
+/* [START maps_delete_vertex_menu] */
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
 }
 
-#right-panel select,
-#right-panel input {
-  font-size: 15px;
-}
-
-#right-panel select {
-  width: 100%;
-}
-
-#right-panel i {
-  font-size: 12px;
-}
-
+/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -40,19 +28,23 @@ body {
   padding: 0;
 }
 
-#map {
-  height: 100%;
-  width: 50%;
+.delete-menu {
+  position: absolute;
+  background: white;
+  padding: 3px;
+  color: #666;
+  font-weight: bold;
+  border: 1px solid #999;
+  font-family: sans-serif;
+  font-size: 12px;
+  box-shadow: 1px 3px 3px rgba(0, 0, 0, 0.3);
+  margin-top: -10px;
+  margin-left: 10px;
+  cursor: pointer;
 }
 
-#right-panel {
-  float: right;
-  width: 48%;
-  padding-left: 2%;
+.delete-menu:hover {
+  background: #eee;
 }
 
-#output {
-  font-size: 11px;
-}
-
-/* [END maps_distance_matrix] */
+/* [END maps_delete_vertex_menu] */

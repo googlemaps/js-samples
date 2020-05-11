@@ -17,7 +17,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
-    <title>GeoRSS Layers</title>
+    <title>Place ID</title>
     <style type="text/css">
       /*
  * Copyright 2019 Google LLC. All Rights Reserved.
@@ -34,22 +34,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_layer_georss] */
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-
-      /* Optional: Makes the sample page fill the window. */
-      html,
-      body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-
-      /* [END maps_layer_georss] */
+      /* [START maps_place_id] */
+      /* [END maps_place_id] */
     </style>
     <script>
       (function(exports) {
@@ -70,34 +56,52 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_layer_georss]
-        function initMap() {
-          var map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
-            center: {
-              lat: 49.496675,
-              lng: -102.65625
-            }
-          });
-          var georssLayer = new google.maps.KmlLayer({
-            url:
-              "http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss"
-          });
-          georssLayer.setMap(map);
-        } // [END maps_layer_georss]
 
+        function initMap() {
+          // Create a map centered in Pyrmont, Sydney (Australia).
+          exports.map = new google.maps.Map(document.getElementById("map"), {
+            center: {
+              lat: -33.8666,
+              lng: 151.1958
+            },
+            zoom: 15
+          }); // Search for Google's office in Australia.
+
+          var request = {
+            location: exports.map.getCenter(),
+            radius: "500",
+            query: "Google Sydney"
+          };
+          var service = new google.maps.places.PlacesService(exports.map);
+          service.textSearch(request, callback);
+        } // Checks that the PlacesServiceStatus is OK, and adds a marker
+        // using the place ID and location from the PlacesService.
+
+        function callback(results, status) {
+          if (status == google.maps.places.PlacesServiceStatus.OK) {
+            var marker = new google.maps.Marker({
+              map: exports.map,
+              place: {
+                placeId: results[0].place_id,
+                location: results[0].geometry.location
+              }
+            });
+          }
+        }
+
+        exports.callback = callback;
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
+  </head>
+  <body>
+    <!-- [START maps_place_id] -->
+    <div id="map"></div>
+    <!-- [END maps_place_id] -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly"
       async
       defer
     ></script>
-  </head>
-  <body>
-    <!-- [START maps_layer_georss] -->
-    <div id="map"></div>
-    <!-- [END maps_layer_georss] -->
   </body>
 </html>
