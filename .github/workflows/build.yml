@@ -35,7 +35,7 @@ jobs:
         id: cache
         with:
           path: .cache
-          key: ${{ hashFiles('WORKSPACE') }}
+          key: default-${{ hashFiles('WORKSPACE') }}
           restore-keys: |
             default-${{ hashFiles('WORKSPACE') }}
             default-
