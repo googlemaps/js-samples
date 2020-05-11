@@ -22,9 +22,9 @@
 
 var overlay;
 
-USGSOverlay.prototype = new google.maps.OverlayView();
-
 function initMap() {
+  USGSOverlay.prototype = new google.maps.OverlayView();
+
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 62.323907, lng: -150.109291 },

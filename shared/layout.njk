@@ -50,7 +50,6 @@
           <script src="./app.js"></script>
         {% endif %}
       {% endblock %}
-      {{ api() }}
       {% if not inline %}
         {% include 'shared/analytics.njk' %}
         {% include 'shared/errors.njk' %}
@@ -59,8 +58,6 @@
   </head>
   <body>
     {% block html %}{% endblock %}
-    {% if jsfiddle %}
-      {{ api() }}
-    {% endif %}
+    {{ api() }}
   </body>
 </html>

@@ -1,6 +1,6 @@
 {
   "title": "Firebase Map",
   "callback": "initMap",
-  "libraries": [],
+  "libraries": ["visualization"],
   "version": "weekly"
 }
