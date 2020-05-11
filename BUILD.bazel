@@ -90,3 +90,8 @@ pkg_tar(
     ],
     strip_prefix = ".",
 )
+
+test_suite(
+    name = "tests",
+    tests = [":eslint"],
+)
