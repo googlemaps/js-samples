@@ -36,6 +36,9 @@ jobs:
         with:
           path: .cache
           key: ${{ hashFiles('WORKSPACE') }}
+          restore-keys: |
+            default-${{ hashFiles('WORKSPACE') }}
+            default-
       - name: Setup Bazel
         uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
       - run: bazel version
