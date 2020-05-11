@@ -687,7 +687,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_maptype_image_overlay]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 18,
@@ -740,7 +739,7 @@
       tileSize: new google.maps.Size(256, 256)
     });
     map.overlayMapTypes.push(imageMapType);
-  } // [END maps_maptype_image_overlay]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

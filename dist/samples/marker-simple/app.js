@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_marker_simple]
   function initMap() {
     var myLatLng = {
       lat: -25.363,
@@ -31,7 +30,7 @@
       map: map,
       title: "Hello World!"
     });
-  } // [END maps_marker_simple]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

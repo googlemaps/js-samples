@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_directions_travel_modes]
   function initMap() {
     var directionsRenderer = new google.maps.DirectionsRenderer();
     var directionsService = new google.maps.DirectionsService();
@@ -61,7 +60,7 @@
         }
       }
     );
-  } // [END maps_directions_travel_modes]
+  }
 
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
   exports.initMap = initMap;

@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_places_searchbox] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -120,8 +119,6 @@
       #target {
         width: 345px;
       }
-
-      /* [END maps_places_searchbox] */
     </style>
     <script>
       (function(exports) {
@@ -1138,7 +1135,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_places_searchbox]
         // This example adds a search box to a map, using the Google Place Autocomplete
         // feature. People can enter geographical searches. The search box will return a
         // pick list containing a mix of places and predicted search terms.
@@ -1162,8 +1158,7 @@
           map.addListener("bounds_changed", function() {
             searchBox.setBounds(map.getBounds());
           });
-          var markers = []; // [START maps_places_searchbox_getplaces]
-          // Listen for the event fired when the user selects a prediction and retrieve
+          var markers = []; // Listen for the event fired when the user selects a prediction and retrieve
           // more details for that place.
 
           searchBox.addListener("places_changed", function() {
@@ -1210,15 +1205,14 @@
               }
             });
             map.fitBounds(bounds);
-          }); // [END maps_places_searchbox_getplaces]
-        } // [END maps_places_searchbox]
+          });
+        }
 
         exports.initAutocomplete = initAutocomplete;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_places_searchbox] -->
     <input
       id="pac-input"
       class="controls"
@@ -1226,7 +1220,6 @@
       placeholder="Search Box"
     />
     <div id="map"></div>
-    <!-- [END maps_places_searchbox] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initAutocomplete&libraries=places&version=weekly"
       async

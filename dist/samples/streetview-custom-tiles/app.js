@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_streetview_custom_tiles]
   // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
 
   // StreetViewPanoramaData for a custom panorama: the Google Sydney reception.
@@ -102,7 +101,7 @@
         }
       }
     );
-  } // [END maps_streetview_custom_tiles]
+  }
 
   exports.getReceptionPanoramaData = getReceptionPanoramaData;
   exports.initMap = initMap;

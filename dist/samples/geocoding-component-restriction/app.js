@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_geocoding_component_restriction]
   function initMap() {
     var geocoder = new google.maps.Geocoder();
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -53,7 +52,7 @@
         }
       }
     );
-  } // [END maps_geocoding_component_restriction]
+  }
 
   exports.geocodeAddress = geocodeAddress;
   exports.initMap = initMap;

@@ -35,7 +35,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_elevation_paths] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -49,8 +48,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_elevation_paths] */
     </style>
     <script>
       (function(exports) {
@@ -71,7 +68,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_elevation_paths]
         // Load the Visualization API and the columnchart package.
         google.load("visualization", "1", {
           packages: ["columnchart"]
@@ -167,7 +163,7 @@
             legend: "none",
             titleY: "Elevation (m)"
           });
-        } // [END maps_elevation_paths]
+        }
 
         exports.displayPathElevation = displayPathElevation;
         exports.initMap = initMap;
@@ -176,12 +172,10 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_elevation_paths] -->
     <div>
       <div id="map" style="height:250px;"></div>
       <div id="elevation_chart"></div>
     </div>
-    <!-- [END maps_elevation_paths] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

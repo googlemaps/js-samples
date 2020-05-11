@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_marker_animations_iteration]
   // If you're adding a number of markers, you may want to drop them on the map
   // consecutively rather than all at once. This example shows how to use
   // window.setTimeout() to space your markers' animation.
@@ -76,7 +75,7 @@
     }
 
     exports.markers = [];
-  } // [END maps_marker_animations_iteration]
+  }
 
   exports.addMarkerWithTimeout = addMarkerWithTimeout;
   exports.clearMarkers = clearMarkers;

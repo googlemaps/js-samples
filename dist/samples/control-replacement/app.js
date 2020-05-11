@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_control_replacement]
 
   function initMap() {
     exports.map = new google.maps.Map(document.querySelector("#map"), {
@@ -117,7 +116,7 @@
     } else if (document.msCancelFullScreen) {
       document.msCancelFullScreen();
     }
-  } // [END maps_control_replacement]
+  }
 
   exports.exitFullscreen = exitFullscreen;
   exports.initFullscreenControl = initFullscreenControl;

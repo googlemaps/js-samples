@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_overlay_symbol_custom]
   // This example adds three custom symbols to a polyline.
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -26,8 +25,7 @@
         lng: 153.027
       },
       mapTypeId: "terrain"
-    }); // [START maps_overlay_symbol_custom_region_polyline]
-    // Define the custom symbols. All symbols are defined via SVG path notation.
+    }); // Define the custom symbols. All symbols are defined via SVG path notation.
     // They have varying stroke color, fill color, stroke weight,
     // opacity and rotation properties.
 
@@ -75,8 +73,8 @@
         }
       ],
       map: map
-    }); // [END maps_overlay_symbol_custom_region_polyline]
-  } // [END maps_overlay_symbol_custom]
+    });
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

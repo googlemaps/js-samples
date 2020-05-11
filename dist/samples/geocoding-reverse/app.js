@@ -1223,7 +1223,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_geocoding_reverse]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 8,
@@ -1268,7 +1267,7 @@
         }
       }
     );
-  } // [END maps_geocoding_reverse]
+  }
 
   exports.geocodeLatLng = geocodeLatLng;
   exports.initMap = initMap;

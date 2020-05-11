@@ -961,7 +961,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_event_poi]
   function initMap() {
     var origin = {
       lat: -33.871,
@@ -1046,7 +1045,7 @@
         }
       }
     );
-  }; // [END maps_event_poi]
+  };
 
   exports.ClickEventHandler = ClickEventHandler;
   exports.initMap = initMap;

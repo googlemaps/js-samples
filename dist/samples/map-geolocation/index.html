@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_map_geolocation] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_map_geolocation] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_map_geolocation]
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
         // failed.", it means you probably did not give permission for the browser to
@@ -117,7 +113,7 @@
               : "Error: Your browser doesn't support geolocation."
           );
           infoWindow.open(exports.map);
-        } // [END maps_map_geolocation]
+        }
 
         exports.handleLocationError = handleLocationError;
         exports.initMap = initMap;
@@ -125,9 +121,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_map_geolocation] -->
     <div id="map"></div>
-    <!-- [END maps_map_geolocation] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

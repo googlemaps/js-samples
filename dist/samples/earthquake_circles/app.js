@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_earthquake_circles]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -55,7 +54,7 @@
 
   function eqfeed_callback(results) {
     exports.map.data.addGeoJson(results);
-  } // [END maps_earthquake_circles]
+  }
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.getCircle = getCircle;

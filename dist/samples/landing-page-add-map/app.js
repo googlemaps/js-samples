@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_landing_page_add_map]
   function initMap() {
     var uluru = {
       lat: -25.363,
@@ -34,7 +33,7 @@
       position: uluru,
       map: map
     });
-  } // [END maps_landing_page_add_map]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

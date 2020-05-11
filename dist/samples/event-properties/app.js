@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_event_properties]
   function initMap() {
     var originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -31,7 +30,7 @@
     map.addListener("zoom_changed", function() {
       infowindow.setContent("Zoom: " + map.getZoom());
     });
-  } // [END maps_event_properties]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

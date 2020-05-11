@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_rectangle_zoom]
   // This example creates a rectangle based on the viewport
   // on any 'zoom-changed' event.
   function initMap() {
@@ -41,7 +40,7 @@
         bounds: map.getBounds()
       });
     });
-  } // [END maps_rectangle_zoom]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

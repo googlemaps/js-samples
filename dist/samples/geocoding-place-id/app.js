@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_geocoding_place_id]
   // Initialize the map.
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -59,7 +58,7 @@
         }
       }
     );
-  } // [END maps_geocoding_place_id]
+  }
 
   exports.geocodePlaceId = geocodePlaceId;
   exports.initMap = initMap;

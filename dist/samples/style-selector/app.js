@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_style_selector]
 
   function initMap() {
     // Create the map with no initial style specified.
@@ -604,7 +603,7 @@
         ]
       }
     ]
-  }; // [END maps_style_selector]
+  };
 
   exports.initMap = initMap;
   exports.styles = styles;

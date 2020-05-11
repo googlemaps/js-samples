@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_polygon_simple]
   // This example creates a simple polygon representing the Bermuda Triangle.
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -56,7 +55,7 @@
       fillOpacity: 0.35
     });
     bermudaTriangle.setMap(map);
-  } // [END maps_polygon_simple]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

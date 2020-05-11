@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_legend] */
       html,
       body {
         margin: 0;
@@ -63,8 +62,6 @@
       #legend img {
         vertical-align: middle;
       }
-
-      /* [END maps_legend] */
     </style>
     <script>
       (function(exports) {
@@ -1081,7 +1078,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_legend]
 
         function initMap() {
           exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -1228,17 +1224,15 @@
           exports.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
             legend
           );
-        } // [END maps_legend]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_legend] -->
     <div id="map"></div>
     <div id="legend"><h3>Legend</h3></div>
-    <!-- [END maps_legend] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"

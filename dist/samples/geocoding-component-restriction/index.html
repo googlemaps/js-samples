@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_geocoding_component_restriction] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -62,8 +61,6 @@
         line-height: 30px;
         padding-left: 10px;
       }
-
-      /* [END maps_geocoding_component_restriction] */
     </style>
     <script>
       (function(exports) {
@@ -84,7 +81,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_geocoding_component_restriction]
         function initMap() {
           var geocoder = new google.maps.Geocoder();
           var map = new google.maps.Map(document.getElementById("map"), {
@@ -124,7 +120,7 @@
               }
             }
           );
-        } // [END maps_geocoding_component_restriction]
+        }
 
         exports.geocodeAddress = geocodeAddress;
         exports.initMap = initMap;
@@ -132,13 +128,11 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_geocoding_component_restriction] -->
     <div id="floating-panel">
       <pre>componentRestrictions: {country: "AU", postalCode: "2000"}</pre>
       <button id="submit">Geocode</button>
     </div>
     <div id="map"></div>
-    <!-- [END maps_geocoding_component_restriction] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

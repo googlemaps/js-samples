@@ -1470,7 +1470,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_layer_kml_features]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,
@@ -1494,7 +1493,7 @@
       var sidediv = document.getElementById("content-window");
       sidediv.innerHTML = text;
     }
-  } // [END maps_layer_kml_features]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

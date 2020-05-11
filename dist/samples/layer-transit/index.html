@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_layer_transit] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_layer_transit] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_layer_transit]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 13,
@@ -81,16 +77,14 @@
           });
           var transitLayer = new google.maps.TransitLayer();
           transitLayer.setMap(map);
-        } // [END maps_layer_transit]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_layer_transit] -->
     <div id="map"></div>
-    <!-- [END maps_layer_transit] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

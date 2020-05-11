@@ -687,7 +687,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_map_coordinates]
   function initMap() {
     var chicago = new google.maps.LatLng(41.85, -87.65);
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -739,7 +738,7 @@
       TILE_SIZE * (0.5 + latLng.lng() / 360),
       TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI))
     );
-  } // [END maps_map_coordinates]
+  }
 
   exports.TILE_SIZE = TILE_SIZE;
   exports.createInfoWindowContent = createInfoWindowContent;

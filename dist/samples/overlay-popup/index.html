@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_overlay_popup] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -100,8 +99,6 @@
         /* The max width of the info window. */
         width: 200px;
       }
-
-      /* [END maps_overlay_popup] */
     </style>
     <script>
       (function(exports) {
@@ -122,7 +119,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_overlay_popup]
         var popup, Popup;
         /** Initializes the map and the custom popup. */
 
@@ -210,7 +206,7 @@
           };
 
           return Popup;
-        } // [END maps_overlay_popup]
+        }
 
         exports.createPopupClass = createPopupClass;
         exports.initMap = initMap;
@@ -218,12 +214,10 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_overlay_popup] -->
     <div id="map"></div>
     <div id="content">
       Hello world!
     </div>
-    <!-- [END maps_overlay_popup] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"

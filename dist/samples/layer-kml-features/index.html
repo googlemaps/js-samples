@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_layer_kml_features] */
       html,
       body {
         height: 100%;
@@ -56,8 +55,6 @@
         padding-left: 10px;
         width: 19%;
       }
-
-      /* [END maps_layer_kml_features] */
     </style>
     <script>
       (function(exports) {
@@ -1569,7 +1566,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_layer_kml_features]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 12,
@@ -1593,17 +1589,15 @@
             var sidediv = document.getElementById("content-window");
             sidediv.innerHTML = text;
           }
-        } // [END maps_layer_kml_features]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_layer_kml_features] -->
     <div id="map"></div>
     <div id="content-window"></div>
-    <!-- [END maps_layer_kml_features] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

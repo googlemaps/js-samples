@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_delete_vertex_menu]
   function initialize() {
     var mapOptions = {
       zoom: 3,
@@ -134,7 +133,7 @@
       path.removeAt(vertex);
       this.close();
     };
-  } // [END maps_delete_vertex_menu]
+  }
 
   exports.initialize = initialize;
 })((this.window = this.window || {}));

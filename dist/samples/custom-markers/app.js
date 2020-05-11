@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_custom_markers]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -137,7 +136,7 @@
         map: exports.map
       });
     }
-  } // [END maps_custom_markers]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

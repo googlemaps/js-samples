@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_places_autocomplete_hotelsearch] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -146,8 +145,6 @@
       .iw_table_icon {
         text-align: right;
       }
-
-      /* [END maps_places_autocomplete_hotelsearch] */
     </style>
     <script>
       (function(exports) {
@@ -1235,7 +1232,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_places_autocomplete_hotelsearch]
         // This example uses the autocomplete feature of the Google Places API.
         // It allows the user to find all hotels in a given place, within a given
         // country. It then displays markers for all the hotels returned,
@@ -1435,8 +1431,7 @@
           }
 
           exports.markers = [];
-        } // [START maps_places_autocomplete_hotelsearch]
-        // Set the country restriction based on user input.
+        } // Set the country restriction based on user input.
         // Also center and zoom the map on the given country.
 
         function setAutocompleteCountry() {
@@ -1461,7 +1456,7 @@
 
           clearResults();
           clearMarkers();
-        } // [END maps_places_autocomplete_hotelsearch]
+        }
 
         function dropMarker(i) {
           return function() {
@@ -1569,7 +1564,7 @@
           } else {
             document.getElementById("iw-website-row").style.display = "none";
           }
-        } // [END maps_places_autocomplete_hotelsearch]
+        }
 
         exports.MARKER_PATH = MARKER_PATH;
         exports.addResult = addResult;
@@ -1589,7 +1584,6 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_places_autocomplete_hotelsearch] -->
     <div class="hotel-search">
       <div id="findhotels">
         Find hotels in:
@@ -1653,7 +1647,6 @@
         </table>
       </div>
     </div>
-    <!-- [END maps_places_autocomplete_hotelsearch] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly"

@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_streetview_embed]
 
   function initialize() {
     exports.panorama = new google.maps.StreetViewPanorama(
@@ -33,7 +32,7 @@
         zoom: 1
       }
     );
-  } // [END maps_streetview_embed]
+  }
 
   exports.initialize = initialize;
 })((this.window = this.window || {}));

@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_place_search_pagination] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -112,8 +111,6 @@
         width: 100%;
         margin: 5px 0 0 0;
       }
-
-      /* [END maps_place_search_pagination] */
     </style>
     <script>
       (function(exports) {
@@ -286,7 +283,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_place_search_pagination]
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -356,7 +352,7 @@
           }
 
           exports.map.fitBounds(bounds);
-        } // [END maps_place_search_pagination]
+        }
 
         exports.createMarkers = createMarkers;
         exports.initMap = initMap;
@@ -364,14 +360,12 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_place_search_pagination] -->
     <div id="map"></div>
     <div id="right-panel">
       <h2>Results</h2>
       <ul id="places"></ul>
       <button id="more">More results</button>
     </div>
-    <!-- [END maps_place_search_pagination] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly"
       async

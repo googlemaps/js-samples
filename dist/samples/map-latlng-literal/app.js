@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_map_latlng_literal]
   // In this example, we center the map, and add a marker, using a LatLng object
   // literal instead of a google.maps.LatLng object. LatLng object literals are
   // a convenient way to add a LatLng coordinate and, in most cases, can be used
@@ -54,7 +53,7 @@
     google.maps.event.addListener(marker, "click", function() {
       infowindow.open(exports.map, marker);
     });
-  } // [END maps_map_latlng_literal]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_streetview_embed] */
       html,
       body {
         height: 100%;
@@ -45,8 +44,6 @@
       #street-view {
         height: 100%;
       }
-
-      /* [END maps_streetview_embed] */
     </style>
     <script>
       (function(exports) {
@@ -67,7 +64,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_streetview_embed]
 
         function initialize() {
           exports.panorama = new google.maps.StreetViewPanorama(
@@ -84,16 +80,14 @@
               zoom: 1
             }
           );
-        } // [END maps_streetview_embed]
+        }
 
         exports.initialize = initialize;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_streetview_embed] -->
     <div id="street-view"></div>
-    <!-- [END maps_streetview_embed] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initialize&libraries=&version=weekly"
       async

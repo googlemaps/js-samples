@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_maptype_base] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_maptype_base] */
     </style>
     <script>
       (function(exports) {
@@ -222,7 +219,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_maptype_base]
 
         /*
          * This demo demonstrates how to replace default map tiles with custom imagery.
@@ -282,7 +278,7 @@
             "coordinate",
             new CoordMapType(new google.maps.Size(256, 256))
           );
-        } // [END maps_maptype_base]
+        }
 
         exports.CoordMapType = CoordMapType;
         exports.initMap = initMap;
@@ -290,9 +286,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_maptype_base] -->
     <div id="map"></div>
-    <!-- [END maps_maptype_base] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

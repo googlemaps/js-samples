@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_polyline_remove] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -62,8 +61,6 @@
         line-height: 30px;
         padding-left: 10px;
       }
-
-      /* [END maps_polyline_remove] */
     </style>
     <script>
       (function(exports) {
@@ -84,7 +81,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_polyline_remove]
         // This example adds a UI control allowing users to remove the polyline from the
         // map.
 
@@ -130,7 +126,7 @@
 
         function removeLine() {
           exports.flightPath.setMap(null);
-        } // [END maps_polyline_remove]
+        }
 
         exports.addLine = addLine;
         exports.initMap = initMap;
@@ -139,13 +135,11 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_polyline_remove] -->
     <div id="floating-panel">
       <input onclick="removeLine();" type="button" value="Remove line" />
       <input onclick="addLine();" type="button" value="Restore line" />
     </div>
     <div id="map"></div>
-    <!-- [END maps_polyline_remove] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

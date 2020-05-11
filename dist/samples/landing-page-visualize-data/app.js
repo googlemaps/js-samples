@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_landing_page_visualize_data]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -59,7 +58,7 @@
 
   function eqfeed_callback(results) {
     exports.map.data.addGeoJson(results);
-  } // [END maps_landing_page_visualize_data]
+  }
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.getCircle = getCircle;

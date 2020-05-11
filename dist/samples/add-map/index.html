@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_add_map] */
       /* Set the size of the div element that contains the map */
       #map {
         height: 400px;
@@ -42,8 +41,6 @@
         width: 100%;
         /* The width is the width of the web page */
       }
-
-      /* [END maps_add_map] */
     </style>
     <script>
       (function(exports) {
@@ -64,7 +61,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_add_map]
         // Initialize and add the map
         function initMap() {
           // The location of Uluru
@@ -82,16 +78,14 @@
             position: uluru,
             map: map
           });
-        } // [END maps_add_map]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_add_map] -->
     <div id="map"></div>
-    <!-- [END maps_add_map] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

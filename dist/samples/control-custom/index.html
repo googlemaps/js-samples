@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_control_custom] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_control_custom] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_control_custom]
 
         var chicago = {
           lat: 41.85,
@@ -124,7 +120,7 @@
           exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
             centerControlDiv
           );
-        } // [END maps_control_custom]
+        }
 
         exports.CenterControl = CenterControl;
         exports.chicago = chicago;
@@ -133,9 +129,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_control_custom] -->
     <div id="map"></div>
-    <!-- [END maps_control_custom] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

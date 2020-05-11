@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_geometry_headings] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -62,8 +61,6 @@
         line-height: 30px;
         padding-left: 10px;
       }
-
-      /* [END maps_geometry_headings] */
     </style>
     <script>
       (function(exports) {
@@ -560,7 +557,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_geometry_headings]
         // This example requires the Geometry library. Include the libraries=geometry
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
@@ -632,7 +628,7 @@
           document.getElementById("heading").value = heading;
           document.getElementById("origin").value = path[0].toString();
           document.getElementById("destination").value = path[1].toString();
-        } // [END maps_geometry_headings]
+        }
 
         exports.initMap = initMap;
         exports.update = update;
@@ -640,14 +636,12 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_geometry_headings] -->
     <div id="map"></div>
     <div id="floating-panel">
       Origin: <input type="text" readonly id="origin" /> Destination:
       <input type="text" readonly id="destination" /><br />
       Heading: <input type="text" readonly id="heading" /> degrees
     </div>
-    <!-- [END maps_geometry_headings] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=geometry&version=weekly"
       async

@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_streetview_controls]
   function initPano() {
     // Note: constructed panorama objects have visible: true
     // set by default.
@@ -35,7 +34,7 @@
         enableCloseButton: false
       }
     );
-  } // [END maps_streetview_controls]
+  }
 
   exports.initPano = initPano;
 })((this.window = this.window || {}));

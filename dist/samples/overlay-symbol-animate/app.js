@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_overlay_symbol_animate]
   // This example adds an animated symbol to a polyline.
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -66,7 +65,7 @@
       icons[0].offset = count / 2 + "%";
       line.set("icons", icons);
     }, 20);
-  } // [END maps_overlay_symbol_animate]
+  }
 
   exports.animateCircle = animateCircle;
   exports.initMap = initMap;

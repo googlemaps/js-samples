@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_control_options] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_control_options] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_control_options]
         // You can set control options to change the default position or style of many
         // of the map controls.
         function initMap() {
@@ -86,16 +82,14 @@
               mapTypeIds: ["roadmap", "terrain"]
             }
           });
-        } // [END maps_control_options]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_control_options] -->
     <div id="map"></div>
-    <!-- [END maps_control_options] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

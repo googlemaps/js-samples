@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_directions_draggable] */
       #right-panel {
         font-family: "Roboto", "sans-serif";
         line-height: 30px;
@@ -78,8 +77,6 @@
         height: 100%;
         overflow: auto;
       }
-
-      /* [END maps_directions_draggable] */
     </style>
     <script>
       (function(exports) {
@@ -100,7 +97,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_directions_draggable]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -162,7 +158,7 @@
 
           total = total / 1000;
           document.getElementById("total").innerHTML = total + " km";
-        } // [END maps_directions_draggable]
+        }
 
         exports.computeTotalDistance = computeTotalDistance;
         exports.displayRoute = displayRoute;
@@ -171,12 +167,10 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_directions_draggable] -->
     <div id="map"></div>
     <div id="right-panel">
       <p>Total Distance: <span id="total"></span></p>
     </div>
-    <!-- [END maps_directions_draggable] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

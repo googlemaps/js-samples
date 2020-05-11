@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_rectangle_event]
   // This example adds a user-editable rectangle to the map.
   // When the user changes the bounds of the rectangle,
   // an info window pops up displaying the new bounds.
@@ -68,7 +67,7 @@
     exports.infoWindow.setContent(contentString);
     exports.infoWindow.setPosition(ne);
     exports.infoWindow.open(exports.map);
-  } // [END maps_rectangle_event]
+  }
 
   exports.initMap = initMap;
   exports.showNewRect = showNewRect;

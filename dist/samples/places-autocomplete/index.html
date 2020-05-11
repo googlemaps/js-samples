@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_places_autocomplete] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -116,8 +115,6 @@
         font-weight: 500;
         padding: 6px 12px;
       }
-
-      /* [END maps_places_autocomplete] */
     </style>
     <script>
       (function(exports) {
@@ -844,7 +841,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_places_autocomplete]
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -945,14 +941,13 @@
                 strictBounds: this.checked
               });
             });
-        } // [END maps_places_autocomplete]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_places_autocomplete] -->
     <div class="pac-card" id="pac-card">
       <div>
         <div id="title">
@@ -991,7 +986,6 @@
       <span id="place-name" class="title"></span><br />
       <span id="place-address"></span>
     </div>
-    <!-- [END maps_places_autocomplete] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly"

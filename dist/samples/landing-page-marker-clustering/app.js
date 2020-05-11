@@ -948,7 +948,7 @@
    * @param {!Object} options
    * @constructor
    */
-  function MarkerClusterer(map, markers, options) {} // [START maps_landing_page_marker_clustering]
+  function MarkerClusterer(map, markers, options) {}
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -1069,7 +1069,7 @@
       lat: -43.999792,
       lng: 170.463352
     }
-  ]; // [END maps_landing_page_marker_clustering]
+  ];
 
   exports.MarkerClusterer = MarkerClusterer;
   exports.initMap = initMap;

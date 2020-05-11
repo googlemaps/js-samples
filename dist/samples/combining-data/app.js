@@ -1289,7 +1289,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_combining_data]
   var mapStyle = [
     {
       stylers: [
@@ -1382,7 +1381,7 @@
   function loadCensusData(variable) {
     // load the requested variable from the census API (using local copies)
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", variable + ".json"); // [START maps_combining_data_snippet_loadcensus]
+    xhr.open("GET", variable + ".json");
 
     xhr.onload = function() {
       var censusData = JSON.parse(xhr.responseText);
@@ -1413,7 +1412,7 @@
       ).textContent = censusMax.toLocaleString();
     };
 
-    xhr.send(); // [END maps_combining_data_snippet_loadcensus]
+    xhr.send();
   }
   /** Removes census data from each shape on the map and resets the UI. */
 
@@ -1433,7 +1432,6 @@
    *
    * @param {google.maps.Data.Feature} feature
    */
-  // [START maps_combining_data_snippet_stylefeature]
 
   function styleFeature(feature) {
     var low = [5, 69, 54]; // color of smallest datum
@@ -1475,9 +1473,7 @@
       fillOpacity: 0.75,
       visible: showRow
     };
-  } // [END maps_combining_data_snippet_stylefeature]
-  // [START maps_combining_data_snippet_mouseevents]
-
+  }
   /**
    * Responds to the mouse-in event on a map shape (state).
    *
@@ -1511,7 +1507,7 @@
   function mouseOutOfRegion(e) {
     // reset the hover state, returning the border to normal
     e.feature.setProperty("state", "normal");
-  } // [END maps_combining_data_snippet_mouseevents]
+  }
 
   exports.clearCensusData = clearCensusData;
   exports.initMap = initMap;

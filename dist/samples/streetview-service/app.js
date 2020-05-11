@@ -1470,7 +1470,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_streetview_service]
 
   /*
    * Click the map to set a new location for the Street View camera.
@@ -1539,7 +1538,7 @@
     } else {
       console.error("Street View data not found for this location.");
     }
-  } // [END maps_streetview_service]
+  }
 
   exports.initMap = initMap;
   exports.processSVData = processSVData;

@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_elevation_paths]
   // Load the Visualization API and the columnchart package.
   google.load("visualization", "1", {
     packages: ["columnchart"]
@@ -112,7 +111,7 @@
       legend: "none",
       titleY: "Elevation (m)"
     });
-  } // [END maps_elevation_paths]
+  }
 
   exports.displayPathElevation = displayPathElevation;
   exports.initMap = initMap;

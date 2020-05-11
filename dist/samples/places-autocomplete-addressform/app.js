@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_places_autocomplete_addressform]
   // This sample uses the Autocomplete widget to help the user select a
   // place, then it retrieves the address components associated with that
   // place, and then it populates the form fields with those details.
@@ -49,7 +48,7 @@
     // address fields in the form.
 
     autocomplete.addListener("place_changed", fillInAddress);
-  } // [START maps_places_autocomplete_addressform_fillform]
+  }
 
   function fillInAddress() {
     // Get the place details from the autocomplete object.
@@ -69,9 +68,7 @@
         document.getElementById(addressType).value = val;
       }
     }
-  } // [END maps_places_autocomplete_addressform_fillform]
-  // [START maps_places_autocomplete_addressform_geolocation]
-  // Bias the autocomplete object to the user's geographical location,
+  } // Bias the autocomplete object to the user's geographical location,
   // as supplied by the browser's 'navigator.geolocation' object.
 
   function geolocate() {
@@ -88,7 +85,7 @@
         autocomplete.setBounds(circle.getBounds());
       });
     }
-  } // [END maps_places_autocomplete_addressform_geolocation]
+  }
 
   exports.componentForm = componentForm;
   exports.fillInAddress = fillInAddress;

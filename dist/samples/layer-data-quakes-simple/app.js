@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_layer_data_quakes_simple]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -39,7 +38,7 @@
 
   function eqfeed_callback(data) {
     exports.map.data.addGeoJson(data);
-  } // [END maps_layer_data_quakes_simple]
+  }
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.initMap = initMap;

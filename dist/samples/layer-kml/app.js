@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_layer_kml]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
@@ -29,7 +28,7 @@
       url: "http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml",
       map: map
     });
-  } // [END maps_layer_kml]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

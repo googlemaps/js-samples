@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_polyline_complex]
   // This example creates an interactive map which constructs a polyline based on
   // user clicks. Note that the polyline only appears once its path property
   // contains two LatLng coordinates.
@@ -50,7 +49,7 @@
       title: "#" + path.getLength(),
       map: exports.map
     });
-  } // [END maps_polyline_complex]
+  }
 
   exports.addLatLng = addLatLng;
   exports.initMap = initMap;

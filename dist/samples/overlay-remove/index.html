@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_overlay_remove] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -62,8 +61,6 @@
         line-height: 30px;
         padding-left: 10px;
       }
-
-      /* [END maps_overlay_remove] */
     </style>
     <script>
       (function(exports) {
@@ -84,7 +81,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_overlay_remove]
         // This example adds a UI control allowing users to remove the
         // ground overlay from the map.
 
@@ -111,11 +107,11 @@
 
         function addOverlay() {
           exports.historicalOverlay.setMap(exports.map);
-        } // [START maps_overlay_remove_region_removal]
+        }
 
         function removeOverlay() {
           exports.historicalOverlay.setMap(null);
-        } // [END maps_overlay_remove_region_removal]
+        }
 
         exports.addOverlay = addOverlay;
         exports.initMap = initMap;
@@ -124,13 +120,11 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_overlay_remove] -->
     <div id="floating-panel">
       <input onclick="removeOverlay();" type="button" value="Remove overlay" />
       <input onclick="addOverlay();" type="button" value="Restore overlay" />
     </div>
     <div id="map"></div>
-    <!-- [END maps_overlay_remove] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

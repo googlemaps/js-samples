@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_map_projection_simple]
   // This example defines an image map type using the Gall-Peters
   // projection.
   // https://en.wikipedia.org/wiki/Gall%E2%80%93Peters_projection
@@ -187,7 +186,7 @@
         }
       }
     ]
-  }; // [END maps_map_projection_simple]
+  };
 
   exports.cities = cities;
   exports.initGallPeters = initGallPeters;

@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_control_options]
   // You can set control options to change the default position or style of many
   // of the map controls.
   function initMap() {
@@ -32,7 +31,7 @@
         mapTypeIds: ["roadmap", "terrain"]
       }
     });
-  } // [END maps_control_options]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

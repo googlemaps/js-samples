@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_streetview_overlays]
 
   function initMap() {
     var astorPlace = {
@@ -81,7 +80,7 @@
     } else {
       exports.panorama.setVisible(false);
     }
-  } // [END maps_streetview_overlays]
+  }
 
   exports.initMap = initMap;
   exports.toggleStreetView = toggleStreetView;
