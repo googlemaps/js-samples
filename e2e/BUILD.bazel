@@ -9,9 +9,11 @@ load("//samples:samples.bzl", "OUTPUTS")
             "selenium.test.js",
             "//:jest.config.js",
             output,
-            "@npm//selenium-webdriver",
             "@npm//glob",
+            "@npm//selenium-webdriver",
         ],
+        flaky = 1,
+        tags = ["manual"],
         templated_args = [
             "--no-cache",
             "--no-watchman",
@@ -24,3 +26,11 @@ load("//samples:samples.bzl", "OUTPUTS")
     )
     for output in OUTPUTS
 ]
+
+test_suite(
+    name = "e2e",
+    tests = [
+        output.replace(":", "_").replace("/", "_")
+        for output in OUTPUTS
+    ],
+)
