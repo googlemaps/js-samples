@@ -37,7 +37,6 @@ jobs:
           path: .cache
           key: default-${{ hashFiles('WORKSPACE') }}
           restore-keys: |
-            default-${{ hashFiles('WORKSPACE') }}
             default-
       - name: Setup Bazel
         uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
@@ -53,4 +52,4 @@ jobs:
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build //:public.tar
       - run: bazel test ...
-      - run: bazel test --jobs 4 e2e:e2e
+      # - run: bazel test --jobs 4 e2e:e2e
