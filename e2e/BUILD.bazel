@@ -33,4 +33,5 @@ test_suite(
         output.replace(":", "_").replace("/", "_")
         for output in OUTPUTS
     ],
+    tags = ["manual"]
 )

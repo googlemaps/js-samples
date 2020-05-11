@@ -54,7 +54,7 @@ function initMap() {
       }
 
       return [
-        "//www.gstatic.com/io2010maps/tiles/5/L2_",
+        "https://www.gstatic.com/io2010maps/tiles/5/L2_",
         zoom,
         "_",
         coord.x,

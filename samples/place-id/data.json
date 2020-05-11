@@ -1,6 +1,6 @@
 {
   "title": "Place ID",
   "callback": "initMap",
-  "libraries": [],
+  "libraries": ["places"],
   "version": "weekly"
 }
