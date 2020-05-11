@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_maxzoom_simple]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -45,7 +44,7 @@
       exports.infoWindow.setPosition(e.latLng);
       exports.infoWindow.open(exports.map);
     });
-  } // [END maps_maxzoom_simple]
+  }
 
   exports.initMap = initMap;
   exports.showMaxZoom = showMaxZoom;

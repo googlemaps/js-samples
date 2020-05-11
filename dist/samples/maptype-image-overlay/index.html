@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_maptype_image_overlay] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_maptype_image_overlay] */
     </style>
     <script>
       (function(exports) {
@@ -755,7 +752,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_maptype_image_overlay]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 18,
@@ -808,16 +804,14 @@
             tileSize: new google.maps.Size(256, 256)
           });
           map.overlayMapTypes.push(imageMapType);
-        } // [END maps_maptype_image_overlay]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_maptype_image_overlay] -->
     <div id="map"></div>
-    <!-- [END maps_maptype_image_overlay] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

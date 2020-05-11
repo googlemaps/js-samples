@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_directions_complex] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -68,8 +67,6 @@
         height: 10%;
         text-align: center;
       }
-
-      /* [END maps_directions_complex] */
     </style>
     <script>
       (function(exports) {
@@ -90,7 +87,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_directions_complex]
         function initMap() {
           var markerArray = []; // Instantiate a directions service.
 
@@ -197,7 +193,7 @@
             stepDisplay.setContent(text);
             stepDisplay.open(map, marker);
           });
-        } // [END maps_directions_complex]
+        }
 
         exports.attachInstructionText = attachInstructionText;
         exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
@@ -207,7 +203,6 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_directions_complex] -->
     <div id="floating-panel">
       <b>Start: </b>
       <select id="start">
@@ -244,7 +239,6 @@
     <div id="map"></div>
     &nbsp;
     <div id="warnings-panel"></div>
-    <!-- [END maps_directions_complex] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

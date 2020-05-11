@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_maptype_image]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       center: {
@@ -79,7 +78,7 @@
       x: x,
       y: y
     };
-  } // [END maps_maptype_image]
+  }
 
   exports.getNormalizedCoord = getNormalizedCoord;
   exports.initMap = initMap;

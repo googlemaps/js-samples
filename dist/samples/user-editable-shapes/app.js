@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_user_editable_shapes]
   // This example adds a user-editable rectangle to the map.
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -25,8 +24,7 @@
         lng: -78.5389
       },
       zoom: 9
-    }); // [START maps_user_editable_shapes_rectangle]
-
+    });
     var bounds = {
       north: 44.599,
       south: 44.49,
@@ -37,10 +35,9 @@
     var rectangle = new google.maps.Rectangle({
       bounds: bounds,
       editable: true
-    }); // [END maps_user_editable_shapes_rectangle]
-
+    });
     rectangle.setMap(map);
-  } // [END maps_user_editable_shapes]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

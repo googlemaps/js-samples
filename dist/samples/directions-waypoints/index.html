@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_directions_waypoints] */
       #right-panel {
         font-family: "Roboto", "sans-serif";
         line-height: 30px;
@@ -85,8 +84,6 @@
         overflow: scroll;
         height: 174px;
       }
-
-      /* [END maps_directions_waypoints] */
     </style>
     <script>
       (function(exports) {
@@ -107,7 +104,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_directions_waypoints]
         function initMap() {
           var directionsService = new google.maps.DirectionsService();
           var directionsRenderer = new google.maps.DirectionsRenderer();
@@ -172,7 +168,7 @@
               }
             }
           );
-        } // [END maps_directions_waypoints]
+        }
 
         exports.calculateAndDisplayRoute = calculateAndDisplayRoute;
         exports.initMap = initMap;
@@ -180,7 +176,6 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_directions_waypoints] -->
     <div id="map"></div>
     <div id="right-panel">
       <div>
@@ -216,7 +211,6 @@
       </div>
       <div id="directions-panel"></div>
     </div>
-    <!-- [END maps_directions_waypoints] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"

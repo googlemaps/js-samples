@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_style_array]
   function initMap() {
     // Styles a map in night mode.
     var map = new google.maps.Map(document.getElementById("map"), {
@@ -187,7 +186,7 @@
         }
       ]
     });
-  } // [END maps_style_array]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_event_arguments] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_event_arguments] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_event_arguments]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -90,7 +86,7 @@
             map: map
           });
           map.panTo(latLng);
-        } // [END maps_event_arguments]
+        }
 
         exports.initMap = initMap;
         exports.placeMarkerAndPanTo = placeMarkerAndPanTo;
@@ -98,9 +94,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_event_arguments] -->
     <div id="map"></div>
-    <!-- [END maps_event_arguments] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

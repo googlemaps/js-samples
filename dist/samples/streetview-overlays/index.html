@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_streetview_overlays] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -66,8 +65,6 @@
       #floating-panel {
         margin-left: -100px;
       }
-
-      /* [END maps_streetview_overlays] */
     </style>
     <script>
       (function(exports) {
@@ -88,7 +85,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_streetview_overlays]
 
         function initMap() {
           var astorPlace = {
@@ -153,7 +149,7 @@
           } else {
             exports.panorama.setVisible(false);
           }
-        } // [END maps_streetview_overlays]
+        }
 
         exports.initMap = initMap;
         exports.toggleStreetView = toggleStreetView;
@@ -161,7 +157,6 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_streetview_overlays] -->
     <div id="floating-panel">
       <input
         type="button"
@@ -170,7 +165,6 @@
       />
     </div>
     <div id="map"></div>
-    <!-- [END maps_streetview_overlays] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

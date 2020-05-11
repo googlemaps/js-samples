@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_control_bounds_restriction]
 
   var NEW_ZEALAND_BOUNDS = {
     north: -34.36,
@@ -38,7 +37,7 @@
       },
       zoom: 7
     });
-  } // [END maps_control_bounds_restriction]
+  }
 
   exports.AUCKLAND = AUCKLAND;
   exports.NEW_ZEALAND_BOUNDS = NEW_ZEALAND_BOUNDS;

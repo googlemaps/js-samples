@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_aerial_rotation]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -41,7 +40,7 @@
     if (exports.map.getTilt() !== 0) {
       window.setInterval(rotate90, 3000);
     }
-  } // [END maps_aerial_rotation]
+  }
 
   exports.autoRotate = autoRotate;
   exports.initMap = initMap;

@@ -34,8 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_kml_map] */
-      /* [END maps_kml_map] */
     </style>
     <script>
       (function(exports) {
@@ -62,7 +60,6 @@
          *   and displaying the contents in a side panel instead of
          *   an InfoWindow
          */
-        // [START maps_kml_map]
 
         var src =
           "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
@@ -83,7 +80,7 @@
             var testimonial = document.getElementById("capture");
             testimonial.innerHTML = content;
           });
-        } // [END maps_kml_map]
+        }
 
         exports.initMap = initMap;
         exports.src = src;
@@ -91,9 +88,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_kml_map] -->
     <div id="map"></div>
-    <!-- [END maps_kml_map] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_event_arguments]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
@@ -36,7 +35,7 @@
       map: map
     });
     map.panTo(latLng);
-  } // [END maps_event_arguments]
+  }
 
   exports.initMap = initMap;
   exports.placeMarkerAndPanTo = placeMarkerAndPanTo;

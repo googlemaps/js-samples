@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_places_queryprediction] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -67,8 +66,6 @@
       #right-panel i {
         font-size: 12px;
       }
-
-      /* [END maps_places_queryprediction] */
     </style>
     <script>
       (function(exports) {
@@ -1718,7 +1715,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_places_queryprediction]
         // This example retrieves autocomplete predictions programmatically from the
         // autocomplete service, and displays them as an HTML list.
         // This example requires the Places library. Include the libraries=places
@@ -1748,19 +1744,17 @@
             },
             displaySuggestions
           );
-        } // [END maps_places_queryprediction]
+        }
 
         exports.initService = initService;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_places_queryprediction] -->
     <div id="right-panel">
       <p>Query suggestions for 'pizza near Syd':</p>
       <ul id="results"></ul>
     </div>
-    <!-- [END maps_places_queryprediction] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initService&libraries=places&version=weekly"
       async

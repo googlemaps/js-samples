@@ -166,7 +166,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_place_details]
   // This example requires the Places library. Include the libraries=places
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -205,7 +204,7 @@
         });
       }
     });
-  } // [END maps_place_details]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

@@ -993,7 +993,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_legend]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -1129,7 +1128,7 @@
     }
 
     exports.map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
-  } // [END maps_legend]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

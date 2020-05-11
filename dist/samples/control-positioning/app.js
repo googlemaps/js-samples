@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_control_positioning]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,
@@ -40,7 +39,7 @@
       },
       fullscreenControl: true
     });
-  } // [END maps_control_positioning]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

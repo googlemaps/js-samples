@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_control_custom]
 
   var chicago = {
     lat: 41.85,
@@ -70,7 +69,7 @@
     exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
       centerControlDiv
     );
-  } // [END maps_control_custom]
+  }
 
   exports.CenterControl = CenterControl;
   exports.chicago = chicago;

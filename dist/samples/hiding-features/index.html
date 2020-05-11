@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_hiding_features] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -71,8 +70,6 @@
         line-height: 30px;
         vertical-align: baseline;
       }
-
-      /* [END maps_hiding_features] */
     </style>
     <script>
       (function(exports) {
@@ -93,7 +90,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_hiding_features]
 
         function initMap() {
           exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -147,7 +143,7 @@
               ]
             }
           ]
-        }; // [END maps_hiding_features]
+        };
 
         exports.initMap = initMap;
         exports.styles = styles;
@@ -155,7 +151,6 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_hiding_features] -->
     <div id="style-selector-control" class="map-control">
       <input
         type="radio"
@@ -174,7 +169,6 @@
       <label for="show-poi">Show</label>
     </div>
     <div id="map"></div>
-    <!-- [END maps_hiding_features] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"

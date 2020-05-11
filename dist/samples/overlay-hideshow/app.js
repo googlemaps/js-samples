@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_overlay_hideshow]
   // This example adds hide() and show() methods to a custom overlay's prototype.
   // These methods toggle the visibility of the container <div>.
   // Additionally, we add a toggleDOM() method, which attaches or detaches the
@@ -102,8 +101,7 @@
 
   USGSOverlay.prototype.onRemove = function() {
     this.div_.parentNode.removeChild(this.div_);
-  }; // [START maps_overlay_hideshow_snippet]
-  // Set the visibility to 'hidden' or 'visible'.
+  }; // Set the visibility to 'hidden' or 'visible'.
 
   USGSOverlay.prototype.hide = function() {
     if (this.div_) {
@@ -137,7 +135,7 @@
     } else {
       this.setMap(this.map_);
     }
-  }; // [END maps_overlay_hideshow_snippet]
+  };
 
   exports.USGSOverlay = USGSOverlay;
   exports.initMap = initMap;

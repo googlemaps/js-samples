@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_layer_heatmap] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -72,8 +71,6 @@
         top: 10px;
         z-index: 5;
       }
-
-      /* [END maps_layer_heatmap] */
     </style>
     <script>
       (function(exports) {
@@ -94,7 +91,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_layer_heatmap]
         // This example requires the Visualization library. Include the libraries=visualization
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
@@ -650,7 +646,7 @@
             new google.maps.LatLng(37.752986, -122.403112),
             new google.maps.LatLng(37.751266, -122.403355)
           ];
-        } // [END maps_layer_heatmap]
+        }
 
         exports.changeGradient = changeGradient;
         exports.changeOpacity = changeOpacity;
@@ -662,7 +658,6 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_layer_heatmap] -->
     <div id="floating-panel">
       <button onclick="toggleHeatmap()">Toggle Heatmap</button>
       <button onclick="changeGradient()">Change gradient</button>
@@ -670,7 +665,6 @@
       <button onclick="changeOpacity()">Change opacity</button>
     </div>
     <div id="map"></div>
-    <!-- [END maps_layer_heatmap] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=visualization&version=weekly"
       async

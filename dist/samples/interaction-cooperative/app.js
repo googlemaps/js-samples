@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_interaction_cooperative]
 
   /**
    * This sample sets the gesture handling mode to 'cooperative',
@@ -38,7 +37,7 @@
       map: map,
       title: "Hello World!"
     });
-  } // [END maps_interaction_cooperative]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_directions_draggable]
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
@@ -78,7 +77,7 @@
 
     total = total / 1000;
     document.getElementById("total").innerHTML = total + " km";
-  } // [END maps_directions_draggable]
+  }
 
   exports.computeTotalDistance = computeTotalDistance;
   exports.displayRoute = displayRoute;

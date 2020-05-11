@@ -16,8 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_controls_basic_map]
-  // [START maps_controls_basic_map_script_snippet]
   function initMap() {
     var locationRio = {
       lat: -22.915,
@@ -27,14 +25,13 @@
       zoom: 13,
       center: locationRio,
       gestureHandling: "greedy"
-    }); // [END smaps_controls_basic_map_script_snippet]
-
+    });
     var marker = new google.maps.Marker({
       position: locationRio,
       map: map,
       title: "Hello World!"
     });
-  } // [END maps_controls_basic_map]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

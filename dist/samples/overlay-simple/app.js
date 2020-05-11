@@ -16,8 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_overlay_simple]
-  // [START maps_overlay_simple_region_initialization]
   // This example creates a custom overlay called USGSOverlay, containing
   // a U.S. Geological Survey (USGS) image of the relevant area on the map.
   // Set the custom overlay object's prototype to a new instance
@@ -49,9 +47,7 @@
     // the bounds of the image, and a reference to the map.
 
     exports.overlay = new USGSOverlay(bounds, srcImage, map);
-  } // [END maps_overlay_simple_region_initialization]
-  // [START maps_overlay_simple_region_constructor]
-
+  }
   /** @constructor */
 
   function USGSOverlay(bounds, image, map) {
@@ -65,9 +61,7 @@
     this.div_ = null; // Explicitly call setMap on this overlay.
 
     this.setMap(map);
-  } // [END maps_overlay_simple_region_constructor]
-  // [START maps_overlay_simple_region_attachment]
-
+  }
   /**
    * onAdd is called when the map's panes are ready and the overlay has been
    * added to the map.
@@ -89,8 +83,7 @@
 
     var panes = this.getPanes();
     panes.overlayLayer.appendChild(div);
-  }; // [END maps_overlay_simple_region_attachment]
-  // [START maps_overlay_simple_region_drawing]
+  };
 
   USGSOverlay.prototype.draw = function() {
     // We use the south-west and north-east
@@ -112,15 +105,13 @@
     div.style.top = ne.y + "px";
     div.style.width = ne.x - sw.x + "px";
     div.style.height = sw.y - ne.y + "px";
-  }; // [END maps_overlay_simple_region_drawing]
-  // [START maps_overlay_simple_region_removal]
-  // The onRemove() method will be called automatically from the API if
+  }; // The onRemove() method will be called automatically from the API if
   // we ever set the overlay's map property to 'null'.
 
   USGSOverlay.prototype.onRemove = function() {
     this.div_.parentNode.removeChild(this.div_);
     this.div_ = null;
-  }; // [END maps_overlay_simple_region_removal]
+  };
 
   exports.USGSOverlay = USGSOverlay;
   exports.initMap = initMap;

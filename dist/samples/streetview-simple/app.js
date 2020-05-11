@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_streetview_simple]
   function initialize() {
     var fenway = {
       lat: 42.345573,
@@ -37,7 +36,7 @@
       }
     );
     map.setStreetView(panorama);
-  } // [END maps_streetview_simple]
+  }
 
   exports.initialize = initialize;
 })((this.window = this.window || {}));

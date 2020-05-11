@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_marker_clustering] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_marker_clustering] */
     </style>
     <script>
       (function(exports) {
@@ -1018,7 +1015,7 @@
          * @param {!Object} options
          * @constructor
          */
-        function MarkerClusterer(map, markers, options) {} // [START maps_marker_clustering]
+        function MarkerClusterer(map, markers, options) {}
 
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
@@ -1135,7 +1132,7 @@
             lat: -43.999792,
             lng: 170.463352
           }
-        ]; // [END maps_marker_clustering]
+        ];
 
         exports.MarkerClusterer = MarkerClusterer;
         exports.initMap = initMap;
@@ -1144,9 +1141,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_marker_clustering] -->
     <div id="map"></div>
-    <!-- [END maps_marker_clustering] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

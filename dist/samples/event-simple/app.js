@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_event_simple]
   function initMap() {
     var myLatlng = {
       lat: -25.363,
@@ -42,7 +41,7 @@
       map.setZoom(8);
       map.setCenter(marker.getPosition());
     });
-  } // [END maps_event_simple]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

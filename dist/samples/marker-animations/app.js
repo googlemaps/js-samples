@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_marker_animations]
   // The following example creates a marker in Stockholm, Sweden using a DROP
   // animation. Clicking on the marker will toggle the animation between a BOUNCE
   // animation and no animation.
@@ -47,7 +46,7 @@
     } else {
       exports.marker.setAnimation(google.maps.Animation.BOUNCE);
     }
-  } // [END maps_marker_animations]
+  }
 
   exports.initMap = initMap;
   exports.toggleBounce = toggleBounce;

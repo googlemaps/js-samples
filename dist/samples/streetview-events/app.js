@@ -1470,7 +1470,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_streetview_events]
   function initPano() {
     var panorama = new google.maps.StreetViewPanorama(
       document.getElementById("pano"),
@@ -1520,7 +1519,7 @@
       headingCell.firstChild.nodeValue = panorama.getPov().heading + "";
       pitchCell.firstChild.nodeValue = panorama.getPov().pitch + "";
     });
-  } // [END maps_streetview_events]
+  }
 
   exports.initPano = initPano;
 })((this.window = this.window || {}));

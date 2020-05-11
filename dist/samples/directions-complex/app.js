@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_directions_complex]
   function initMap() {
     var markerArray = []; // Instantiate a directions service.
 
@@ -121,7 +120,7 @@
       stepDisplay.setContent(text);
       stepDisplay.open(map, marker);
     });
-  } // [END maps_directions_complex]
+  }
 
   exports.attachInstructionText = attachInstructionText;
   exports.calculateAndDisplayRoute = calculateAndDisplayRoute;

@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_event_properties] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_event_properties] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_event_properties]
         function initMap() {
           var originalMapCenter = new google.maps.LatLng(
             -25.363882,
@@ -88,16 +84,14 @@
           map.addListener("zoom_changed", function() {
             infowindow.setContent("Zoom: " + map.getZoom());
           });
-        } // [END maps_event_properties]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_event_properties] -->
     <div id="map"></div>
-    <!-- [END maps_event_properties] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

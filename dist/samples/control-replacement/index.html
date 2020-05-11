@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_control_replacement] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -182,8 +181,6 @@
         .fullscreen-control-icon.fullscreen-control-bottom-right {
         border-width: 2px 0 0 2px;
       }
-
-      /* [END maps_control_replacement] */
     </style>
     <script>
       (function(exports) {
@@ -204,7 +201,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_control_replacement]
 
         function initMap() {
           exports.map = new google.maps.Map(document.querySelector("#map"), {
@@ -311,7 +307,7 @@
           } else if (document.msCancelFullScreen) {
             document.msCancelFullScreen();
           }
-        } // [END maps_control_replacement]
+        }
 
         exports.exitFullscreen = exitFullscreen;
         exports.initFullscreenControl = initFullscreenControl;
@@ -324,7 +320,6 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_control_replacement] -->
     <div id="map"></div>
     <!-- Hide controls until they are moved into the map. -->
     <div style="display:none">
@@ -358,7 +353,6 @@
         </button>
       </div>
     </div>
-    <!-- [END maps_control_replacement] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"

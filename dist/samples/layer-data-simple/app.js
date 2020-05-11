@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_layer_data_simple]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -30,7 +29,7 @@
     exports.map.data.loadGeoJson(
       "https://storage.googleapis.com/mapsdevsite/json/google.json"
     );
-  } // [END maps_layer_data_simple]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_streetview_simple] */
       html,
       body {
         height: 100%;
@@ -48,8 +47,6 @@
         height: 100%;
         width: 50%;
       }
-
-      /* [END maps_streetview_simple] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_streetview_simple]
         function initialize() {
           var fenway = {
             lat: 42.345573,
@@ -91,17 +87,15 @@
             }
           );
           map.setStreetView(panorama);
-        } // [END maps_streetview_simple]
+        }
 
         exports.initialize = initialize;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_streetview_simple] -->
     <div id="map"></div>
     <div id="pano"></div>
-    <!-- [END maps_streetview_simple] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initialize&libraries=&version=weekly"
       async

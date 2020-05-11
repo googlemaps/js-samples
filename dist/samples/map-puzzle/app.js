@@ -1244,7 +1244,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_map_puzzle]
 
   /**
    * @constructor @struct @final
@@ -1730,7 +1729,7 @@
       zoom: 2
     });
     new PuzzleDemo().init(map);
-  } // [END maps_map_puzzle]
+  }
 
   exports.PuzzleDemo = PuzzleDemo;
   exports.initMap = initMap;

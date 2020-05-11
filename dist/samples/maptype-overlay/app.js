@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_maptype_overlay]
 
   /*
    * This demo illustrates the coordinate system used to display map tiles in the
@@ -62,7 +61,7 @@
       0,
       new CoordMapType(new google.maps.Size(256, 256))
     );
-  } // [END maps_maptype_overlay]
+  }
 
   exports.CoordMapType = CoordMapType;
   exports.initMap = initMap;

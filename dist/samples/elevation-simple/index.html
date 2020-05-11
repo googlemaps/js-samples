@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_elevation_simple] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_elevation_simple] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_elevation_simple]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
@@ -120,7 +116,7 @@
               }
             }
           );
-        } // [END maps_elevation_simple]
+        }
 
         exports.displayLocationElevation = displayLocationElevation;
         exports.initMap = initMap;
@@ -128,9 +124,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_elevation_simple] -->
     <div id="map"></div>
-    <!-- [END maps_elevation_simple] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_geocoding_place_id] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -70,8 +69,6 @@
       #place-id {
         width: 250px;
       }
-
-      /* [END maps_geocoding_place_id] */
     </style>
     <script>
       (function(exports) {
@@ -92,7 +89,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_geocoding_place_id]
         // Initialize the map.
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
@@ -137,7 +133,7 @@
               }
             }
           );
-        } // [END maps_geocoding_place_id]
+        }
 
         exports.geocodePlaceId = geocodePlaceId;
         exports.initMap = initMap;
@@ -145,14 +141,12 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_geocoding_place_id] -->
     <div id="floating-panel">
       <!-- Supply a default place ID for a place in Brooklyn, New York. -->
       <input id="place-id" type="text" value="ChIJd8BlQ2BZwokRAFUEcm_qrcA" />
       <input id="submit" type="button" value="Get Address for Place ID" />
     </div>
     <div id="map"></div>
-    <!-- [END maps_geocoding_place_id] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"

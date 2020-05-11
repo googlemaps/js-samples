@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_rectangle_event] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_rectangle_event] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_rectangle_event]
         // This example adds a user-editable rectangle to the map.
         // When the user changes the bounds of the rectangle,
         // an info window pops up displaying the new bounds.
@@ -122,7 +118,7 @@
           exports.infoWindow.setContent(contentString);
           exports.infoWindow.setPosition(ne);
           exports.infoWindow.open(exports.map);
-        } // [END maps_rectangle_event]
+        }
 
         exports.initMap = initMap;
         exports.showNewRect = showNewRect;
@@ -130,9 +126,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_rectangle_event] -->
     <div id="map"></div>
-    <!-- [END maps_rectangle_event] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

@@ -34,8 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_landing_page_add_map] */
-      /* [END maps_landing_page_add_map] */
     </style>
     <script>
       (function(exports) {
@@ -56,7 +54,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_landing_page_add_map]
         function initMap() {
           var uluru = {
             lat: -25.363,
@@ -74,16 +71,14 @@
             position: uluru,
             map: map
           });
-        } // [END maps_landing_page_add_map]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_landing_page_add_map] -->
     <div id="map"></div>
-    <!-- [END maps_landing_page_add_map] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async

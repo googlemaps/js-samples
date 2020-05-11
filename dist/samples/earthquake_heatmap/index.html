@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_earthquake_heatmap] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -48,8 +47,6 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_earthquake_heatmap] */
     </style>
     <script>
       (function(exports) {
@@ -70,7 +67,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_earthquake_heatmap]
 
         function initMap() {
           exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -104,7 +100,7 @@
             dissipating: false,
             map: exports.map
           });
-        } // [END maps_earthquake_heatmap]
+        }
 
         exports.eqfeed_callback = eqfeed_callback;
         exports.initMap = initMap;
@@ -112,9 +108,7 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_earthquake_heatmap] -->
     <div id="map"></div>
-    <!-- [END maps_earthquake_heatmap] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=visualization&version=weekly"
       async

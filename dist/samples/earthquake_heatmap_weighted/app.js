@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_earthquake_heatmap_weighted]
 
   function initMap() {
     exports.map = new google.maps.Map(document.getElementById("map"), {
@@ -52,7 +51,7 @@
       dissipating: false,
       map: exports.map
     });
-  }; // [END maps_earthquake_heatmap_weighted]
+  };
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

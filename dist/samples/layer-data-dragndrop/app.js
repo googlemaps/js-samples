@@ -972,7 +972,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_layer_data_dragndrop]
 
   /* Map functions */
 
@@ -1084,7 +1083,7 @@
   function initialize() {
     initMap();
     initEvents();
-  } // [END maps_layer_data_dragndrop]
+  }
 
   exports.handleDrop = handleDrop;
   exports.hidePanel = hidePanel;

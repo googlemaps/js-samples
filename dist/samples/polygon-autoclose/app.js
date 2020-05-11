@@ -16,7 +16,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_polygon_autoclose]
   // This example creates a simple polygon representing the Bermuda Triangle. Note
   // that the code specifies only three LatLng coordinates for the polygon. The
   // API automatically draws a stroke connecting the last LatLng back to the first
@@ -56,7 +55,7 @@
       fillOpacity: 0.35
     });
     bermudaTriangle.setMap(map);
-  } // [END maps_polygon_autoclose]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

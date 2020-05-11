@@ -1605,7 +1605,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_places_queryprediction]
   // This example retrieves autocomplete predictions programmatically from the
   // autocomplete service, and displays them as an HTML list.
   // This example requires the Places library. Include the libraries=places
@@ -1632,7 +1631,7 @@
       },
       displaySuggestions
     );
-  } // [END maps_places_queryprediction]
+  }
 
   exports.initService = initService;
 })((this.window = this.window || {}));

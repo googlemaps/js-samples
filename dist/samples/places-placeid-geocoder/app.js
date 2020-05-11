@@ -166,7 +166,6 @@
    * See the License for the specific language governing permissions and
    * limitations under the License.
    */
-  // [START maps_places_placeid_geocoder]
   // This sample requires the Places library. Include the libraries=places
   // parameter when you first load the API. For example:
   // <script
@@ -234,7 +233,7 @@
         }
       );
     });
-  } // [END maps_places_placeid_geocoder]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));

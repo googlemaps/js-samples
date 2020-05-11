@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_marker_animations_iteration] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -66,8 +65,6 @@
       #floating-panel {
         margin-left: -52px;
       }
-
-      /* [END maps_marker_animations_iteration] */
     </style>
     <script>
       (function(exports) {
@@ -88,7 +85,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_marker_animations_iteration]
         // If you're adding a number of markers, you may want to drop them on the map
         // consecutively rather than all at once. This example shows how to use
         // window.setTimeout() to space your markers' animation.
@@ -148,7 +144,7 @@
           }
 
           exports.markers = [];
-        } // [END maps_marker_animations_iteration]
+        }
 
         exports.addMarkerWithTimeout = addMarkerWithTimeout;
         exports.clearMarkers = clearMarkers;
@@ -159,12 +155,10 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_marker_animations_iteration] -->
     <div id="floating-panel">
       <button id="drop" onclick="drop()">Drop Markers</button>
     </div>
     <div id="map"></div>
-    <!-- [END maps_marker_animations_iteration] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"

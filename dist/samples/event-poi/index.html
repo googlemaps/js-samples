@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_event_poi] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -60,8 +59,6 @@
       #map #infowindow-content {
         display: inline;
       }
-
-      /* [END maps_event_poi] */
     </style>
     <script>
       (function(exports) {
@@ -1043,7 +1040,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_event_poi]
         function initMap() {
           var origin = {
             lat: -33.871,
@@ -1133,7 +1129,7 @@
               }
             }
           );
-        }; // [END maps_event_poi]
+        };
 
         exports.ClickEventHandler = ClickEventHandler;
         exports.initMap = initMap;
@@ -1141,7 +1137,6 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_event_poi] -->
     <div id="map"></div>
     <div id="infowindow-content">
       <img id="place-icon" src="" height="16" width="16" />
@@ -1149,7 +1144,6 @@
       Place ID <span id="place-id"></span><br />
       <span id="place-address"></span>
     </div>
-    <!-- [END maps_event_poi] -->
 
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&version=weekly"

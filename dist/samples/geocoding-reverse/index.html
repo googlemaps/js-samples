@@ -34,7 +34,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-      /* [START maps_geocoding_reverse] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -78,8 +77,6 @@
       #latlng {
         width: 225px;
       }
-
-      /* [END maps_geocoding_reverse] */
     </style>
     <script>
       (function(exports) {
@@ -1331,7 +1328,6 @@
          * See the License for the specific language governing permissions and
          * limitations under the License.
          */
-        // [START maps_geocoding_reverse]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
@@ -1378,7 +1374,7 @@
               }
             }
           );
-        } // [END maps_geocoding_reverse]
+        }
 
         exports.geocodeLatLng = geocodeLatLng;
         exports.initMap = initMap;
@@ -1386,13 +1382,11 @@
     </script>
   </head>
   <body>
-    <!-- [START maps_geocoding_reverse] -->
     <div id="floating-panel">
       <input id="latlng" type="text" value="40.714224,-73.961452" />
       <input id="submit" type="button" value="Reverse Geocode" />
     </div>
     <div id="map"></div>
-    <!-- [END maps_geocoding_reverse] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&version=weekly"
       async
