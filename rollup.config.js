@@ -15,8 +15,6 @@
  */
 
 import babel from "@rollup/plugin-babel";
-import commonjs from "@rollup/plugin-commonjs";
-import resolve from "@rollup/plugin-node-resolve";
 
 module.exports = {
   output: {
@@ -24,5 +22,5 @@ module.exports = {
     extend: "window",
     name: "window"
   },
-  plugins: [babel({ babelHelpers: "bundled" }), resolve(), commonjs()]
+  plugins: [babel({ babelHelpers: "bundled" })]
 };
