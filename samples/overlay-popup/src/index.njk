@@ -14,19 +14,19 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_overlay_popup] -->
 <!-- [START maps_overlay_popup_html] -->
+<!-- [START maps_overlay_popup_html_body] -->
 <div id="map"></div>
 <div id="content">
   Hello world!
 </div>
-<!-- [END maps_overlay_popup_html] -->
+<!-- [END maps_overlay_popup_html_body] -->
 
-<!-- [START maps_overlay_popup_api] -->
+<!-- [START maps_overlay_popup_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_overlay_popup_api] -->
-<!-- [END maps_overlay_popup] -->
+<!-- [END maps_overlay_popup_html_api] -->
+<!-- [END maps_overlay_popup_html] -->
 {% endblock %}

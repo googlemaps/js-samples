@@ -14,18 +14,18 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_elevation_paths] -->
 <!-- [START maps_elevation_paths_html] -->
+<!-- [START maps_elevation_paths_html_body] -->
 <div>
   <div id="map" style="height:250px;"></div>
   <div id="elevation_chart"></div>
 </div>
-<!-- [END maps_elevation_paths_html] -->
-<!-- [START maps_elevation_paths_api] -->
+<!-- [END maps_elevation_paths_html_body] -->
+<!-- [START maps_elevation_paths_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_elevation_paths_api] -->
-<!-- [END maps_elevation_paths] -->
+<!-- [END maps_elevation_paths_html_api] -->
+<!-- [END maps_elevation_paths_html] -->
 {% endblock %}

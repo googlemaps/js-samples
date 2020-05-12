@@ -14,19 +14,19 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_aerial_rotation] -->
 <!-- [START maps_aerial_rotation_html] -->
+<!-- [START maps_aerial_rotation_html_body] -->
 <div id="floating-panel">
   <input type="button" value="Auto Rotate" onclick="autoRotate();" />
 </div>
 <div id="map"></div>
-<!-- [END maps_aerial_rotation_html] -->
+<!-- [END maps_aerial_rotation_html_body] -->
 
-<!-- [START maps_aerial_rotation_api] -->
+<!-- [START maps_aerial_rotation_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_aerial_rotation_api] -->
-<!-- [END maps_aerial_rotation] -->
+<!-- [END maps_aerial_rotation_html_api] -->
+<!-- [END maps_aerial_rotation_html] -->
 {% endblock %}

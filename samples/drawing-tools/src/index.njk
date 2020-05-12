@@ -14,15 +14,15 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_drawing_tools] -->
 <!-- [START maps_drawing_tools_html] -->
+<!-- [START maps_drawing_tools_html_body] -->
 <div id="map"></div>
-<!-- [END maps_drawing_tools_html] -->
-<!-- [START maps_drawing_tools_api] -->
+<!-- [END maps_drawing_tools_html_body] -->
+<!-- [START maps_drawing_tools_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=drawing&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_drawing_tools_api] -->
-<!-- [END maps_drawing_tools] -->
+<!-- [END maps_drawing_tools_html_api] -->
+<!-- [END maps_drawing_tools_html] -->
 {% endblock %}

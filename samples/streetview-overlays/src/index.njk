@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_streetview_overlays] -->
 <!-- [START maps_streetview_overlays_html] -->
+<!-- [START maps_streetview_overlays_html_body] -->
 <div id="floating-panel">
   <input
     type="button"
@@ -24,12 +24,12 @@
   />
 </div>
 <div id="map"></div>
-<!-- [END maps_streetview_overlays_html] -->
-<!-- [START maps_streetview_overlays_api] -->
+<!-- [END maps_streetview_overlays_html_body] -->
+<!-- [START maps_streetview_overlays_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_streetview_overlays_api] -->
-<!-- [END maps_streetview_overlays] -->
+<!-- [END maps_streetview_overlays_html_api] -->
+<!-- [END maps_streetview_overlays_html] -->
 {% endblock %}

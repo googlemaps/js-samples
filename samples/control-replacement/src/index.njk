@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_control_replacement] -->
 <!-- [START maps_control_replacement_html] -->
+<!-- [START maps_control_replacement_html_body] -->
 <div id="map"></div>
 <!-- Hide controls until they are moved into the map. -->
 <div style="display:none">
@@ -40,13 +40,13 @@
     </button>
   </div>
 </div>
-<!-- [END maps_control_replacement_html] -->
+<!-- [END maps_control_replacement_html_body] -->
 
-<!-- [START maps_control_replacement_api] -->
+<!-- [START maps_control_replacement_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_control_replacement_api] -->
-<!-- [END maps_control_replacement] -->
+<!-- [END maps_control_replacement_html_api] -->
+<!-- [END maps_control_replacement_html] -->
 {% endblock %}

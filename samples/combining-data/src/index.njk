@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_combining_data] -->
 <!-- [START maps_combining_data_html] -->
+<!-- [START maps_combining_data_html_body] -->
 <div id="controls" class="nicebox">
   <div>
     <select id="census-variable">
@@ -48,13 +48,13 @@
   <span id="data-value"></span>
 </div>
 <div id="map"></div>
-<!-- [END maps_combining_data_html] -->
+<!-- [END maps_combining_data_html_body] -->
 
-<!-- [START maps_combining_data_api] -->
+<!-- [START maps_combining_data_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_combining_data_api] -->
-<!-- [END maps_combining_data] -->
+<!-- [END maps_combining_data_html_api] -->
+<!-- [END maps_combining_data_html] -->
 {% endblock %}

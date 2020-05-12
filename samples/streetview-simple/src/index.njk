@@ -14,16 +14,16 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_streetview_simple] -->
 <!-- [START maps_streetview_simple_html] -->
+<!-- [START maps_streetview_simple_html_body] -->
 <div id="map"></div>
 <div id="pano"></div>
-<!-- [END maps_streetview_simple_html] -->
-<!-- [START maps_streetview_simple_api] -->
+<!-- [END maps_streetview_simple_html_body] -->
+<!-- [START maps_streetview_simple_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initialize&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_streetview_simple_api] -->
-<!-- [END maps_streetview_simple] -->
+<!-- [END maps_streetview_simple_html_api] -->
+<!-- [END maps_streetview_simple_html] -->
 {% endblock %}

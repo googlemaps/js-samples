@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_places_autocomplete_hotelsearch] -->
 <!-- [START maps_places_autocomplete_hotelsearch_html] -->
+<!-- [START maps_places_autocomplete_hotelsearch_html_body] -->
 <div class="hotel-search">
   <div id="findhotels">
     Find hotels in:
@@ -79,13 +79,13 @@
     </table>
   </div>
 </div>
-<!-- [END maps_places_autocomplete_hotelsearch_html] -->
+<!-- [END maps_places_autocomplete_hotelsearch_html_body] -->
 
-<!-- [START maps_places_autocomplete_hotelsearch_api] -->
+<!-- [START maps_places_autocomplete_hotelsearch_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_places_autocomplete_hotelsearch_api] -->
-<!-- [END maps_places_autocomplete_hotelsearch] -->
+<!-- [END maps_places_autocomplete_hotelsearch_html_api] -->
+<!-- [END maps_places_autocomplete_hotelsearch_html] -->
 {% endblock %}

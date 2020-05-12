@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_directions_complex] -->
 <!-- [START maps_directions_complex_html] -->
+<!-- [START maps_directions_complex_html_body] -->
 <div id="floating-panel">
   <b>Start: </b>
   <select id="start">
@@ -50,12 +50,12 @@
 <div id="map"></div>
 &nbsp;
 <div id="warnings-panel"></div>
-<!-- [END maps_directions_complex_html] -->
-<!-- [START maps_directions_complex_api] -->
+<!-- [END maps_directions_complex_html_body] -->
+<!-- [START maps_directions_complex_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_directions_complex_api] -->
-<!-- [END maps_directions_complex] -->
+<!-- [END maps_directions_complex_html_api] -->
+<!-- [END maps_directions_complex_html] -->
 {% endblock %}

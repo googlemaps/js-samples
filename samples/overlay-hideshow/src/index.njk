@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_overlay_hideshow] -->
 <!-- [START maps_overlay_hideshow_html] -->
+<!-- [START maps_overlay_hideshow_html_body] -->
 <!-- [START maps_overlay_hideshow_html_toolbar] -->
 <!-- Add an input button to initiate the toggle method on the overlay. -->
 <div id="floating-panel">
@@ -28,12 +28,12 @@
 </div>
 <!-- [END maps_overlay_hideshow_html_toolbar] -->
 <div id="map"></div>
-<!-- [END maps_overlay_hideshow_html] -->
-<!-- [START maps_overlay_hideshow_api] -->
+<!-- [END maps_overlay_hideshow_html_body] -->
+<!-- [START maps_overlay_hideshow_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_overlay_hideshow_api] -->
-<!-- [END maps_overlay_hideshow] -->
+<!-- [END maps_overlay_hideshow_html_api] -->
+<!-- [END maps_overlay_hideshow_html] -->
 {% endblock %}

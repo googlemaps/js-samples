@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_directions_travel_modes] -->
 <!-- [START maps_directions_travel_modes_html] -->
+<!-- [START maps_directions_travel_modes_html_body] -->
 <div id="floating-panel">
   <b>Mode of Travel: </b>
   <select id="mode">
@@ -26,12 +26,12 @@
   </select>
 </div>
 <div id="map"></div>
-<!-- [END maps_directions_travel_modes_html] -->
-<!-- [START maps_directions_travel_modes_api] -->
+<!-- [END maps_directions_travel_modes_html_body] -->
+<!-- [START maps_directions_travel_modes_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_directions_travel_modes_api] -->
-<!-- [END maps_directions_travel_modes] -->
+<!-- [END maps_directions_travel_modes_html_api] -->
+<!-- [END maps_directions_travel_modes_html] -->
 {% endblock %}
