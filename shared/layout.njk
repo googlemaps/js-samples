@@ -14,18 +14,6 @@
   limitations under the License.
 -->
 
-{%- macro api() %}
-  {% if jsfiddle -%}
-    <script 
-    src="https://maps.googleapis.com/maps/api/js?key=&callback={{ callback }}&libraries={{ libraries }}&version={{ version }}" 
-    async defer></script>
-  {% else %}
-    <script 
-    src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback={{ callback }}&libraries={{ libraries }}&version={{ version }}" 
-    async defer></script>
-  {% endif %}
-{% endmacro -%}
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -38,27 +26,14 @@
       <!-- jsFiddle will insert css and js -->
     {% else %}
       {% block css %}
-        {% if inline %}
-          <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
-        {% else %}
-          <link rel="stylesheet" type="text/css" href="./style.css">
-        {% endif %}
+        <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
       {% endblock %}
       {% block js %}
-        {% if inline %}
-          <script src="./app.js" data-inline></script>
-        {% else %}
-          <script src="./app.js"></script>
-        {% endif %}
+        <script src="./app.js" data-inline></script>
       {% endblock %}
-      {% if not inline %}
-        {% include 'shared/analytics.njk' %}
-        {% include 'shared/errors.njk' %}
-      {% endif %}
     {% endif %}
   </head>
   <body>
     {% block html %}{% endblock %}
-    {{ api() }}
   </body>
 </html>

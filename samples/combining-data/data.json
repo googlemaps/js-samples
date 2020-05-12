@@ -2,5 +2,6 @@
   "title": "Mashups with google.maps.Data",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "combining_data"
 }

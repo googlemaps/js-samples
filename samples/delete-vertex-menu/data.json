@@ -2,5 +2,6 @@
   "title": "Deleting a Vertex",
   "callback": "initialize",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "delete_vertex_menu"
 }

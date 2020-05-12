@@ -2,5 +2,6 @@
   "title": "Directly Accessing Street View Data",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "streetview_service"
 }

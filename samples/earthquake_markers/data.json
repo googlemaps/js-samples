@@ -2,5 +2,6 @@
   "title": "Earthquake Markers",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "earthquake_markers"
 }

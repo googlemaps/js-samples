@@ -2,5 +2,6 @@
   "title": "Place Autocomplete Address Form",
   "libraries": ["places"],
   "callback": "initAutocomplete",
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "places_autocomplete_addressform"
 }

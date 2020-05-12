@@ -2,5 +2,6 @@
   "title": "Polygon Auto-Completion",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "polygon_autoclose"
 }

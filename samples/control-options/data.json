@@ -2,5 +2,6 @@
   "title": "Control Options",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "control_options"
 }

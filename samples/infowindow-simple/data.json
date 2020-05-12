@@ -2,5 +2,6 @@
   "title": "Info Windows",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "infowindow_simple"
 }

@@ -2,5 +2,6 @@
   "title": "Cooperative Gesture Handling",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "interaction_cooperative"
 }

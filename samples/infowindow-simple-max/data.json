@@ -2,5 +2,6 @@
   "title": "Info Window With maxWidth",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "infowindow_simple_max"
 }
