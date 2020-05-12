@@ -1,4 +1,4 @@
-load("//samples:samples.bzl", "OUTPUTS")
+load("//samples:samples.bzl", "SAMPLES")
 
 exports_files(
     [
@@ -9,7 +9,7 @@ exports_files(
 
 filegroup(
     name = "outputs",
-    srcs = OUTPUTS,
+    srcs = ["//samples/{}:outputs".format(sample) for sample in SAMPLES],
     visibility = ["//visibility:public"],
 )
 
