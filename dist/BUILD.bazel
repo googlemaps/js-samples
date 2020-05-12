@@ -1,0 +1,43 @@
+load("//rules:diff.bzl", "diff_test")
+load("//samples:samples.bzl", "SAMPLES")
+
+exports_files(glob(["**/*"]))
+
+FILES = [
+    "jsfiddle.html",
+    "index.html",
+    "style.css",
+    "app.js",
+    "sample.html"
+]
+
+[
+    [
+        diff_test(
+            name = "{}_{}_test".format(sample, file),
+            actual = "//samples/{}:jsfiddle.html".format(sample),
+            expected = "//dist:samples/{}/jsfiddle.html".format(sample),
+        )
+        for sample in SAMPLES
+    ]
+    for file in FILES
+]
+
+[
+    test_suite(
+        name = "diff_{}".format(file),
+        tests = [
+            "{}_{}_test".format(sample, file)
+            for sample in SAMPLES
+        ],
+    )
+    for file in FILES
+]
+
+test_suite(
+    name = "diff",
+    tests = [
+        "diff_{}".format(file)
+        for file in FILES
+    ],
+)

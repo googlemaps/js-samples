@@ -1,5 +1,7 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
+exports_files(["diff.js"])
+
 nodejs_binary(
     name = "json",
     entry_point = "@npm//:node_modules/json/lib/json.js",
