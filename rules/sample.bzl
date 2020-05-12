@@ -20,6 +20,7 @@ def sample():
         input = ":src/index.js",
         output = "_app_without_region_tags.js",
     )
+
     rollup_bundle(
         name = "_app_ugly",
         srcs = [":_app_without_region_tags.js", "//:.babelrc"],
@@ -29,13 +30,9 @@ def sample():
         sourcemap = "false",
         visibility = ["//visibility:public"],
         deps = [
-            "@npm//@rollup/plugin-commonjs",
-            "@npm//@rollup/plugin-babel",
             "@npm//@babel/core",
-            "@npm//@babel/runtime-corejs3",
             "@npm//@babel/preset-env",
-            "@npm//@rollup/plugin-node-resolve",
-            "@npm//core-js",
+            "@npm//@rollup/plugin-babel",
         ],
     )
 
