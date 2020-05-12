@@ -2,5 +2,6 @@
   "title": "POI Click Events",
   "libraries": ["places"],
   "callback": "initMap",
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "event_poi"
 }

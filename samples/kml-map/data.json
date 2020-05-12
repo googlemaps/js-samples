@@ -2,5 +2,6 @@
   "title": "KML Map",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "kml_map"
 }

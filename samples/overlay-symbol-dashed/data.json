@@ -2,5 +2,6 @@
   "title": "Dashed Line Symbols (Polyline)",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "overlay_symbol_dashed"
 }

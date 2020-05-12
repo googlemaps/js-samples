@@ -2,5 +2,6 @@
   "title": "Removing Polylines",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "polyline_remove"
 }

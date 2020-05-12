@@ -2,5 +2,6 @@
   "title": "Simple Map",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "map_simple"
 }

@@ -2,5 +2,6 @@
   "title": "Street View Containers",
   "callback": "initialize",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "streetview_embed"
 }

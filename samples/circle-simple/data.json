@@ -2,5 +2,6 @@
   "title": "Circles",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "circle_simple"
 }

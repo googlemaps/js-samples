@@ -2,5 +2,6 @@
   "title": "Data Layer: Event Handling",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "layer_data_event"
 }

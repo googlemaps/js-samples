@@ -2,5 +2,6 @@
   "title": "Control Positioning Labels",
   "callback": "initialize",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "control_positioning_labels"
 }

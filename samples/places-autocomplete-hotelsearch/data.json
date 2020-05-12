@@ -2,5 +2,6 @@
   "title": "Place Autocomplete Hotel Search",
   "libraries": ["places"],
   "callback": "initMap",
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "places_autocomplete_hotelsearch"
 }

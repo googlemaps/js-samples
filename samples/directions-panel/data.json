@@ -2,5 +2,6 @@
   "title": "Displaying Text Directions With setPanel()",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "directions_panel"
 }

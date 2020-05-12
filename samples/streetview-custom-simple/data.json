@@ -2,5 +2,6 @@
   "title": "Custom Street View Panoramas",
   "callback": "initPano",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "streetview_custom_simple"
 }

@@ -2,5 +2,6 @@
   "title": "Rectangle Zoom",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "rectangle_zoom"
 }
