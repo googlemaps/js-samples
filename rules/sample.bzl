@@ -79,7 +79,7 @@ def sample():
         name = "_jsfiddle_key",
         srcs = [":_jsfiddle_ugly.html"],
         outs = ["_jsfiddle_key.html"],
-        cmd = "sed 's/key=YOUR_API_KEY/key=/g' $(location :_jsfiddle_ugly.html) > $@"
+        cmd = "sed 's/key=YOUR_API_KEY/key=/g' $(location :_jsfiddle_ugly.html) > $@",
     )
 
     for src, out in [
@@ -123,13 +123,17 @@ def sample():
         name = "_index_key",
         srcs = [":_index_rendered_no_tags.html"],
         outs = ["_index_key.html"],
-        cmd = "sed \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index_rendered_no_tags.html) > $@"
+        cmd = "sed \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index_rendered_no_tags.html) > $@",
     )
 
-    prettier(
-        src = "_index_key.html",
-        out = "index.html",
-    )
+    for src, out in [
+        (":_index_key.html", "index.html"),
+        (":_index_rendered.html", "sample.html"),
+    ]:
+        prettier(
+            src = src,
+            out = out,
+        )
 
     native.filegroup(
         name = "js",
@@ -144,6 +148,7 @@ def sample():
         srcs = [
             ":index.html",
             ":jsfiddle.html",
+            ":sample.html",
         ],
         visibility = ["//visibility:public"],
     )

@@ -14,15 +14,15 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_disable_zoom_and_pan] -->
 <!-- [START maps_disable_zoom_and_pan_html] -->
+<!-- [START maps_disable_zoom_and_pan_html_body] -->
 <div id="map"></div>
-<!-- [END maps_disable_zoom_and_pan_html] -->
-<!-- [START maps_disable_zoom_and_pan_api] -->
+<!-- [END maps_disable_zoom_and_pan_html_body] -->
+<!-- [START maps_disable_zoom_and_pan_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_disable_zoom_and_pan_api] -->
-<!-- [END maps_disable_zoom_and_pan] -->
+<!-- [END maps_disable_zoom_and_pan_html_api] -->
+<!-- [END maps_disable_zoom_and_pan_html] -->
 {% endblock %}

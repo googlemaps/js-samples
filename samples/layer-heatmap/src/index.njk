@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_layer_heatmap] -->
 <!-- [START maps_layer_heatmap_html] -->
+<!-- [START maps_layer_heatmap_html_body] -->
 <div id="floating-panel">
   <button onclick="toggleHeatmap()">Toggle Heatmap</button>
   <button onclick="changeGradient()">Change gradient</button>
@@ -23,12 +23,12 @@
   <button onclick="changeOpacity()">Change opacity</button>
 </div>
 <div id="map"></div>
-<!-- [END maps_layer_heatmap_html] -->
-<!-- [START maps_layer_heatmap_api] -->
+<!-- [END maps_layer_heatmap_html_body] -->
+<!-- [START maps_layer_heatmap_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=visualization&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_layer_heatmap_api] -->
-<!-- [END maps_layer_heatmap] -->
+<!-- [END maps_layer_heatmap_html_api] -->
+<!-- [END maps_layer_heatmap_html] -->
 {% endblock %}

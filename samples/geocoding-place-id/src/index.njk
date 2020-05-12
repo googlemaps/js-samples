@@ -14,21 +14,21 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_geocoding_place_id] -->
 <!-- [START maps_geocoding_place_id_html] -->
+<!-- [START maps_geocoding_place_id_html_body] -->
 <div id="floating-panel">
   <!-- Supply a default place ID for a place in Brooklyn, New York. -->
   <input id="place-id" type="text" value="ChIJd8BlQ2BZwokRAFUEcm_qrcA" />
   <input id="submit" type="button" value="Get Address for Place ID" />
 </div>
 <div id="map"></div>
-<!-- [END maps_geocoding_place_id_html] -->
+<!-- [END maps_geocoding_place_id_html_body] -->
 
-<!-- [START maps_geocoding_place_id_api] -->
+<!-- [START maps_geocoding_place_id_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_geocoding_place_id_api] -->
-<!-- [END maps_geocoding_place_id] -->
+<!-- [END maps_geocoding_place_id_html_api] -->
+<!-- [END maps_geocoding_place_id_html] -->
 {% endblock %}

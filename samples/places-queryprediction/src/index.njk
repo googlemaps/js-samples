@@ -14,18 +14,18 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_places_queryprediction] -->
 <!-- [START maps_places_queryprediction_html] -->
+<!-- [START maps_places_queryprediction_html_body] -->
 <div id="right-panel">
   <p>Query suggestions for 'pizza near Syd':</p>
   <ul id="results"></ul>
 </div>
-<!-- [END maps_places_queryprediction_html] -->
-<!-- [START maps_places_queryprediction_api] -->
+<!-- [END maps_places_queryprediction_html_body] -->
+<!-- [START maps_places_queryprediction_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initService&libraries=places&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_places_queryprediction_api] -->
-<!-- [END maps_places_queryprediction] -->
+<!-- [END maps_places_queryprediction_html_api] -->
+<!-- [END maps_places_queryprediction_html] -->
 {% endblock %}

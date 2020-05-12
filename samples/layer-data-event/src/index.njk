@@ -14,16 +14,16 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_layer_data_event] -->
 <!-- [START maps_layer_data_event_html] -->
+<!-- [START maps_layer_data_event_html_body] -->
 <div id="map"></div>
 <div id="info-box">?</div>
-<!-- [END maps_layer_data_event_html] -->
-<!-- [START maps_layer_data_event_api] -->
+<!-- [END maps_layer_data_event_html_body] -->
+<!-- [START maps_layer_data_event_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_layer_data_event_api] -->
-<!-- [END maps_layer_data_event] -->
+<!-- [END maps_layer_data_event_html_api] -->
+<!-- [END maps_layer_data_event_html] -->
 {% endblock %}

@@ -14,8 +14,8 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_places_placeid_finder] -->
 <!-- [START maps_places_placeid_finder_html] -->
+<!-- [START maps_places_placeid_finder_html_body] -->
 <div style="display: none">
   <input
     id="pac-input"
@@ -30,13 +30,13 @@
   <strong>Place ID:</strong> <span id="place-id"></span><br />
   <span id="place-address"></span>
 </div>
-<!-- [END maps_places_placeid_finder_html] -->
+<!-- [END maps_places_placeid_finder_html_body] -->
 
-<!-- [START maps_places_placeid_finder_api] -->
+<!-- [START maps_places_placeid_finder_html_api] -->
 <script 
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&version=weekly" 
   async defer>
 </script>
-<!-- [END maps_places_placeid_finder_api] -->
-<!-- [END maps_places_placeid_finder] -->
+<!-- [END maps_places_placeid_finder_html_api] -->
+<!-- [END maps_places_placeid_finder_html] -->
 {% endblock %}
