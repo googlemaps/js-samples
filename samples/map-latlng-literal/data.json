@@ -2,5 +2,6 @@
   "title": "Lat/Lng Object Literal",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "map_latlng_literal"
 }

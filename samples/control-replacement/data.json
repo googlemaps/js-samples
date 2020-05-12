@@ -2,5 +2,6 @@
   "title": "Replacing Default Controls",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "control_replacement"
 }

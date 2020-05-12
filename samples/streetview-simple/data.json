@@ -2,5 +2,6 @@
   "title": "Street View Side-By-Side",
   "callback": "initialize",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "streetview_simple"
 }

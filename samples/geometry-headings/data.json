@@ -2,5 +2,6 @@
   "title": "Navigation Functions (Heading)",
   "libraries": ["geometry"],
   "callback": "initMap",
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "geometry_headings"
 }

@@ -48,18 +48,10 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
-    native.genrule(
-        name = "_data_file",
-        cmd = "$(location //rules:json) -f $(location data.json) -e \"this.key='$$GOOGLE_MAPS_JS_SAMPLES_KEY'\" > $@",
-        srcs = [":data.json"],
-        tools = ["//rules:json"],
-        outs = ["_data.json"],
-    )
-
     ## jsfiddle output
     _set_data_field(
         name = "_data_jsfiddle_file",
-        src = ":_data.json",
+        src = ":data.json",
         out = "_data_jsfiddle.json",
         field = "jsfiddle",
         value = "true",
@@ -83,8 +75,15 @@ def sample():
         output = "_jsfiddle_ugly.html",
     )
 
+    native.genrule(
+        name = "_jsfiddle_key",
+        srcs = [":_jsfiddle_ugly.html"],
+        outs = ["_jsfiddle_key.html"],
+        cmd = "sed 's/key=YOUR_API_KEY/key=/g' $(location :_jsfiddle_ugly.html) > $@"
+    )
+
     for src, out in [
-        (":_jsfiddle_ugly.html", "jsfiddle.html"),
+        (":_jsfiddle_key.html", "jsfiddle.html"),
         (":style_ugly.css", "style.css"),
         (":_app_ugly.js", "app.js"),
     ]:
@@ -94,21 +93,13 @@ def sample():
         )
 
     ## index
-    _set_data_field(
-        name = "_data_index_file",
-        src = ":_data.json",
-        out = "_data_index.json",
-        field = "inline",
-        value = "true",
-    )
-
     nunjucks(
         name = "_index_rendered",
         template = ":src/index.njk",
-        json = ":_data_index.json",
+        json = ":data.json",
         data = [
             ":src/index.njk",
-            ":_data_index.json",
+            ":data.json",
             "//shared:templates",
         ],
         outs = ["_index_rendered.html"],
@@ -128,8 +119,15 @@ def sample():
         output = "_index_rendered_no_tags.html",
     )
 
+    native.genrule(
+        name = "_index_key",
+        srcs = [":_index_rendered_no_tags.html"],
+        outs = ["_index_key.html"],
+        cmd = "sed \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index_rendered_no_tags.html) > $@"
+    )
+
     prettier(
-        src = "_index_rendered_no_tags.html",
+        src = "_index_key.html",
         out = "index.html",
     )
 

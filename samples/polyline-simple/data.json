@@ -2,5 +2,6 @@
   "title": "Simple Polylines",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "polyline_simple"
 }

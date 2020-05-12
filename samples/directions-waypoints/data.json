@@ -2,5 +2,6 @@
   "title": "Waypoints in Directions",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "directions_waypoints"
 }

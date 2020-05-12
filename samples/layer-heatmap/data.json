@@ -2,5 +2,6 @@
   "title": "Heatmaps",
   "libraries": ["visualization"],
   "callback": "initMap",
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "layer_heatmap"
 }

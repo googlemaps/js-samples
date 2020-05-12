@@ -2,5 +2,6 @@
   "title": "Accessing Arguments in UI Events",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "event_arguments"
 }

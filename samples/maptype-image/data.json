@@ -2,5 +2,6 @@
   "title": "Image Map Types",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "maptype_image"
 }

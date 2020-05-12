@@ -2,5 +2,6 @@
   "title": "Right-to-Left Languages",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "map_rtl"
 }

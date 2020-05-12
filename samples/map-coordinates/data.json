@@ -2,5 +2,6 @@
   "title": "Showing Pixel and Tile Coordinates",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "map_coordinates"
 }

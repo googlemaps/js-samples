@@ -2,5 +2,6 @@
   "title": "45° Imagery",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "aerial_simple"
 }

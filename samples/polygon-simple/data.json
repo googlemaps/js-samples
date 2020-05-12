@@ -2,5 +2,6 @@
   "title": "Simple Polygon",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "polygon_simple"
 }

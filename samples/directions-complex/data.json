@@ -2,5 +2,6 @@
   "title": "Directions Service (Complex)",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly"
+  "version": "weekly",
+  "tag": "directions_complex"
 }
