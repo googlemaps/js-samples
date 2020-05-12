@@ -12,7 +12,9 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
---><!DOCTYPE html>
+-->
+
+<!DOCTYPE html>
 <html>
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
@@ -74,7 +76,7 @@
         // [START maps_poly_containsLocation]
         // This example requires the Geometry library. Include the libraries=geometry
         // parameter when you first load the API. For example:
-        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
+        // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&libraries=geometry">
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             center: {
@@ -134,12 +136,16 @@
   </head>
   <body>
     <!-- [START maps_poly_containsLocation] -->
+    <!-- [START maps_poly_containsLocation_html] -->
     <div id="map"></div>
-    <!-- [END maps_poly_containsLocation] -->
+    <!-- [END maps_poly_containsLocation_html] -->
+    <!-- [START maps_poly_containsLocation_api] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=geometry&version=weekly"
       async
       defer
     ></script>
+    <!-- [END maps_poly_containsLocation_api] -->
+    <!-- [END maps_poly_containsLocation] -->
   </body>
 </html>
