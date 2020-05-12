@@ -14,11 +14,19 @@ Samples for the Google Maps JavaScript API.
 **Note::** Many of these samples were written in 2010-2012. Many are still functional and are in the samples folder.
 
 ## Development
-1. Set the environment variable `export GOOGLE_MAPS_JS_SAMPLES_KEY=YOUR_KEY`.
-1. Install with `npm install`.
-1. Start a server with all samples using `npm run serve`.
 
-Bazel is used for the build system and can be called with `npm run bazel`.
+### Build 
+1. Use Bazel to build `bazel build ...` or `bazel build //samples/add-map/...`
+1. Update dist `bazel build public.tar` and `tar xf bazel-bin/public.tar -C dist`
+
+### Test
+1. Use Bazel to run tests with `bazel test ...`
+1. Run the dist diff tests `bazel test dist:diff`
+1. Run e2e tests `npx selenium-standalone install && npx selenium-standalone start` and then run `bazel test e2e:e2e`
+
+### Run
+1. Set the environment variable `export GOOGLE_MAPS_JS_SAMPLES_KEY=YOUR_KEY`.
+1. Start a server with all samples using `bazel run serve`.
 
 ## Other Resources
 - [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)

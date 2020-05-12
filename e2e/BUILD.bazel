@@ -1,14 +1,14 @@
 load("@npm//jest:index.bzl", "jest_test")
-load("//samples:samples.bzl", "OUTPUTS")
+load("//samples:samples.bzl", "SAMPLES")
 
 [
     jest_test(
-        name = output.replace(":", "_").replace("/", "_"),
+        name = sample,
         size = "large",
         data = [
             "selenium.test.js",
             "//:jest.config.js",
-            output,
+            "//samples/{}:index.html".format(sample),
             "@npm//glob",
             "@npm//selenium-webdriver",
         ],
@@ -24,14 +24,14 @@ load("//samples:samples.bzl", "OUTPUTS")
             "$(rootpath :selenium.test.js)",
         ],
     )
-    for output in OUTPUTS
+    for sample in SAMPLES
 ]
 
 test_suite(
     name = "e2e",
+    tags = ["manual"],
     tests = [
-        output.replace(":", "_").replace("/", "_")
-        for output in OUTPUTS
+        sample
+        for sample in SAMPLES
     ],
-    tags = ["manual"]
 )
