@@ -10,7 +10,6 @@ FILES = [
     "style.css",
     "app.js",
     "sample.html",
-    "docs.html",
 ]
 
 [

@@ -43,7 +43,6 @@ The following table identifies the inputs and outputs.
 | shared/layout.njk             | Y    | Shared HTML template to extend                     |
 | shared/scss/\*                | Y    | Shared SCSS styles                                 |
 | dist/samples/\*/app.js        | N    | Transpiled JS                                      |
-| dist/samples/\*/docs.html     | N    | Inline HTML, CSS, and JS with template var for key |
 | dist/samples/\*/index.html    | N    | Inline HTML, CSS, JS with development key          |
 | dist/samples/\*/jsfiddle.html | N    | HTML without CSS or JS                             |
 | dist/samples/\*/sample.html   | N    | HTML without CSS or JS with template var for key   |
