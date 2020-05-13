@@ -119,21 +119,38 @@ def sample():
         output = "_index_rendered_no_tags.html",
     )
 
-    native.genrule(
-        name = "_index_key",
-        srcs = [":_index_rendered_no_tags.html"],
-        outs = ["_index_key.html"],
-        cmd = "sed \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index_rendered_no_tags.html) > $@",
-    )
-
     for src, out in [
-        (":_index_key.html", "index.html"),
-        (":_index_rendered.html", "sample.html"),
+        (":_index_rendered_no_tags.html", "_index.html"),
+        (":_index_rendered.html", "_sample.html"),
     ]:
         prettier(
             src = src,
             out = out,
         )
+
+    native.genrule(
+        name = "index",
+        srcs = [":_index.html"],
+        outs = ["index.html"],
+        cmd = "sed \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index.html) > $@",
+        visibility = ["//visibility:public"],
+    )
+
+    native.genrule(
+        name = "docs",
+        srcs = [":_index.html"],
+        outs = ["docs.html"],
+        cmd = "sed \"s/key=YOUR_API_KEY/key={{html_apikey}}/g\" $(location :_index.html) > $@",
+        visibility = ["//visibility:public"],
+    )
+
+    native.genrule(
+        name = "sample",
+        srcs = [":_sample.html"],
+        outs = ["sample.html"],
+        cmd = "sed \"s/key=YOUR_API_KEY/key={{html_apikey}}/g\" $(location :_sample.html) > $@",
+        visibility = ["//visibility:public"],
+    )
 
     native.filegroup(
         name = "js",
@@ -149,6 +166,7 @@ def sample():
             ":index.html",
             ":jsfiddle.html",
             ":sample.html",
+            ":docs.html",
         ],
         visibility = ["//visibility:public"],
     )
