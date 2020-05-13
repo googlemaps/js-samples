@@ -50,7 +50,7 @@ jobs:
       - run: bazel test ...
       - name: Update dist
         run: |
-          rm -rf dist && mkdir dist
+          rm -rf dist/samples && mkdir -p dist/samples
           tar -xf bazel-bin/public.tar -C dist
           git config --global user.name 'googlemaps-bot'
           git config --global user.email 'googlemaps-bot@users.noreply.github.com'
