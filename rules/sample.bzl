@@ -121,7 +121,7 @@ def sample():
 
     for src, out in [
         (":_index_rendered_no_tags.html", "_index.html"),
-        (":_index_rendered.html", "_sample.html"),
+        (":_index_rendered.html", "sample.html"),
     ]:
         prettier(
             src = src,
@@ -133,22 +133,6 @@ def sample():
         srcs = [":_index.html"],
         outs = ["index.html"],
         cmd = "sed \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index.html) > $@",
-        visibility = ["//visibility:public"],
-    )
-
-    native.genrule(
-        name = "docs",
-        srcs = [":_index.html"],
-        outs = ["docs.html"],
-        cmd = "sed \"s/key=YOUR_API_KEY/key={{html_apikey}}/g\" $(location :_index.html) > $@",
-        visibility = ["//visibility:public"],
-    )
-
-    native.genrule(
-        name = "sample",
-        srcs = [":_sample.html"],
-        outs = ["sample.html"],
-        cmd = "sed \"s/key=YOUR_API_KEY/key={{html_apikey}}/g\" $(location :_sample.html) > $@",
         visibility = ["//visibility:public"],
     )
 
@@ -166,7 +150,6 @@ def sample():
             ":index.html",
             ":jsfiddle.html",
             ":sample.html",
-            ":docs.html",
         ],
         visibility = ["//visibility:public"],
     )
