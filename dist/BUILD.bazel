@@ -9,15 +9,16 @@ FILES = [
     "index.html",
     "style.css",
     "app.js",
-    "sample.html"
+    "sample.html",
+    "docs.html",
 ]
 
 [
     [
         diff_test(
             name = "{}_{}_test".format(sample, file),
-            actual = "//samples/{}:jsfiddle.html".format(sample),
-            expected = "//dist:samples/{}/jsfiddle.html".format(sample),
+            actual = "//samples/{}:{}".format(sample, file),
+            expected = "//dist:samples/{}/{}".format(sample, file),
         )
         for sample in SAMPLES
     ]
