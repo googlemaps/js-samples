@@ -18,7 +18,7 @@
 // Initialize and add the side by side maps
 function initMap() {
   const sharedOptions = {
-    mapId: "3a3b33f0edd6ed2a",
+    mapId: "ed1309c122a3dfcb",
     center: { lat: 47.609414458375674, lng: -122.33897030353548 },
     zoom: 17,
     disableDefaultUI: true,
