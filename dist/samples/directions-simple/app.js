@@ -39,6 +39,9 @@
   }
 
   function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+    var departureTime = new Date(); // Add ten minutes to departure time
+
+    departureTime.setTime(departureTime.getTime() + 10 * 60 * 1000);
     directionsService.route(
       {
         origin: {
@@ -46,6 +49,9 @@
         },
         destination: {
           query: document.getElementById("end").value
+        },
+        drivingOptions: {
+          departureTime: departureTime
         },
         travelMode: "DRIVING"
       },
