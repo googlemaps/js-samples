@@ -151,4 +151,5 @@ SAMPLES = [
     "style-array",
     "style-selector",
     "user-editable-shapes",
+    "vector-static-map",
 ]

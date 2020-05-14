@@ -148,6 +148,7 @@
     "Street View Side-By-Side": "streetview-simple",
     "Styled Maps - Night Mode": "style-array",
     "Styled Map Selection": "style-selector",
-    "User-Editable Shapes": "user-editable-shapes"
+    "User-Editable Shapes": "user-editable-shapes",
+    "Vector Initial Static Load": "vector-static-map"
   }
 }
