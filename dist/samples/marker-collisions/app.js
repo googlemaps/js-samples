@@ -1,0 +1,163 @@
+(function(exports) {
+  "use strict";
+
+  function _slicedToArray(arr, i) {
+    return (
+      _arrayWithHoles(arr) ||
+      _iterableToArrayLimit(arr, i) ||
+      _unsupportedIterableToArray(arr, i) ||
+      _nonIterableRest()
+    );
+  }
+
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  function _iterableToArrayLimit(arr, i) {
+    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr)))
+      return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+
+    try {
+      for (
+        var _i = arr[Symbol.iterator](), _s;
+        !(_n = (_s = _i.next()).done);
+        _n = true
+      ) {
+        _arr.push(_s.value);
+
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+
+    return _arr;
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+      return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+
+    for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError(
+      "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+    );
+  }
+
+  /*
+   * Copyright 2019 Google LLC. All Rights Reserved.
+   *
+   * Licensed under the Apache License, Version 2.0 (the "License");
+   * you may not use this file except in compliance with the License.
+   * You may obtain a copy of the License at
+   *
+   *     http://www.apache.org/licenses/LICENSE-2.0
+   *
+   * Unless required by applicable law or agreed to in writing, software
+   * distributed under the License is distributed on an "AS IS" BASIS,
+   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   * See the License for the specific language governing permissions and
+   * limitations under the License.
+   */
+
+  // Initialize and add the map
+
+  function initMap() {
+    var markers = [];
+    var collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
+    exports.map = new google.maps.Map(document.getElementById("map"), {
+      mapId: "3a3b33f0edd6ed2a",
+      center: {
+        lat: 47.609414458375674,
+        lng: -122.33897030353548
+      },
+      zoom: 17
+    });
+    var menuList = document.querySelector(".mdc-list"); // Add the behaviors to the select options
+
+    for (
+      var _i = 0,
+        _Object$entries = Object.entries(google.maps.CollisionBehavior);
+      _i < _Object$entries.length;
+      _i++
+    ) {
+      var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+        key = _Object$entries$_i[0],
+        value = _Object$entries$_i[1];
+
+      var item = document.createElement("LI");
+      item.classList.add("mdc-list-item");
+      item.setAttribute("data-value", key);
+      var itemText = document.createElement("SPAN");
+      itemText.classList.add("mdc-list-item__text");
+      itemText.innerText = value;
+      item.appendChild(itemText);
+      menuList.appendChild(item);
+    }
+
+    exports.select = new mdc.select.MDCSelect(
+      document.querySelector(".mdc-select")
+    );
+    exports.select.listen("MDCSelect:change", function() {
+      collisionBehavior = exports.select.value;
+      markers.forEach(function(marker) {
+        marker.set("collisionBehavior", collisionBehavior);
+      });
+    });
+    exports.select.value = collisionBehavior; // Create some markers on the map
+
+    markers = [
+      [-122.34028458595274, 47.60931681038346],
+      [-122.3384875059128, 47.60983759756865],
+      [-122.33892738819121, 47.60955188857443],
+      [-122.3396462202072, 47.609595287509514],
+      [-122.3378437757492, 47.60972548409874],
+      [-122.3396247625351, 47.60918299617208],
+      [-122.33839094638823, 47.60899854899518],
+      [-122.33794033527374, 47.60938552565625],
+      [-122.33818709850311, 47.609530189093356],
+      [-122.3378598690033, 47.60956273831156]
+    ].map(function(_ref) {
+      var _ref2 = _slicedToArray(_ref, 2),
+        lng = _ref2[0],
+        lat = _ref2[1];
+
+      return new google.maps.Marker({
+        position: new google.maps.LatLng({
+          lat: lat,
+          lng: lng
+        }),
+        map: exports.map,
+        collisionBehavior: collisionBehavior
+      });
+    });
+  }
+
+  exports.initMap = initMap;
+})((this.window = this.window || {}));

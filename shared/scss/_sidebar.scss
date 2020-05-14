@@ -1,0 +1,24 @@
+$flex-basis: 30rem;
+$breakpoint: 2 * $flex-basis + 1rem;
+
+body {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+#sidebar {
+  flex-basis: $flex-basis;
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+#map {
+  flex-basis: $flex-basis;
+  flex-grow: 999;
+  height: 100vh;
+
+  @media screen and (max-width: $breakpoint) {
+    height: 60vh;
+  }
+}

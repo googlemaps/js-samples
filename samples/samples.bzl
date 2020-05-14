@@ -98,6 +98,7 @@ SAMPLES = [
     "marker-animations",
     "marker-animations-iteration",
     "marker-clustering",
+    "marker-collisions",
     "marker-labels",
     "marker-remove",
     "marker-simple",

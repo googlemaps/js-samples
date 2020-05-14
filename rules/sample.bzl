@@ -59,6 +59,8 @@ def sample():
         src = ":_scss_without_header.scss",
         deps = [
             "//shared/scss:default",
+            "//shared/scss:sidebar",
+            "//shared/scss:material-design-theme",
         ],
         output_name = "_style.css",
         sourcemap = False,
