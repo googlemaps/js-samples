@@ -33,14 +33,15 @@ function initMap() {
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   var departureTime = new Date();
+
   // Add ten minutes to departure time
-  departureTime.setTime(departureTime.getTime() + 10*60*1000);
+  departureTime.setTime(departureTime.getTime() + 10 * 60 * 1000);
 
   directionsService.route(
     {
       origin: { query: document.getElementById("start").value },
       destination: { query: document.getElementById("end").value },
-      drivingOptions: {departureTime: departureTime},
+      drivingOptions: { departureTime: departureTime },
       travelMode: "DRIVING"
     },
     function(response, status) {
