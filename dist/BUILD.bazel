@@ -1,15 +1,18 @@
-
 load("//rules:diff.bzl", "diff_test")
 load("//samples:samples.bzl", "SAMPLES")
 
 exports_files(glob(["**/*"]))
 
 FILES = [
+    # JS
+    "app.js",
+    # CSS
+    "style.css",
+    # HTML
     "jsfiddle.html",
     "index.html",
-    "style.css",
-    "app.js",
     "sample.html",
+    "inline.html",
 ]
 
 [

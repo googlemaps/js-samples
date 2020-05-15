@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>Street View Containers</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #street-view {
+        height: 100%;
+      }
+    </style>
+    <script>
+      (function(exports) {
+        "use strict";
+
+        function initialize() {
+          exports.panorama = new google.maps.StreetViewPanorama(
+            document.getElementById("street-view"),
+            {
+              position: {
+                lat: 37.86926,
+                lng: -122.254811
+              },
+              pov: {
+                heading: 165,
+                pitch: 0
+              },
+              zoom: 1
+            }
+          );
+        }
+
+        exports.initialize = initialize;
+      })((this.window = this.window || {}));
+    </script>
+  </head>
+  <body>
+    <div id="street-view"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initialize&libraries=&v=weekly"
+      async
+      defer
+    ></script>
+  </body>
+</html>

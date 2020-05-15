@@ -128,6 +128,17 @@ def sample():
     )
 
     native.genrule(
+        name = "inline_html",
+        srcs = [":_index.html", ":app.js", ":style.css"],
+        outs = ["inline.html"],
+        cmd = "$(location //rules:inline) $(location :_index.html) $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
+        visibility = ["//visibility:public"],
+    )
+
+    native.genrule(
         name = "sample_html",
         srcs = [":_index.html"],
         outs = ["sample.html"],
@@ -152,6 +163,7 @@ def sample():
             ":index.html",
             ":jsfiddle.html",
             ":sample.html",
+            ":inline.html",
         ],
         visibility = ["//visibility:public"],
     )
