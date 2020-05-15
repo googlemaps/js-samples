@@ -1,7 +1,6 @@
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
-load("//rules:strip_region_tags.bzl", "strip_region_tags")
 load("//rules:prettier.bzl", "prettier")
 
 def _set_data_field(name, src, out, field, value):
@@ -26,7 +25,7 @@ def sample():
     )
 
     rollup_bundle(
-        name = "_app_ugly",
+        name = "_app",
         srcs = [":_app_without_region_tags.js", "//:.babelrc"],
         entry_point = "_app_without_region_tags.js",
         config_file = "//:rollup.config.js",
@@ -50,16 +49,25 @@ def sample():
     )
 
     sass_binary(
-        name = "_css",
+        name = "_style_css",
         src = ":_scss_without_header.scss",
         deps = [
             "//shared/scss:default",
         ],
-        output_name = "style_ugly.css",
+        output_name = "_style.css",
         sourcemap = False,
         output_style = "expanded",
         visibility = ["//visibility:public"],
     )
+
+    for src, out in [
+        (":_style.css", "style.css"),
+        (":_app.js", "app.js"),
+    ]:
+        prettier(
+            src = src,
+            out = out,
+        )
 
     ## jsfiddle output
     _set_data_field(
@@ -71,7 +79,7 @@ def sample():
     )
 
     nunjucks(
-        name = "_html_jsfiddle",
+        name = "_jsfiddle_html",
         template = ":src/index.njk",
         json = ":_data_jsfiddle.json",
         data = [
@@ -82,32 +90,21 @@ def sample():
         outs = ["_jsfiddle.html"],
     )
 
-    strip_region_tags(
-        name = "_jsfiddle_strip_region_tags",
-        input = ":_jsfiddle.html",
-        output = "_jsfiddle_ugly.html",
-    )
-
     native.genrule(
-        name = "_jsfiddle_key",
-        srcs = [":_jsfiddle_ugly.html"],
-        outs = ["_jsfiddle_key.html"],
-        cmd = "sed 's/key=YOUR_API_KEY/key=/g' $(location :_jsfiddle_ugly.html) > $@",
+        name = "jsfiddle_html",
+        srcs = [":_jsfiddle.html"],
+        outs = ["jsfiddle.html"],
+        cmd = "cat $(location :_jsfiddle.html) > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "sed -i'.bak' 's/key=YOUR_API_KEY/key=/g' $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
+        visibility = ["//visibility:public"],
     )
-
-    for src, out in [
-        (":_jsfiddle_key.html", "jsfiddle.html"),
-        (":style_ugly.css", "style.css"),
-        (":_app_ugly.js", "app.js"),
-    ]:
-        prettier(
-            src = src,
-            out = out,
-        )
 
     ## index
     nunjucks(
-        name = "_index_rendered",
+        name = "_index",
         template = ":src/index.njk",
         json = ":data.json",
         data = [
@@ -115,37 +112,29 @@ def sample():
             ":data.json",
             "//shared:templates",
         ],
-        outs = ["_index_rendered.html"],
+        outs = ["_index.html"],
     )
 
     native.genrule(
-        name = "_index_with_tags",
-        srcs = [":_index_rendered.html", ":app.js", ":style.css"],
-        outs = ["_index_with_tags.html"],
-        cmd = "$(location //rules:inline) $(location :_index_rendered.html) $@",
-        tools = ["//rules:inline"],
-    )
-
-    strip_region_tags(
-        name = "_index_rendered_no_tags",
-        input = ":_index_with_tags.html",
-        output = "_index_rendered_no_tags.html",
-    )
-
-    for src, out in [
-        (":_index_rendered_no_tags.html", "_index.html"),
-        (":_index_rendered.html", "sample.html"),
-    ]:
-        prettier(
-            src = src,
-            out = out,
-        )
-
-    native.genrule(
-        name = "index",
-        srcs = [":_index.html"],
+        name = "index_html",
+        srcs = [":_index.html", ":app.js", ":style.css"],
         outs = ["index.html"],
-        cmd = "sed \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index.html) > $@",
+        cmd = "$(location //rules:inline) $(location :_index.html) $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
+        visibility = ["//visibility:public"],
+    )
+
+    native.genrule(
+        name = "sample_html",
+        srcs = [":_index.html"],
+        outs = ["sample.html"],
+        cmd = "cat $(location :_index.html) > $@; " +
+              #   "sed -i'.bak' 's/data-inline//g' $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:prettier"],
         visibility = ["//visibility:public"],
     )
 
