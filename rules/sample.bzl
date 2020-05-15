@@ -99,6 +99,7 @@ def sample():
               "sed -i'.bak' 's/key=YOUR_API_KEY/key=/g' $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
+        visibility = ["//visibility:public"],
     )
 
     ## index
@@ -123,6 +124,7 @@ def sample():
               "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
+        visibility = ["//visibility:public"],
     )
 
     native.genrule(
@@ -133,6 +135,7 @@ def sample():
               #   "sed -i'.bak' 's/data-inline//g' $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier"],
+        visibility = ["//visibility:public"],
     )
 
     native.filegroup(
