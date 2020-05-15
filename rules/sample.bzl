@@ -15,10 +15,14 @@ def _set_data_field(name, src, out, field, value):
 
 def sample():
     """ generates the various outputs"""
-    strip_region_tags(
+    native.genrule(
         name = "_app_without_region_tags",
-        input = ":src/index.js",
-        output = "_app_without_region_tags.js",
+        srcs = [":src/index.js"],
+        outs = ["_app_without_region_tags.js"],
+        cmd = "cat $(location :src/index.js) > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "$(location //rules:remove_apache_license) $@; ",
+        tools = ["//rules:strip_region_tags_bin", "//rules:remove_apache_license"],
     )
 
     rollup_bundle(
@@ -36,9 +40,18 @@ def sample():
         ],
     )
 
+    native.genrule(
+        name = "_scss_without_header",
+        srcs = [":src/style.scss"],
+        outs = ["_scss_without_header.scss"],
+        cmd = "cat $(location :src/style.scss) > $@; " +
+              "$(location //rules:remove_apache_license) $@; ",
+        tools = ["//rules:remove_apache_license"],
+    )
+
     sass_binary(
         name = "_css",
-        src = "src/style.scss",
+        src = ":_scss_without_header.scss",
         deps = [
             "//shared/scss:default",
         ],
