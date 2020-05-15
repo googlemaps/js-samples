@@ -29,3 +29,15 @@ nodejs_binary(
     entry_point = ":inline.js",
     visibility = ["//visibility:public"],
 )
+
+sh_binary(
+    name = "remove_apache_license",
+    srcs = ["remove_apache_license.sh"],
+    visibility = ["//visibility:public"],
+)
+
+sh_binary(
+    name = "strip_region_tags_bin",
+    srcs = ["strip_region_tags.sh"],
+    visibility = ["//visibility:public"],
+)
