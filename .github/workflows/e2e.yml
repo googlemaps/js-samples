@@ -12,15 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Build
+name: e2e
 
 on:
-  - push
+  push:
+  schedule:
+    - cron: "0 12 * * *"
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
       GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
+    services:
+      hub:
+        image: selenium/standalone-chrome
+        volumes:
+          - ${{ github.workspace }}:${{ github.workspace }}
+        ports:
+          - 4444:4444
+        options: --name selenium -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
     steps:
       - uses: actions/checkout@v2
       - uses: actions/cache@v1
@@ -43,4 +53,4 @@ jobs:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build --jobs 8 //:public.tar
-      - run: bazel test --jobs 8 ...
+      - run: bazel test --jobs 1 e2e:e2e
