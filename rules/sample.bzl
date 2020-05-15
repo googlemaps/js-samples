@@ -132,7 +132,7 @@ def sample():
         srcs = [":_index.html"],
         outs = ["sample.html"],
         cmd = "cat $(location :_index.html) > $@; " +
-              #   "sed -i'.bak' 's/data-inline//g' $@; " +
+              "sed -i'.bak' 's/data-inline//g' $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier"],
         visibility = ["//visibility:public"],
