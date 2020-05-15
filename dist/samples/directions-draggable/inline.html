@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta charset="utf-8" />
+    <title>Draggable Directions</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+      #right-panel {
+        font-family: "Roboto", "sans-serif";
+        line-height: 30px;
+        padding-left: 10px;
+      }
+
+      #right-panel select,
+      #right-panel input {
+        font-size: 15px;
+      }
+
+      #right-panel select {
+        width: 100%;
+      }
+
+      #right-panel i {
+        font-size: 12px;
+      }
+
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        height: 100%;
+        float: left;
+        width: 63%;
+        height: 100%;
+      }
+
+      #right-panel {
+        float: right;
+        width: 34%;
+        height: 100%;
+      }
+
+      .panel {
+        height: 100%;
+        overflow: auto;
+      }
+    </style>
+    <script>
+      (function(exports) {
+        "use strict";
+
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: {
+              lat: -24.345,
+              lng: 134.46
+            } // Australia.
+          });
+          var directionsService = new google.maps.DirectionsService();
+          var directionsRenderer = new google.maps.DirectionsRenderer({
+            draggable: true,
+            map: map,
+            panel: document.getElementById("right-panel")
+          });
+          directionsRenderer.addListener("directions_changed", function() {
+            computeTotalDistance(directionsRenderer.getDirections());
+          });
+          displayRoute(
+            "Perth, WA",
+            "Sydney, NSW",
+            directionsService,
+            directionsRenderer
+          );
+        }
+
+        function displayRoute(origin, destination, service, display) {
+          service.route(
+            {
+              origin: origin,
+              destination: destination,
+              waypoints: [
+                {
+                  location: "Adelaide, SA"
+                },
+                {
+                  location: "Broken Hill, NSW"
+                }
+              ],
+              travelMode: "DRIVING",
+              avoidTolls: true
+            },
+            function(response, status) {
+              if (status === "OK") {
+                display.setDirections(response);
+              } else {
+                alert("Could not display directions due to: " + status);
+              }
+            }
+          );
+        }
+
+        function computeTotalDistance(result) {
+          var total = 0;
+          var myroute = result.routes[0];
+
+          for (var i = 0; i < myroute.legs.length; i++) {
+            total += myroute.legs[i].distance.value;
+          }
+
+          total = total / 1000;
+          document.getElementById("total").innerHTML = total + " km";
+        }
+
+        exports.computeTotalDistance = computeTotalDistance;
+        exports.displayRoute = displayRoute;
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="right-panel">
+      <p>Total Distance: <span id="total"></span></p>
+    </div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      async
+      defer
+    ></script>
+  </body>
+</html>
