@@ -15,7 +15,6 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_marker_remove_html] -->
-<!-- [START maps_marker_remove_html_body] -->
 <div id="floating-panel">
   <input onclick="clearMarkers();" type="button" value="Hide Markers" />
   <input onclick="showMarkers();" type="button" value="Show All Markers" />
@@ -23,12 +22,5 @@
 </div>
 <div id="map"></div>
 <p>Click on the map to add markers.</p>
-<!-- [END maps_marker_remove_html_body] -->
-<!-- [START maps_marker_remove_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_marker_remove_html_api] -->
 <!-- [END maps_marker_remove_html] -->
 {% endblock %}

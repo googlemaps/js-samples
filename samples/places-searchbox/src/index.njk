@@ -15,15 +15,7 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_places_searchbox_html] -->
-<!-- [START maps_places_searchbox_html_body] -->
 <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
 <div id="map"></div>
-<!-- [END maps_places_searchbox_html_body] -->
-<!-- [START maps_places_searchbox_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initAutocomplete&libraries=places&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_places_searchbox_html_api] -->
 <!-- [END maps_places_searchbox_html] -->
 {% endblock %}

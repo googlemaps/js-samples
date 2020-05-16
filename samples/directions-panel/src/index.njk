@@ -15,7 +15,6 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_directions_panel_html] -->
-<!-- [START maps_directions_panel_html_body] -->
 <div id="floating-panel">
   <strong>Start:</strong>
   <select id="start">
@@ -51,12 +50,5 @@
 </div>
 <div id="right-panel"></div>
 <div id="map"></div>
-<!-- [END maps_directions_panel_html_body] -->
-<!-- [START maps_directions_panel_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_directions_panel_html_api] -->
 <!-- [END maps_directions_panel_html] -->
 {% endblock %}

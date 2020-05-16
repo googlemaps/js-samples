@@ -15,7 +15,6 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_hiding_features_html] -->
-<!-- [START maps_hiding_features_html_body] -->
 <div id="style-selector-control" class="map-control">
   <input type="radio" name="show-hide" id="hide-poi" class="selector-control" />
   <label for="hide-poi">Hide</label>
@@ -29,13 +28,5 @@
   <label for="show-poi">Show</label>
 </div>
 <div id="map"></div>
-<!-- [END maps_hiding_features_html_body] -->
-
-<!-- [START maps_hiding_features_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_hiding_features_html_api] -->
 <!-- [END maps_hiding_features_html] -->
 {% endblock %}

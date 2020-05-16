@@ -5,6 +5,10 @@
     <meta charset="utf-8" />
     <title>POI Click Events</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -140,11 +144,5 @@
       Place ID <span id="place-id"></span><br />
       <span id="place-address"></span>
     </div>
-
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places&v=weekly"
-      async
-      defer
-    ></script>
   </body>
 </html>

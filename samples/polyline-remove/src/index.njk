@@ -15,18 +15,10 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_polyline_remove_html] -->
-<!-- [START maps_polyline_remove_html_body] -->
 <div id="floating-panel">
   <input onclick="removeLine();" type="button" value="Remove line" />
   <input onclick="addLine();" type="button" value="Restore line" />
 </div>
 <div id="map"></div>
-<!-- [END maps_polyline_remove_html_body] -->
-<!-- [START maps_polyline_remove_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_polyline_remove_html_api] -->
 <!-- [END maps_polyline_remove_html] -->
 {% endblock %}

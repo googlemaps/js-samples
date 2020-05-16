@@ -15,7 +15,6 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_places_autocomplete_html] -->
-<!-- [START maps_places_autocomplete_html_body] -->
 <div class="pac-card" id="pac-card">
   <div>
     <div id="title">
@@ -49,13 +48,5 @@
   <span id="place-name" class="title"></span><br />
   <span id="place-address"></span>
 </div>
-<!-- [END maps_places_autocomplete_html_body] -->
-
-<!-- [START maps_places_autocomplete_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_places_autocomplete_html_api] -->
 <!-- [END maps_places_autocomplete_html] -->
 {% endblock %}
