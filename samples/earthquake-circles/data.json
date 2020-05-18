@@ -1,7 +1,0 @@
-{
-  "title": "Earthquake Circles",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "earthquake_circles"
-}

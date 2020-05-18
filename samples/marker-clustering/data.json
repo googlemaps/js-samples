@@ -1,7 +1,0 @@
-{
-  "title": "Marker Clustering",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "marker_clustering"
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Add Map",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "add_map"
-}

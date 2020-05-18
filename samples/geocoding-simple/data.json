@@ -1,7 +1,0 @@
-{
-  "title": "Geocoding Service",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "geocoding_simple"
-}

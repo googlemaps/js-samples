@@ -1,7 +1,0 @@
-{
-  "title": "Using Closures in Event Listeners",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "event_closure"
-}

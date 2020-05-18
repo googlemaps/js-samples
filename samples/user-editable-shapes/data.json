@@ -1,7 +1,0 @@
-{
-  "title": "User-Editable Shapes",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "user_editable_shapes"
-}

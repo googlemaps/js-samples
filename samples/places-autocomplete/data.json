@@ -1,7 +1,0 @@
-{
-  "title": "Place Autocomplete",
-  "libraries": ["places"],
-  "callback": "initMap",
-  "version": "weekly",
-  "tag": "places_autocomplete"
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Map Bounds Restriction",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "control_bounds_restriction"
-}

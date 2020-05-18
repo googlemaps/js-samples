@@ -1,7 +1,0 @@
-{
-  "title": "Overlay Map Types",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "maptype_overlay"
-}

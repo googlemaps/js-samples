@@ -15,12 +15,9 @@
 
 set -euo pipefail
 
-TITLE=`cat src/index.full.html | grep -oP '(?<=<title>)[^<]*'`;
+name=$(cat package.json | json "name")
+cat data.json | json -e "this.name=\"${name//_/-}\"" >data.tmp.json
 
-cat package.json | json -e "this.title=\"$TITLE\"" > package.tmp.json
+mv data.tmp.json data.json
 
-mv package.tmp.json package.json
-
-sort-package-json
-
-prettier *.json --write
+prettier data.json --write

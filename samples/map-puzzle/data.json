@@ -1,7 +1,0 @@
-{
-  "title": "Map Puzzle",
-  "libraries": ["geometry"],
-  "callback": "initMap",
-  "version": "weekly",
-  "tag": "map_puzzle"
-}

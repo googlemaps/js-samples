@@ -1,7 +1,0 @@
-{
-  "title": "Listening to Events",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "rectangle_event"
-}
