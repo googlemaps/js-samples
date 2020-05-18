@@ -1,7 +1,0 @@
-{
-  "title": "Control Positioning",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "control_positioning"
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Complex Polylines",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "polyline_complex"
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Draggable Polygons",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "polygon_draggable"
-}

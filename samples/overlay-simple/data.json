@@ -1,7 +1,0 @@
-{
-  "title": "Custom Overlays",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "overlay_simple"
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Places Search Box",
-  "libraries": ["places"],
-  "callback": "initAutocomplete",
-  "version": "weekly",
-  "tag": "places_searchbox"
-}

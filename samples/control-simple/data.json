@@ -1,7 +1,0 @@
-{
-  "title": "Adding Controls to the Map",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "control_simple"
-}

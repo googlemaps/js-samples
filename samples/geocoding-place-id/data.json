@@ -1,7 +1,0 @@
-{
-  "title": "Retrieving an Address for a Place ID",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "geocoding_place_id"
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Maximum Zoom Imagery Service",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "maxzoom_simple"
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Default Controls",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "control_default"
-}

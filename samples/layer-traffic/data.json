@@ -1,7 +1,0 @@
-{
-  "title": "Traffic Layer",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_traffic"
-}

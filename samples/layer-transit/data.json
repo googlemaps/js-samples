@@ -1,7 +1,0 @@
-{
-  "title": "Transit Layer",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_transit"
-}

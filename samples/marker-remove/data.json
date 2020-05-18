@@ -1,7 +1,0 @@
-{
-  "title": "Removing Markers",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "marker_remove"
-}

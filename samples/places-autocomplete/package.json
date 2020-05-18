@@ -1,50 +1,8 @@
 {
-  "name": "places-autocomplete",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [
-    "google",
-    "maps",
-    "sample"
-  ],
-  "homepage": "https://github.com/googlemaps/js-samples",
-  "bugs": {
-    "url": "https://github.com/googlemaps/js-samples/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/googlemaps/js-samples.git"
-  },
-  "license": "Apache-2.0",
-  "author": "Google Inc.",
-  "files": [
-    "dist/*",
-    "src/*"
-  ],
-  "main": "dist/index.umd.js",
-  "unpkg": "dist/index.min.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "build": "bazel build ...",
-    "build:css": "bazel build :css",
-    "build:html": "bazel build :html",
-    "build:js": "bazel build :js",
-    "format": "sort-package-json && prettier *.json *.js src/* examples/* --write --loglevel error",
-    "license:add": "license-check-and-add add src/* -f ../../.license-check.json",
-    "license:check": "license-check-and-add check src/* -f ../../.license-check.json",
-    "lint": "npm run license:check",
-    "test": "run-p test:callback",
-    "test:callback": "../../build/test_callback.sh"
-  },
-  "watch": {
-    "build": {
-      "patterns": [
-        "src/**",
-        "data",
-        "../../shared/**"
-      ],
-      "extensions": "ts,scss,njk,json"
-    }
-  }
+  "title": "Place Autocomplete",
+  "libraries": ["places"],
+  "callback": "initMap",
+  "version": "weekly",
+  "tag": "places_autocomplete",
+  "name": "places-autocomplete"
 }

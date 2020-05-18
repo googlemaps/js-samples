@@ -64,10 +64,10 @@ def sample():
     nunjucks(
         name = "_jsfiddle_html",
         template = ":src/index.njk",
-        json = ":data.json",
+        json = ":package.json",
         data = [
             ":src/index.njk",
-            ":data.json",
+            ":package.json",
             "//shared:templates",
         ],
         outs = ["_jsfiddle.html"],
@@ -90,10 +90,10 @@ def sample():
     nunjucks(
         name = "_sample",
         template = ":src/index.njk",
-        json = ":data.json",
+        json = ":package.json",
         data = [
             ":src/index.njk",
-            ":data.json",
+            ":package.json",
             "//shared:templates",
         ],
         outs = ["_sample.html"],
