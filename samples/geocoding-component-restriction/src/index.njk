@@ -15,18 +15,10 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_geocoding_component_restriction_html] -->
-<!-- [START maps_geocoding_component_restriction_html_body] -->
 <div id="floating-panel">
   <pre>componentRestrictions: {country: "AU", postalCode: "2000"}</pre>
   <button id="submit">Geocode</button>
 </div>
 <div id="map"></div>
-<!-- [END maps_geocoding_component_restriction_html_body] -->
-<!-- [START maps_geocoding_component_restriction_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_geocoding_component_restriction_html_api] -->
 <!-- [END maps_geocoding_component_restriction_html] -->
 {% endblock %}

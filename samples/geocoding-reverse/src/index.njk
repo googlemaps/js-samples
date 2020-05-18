@@ -15,18 +15,10 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_geocoding_reverse_html] -->
-<!-- [START maps_geocoding_reverse_html_body] -->
 <div id="floating-panel">
   <input id="latlng" type="text" value="40.714224,-73.961452" />
   <input id="submit" type="button" value="Reverse Geocode" />
 </div>
 <div id="map"></div>
-<!-- [END maps_geocoding_reverse_html_body] -->
-<!-- [START maps_geocoding_reverse_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_geocoding_reverse_html_api] -->
 <!-- [END maps_geocoding_reverse_html] -->
 {% endblock %}

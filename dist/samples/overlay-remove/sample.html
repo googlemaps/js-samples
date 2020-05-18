@@ -6,25 +6,22 @@
     <meta charset="utf-8" />
     <title>Removing Overlays</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- [START maps_overlay_remove_html_head_api] -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <!-- [END maps_overlay_remove_htmll_head_api] -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./app.js"></script>
   </head>
   <body>
     <!-- [START maps_overlay_remove_html] -->
-    <!-- [START maps_overlay_remove_html_body] -->
     <div id="floating-panel">
       <input onclick="removeOverlay();" type="button" value="Remove overlay" />
       <input onclick="addOverlay();" type="button" value="Restore overlay" />
     </div>
     <div id="map"></div>
-    <!-- [END maps_overlay_remove_html_body] -->
-    <!-- [START maps_overlay_remove_html_api] -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
-      async
-      defer
-    ></script>
-    <!-- [END maps_overlay_remove_html_api] -->
     <!-- [END maps_overlay_remove_html] -->
   </body>
 </html>

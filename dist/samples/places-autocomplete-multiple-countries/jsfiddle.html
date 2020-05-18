@@ -5,6 +5,10 @@
     <meta charset="utf-8" />
     <title>Place Autocomplete Restricted to Multiple Countries</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
     <!-- jsFiddle will insert css and js -->
   </head>
   <body>
@@ -38,11 +42,5 @@
       <span id="place-name" class="title"></span><br />
       <span id="place-address"></span>
     </div>
-
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=places&v=weekly"
-      async
-      defer
-    ></script>
   </body>
 </html>

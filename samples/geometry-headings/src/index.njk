@@ -15,19 +15,11 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_geometry_headings_html] -->
-<!-- [START maps_geometry_headings_html_body] -->
 <div id="map"></div>
 <div id="floating-panel">
   Origin: <input type="text" readonly id="origin" /> Destination:
   <input type="text" readonly id="destination" /><br />
   Heading: <input type="text" readonly id="heading" /> degrees
 </div>
-<!-- [END maps_geometry_headings_html_body] -->
-<!-- [START maps_geometry_headings_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=geometry&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_geometry_headings_html_api] -->
 <!-- [END maps_geometry_headings_html] -->
 {% endblock %}

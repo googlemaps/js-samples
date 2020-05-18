@@ -6,12 +6,17 @@
     <meta charset="utf-8" />
     <title>Place ID Finder</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- [START maps_places_placeid_finder_html_head_api] -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+    <!-- [END maps_places_placeid_finder_htmll_head_api] -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./app.js"></script>
   </head>
   <body>
     <!-- [START maps_places_placeid_finder_html] -->
-    <!-- [START maps_places_placeid_finder_html_body] -->
     <div style="display: none">
       <input
         id="pac-input"
@@ -26,15 +31,6 @@
       <strong>Place ID:</strong> <span id="place-id"></span><br />
       <span id="place-address"></span>
     </div>
-    <!-- [END maps_places_placeid_finder_html_body] -->
-
-    <!-- [START maps_places_placeid_finder_html_api] -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly"
-      async
-      defer
-    ></script>
-    <!-- [END maps_places_placeid_finder_html_api] -->
     <!-- [END maps_places_placeid_finder_html] -->
   </body>
 </html>

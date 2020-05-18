@@ -13,19 +13,13 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-{% extends '../../../shared/layout.njk'%} {% block html %}
+{% extends '../../../shared/layout.njk'%} {% block external %}
+<script src="https://www.google.com/jsapi"></script>
+{% endblock %} {% block html %}
 <!-- [START maps_elevation_paths_html] -->
-<!-- [START maps_elevation_paths_html_body] -->
 <div>
   <div id="map" style="height:250px;"></div>
   <div id="elevation_chart"></div>
 </div>
-<!-- [END maps_elevation_paths_html_body] -->
-<!-- [START maps_elevation_paths_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_elevation_paths_html_api] -->
 <!-- [END maps_elevation_paths_html] -->
 {% endblock %}

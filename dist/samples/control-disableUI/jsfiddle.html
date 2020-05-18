@@ -6,20 +6,17 @@
     <meta charset="utf-8" />
     <title>Disabling the Default UI</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- [START maps_control_disableUI_html_head_api] -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <!-- [END maps_control_disableUI_htmll_head_api] -->
     <!-- jsFiddle will insert css and js -->
   </head>
   <body>
     <!-- [START maps_control_disableUI_html] -->
-    <!-- [START maps_control_disableUI_html_body] -->
     <div id="map"></div>
-    <!-- [END maps_control_disableUI_html_body] -->
-    <!-- [START maps_control_disableUI_html_api] -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&libraries=&v=weekly"
-      async
-      defer
-    ></script>
-    <!-- [END maps_control_disableUI_html_api] -->
     <!-- [END maps_control_disableUI_html] -->
   </body>
 </html>

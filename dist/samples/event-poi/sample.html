@@ -6,12 +6,17 @@
     <meta charset="utf-8" />
     <title>POI Click Events</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- [START maps_event_poi_html_head_api] -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+    <!-- [END maps_event_poi_htmll_head_api] -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./app.js"></script>
   </head>
   <body>
     <!-- [START maps_event_poi_html] -->
-    <!-- [START maps_event_poi_html_body] -->
     <div id="map"></div>
     <div id="infowindow-content">
       <img id="place-icon" src="" height="16" width="16" />
@@ -19,15 +24,6 @@
       Place ID <span id="place-id"></span><br />
       <span id="place-address"></span>
     </div>
-    <!-- [END maps_event_poi_html_body] -->
-
-    <!-- [START maps_event_poi_html_api] -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly"
-      async
-      defer
-    ></script>
-    <!-- [END maps_event_poi_html_api] -->
     <!-- [END maps_event_poi_html] -->
   </body>
 </html>
