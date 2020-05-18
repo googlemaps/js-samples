@@ -15,18 +15,10 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_geometry_encodings_html] -->
-<!-- [START maps_geometry_encodings_html_body] -->
 <div id="map"></div>
 <div id="right-panel">
   <div>Encoding:</div>
   <textarea id="encoded-polyline"></textarea>
 </div>
-<!-- [END maps_geometry_encodings_html_body] -->
-<!-- [START maps_geometry_encodings_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=geometry&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_geometry_encodings_html_api] -->
 <!-- [END maps_geometry_encodings_html] -->
 {% endblock %}

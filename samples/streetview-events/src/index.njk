@@ -15,7 +15,6 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_streetview_events_html] -->
-<!-- [START maps_streetview_events_html_body] -->
 <div id="pano"></div>
 <div id="floating-panel">
   <table>
@@ -38,12 +37,5 @@
     <table id="links_table"></table>
   </table>
 </div>
-<!-- [END maps_streetview_events_html_body] -->
-<!-- [START maps_streetview_events_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initPano&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_streetview_events_html_api] -->
 <!-- [END maps_streetview_events_html] -->
 {% endblock %}

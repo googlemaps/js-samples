@@ -6,22 +6,19 @@
     <meta charset="utf-8" />
     <title>Data Layer: Event Handling</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- [START maps_layer_data_event_html_head_api] -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <!-- [END maps_layer_data_event_htmll_head_api] -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./app.js"></script>
   </head>
   <body>
     <!-- [START maps_layer_data_event_html] -->
-    <!-- [START maps_layer_data_event_html_body] -->
     <div id="map"></div>
     <div id="info-box">?</div>
-    <!-- [END maps_layer_data_event_html_body] -->
-    <!-- [START maps_layer_data_event_html_api] -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
-      async
-      defer
-    ></script>
-    <!-- [END maps_layer_data_event_html_api] -->
     <!-- [END maps_layer_data_event_html] -->
   </body>
 </html>

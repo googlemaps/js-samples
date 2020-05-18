@@ -15,7 +15,6 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_places_placeid_geocoder_html] -->
-<!-- [START maps_places_placeid_geocoder_html_body] -->
 <div style="display: none">
   <input
     id="pac-input"
@@ -30,13 +29,5 @@
   <strong>Place ID</strong>: <span id="place-id"></span><br />
   <span id="place-address"></span>
 </div>
-<!-- [END maps_places_placeid_geocoder_html_body] -->
-
-<!-- [START maps_places_placeid_geocoder_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_places_placeid_geocoder_html_api] -->
 <!-- [END maps_places_placeid_geocoder_html] -->
 {% endblock %}

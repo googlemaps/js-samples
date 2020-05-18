@@ -15,7 +15,6 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_places_autocomplete_directions_html] -->
-<!-- [START maps_places_autocomplete_directions_html_body] -->
 <div style="display: none">
   <input
     id="origin-input"
@@ -44,13 +43,5 @@
 </div>
 
 <div id="map"></div>
-<!-- [END maps_places_autocomplete_directions_html_body] -->
-
-<!-- [START maps_places_autocomplete_directions_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_places_autocomplete_directions_html_api] -->
 <!-- [END maps_places_autocomplete_directions_html] -->
 {% endblock %}

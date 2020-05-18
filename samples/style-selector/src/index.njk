@@ -15,7 +15,6 @@
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
 <!-- [START maps_style_selector_html] -->
-<!-- [START maps_style_selector_html_body] -->
 <div id="style-selector-control" class="map-control">
   <select id="style-selector" class="selector-control">
     <option value="default">Default</option>
@@ -26,13 +25,5 @@
   </select>
 </div>
 <div id="map"></div>
-<!-- [END maps_style_selector_html_body] -->
-
-<!-- [START maps_style_selector_html_api] -->
-<script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" 
-  async defer>
-</script>
-<!-- [END maps_style_selector_html_api] -->
 <!-- [END maps_style_selector_html] -->
 {% endblock %}

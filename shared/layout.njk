@@ -7,6 +7,13 @@
     <title>{{ title }}</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     {% block external %}{% endblock %}
+    <!-- [START maps_{{tag}}_html_head_api] -->
+    {% block api %}
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback={{ callback }}&libraries={{ libraries }}&v={{ version }}" 
+        defer></script>
+    {% endblock %}
+    <!-- [END maps_{{tag}}_htmll_head_api] -->
     {% if jsfiddle %}
       <!-- jsFiddle will insert css and js -->
     {% else %}
