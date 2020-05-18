@@ -14,15 +14,11 @@
         defer></script>
     {% endblock %}
     <!-- [END maps_{{tag}}_htmll_head_api] -->
-    {% if jsfiddle %}
+    {% if mode == "jsfiddle" %}
       <!-- jsFiddle will insert css and js -->
     {% else %}
-      {% block css %}
-        <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
-      {% endblock %}
-      {% block js %}
-        <script src="./app.js" data-inline></script>
-      {% endblock %}
+      <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
+      <script src="./app.js" data-inline></script>
     {% endif %}
   </head>
   <body>

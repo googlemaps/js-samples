@@ -3,15 +3,6 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
 
-def _set_data_field(name, src, out, field, value):
-    native.genrule(
-        name = name,
-        cmd = "./$(location //rules:json) -f $(location {}) -e 'this.{}={}' > $@".format(src, field, value),
-        srcs = [src],
-        tools = ["//rules:json"],
-        outs = [out],
-    )
-
 def sample():
     """ generates the various outputs"""
     native.genrule(
@@ -70,24 +61,17 @@ def sample():
         )
 
     ## jsfiddle output
-    _set_data_field(
-        name = "_data_jsfiddle_file",
-        src = ":data.json",
-        out = "_data_jsfiddle.json",
-        field = "jsfiddle",
-        value = "true",
-    )
-
     nunjucks(
         name = "_jsfiddle_html",
         template = ":src/index.njk",
-        json = ":_data_jsfiddle.json",
+        json = ":data.json",
         data = [
             ":src/index.njk",
-            ":_data_jsfiddle.json",
+            ":data.json",
             "//shared:templates",
         ],
         outs = ["_jsfiddle.html"],
+        mode = "jsfiddle",
     )
 
     native.genrule(
@@ -102,9 +86,9 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
-    ## index
+    ## sample html - two version, inlined and linked css/js
     nunjucks(
-        name = "_index",
+        name = "_sample",
         template = ":src/index.njk",
         json = ":data.json",
         data = [
@@ -112,26 +96,15 @@ def sample():
             ":data.json",
             "//shared:templates",
         ],
-        outs = ["_index.html"],
-    )
-
-    native.genrule(
-        name = "index_html",
-        srcs = [":_index.html", ":app.js", ":style.css"],
-        outs = ["index.html"],
-        cmd = "$(location //rules:inline) $(location :_index.html) $@; " +
-              "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
-              "$(location //rules:prettier) --write $@; ",
-        tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
-        visibility = ["//visibility:public"],
+        outs = ["_sample.html"],
+        mode = "sample"
     )
 
     native.genrule(
         name = "inline_html",
-        srcs = [":_index.html", ":app.js", ":style.css"],
+        srcs = [":_sample.html", ":app.js", ":style.css"],
         outs = ["inline.html"],
-        cmd = "$(location //rules:inline) $(location :_index.html) $@; " +
+        cmd = "$(location //rules:inline) $(location :_sample.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
@@ -140,12 +113,24 @@ def sample():
 
     native.genrule(
         name = "sample_html",
-        srcs = [":_index.html"],
+        srcs = [":_sample.html"],
         outs = ["sample.html"],
-        cmd = "cat $(location :_index.html) > $@; " +
+        cmd = "cat $(location :_sample.html) > $@; " +
               "sed -i'.bak' 's/data-inline//g' $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier"],
+        visibility = ["//visibility:public"],
+    )
+
+    native.genrule(
+        name = "index_html",
+        srcs = [":_sample.html", ":app.js", ":style.css"],
+        outs = ["index.html"],
+        cmd = "$(location //rules:inline) $(location :_sample.html) $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
     )
 
