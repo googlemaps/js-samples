@@ -1,7 +1,0 @@
-{
-  "title": "Directly Accessing Street View Data",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "streetview_service"
-}

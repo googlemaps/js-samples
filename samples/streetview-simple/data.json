@@ -1,7 +1,0 @@
-{
-  "title": "Street View Side-By-Side",
-  "callback": "initialize",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "streetview_simple"
-}

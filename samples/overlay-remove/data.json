@@ -1,7 +1,0 @@
-{
-  "title": "Removing Overlays",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "overlay_remove"
-}

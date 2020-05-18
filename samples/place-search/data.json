@@ -1,7 +1,0 @@
-{
-  "title": "Place Searches",
-  "libraries": ["places"],
-  "callback": "initMap",
-  "version": "weekly",
-  "tag": "place_search"
-}

@@ -1,7 +1,0 @@
-{
-  "title": "Marker Clustering (Landing Page)",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "landing_page_marker_clustering"
-}

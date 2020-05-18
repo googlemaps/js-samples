@@ -1,7 +1,0 @@
-{
-  "title": "Mashups with google.maps.Data",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "combining_data"
-}

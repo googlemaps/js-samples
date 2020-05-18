@@ -1,7 +1,0 @@
-{
-  "title": "Polygon Auto-Completion",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "polygon_autoclose"
-}

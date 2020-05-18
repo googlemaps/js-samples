@@ -1,7 +1,0 @@
-{
-  "title": "Reverse Geocoding",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "geocoding_reverse"
-}

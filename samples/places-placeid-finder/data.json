@@ -1,7 +1,0 @@
-{
-  "title": "Place ID Finder",
-  "libraries": ["places"],
-  "callback": "initMap",
-  "version": "weekly",
-  "tag": "places_placeid_finder"
-}

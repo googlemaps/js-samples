@@ -1,7 +1,0 @@
-{
-  "title": "Advanced Data Layer: Earthquakes",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_data_quakes"
-}

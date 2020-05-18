@@ -1,7 +1,0 @@
-{
-  "title": "Disable Zoom and Pan",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "disable_zoom_and_pan"
-}

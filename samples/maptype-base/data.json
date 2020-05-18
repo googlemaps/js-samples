@@ -1,7 +1,0 @@
-{
-  "title": "Basic Map Types",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "maptype_base"
-}

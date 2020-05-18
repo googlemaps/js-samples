@@ -1,7 +1,0 @@
-{
-  "title": "Data Layer: Dynamic Styling",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_data_dynamic"
-}
