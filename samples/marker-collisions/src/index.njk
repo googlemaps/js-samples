@@ -19,9 +19,13 @@
   <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% endblock %}
+{% block api %}
+  <script 
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=beta&map_ids=3a3b33f0edd6ed2a" 
+    defer></script>
+{% endblock %}
 {% block html %}
   <!-- [START maps_marker_collisions_html] -->
-  <!-- [START maps_marker_collisions_html_body] -->
   <div id="map"></div>
   <div id="sidebar">
     <div class="mdc-select mdc-select--outlined">
@@ -41,11 +45,5 @@
       </div>
     </div>
   </div>
-  <!-- [END maps_marker_collisions_html_body] -->
-  <!-- [START maps_marker_collisions_html_api] -->
-  <script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=beta&map_ids=3a3b33f0edd6ed2a" 
-  async defer></script>
-  <!-- [END maps_marker_collisions_html_api] -->
   <!-- [END maps_marker_collisions_html] -->
 {% endblock %}
