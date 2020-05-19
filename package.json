@@ -39,6 +39,7 @@
     "@bazel/buildifier": "^0.26.0",
     "@bazel/buildozer": "^0.29.0",
     "@bazel/rollup": "0.42.1",
+    "@bazel/terser": "^1.6.1",
     "@rollup/plugin-babel": "^5.0.0",
     "@types/googlemaps": "^3.37.7",
     "@types/jest": "^25.2.1",
@@ -59,6 +60,7 @@
     "rollup": "^2.0.0",
     "selenium-standalone": "^6.17.0",
     "selenium-webdriver": "^4.0.0-alpha.7",
+    "terser": "^4.7.0",
     "web-resource-inliner": "^4.3.4"
   }
 }

@@ -122,11 +122,25 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    # index - actual executues
+    nunjucks(
+        name = "_index",
+        template = ":src/index.njk",
+        json = ":data.json",
+        data = [
+            ":src/index.njk",
+            ":data.json",
+            "//shared:templates",
+        ],
+        outs = ["_index.html"],
+        mode = "index"
+    )
+    
     native.genrule(
         name = "index_html",
-        srcs = [":_sample.html", ":app.js", ":style.css"],
+        srcs = [":_index.html", ":app.js", ":style.css", "//shared:analytics.js"],
         outs = ["index.html"],
-        cmd = "$(location //rules:inline) $(location :_sample.html) $@; " +
+        cmd = "$(location //rules:inline) $(location :_index.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
