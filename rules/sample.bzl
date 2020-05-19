@@ -138,7 +138,7 @@ def sample():
     
     native.genrule(
         name = "index_html",
-        srcs = [":_index.html", ":app.js", ":style.css", "//shared:analytics.js"],
+        srcs = [":_index.html", ":app.js", ":style.css"],
         outs = ["index.html"],
         cmd = "$(location //rules:inline) $(location :_index.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
