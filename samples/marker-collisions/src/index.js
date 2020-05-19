@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// eslint-disable no-undef
 // [START maps_marker_collisions]
 let map;
 let select;
@@ -45,9 +45,7 @@ function initMap() {
     menuList.appendChild(item);
   }
 
-  select = new mdc.select.MDCSelect(
-    document.querySelector(".mdc-select")
-  );
+  select = new mdc.select.MDCSelect(document.querySelector(".mdc-select"));
 
   select.listen("MDCSelect:change", () => {
     collisionBehavior = select.value;
@@ -57,7 +55,7 @@ function initMap() {
   });
 
   select.value = collisionBehavior;
-  
+
   // Create some markers on the map
   markers = [
     [-122.3402, 47.6093],

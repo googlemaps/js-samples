@@ -27,7 +27,7 @@ function initMap() {
 
   new google.maps.Map(document.getElementById("dynamic"), {
     ...sharedOptions,
-    useStaticMap: false
+    useStaticMap: true
   });
 
   new google.maps.Map(document.getElementById("static"), {

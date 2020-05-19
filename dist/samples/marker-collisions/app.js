@@ -70,6 +70,8 @@
     );
   }
 
+  // eslint-disable no-undef
+
   // Initialize and add the map
 
   function initMap() {

@@ -76,7 +76,7 @@
         _objectSpread2({}, sharedOptions),
         {},
         {
-          useStaticMap: false
+          useStaticMap: true
         }
       )
     );

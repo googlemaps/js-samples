@@ -13,17 +13,16 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-{% extends '../../../shared/layout.njk'%}
-{% block api %}
-  <script 
-  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=beta&map_ids=ed1309c122a3dfcb" 
-  defer></script>
-{% endblock %}
-{% block html %}
-  <!-- [START maps_vector_static_map_html] -->
-  <div class="container">
-    <div id="dynamic" class="map"></div>
-    <div id="static" class="map"></div>
-  </div>
-  <!-- [END maps_vector_static_map_html] -->
+{% extends '../../../shared/layout.njk'%} {% block api %}
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=beta&map_ids=ed1309c122a3dfcb"
+  defer
+></script>
+{% endblock %} {% block html %}
+<!-- [START maps_vector_static_map_html] -->
+<div class="container">
+  <div id="dynamic" class="map"></div>
+  <div id="static" class="map"></div>
+</div>
+<!-- [END maps_vector_static_map_html] -->
 {% endblock %}
