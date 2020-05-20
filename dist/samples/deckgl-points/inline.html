@@ -3,7 +3,7 @@
   <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta charset="utf-8" />
-    <title>DECK.Gl and Google Maps - Points</title>
+    <title>deck.gl and Google Maps Platform</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://unpkg.com/deck.gl@^7.0.0/dist.min.js"></script>
     <script
@@ -34,8 +34,8 @@
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             center: {
-              lat: 0,
-              lng: 0
+              lat: 40,
+              lng: -110
             },
             zoom: 4
           });

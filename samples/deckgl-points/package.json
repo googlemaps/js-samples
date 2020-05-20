@@ -1,5 +1,5 @@
 {
-  "title": "DECK.Gl and Google Maps - Points",
+  "title": "deck.gl and Google Maps Platform",
   "callback": "initMap",
   "libraries": [],
   "version": "weekly",
