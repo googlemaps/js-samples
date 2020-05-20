@@ -31,3 +31,8 @@ sass_library(
     name = "right-panel",
     srcs = ["_right-panel.scss"],
 )
+
+sass_library(
+    name = "material-design-theme",
+    srcs = ["_material-design-theme.scss"],
+)

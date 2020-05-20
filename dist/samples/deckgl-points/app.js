@@ -38,6 +38,9 @@
               // grow from size 0,
               duration: 10000
             }
+          },
+          onDataLoad: function onDataLoad(_) {
+            progress.done(); // hides progress bar
           }
         })
       ]

@@ -15,7 +15,6 @@
  */
 
 /* eslint-disable no-undef */
-
 // [START maps_deckgl_points]
 // Initialize and add the map
 function initMap() {
@@ -46,6 +45,9 @@ function initMap() {
             enter: _ => [0], // grow from size 0,
             duration: 10000
           }
+        },
+        onDataLoad: _ => {
+          progress.done(); // hides progress bar
         }
       })
     ]
