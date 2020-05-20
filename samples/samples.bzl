@@ -83,6 +83,7 @@ SAMPLES = [
     "map-coordinates",
     "map-events",
     "map-geolocation",
+    "map-id-style",
     "map-language",
     "map-latlng-literal",
     "map-projection-simple",

@@ -81,6 +81,7 @@
     "Showing Pixel and Tile Coordinates": "map-coordinates",
     "Map Events Explorer": "map-events",
     "Geolocation": "map-geolocation",
+    "Map Id Style": "map-id-style",
     "Localizing the Map": "map-language",
     "Lat/Lng Object Literal": "map-latlng-literal",
     "Custom Map Projections": "map-projection-simple",
