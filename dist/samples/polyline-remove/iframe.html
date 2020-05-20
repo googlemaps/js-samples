@@ -1,0 +1,96 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&v=weekly"
+  defer
+></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
+  }
+</style>
+<script>
+  (function(exports) {
+    "use strict";
+
+    // This example adds a UI control allowing users to remove the polyline from the
+    // map.
+
+    function initMap() {
+      exports.map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 3,
+        center: {
+          lat: 0,
+          lng: -180
+        },
+        mapTypeId: "terrain"
+      });
+      var flightPathCoordinates = [
+        {
+          lat: 37.772,
+          lng: -122.214
+        },
+        {
+          lat: 21.291,
+          lng: -157.821
+        },
+        {
+          lat: -18.142,
+          lng: 178.431
+        },
+        {
+          lat: -27.467,
+          lng: 153.027
+        }
+      ];
+      exports.flightPath = new google.maps.Polyline({
+        path: flightPathCoordinates,
+        strokeColor: "#FF0000",
+        strokeOpacity: 1.0,
+        strokeWeight: 2
+      });
+      addLine();
+    }
+
+    function addLine() {
+      exports.flightPath.setMap(exports.map);
+    }
+
+    function removeLine() {
+      exports.flightPath.setMap(null);
+    }
+
+    exports.addLine = addLine;
+    exports.initMap = initMap;
+    exports.removeLine = removeLine;
+  })((this.window = this.window || {}));
+</script>
+
+<div id="floating-panel">
+  <input onclick="removeLine();" type="button" value="Remove line" />
+  <input onclick="addLine();" type="button" value="Restore line" />
+</div>
+<div id="map"></div>

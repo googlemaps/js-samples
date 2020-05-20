@@ -1,0 +1,63 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&v=weekly"
+  defer
+></script>
+<style type="text/css">
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #map {
+    float: left;
+    height: 425px;
+    width: 79%;
+  }
+
+  #content-window {
+    float: left;
+    font-family: "Roboto", "sans-serif";
+    height: 100%;
+    line-height: 30px;
+    padding-left: 10px;
+    width: 19%;
+  }
+</style>
+<script>
+  (function(exports) {
+    "use strict";
+
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: {
+          lat: 37.06,
+          lng: -95.68
+        }
+      });
+      var kmlLayer = new google.maps.KmlLayer({
+        url:
+          "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
+        suppressInfoWindows: true,
+        map: map
+      });
+      kmlLayer.addListener("click", function(kmlEvent) {
+        var text = kmlEvent.featureData.description;
+        showInContentWindow(text);
+      });
+
+      function showInContentWindow(text) {
+        var sidediv = document.getElementById("content-window");
+        sidediv.innerHTML = text;
+      }
+    }
+
+    exports.initMap = initMap;
+  })((this.window = this.window || {}));
+</script>
+
+<div id="map"></div>
+<div id="content-window"></div>

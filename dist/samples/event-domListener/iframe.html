@@ -1,0 +1,50 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- [START maps_event_domListener_html_head_api] -->
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&v=weekly"
+  defer
+></script>
+<!-- [END maps_event_domListener_htmll_head_api] -->
+<style type="text/css">
+  /* [START maps_event_domListener] */
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* [END maps_event_domListener] */
+</style>
+<script>
+  (function(exports) {
+    "use strict";
+
+    // [START maps_event_domListener]
+    function initMap() {
+      var mapDiv = document.getElementById("map");
+      var map = new google.maps.Map(mapDiv, {
+        zoom: 8,
+        center: new google.maps.LatLng(-34.397, 150.644)
+      }); // We add a DOM event here to show an alert if the DIV containing the
+      // map is clicked.
+
+      google.maps.event.addDomListener(mapDiv, "click", function() {
+        window.alert("Map was clicked!");
+      });
+    } // [END maps_event_domListener]
+
+    exports.initMap = initMap;
+  })((this.window = this.window || {}));
+</script>
+
+<!-- [START maps_event_domListener_html] -->
+<div id="map"></div>
+<!-- [END maps_event_domListener_html] -->
