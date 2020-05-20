@@ -1,0 +1,53 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&v=weekly"
+  defer
+></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<script>
+  (function(exports) {
+    "use strict";
+
+    // This example uses a GroundOverlay to place an image on the map
+    // showing an antique map of Newark, NJ.
+
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 13,
+        center: {
+          lat: 40.74,
+          lng: -74.18
+        }
+      });
+      var imageBounds = {
+        north: 40.773941,
+        south: 40.712216,
+        east: -74.12544,
+        west: -74.22655
+      };
+      exports.historicalOverlay = new google.maps.GroundOverlay(
+        "https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+        imageBounds
+      );
+      exports.historicalOverlay.setMap(map);
+    }
+
+    exports.initMap = initMap;
+  })((this.window = this.window || {}));
+</script>
+
+<div id="map"></div>

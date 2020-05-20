@@ -1,0 +1,59 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&v=weekly"
+  defer
+></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<script>
+  (function(exports) {
+    "use strict";
+
+    function initMap() {
+      exports.map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 11,
+        center: {
+          lat: 35.6894,
+          lng: 139.692
+        },
+        mapTypeId: "hybrid"
+      });
+      exports.infoWindow = new google.maps.InfoWindow();
+      exports.maxZoomService = new google.maps.MaxZoomService();
+      exports.map.addListener("click", showMaxZoom);
+    }
+
+    function showMaxZoom(e) {
+      exports.maxZoomService.getMaxZoomAtLatLng(e.latLng, function(response) {
+        if (response.status !== "OK") {
+          exports.infoWindow.setContent("Error in MaxZoomService");
+        } else {
+          exports.infoWindow.setContent(
+            "The maximum zoom at this location is: " + response.zoom
+          );
+        }
+
+        exports.infoWindow.setPosition(e.latLng);
+        exports.infoWindow.open(exports.map);
+      });
+    }
+
+    exports.initMap = initMap;
+    exports.showMaxZoom = showMaxZoom;
+  })((this.window = this.window || {}));
+</script>
+
+<div id="map"></div>
