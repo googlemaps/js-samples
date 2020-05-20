@@ -1,0 +1,8 @@
+{
+  "title": "DECK.Gl and Google Maps - Points",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "deckgl_points",
+  "name": "deckgl-points"
+}
