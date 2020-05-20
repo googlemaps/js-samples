@@ -5,17 +5,17 @@
     "plugin:prettier/recommended"
   ],
   "parserOptions": {
-    "ecmaVersion": 6,
+    "ecmaVersion": "2018",
     "sourceType": "module",
     "ecmaFeatures": {
-      "modules": true,
-      "experimentalObjectRestSpread": true
+      "jsx": true
     }
   },
   "globals": {
     "google": "writable",
     "firebase": "readonly",
-    "ActiveXObject": "readonly"
+    "ActiveXObject": "readonly",
+    "mdc": "readonly"
   },
   "env": {
     "browser": true
