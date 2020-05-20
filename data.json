@@ -18,6 +18,7 @@
     "Adding Controls to the Map": "control-simple",
     "Controls Basic Map": "controls-basic-map",
     "Custom Markers": "custom-markers",
+    "DECK.GL Points": "deckgl-points",
     "Deleting a Vertex": "delete-vertex-menu",
     "Directions Service (Complex)": "directions-complex",
     "Draggable Directions": "directions-draggable",
