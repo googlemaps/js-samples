@@ -1,10 +1,12 @@
-<!-- [START maps_{{tag}}] -->
-<!DOCTYPE html>
-<html>
-  <head>
+{% if mode != "iframe" %}
+  <!-- [START maps_{{tag}}] -->
+  <!DOCTYPE html>
+  <html>
+    <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <meta charset="utf-8"/>
     <title>{{ title }}</title>
+    {% endif %}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     {% block external %}{% endblock %}
     <!-- [START maps_{{tag}}_html_head_api] -->
@@ -20,9 +22,14 @@
       <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
       <script src="./app.js" data-inline></script>
     {% endif %}
-  </head>
-  <body>
+    {% if mode != "iframe" %}
+    </head>
+    <body>
+    {% endif %}
+
     {% block html %}{% endblock %}
-  </body>
-</html>
-<!-- [END maps_{{tag}}] -->
+    {% if mode != "iframe" %}
+    </body>
+  </html>
+  <!-- [END maps_{{tag}}] -->
+{% endif %}

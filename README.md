@@ -44,6 +44,7 @@ The following table identifies the inputs and outputs.
 | shared/scss/\*                | Y    | Shared SCSS styles                                 |
 | dist/samples/\*/app.js        | N    | Transpiled JS                                      |
 | dist/samples/\*/index.html    | N    | Inline HTML, CSS, JS with development key          |
+| dist/samples/\*/iframe.html    | N    | Inline HTML, CSS, JS for iframe without html, head, body tags       |
 | dist/samples/\*/jsfiddle.html | N    | HTML without CSS or JS                             |
 | dist/samples/\*/sample.html   | N    | HTML without CSS or JS with template var for key   |
 | dist/samples/\*/style.css     | N    | CSS output from SCSS                               |

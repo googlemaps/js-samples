@@ -97,7 +97,7 @@ def sample():
             "//shared:templates",
         ],
         outs = ["_sample.html"],
-        mode = "sample"
+        mode = "sample",
     )
 
     native.genrule(
@@ -134,6 +134,32 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    nunjucks(
+        name = "_iframe",
+        template = ":src/index.njk",
+        json = ":package.json",
+        data = [
+            ":src/index.njk",
+            ":package.json",
+            "//shared:templates",
+        ],
+        outs = ["_iframe.html"],
+        mode = "iframe",
+    )
+
+    # the iframe output does not have any html, head, body tags. this is a consequence of Google's documentation site
+    native.genrule(
+        name = "iframe_html",
+        srcs = [":_iframe.html", ":app.js", ":style.css"],
+        outs = ["iframe.html"],
+        cmd = "$(location //rules:inline) $(location :_iframe.html) $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
+        visibility = ["//visibility:public"],
+    )
+
     native.filegroup(
         name = "js",
         srcs = [
@@ -145,10 +171,11 @@ def sample():
     native.filegroup(
         name = "html",
         srcs = [
-            ":index.html",
-            ":jsfiddle.html",
-            ":sample.html",
-            ":inline.html",
+            ":index.html", # for development and googlemaps.github.io
+            ":jsfiddle.html", # for linkout to jsfiddle
+            ":sample.html", # for developers.google.com *html* tab
+            ":inline.html", # for developers.google.com *all* tab
+            ":iframe.html", # for developers.google.com iframe
         ],
         visibility = ["//visibility:public"],
     )
