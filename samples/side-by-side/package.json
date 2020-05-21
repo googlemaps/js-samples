@@ -1,0 +1,8 @@
+{
+  "title": "Simple Map",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "side_by_side",
+  "name": "side-by-side"
+}

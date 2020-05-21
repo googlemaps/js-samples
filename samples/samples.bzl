@@ -137,6 +137,7 @@ SAMPLES = [
     "rectangle-event",
     "rectangle-simple",
     "rectangle-zoom",
+    "side-by-side",
     "streetview-controls",
     "streetview-custom-simple",
     "streetview-custom-tiles",

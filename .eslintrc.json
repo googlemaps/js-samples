@@ -15,7 +15,8 @@
     "google": "writable",
     "firebase": "readonly",
     "ActiveXObject": "readonly",
-    "mdc": "readonly"
+    "mdc": "readonly",
+    "Split": "readonly"
   },
   "env": {
     "browser": true
