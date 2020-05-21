@@ -15,7 +15,7 @@
  */
 let mapLeft, mapRight;
 
-// [START maps_side_by_side]
+// [START maps_split_map_panes]
 function initMap() {
   const mapOptions = {
     center: { lat: 35, lng: -110 },
@@ -98,5 +98,5 @@ function initMap() {
     sizes: [25, 75]
   });
 }
-// [END maps_side_by_side]
+// [END maps_split_map_panes]
 export { initMap, mapLeft, mapRight };
