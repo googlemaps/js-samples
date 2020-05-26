@@ -97,7 +97,7 @@ function initMap() {
   window.addEventListener("resize", handleContainerResize);
 
   Split(["#left", "#right"], {
-    sizes: [50, 50],
+    sizes: [50, 50]
   });
 }
 // [END maps_split_map_panes]
