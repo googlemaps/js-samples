@@ -123,6 +123,8 @@
           return target;
         }
 
+        var mapLeft, mapRight;
+
         function initMap() {
           var mapOptions = {
             center: {
@@ -134,7 +136,7 @@
             streetViewControl: false
           }; // instantiate the map on the left with control positioning
 
-          exports.mapLeft = new google.maps.Map(
+          mapLeft = new google.maps.Map(
             document.getElementById("map-left"),
             _objectSpread2(
               _objectSpread2({}, mapOptions),
@@ -156,7 +158,7 @@
             )
           ); // instantiate the map on the right with control positioning
 
-          exports.mapRight = new google.maps.Map(
+          mapRight = new google.maps.Map(
             document.getElementById("map-right"),
             _objectSpread2(
               _objectSpread2({}, mapOptions),
@@ -186,9 +188,9 @@
 
             var center, zoom;
 
-            function update(ignore) {
+            function update(changedMap) {
               maps.forEach(function(m) {
-                if (m === ignore) {
+                if (m === changedMap) {
                   return;
                 }
 
@@ -211,11 +213,10 @@
             });
           }
 
-          sync(exports.mapLeft, exports.mapRight);
+          sync(mapLeft, mapRight);
 
           function handleContainerResize() {
             var width = document.getElementById("container").offsetWidth;
-            console.log(width);
             document.getElementById("map-left").style.width = "".concat(
               width,
               "px"

@@ -1,6 +1,8 @@
 (function(exports) {
   "use strict";
 
+  let mapLeft, mapRight;
+
   function initMap() {
     const mapOptions = {
       center: {
@@ -12,7 +14,7 @@
       streetViewControl: false
     }; // instantiate the map on the left with control positioning
 
-    exports.mapLeft = new google.maps.Map(document.getElementById("map-left"), {
+    mapLeft = new google.maps.Map(document.getElementById("map-left"), {
       ...mapOptions,
       mapTypeId: "satellite",
       tilt: 0,
@@ -28,28 +30,25 @@
       }
     }); // instantiate the map on the right with control positioning
 
-    exports.mapRight = new google.maps.Map(
-      document.getElementById("map-right"),
-      {
-        ...mapOptions,
-        fullscreenControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_BOTTOM
-        },
-        mapTypeControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_TOP
-        },
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_BOTTOM
-        }
+    mapRight = new google.maps.Map(document.getElementById("map-right"), {
+      ...mapOptions,
+      fullscreenControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      },
+      mapTypeControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_TOP
+      },
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
       }
-    ); // helper function to keep maps in sync
+    }); // helper function to keep maps in sync
 
     function sync(...maps) {
       let center, zoom;
 
-      function update(ignore) {
+      function update(changedMap) {
         maps.forEach(m => {
-          if (m === ignore) {
+          if (m === changedMap) {
             return;
           }
 
@@ -72,11 +71,10 @@
       });
     }
 
-    sync(exports.mapLeft, exports.mapRight);
+    sync(mapLeft, mapRight);
 
     function handleContainerResize() {
       const width = document.getElementById("container").offsetWidth;
-      console.log(width);
       document.getElementById("map-left").style.width = `${width}px`;
       document.getElementById("map-right").style.width = `${width}px`;
     } // trigger to set map container size since using absolute

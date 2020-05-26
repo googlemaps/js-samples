@@ -58,9 +58,9 @@ function initMap() {
   function sync(...maps) {
     let center, zoom;
 
-    function update(ignore) {
+    function update(changedMap) {
       maps.forEach(m => {
-        if (m === ignore) {
+        if (m === changedMap) {
           return;
         }
         m.setCenter(center);
@@ -86,7 +86,6 @@ function initMap() {
 
   function handleContainerResize() {
     const width = document.getElementById("container").offsetWidth;
-    console.log(width);
     document.getElementById("map-left").style.width = `${width}px`;
     document.getElementById("map-right").style.width = `${width}px`;
   }
@@ -101,4 +100,4 @@ function initMap() {
   });
 }
 // [END maps_split_map_panes]
-export { initMap, mapLeft, mapRight };
+export { initMap };
