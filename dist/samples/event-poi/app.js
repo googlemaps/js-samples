@@ -16,7 +16,7 @@
    * @constructor
    */
 
-  var ClickEventHandler = function ClickEventHandler(map, origin) {
+  var ClickEventHandler = function(map, origin) {
     this.origin = origin;
     this.map = map;
     this.directionsService = new google.maps.DirectionsService();
