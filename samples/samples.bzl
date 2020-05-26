@@ -57,6 +57,7 @@ SAMPLES = [
     "icon-simple",
     "infowindow-simple",
     "infowindow-simple-max",
+    "inset-map",
     "interaction-cooperative",
     "kml-map",
     "landing-page-add-map",
