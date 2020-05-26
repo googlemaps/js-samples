@@ -18,8 +18,8 @@ let mapLeft, mapRight;
 // [START maps_split_map_panes]
 function initMap() {
   const mapOptions = {
-    center: { lat: 35, lng: -110 },
-    zoom: 8,
+    center: { lat: 44.5250489, lng: -110.83819 },
+    zoom: 18,
     scaleControl: false,
     streetViewControl: false
   };
@@ -27,6 +27,8 @@ function initMap() {
   // instantiate the map on the left with control positioning
   mapLeft = new google.maps.Map(document.getElementById("map-left"), {
     ...mapOptions,
+    mapTypeId: "satellite",
+    tilt: 0, // at high zoom levels we need to maintain the same projection
     fullscreenControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM
     },
@@ -95,7 +97,7 @@ function initMap() {
   window.addEventListener("resize", handleContainerResize);
 
   Split(["#left", "#right"], {
-    sizes: [25, 75]
+    sizes: [50, 50],
   });
 }
 // [END maps_split_map_panes]
