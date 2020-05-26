@@ -13,7 +13,7 @@
     });
     directionsRenderer.setMap(map);
 
-    var onChangeHandler = function onChangeHandler() {
+    var onChangeHandler = function() {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     };
 

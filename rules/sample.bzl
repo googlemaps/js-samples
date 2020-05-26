@@ -16,8 +16,23 @@ def sample():
     )
 
     rollup_bundle(
+        name = "iframe",
+        srcs = [":_app_without_region_tags.js"],
+        entry_point = "_app_without_region_tags.js",
+        config_file = "//:rollup.config.iframe.js",
+        format = "iife",
+        sourcemap = "false",
+        visibility = ["//visibility:public"],
+        deps = [
+            "@npm//@babel/core",
+            "@npm//@babel/preset-env",
+            "@npm//@rollup/plugin-babel",
+        ],
+    )
+
+    rollup_bundle(
         name = "_app",
-        srcs = [":_app_without_region_tags.js", "//:.babelrc"],
+        srcs = [":_app_without_region_tags.js"],
         entry_point = "_app_without_region_tags.js",
         config_file = "//:rollup.config.js",
         format = "iife",
@@ -122,11 +137,25 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    # for local development
+    nunjucks(
+        name = "_index",
+        template = ":src/index.njk",
+        json = ":package.json",
+        data = [
+            ":src/index.njk",
+            ":package.json",
+            "//shared:templates",
+        ],
+        outs = ["_index.html"],
+        mode = "dev",
+    )
+
     native.genrule(
         name = "index_html",
-        srcs = [":_sample.html", ":app.js", ":style.css"],
+        srcs = [":_index.html", ":iframe.js", ":style.css"],
         outs = ["index.html"],
-        cmd = "$(location //rules:inline) $(location :_sample.html) $@; " +
+        cmd = "$(location //rules:inline) $(location :_index.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
@@ -150,7 +179,7 @@ def sample():
     # the iframe output does not have any html, head, body tags. this is a consequence of Google's documentation site
     native.genrule(
         name = "iframe_html",
-        srcs = [":_iframe.html", ":app.js", ":style.css"],
+        srcs = [":_iframe.html", ":iframe.js", ":style.css"],
         outs = ["iframe.html"],
         cmd = "$(location //rules:inline) $(location :_iframe.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
@@ -171,11 +200,11 @@ def sample():
     native.filegroup(
         name = "html",
         srcs = [
-            ":index.html", # for development and googlemaps.github.io
-            ":jsfiddle.html", # for linkout to jsfiddle
-            ":sample.html", # for developers.google.com *html* tab
-            ":inline.html", # for developers.google.com *all* tab
-            ":iframe.html", # for developers.google.com iframe
+            ":index.html",  # for development and googlemaps.github.io
+            ":jsfiddle.html",  # for linkout to jsfiddle
+            ":sample.html",  # for developers.google.com *html* tab
+            ":inline.html",  # for developers.google.com *all* tab
+            ":iframe.html",  # for developers.google.com iframe
         ],
         visibility = ["//visibility:public"],
     )

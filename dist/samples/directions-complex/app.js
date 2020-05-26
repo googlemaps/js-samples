@@ -28,7 +28,7 @@
       map
     ); // Listen to change events from the start and end lists.
 
-    var onChangeHandler = function onChangeHandler() {
+    var onChangeHandler = function() {
       calculateAndDisplayRoute(
         directionsRenderer,
         directionsService,

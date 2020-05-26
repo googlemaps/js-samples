@@ -8,7 +8,7 @@ exports_files(
         "LICENSE",
         "package.json",
         "rollup.config.js",
-        ".babelrc",
+        "rollup.config.iframe.js",
         "jest.config.js",
     ],
     visibility = ["//:__subpackages__"],

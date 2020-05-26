@@ -16,6 +16,9 @@
     <!-- [END maps_{{tag}}_htmll_head_api] -->
     {% if mode == "jsfiddle" %}
       <!-- jsFiddle will insert css and js -->
+    {% elif mode == "iframe" or mode == "dev" %}
+      <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
+      <script src="./iframe.js" data-inline></script>
     {% else %}
       <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
       <script src="./app.js" data-inline></script>
