@@ -43,7 +43,7 @@
     var GALL_PETERS_RANGE_Y = 512; // Fetch Gall-Peters tiles stored locally on our server.
 
     exports.gallPetersMapType = new google.maps.ImageMapType({
-      getTileUrl: function getTileUrl(coord, zoom) {
+      getTileUrl: function(coord, zoom) {
         var scale = 1 << zoom; // Wrap tiles horizontally.
 
         var x = ((coord.x % scale) + scale) % scale; // Don't wrap tiles vertically.
@@ -68,14 +68,14 @@
     }); // Describe the Gall-Peters projection used by these tiles.
 
     exports.gallPetersMapType.projection = {
-      fromLatLngToPoint: function fromLatLngToPoint(latLng) {
+      fromLatLngToPoint: function(latLng) {
         var latRadians = (latLng.lat() * Math.PI) / 180;
         return new google.maps.Point(
           GALL_PETERS_RANGE_X * (0.5 + latLng.lng() / 360),
           GALL_PETERS_RANGE_Y * (0.5 - 0.5 * Math.sin(latRadians))
         );
       },
-      fromPointToLatLng: function fromPointToLatLng(point, noWrap) {
+      fromPointToLatLng: function(point, noWrap) {
         var x = point.x / GALL_PETERS_RANGE_X;
         var y = Math.max(0, Math.min(1, point.y / GALL_PETERS_RANGE_Y));
         return new google.maps.LatLng(

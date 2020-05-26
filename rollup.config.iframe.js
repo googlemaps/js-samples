@@ -29,7 +29,7 @@ module.exports = {
           "@babel/env",
           {
             targets: {
-              browsers: "> 3%"
+              browsers: "ie>=11, > 1%"
             },
             corejs: "3.6",
             useBuiltIns: "usage"

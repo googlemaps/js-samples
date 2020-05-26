@@ -17,7 +17,7 @@
     control.style.display = "block";
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
-    var onChangeHandler = function onChangeHandler() {
+    var onChangeHandler = function() {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     };
 

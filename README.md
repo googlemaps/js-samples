@@ -35,19 +35,20 @@ Samples for the Google Maps JavaScript API.
 
 The following table identifies the inputs and outputs.
 
-| File                          | Edit | Description                                        |     |
-| ----------------------------- | ---- | -------------------------------------------------- | --- |
-| samples/\*/src/index.js       | Y    | JavaScript for sample                              |
-| samples/\*/src/index.njk      | Y    | HTML template for sample                           |
-| samples/\*/src/style.scss     | Y    | SCSS style for sample                              |
-| shared/layout.njk             | Y    | Shared HTML template to extend                     |
-| shared/scss/\*                | Y    | Shared SCSS styles                                 |
-| dist/samples/\*/app.js        | N    | Transpiled JS                                      |
-| dist/samples/\*/index.html    | N    | Inline HTML, CSS, JS with development key          |
-| dist/samples/\*/iframe.html    | N    | Inline HTML, CSS, JS for iframe without html, head, body tags       |
-| dist/samples/\*/jsfiddle.html | N    | HTML without CSS or JS                             |
-| dist/samples/\*/sample.html   | N    | HTML without CSS or JS with template var for key   |
-| dist/samples/\*/style.css     | N    | CSS output from SCSS                               |
+| File                          | Edit | jsFiddle | Description                                                                                     |
+| ----------------------------- | ---- | -------- | ----------------------------------------------------------------------------------------------- |
+| samples/\*/src/index.js       | Y    | N        | JavaScript for sample for *JS* tab                                                              |
+| samples/\*/src/index.njk      | Y    | N        | HTML template for sample                                                                        |
+| samples/\*/src/style.scss     | Y    | N        | SCSS style for sample                                                                           |
+| shared/layout.njk             | Y    | N        | Shared HTML template to extend                                                                  |
+| shared/scss/\*                | Y    | N        | Shared SCSS styles                                                                              |
+| dist/samples/\*/app.js        | N    | Y        | Transpiled JS for >3%                                                                           | 
+| dist/samples/\*/index.html    | N    | N        | Inline HTML, CSS, JS with development key and transpiled for >1%, ie11                          |
+| dist/samples/\*/iframe.html   | N    | N        | Inline HTML, CSS, JS for iframe without html, head, body tags transpiled for ie11 and >1%, ie11 |
+| dist/samples/\*/inline.html   | N    | N        | Inline HTML, CSS, JS for *All* tab transpiled for >3%                                           |
+| dist/samples/\*/jsfiddle.html | N    | Y        | HTML without CSS or JS for in jsFiddle                                                          |
+| dist/samples/\*/sample.html   | N    | N        | HTML without CSS or JS for *HTML* tab                                                           |
+| dist/samples/\*/style.css     | N    | Y        | CSS output from SCSS for *CSS* tab                                                              |
 
 ## Other Resources
 

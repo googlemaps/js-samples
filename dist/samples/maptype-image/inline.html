@@ -39,7 +39,7 @@
             }
           });
           var moonMapType = new google.maps.ImageMapType({
-            getTileUrl: function getTileUrl(coord, zoom) {
+            getTileUrl: function(coord, zoom) {
               var normalizedCoord = getNormalizedCoord(coord, zoom);
 
               if (!normalizedCoord) {

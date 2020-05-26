@@ -28,7 +28,7 @@
       ]
     };
     var imageMapType = new google.maps.ImageMapType({
-      getTileUrl: function getTileUrl(coord, zoom) {
+      getTileUrl: function(coord, zoom) {
         if (
           zoom < 17 ||
           zoom > 20 ||
