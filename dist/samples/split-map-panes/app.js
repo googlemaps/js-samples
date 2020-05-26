@@ -61,10 +61,10 @@
   function initMap() {
     var mapOptions = {
       center: {
-        lat: 35,
-        lng: -110
+        lat: 44.5250489,
+        lng: -110.83819
       },
-      zoom: 8,
+      zoom: 18,
       scaleControl: false,
       streetViewControl: false
     }; // instantiate the map on the left with control positioning
@@ -75,6 +75,9 @@
         _objectSpread2({}, mapOptions),
         {},
         {
+          mapTypeId: "satellite",
+          tilt: 0,
+          // at high zoom levels we need to maintain the same projection
           fullscreenControlOptions: {
             position: google.maps.ControlPosition.LEFT_BOTTOM
           },
@@ -156,7 +159,7 @@
 
     window.addEventListener("resize", handleContainerResize);
     Split(["#left", "#right"], {
-      sizes: [25, 75]
+      sizes: [50, 50]
     });
   }
 
