@@ -1,0 +1,8 @@
+{
+  "title": "Inset Overview Map",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "inset_map",
+  "name": "inset-map"
+}
