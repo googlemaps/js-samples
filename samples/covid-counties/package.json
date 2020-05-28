@@ -1,0 +1,8 @@
+{
+  "title": "Covid-19 US Counties",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "covid_counties",
+  "name": "covid-counties"
+}

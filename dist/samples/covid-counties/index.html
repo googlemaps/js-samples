@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Covid-19 US Counties</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- Use Material Design Progress indicator -->
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+    <!-- Load deck.gl -->
+    <script src="https://unpkg.com/deck.gl@^7.0.0/dist.min.js"></script>
+    <script src="https://d3js.org/d3-array.v2.min.js"></script>
+    <script src="https://d3js.org/d3-color.v1.min.js"></script>
+    <script src="https://d3js.org/d3-format.v1.min.js"></script>
+    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time.v1.min.js"></script>
+    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+    <script src="https://d3js.org/d3-scale.v3.min.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      :root {
+        --mdc-theme-primary: #1a73e8;
+        --mdc-theme-secondary: #rgb(225, 245, 254);
+        --mdc-theme-on-primary: #fff;
+        --mdc-theme-on-secondary: rgb(1, 87, 155);
+      }
+
+      .mdc-select--focused .mdc-select__dropdown-icon {
+        background: url(data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.54%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E)
+          no-repeat center;
+      }
+
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      (function(exports) {
+        "use strict";
+
+        function asyncGeneratorStep(
+          gen,
+          resolve,
+          reject,
+          _next,
+          _throw,
+          key,
+          arg
+        ) {
+          try {
+            var info = gen[key](arg);
+            var value = info.value;
+          } catch (error) {
+            reject(error);
+            return;
+          }
+
+          if (info.done) {
+            resolve(value);
+          } else {
+            Promise.resolve(value).then(_next, _throw);
+          }
+        }
+
+        function _asyncToGenerator(fn) {
+          return function() {
+            var self = this,
+              args = arguments;
+            return new Promise(function(resolve, reject) {
+              var gen = fn.apply(self, args);
+
+              function _next(value) {
+                asyncGeneratorStep(
+                  gen,
+                  resolve,
+                  reject,
+                  _next,
+                  _throw,
+                  "next",
+                  value
+                );
+              }
+
+              function _throw(err) {
+                asyncGeneratorStep(
+                  gen,
+                  resolve,
+                  reject,
+                  _next,
+                  _throw,
+                  "throw",
+                  err
+                );
+              }
+
+              _next(undefined);
+            });
+          };
+        }
+
+        function _slicedToArray(arr, i) {
+          return (
+            _arrayWithHoles(arr) ||
+            _iterableToArrayLimit(arr, i) ||
+            _unsupportedIterableToArray(arr, i) ||
+            _nonIterableRest()
+          );
+        }
+
+        function _arrayWithHoles(arr) {
+          if (Array.isArray(arr)) return arr;
+        }
+
+        function _iterableToArrayLimit(arr, i) {
+          if (
+            typeof Symbol === "undefined" ||
+            !(Symbol.iterator in Object(arr))
+          )
+            return;
+          var _arr = [];
+          var _n = true;
+          var _d = false;
+          var _e = undefined;
+
+          try {
+            for (
+              var _i = arr[Symbol.iterator](), _s;
+              !(_n = (_s = _i.next()).done);
+              _n = true
+            ) {
+              _arr.push(_s.value);
+
+              if (i && _arr.length === i) break;
+            }
+          } catch (err) {
+            _d = true;
+            _e = err;
+          } finally {
+            try {
+              if (!_n && _i["return"] != null) _i["return"]();
+            } finally {
+              if (_d) throw _e;
+            }
+          }
+
+          return _arr;
+        }
+
+        function _unsupportedIterableToArray(o, minLen) {
+          if (!o) return;
+          if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+          var n = Object.prototype.toString.call(o).slice(8, -1);
+          if (n === "Object" && o.constructor) n = o.constructor.name;
+          if (n === "Map" || n === "Set") return Array.from(o);
+          if (
+            n === "Arguments" ||
+            /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
+          )
+            return _arrayLikeToArray(o, minLen);
+        }
+
+        function _arrayLikeToArray(arr, len) {
+          if (len == null || len > arr.length) len = arr.length;
+
+          for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
+
+          return arr2;
+        }
+
+        function _nonIterableRest() {
+          throw new TypeError(
+            "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+          );
+        }
+
+        /* eslint-disable no-undef */
+        // Initialize and add the map
+        var dt = "2020-05-20";
+
+        function initMap() {
+          return _initMap.apply(this, arguments);
+        }
+
+        function _initMap() {
+          _initMap = _asyncToGenerator(
+            /*#__PURE__*/ regeneratorRuntime.mark(function _callee() {
+              var map, countyFipsIndex, color, deckOverlay;
+              return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                  switch ((_context.prev = _context.next)) {
+                    case 0:
+                      map = new google.maps.Map(
+                        document.getElementById("map"),
+                        {
+                          center: {
+                            lat: 39,
+                            lng: -99
+                          },
+                          zoom: 4
+                        }
+                      );
+                      countyFipsIndex = {};
+                      _context.next = 4;
+                      return fetch(
+                        "https://raw.githubusercontent.com/nytimes/covid-19-data/master/us-counties.csv"
+                      )
+                        .then(function(response) {
+                          return response.text();
+                        })
+                        .then(function(text) {
+                          return text
+                            .split(/\r\n|\n/)
+                            .slice(1)
+                            .forEach(function(line) {
+                              var _line$split = line.split(","),
+                                _line$split2 = _slicedToArray(_line$split, 4),
+                                date = _line$split2[0],
+                                fips = _line$split2[1],
+                                cases = _line$split2[2],
+                                deaths = _line$split2[3];
+
+                              countyFipsIndex[fips] =
+                                countyFipsIndex[fips] || {};
+                              countyFipsIndex[fips][date] = {
+                                cases: cases,
+                                deaths: deaths
+                              };
+                            });
+                        });
+
+                    case 4:
+                      color = d3
+                        .scaleLinear()
+                        .domain([0, 1000, 10000])
+                        .range(["green", "orange", "red"]);
+                      deckOverlay = new deck.GoogleMapsOverlay({
+                        layers: [
+                          new deck.GeoJsonLayer({
+                            id: "counties",
+                            data:
+                              "https://raw.githubusercontent.com/googlemaps/js-samples/a4652892d41ae2316ee30f33e58cdf712592faf1/samples/covid-counties/data/counties.json",
+                            filled: true,
+                            opacity: 0.8,
+                            pointRadiusScale: 0.3,
+                            getFillColor: function getFillColor(f) {
+                              var fipsKey = f.properties.fips.toString();
+
+                              if (
+                                countyFipsIndex[fipsKey] &&
+                                countyFipsIndex[fipsKey][dt]
+                              ) {
+                                var _d3$rgb = d3.rgb(
+                                    color(
+                                      countyFipsIndex[f.properties.fips][dt]
+                                        .cases
+                                    )
+                                  ),
+                                  r = _d3$rgb.r,
+                                  g = _d3$rgb.g,
+                                  b = _d3$rgb.b,
+                                  a = _d3$rgb.a;
+
+                                return [r, g, b, a];
+                              }
+
+                              return [0, 0, 0, 0];
+                            },
+                            lineWidthUnits: "pixels",
+                            autoHighlight: true,
+                            onDataLoad: function onDataLoad(_) {
+                              progress.done(); // hides progress bar
+                            }
+                          })
+                        ]
+                      });
+                      deckOverlay.setMap(map);
+
+                    case 7:
+                    case "end":
+                      return _context.stop();
+                  }
+                }
+              }, _callee);
+            })
+          );
+          return _initMap.apply(this, arguments);
+        }
+
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
+  </head>
+  <body>
+    <div
+      role="progressbar"
+      class="mdc-linear-progress"
+      aria-label="Data Progress Bar"
+    >
+      <div class="mdc-linear-progress__buffer">
+        <div class="mdc-linear-progress__buffer-bar"></div>
+        <div class="mdc-linear-progress__buffer-dots"></div>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+    </div>
+    <script>
+      var progress, progressDiv;
+      progressDiv = document.querySelector(".mdc-linear-progress");
+      progress = new mdc.linearProgress.MDCLinearProgress(progressDiv);
+      progress.open();
+      progress.determinate = false;
+      progress.done = function() {
+        progress.close();
+        progressDiv.remove();
+      };
+    </script>
+    <div id="map"></div>
+  </body>
+</html>

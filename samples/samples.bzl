@@ -19,6 +19,7 @@ SAMPLES = [
     "control-replacement",
     "control-simple",
     "controls-basic-map",
+    "covid-counties",
     "custom-markers",
     "deckgl-points",
     "delete-vertex-menu",
