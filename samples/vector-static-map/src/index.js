@@ -30,10 +30,12 @@ function initMap() {
     useStaticMap: false
   });
 
+  // [START maps_vector_static_map_js_instantiate]
   new google.maps.Map(document.getElementById("static"), {
     ...sharedOptions,
     useStaticMap: true
   });
+  // [END maps_vector_static_map_js_instantiate]
 }
 // [END maps_vector_static_map]
 export { initMap };
