@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vector Initial Static Map</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&v=beta&map_ids=ed1309c122a3dfcb"
+      defer
+    ></script>
+    <style type="text/css">
+      html,
+      body,
+      .container {
+        height: 100%;
+      }
+
+      .container {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+      }
+
+      .map {
+        display: flex;
+        flex-direction: column;
+        flex-basis: 100%;
+        flex: 1;
+        height: 100%;
+      }
+    </style>
+    <script>
+      (function(exports) {
+        "use strict";
+
+        function _defineProperty(obj, key, value) {
+          if (key in obj) {
+            Object.defineProperty(obj, key, {
+              value: value,
+              enumerable: true,
+              configurable: true,
+              writable: true
+            });
+          } else {
+            obj[key] = value;
+          }
+
+          return obj;
+        }
+
+        function ownKeys(object, enumerableOnly) {
+          var keys = Object.keys(object);
+
+          if (Object.getOwnPropertySymbols) {
+            var symbols = Object.getOwnPropertySymbols(object);
+            if (enumerableOnly)
+              symbols = symbols.filter(function(sym) {
+                return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+              });
+            keys.push.apply(keys, symbols);
+          }
+
+          return keys;
+        }
+
+        function _objectSpread2(target) {
+          for (var i = 1; i < arguments.length; i++) {
+            var source = arguments[i] != null ? arguments[i] : {};
+
+            if (i % 2) {
+              ownKeys(Object(source), true).forEach(function(key) {
+                _defineProperty(target, key, source[key]);
+              });
+            } else if (Object.getOwnPropertyDescriptors) {
+              Object.defineProperties(
+                target,
+                Object.getOwnPropertyDescriptors(source)
+              );
+            } else {
+              ownKeys(Object(source)).forEach(function(key) {
+                Object.defineProperty(
+                  target,
+                  key,
+                  Object.getOwnPropertyDescriptor(source, key)
+                );
+              });
+            }
+          }
+
+          return target;
+        }
+
+        // Initialize and add the side by side maps
+        function initMap() {
+          var sharedOptions = {
+            center: {
+              lat: 47.609414458375674,
+              lng: -122.33897030353548
+            },
+            zoom: 17,
+            disableDefaultUI: true,
+            gestureHandling: "none"
+          };
+          new google.maps.Map(
+            document.getElementById("left"),
+            _objectSpread2(
+              _objectSpread2({}, sharedOptions),
+              {},
+              {
+                mapId: "ed1309c122a3dfcb",
+                useStaticMap: false
+              }
+            )
+          );
+          new google.maps.Map(
+            document.getElementById("right"),
+            _objectSpread2(
+              _objectSpread2({}, sharedOptions),
+              {},
+              {
+                mapId: "ed1309c122a3dfcb",
+                useStaticMap: true
+              }
+            )
+          );
+        }
+
+        exports.initMap = initMap;
+      })((this.window = this.window || {}));
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div id="left" class="map"></div>
+      <div id="right" class="map"></div>
+    </div>
+  </body>
+</html>

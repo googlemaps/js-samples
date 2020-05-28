@@ -1,0 +1,8 @@
+{
+  "name": "marker-collision-management",
+  "title": "Marker Collision Management",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "marker_collision_management"
+}
