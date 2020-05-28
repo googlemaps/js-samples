@@ -1,6 +1,6 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&v=beta&map_ids=ed1309c122a3dfcb"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&v=beta&map_ids=ed1309c122a3dfcb"
   defer
 ></script>
 <style type="text/css">
@@ -88,7 +88,6 @@
     // Initialize and add the side by side maps
     function initMap() {
       var sharedOptions = {
-        mapId: "ed1309c122a3dfcb",
         center: {
           lat: 47.609414458375674,
           lng: -122.33897030353548
@@ -98,21 +97,23 @@
         gestureHandling: "none"
       };
       new google.maps.Map(
-        document.getElementById("dynamic"),
+        document.getElementById("left"),
         _objectSpread2(
           _objectSpread2({}, sharedOptions),
           {},
           {
+            mapId: "ed1309c122a3dfcb",
             useStaticMap: false
           }
         )
       );
       new google.maps.Map(
-        document.getElementById("static"),
+        document.getElementById("right"),
         _objectSpread2(
           _objectSpread2({}, sharedOptions),
           {},
           {
+            mapId: "ed1309c122a3dfcb",
             useStaticMap: true
           }
         )
@@ -124,6 +125,6 @@
 </script>
 
 <div class="container">
-  <div id="dynamic" class="map"></div>
-  <div id="static" class="map"></div>
+  <div id="left" class="map"></div>
+  <div id="right" class="map"></div>
 </div>
