@@ -1,8 +1,0 @@
-{
-  "name": "marker-collisions",
-  "title": "Marker Collisions",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "marker_collisions"
-}

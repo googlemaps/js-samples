@@ -99,7 +99,7 @@ SAMPLES = [
     "marker-animations",
     "marker-animations-iteration",
     "marker-clustering",
-    "marker-collisions",
+    "marker-collision-management",
     "marker-labels",
     "marker-remove",
     "marker-simple",
@@ -152,5 +152,5 @@ SAMPLES = [
     "style-array",
     "style-selector",
     "user-editable-shapes",
-    "vector-static-map",
+    "vector-use-static-map",
 ]

@@ -97,7 +97,7 @@
     "Marker Animations With setTimeout()": "marker-animations-iteration",
     "Marker Animations": "marker-animations",
     "Marker Clustering": "marker-clustering",
-    "Marker Collisions": "marker-collisions",
+    "Marker Collision Management": "marker-collision-management",
     "Marker Labels": "marker-labels",
     "Removing Markers": "marker-remove",
     "Simple Markers": "marker-simple",
@@ -150,6 +150,6 @@
     "Styled Maps - Night Mode": "style-array",
     "Styled Map Selection": "style-selector",
     "User-Editable Shapes": "user-editable-shapes",
-    "Vector Initial Static Load": "vector-static-map"
+    "Vector Initial Static Load": "vector-use-static-map"
   }
 }
