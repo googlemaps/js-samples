@@ -83,6 +83,7 @@ SAMPLES = [
     "map-coordinates",
     "map-events",
     "map-geolocation",
+    "map-id-style",
     "map-language",
     "map-latlng-literal",
     "map-projection-simple",
@@ -98,6 +99,7 @@ SAMPLES = [
     "marker-animations",
     "marker-animations-iteration",
     "marker-clustering",
+    "marker-collision-management",
     "marker-labels",
     "marker-remove",
     "marker-simple",
@@ -150,4 +152,5 @@ SAMPLES = [
     "style-array",
     "style-selector",
     "user-editable-shapes",
+    "vector-use-static-map",
 ]

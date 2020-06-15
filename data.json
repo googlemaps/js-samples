@@ -81,6 +81,7 @@
     "Showing Pixel and Tile Coordinates": "map-coordinates",
     "Map Events Explorer": "map-events",
     "Geolocation": "map-geolocation",
+    "Map Id Style": "map-id-style",
     "Localizing the Map": "map-language",
     "Lat/Lng Object Literal": "map-latlng-literal",
     "Custom Map Projections": "map-projection-simple",
@@ -96,6 +97,7 @@
     "Marker Animations With setTimeout()": "marker-animations-iteration",
     "Marker Animations": "marker-animations",
     "Marker Clustering": "marker-clustering",
+    "Marker Collision Management": "marker-collision-management",
     "Marker Labels": "marker-labels",
     "Removing Markers": "marker-remove",
     "Simple Markers": "marker-simple",
@@ -147,6 +149,7 @@
     "Street View Side-By-Side": "streetview-simple",
     "Styled Maps - Night Mode": "style-array",
     "Styled Map Selection": "style-selector",
-    "User-Editable Shapes": "user-editable-shapes"
+    "User-Editable Shapes": "user-editable-shapes",
+    "Vector Initial Static Load": "vector-use-static-map"
   }
 }
