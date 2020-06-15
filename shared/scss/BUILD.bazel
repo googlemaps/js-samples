@@ -36,3 +36,8 @@ sass_library(
     name = "material-design-theme",
     srcs = ["_material-design-theme.scss"],
 )
+
+sass_library(
+    name = "sidebar",
+    srcs = ["_sidebar.scss"],
+)
