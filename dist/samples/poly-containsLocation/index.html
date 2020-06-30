@@ -1,17 +1,13 @@
-<!-- [START maps_poly_containsLocation] -->
 <!DOCTYPE html>
 <html>
   <head>
     <title>Polygon Contains Location</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <!-- [START maps_poly_containsLocation_html_head_api] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=geometry&v=weekly"
       defer
     ></script>
-    <!-- [END maps_poly_containsLocation_htmll_head_api] -->
     <style type="text/css">
-      /* [START maps_poly_containsLocation] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -25,14 +21,11 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_poly_containsLocation] */
     </style>
     <script>
       (function(exports) {
         "use strict";
 
-        // [START maps_poly_containsLocation]
         // This example requires the Geometry library. Include the libraries=geometry
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&libraries=geometry">
@@ -87,16 +80,13 @@
               }
             });
           });
-        } // [END maps_poly_containsLocation]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_poly_containsLocation_html] -->
     <div id="map"></div>
-    <!-- [END maps_poly_containsLocation_html] -->
   </body>
 </html>
-<!-- [END maps_poly_containsLocation] -->
