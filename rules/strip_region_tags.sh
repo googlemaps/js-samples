@@ -15,5 +15,5 @@
 
 set -e
 
-sed -i'.bak' '/\[START [a-z_]*\]/d' "$1"
-sed -i'.bak' '/\[END [a-z_]*\]/d' "$1"
+sed -i'.bak' '/\[START [a-zA-Z_]*\]/d' "$1"
+sed -i'.bak' '/\[END [a-zA-Z_]*\]/d' "$1"
