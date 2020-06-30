@@ -1,17 +1,13 @@
-<!-- [START maps_control_disableUI] -->
 <!DOCTYPE html>
 <html>
   <head>
     <title>Disabling the Default UI</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <!-- [START maps_control_disableUI_html_head_api] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
-    <!-- [END maps_control_disableUI_htmll_head_api] -->
     <style type="text/css">
-      /* [START maps_control_disableUI] */
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
@@ -25,14 +21,11 @@
         margin: 0;
         padding: 0;
       }
-
-      /* [END maps_control_disableUI] */
     </style>
     <script>
       (function(exports) {
         "use strict";
 
-        // [START maps_control_disableUI]
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
@@ -42,16 +35,13 @@
             },
             disableDefaultUI: true
           });
-        } // [END maps_control_disableUI]
+        }
 
         exports.initMap = initMap;
       })((this.window = this.window || {}));
     </script>
   </head>
   <body>
-    <!-- [START maps_control_disableUI_html] -->
     <div id="map"></div>
-    <!-- [END maps_control_disableUI_html] -->
   </body>
 </html>
-<!-- [END maps_control_disableUI] -->

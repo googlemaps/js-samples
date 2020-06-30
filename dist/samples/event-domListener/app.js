@@ -1,7 +1,6 @@
 (function(exports) {
   "use strict";
 
-  // [START maps_event_domListener]
   function initMap() {
     var mapDiv = document.getElementById("map");
     var map = new google.maps.Map(mapDiv, {
@@ -13,7 +12,7 @@
     google.maps.event.addDomListener(mapDiv, "click", function() {
       window.alert("Map was clicked!");
     });
-  } // [END maps_event_domListener]
+  }
 
   exports.initMap = initMap;
 })((this.window = this.window || {}));
