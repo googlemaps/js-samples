@@ -4,17 +4,14 @@
   <head>
     <title>Removing Markers</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <!-- [START maps_marker_remove_html_head_api] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
-    <!-- [END maps_marker_remove_htmll_head_api] -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./app.js"></script>
   </head>
   <body>
-    <!-- [START maps_marker_remove_html] -->
     <div id="floating-panel">
       <input onclick="clearMarkers();" type="button" value="Hide Markers" />
       <input onclick="showMarkers();" type="button" value="Show All Markers" />
@@ -22,7 +19,6 @@
     </div>
     <div id="map"></div>
     <p>Click on the map to add markers.</p>
-    <!-- [END maps_marker_remove_html] -->
   </body>
 </html>
 <!-- [END maps_marker_remove] -->
