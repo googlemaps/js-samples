@@ -4,23 +4,19 @@
   <head>
     <title>Removing Polylines</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <!-- [START maps_polyline_remove_html_head_api] -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
-    <!-- [END maps_polyline_remove_htmll_head_api] -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./app.js"></script>
   </head>
   <body>
-    <!-- [START maps_polyline_remove_html] -->
     <div id="floating-panel">
       <input onclick="removeLine();" type="button" value="Remove line" />
       <input onclick="addLine();" type="button" value="Restore line" />
     </div>
     <div id="map"></div>
-    <!-- [END maps_polyline_remove_html] -->
   </body>
 </html>
 <!-- [END maps_polyline_remove] -->

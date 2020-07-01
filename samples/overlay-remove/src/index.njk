@@ -14,11 +14,9 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<!-- [START maps_overlay_remove_html] -->
 <div id="floating-panel">
   <input onclick="removeOverlay();" type="button" value="Remove overlay" />
   <input onclick="addOverlay();" type="button" value="Restore overlay" />
 </div>
 <div id="map"></div>
-<!-- [END maps_overlay_remove_html] -->
 {% endblock %}
