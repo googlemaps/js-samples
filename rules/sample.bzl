@@ -1,4 +1,4 @@
-load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
+load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
