@@ -110,11 +110,13 @@
   })((this.window = this.window || {}));
 </script>
 
-<div id="floating-panel">
-  <input
-    type="button"
-    value="Toggle Street View"
-    onclick="toggleStreetView();"
-  />
+<div style="height:400px">
+  <div id="floating-panel">
+    <input
+      type="button"
+      value="Toggle Street View"
+      onclick="toggleStreetView();"
+    />
+  </div>
+  <div id="map"></div>
 </div>
-<div id="map"></div>
