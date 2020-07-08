@@ -183,8 +183,9 @@ def sample():
         name = "iframe_html",
         srcs = [":_iframe.html", ":iframe.js", ":style.css"],
         outs = ["iframe.html"],
-        cmd = "$(location //rules:inline) $(location :_iframe.html) $@; " +
-              "$(location //rules:strip_region_tags_bin) $@; " +
+        cmd = "$(location //rules:strip_region_tags_bin) $(location :iframe.js); " +
+              "$(location //rules:strip_region_tags_bin) $(location :style.css); " +
+              "$(location //rules:inline) $(location :_iframe.html) $@; " +
               "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
