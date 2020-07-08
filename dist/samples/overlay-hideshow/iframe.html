@@ -162,13 +162,19 @@
   })((this.window = this.window || {}));
 </script>
 
-<!-- Add an input button to initiate the toggle method on the overlay. -->
-<div id="floating-panel">
-  <input type="button" value="Toggle visibility" onclick="overlay.toggle();" />
-  <input
-    type="button"
-    value="Toggle DOM attachment"
-    onclick="overlay.toggleDOM();"
-  />
+<div style="height:400px">
+  <!-- Add an input button to initiate the toggle method on the overlay. -->
+  <div id="floating-panel">
+    <input
+      type="button"
+      value="Toggle visibility"
+      onclick="overlay.toggle();"
+    />
+    <input
+      type="button"
+      value="Toggle DOM attachment"
+      onclick="overlay.toggleDOM();"
+    />
+  </div>
+  <div id="map"></div>
 </div>
-<div id="map"></div>

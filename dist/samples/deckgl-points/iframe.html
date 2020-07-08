@@ -93,31 +93,33 @@
   })((this.window = this.window || {}));
 </script>
 
-<div
-  role="progressbar"
-  class="mdc-linear-progress"
-  aria-label="Data Progress Bar"
->
-  <div class="mdc-linear-progress__buffer">
-    <div class="mdc-linear-progress__buffer-bar"></div>
-    <div class="mdc-linear-progress__buffer-dots"></div>
+<div style="height:400px">
+  <div
+    role="progressbar"
+    class="mdc-linear-progress"
+    aria-label="Data Progress Bar"
+  >
+    <div class="mdc-linear-progress__buffer">
+      <div class="mdc-linear-progress__buffer-bar"></div>
+      <div class="mdc-linear-progress__buffer-dots"></div>
+    </div>
+    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+      <span class="mdc-linear-progress__bar-inner"></span>
+    </div>
+    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+      <span class="mdc-linear-progress__bar-inner"></span>
+    </div>
   </div>
-  <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
-    <span class="mdc-linear-progress__bar-inner"></span>
-  </div>
-  <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
-    <span class="mdc-linear-progress__bar-inner"></span>
-  </div>
+  <script>
+    var progress, progressDiv;
+    progressDiv = document.querySelector(".mdc-linear-progress");
+    progress = new mdc.linearProgress.MDCLinearProgress(progressDiv);
+    progress.open();
+    progress.determinate = false;
+    progress.done = function() {
+      progress.close();
+      progressDiv.remove();
+    };
+  </script>
+  <div id="map"></div>
 </div>
-<script>
-  var progress, progressDiv;
-  progressDiv = document.querySelector(".mdc-linear-progress");
-  progress = new mdc.linearProgress.MDCLinearProgress(progressDiv);
-  progress.open();
-  progress.determinate = false;
-  progress.done = function() {
-    progress.close();
-    progressDiv.remove();
-  };
-</script>
-<div id="map"></div>

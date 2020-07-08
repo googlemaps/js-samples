@@ -89,8 +89,10 @@
   })((this.window = this.window || {}));
 </script>
 
-<div id="floating-panel">
-  <input onclick="removeLine();" type="button" value="Remove line" />
-  <input onclick="addLine();" type="button" value="Restore line" />
+<div style="height:400px">
+  <div id="floating-panel">
+    <input onclick="removeLine();" type="button" value="Remove line" />
+    <input onclick="addLine();" type="button" value="Restore line" />
+  </div>
+  <div id="map"></div>
 </div>
-<div id="map"></div>
