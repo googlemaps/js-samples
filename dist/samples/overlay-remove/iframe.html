@@ -74,8 +74,10 @@
   })((this.window = this.window || {}));
 </script>
 
-<div id="floating-panel">
-  <input onclick="removeOverlay();" type="button" value="Remove overlay" />
-  <input onclick="addOverlay();" type="button" value="Restore overlay" />
+<div style="height:400px">
+  <div id="floating-panel">
+    <input onclick="removeOverlay();" type="button" value="Remove overlay" />
+    <input onclick="addOverlay();" type="button" value="Restore overlay" />
+  </div>
+  <div id="map"></div>
 </div>
-<div id="map"></div>

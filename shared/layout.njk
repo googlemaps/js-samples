@@ -26,7 +26,14 @@
     <body>
     {% endif %}
 
-    {% block html %}{% endblock %}
+    {% if mode == "iframe" %}
+      <div style="height:400px">
+    {% endif %}
+      {% block html %}{% endblock %}
+    {% if mode == "iframe" %}
+      </div>
+    {% endif %}
+
     {% if mode != "iframe" %}
     </body>
   </html>

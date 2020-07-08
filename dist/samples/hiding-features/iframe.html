@@ -100,16 +100,23 @@
   })((this.window = this.window || {}));
 </script>
 
-<div id="style-selector-control" class="map-control">
-  <input type="radio" name="show-hide" id="hide-poi" class="selector-control" />
-  <label for="hide-poi">Hide</label>
-  <input
-    type="radio"
-    name="show-hide"
-    id="show-poi"
-    class="selector-control"
-    checked="checked"
-  />
-  <label for="show-poi">Show</label>
+<div style="height:400px">
+  <div id="style-selector-control" class="map-control">
+    <input
+      type="radio"
+      name="show-hide"
+      id="hide-poi"
+      class="selector-control"
+    />
+    <label for="hide-poi">Hide</label>
+    <input
+      type="radio"
+      name="show-hide"
+      id="show-poi"
+      class="selector-control"
+      checked="checked"
+    />
+    <label for="show-poi">Show</label>
+  </div>
+  <div id="map"></div>
 </div>
-<div id="map"></div>
