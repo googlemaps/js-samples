@@ -103,8 +103,9 @@ function initMap() {
   // [END maps_overlay_simple_region_drawing]
 
   // [START maps_overlay_simple_region_removal]
-  // The onRemove() method will be called automatically from the API if
-  // we ever set the overlay's map property to 'null'.
+  /** The onRemove() method will be called automatically from the API if
+   * we ever set the overlay's map property to 'null'.
+   */
   USGSOverlay.prototype.onRemove = function() {
     this.div_.parentNode.removeChild(this.div_);
     this.div_ = null;
