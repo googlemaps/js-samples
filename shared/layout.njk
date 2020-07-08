@@ -1,10 +1,12 @@
-{% if mode != "iframe" %}
+{% if mode == "iframe" %}
+  <!-- [START maps_{{tag}}_iframe] -->
+{% else %}
   <!-- [START maps_{{tag}}] -->
   <!DOCTYPE html>
   <html>
     <head>
     <title>{{ title }}</title>
-    {% endif %}
+{% endif %}
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     {% block external %}{% endblock %}
     {% block api %}
@@ -32,9 +34,8 @@
       {% block html %}{% endblock %}
     {% if mode == "iframe" %}
       </div>
-    {% endif %}
-
-    {% if mode != "iframe" %}
+      <!-- [END maps_{{tag}}_iframe] -->
+    {% else %}
     </body>
   </html>
   <!-- [END maps_{{tag}}] -->
