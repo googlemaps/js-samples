@@ -57,3 +57,9 @@ sh_binary(
     srcs = ["nunjucks.sh"],
     visibility = ["//visibility:public"],
 )
+
+sh_binary(
+    name = "strip_source_map_url_bin",
+    srcs = ["strip_source_map_url.sh"],
+    visibility = ["//visibility:public"],
+)

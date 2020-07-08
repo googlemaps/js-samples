@@ -10,6 +10,7 @@ exports_files(
         "rollup.config.js",
         "rollup.config.iframe.js",
         "jest.config.js",
+        "tsconfig.json",
     ],
     visibility = ["//:__subpackages__"],
 )

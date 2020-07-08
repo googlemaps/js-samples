@@ -2,17 +2,34 @@ load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
+load("@npm//@bazel/typescript:index.bzl", "ts_library")
 
 def sample():
     """ generates the various outputs"""
+    ts_library(
+            name = "_compile",
+                srcs = ["src/index.ts"],
+                    prodmode_target = "esnext",
+                        deps = [
+                                          "@npm//@types/googlemaps",
+                                                        ],
+                            )
+
+    native.filegroup(
+            name = "_compile_outputs",
+                srcs = ["_compile"],
+                    output_group = "es6_sources",
+                    )
+    
     native.genrule(
         name = "_app_without_region_tags",
-        srcs = [":src/index.js"],
+        srcs = [":_compile_outputs"],
         outs = ["_app_without_region_tags.js"],
-        cmd = "cat $(location :src/index.js) > $@; " +
+        cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "$(location //rules:remove_apache_license) $@; ",
-        tools = ["//rules:strip_region_tags_bin", "//rules:remove_apache_license"],
+              "$(location //rules:remove_apache_license) $@; " +
+              "$(location //rules:strip_source_map_url_bin) $@; ",
+              tools = ["//rules:strip_region_tags_bin", "//rules:remove_apache_license", "//rules:strip_source_map_url_bin",],
     )
 
     rollup_bundle(

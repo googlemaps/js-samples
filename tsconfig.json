@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "strict": true,
+    "types": ["google"]
+  },
+  "include": ["src/**/*.ts"]
+}
