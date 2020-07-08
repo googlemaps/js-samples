@@ -27,7 +27,7 @@
 
 var overlay;
 
-// Initialize the map and the custom overlay.
+/** Initialize the map and the custom overlay. */
 function initMap() {
   // [START maps_overlay_simple_region_constructor]
   /** @constructor */
