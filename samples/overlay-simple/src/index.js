@@ -46,7 +46,7 @@ function initMap() {
     this.setMap(map);
   }
   // [END maps_overlay_simple_region_constructor]
-  
+
   USGSOverlay.prototype = new google.maps.OverlayView();
 
   // [START maps_overlay_simple_region_attachment]
@@ -129,7 +129,8 @@ function initMap() {
 
   // The custom USGSOverlay object contains the USGS image,
   // the bounds of the image, and a reference to the map.
-  overlay = new USGSOverlay(bounds, srcImage, map);}
+  overlay = new USGSOverlay(bounds, srcImage, map);
+}
 
 // [END maps_overlay_simple]
 export { initMap };
