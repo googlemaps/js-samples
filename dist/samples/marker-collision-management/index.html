@@ -29,9 +29,17 @@
           no-repeat center;
       }
 
+      /* Optional: Makes the sample page fill the window. */
+      html,
       body {
-        display: flex;
+        height: 100%;
         margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        height: 100%;
+        display: flex;
       }
 
       #sidebar {
@@ -214,32 +222,37 @@
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    <div id="sidebar">
-      <div class="mdc-select mdc-select--outlined">
-        <div class="mdc-select__anchor" aria-labelledby="outlined-select-label">
-          <input
-            type="text"
-            disabled
-            readonly
-            id="demo-selected-text"
-            class="mdc-select__selected-text"
-          />
-          <i class="mdc-select__dropdown-icon"></i>
-          <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-              <span
-                id="outlined-select-label"
-                class="mdc-floating-label mdc-theme--primary"
-                >Pick a Collision Behavior</span
-              >
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <div class="mdc-select mdc-select--outlined">
+          <div
+            class="mdc-select__anchor"
+            aria-labelledby="outlined-select-label"
+          >
+            <input
+              type="text"
+              disabled
+              readonly
+              id="demo-selected-text"
+              class="mdc-select__selected-text"
+            />
+            <i class="mdc-select__dropdown-icon"></i>
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__notch">
+                <span
+                  id="outlined-select-label"
+                  class="mdc-floating-label mdc-theme--primary"
+                  >Pick a Collision Behavior</span
+                >
+              </span>
+              <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <span class="mdc-notched-outline__trailing"></span>
-          </span>
-        </div>
-        <div class="mdc-select__menu mdc-menu mdc-menu-surface">
-          <ul class="mdc-list"></ul>
+          </div>
+          <div class="mdc-select__menu mdc-menu mdc-menu-surface">
+            <ul class="mdc-list"></ul>
+          </div>
         </div>
       </div>
     </div>
