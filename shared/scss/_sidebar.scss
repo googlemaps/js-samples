@@ -1,6 +1,14 @@
+/* Optional: Makes the sample page fill the window. */
+html,
 body {
-  display: flex;
+  height: 100%;
   margin: 0;
+  padding: 0;
+}
+
+#container {
+  height: 100%;
+  display: flex;
 }
 
 #sidebar {
