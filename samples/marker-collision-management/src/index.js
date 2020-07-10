@@ -17,10 +17,10 @@
 // [START maps_marker_collision_management]
 let map;
 let select;
+let markers;
 
 // Initialize and add the map
 function initMap() {
-  let markers = [];
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
 
   map = new google.maps.Map(document.getElementById("map"), {
@@ -28,6 +28,9 @@ function initMap() {
     center: { lat: 47.609414458375674, lng: -122.33897030353548 },
     zoom: 17
   });
+
+  // create markers with initial behavior
+  markers = createMarkers(map, collisionBehavior);
 
   const menuList = document.querySelector(".mdc-list");
 
@@ -50,14 +53,17 @@ function initMap() {
   select.listen("MDCSelect:change", () => {
     collisionBehavior = select.value;
     markers.forEach(function(marker) {
-      marker.set("collisionBehavior", collisionBehavior);
+      marker.setMap(null);
     });
+    markers = createMarkers(map, collisionBehavior);
   });
 
   select.value = collisionBehavior;
+}
 
+function createMarkers(map, collisionBehavior) {
   // Create some markers on the map
-  markers = [
+  return [
     [-122.3402, 47.6093],
     [-122.3402, 47.6094],
     [-122.3403, 47.6094],
