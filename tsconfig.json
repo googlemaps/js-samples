@@ -3,7 +3,10 @@
     "module": "esnext",
     "target": "esnext",
     "strict": true,
-    "types": ["google"]
+    "types": ["google", "mdc"],
+    "lib": [
+      "esnext", "es6", "dom", "dom.iterable"
+  ]
   },
   "include": ["src/**/*.ts"]
 }
