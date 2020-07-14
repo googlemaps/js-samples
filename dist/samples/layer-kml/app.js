@@ -10,7 +10,7 @@
       }
     });
     var ctaLayer = new google.maps.KmlLayer({
-      url: "http://googlemaps.github.io/js-v2-samples/ggeoxml/cta.kml",
+      url: "https://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml",
       map: map
     });
   }
