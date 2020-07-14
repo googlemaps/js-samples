@@ -34,6 +34,7 @@ function CenterControl(
 ) {
   // We set up a variable for this since we're adding event listeners
   // later.
+  // @ts-ignore
   var control = this;
 
   // Set the center property upon construction
@@ -103,7 +104,7 @@ CenterControl.prototype.setCenter = function(center: google.maps.LatLng) {
 };
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: chicago
   });

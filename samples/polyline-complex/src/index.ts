@@ -19,11 +19,11 @@
 // user clicks. Note that the polyline only appears once its path property
 // contains two LatLng coordinates.
 
-var poly: google.maps.Polyline;
+let poly: google.maps.Polyline;
 let map: google.maps.Map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 7,
     center: { lat: 41.879, lng: -87.624 } // Center the map on Chicago, USA.
   });

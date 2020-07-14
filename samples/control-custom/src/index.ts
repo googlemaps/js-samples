@@ -56,7 +56,7 @@ function CenterControl(controlDiv: Element, map: google.maps.Map) {
 }
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: chicago
   });
@@ -68,7 +68,7 @@ function initMap() {
 
   // @ts-ignore TODO(jpoehnelt)
   centerControlDiv.index = 1;
-  
+
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
 // [END maps_control_custom]

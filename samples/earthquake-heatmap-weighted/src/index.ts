@@ -18,7 +18,7 @@
 let map: google.maps.Map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 2,
     center: new google.maps.LatLng(2.8, -187.3),
     mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -35,7 +35,8 @@ function initMap() {
 }
 
 const eqfeed_callback = function(results: any) {
-  var heatmapData = [];
+  // TODO(jpoehnelt) fix typings
+  var heatmapData: any[] = [];
   for (let i = 0; i < results.features.length; i++) {
     var coords = results.features[i].geometry.coordinates;
     var latLng = new google.maps.LatLng(coords[1], coords[0]);

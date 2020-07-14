@@ -30,7 +30,7 @@ function initMap() {
   var originIcon =
     "https://chart.googleapis.com/chart?" +
     "chst=d_map_pin_letter&chld=O|FFFF00|000000";
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 55.53, lng: 9.4 },
     zoom: 10
   });
@@ -68,7 +68,7 @@ function initMap() {
               map.fitBounds(bounds.extend(results[0].geometry.location));
               markersArray.push(
                 new google.maps.Marker({
-                  map: map,
+                  map,
                   position: results[0].geometry.location,
                   icon: icon
                 })

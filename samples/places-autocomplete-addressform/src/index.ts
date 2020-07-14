@@ -23,7 +23,8 @@
 // <script
 // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-var placeSearch, autocomplete;
+let placeSearch: google.maps.places.PlacesService;
+let autocomplete: google.maps.places.Autocomplete;
 
 var componentForm = {
   street_number: "short_name",
@@ -38,7 +39,7 @@ function initAutocomplete() {
   // Create the autocomplete object, restricting the search predictions to
   // geographical location types.
   autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById("autocomplete") as Element,
+    document.getElementById("autocomplete") as HTMLInputElement,
     { types: ["geocode"] }
   );
 
@@ -57,8 +58,8 @@ function fillInAddress() {
   var place = autocomplete.getPlace();
 
   for (let component in componentForm) {
-    document.getElementById(component).value = "";
-    document.getElementById(component).disabled = false;
+    (document.getElementById(component) as HTMLInputElement).value = "";
+    (document.getElementById(component) as HTMLInputElement).disabled = false;
   }
 
   // Get each component of the address from the place details,
@@ -67,7 +68,7 @@ function fillInAddress() {
     var addressType = place.address_components[i].types[0];
     if (componentForm[addressType]) {
       var val = place.address_components[i][componentForm[addressType]];
-      document.getElementById(addressType).value = val;
+      (document.getElementById(addressType) as HTMLInputElement).value = val;
     }
   }
 }
@@ -94,9 +95,5 @@ function geolocate() {
 // [END maps_places_autocomplete_addressform_geolocation]
 // [END maps_places_autocomplete_addressform]
 export {
-  placeSearch,
-  componentForm,
   initAutocomplete,
-  fillInAddress,
-  geolocate
 };

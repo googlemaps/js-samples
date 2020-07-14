@@ -24,21 +24,21 @@ let map: google.maps.Map;
 let infoWindow: google.maps.InfoWindow;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 5,
     center: { lat: 24.886, lng: -70.268 },
     mapTypeId: "terrain"
   });
 
   // Define the LatLng coordinates for the polygon.
-  var triangleCoords = [
+  const triangleCoords: google.maps.LatLngLiteral[] = [
     { lat: 25.774, lng: -80.19 },
     { lat: 18.466, lng: -66.118 },
     { lat: 32.321, lng: -64.757 }
   ];
 
   // Construct the polygon.
-  var bermudaTriangle = new google.maps.Polygon({
+  const bermudaTriangle = new google.maps.Polygon({
     paths: triangleCoords,
     strokeColor: "#FF0000",
     strokeOpacity: 0.8,
@@ -54,13 +54,14 @@ function initMap() {
   infoWindow = new google.maps.InfoWindow();
 }
 
-/** @this {google.maps.Polygon} */
-function showArrays(event) {
+function showArrays(event: any) {
   // Since this polygon has only one path, we can call getPath() to return the
   // MVCArray of LatLngs.
-  var vertices = this.getPath();
+  // @ts-ignore
+  const polygon = this as google.maps.Polygon;
+  const vertices = polygon.getPath();
 
-  var contentString =
+  let contentString =
     "<b>Bermuda Triangle polygon</b><br>" +
     "Clicked location: <br>" +
     event.latLng.lat() +
@@ -70,7 +71,7 @@ function showArrays(event) {
 
   // Iterate over the vertices.
   for (let i = 0; i < vertices.getLength(); i++) {
-    var xy = vertices.getAt(i);
+    const xy = vertices.getAt(i);
     contentString +=
       "<br>" + "Coordinate " + i + ":<br>" + xy.lat() + "," + xy.lng();
   }

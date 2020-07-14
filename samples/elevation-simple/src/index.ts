@@ -16,7 +16,7 @@
 
 // [START maps_elevation_simple]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 8,
     center: { lat: 63.333, lng: -150.5 }, // Denali.
     mapTypeId: "terrain"

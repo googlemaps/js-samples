@@ -22,11 +22,8 @@
 /**
  * MakeControl adds a control to the map.
  * This constructor takes the controlDIV name and label text as arguments.
- * @constructor
- * @param {!Element} controlDiv  The name of the DIV element for the control.
- * @param {string} label  Text to display within the DIV element.
  */
-function MakeControl(controlDiv, label) {
+function MakeControl(controlDiv: HTMLElement, label: string) {
   // Set up the control border.
   var controlUI = document.createElement("div");
   controlUI.title = label;
@@ -41,7 +38,7 @@ function MakeControl(controlDiv, label) {
 }
 
 function initialize() {
-  var mapDiv = document.getElementById("map") as Element;
+  var mapDiv = document.getElementById("map") as HTMLElement;
   var mapOptions = {
     zoom: 11,
     center: { lat: 47.46, lng: -122.52 },
@@ -65,9 +62,10 @@ function initialize() {
   ];
 
   for (let i = 0; i < controlText.length; i++) {
-    var divLabel = controlText[i][0];
+    var divLabel = controlText[i][0] as string;
     var divName = document.createElement("div");
-    var newDiv = new MakeControl(divName, divLabel);
+    MakeControl(divName, divLabel);
+    // @ts-ignore
     map.controls[controlText[i][1]].push(divName);
   }
 }

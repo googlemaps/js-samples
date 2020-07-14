@@ -25,7 +25,7 @@ let markers: google.maps.Marker[] = [];
 function initMap() {
   var haightAshbury = { lat: 37.769, lng: -122.446 };
 
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: haightAshbury,
     mapTypeId: "terrain"

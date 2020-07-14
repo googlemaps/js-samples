@@ -19,7 +19,7 @@
 // to create a rectangular polygon with 2 holes in it.
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 6,
     center: { lat: -33.872, lng: 151.252 }
   });

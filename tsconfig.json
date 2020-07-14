@@ -3,7 +3,8 @@
     "module": "esnext",
     "target": "esnext",
     "strict": true,
-    "types": ["google", "mdc"],
+    "types": ["google", "mdc", "deck"],
+    "noImplicitAny": false,
     "lib": [
       "esnext", "es6", "dom", "dom.iterable"
   ]

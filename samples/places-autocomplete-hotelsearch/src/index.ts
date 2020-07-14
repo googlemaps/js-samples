@@ -24,15 +24,21 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-let map: google.maps.Map, places, infoWindow;
+let map: google.maps.Map;
+let places: google.maps.places.PlacesService;
+let infoWindow: google.maps.InfoWindow;
 let markers: google.maps.Marker[] = [];
-var autocomplete;
-var countryRestrict = { country: "us" };
-var MARKER_PATH =
-  "https://developers.google.com/maps/documentation/javascript/images/marker_green";
-var hostnameRegexp = new RegExp("^https?://.+?/");
+let autocomplete: google.maps.places.Autocomplete;
 
-var countries = {
+const countryRestrict = { country: "us" };
+const MARKER_PATH =
+  "https://developers.google.com/maps/documentation/javascript/images/marker_green";
+const hostnameRegexp = new RegExp("^https?://.+?/");
+
+var countries: Record<
+  string,
+  { center: google.maps.LatLngLiteral; zoom: number }
+> = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
     zoom: 4
@@ -88,7 +94,7 @@ var countries = {
 };
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: countries["us"].zoom,
     center: countries["us"].center,
     mapTypeControl: false,
@@ -98,7 +104,7 @@ function initMap() {
   });
 
   infoWindow = new google.maps.InfoWindow({
-    content: document.getElementById("info-content")
+    content: document.getElementById("info-content") as HTMLElement
   });
 
   // Create the autocomplete object and associate it with the UI input control.
@@ -115,9 +121,10 @@ function initMap() {
   autocomplete.addListener("place_changed", onPlaceChanged);
 
   // Add a DOM event listener to react when the user selects a country.
-  document
-    .getElementById("country")
-    .addEventListener("change", setAutocompleteCountry);
+  (document.getElementById("country") as HTMLSelectElement).addEventListener(
+    "change",
+    setAutocompleteCountry
+  );
 }
 
 // When the user selects a city, get the place details for the city and
@@ -129,18 +136,23 @@ function onPlaceChanged() {
     map.setZoom(15);
     search();
   } else {
-    document.getElementById("autocomplete").placeholder = "Enter a city";
+    (document.getElementById("autocomplete") as HTMLInputElement).placeholder =
+      "Enter a city";
   }
 }
 
 // Search for hotels in the selected city, within the viewport of the map.
 function search() {
   var search = {
-    bounds: map.getBounds(),
+    bounds: map.getBounds() as google.maps.LatLngBounds,
     types: ["lodging"]
   };
 
-  places.nearbySearch(search, function(results, status) {
+  places.nearbySearch(search, function(
+    results: google.maps.places.PlaceResult[],
+    status: google.maps.places.PlacesServiceStatus,
+    pagination: google.maps.places.PlaceSearchPagination
+  ) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearResults();
       clearMarkers();
@@ -151,12 +163,14 @@ function search() {
         var markerIcon = MARKER_PATH + markerLetter + ".png";
         // Use marker animation to drop the icons incrementally on the map.
         markers[i] = new google.maps.Marker({
-          position: results[i].geometry.location,
+          position: (results[i].geometry as google.maps.places.PlaceGeometry)
+            .location,
           animation: google.maps.Animation.DROP,
           icon: markerIcon
         });
         // If the user clicks a hotel marker, show the details of that hotel
         // in an info window.
+        // @ts-ignore TODO(jpoehnelt) refactor to avoid storing on marker
         markers[i].placeResult = results[i];
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
@@ -179,7 +193,7 @@ function clearMarkers() {
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
 function setAutocompleteCountry() {
-  var country = document.getElementById("country").value;
+  var country = (document.getElementById("country") as HTMLInputElement).value;
   if (country == "all") {
     autocomplete.setComponentRestrictions({ country: [] });
     map.setCenter({ lat: 15, lng: 0 });
@@ -201,7 +215,7 @@ function dropMarker(i) {
 }
 
 function addResult(result, i) {
-  var results = document.getElementById("results");
+  var results = document.getElementById("results") as HTMLElement;
   var markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   var markerIcon = MARKER_PATH + markerLetter + ".png";
 
@@ -226,7 +240,7 @@ function addResult(result, i) {
 }
 
 function clearResults() {
-  var results = document.getElementById("results");
+  var results = document.getElementById("results") as HTMLElement;
   while (results.childNodes[0]) {
     results.removeChild(results.childNodes[0]);
   }
@@ -235,6 +249,7 @@ function clearResults() {
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker for the hotel that the user selected.
 function showInfoWindow() {
+  // @ts-ignore
   var marker = this;
   places.getDetails({ placeId: marker.placeResult.place_id }, function(
     place,
@@ -250,18 +265,20 @@ function showInfoWindow() {
 
 // Load the place information into the HTML elements used by the info window.
 function buildIWContent(place) {
-  document.getElementById("iw-icon").innerHTML =
+  (document.getElementById("iw-icon") as HTMLElement).innerHTML =
     '<img class="hotelIcon" ' + 'src="' + place.icon + '"/>';
-  document.getElementById("iw-url").innerHTML =
+  (document.getElementById("iw-url") as HTMLElement).innerHTML =
     '<b><a href="' + place.url + '">' + place.name + "</a></b>";
-  document.getElementById("iw-address").textContent = place.vicinity;
+  (document.getElementById("iw-address") as HTMLElement).textContent =
+    place.vicinity;
 
   if (place.formatted_phone_number) {
-    document.getElementById("iw-phone-row").style.display = "";
-    document.getElementById("iw-phone").textContent =
+    (document.getElementById("iw-phone-row") as HTMLElement).style.display = "";
+    (document.getElementById("iw-phone") as HTMLElement).textContent =
       place.formatted_phone_number;
   } else {
-    document.getElementById("iw-phone-row").style.display = "none";
+    (document.getElementById("iw-phone-row") as HTMLElement).style.display =
+      "none";
   }
 
   // Assign a five-star rating to the hotel, using a black star ('&#10029;')
@@ -275,26 +292,34 @@ function buildIWContent(place) {
       } else {
         ratingHtml += "&#10029;";
       }
-      document.getElementById("iw-rating-row").style.display = "";
-      document.getElementById("iw-rating").innerHTML = ratingHtml;
+      (document.getElementById("iw-rating-row") as HTMLElement).style.display =
+        "";
+      (document.getElementById(
+        "iw-rating"
+      ) as HTMLElement).innerHTML = ratingHtml;
     }
   } else {
-    document.getElementById("iw-rating-row").style.display = "none";
+    (document.getElementById("iw-rating-row") as HTMLElement).style.display =
+      "none";
   }
 
   // The regexp isolates the first part of the URL (domain plus subdomain)
   // to give a short URL for displaying in the info window.
   if (place.website) {
     var fullUrl = place.website;
-    var website = hostnameRegexp.exec(place.website);
-    if (website === null) {
+    var website = String(hostnameRegexp.exec(place.website));
+    if (!website) {
       website = "http://" + place.website + "/";
       fullUrl = website;
     }
-    document.getElementById("iw-website-row").style.display = "";
-    document.getElementById("iw-website").textContent = website;
+    (document.getElementById("iw-website-row") as HTMLElement).style.display =
+      "";
+    (document.getElementById(
+      "iw-website"
+    ) as HTMLElement).textContent = website;
   } else {
-    document.getElementById("iw-website-row").style.display = "none";
+    (document.getElementById("iw-website-row") as HTMLElement).style.display =
+      "none";
   }
 }
 // [END maps_places_autocomplete_hotelsearch]

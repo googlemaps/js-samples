@@ -32,7 +32,7 @@ let overlay: google.maps.OverlayView;
 function initMap() {
   USGSOverlay.prototype = new google.maps.OverlayView();
 
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 11,
     center: { lat: 62.323907, lng: -150.109291 },
     mapTypeId: "satellite"
@@ -56,7 +56,11 @@ function initMap() {
 
 // [START maps_overlay_simple_region_constructor]
 /** @constructor */
-function USGSOverlay(bounds: google.maps.LatLngBounds, image: string, map: google.maps.Map) {
+function USGSOverlay(
+  bounds: google.maps.LatLngBounds,
+  image: string,
+  map: google.maps.Map
+) {
   // Initialize all properties.
   this.bounds_ = bounds;
   this.image_ = image;

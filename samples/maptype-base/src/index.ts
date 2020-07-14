@@ -54,7 +54,7 @@ class CoordMapType {
 }
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 10,
     center: { lat: 41.85, lng: -87.65 },
     streetViewControl: false,

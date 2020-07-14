@@ -16,81 +16,110 @@
 
 // [START maps_event_poi]
 function initMap() {
-  var origin = { lat: -33.871, lng: 151.197 };
+  const origin = { lat: -33.871, lng: 151.197 };
 
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
-    zoom: 18,
-    center: origin
-  });
-  var clickHandler = new ClickEventHandler(map, origin);
-}
-
-/**
- * @constructor
- */
-var ClickEventHandler = function(map, origin) {
-  this.origin = origin;
-  this.map = map;
-  this.directionsService = new google.maps.DirectionsService();
-  this.directionsRenderer = new google.maps.DirectionsRenderer();
-  this.directionsRenderer.setMap(map);
-  this.placesService = new google.maps.places.PlacesService(map);
-  this.infowindow = new google.maps.InfoWindow();
-  this.infowindowContent = document.getElementById("infowindow-content");
-  this.infowindow.setContent(this.infowindowContent);
-
-  // Listen for clicks on the map.
-  this.map.addListener("click", this.handleClick.bind(this));
-};
-
-ClickEventHandler.prototype.handleClick = function(event) {
-  console.log("You clicked on: " + event.latLng);
-  // If the event has a placeId, use it.
-  if (event.placeId) {
-    console.log("You clicked on place:" + event.placeId);
-
-    // Calling e.stop() on the event prevents the default info window from
-    // showing.
-    // If you call stop here when there is no placeId you will prevent some
-    // other map click event handlers from receiving the event.
-    event.stop();
-    this.calculateAndDisplayRoute(event.placeId);
-    this.getPlaceInformation(event.placeId);
-  }
-};
-
-ClickEventHandler.prototype.calculateAndDisplayRoute = function(placeId) {
-  var me = this;
-  this.directionsService.route(
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
     {
-      origin: this.origin,
-      destination: { placeId: placeId },
-      travelMode: "WALKING"
-    },
-    function(response, status) {
-      if (status === "OK") {
-        me.directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
-      }
+      zoom: 18,
+      center: origin
     }
   );
-};
+  new ClickEventHandler(map, origin);
+}
 
-ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
-  var me = this;
-  this.placesService.getDetails({ placeId: placeId }, function(place, status) {
-    if (status === "OK") {
-      me.infowindow.close();
-      me.infowindow.setPosition(place.geometry.location);
-      me.infowindowContent.children["place-icon"].src = place.icon;
-      me.infowindowContent.children["place-name"].textContent = place.name;
-      me.infowindowContent.children["place-id"].textContent = place.place_id;
-      me.infowindowContent.children["place-address"].textContent =
-        place.formatted_address;
-      me.infowindow.open(me.map);
+function isIconMouseEvent(
+  e: google.maps.MouseEvent | google.maps.IconMouseEvent
+): e is google.maps.IconMouseEvent {
+  return "placeId" in e;
+}
+
+class ClickEventHandler {
+  origin: google.maps.LatLngLiteral;
+  map: google.maps.Map;
+  directionsService: google.maps.DirectionsService;
+  directionsRenderer: google.maps.DirectionsRenderer;
+  placesService: google.maps.places.PlacesService;
+  infowindow: google.maps.InfoWindow;
+  infowindowContent: HTMLElement;
+  constructor(map: google.maps.Map, origin: google.maps.LatLngLiteral) {
+    this.origin = origin;
+    this.map = map;
+    this.directionsService = new google.maps.DirectionsService();
+    this.directionsRenderer = new google.maps.DirectionsRenderer();
+    this.directionsRenderer.setMap(map);
+    this.placesService = new google.maps.places.PlacesService(map);
+    this.infowindow = new google.maps.InfoWindow();
+    this.infowindowContent = document.getElementById(
+      "infowindow-content"
+    ) as HTMLElement;
+    this.infowindow.setContent(this.infowindowContent);
+
+    // Listen for clicks on the map.
+    this.map.addListener("click", this.handleClick.bind(this));
+  }
+
+  handleClick(event: google.maps.MouseEvent | google.maps.IconMouseEvent) {
+    console.log("You clicked on: " + event.latLng);
+    // If the event has a placeId, use it.
+    if (isIconMouseEvent(event)) {
+      console.log("You clicked on place:" + event.placeId);
+
+      // Calling e.stop() on the event prevents the default info window from
+      // showing.
+      // If you call stop here when there is no placeId you will prevent some
+      // other map click event handlers from receiving the event.
+      event.stop();
+      this.calculateAndDisplayRoute(event.placeId);
+      this.getPlaceInformation(event.placeId);
     }
-  });
-};
+  }
+
+  calculateAndDisplayRoute(placeId: string) {
+    var me = this;
+    this.directionsService.route(
+      {
+        origin: this.origin,
+        destination: { placeId: placeId },
+        travelMode: google.maps.TravelMode.WALKING
+      },
+      function(response, status) {
+        if (status === "OK") {
+          me.directionsRenderer.setDirections(response);
+        } else {
+          window.alert("Directions request failed due to " + status);
+        }
+      }
+    );
+  }
+
+  getPlaceInformation(placeId: string) {
+    var me = this;
+    this.placesService.getDetails({ placeId: placeId }, function(
+      place: google.maps.places.PlaceResult,
+      status: google.maps.places.PlacesServiceStatus
+    ) {
+      if (status === "OK") {
+        me.infowindow.close();
+        me.infowindow.setPosition(
+          (place.geometry as google.maps.places.PlaceGeometry).location
+        );
+        (me.infowindowContent.children[
+          "place-icon"
+        ] as HTMLImageElement).src = place.icon as string;
+        (me.infowindowContent.children[
+          "place-name"
+        ] as HTMLElement).textContent = place.name;
+        (me.infowindowContent.children[
+          "place-id"
+        ] as HTMLElement).textContent = place.place_id as string;
+        (me.infowindowContent.children[
+          "place-address"
+        ] as HTMLElement).textContent = place.formatted_address as string;
+        me.infowindow.open(me.map);
+      }
+    });
+  }
+}
 // [END maps_event_poi]
 export { initMap, ClickEventHandler };

@@ -24,7 +24,7 @@ let map: google.maps.Map;
 function initMap() {
   // Create the map.
   var pyrmont = { lat: -33.866, lng: 151.196 };
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: pyrmont,
     zoom: 17
   });
@@ -32,7 +32,7 @@ function initMap() {
   // Create the places service.
   var service = new google.maps.places.PlacesService(map);
   var getNextPage = null;
-  var moreButton = document.getElementById("more");
+  var moreButton = document.getElementById("more") as HTMLElement;
   moreButton.onclick = function() {
     moreButton.disabled = true;
     if (getNextPage) getNextPage();
@@ -57,7 +57,7 @@ function initMap() {
 
 function createMarkers(places) {
   var bounds = new google.maps.LatLngBounds();
-  var placesList = document.getElementById("places");
+  var placesList = document.getElementById("places") as HTMLElement;
 
   for (let i = 0, place; (place = places[i]); i++) {
     var image = {
@@ -69,7 +69,7 @@ function createMarkers(places) {
     };
 
     var marker = new google.maps.Marker({
-      map: map,
+      map,
       icon: image,
       title: place.name,
       position: place.geometry.location

@@ -16,7 +16,7 @@
 
 // [START maps_geocoding_region]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 8
   });
   var geocoder = new google.maps.Geocoder();
@@ -24,7 +24,7 @@ function initMap() {
     if (status === "OK") {
       map.setCenter(results[0].geometry.location);
       new google.maps.Marker({
-        map: map,
+        map,
         position: results[0].geometry.location
       });
     } else {

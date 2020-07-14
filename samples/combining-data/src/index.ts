@@ -37,7 +37,7 @@ var censusMin = Number.MAX_VALUE,
 
 function initMap() {
   // load the map
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 40, lng: -100 },
     zoom: 4,
     styles: mapStyle
@@ -150,10 +150,10 @@ function styleFeature(feature: google.maps.Data.Feature) {
     (feature.getProperty("census_variable") - censusMin) /
     (censusMax - censusMin);
 
-  var color = [];
+  var color: number[] = [];
   for (let i = 0; i < 3; i++) {
     // calculate an integer color based on the delta
-    color[i] = (high[i] - low[i]) * delta + low[i];
+    color.push((high[i] - low[i]) * delta + low[i]);
   }
 
   // determine whether to show this shape or not

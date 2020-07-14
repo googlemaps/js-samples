@@ -86,7 +86,7 @@ function initAuthentication(onAuthSuccess) {
  * Creates a map object with a click listener and a heatmap.
  */
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 0, lng: 0 },
     zoom: 3,
     styles: [
@@ -119,7 +119,7 @@ function initMap() {
   // Create a heatmap.
   var heatmap = new google.maps.visualization.HeatmapLayer({
     data: [],
-    map: map,
+    map,
     radius: 16
   });
 

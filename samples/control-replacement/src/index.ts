@@ -26,20 +26,20 @@ declare global {
     webkitFullscreenElement?: Element;
     onwebkitfullscreenchange?: any;
     onmsfullscreenchange?: any;
-    onmozfullscreenchang?: any;
+    onmozfullscreenchange?: any;
   }
 
   interface HTMLElement {
-    msRequestFullscreen?: () => Promise<void>;
-    mozRequestFullscreen?: () => Promise<void>;
-    webkitRequestFullscreen?: () => Promise<void>;
+    msRequestFullScreen?: () => Promise<void>;
+    mozRequestFullScreen?: () => Promise<void>;
+    webkitRequestFullScreen?: () => Promise<void>;
   }
 }
 
 let map: google.maps.Map;
 
 function initMap() {
-  map = new google.maps.Map(document.querySelector("#map"), {
+  map = new google.maps.Map(document.querySelector("#map") as HTMLElement, {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
     disableDefaultUI: true
@@ -62,7 +62,7 @@ function initZoomControl(map: google.maps.Map) {
     map.setZoom(map.getZoom() - 1);
   };
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
-    document.querySelector(".zoom-control")
+    document.querySelector(".zoom-control") as HTMLElement
   );
 }
 
@@ -89,7 +89,7 @@ function initMapTypeControl(map: google.maps.Map) {
 }
 
 function initFullscreenControl(map: google.maps.Map) {
-  var elementToSendFullscreen = map.getDiv().firstChild;
+  var elementToSendFullscreen = map.getDiv().firstChild as HTMLElement;
   var fullscreenControl = document.querySelector(
     ".fullscreen-control"
   ) as HTMLElement;
@@ -103,11 +103,7 @@ function initFullscreenControl(map: google.maps.Map) {
     }
   };
 
-  document["onwebkitfullscreenchange"] = document[
-    "onmsfullscreenchange"
-  ] = document[
-    "onmozfullscreenchange"
-  ] = document.onfullscreenchange = function() {
+  document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function() {
     if (isFullscreen(elementToSendFullscreen)) {
       fullscreenControl.classList.add("is-fullscreen");
     } else {
@@ -116,15 +112,15 @@ function initFullscreenControl(map: google.maps.Map) {
   };
 }
 
-function isFullscreen(element) {
+function isFullscreen(element: HTMLElement) {
   return (
     (document.fullscreenElement ||
-      document["webkitFullscreenElement"] ||
-      document["mozFullScreenElement"] ||
-      document["msFullscreenElement"]) == element
+      document.webkitFullscreenElement ||
+      document.mozFullScreenElement ||
+      document.msFullscreenElement) == element
   );
 }
-function requestFullscreen(element) {
+function requestFullscreen(element: HTMLElement) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
   } else if (element.webkitRequestFullScreen) {
@@ -138,12 +134,12 @@ function requestFullscreen(element) {
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
-  } else if (document["webkitExitFullscreen"]) {
-    document["webkitExitFullscreen"]();
-  } else if (document["mozCancelFullScreen"]) {
-    document["mozCancelFullScreen"]();
-  } else if (document["msExitFullscreen"]) {
-    document["msExitFullscreen"]();
+  } else if (document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  } else if (document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if (document.msExitFullscreen) {
+    document.msExitFullscreen();
   }
 }
 // [END maps_control_replacement]

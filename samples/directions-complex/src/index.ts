@@ -16,13 +16,13 @@
 
 // [START maps_directions_complex]
 function initMap() {
-  var markerArray = [];
+  var markerArray: google.maps.Marker[] = [];
 
   // Instantiate a directions service.
   var directionsService = new google.maps.DirectionsService();
 
   // Create a map and center it on Manhattan.
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 13,
     center: { lat: 40.771, lng: -73.974 }
   });
@@ -51,16 +51,22 @@ function initMap() {
       map
     );
   };
-  document.getElementById("start").addEventListener("change", onChangeHandler);
-  document.getElementById("end").addEventListener("change", onChangeHandler);
+  (document.getElementById("start") as HTMLElement).addEventListener(
+    "change",
+    onChangeHandler
+  );
+  (document.getElementById("end") as HTMLElement).addEventListener(
+    "change",
+    onChangeHandler
+  );
 }
 
 function calculateAndDisplayRoute(
-  directionsRenderer,
-  directionsService,
-  markerArray,
-  stepDisplay,
-  map
+  directionsRenderer: google.maps.DirectionsRenderer,
+  directionsService: google.maps.DirectionsService,
+  markerArray: google.maps.Marker[],
+  stepDisplay: google.maps.InfoWindow,
+  map: google.maps.Map
 ) {
   // First, remove any existing markers from the map.
   for (let i = 0; i < markerArray.length; i++) {
@@ -71,18 +77,21 @@ function calculateAndDisplayRoute(
   // WALKING directions.
   directionsService.route(
     {
-      origin: document.getElementById("start").value,
-      destination: document.getElementById("end").value,
-      travelMode: "WALKING"
+      origin: (document.getElementById("start") as HTMLInputElement).value,
+      destination: (document.getElementById("end") as HTMLInputElement).value,
+      travelMode: google.maps.TravelMode.WALKING
     },
-    function(response, status) {
+    function(
+      result: google.maps.DirectionsResult,
+      status: google.maps.DirectionsStatus
+    ) {
       // Route the directions and pass the response to a function to create
       // markers for each step.
       if (status === "OK") {
-        document.getElementById("warnings-panel").innerHTML =
-          "<b>" + response.routes[0].warnings + "</b>";
-        directionsRenderer.setDirections(response);
-        showSteps(response, markerArray, stepDisplay, map);
+        (document.getElementById("warnings-panel") as HTMLElement).innerHTML =
+          "<b>" + result.routes[0].warnings + "</b>";
+        directionsRenderer.setDirections(result);
+        showSteps(result, markerArray, stepDisplay, map);
       } else {
         window.alert("Directions request failed due to " + status);
       }
@@ -90,7 +99,12 @@ function calculateAndDisplayRoute(
   );
 }
 
-function showSteps(directionResult, markerArray, stepDisplay, map) {
+function showSteps(
+  directionResult: google.maps.DirectionsResult,
+  markerArray: google.maps.Marker[],
+  stepDisplay: google.maps.InfoWindow,
+  map: google.maps.Map
+) {
   // For each step, place a marker, and add the text to the marker's infowindow.
   // Also attach the marker to an array so we can keep track of it and remove it
   // when calculating new routes.
@@ -108,7 +122,12 @@ function showSteps(directionResult, markerArray, stepDisplay, map) {
   }
 }
 
-function attachInstructionText(stepDisplay, marker, text, map) {
+function attachInstructionText(
+  stepDisplay: google.maps.InfoWindow,
+  marker: google.maps.Marker,
+  text: string,
+  map: google.maps.Map
+) {
   google.maps.event.addListener(marker, "click", function() {
     // Open an info window when the marker is clicked on, containing the text
     // of the step.

@@ -25,7 +25,7 @@
 function initMap() {
   var cairo = { lat: 30.064742, lng: 31.249509 };
 
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     scaleControl: true,
     center: cairo,
     zoom: 10
@@ -34,7 +34,7 @@ function initMap() {
   var infowindow = new google.maps.InfoWindow();
   infowindow.setContent("<b>القاهرة</b>");
 
-  var marker = new google.maps.Marker({ map: map, position: cairo });
+  var marker = new google.maps.Marker({ map, position: cairo });
   marker.addListener("click", function() {
     infowindow.open(map, marker);
   });

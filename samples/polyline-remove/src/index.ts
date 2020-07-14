@@ -22,7 +22,7 @@ let flightPath: google.maps.Polyline;
 let map: google.maps.Map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 3,
     center: { lat: 0, lng: -180 },
     mapTypeId: "terrain"

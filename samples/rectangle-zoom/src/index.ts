@@ -19,11 +19,14 @@
 // on any 'zoom-changed' event.
 
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map") as Element, {
-    zoom: 11,
-    center: { lat: 40.74852, lng: -73.981687 },
-    mapTypeId: "terrain"
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 11,
+      center: { lat: 40.74852, lng: -73.981687 },
+      mapTypeId: "terrain"
+    }
+  );
 
   const rectangle = new google.maps.Rectangle();
 
@@ -35,7 +38,7 @@ function initMap() {
       strokeWeight: 2,
       fillColor: "#FF0000",
       fillOpacity: 0.35,
-      map: map,
+      map,
       bounds: map.getBounds() as google.maps.LatLngBounds
     });
   });

@@ -16,7 +16,7 @@
 
 // [START maps_maptype_image]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 0, lng: 0 },
     zoom: 1,
     streetViewControl: false,
@@ -26,10 +26,10 @@ function initMap() {
   });
 
   var moonMapType = new google.maps.ImageMapType({
-    getTileUrl: function(coord, zoom) {
+    getTileUrl: function(coord, zoom): string {
       var normalizedCoord = getNormalizedCoord(coord, zoom);
       if (!normalizedCoord) {
-        return null;
+        return "";
       }
       var bound = Math.pow(2, zoom);
       return (
@@ -46,6 +46,7 @@ function initMap() {
     tileSize: new google.maps.Size(256, 256),
     maxZoom: 9,
     minZoom: 0,
+    // @ts-ignore TODO(jpoehnelt) 'radius' does not exist in type 'ImageMapTypeOptions'
     radius: 1738000,
     name: "Moon"
   });

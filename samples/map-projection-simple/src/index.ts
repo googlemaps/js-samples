@@ -21,20 +21,23 @@
 
 function initMap() {
   // Create a map. Use the Gall-Peters map type.
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
-    zoom: 0,
-    center: { lat: 0, lng: 0 },
-    mapTypeControl: false
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 0,
+      center: { lat: 0, lng: 0 },
+      mapTypeControl: false
+    }
+  );
 
   initGallPeters();
   map.mapTypes.set("gallPeters", gallPetersMapType);
   map.setMapTypeId("gallPeters");
 
   // Show the lat and lng under the mouse cursor.
-  var coordsDiv = document.getElementById("coords");
+  var coordsDiv = document.getElementById("coords") as HTMLElement;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
-  map.addListener("mousemove", function(event) {
+  map.addListener("mousemove", function(event: google.maps.MouseEvent) {
     coordsDiv.textContent =
       "lat: " +
       Math.round(event.latLng.lat()) +
@@ -68,7 +71,7 @@ function initGallPeters() {
 
       // Don't wrap tiles vertically.
       var y = coord.y;
-      if (y < 0 || y >= scale) return null;
+      if (y < 0 || y >= scale) return "";
 
       return (
         "https://developers.google.com/maps/documentation/" +

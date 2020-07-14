@@ -16,7 +16,7 @@
 
 // [START maps_event_domListener]
 function initMap() {
-  var mapDiv = document.getElementById("map") as Element;
+  var mapDiv = document.getElementById("map") as HTMLElement;
   var map = new google.maps.Map(mapDiv, {
     zoom: 8,
     center: new google.maps.LatLng(-34.397, 150.644)

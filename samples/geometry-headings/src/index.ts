@@ -23,23 +23,26 @@ var marker1: google.maps.Marker, marker2: google.maps.Marker;
 var poly: google.maps.Polyline, geodesicPoly: google.maps.Polyline;
 
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map") as Element, {
-    zoom: 4,
-    center: { lat: 34, lng: -40.605 }
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 4,
+      center: { lat: 34, lng: -40.605 }
+    }
+  );
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-    document.getElementById("info") as Element
+    document.getElementById("info") as HTMLElement
   );
 
   marker1 = new google.maps.Marker({
-    map: map,
+    map,
     draggable: true,
     position: { lat: 40.714, lng: -74.006 }
   });
 
   marker2 = new google.maps.Marker({
-    map: map,
+    map,
     draggable: true,
     position: { lat: 48.857, lng: 2.352 }
   });

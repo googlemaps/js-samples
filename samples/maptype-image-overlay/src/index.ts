@@ -16,7 +16,7 @@
 
 // [START maps_maptype_image_overlay]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 18,
     center: { lat: 37.783, lng: -122.403 }
   });

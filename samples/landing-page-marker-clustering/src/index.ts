@@ -14,17 +14,9 @@
  * limitations under the License.
  */
 
-// Declarations to keep the compiler happy.
-/**
- * @param {!google.maps.Map} map
- * @param {!Array<!google.maps.Marker>} markers
- * @param {!Object} options
- * @constructor
- */
-function MarkerClusterer(map, markers, options) {}
 // [START maps_landing_page_marker_clustering]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 3,
     center: { lat: -28.024, lng: 140.887 },
     scrollwheel: false,
@@ -48,7 +40,8 @@ function initMap() {
   });
 
   // Add a marker clusterer to manage the markers.
-  var markerCluster = new MarkerClusterer(map, markers, {
+  // @ts-ignore
+  var markerCluster = new google.maps.plugins.MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
   });
@@ -79,4 +72,4 @@ var locations = [
   { lat: -43.999792, lng: 170.463352 }
 ];
 // [END maps_landing_page_marker_clustering]
-export { MarkerClusterer, initMap, locations };
+export { initMap, locations };

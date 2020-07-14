@@ -17,16 +17,22 @@
 // [START maps_geocoding_place_id]
 // Initialize the map.
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map") as Element, {
-    zoom: 8,
-    center: { lat: 40.72, lng: -73.96 }
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 8,
+      center: { lat: 40.72, lng: -73.96 }
+    }
+  );
   const geocoder = new google.maps.Geocoder();
   const infowindow = new google.maps.InfoWindow();
 
-  document.getElementById("submit").addEventListener("click", function() {
-    geocodePlaceId(geocoder, map, infowindow);
-  });
+  (document.getElementById("submit") as HTMLElement).addEventListener(
+    "click",
+    function() {
+      geocodePlaceId(geocoder, map, infowindow);
+    }
+  );
 }
 
 // This function is called when the user clicks the UI button requesting
@@ -44,7 +50,7 @@ function geocodePlaceId(
         map.setZoom(11);
         map.setCenter(results[0].geometry.location);
         const marker = new google.maps.Marker({
-          map: map,
+          map,
           position: results[0].geometry.location
         });
         infowindow.setContent(results[0].formatted_address);

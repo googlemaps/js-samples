@@ -18,7 +18,7 @@
 // This example creates a simple polygon representing the Bermuda Triangle.
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 5,
     center: { lat: 24.886, lng: -70.268 },
     mapTypeId: "terrain"

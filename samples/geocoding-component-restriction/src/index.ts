@@ -16,18 +16,24 @@
 
 // [START maps_geocoding_component_restriction]
 function initMap() {
-  var geocoder = new google.maps.Geocoder();
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
-    zoom: 8,
-    center: { lat: -33.865, lng: 151.209 }
-  });
+  const geocoder = new google.maps.Geocoder();
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 8,
+      center: { lat: -33.865, lng: 151.209 }
+    }
+  );
 
-  document.getElementById("submit").addEventListener("click", function() {
-    geocodeAddress(geocoder, map);
-  });
+  (document.getElementById("submit") as HTMLElement).addEventListener(
+    "click",
+    function() {
+      geocodeAddress(geocoder, map);
+    }
+  );
 }
 
-function geocodeAddress(geocoder, map) {
+function geocodeAddress(geocoder: google.maps.Geocoder, map: google.maps.Map) {
   geocoder.geocode(
     {
       componentRestrictions: {
@@ -35,11 +41,14 @@ function geocodeAddress(geocoder, map) {
         postalCode: "2000"
       }
     },
-    function(results, status) {
+    function(
+      results: google.maps.GeocoderResult[],
+      status: google.maps.GeocoderStatus
+    ) {
       if (status === "OK") {
         map.setCenter(results[0].geometry.location);
         new google.maps.Marker({
-          map: map,
+          map,
           position: results[0].geometry.location
         });
       } else {

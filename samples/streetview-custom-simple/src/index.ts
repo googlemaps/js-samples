@@ -20,14 +20,19 @@ function initPano() {
   // custom panorama provider function. Set the StreetView to display
   // the custom panorama 'reception' which we check for below.
   var panorama = new google.maps.StreetViewPanorama(
-    document.getElementById("map") as Element,
+    document.getElementById("map") as HTMLElement,
     { pano: "reception", visible: true }
   );
   panorama.registerPanoProvider(getCustomPanorama);
 }
 
 // Return a pano image given the panoID.
-function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
+function getCustomPanoramaTileUrl(
+  pano: string,
+  zoom: number,
+  tileX: number,
+  tileY: number
+): string {
   return (
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
     "panoReception1024-" +
@@ -42,7 +47,7 @@ function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
 
 // Construct the appropriate StreetViewPanoramaData given
 // the passed pano IDs.
-function getCustomPanorama(pano) {
+function getCustomPanorama(pano: string): google.maps.StreetViewPanoramaData {
   if (pano === "reception") {
     return {
       location: {
@@ -63,6 +68,7 @@ function getCustomPanorama(pano) {
       }
     };
   }
+  return {};
 }
 // [END maps_streetview_custom_simple]
 export { initPano, getCustomPanoramaTileUrl, getCustomPanorama };

@@ -16,10 +16,13 @@
 
 // [START maps_event_closure]
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map") as Element, {
-    zoom: 4,
-    center: { lat: -25.363882, lng: 131.044922 }
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 4,
+      center: { lat: -25.363882, lng: 131.044922 }
+    }
+  );
 
   const bounds: google.maps.LatLngBoundsLiteral = {
     north: -25.363882,

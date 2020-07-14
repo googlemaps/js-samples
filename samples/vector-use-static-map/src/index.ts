@@ -25,7 +25,7 @@ function initMap() {
   };
 
   new google.maps.Map(
-    document.getElementById("left") as Element,
+    document.getElementById("left") as HTMLElement,
     {
       ...sharedOptions,
       mapId: "ed1309c122a3dfcb",
@@ -35,7 +35,7 @@ function initMap() {
 
   // [START maps_vector_use_static_map_js_instantiate]
   new google.maps.Map(
-    document.getElementById("right") as Element,
+    document.getElementById("right") as HTMLElement,
     {
       ...sharedOptions,
       mapId: "ed1309c122a3dfcb",

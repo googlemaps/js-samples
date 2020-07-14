@@ -46,7 +46,7 @@ var citymap: Record<string, City> = {
 
 function initMap() {
   // Create the map.
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 4,
     center: { lat: 37.09, lng: -95.712 },
     mapTypeId: "terrain"
@@ -62,7 +62,7 @@ function initMap() {
       strokeWeight: 2,
       fillColor: "#FF0000",
       fillOpacity: 0.35,
-      map: map,
+      map,
       center: citymap[city].center,
       radius: Math.sqrt(citymap[city].population) * 100
     });

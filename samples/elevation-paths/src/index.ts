@@ -31,7 +31,7 @@ function initMap() {
     { lat: 36.24, lng: -116.832 }
   ]; // Badwater, Death Valley
 
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 8,
     center: path[1],
     mapTypeId: "terrain"
@@ -62,6 +62,7 @@ function displayPathElevation(
   // Initiate the path request.
   elevator.getElevationAlongPath(
     {
+      // @ts-ignore TODO(jpoehnelt) update typings to support LatLngLiteral
       path: path,
       samples: 256
     },
@@ -72,7 +73,7 @@ function displayPathElevation(
 // Takes an array of ElevationResult objects, draws the path on the map
 // and plots the elevation profile on a Visualization API ColumnChart.
 function plotElevation(elevations, status) {
-  var chartDiv = document.getElementById("elevation_chart");
+  var chartDiv = document.getElementById("elevation_chart") as HTMLElement;
   if (status !== "OK") {
     // Show the error code inside the chartDiv.
     chartDiv.innerHTML =
@@ -97,6 +98,7 @@ function plotElevation(elevations, status) {
   chart.draw(data, {
     height: 150,
     legend: "none",
+    // @ts-ignore TODO(jpoehnelt) check versions
     titleY: "Elevation (m)"
   });
 }

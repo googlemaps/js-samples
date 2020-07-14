@@ -25,34 +25,40 @@ function initMap() {
   };
 
   // instantiate the map on the left with control positioning
-  mapLeft = new google.maps.Map(document.getElementById("map-left") as HTMLElement, {
-    ...mapOptions,
-    mapTypeId: "satellite",
-    tilt: 0, // at high zoom levels we need to maintain the same projection
-    fullscreenControlOptions: {
-      position: google.maps.ControlPosition.LEFT_BOTTOM
-    },
-    mapTypeControlOptions: {
-      position: google.maps.ControlPosition.LEFT_TOP
-    },
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.LEFT_BOTTOM
+  mapLeft = new google.maps.Map(
+    document.getElementById("map-left") as HTMLElement,
+    {
+      ...mapOptions,
+      mapTypeId: "satellite",
+      tilt: 0, // at high zoom levels we need to maintain the same projection
+      fullscreenControlOptions: {
+        position: google.maps.ControlPosition.LEFT_BOTTOM
+      },
+      mapTypeControlOptions: {
+        position: google.maps.ControlPosition.LEFT_TOP
+      },
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.LEFT_BOTTOM
+      }
     }
-  });
+  );
 
   // instantiate the map on the right with control positioning
-  mapRight = new google.maps.Map(document.getElementById("map-right") as HTMLElement, {
-    ...mapOptions,
-    fullscreenControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_BOTTOM
-    },
-    mapTypeControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_TOP
-    },
-    zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_BOTTOM
+  mapRight = new google.maps.Map(
+    document.getElementById("map-right") as HTMLElement,
+    {
+      ...mapOptions,
+      fullscreenControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      },
+      mapTypeControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_TOP
+      },
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      }
     }
-  });
+  );
 
   // helper function to keep maps in sync
   function sync(...maps: google.maps.Map[]) {
@@ -85,9 +91,14 @@ function initMap() {
   sync(mapLeft, mapRight);
 
   function handleContainerResize() {
-    const width = document.getElementById("container").offsetWidth;
-    document.getElementById("map-left").style.width = `${width}px`;
-    document.getElementById("map-right").style.width = `${width}px`;
+    const width = (document.getElementById("container") as HTMLElement)
+      .offsetWidth;
+    (document.getElementById(
+      "map-left"
+    ) as HTMLElement).style.width = `${width}px`;
+    (document.getElementById(
+      "map-right"
+    ) as HTMLElement).style.width = `${width}px`;
   }
 
   // trigger to set map container size since using absolute

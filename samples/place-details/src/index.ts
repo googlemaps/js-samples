@@ -20,10 +20,13 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map") as Element, {
-    center: { lat: -33.866, lng: 151.196 },
-    zoom: 15
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      center: { lat: -33.866, lng: 151.196 },
+      zoom: 15
+    }
+  );
 
   const request = {
     placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
@@ -36,7 +39,7 @@ function initMap() {
   service.getDetails(request, function(place, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       const marker = new google.maps.Marker({
-        map: map,
+        map,
         position: (place.geometry as google.maps.places.PlaceGeometry).location
       });
       google.maps.event.addListener(marker, "click", function() {

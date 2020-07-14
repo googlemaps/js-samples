@@ -23,7 +23,7 @@ function initialize() {
   };
 
   const map = new google.maps.Map(
-    document.getElementById("map") as Element,
+    document.getElementById("map") as HTMLElement,
     mapOptions
   );
 
@@ -86,7 +86,7 @@ function initialize() {
       if (this.divListener_) {
         google.maps.event.removeListener(this.divListener_);
       }
-      
+
       (this.div_.parentNode as HTMLElement).removeChild(this.div_);
 
       // clean up

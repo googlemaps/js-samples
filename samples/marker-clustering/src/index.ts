@@ -25,7 +25,7 @@ function MarkerClusterer(map, markers, options) {}
 
 // [START maps_marker_clustering]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 3,
     center: { lat: -28.024, lng: 140.887 }
   });

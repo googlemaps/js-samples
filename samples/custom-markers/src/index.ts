@@ -18,7 +18,7 @@
 let map: google.maps.Map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     zoom: 16
   });
@@ -26,7 +26,7 @@ function initMap() {
   var iconBase =
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
 
-  var icons: Record<string, {icon: string}> = {
+  var icons: Record<string, { icon: string }> = {
     parking: {
       icon: iconBase + "parking_lot_maps.png"
     },

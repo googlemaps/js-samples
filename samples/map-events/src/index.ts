@@ -37,7 +37,7 @@ var events = [
 ];
 
 function setupListener(map: google.maps.Map, name: string) {
-  var eventRow = document.getElementById(name) as Element;
+  var eventRow = document.getElementById(name) as HTMLElement;
   google.maps.event.addListener(map, name, function() {
     eventRow.className = "event active";
     var timeout = setTimeout(function() {
@@ -48,7 +48,7 @@ function setupListener(map: google.maps.Map, name: string) {
 
 function initMap() {
   populateTable();
-  var mapDiv = document.getElementById("map") as Element;
+  var mapDiv = document.getElementById("map") as HTMLElement;
   var map = new google.maps.Map(mapDiv, {
     center: new google.maps.LatLng(37.4419, -122.1419),
     zoom: 13,

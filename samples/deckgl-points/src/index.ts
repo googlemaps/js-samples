@@ -18,13 +18,18 @@
 // [START maps_deckgl_points]
 // Initialize and add the map
 function initMap() {
-  const map = new google.maps.Map(document.getElementById("map") as Element, {
-    center: { lat: 40, lng: -110 },
-    zoom: 4
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      center: { lat: 40, lng: -110 },
+      zoom: 4
+    }
+  );
 
+  // @ts-ignore TODO(jpoehnelt)
   const deckOverlay = new deck.GoogleMapsOverlay({
     layers: [
+      // @ts-ignore TODO(jpoehnelt)
       new deck.GeoJsonLayer({
         id: "earthquakes",
         data:
@@ -34,7 +39,7 @@ function initMap() {
         pointRadiusMaxPixels: 200,
         opacity: 0.4,
         pointRadiusScale: 0.3,
-        getRadius: f => Math.pow(10, f.properties.mag),
+        getRadius: (f: any) => Math.pow(10, f.properties.mag),
         getFillColor: [255, 70, 30, 180],
         autoHighlight: true,
         transitions: {
@@ -47,6 +52,7 @@ function initMap() {
           }
         },
         onDataLoad: _ => {
+          // @ts-ignore defined in include
           progress.done(); // hides progress bar
         }
       })

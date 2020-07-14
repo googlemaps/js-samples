@@ -26,7 +26,7 @@ var NEW_ZEALAND_BOUNDS = {
 var AUCKLAND = { lat: -37.06, lng: 174.58 };
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: AUCKLAND,
     restriction: {
       latLngBounds: NEW_ZEALAND_BOUNDS,

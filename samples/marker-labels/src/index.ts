@@ -22,7 +22,7 @@ var labelIndex = 0;
 
 function initMap() {
   var bangalore = { lat: 12.97, lng: 77.59 };
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: bangalore
   });

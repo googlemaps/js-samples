@@ -30,7 +30,7 @@ let markers: google.maps.Marker[] = [];
 let map: google.maps.Map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: { lat: 52.52, lng: 13.41 }
   });
@@ -43,12 +43,15 @@ function drop() {
   }
 }
 
-function addMarkerWithTimeout(position: google.maps.LatLngLiteral, timeout: number) {
+function addMarkerWithTimeout(
+  position: google.maps.LatLngLiteral,
+  timeout: number
+) {
   window.setTimeout(function() {
     markers.push(
       new google.maps.Marker({
         position: position,
-        map: map,
+        map,
         animation: google.maps.Animation.DROP
       })
     );

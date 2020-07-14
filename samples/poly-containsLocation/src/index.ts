@@ -20,7 +20,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 24.886, lng: -70.269 },
     zoom: 5
   });
@@ -51,7 +51,7 @@ function initMap() {
 
     new google.maps.Marker({
       position: e.latLng,
-      map: map,
+      map,
       icon: {
         path: resultPath,
         fillColor: resultColor,

@@ -20,7 +20,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 14,
     center: { lat: 34.366, lng: -89.519 }
   });
@@ -41,7 +41,10 @@ function initMap() {
  * Handles click events on a map, and adds a new point to the Polyline.
  * Updates the encoding text area with the path's encoded values.
  */
-function addLatLngToPoly(latLng: google.maps.LatLng): google.maps.LatLng, poly: google.maps.Polyline) {
+function addLatLngToPoly(
+  latLng: google.maps.LatLng,
+  poly: google.maps.Polyline
+) {
   var path = poly.getPath();
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear
@@ -50,7 +53,9 @@ function addLatLngToPoly(latLng: google.maps.LatLng): google.maps.LatLng, poly: 
   // Update the text field to display the polyline encodings
   var encodeString = google.maps.geometry.encoding.encodePath(path);
   if (encodeString) {
-    document.getElementById("encoded-polyline").value = encodeString;
+    (document.getElementById(
+      "encoded-polyline"
+    ) as HTMLInputElement).value = encodeString;
   }
 }
 // [END maps_geometry_encodings]

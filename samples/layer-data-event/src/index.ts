@@ -18,7 +18,7 @@
 let map: google.maps.Map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 4,
     center: { lat: -28, lng: 137 }
   });
@@ -39,9 +39,9 @@ function initMap() {
   // [START maps_layer_data_event_snippet]
   // Set mouseover event for each feature.
   map.data.addListener("mouseover", function(event) {
-    document.getElementById("info-box").textContent = event.feature.getProperty(
-      "letter"
-    );
+    (document.getElementById(
+      "info-box"
+    ) as HTMLElement).textContent = event.feature.getProperty("letter");
   });
   // [END maps_layer_data_event_snippet]
 }

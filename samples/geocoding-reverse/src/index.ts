@@ -16,23 +16,36 @@
 
 // [START maps_geocoding_reverse]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
-    zoom: 8,
-    center: { lat: 40.731, lng: -73.997 }
-  });
-  var geocoder = new google.maps.Geocoder();
-  var infowindow = new google.maps.InfoWindow();
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 8,
+      center: { lat: 40.731, lng: -73.997 }
+    }
+  );
+  const geocoder = new google.maps.Geocoder();
+  const infowindow = new google.maps.InfoWindow();
 
-  document.getElementById("submit").addEventListener("click", function() {
-    geocodeLatLng(geocoder, map, infowindow);
-  });
+  (document.getElementById("submit") as HTMLElement).addEventListener(
+    "click",
+    function() {
+      geocodeLatLng(geocoder, map, infowindow);
+    }
+  );
 }
 
-function geocodeLatLng(geocoder, map, infowindow) {
-  var input = document.getElementById("latlng").value;
+function geocodeLatLng(
+  geocoder: google.maps.Geocoder,
+  map: google.maps.Map,
+  infowindow: google.maps.InfoWindow
+) {
+  var input = (document.getElementById("latlng") as HTMLInputElement).value;
   var latlngStr = input.split(",", 2);
   var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
-  geocoder.geocode({ location: latlng }, function(results, status) {
+  geocoder.geocode({ location: latlng }, function(
+    results: google.maps.GeocoderResult[],
+    status: google.maps.GeocoderStatus
+  ) {
     if (status === "OK") {
       if (results[0]) {
         map.setZoom(11);

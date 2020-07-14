@@ -21,7 +21,7 @@ function initMap() {
   var astorPlace = { lat: 40.729884, lng: -73.990988 };
 
   // Set up the map
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: astorPlace,
     zoom: 18,
     streetViewControl: false
@@ -30,7 +30,7 @@ function initMap() {
   // Set up the markers on the map
   var cafeMarker = new google.maps.Marker({
     position: { lat: 40.730031, lng: -73.991428 },
-    map: map,
+    map,
     icon:
       "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
     title: "Cafe"
@@ -38,7 +38,7 @@ function initMap() {
 
   var bankMarker = new google.maps.Marker({
     position: { lat: 40.729681, lng: -73.991138 },
-    map: map,
+    map,
     icon:
       "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
     title: "Bank"
@@ -46,7 +46,7 @@ function initMap() {
 
   var busMarker = new google.maps.Marker({
     position: { lat: 40.729559, lng: -73.990741 },
-    map: map,
+    map,
     icon:
       "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
     title: "Bus Stop"

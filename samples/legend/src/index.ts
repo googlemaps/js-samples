@@ -18,7 +18,7 @@
 let map: google.maps.Map;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 16,
     center: new google.maps.LatLng(-33.91722, 151.23064),
     mapTypeId: "roadmap"
@@ -128,7 +128,7 @@ function initMap() {
     });
   });
 
-  var legend = document.getElementById("legend");
+  var legend = document.getElementById("legend") as HTMLElement;
   for (let key in icons) {
     var type = icons[key];
     var name = type.name;

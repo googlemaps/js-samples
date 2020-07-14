@@ -32,7 +32,7 @@ function initMap() {
   );
 
   // Set up the map.
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: berkeley,
     zoom: 16,
     streetViewControl: false
@@ -58,11 +58,11 @@ function processSVData(
       .location as google.maps.StreetViewLocation;
     const marker = new google.maps.Marker({
       position: location.latLng,
-      map: map,
+      map,
       title: location.description
     });
 
-    panorama.setPano(location.pano);
+    panorama.setPano(location.pano as string);
     panorama.setPov({
       heading: 270,
       pitch: 0
@@ -72,7 +72,7 @@ function processSVData(
     marker.addListener("click", function() {
       var markerPanoID = location.pano;
       // Set the Pano to use the passed panoID.
-      panorama.setPano(markerPanoID);
+      panorama.setPano(markerPanoID as string);
       panorama.setPov({
         heading: 270,
         pitch: 0

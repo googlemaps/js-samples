@@ -18,32 +18,43 @@
 function initMap() {
   var directionsRenderer = new google.maps.DirectionsRenderer();
   var directionsService = new google.maps.DirectionsService();
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 7,
     center: { lat: 41.85, lng: -87.65 }
   });
   directionsRenderer.setMap(map);
-  directionsRenderer.setPanel(document.getElementById("right-panel"));
+  directionsRenderer.setPanel(
+    document.getElementById("right-panel") as HTMLElement
+  );
 
-  var control = document.getElementById("floating-panel");
+  var control = document.getElementById("floating-panel") as HTMLElement;
   control.style.display = "block";
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
   var onChangeHandler = function() {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
-  document.getElementById("start").addEventListener("change", onChangeHandler);
-  document.getElementById("end").addEventListener("change", onChangeHandler);
+  (document.getElementById("start") as HTMLElement).addEventListener(
+    "change",
+    onChangeHandler
+  );
+  (document.getElementById("end") as HTMLElement).addEventListener(
+    "change",
+    onChangeHandler
+  );
 }
 
-function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-  var start = document.getElementById("start").value;
-  var end = document.getElementById("end").value;
+function calculateAndDisplayRoute(
+  directionsService: google.maps.DirectionsService,
+  directionsRenderer: google.maps.DirectionsRenderer
+) {
+  var start = (document.getElementById("start") as HTMLInputElement).value;
+  var end = (document.getElementById("end") as HTMLInputElement).value;
   directionsService.route(
     {
       origin: start,
       destination: end,
-      travelMode: "DRIVING"
+      travelMode: google.maps.TravelMode.DRIVING
     },
     function(response, status) {
       if (status === "OK") {

@@ -16,7 +16,7 @@
 
 // [START maps_layer_georss]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 4,
     center: { lat: 49.496675, lng: -102.65625 }
   });

@@ -18,7 +18,7 @@
 // This example adds a red rectangle to a map.
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 11,
     center: { lat: 33.678, lng: -116.243 },
     mapTypeId: "terrain"
@@ -30,7 +30,7 @@ function initMap() {
     strokeWeight: 2,
     fillColor: "#FF0000",
     fillOpacity: 0.35,
-    map: map,
+    map,
     bounds: {
       north: 33.685,
       south: 33.671,

@@ -20,13 +20,13 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 50.064192, lng: -130.605469 },
     zoom: 3
   });
-  var card = document.getElementById("pac-card");
-  var input = document.getElementById("pac-input");
-  var countries = document.getElementById("country-selector");
+  var card = document.getElementById("pac-card") as HTMLElement;
+  var input = document.getElementById("pac-input") as HTMLInputElement;
+  var countries = document.getElementById("country-selector") as HTMLElement;
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -41,10 +41,12 @@ function initMap() {
   autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
 
   var infowindow = new google.maps.InfoWindow();
-  var infowindowContent = document.getElementById("infowindow-content");
+  var infowindowContent = document.getElementById(
+    "infowindow-content"
+  ) as HTMLElement;
   infowindow.setContent(infowindowContent);
   var marker = new google.maps.Marker({
-    map: map,
+    map,
     anchorPoint: new google.maps.Point(0, -29)
   });
 
@@ -93,7 +95,7 @@ function initMap() {
   // Sets a listener on a given radio button. The radio buttons specify
   // the countries used to restrict the autocomplete search.
   function setupClickListener(id, countries) {
-    var radioButton = document.getElementById(id);
+    var radioButton = document.getElementById(id) as HTMLElement;
     radioButton.addEventListener("click", function() {
       autocomplete.setComponentRestrictions({ country: countries });
     });

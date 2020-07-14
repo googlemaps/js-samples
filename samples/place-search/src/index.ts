@@ -29,7 +29,7 @@ function initMap() {
 
   infowindow = new google.maps.InfoWindow();
 
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: sydney,
     zoom: 15
   });
@@ -54,7 +54,7 @@ function initMap() {
 
 function createMarker(place) {
   var marker = new google.maps.Marker({
-    map: map,
+    map,
     position: place.geometry.location
   });
 

@@ -20,7 +20,7 @@ let maxZoomService: google.maps.MaxZoomService;
 let infoWindow: google.maps.InfoWindow;
 
 function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 11,
     center: { lat: 35.6894, lng: 139.692 },
     mapTypeId: "hybrid"

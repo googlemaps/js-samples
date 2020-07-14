@@ -16,7 +16,7 @@
 
 // [START maps_layer_kml_features]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: { lat: 37.06, lng: -95.68 }
   });

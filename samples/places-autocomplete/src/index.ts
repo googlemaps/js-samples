@@ -43,10 +43,12 @@ function initMap() {
   autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
 
   var infowindow = new google.maps.InfoWindow();
-  var infowindowContent = document.getElementById("infowindow-content");
+  var infowindowContent = document.getElementById(
+    "infowindow-content"
+  ) as HTMLElement;
   infowindow.setContent(infowindowContent);
   var marker = new google.maps.Marker({
-    map: map,
+    map,
     anchorPoint: new google.maps.Point(0, -29)
   });
 
@@ -95,7 +97,7 @@ function initMap() {
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
   function setupClickListener(id, types) {
-    var radioButton = document.getElementById(id);
+    var radioButton = document.getElementById(id) as HTMLInputElement;
     radioButton.addEventListener("click", function() {
       autocomplete.setTypes(types);
     });

@@ -17,7 +17,7 @@
 // [START maps_map_id_style]
 function initMap() {
   new google.maps.Map(
-    document.getElementById("map") as Element,
+    document.getElementById("map") as HTMLElement,
     {
       mapId: "8e0a97af9386fef",
       center: { lat: 48.85, lng: 2.35 },

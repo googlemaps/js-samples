@@ -25,7 +25,7 @@ function initMap() {
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
 
   map = new google.maps.Map(
-    document.getElementById("map") as Element,
+    document.getElementById("map") as HTMLElement,
     {
       mapId: "3a3b33f0edd6ed2a",
       center: { lat: 47.609414458375674, lng: -122.33897030353548 },
@@ -51,7 +51,7 @@ function initMap() {
   }
 
   const select = new mdc.select.MDCSelect(
-    document.querySelector(".mdc-select") as Element
+    document.querySelector(".mdc-select") as HTMLElement
   );
 
   select.listen("MDCSelect:change", () => {
@@ -83,7 +83,7 @@ function initMap() {
       // [START maps_marker_collision_management_create_marker]
       new google.maps.Marker({
         position: new google.maps.LatLng({ lat, lng }),
-        map: map,
+        map,
         collisionBehavior: collisionBehavior
       } as google.maps.MarkerOptions)
     // [END maps_marker_collision_management_create_marker]

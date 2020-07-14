@@ -18,24 +18,30 @@
 function initMap() {
   var directionsService = new google.maps.DirectionsService();
   var directionsRenderer = new google.maps.DirectionsRenderer();
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 6,
     center: { lat: 41.85, lng: -87.65 }
   });
   directionsRenderer.setMap(map);
 
-  document.getElementById("submit").addEventListener("click", function() {
-    calculateAndDisplayRoute(directionsService, directionsRenderer);
-  });
+  (document.getElementById("submit") as HTMLElement).addEventListener(
+    "click",
+    function() {
+      calculateAndDisplayRoute(directionsService, directionsRenderer);
+    }
+  );
 }
 
-function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-  var waypts = [];
-  var checkboxArray = document.getElementById("waypoints");
+function calculateAndDisplayRoute(
+  directionsService: google.maps.DirectionsService,
+  directionsRenderer: google.maps.DirectionsRenderer
+) {
+  var waypts: google.maps.DirectionsWaypoint[] = [];
+  var checkboxArray = document.getElementById("waypoints") as HTMLSelectElement;
   for (let i = 0; i < checkboxArray.length; i++) {
     if (checkboxArray.options[i].selected) {
       waypts.push({
-        location: checkboxArray[i].value,
+        location: (checkboxArray[i] as HTMLOptionElement).value,
         stopover: true
       });
     }
@@ -43,17 +49,19 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
 
   directionsService.route(
     {
-      origin: document.getElementById("start").value,
-      destination: document.getElementById("end").value,
+      origin: (document.getElementById("start") as HTMLInputElement).value,
+      destination: (document.getElementById("end") as HTMLInputElement).value,
       waypoints: waypts,
       optimizeWaypoints: true,
-      travelMode: "DRIVING"
+      travelMode: google.maps.TravelMode.DRIVING
     },
     function(response, status) {
       if (status === "OK") {
         directionsRenderer.setDirections(response);
         var route = response.routes[0];
-        var summaryPanel = document.getElementById("directions-panel");
+        var summaryPanel = document.getElementById(
+          "directions-panel"
+        ) as HTMLElement;
         summaryPanel.innerHTML = "";
         // For each route, display summary information.
         for (let i = 0; i < route.legs.length; i++) {

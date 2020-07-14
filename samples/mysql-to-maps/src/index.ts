@@ -25,7 +25,7 @@ var customLabel = {
 };
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: new google.maps.LatLng(-33.863276, 151.207977),
     zoom: 12
   });
@@ -58,7 +58,7 @@ function initMap() {
         infowincontent.appendChild(text);
         var icon = customLabel[type] || {};
         var marker = new google.maps.Marker({
-          map: map,
+          map,
           position: point,
           label: icon.label
         });

@@ -20,7 +20,7 @@
 // as you drag it north or south.
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 1,
     center: { lat: 24.886, lng: -70.268 },
     mapTypeId: "terrain"
@@ -41,7 +41,7 @@ function initMap() {
 
   // Construct a draggable red triangle with geodesic set to true.
   new google.maps.Polygon({
-    map: map,
+    map,
     paths: redCoords,
     strokeColor: "#FF0000",
     strokeOpacity: 0.8,
@@ -55,7 +55,7 @@ function initMap() {
 
   // Construct a draggable blue triangle with geodesic set to false.
   new google.maps.Polygon({
-    map: map,
+    map,
     paths: blueCoords,
     strokeColor: "#0000FF",
     strokeOpacity: 0.8,

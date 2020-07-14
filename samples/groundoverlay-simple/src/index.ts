@@ -21,7 +21,7 @@
 var historicalOverlay;
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 13,
     center: { lat: 40.74, lng: -74.18 }
   });

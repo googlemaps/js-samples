@@ -16,7 +16,7 @@
 
 // [START maps_directions_draggable]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 4,
     center: { lat: -24.345, lng: 134.46 } // Australia.
   });
@@ -24,8 +24,8 @@ function initMap() {
   var directionsService = new google.maps.DirectionsService();
   var directionsRenderer = new google.maps.DirectionsRenderer({
     draggable: true,
-    map: map,
-    panel: document.getElementById("right-panel")
+    map,
+    panel: document.getElementById("right-panel") as HTMLElement
   });
 
   directionsRenderer.addListener("directions_changed", function() {
@@ -40,7 +40,12 @@ function initMap() {
   );
 }
 
-function displayRoute(origin, destination, service, display) {
+function displayRoute(
+  origin: string,
+  destination: string,
+  service: google.maps.DirectionsService,
+  display: google.maps.DirectionsRenderer
+) {
   service.route(
     {
       origin: origin,
@@ -49,12 +54,15 @@ function displayRoute(origin, destination, service, display) {
         { location: "Adelaide, SA" },
         { location: "Broken Hill, NSW" }
       ],
-      travelMode: "DRIVING",
+      travelMode: google.maps.TravelMode.DRIVING,
       avoidTolls: true
     },
-    function(response, status) {
+    function(
+      result: google.maps.DirectionsResult,
+      status: google.maps.DirectionsStatus
+    ) {
       if (status === "OK") {
-        display.setDirections(response);
+        display.setDirections(result);
       } else {
         alert("Could not display directions due to: " + status);
       }
@@ -62,14 +70,14 @@ function displayRoute(origin, destination, service, display) {
   );
 }
 
-function computeTotalDistance(result) {
+function computeTotalDistance(result: google.maps.DirectionsResult) {
   var total = 0;
   var myroute = result.routes[0];
   for (let i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i].distance.value;
   }
   total = total / 1000;
-  document.getElementById("total").innerHTML = total + " km";
+  (document.getElementById("total") as HTMLElement).innerHTML = total + " km";
 }
 // [END maps_directions_draggable]
 export { initMap, displayRoute, computeTotalDistance };

@@ -16,7 +16,7 @@
 
 // [START maps_control_positioning]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as Element, {
+  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: { lat: -28.643387, lng: 153.612224 },
     mapTypeControl: true,

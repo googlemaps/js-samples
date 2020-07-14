@@ -27,13 +27,13 @@ function initMap() {
   };
 
   // instantiate the primary map
-  map = new google.maps.Map(document.getElementById("map") as Element, {
+  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     ...mapOptions
   });
 
   // instantiate the overview map without controls
   overview = new google.maps.Map(
-    document.getElementById("overview") as Element,
+    document.getElementById("overview") as HTMLElement,
     {
       ...mapOptions,
       disableDefaultUI: true,
