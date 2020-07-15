@@ -68,7 +68,8 @@ function getCustomPanorama(pano: string): google.maps.StreetViewPanoramaData {
       }
     };
   }
-  return {};
+  // @ts-ignore TODO(jpoehnelt) fix typings
+  return null;
 }
 // [END maps_streetview_custom_simple]
 export { initPano, getCustomPanoramaTileUrl, getCustomPanorama };

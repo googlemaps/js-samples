@@ -52,6 +52,12 @@
       (function(exports) {
         "use strict";
 
+        function _classCallCheck(instance, Constructor) {
+          if (!(instance instanceof Constructor)) {
+            throw new TypeError("Cannot call a class as a function");
+          }
+        }
+
         var chicago = {
           lat: 41.85,
           lng: -87.65
@@ -59,19 +65,16 @@
         /**
          * The CenterControl adds a control to the map that recenters the map on
          * Chicago.
-         * @constructor
-         * @param {!Element} controlDiv
-         * @param {!google.maps.Map} map
-         * @param {?google.maps.LatLng} center
          */
 
-        function CenterControl(controlDiv, map, center) {
-          // We set up a variable for this since we're adding event listeners
-          // later.
-          // @ts-ignore
-          var control = this; // Set the center property upon construction
+        var CenterControl = function CenterControl(controlDiv, map, center) {
+          var _this = this;
 
-          control.center_ = center;
+          _classCallCheck(this, CenterControl);
+
+          this.map_ = map; // Set the center property upon construction
+
+          this.center_ = new google.maps.LatLng(center);
           controlDiv.style.clear = "both"; // Set CSS for the control border
 
           var goCenterUI = document.createElement("div");
@@ -97,37 +100,17 @@
           // to the current center of the control.
 
           goCenterUI.addEventListener("click", function() {
-            var currentCenter = control.getCenter();
-            map.setCenter(currentCenter);
+            var currentCenter = _this.center_;
+
+            _this.map_.setCenter(currentCenter);
           }); // Set up the click event listener for 'Set Center': Set the center of
           // the control to the current center of the map.
 
           setCenterUI.addEventListener("click", function() {
-            var newCenter = map.getCenter();
-            control.setCenter(newCenter);
+            var newCenter = _this.map_.getCenter();
+
+            _this.center_ = newCenter;
           });
-        }
-        /**
-         * Define a property to hold the center state.
-         * @private
-         */
-
-        CenterControl.prototype.center_ = null;
-        /**
-         * Gets the map center.
-         * @return {?google.maps.LatLng}
-         */
-
-        CenterControl.prototype.getCenter = function() {
-          return this.center_;
-        };
-        /**
-         * Sets the map center.
-         * @param {?google.maps.LatLng} center
-         */
-
-        CenterControl.prototype.setCenter = function(center) {
-          this.center_ = center;
         };
 
         function initMap() {
@@ -135,11 +118,14 @@
             zoom: 12,
             center: chicago
           }); // Create the DIV to hold the control and call the CenterControl()
-          // constructor
-          // passing in this DIV.
+          // constructor passing in this DIV.
 
           var centerControlDiv = document.createElement("div");
-          CenterControl(centerControlDiv, exports.map, chicago); // @ts-ignore
+          var control = new CenterControl(
+            centerControlDiv,
+            exports.map,
+            chicago
+          ); // @ts-ignore
 
           centerControlDiv.index = 1;
           centerControlDiv.style.paddingTop = "10px";

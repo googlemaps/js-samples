@@ -73,7 +73,8 @@ function initPanorama() {
     if (pano === "reception") {
       return getReceptionPanoramaData();
     }
-    return {};
+    // @ts-ignore TODO(jpoehnelt) fix typings
+    return null;
   });
 
   // Add a link to our custom panorama from outside the Google Sydney office.

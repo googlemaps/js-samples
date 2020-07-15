@@ -23,14 +23,23 @@ def sample():
     )
 
     native.genrule(
-        name = "_app_without_region_tags",
+        name = "_index_js",
         srcs = [":_compile_outputs"],
-        outs = ["_app_without_region_tags.js"],
+        outs = ["_index.js"],
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
-              "$(location //rules:strip_region_tags_bin) $@; " +
+            #   "$(location //rules:strip_region_tags_bin) $@; " +
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; ",
         tools = ["//rules:strip_region_tags_bin", "//rules:remove_apache_license", "//rules:strip_source_map_url_bin"],
+    )
+
+    native.genrule(
+        name = "_app_without_region_tags",
+        srcs = [":_index.js"],
+        outs = ["_app_without_region_tags.js"],
+        cmd = "cat $(location _index.js) > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; ",
+        tools = ["//rules:strip_region_tags_bin",],
     )
 
     rollup_bundle(
@@ -89,6 +98,7 @@ def sample():
     for src, out in [
         (":_style.css", "style.css"),
         (":_app.js", "app.js"),
+        (":_app_without_region_tags.js", "index.js")
     ]:
         prettier(
             src = src,
@@ -213,6 +223,7 @@ def sample():
     native.filegroup(
         name = "js",
         srcs = [
+            ":index.js",
             ":app.js",
         ],
         visibility = ["//visibility:public"],

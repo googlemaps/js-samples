@@ -70,9 +70,9 @@
       exports.panorama.registerPanoProvider(function(pano) {
         if (pano === "reception") {
           return getReceptionPanoramaData();
-        }
+        } // @ts-ignore TODO(jpoehnelt) fix typings
 
-        return {};
+        return null;
       }); // Add a link to our custom panorama from outside the Google Sydney office.
 
       exports.panorama.addListener("links_changed", function() {
