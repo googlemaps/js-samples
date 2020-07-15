@@ -13,7 +13,7 @@
   },
   "globals": {
     "google": "writable",
-    "firebase": "readonly",
+    "deck": "readonly",
     "ActiveXObject": "readonly",
     "mdc": "readonly",
     "Split": "readonly",

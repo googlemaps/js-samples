@@ -43,7 +43,6 @@ SAMPLES = [
     "event-poi",
     "event-properties",
     "event-simple",
-    # "firebase-map",
     "geocoding-component-restriction",
     "geocoding-place-id",
     "geocoding-region",

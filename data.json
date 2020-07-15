@@ -41,7 +41,6 @@
     "POI Click Events": "event-poi",
     "Getting Properties With Event Handlers": "event-properties",
     "Simple Click Events": "event-simple",
-    "Firebase Map": "firebase-map",
     "Geocoding Component Restriction": "geocoding-component-restriction",
     "Retrieving an Address for a Place ID": "geocoding-place-id",
     "Geocoding Region": "geocoding-region",

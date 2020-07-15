@@ -90,7 +90,6 @@ function initMap() {
     document.getElementById("content") as HTMLElement
   );
   popup.setMap(map);
-
 }
 // [END maps_overlay_popup]
 export { initMap };
