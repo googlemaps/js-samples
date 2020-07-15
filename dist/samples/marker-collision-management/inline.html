@@ -82,7 +82,7 @@
           const menuList = document.querySelector(".mdc-list"); // Add the behaviors to the select options
           // @ts-ignore Beta functionality
 
-          for (let [key, value] of Object.entries(
+          for (const [key, value] of Object.entries(
             google.maps.CollisionBehavior
           )) {
             const item = document.createElement("LI");

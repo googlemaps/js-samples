@@ -69,7 +69,7 @@
           }); // Construct the circle for each value in citymap.
           // Note: We scale the area of the circle based on the population.
 
-          for (let city in citymap) {
+          for (const city in citymap) {
             // Add the circle for this city to the map.
             var cityCircle = new google.maps.Circle({
               strokeColor: "#FF0000",

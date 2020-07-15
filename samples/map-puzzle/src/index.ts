@@ -25,14 +25,14 @@ interface Country {
 class PuzzleDemo {
   private map_: google.maps.Map;
   private polys_: google.maps.Polygon[] = [];
-  private difficulty_: string = "Easy";
-  private count_: number = 0;
+  private difficulty_ = "Easy";
+  private count_ = 0;
   private pieceDiv_: HTMLElement;
   private timeDiv_: HTMLElement;
-  private dataLoaded_: boolean = false;
+  private dataLoaded_ = false;
   private NUM_PIECES_ = 10;
   private countries_: Country[] = [];
-  private timer_: number = 0;
+  private timer_ = 0;
   private START_COLOR_ = "#3c79de";
   private END_COLOR_ = "#037e29";
 

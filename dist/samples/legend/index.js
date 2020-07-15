@@ -107,7 +107,7 @@ function initMap() {
     });
   });
   var legend = document.getElementById("legend");
-  for (let key in icons) {
+  for (const key in icons) {
     var type = icons[key];
     var name = type.name;
     var icon = type.icon;

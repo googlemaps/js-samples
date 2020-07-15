@@ -20,7 +20,7 @@ function initPano() {
       linksTable.removeChild(linksTable.lastChild);
     }
     var links = panorama.getLinks();
-    for (let i in links) {
+    for (const i in links) {
       var row = document.createElement("tr");
       linksTable.appendChild(row);
       var labelCell = document.createElement("td");

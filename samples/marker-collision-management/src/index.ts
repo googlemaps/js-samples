@@ -37,7 +37,7 @@ function initMap() {
 
   // Add the behaviors to the select options
   // @ts-ignore Beta functionality
-  for (let [key, value] of Object.entries(google.maps.CollisionBehavior)) {
+  for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {
     const item = document.createElement("LI");
     item.classList.add("mdc-list-item");
     item.setAttribute("data-value", key);

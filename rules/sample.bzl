@@ -261,6 +261,6 @@ def sample():
 
     native.filegroup(
         name = "inputs",
-        srcs = ["src/index.js", "src/style.scss", "src/index.njk"],
+        srcs = ["src/index.ts", "src/style.scss", "src/index.njk"],
         visibility = ["//visibility:public"],
     )

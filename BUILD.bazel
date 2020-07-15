@@ -67,20 +67,33 @@ genrule(
     tools = ["@npm//nunjucks-cli/bin:nunjucks"],
 )
 
+ESLINT_DATA = [
+    # config files
+    ":.eslintrc.json",
+    "//samples:.eslintrc.json",
+    # files to test
+    "//samples:inputs",
+    # plugins
+    "@npm//eslint-config-prettier",
+    "@npm//eslint-plugin-jest",
+    "@npm//eslint-plugin-prettier",
+    "@npm//@typescript-eslint/parser",
+    "@npm//@typescript-eslint/eslint-plugin",
+]
+
 eslint_test(
     name = "eslint",
-    args = ["samples/**/*.js"],
-    data = [
-        # config files
-        ":.eslintrc.json",
-        "//samples:.eslintrc.json",
-        # files to test
-        "//samples:inputs",
-        # plugins
-        "@npm//eslint-config-prettier",
-        "@npm//eslint-plugin-jest",
-        "@npm//eslint-plugin-prettier",
+    args = ["samples/**/*.ts"],
+    data = ESLINT_DATA,
+)
+
+eslint(
+    name = "eslint-fix",
+    args = [
+        "samples/**/*.ts",
+        "--fix",
     ],
+    data = ESLINT_DATA,
 )
 
 pkg_tar(

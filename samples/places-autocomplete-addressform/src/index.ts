@@ -57,14 +57,14 @@ function fillInAddress() {
   // Get the place details from the autocomplete object.
   var place = autocomplete.getPlace();
 
-  for (let component in componentForm) {
+  for (const component in componentForm) {
     (document.getElementById(component) as HTMLInputElement).value = "";
     (document.getElementById(component) as HTMLInputElement).disabled = false;
   }
 
   // Get each component of the address from the place details,
   // and then fill-in the corresponding field on the form.
-  for (let component of place.address_components as google.maps.GeocoderAddressComponent[]) {
+  for (const component of place.address_components as google.maps.GeocoderAddressComponent[]) {
     const addressType = component.types[0];
     if (componentForm[addressType]) {
       const val = component[componentForm[addressType]];
