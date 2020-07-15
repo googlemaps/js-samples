@@ -1,3 +1,4 @@
+// [START maps_event_simple]
 function initMap() {
   var myLatlng = { lat: -25.363, lng: 131.044 };
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -21,4 +22,5 @@ function initMap() {
     map.setCenter(marker.getPosition());
   });
 }
+// [END maps_event_simple]
 export { initMap };

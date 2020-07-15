@@ -1,3 +1,4 @@
+// [START maps_map_coordinates]
 function initMap() {
   var chicago = new google.maps.LatLng(41.85, -87.65);
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -46,4 +47,5 @@ function project(latLng) {
     TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI))
   );
 }
+// [END maps_map_coordinates]
 export { initMap, TILE_SIZE, createInfoWindowContent, project };

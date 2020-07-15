@@ -1,3 +1,4 @@
+// [START maps_streetview_events]
 function initPano() {
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
@@ -42,4 +43,5 @@ function initPano() {
     pitchCell.firstChild.nodeValue = panorama.getPov().pitch + "";
   });
 }
+// [END maps_streetview_events]
 export { initPano };

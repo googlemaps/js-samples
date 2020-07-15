@@ -1,3 +1,4 @@
+// [START maps_streetview_custom_tiles]
 let panorama;
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
 let outsideGoogle;
@@ -74,6 +75,7 @@ function initMap() {
     }
   );
 }
+// [END maps_streetview_custom_tiles]
 export {
   panorama,
   outsideGoogle,

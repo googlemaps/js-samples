@@ -1,3 +1,4 @@
+// [START maps_directions_panel]
 function initMap() {
   var directionsRenderer = new google.maps.DirectionsRenderer();
   var directionsService = new google.maps.DirectionsService();
@@ -34,4 +35,5 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     }
   );
 }
+// [END maps_directions_panel]
 export { initMap, calculateAndDisplayRoute };

@@ -1,3 +1,4 @@
+// [START maps_marker_labels]
 // In the following example, markers appear when the user clicks on the map.
 // Each marker is labeled with a single alphabetical character.
 var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -25,4 +26,5 @@ function addMarker(location, map) {
     map: map
   });
 }
+// [END maps_marker_labels]
 export { labels, labelIndex, initMap, addMarker };

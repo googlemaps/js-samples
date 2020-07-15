@@ -1,3 +1,4 @@
+// [START maps_hiding_features]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -30,4 +31,5 @@ var styles = {
     }
   ]
 };
+// [END maps_hiding_features]
 export { map, initMap, styles };

@@ -1,3 +1,4 @@
+// [START maps_landing_page_visualize_data]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -36,4 +37,5 @@ function getCircle(magnitude) {
 function eqfeed_callback(results) {
   map.data.addGeoJson(results);
 }
+// [END maps_landing_page_visualize_data]
 export { map, initMap, getCircle, eqfeed_callback };

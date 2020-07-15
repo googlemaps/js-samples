@@ -1,3 +1,4 @@
+// [START maps_aerial_rotation]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -18,4 +19,5 @@ function autoRotate() {
     window.setInterval(rotate90, 3000);
   }
 }
+// [END maps_aerial_rotation]
 export { map, initMap, rotate90, autoRotate };

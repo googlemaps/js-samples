@@ -1,3 +1,4 @@
+// [START maps_layer_data_quakes_simple]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -18,4 +19,5 @@ function initMap() {
 function eqfeed_callback(data) {
   map.data.addGeoJson(data);
 }
+// [END maps_layer_data_quakes_simple]
 export { map, initMap, eqfeed_callback };

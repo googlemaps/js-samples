@@ -1,3 +1,4 @@
+// [START maps_map_sync]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -5,4 +6,5 @@ function initMap() {
     zoom: 8
   });
 }
+// [END maps_map_sync]
 export { map, initMap };

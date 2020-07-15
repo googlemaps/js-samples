@@ -1,3 +1,4 @@
+// [START maps_legend]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -117,4 +118,5 @@ function initMap() {
   }
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }
+// [END maps_legend]
 export { map, initMap };

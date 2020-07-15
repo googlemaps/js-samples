@@ -1,3 +1,4 @@
+// [START maps_event_properties]
 function initMap() {
   var originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -13,4 +14,5 @@ function initMap() {
     infowindow.setContent("Zoom: " + map.getZoom());
   });
 }
+// [END maps_event_properties]
 export { initMap };

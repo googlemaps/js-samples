@@ -1,3 +1,4 @@
+// [START maps_control_bounds_restriction]
 let map;
 var NEW_ZEALAND_BOUNDS = {
   north: -34.36,
@@ -16,4 +17,5 @@ function initMap() {
     zoom: 7
   });
 }
+// [END maps_control_bounds_restriction]
 export { map, NEW_ZEALAND_BOUNDS, AUCKLAND, initMap };

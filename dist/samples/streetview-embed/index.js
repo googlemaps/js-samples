@@ -1,3 +1,4 @@
+// [START maps_streetview_embed]
 let panorama;
 function initialize() {
   panorama = new google.maps.StreetViewPanorama(
@@ -9,4 +10,5 @@ function initialize() {
     }
   );
 }
+// [END maps_streetview_embed]
 export { panorama, initialize };

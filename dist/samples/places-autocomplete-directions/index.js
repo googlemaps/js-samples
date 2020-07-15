@@ -1,3 +1,4 @@
+// [START maps_places_autocomplete_directions]
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
@@ -96,4 +97,5 @@ class AutocompleteDirectionsHandler {
     );
   }
 }
+// [END maps_places_autocomplete_directions]
 export { initMap, AutocompleteDirectionsHandler };

@@ -1,3 +1,4 @@
+// [START maps_add_map]
 // Initialize and add the map
 function initMap() {
   // The location of Uluru
@@ -10,4 +11,5 @@ function initMap() {
   // The marker, positioned at Uluru
   var marker = new google.maps.Marker({ position: uluru, map: map });
 }
+// [END maps_add_map]
 export { initMap };

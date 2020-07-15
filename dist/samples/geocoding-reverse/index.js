@@ -1,3 +1,4 @@
+// [START maps_geocoding_reverse]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
@@ -31,4 +32,5 @@ function geocodeLatLng(geocoder, map, infowindow) {
     }
   });
 }
+// [END maps_geocoding_reverse]
 export { initMap, geocodeLatLng };

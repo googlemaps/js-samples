@@ -1,3 +1,4 @@
+// [START maps_earthquake_circles]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -32,4 +33,5 @@ function getCircle(magnitude) {
 function eqfeed_callback(results) {
   map.data.addGeoJson(results);
 }
+// [END maps_earthquake_circles]
 export { map, initMap, getCircle, eqfeed_callback };

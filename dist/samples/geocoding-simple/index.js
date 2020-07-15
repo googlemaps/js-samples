@@ -1,3 +1,4 @@
+// [START maps_geocoding_simple]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
@@ -22,4 +23,5 @@ function geocodeAddress(geocoder, resultsMap) {
     }
   });
 }
+// [END maps_geocoding_simple]
 export { initMap, geocodeAddress };

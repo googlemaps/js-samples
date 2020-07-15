@@ -1,3 +1,4 @@
+// [START maps_maptype_image]
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 0, lng: 0 },
@@ -53,4 +54,5 @@ function getNormalizedCoord(coord, zoom) {
   }
   return { x: x, y: y };
 }
+// [END maps_maptype_image]
 export { initMap, getNormalizedCoord };

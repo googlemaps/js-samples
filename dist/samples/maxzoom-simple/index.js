@@ -1,3 +1,4 @@
+// [START maps_maxzoom_simple]
 let map;
 let maxZoomService;
 let infoWindow;
@@ -24,4 +25,5 @@ function showMaxZoom(e) {
     infoWindow.open(map);
   });
 }
+// [END maps_maxzoom_simple]
 export { map, maxZoomService, infoWindow, initMap, showMaxZoom };

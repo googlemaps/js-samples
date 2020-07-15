@@ -1,3 +1,4 @@
+// [START maps_style_selector]
 let map;
 function initMap() {
   // Create the map with no initial style specified.
@@ -310,4 +311,5 @@ var styles = {
     }
   ]
 };
+// [END maps_style_selector]
 export { map, initMap, styles };

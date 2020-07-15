@@ -1,3 +1,4 @@
+// [START maps_layer_data_dragndrop]
 /* Map functions */
 let map;
 function initMap() {
@@ -97,6 +98,7 @@ function initialize() {
   initMap();
   initEvents();
 }
+// [END maps_layer_data_dragndrop]
 export {
   map,
   initMap,

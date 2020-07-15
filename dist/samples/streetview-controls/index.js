@@ -1,3 +1,4 @@
+// [START maps_streetview_controls]
 function initPano() {
   // Note: constructed panorama objects have visible: true
   // set by default.
@@ -14,4 +15,5 @@ function initPano() {
     }
   );
 }
+// [END maps_streetview_controls]
 export { initPano };

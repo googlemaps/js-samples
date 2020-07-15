@@ -1,3 +1,4 @@
+// [START maps_earthquake_heatmap_weighted]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -32,4 +33,5 @@ const eqfeed_callback = function(results) {
     map: map
   });
 };
+// [END maps_earthquake_heatmap_weighted]
 export { map, initMap, eqfeed_callback };

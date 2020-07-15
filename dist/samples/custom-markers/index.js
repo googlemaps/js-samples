@@ -1,3 +1,4 @@
+// [START maps_custom_markers]
 let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
@@ -104,4 +105,5 @@ function initMap() {
     });
   }
 }
+// [END maps_custom_markers]
 export { map, initMap };

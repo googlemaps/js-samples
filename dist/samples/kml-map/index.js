@@ -3,6 +3,7 @@
  *   and displaying the contents in a side panel instead of
  *   an InfoWindow
  */
+// [START maps_kml_map]
 let map;
 const url =
   "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
@@ -24,4 +25,5 @@ function initMap() {
     testimonial.innerHTML = content;
   });
 }
+// [END maps_kml_map]
 export { initMap };

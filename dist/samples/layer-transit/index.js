@@ -1,3 +1,4 @@
+// [START maps_layer_transit]
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
@@ -6,4 +7,5 @@ function initMap() {
   var transitLayer = new google.maps.TransitLayer();
   transitLayer.setMap(map);
 }
+// [END maps_layer_transit]
 export { initMap };
