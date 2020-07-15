@@ -37,7 +37,7 @@
         // https://en.wikipedia.org/wiki/Gall%E2%80%93Peters_projection
         function initMap() {
           // Create a map. Use the Gall-Peters map type.
-          var map = new google.maps.Map(document.getElementById("map"), {
+          const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 0,
             center: {
               lat: 0,
@@ -80,7 +80,7 @@
               var x = ((coord.x % scale) + scale) % scale; // Don't wrap tiles vertically.
 
               var y = coord.y;
-              if (y < 0 || y >= scale) return null;
+              if (y < 0 || y >= scale) return "";
               return (
                 "https://developers.google.com/maps/documentation/" +
                 "javascript/examples/full/images/gall-peters_" +

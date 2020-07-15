@@ -125,7 +125,7 @@
           var infowindowContent = document.getElementById("infowindow-content");
           infowindow.setContent(infowindowContent);
           var marker = new google.maps.Marker({
-            map: map,
+            map,
             anchorPoint: new google.maps.Point(0, -29)
           });
           autocomplete.addListener("place_changed", function() {

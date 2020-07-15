@@ -13,7 +13,7 @@
       },
       mapTypeId: "terrain"
     });
-    var flightPathCoordinates = [
+    const flightPathCoordinates = [
       {
         lat: 37.772,
         lng: -122.214

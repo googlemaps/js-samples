@@ -31,7 +31,7 @@
   }
 
   var styles = {
-    default: null,
+    default: [],
     silver: [
       {
         elementType: "geometry",

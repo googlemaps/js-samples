@@ -13,7 +13,7 @@
     });
     var marker = new google.maps.Marker({
       position: locationRio,
-      map: map,
+      map,
       title: "Hello World!"
     });
   }

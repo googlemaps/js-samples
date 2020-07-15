@@ -2,14 +2,14 @@
   "use strict";
 
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
       center: {
         lat: -25.363882,
         lng: 131.044922
       }
     });
-    var bounds = {
+    const bounds = {
       north: -25.363882,
       south: -31.203405,
       east: 131.044922,
@@ -25,7 +25,7 @@
     var lngSpan = bounds.east - bounds.west;
     var latSpan = bounds.north - bounds.south;
 
-    for (var i = 0; i < secretMessages.length; ++i) {
+    for (let i = 0; i < secretMessages.length; ++i) {
       var marker = new google.maps.Marker({
         position: {
           lat: bounds.south + latSpan * Math.random(),

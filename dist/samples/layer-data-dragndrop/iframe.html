@@ -87,6 +87,7 @@
       } else if (geometry instanceof google.maps.Data.Point) {
         callback.call(thisArg, geometry.get());
       } else {
+        // @ts-ignore
         geometry.getArray().forEach(function(g) {
           processPoints(g, callback, thisArg);
         });
@@ -130,7 +131,7 @@
           var reader = new FileReader();
 
           reader.onload = function(e) {
-            loadGeoJsonString(e.target.result);
+            loadGeoJsonString(reader.result);
           };
 
           reader.onerror = function(e) {

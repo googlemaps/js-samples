@@ -18,7 +18,6 @@
       ...mapOptions,
       mapTypeId: "satellite",
       tilt: 0,
-      // at high zoom levels we need to maintain the same projection
       fullscreenControlOptions: {
         position: google.maps.ControlPosition.LEFT_BOTTOM
       },
@@ -81,7 +80,8 @@
 
     handleContainerResize(); // add event listener
 
-    window.addEventListener("resize", handleContainerResize);
+    window.addEventListener("resize", handleContainerResize); //@ts-ignore
+
     Split(["#left", "#right"], {
       sizes: [50, 50]
     });

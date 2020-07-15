@@ -42,7 +42,7 @@
       mapTypeId: "roadmap"
     });
 
-    for (var i = 0; i < events.length; i++) {
+    for (let i = 0; i < events.length; i++) {
       setupListener(map, events[i]);
     }
   } // Dynamically create the table of events from the defined hashmap
@@ -51,7 +51,7 @@
     var eventsTable = document.getElementById("events");
     var content = "";
 
-    for (var i = 0; i < events.length; i++) {
+    for (let i = 0; i < events.length; i++) {
       content +=
         '<div class="event" id="' + events[i] + '">' + events[i] + "</div>";
     }

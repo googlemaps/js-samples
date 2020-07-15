@@ -56,8 +56,8 @@
 
         markers.push(
           new google.maps.Marker({
-            map: map,
-            icon: icon,
+            map,
+            icon,
             title: place.name,
             position: place.geometry.location
           })

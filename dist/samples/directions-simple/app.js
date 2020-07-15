@@ -32,7 +32,7 @@
         destination: {
           query: document.getElementById("end").value
         },
-        travelMode: "DRIVING"
+        travelMode: google.maps.TravelMode.DRIVING
       },
       function(response, status) {
         if (status === "OK") {

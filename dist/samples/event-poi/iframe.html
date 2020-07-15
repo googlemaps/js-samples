@@ -35,6 +35,28 @@
   (function(exports) {
     "use strict";
 
+    function _classCallCheck(instance, Constructor) {
+      if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+      }
+    }
+
+    function _defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    function _createClass(Constructor, protoProps, staticProps) {
+      if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) _defineProperties(Constructor, staticProps);
+      return Constructor;
+    }
+
     function initMap() {
       var origin = {
         lat: -33.871,
@@ -44,83 +66,99 @@
         zoom: 18,
         center: origin
       });
-      var clickHandler = new ClickEventHandler(map, origin);
+      new ClickEventHandler(map, origin);
     }
-    /**
-     * @constructor
-     */
 
-    var ClickEventHandler = function ClickEventHandler(map, origin) {
-      this.origin = origin;
-      this.map = map;
-      this.directionsService = new google.maps.DirectionsService();
-      this.directionsRenderer = new google.maps.DirectionsRenderer();
-      this.directionsRenderer.setMap(map);
-      this.placesService = new google.maps.places.PlacesService(map);
-      this.infowindow = new google.maps.InfoWindow();
-      this.infowindowContent = document.getElementById("infowindow-content");
-      this.infowindow.setContent(this.infowindowContent); // Listen for clicks on the map.
+    function isIconMouseEvent(e) {
+      return "placeId" in e;
+    }
 
-      this.map.addListener("click", this.handleClick.bind(this));
-    };
+    var ClickEventHandler = /*#__PURE__*/ (function() {
+      function ClickEventHandler(map, origin) {
+        _classCallCheck(this, ClickEventHandler);
 
-    ClickEventHandler.prototype.handleClick = function(event) {
-      console.log("You clicked on: " + event.latLng); // If the event has a placeId, use it.
+        this.origin = origin;
+        this.map = map;
+        this.directionsService = new google.maps.DirectionsService();
+        this.directionsRenderer = new google.maps.DirectionsRenderer();
+        this.directionsRenderer.setMap(map);
+        this.placesService = new google.maps.places.PlacesService(map);
+        this.infowindow = new google.maps.InfoWindow();
+        this.infowindowContent = document.getElementById("infowindow-content");
+        this.infowindow.setContent(this.infowindowContent); // Listen for clicks on the map.
 
-      if (event.placeId) {
-        console.log("You clicked on place:" + event.placeId); // Calling e.stop() on the event prevents the default info window from
-        // showing.
-        // If you call stop here when there is no placeId you will prevent some
-        // other map click event handlers from receiving the event.
-
-        event.stop();
-        this.calculateAndDisplayRoute(event.placeId);
-        this.getPlaceInformation(event.placeId);
+        this.map.addListener("click", this.handleClick.bind(this));
       }
-    };
 
-    ClickEventHandler.prototype.calculateAndDisplayRoute = function(placeId) {
-      var me = this;
-      this.directionsService.route(
+      _createClass(ClickEventHandler, [
         {
-          origin: this.origin,
-          destination: {
-            placeId: placeId
-          },
-          travelMode: "WALKING"
+          key: "handleClick",
+          value: function handleClick(event) {
+            console.log("You clicked on: " + event.latLng); // If the event has a placeId, use it.
+
+            if (isIconMouseEvent(event)) {
+              console.log("You clicked on place:" + event.placeId); // Calling e.stop() on the event prevents the default info window from
+              // showing.
+              // If you call stop here when there is no placeId you will prevent some
+              // other map click event handlers from receiving the event.
+
+              event.stop();
+              this.calculateAndDisplayRoute(event.placeId);
+              this.getPlaceInformation(event.placeId);
+            }
+          }
         },
-        function(response, status) {
-          if (status === "OK") {
-            me.directionsRenderer.setDirections(response);
-          } else {
-            window.alert("Directions request failed due to " + status);
+        {
+          key: "calculateAndDisplayRoute",
+          value: function calculateAndDisplayRoute(placeId) {
+            var me = this;
+            this.directionsService.route(
+              {
+                origin: this.origin,
+                destination: {
+                  placeId: placeId
+                },
+                travelMode: google.maps.TravelMode.WALKING
+              },
+              function(response, status) {
+                if (status === "OK") {
+                  me.directionsRenderer.setDirections(response);
+                } else {
+                  window.alert("Directions request failed due to " + status);
+                }
+              }
+            );
+          }
+        },
+        {
+          key: "getPlaceInformation",
+          value: function getPlaceInformation(placeId) {
+            var me = this;
+            this.placesService.getDetails(
+              {
+                placeId: placeId
+              },
+              function(place, status) {
+                if (status === "OK") {
+                  me.infowindow.close();
+                  me.infowindow.setPosition(place.geometry.location);
+                  me.infowindowContent.children["place-icon"].src = place.icon;
+                  me.infowindowContent.children["place-name"].textContent =
+                    place.name;
+                  me.infowindowContent.children["place-id"].textContent =
+                    place.place_id;
+                  me.infowindowContent.children["place-address"].textContent =
+                    place.formatted_address;
+                  me.infowindow.open(me.map);
+                }
+              }
+            );
           }
         }
-      );
-    };
+      ]);
 
-    ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
-      var me = this;
-      this.placesService.getDetails(
-        {
-          placeId: placeId
-        },
-        function(place, status) {
-          if (status === "OK") {
-            me.infowindow.close();
-            me.infowindow.setPosition(place.geometry.location);
-            me.infowindowContent.children["place-icon"].src = place.icon;
-            me.infowindowContent.children["place-name"].textContent =
-              place.name;
-            me.infowindowContent.children["place-id"].textContent =
-              place.place_id;
-            me.infowindowContent.children["place-address"].textContent =
-              place.formatted_address;
-            me.infowindow.open(me.map);
-          }
-        }
-      );
-    };
+      return ClickEventHandler;
+    })();
 
     exports.ClickEventHandler = ClickEventHandler;
     exports.initMap = initMap;

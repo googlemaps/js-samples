@@ -8,15 +8,17 @@
   // This example requires the Places library. Include the libraries=places
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-  var places, infoWindow;
+
+  let places;
+  let infoWindow;
   exports.markers = [];
 
-  var countryRestrict = {
+  const countryRestrict = {
     country: "us"
   };
-  var MARKER_PATH =
+  const MARKER_PATH =
     "https://developers.google.com/maps/documentation/javascript/images/marker_green";
-  var hostnameRegexp = new RegExp("^https?://.+?/");
+  const hostnameRegexp = new RegExp("^https?://.+?/");
   var countries = {
     au: {
       center: {
@@ -126,7 +128,6 @@
     // Restrict the search to the default country, and to place type "cities".
 
     exports.autocomplete = new google.maps.places.Autocomplete(
-      /** @type {!HTMLInputElement} */
       document.getElementById("autocomplete"),
       {
         types: ["(cities)"],
@@ -159,13 +160,13 @@
       bounds: exports.map.getBounds(),
       types: ["lodging"]
     };
-    places.nearbySearch(search, function(results, status) {
+    places.nearbySearch(search, function(results, status, pagination) {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         clearResults();
         clearMarkers(); // Create a marker for each hotel found, and
         // assign a letter of the alphabetic to each marker icon.
 
-        for (var i = 0; i < results.length; i++) {
+        for (let i = 0; i < results.length; i++) {
           var markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
           var markerIcon = MARKER_PATH + markerLetter + ".png"; // Use marker animation to drop the icons incrementally on the map.
 
@@ -175,6 +176,7 @@
             icon: markerIcon
           }); // If the user clicks a hotel marker, show the details of that hotel
           // in an info window.
+          // @ts-ignore TODO(jpoehnelt) refactor to avoid storing on marker
 
           exports.markers[i].placeResult = results[i];
           google.maps.event.addListener(
@@ -190,7 +192,7 @@
   }
 
   function clearMarkers() {
-    for (var i = 0; i < exports.markers.length; i++) {
+    for (let i = 0; i < exports.markers.length; i++) {
       if (exports.markers[i]) {
         exports.markers[i].setMap(null);
       }
@@ -265,6 +267,7 @@
   // anchored on the marker for the hotel that the user selected.
 
   function showInfoWindow() {
+    // @ts-ignore
     var marker = this;
     places.getDetails(
       {
@@ -301,7 +304,7 @@
     if (place.rating) {
       var ratingHtml = "";
 
-      for (var i = 0; i < 5; i++) {
+      for (let i = 0; i < 5; i++) {
         if (place.rating < i + 0.5) {
           ratingHtml += "&#10025;";
         } else {
@@ -318,9 +321,9 @@
 
     if (place.website) {
       var fullUrl = place.website;
-      var website = hostnameRegexp.exec(place.website);
+      var website = String(hostnameRegexp.exec(place.website));
 
-      if (website === null) {
+      if (!website) {
         website = "http://" + place.website + "/";
         fullUrl = website;
       }

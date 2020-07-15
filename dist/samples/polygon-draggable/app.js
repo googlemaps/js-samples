@@ -43,7 +43,7 @@
     ]; // Construct a draggable red triangle with geodesic set to true.
 
     new google.maps.Polygon({
-      map: map,
+      map,
       paths: redCoords,
       strokeColor: "#FF0000",
       strokeOpacity: 0.8,
@@ -55,7 +55,7 @@
     }); // Construct a draggable blue triangle with geodesic set to false.
 
     new google.maps.Polygon({
-      map: map,
+      map,
       paths: blueCoords,
       strokeColor: "#0000FF",
       strokeOpacity: 0.8,

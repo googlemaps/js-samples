@@ -43,6 +43,7 @@
     } else if (geometry instanceof google.maps.Data.Point) {
       callback.call(thisArg, geometry.get());
     } else {
+      // @ts-ignore
       geometry.getArray().forEach(function(g) {
         processPoints(g, callback, thisArg);
       });
@@ -82,11 +83,11 @@
     if (files.length) {
       // process file(s) being dropped
       // grab the file data from each file
-      for (var i = 0, file; (file = files[i]); i++) {
+      for (let i = 0, file; (file = files[i]); i++) {
         var reader = new FileReader();
 
         reader.onload = function(e) {
-          loadGeoJsonString(e.target.result);
+          loadGeoJsonString(reader.result);
         };
 
         reader.onerror = function(e) {

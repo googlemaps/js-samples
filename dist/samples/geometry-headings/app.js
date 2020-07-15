@@ -8,7 +8,7 @@
   var geodesicPoly;
 
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
       center: {
         lat: 34,
@@ -19,7 +19,7 @@
       document.getElementById("info")
     );
     exports.marker1 = new google.maps.Marker({
-      map: map,
+      map,
       draggable: true,
       position: {
         lat: 40.714,
@@ -27,14 +27,14 @@
       }
     });
     marker2 = new google.maps.Marker({
-      map: map,
+      map,
       draggable: true,
       position: {
         lat: 48.857,
         lng: 2.352
       }
     });
-    var bounds = new google.maps.LatLngBounds(
+    const bounds = new google.maps.LatLngBounds(
       exports.marker1.getPosition(),
       marker2.getPosition()
     );
@@ -58,16 +58,16 @@
   }
 
   function update() {
-    var path = [exports.marker1.getPosition(), marker2.getPosition()];
+    const path = [exports.marker1.getPosition(), marker2.getPosition()];
     exports.poly.setPath(path);
     geodesicPoly.setPath(path);
-    var heading = google.maps.geometry.spherical.computeHeading(
+    const heading = google.maps.geometry.spherical.computeHeading(
       path[0],
       path[1]
     );
-    document.getElementById("heading").value = heading;
-    document.getElementById("origin").value = path[0].toString();
-    document.getElementById("destination").value = path[1].toString();
+    document.getElementById("heading").value = String(heading);
+    document.getElementById("origin").value = String(path[0]);
+    document.getElementById("destination").value = String(path[1]);
   }
 
   exports.initMap = initMap;

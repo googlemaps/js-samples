@@ -125,7 +125,7 @@
     });
     var legend = document.getElementById("legend");
 
-    for (var key in icons) {
+    for (let key in icons) {
       var type = icons[key];
       var name = type.name;
       var icon = type.icon;

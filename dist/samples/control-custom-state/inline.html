@@ -52,7 +52,7 @@
       (function(exports) {
         "use strict";
 
-        var chicago = {
+        const chicago = {
           lat: 41.85,
           lng: -87.65
         };
@@ -68,6 +68,7 @@
         function CenterControl(controlDiv, map, center) {
           // We set up a variable for this since we're adding event listeners
           // later.
+          // @ts-ignore
           var control = this; // Set the center property upon construction
 
           control.center_ = center;
@@ -138,13 +139,10 @@
           // passing in this DIV.
 
           var centerControlDiv = document.createElement("div");
-          var centerControl = new CenterControl(
-            centerControlDiv,
-            exports.map,
-            chicago
-          );
+          CenterControl(centerControlDiv, exports.map, chicago); // @ts-ignore
+
           centerControlDiv.index = 1;
-          centerControlDiv.style["padding-top"] = "10px";
+          centerControlDiv.style.paddingTop = "10px";
           exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
             centerControlDiv
           );

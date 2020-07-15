@@ -50,6 +50,8 @@
         }
       };
     }
+
+    return {};
   }
 
   exports.getCustomPanorama = getCustomPanorama;

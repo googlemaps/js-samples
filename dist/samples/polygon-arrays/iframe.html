@@ -65,12 +65,13 @@
       bermudaTriangle.addListener("click", showArrays);
       exports.infoWindow = new google.maps.InfoWindow();
     }
-    /** @this {google.maps.Polygon} */
 
     function showArrays(event) {
       // Since this polygon has only one path, we can call getPath() to return the
       // MVCArray of LatLngs.
-      var vertices = this.getPath();
+      // @ts-ignore
+      var polygon = this;
+      var vertices = polygon.getPath();
       var contentString =
         "<b>Bermuda Triangle polygon</b><br>" +
         "Clicked location: <br>" +

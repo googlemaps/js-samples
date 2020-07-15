@@ -39,7 +39,7 @@
               if (status === "OK") {
                 map.setCenter(results[0].geometry.location);
                 new google.maps.Marker({
-                  map: map,
+                  map,
                   position: results[0].geometry.location
                 });
               } else {

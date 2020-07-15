@@ -21,7 +21,7 @@
     var waypts = [];
     var checkboxArray = document.getElementById("waypoints");
 
-    for (var i = 0; i < checkboxArray.length; i++) {
+    for (let i = 0; i < checkboxArray.length; i++) {
       if (checkboxArray.options[i].selected) {
         waypts.push({
           location: checkboxArray[i].value,
@@ -36,7 +36,7 @@
         destination: document.getElementById("end").value,
         waypoints: waypts,
         optimizeWaypoints: true,
-        travelMode: "DRIVING"
+        travelMode: google.maps.TravelMode.DRIVING
       },
       function(response, status) {
         if (status === "OK") {
@@ -45,7 +45,7 @@
           var summaryPanel = document.getElementById("directions-panel");
           summaryPanel.innerHTML = ""; // For each route, display summary information.
 
-          for (var i = 0; i < route.legs.length; i++) {
+          for (let i = 0; i < route.legs.length; i++) {
             var routeSegment = i + 1;
             summaryPanel.innerHTML +=
               "<b>Route Segment: " + routeSegment + "</b><br>";

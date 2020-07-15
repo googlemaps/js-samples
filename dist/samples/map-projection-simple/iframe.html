@@ -77,7 +77,7 @@
           var x = ((coord.x % scale) + scale) % scale; // Don't wrap tiles vertically.
 
           var y = coord.y;
-          if (y < 0 || y >= scale) return null;
+          if (y < 0 || y >= scale) return "";
           return (
             "https://developers.google.com/maps/documentation/" +
             "javascript/examples/full/images/gall-peters_" +

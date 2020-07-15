@@ -2,6 +2,7 @@
   "use strict";
 
   // Load the Visualization API and the columnchart package.
+  // @ts-ignore TODO(jpoehnelt)
   google.load("visualization", "1", {
     packages: ["columnchart"]
   });
@@ -13,23 +14,23 @@
       {
         lat: 36.579,
         lng: -118.292
-      }, // Mt. Whitney
+      },
       {
         lat: 36.606,
         lng: -118.0638
-      }, // Lone Pine
+      },
       {
         lat: 36.433,
         lng: -117.951
-      }, // Owens Lake
+      },
       {
         lat: 36.588,
         lng: -116.943
-      }, // Beatty Junction
+      },
       {
         lat: 36.34,
         lng: -117.468
-      }, // Panama Mint Springs
+      },
       {
         lat: 36.24,
         lng: -116.832
@@ -60,6 +61,7 @@
 
     elevator.getElevationAlongPath(
       {
+        // @ts-ignore TODO(jpoehnelt) update typings to support LatLngLiteral
         path: path,
         samples: 256
       },
@@ -87,13 +89,14 @@
     data.addColumn("string", "Sample");
     data.addColumn("number", "Elevation");
 
-    for (var i = 0; i < elevations.length; i++) {
+    for (let i = 0; i < elevations.length; i++) {
       data.addRow(["", elevations[i].elevation]);
     } // Draw the chart using the data within its DIV.
 
     chart.draw(data, {
       height: 150,
       legend: "none",
+      // @ts-ignore TODO(jpoehnelt) check versions
       titleY: "Elevation (m)"
     });
   }

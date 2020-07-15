@@ -18,7 +18,7 @@
         lat: -33.89,
         lng: 151.274
       },
-      map: map,
+      map,
       icon: image
     });
   }

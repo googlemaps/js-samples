@@ -73,7 +73,8 @@
           // constructor passing in this DIV.
 
           var centerControlDiv = document.createElement("div");
-          var centerControl = new CenterControl(centerControlDiv, exports.map);
+          CenterControl(centerControlDiv, exports.map); // @ts-ignore TODO(jpoehnelt)
+
           centerControlDiv.index = 1;
           exports.map.controls[google.maps.ControlPosition.TOP_CENTER].push(
             centerControlDiv

@@ -38,12 +38,12 @@
     }
 
     function showMaxZoom(e) {
-      exports.maxZoomService.getMaxZoomAtLatLng(e.latLng, function(response) {
-        if (response.status !== "OK") {
+      exports.maxZoomService.getMaxZoomAtLatLng(e.latLng, function(result) {
+        if (result.status !== "OK") {
           exports.infoWindow.setContent("Error in MaxZoomService");
         } else {
           exports.infoWindow.setContent(
-            "The maximum zoom at this location is: " + response.zoom
+            "The maximum zoom at this location is: " + result.zoom
           );
         }
 

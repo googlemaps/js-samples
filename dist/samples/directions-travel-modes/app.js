@@ -26,15 +26,14 @@
           lat: 37.77,
           lng: -122.447
         },
-        // Haight.
         destination: {
           lat: 37.768,
           lng: -122.511
         },
-        // Ocean Beach.
         // Note that Javascript allows us to access the constant
         // using square brackets and a string value as its
         // "property."
+        // @ts-ignore
         travelMode: google.maps.TravelMode[selectedMode]
       },
       function(response, status) {

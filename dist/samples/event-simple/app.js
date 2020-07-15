@@ -12,7 +12,7 @@
     });
     var marker = new google.maps.Marker({
       position: myLatlng,
-      map: map,
+      map,
       title: "Click to zoom"
     });
     map.addListener("center_changed", function() {

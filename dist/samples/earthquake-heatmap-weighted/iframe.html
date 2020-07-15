@@ -38,7 +38,8 @@
       document.getElementsByTagName("head")[0].appendChild(script);
     }
 
-    window.eqfeed_callback = function(results) {
+    var eqfeed_callback = function eqfeed_callback(results) {
+      // TODO(jpoehnelt) fix typings
       var heatmapData = [];
 
       for (var i = 0; i < results.features.length; i++) {
@@ -59,6 +60,7 @@
       });
     };
 
+    exports.eqfeed_callback = eqfeed_callback;
     exports.initMap = initMap;
   })((this.window = this.window || {}));
 </script>

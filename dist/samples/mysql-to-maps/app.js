@@ -1,7 +1,7 @@
 (function(exports) {
   "use strict";
 
-  var customLabel = {
+  const customLabel = {
     restaurant: {
       label: "R"
     },
@@ -11,11 +11,11 @@
   };
 
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
       center: new google.maps.LatLng(-33.863276, 151.207977),
       zoom: 12
     });
-    var infoWindow = new google.maps.InfoWindow(); // Change this depending on the name of your PHP or XML file
+    const infoWindow = new google.maps.InfoWindow(); // Change this depending on the name of your PHP or XML file
 
     downloadUrl(
       "https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml",
@@ -41,7 +41,7 @@
           infowincontent.appendChild(text);
           var icon = customLabel[type] || {};
           var marker = new google.maps.Marker({
-            map: map,
+            map,
             position: point,
             label: icon.label
           });
@@ -55,14 +55,15 @@
   }
 
   function downloadUrl(url, callback) {
-    var request = window.ActiveXObject
+    // @ts-ignore
+    const request = window.ActiveXObject // @ts-ignore
       ? new ActiveXObject("Microsoft.XMLHTTP")
       : new XMLHttpRequest();
 
     request.onreadystatechange = function() {
       if (request.readyState == 4) {
         request.onreadystatechange = doNothing;
-        callback(request, request.status);
+        callback(request);
       }
     };
 

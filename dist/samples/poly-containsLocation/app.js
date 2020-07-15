@@ -44,7 +44,7 @@
         : google.maps.SymbolPath.CIRCLE;
       new google.maps.Marker({
         position: e.latLng,
-        map: map,
+        map,
         icon: {
           path: resultPath,
           fillColor: resultColor,

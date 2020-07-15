@@ -103,7 +103,7 @@
               destination: document.getElementById("end").value,
               waypoints: waypts,
               optimizeWaypoints: true,
-              travelMode: "DRIVING"
+              travelMode: google.maps.TravelMode.DRIVING
             },
             function(response, status) {
               if (status === "OK") {
@@ -112,15 +112,15 @@
                 var summaryPanel = document.getElementById("directions-panel");
                 summaryPanel.innerHTML = ""; // For each route, display summary information.
 
-                for (var i = 0; i < route.legs.length; i++) {
-                  var routeSegment = i + 1;
+                for (var _i = 0; _i < route.legs.length; _i++) {
+                  var routeSegment = _i + 1;
                   summaryPanel.innerHTML +=
                     "<b>Route Segment: " + routeSegment + "</b><br>";
                   summaryPanel.innerHTML +=
-                    route.legs[i].start_address + " to ";
-                  summaryPanel.innerHTML += route.legs[i].end_address + "<br>";
+                    route.legs[_i].start_address + " to ";
+                  summaryPanel.innerHTML += route.legs[_i].end_address + "<br>";
                   summaryPanel.innerHTML +=
-                    route.legs[i].distance.text + "<br><br>";
+                    route.legs[_i].distance.text + "<br><br>";
                 }
               } else {
                 window.alert("Directions request failed due to " + status);

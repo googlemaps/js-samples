@@ -12,23 +12,25 @@
    *
    * Try panning and zooming the map to see how the coordinates change.
    */
+  class CoordMapType {
+    constructor(tileSize) {
+      this.tileSize = tileSize;
+    }
 
-  /** @constructor */
-  function CoordMapType(tileSize) {
-    this.tileSize = tileSize;
+    getTile(coord, zoom, ownerDocument) {
+      var div = ownerDocument.createElement("div");
+      div.innerHTML = String(coord);
+      div.style.width = this.tileSize.width + "px";
+      div.style.height = this.tileSize.height + "px";
+      div.style.fontSize = "10";
+      div.style.borderStyle = "solid";
+      div.style.borderWidth = "1px";
+      div.style.borderColor = "#AAAAAA";
+      return div;
+    }
+
+    releaseTile(tile) {}
   }
-
-  CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
-    var div = ownerDocument.createElement("div");
-    div.innerHTML = coord;
-    div.style.width = this.tileSize.width + "px";
-    div.style.height = this.tileSize.height + "px";
-    div.style.fontSize = "10";
-    div.style.borderStyle = "solid";
-    div.style.borderWidth = "1px";
-    div.style.borderColor = "#AAAAAA";
-    return div;
-  };
 
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {

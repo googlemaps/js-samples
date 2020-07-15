@@ -55,11 +55,10 @@
           exports.rectangle.addListener("bounds_changed", showNewRect); // Define an info window on the map.
 
           exports.infoWindow = new google.maps.InfoWindow();
-        } // Show the new coordinates for the rectangle in an info window.
+        }
+        /** Show the new coordinates for the rectangle in an info window. */
 
-        /** @this {google.maps.Rectangle} */
-
-        function showNewRect(event) {
+        function showNewRect() {
           var ne = exports.rectangle.getBounds().getNorthEast();
           var sw = exports.rectangle.getBounds().getSouthWest();
           var contentString =

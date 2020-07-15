@@ -2,10 +2,11 @@
   "use strict";
 
   // eslint-disable no-undef
-
-  let markers; // Initialize and add the map
+  // Initialize and add the map
 
   function initMap() {
+    let markers = []; // @ts-ignore Beta functionality
+
     let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
     exports.map = new google.maps.Map(document.getElementById("map"), {
       mapId: "3a3b33f0edd6ed2a",
@@ -14,10 +15,9 @@
         lng: -122.33897030353548
       },
       zoom: 17
-    }); // create markers with initial behavior
-
-    markers = createMarkers(exports.map, collisionBehavior);
+    });
     const menuList = document.querySelector(".mdc-list"); // Add the behaviors to the select options
+    // @ts-ignore Beta functionality
 
     for (let [key, value] of Object.entries(google.maps.CollisionBehavior)) {
       const item = document.createElement("LI");
@@ -28,24 +28,20 @@
       itemText.innerText = value;
       item.appendChild(itemText);
       menuList.appendChild(item);
-    }
+    } // @ts-ignore
 
-    exports.select = new mdc.select.MDCSelect(
+    const select = new mdc.select.MDCSelect(
       document.querySelector(".mdc-select")
     );
-    exports.select.listen("MDCSelect:change", () => {
-      collisionBehavior = exports.select.value;
+    select.listen("MDCSelect:change", () => {
+      collisionBehavior = select.value;
       markers.forEach(function(marker) {
-        marker.setMap(null);
+        marker.set("collisionBehavior", collisionBehavior);
       });
-      markers = createMarkers(exports.map, collisionBehavior);
     });
-    exports.select.value = collisionBehavior;
-  }
+    select.value = collisionBehavior; // Create some markers on the map
 
-  function createMarkers(map, collisionBehavior) {
-    // Create some markers on the map
-    return [
+    markers = [
       [-122.3402, 47.6093],
       [-122.3402, 47.6094],
       [-122.3403, 47.6094],
@@ -66,7 +62,7 @@
             lat,
             lng
           }),
-          map: map,
+          map: exports.map,
           collisionBehavior: collisionBehavior
         })
     );

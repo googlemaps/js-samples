@@ -11,9 +11,9 @@
       zoom: 15
     }); // Search for Google's office in Australia.
 
-    var request = {
+    const request = {
       location: exports.map.getCenter(),
-      radius: "500",
+      radius: 500,
       query: "Google Sydney"
     };
     var service = new google.maps.places.PlacesService(exports.map);
@@ -23,7 +23,7 @@
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-      var marker = new google.maps.Marker({
+      const marker = new google.maps.Marker({
         map: exports.map,
         place: {
           placeId: results[0].place_id,

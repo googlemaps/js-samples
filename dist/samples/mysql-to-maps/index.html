@@ -66,14 +66,15 @@
         }
 
         function downloadUrl(url, callback) {
-          var request = window.ActiveXObject
+          // @ts-ignore
+          var request = window.ActiveXObject // @ts-ignore
             ? new ActiveXObject("Microsoft.XMLHTTP")
             : new XMLHttpRequest();
 
           request.onreadystatechange = function() {
             if (request.readyState == 4) {
               request.onreadystatechange = doNothing;
-              callback(request, request.status);
+              callback(request);
             }
           };
 

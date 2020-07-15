@@ -108,16 +108,16 @@
             {
               origin: document.getElementById("start").value,
               destination: document.getElementById("end").value,
-              travelMode: "WALKING"
+              travelMode: google.maps.TravelMode.WALKING
             },
-            function(response, status) {
+            function(result, status) {
               // Route the directions and pass the response to a function to create
               // markers for each step.
               if (status === "OK") {
                 document.getElementById("warnings-panel").innerHTML =
-                  "<b>" + response.routes[0].warnings + "</b>";
-                directionsRenderer.setDirections(response);
-                showSteps(response, markerArray, stepDisplay, map);
+                  "<b>" + result.routes[0].warnings + "</b>";
+                directionsRenderer.setDirections(result);
+                showSteps(result, markerArray, stepDisplay, map);
               } else {
                 window.alert("Directions request failed due to " + status);
               }

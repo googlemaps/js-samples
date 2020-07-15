@@ -108,9 +108,9 @@
             path[0],
             path[1]
           );
-          document.getElementById("heading").value = heading;
-          document.getElementById("origin").value = path[0].toString();
-          document.getElementById("destination").value = path[1].toString();
+          document.getElementById("heading").value = String(heading);
+          document.getElementById("origin").value = String(path[0]);
+          document.getElementById("destination").value = String(path[1]);
         }
 
         exports.initMap = initMap;

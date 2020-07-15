@@ -94,12 +94,12 @@
                   location: "Broken Hill, NSW"
                 }
               ],
-              travelMode: "DRIVING",
+              travelMode: google.maps.TravelMode.DRIVING,
               avoidTolls: true
             },
-            function(response, status) {
+            function(result, status) {
               if (status === "OK") {
-                display.setDirections(response);
+                display.setDirections(result);
               } else {
                 alert("Could not display directions due to: " + status);
               }

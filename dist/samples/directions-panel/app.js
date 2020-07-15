@@ -34,7 +34,7 @@
       {
         origin: start,
         destination: end,
-        travelMode: "DRIVING"
+        travelMode: google.maps.TravelMode.DRIVING
       },
       function(response, status) {
         if (status === "OK") {

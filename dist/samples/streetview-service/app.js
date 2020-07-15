@@ -44,19 +44,20 @@
 
   function processSVData(data, status) {
     if (status === "OK") {
-      var marker = new google.maps.Marker({
-        position: data.location.latLng,
+      const location = data.location;
+      const marker = new google.maps.Marker({
+        position: location.latLng,
         map: exports.map,
-        title: data.location.description
+        title: location.description
       });
-      exports.panorama.setPano(data.location.pano);
+      exports.panorama.setPano(location.pano);
       exports.panorama.setPov({
         heading: 270,
         pitch: 0
       });
       exports.panorama.setVisible(true);
       marker.addListener("click", function() {
-        var markerPanoID = data.location.pano; // Set the Pano to use the passed panoID.
+        var markerPanoID = location.pano; // Set the Pano to use the passed panoID.
 
         exports.panorama.setPano(markerPanoID);
         exports.panorama.setPov({

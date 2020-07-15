@@ -55,9 +55,11 @@
               lng: -110
             },
             zoom: 4
-          });
+          }); // @ts-ignore TODO(jpoehnelt)
+
           var deckOverlay = new deck.GoogleMapsOverlay({
             layers: [
+              // @ts-ignore TODO(jpoehnelt)
               new deck.GeoJsonLayer({
                 id: "earthquakes",
                 data:
@@ -80,11 +82,11 @@
                     enter: function enter(_) {
                       return [0];
                     },
-                    // grow from size 0,
                     duration: 10000
                   }
                 },
                 onDataLoad: function onDataLoad(_) {
+                  // @ts-ignore defined in include
                   progress.done(); // hides progress bar
                 }
               })

@@ -156,9 +156,9 @@
       (censusMax - exports.censusMin);
     var color = [];
 
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       // calculate an integer color based on the delta
-      color[i] = (high[i] - low[i]) * delta + low[i];
+      color.push((high[i] - low[i]) * delta + low[i]);
     } // determine whether to show this shape or not
 
     var showRow = true;
@@ -213,7 +213,6 @@
   /**
    * Responds to the mouse-out event on a map shape (state).
    *
-   * @param {?google.maps.MouseEvent} e
    */
 
   function mouseOutOfRegion(e) {

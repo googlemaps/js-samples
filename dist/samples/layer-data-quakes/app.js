@@ -1,8 +1,10 @@
 (function(exports) {
   "use strict";
 
+  let map;
+
   function initMap() {
-    exports.map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
       center: {
         lat: 20,
         lng: -160
@@ -10,7 +12,7 @@
       zoom: 2,
       styles: mapStyle
     });
-    exports.map.data.setStyle(styleFeature); // Get the earthquake data (JSONP format)
+    map.data.setStyle(styleFeature); // Get the earthquake data (JSONP format)
     // This feed is a copy from the USGS feed, you can find the originals here:
     //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
 
@@ -23,7 +25,7 @@
   } // Defines the callback function referenced in the jsonp file.
 
   function eqfeed_callback(data) {
-    exports.map.data.addGeoJson(data);
+    map.data.addGeoJson(data);
   }
 
   function styleFeature(feature) {
@@ -55,15 +57,15 @@
   function interpolateHsl(lowHsl, highHsl, fraction) {
     var color = [];
 
-    for (var i = 0; i < 3; i++) {
+    for (let i = 0; i < 3; i++) {
       // Calculate color based on the fraction.
-      color[i] = (highHsl[i] - lowHsl[i]) * fraction + lowHsl[i];
+      color.push((highHsl[i] - lowHsl[i]) * fraction + lowHsl[i]);
     }
 
     return "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)";
   }
 
-  var mapStyle = [
+  const mapStyle = [
     {
       featureType: "all",
       elementType: "all",
@@ -113,7 +115,4 @@
 
   exports.eqfeed_callback = eqfeed_callback;
   exports.initMap = initMap;
-  exports.interpolateHsl = interpolateHsl;
-  exports.mapStyle = mapStyle;
-  exports.styleFeature = styleFeature;
 })((this.window = this.window || {}));

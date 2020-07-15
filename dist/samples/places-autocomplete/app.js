@@ -5,17 +5,15 @@
   // parameter when you first load the API. For example:
   // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
       center: {
         lat: -33.8688,
         lng: 151.2195
       },
       zoom: 13
     });
-    var card = document.getElementById("pac-card");
-    var input = document.getElementById("pac-input");
-    var types = document.getElementById("type-selector");
-    var strictBounds = document.getElementById("strict-bounds-selector");
+    const card = document.getElementById("pac-card");
+    const input = document.getElementById("pac-input");
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
     var autocomplete = new google.maps.places.Autocomplete(input); // Bind the map's bounds (viewport) property to the autocomplete object,
     // so that the autocomplete requests use the current map bounds for the
@@ -28,7 +26,7 @@
     var infowindowContent = document.getElementById("infowindow-content");
     infowindow.setContent(infowindowContent);
     var marker = new google.maps.Marker({
-      map: map,
+      map,
       anchorPoint: new google.maps.Point(0, -29)
     });
     autocomplete.addListener("place_changed", function() {

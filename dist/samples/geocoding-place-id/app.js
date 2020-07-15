@@ -3,15 +3,15 @@
 
   // Initialize the map.
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 8,
       center: {
         lat: 40.72,
         lng: -73.96
       }
     });
-    var geocoder = new google.maps.Geocoder();
-    var infowindow = new google.maps.InfoWindow();
+    const geocoder = new google.maps.Geocoder();
+    const infowindow = new google.maps.InfoWindow();
     document.getElementById("submit").addEventListener("click", function() {
       geocodePlaceId(geocoder, map, infowindow);
     });
@@ -19,7 +19,7 @@
   // a geocode of a place ID.
 
   function geocodePlaceId(geocoder, map, infowindow) {
-    var placeId = document.getElementById("place-id").value;
+    const placeId = document.getElementById("place-id").value;
     geocoder.geocode(
       {
         placeId: placeId
@@ -29,8 +29,8 @@
           if (results[0]) {
             map.setZoom(11);
             map.setCenter(results[0].geometry.location);
-            var marker = new google.maps.Marker({
-              map: map,
+            const marker = new google.maps.Marker({
+              map,
               position: results[0].geometry.location
             });
             infowindow.setContent(results[0].formatted_address);

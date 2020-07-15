@@ -2,7 +2,7 @@
   "use strict";
 
   function initPano() {
-    var panorama = new google.maps.StreetViewPanorama(
+    const panorama = new google.maps.StreetViewPanorama(
       document.getElementById("pano"),
       {
         position: {
@@ -29,7 +29,7 @@
 
       var links = panorama.getLinks();
 
-      for (var i in links) {
+      for (let i in links) {
         var row = document.createElement("tr");
         linksTable.appendChild(row);
         var labelCell = document.createElement("td");

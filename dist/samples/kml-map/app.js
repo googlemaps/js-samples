@@ -6,28 +6,28 @@
    *   and displaying the contents in a side panel instead of
    *   an InfoWindow
    */
-
-  var src =
+  let map;
+  const url =
     "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
 
   function initMap() {
-    exports.map = new google.maps.Map(document.getElementById("map"), {
+    map = new google.maps.Map(document.getElementById("map"), {
       center: new google.maps.LatLng(-19.257753, 146.823688),
       zoom: 2,
       mapTypeId: "terrain"
     });
-    var kmlLayer = new google.maps.KmlLayer(src, {
+    const kmlLayer = new google.maps.KmlLayer({
       suppressInfoWindows: true,
       preserveViewport: false,
-      map: exports.map
+      map,
+      url
     });
     kmlLayer.addListener("click", function(event) {
-      var content = event.featureData.infoWindowHtml;
-      var testimonial = document.getElementById("capture");
+      const content = event.featureData.infoWindowHtml;
+      const testimonial = document.getElementById("capture");
       testimonial.innerHTML = content;
     });
   }
 
   exports.initMap = initMap;
-  exports.src = src;
 })((this.window = this.window || {}));

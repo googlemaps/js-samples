@@ -21,7 +21,7 @@
     var infowindow = new google.maps.InfoWindow();
     infowindow.setContent("<b>القاهرة</b>");
     var marker = new google.maps.Marker({
-      map: map,
+      map,
       position: cairo
     });
     marker.addListener("click", function() {

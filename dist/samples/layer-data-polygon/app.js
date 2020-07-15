@@ -16,15 +16,15 @@
       {
         lat: -32.364,
         lng: 153.207
-      }, // north west
+      },
       {
         lat: -35.364,
         lng: 153.207
-      }, // south west
+      },
       {
         lat: -35.364,
         lng: 158.207
-      }, // south east
+      },
       {
         lat: -32.364,
         lng: 158.207

@@ -37,7 +37,7 @@
   function drop() {
     clearMarkers();
 
-    for (var i = 0; i < neighborhoods.length; i++) {
+    for (let i = 0; i < neighborhoods.length; i++) {
       addMarkerWithTimeout(neighborhoods[i], i * 200);
     }
   }
@@ -55,7 +55,7 @@
   }
 
   function clearMarkers() {
-    for (var i = 0; i < exports.markers.length; i++) {
+    for (let i = 0; i < exports.markers.length; i++) {
       exports.markers[i].setMap(null);
     }
 

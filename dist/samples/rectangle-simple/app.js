@@ -17,7 +17,7 @@
       strokeWeight: 2,
       fillColor: "#FF0000",
       fillOpacity: 0.35,
-      map: map,
+      map,
       bounds: {
         north: 33.685,
         south: 33.671,

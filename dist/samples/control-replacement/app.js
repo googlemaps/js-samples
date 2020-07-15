@@ -97,8 +97,8 @@
       document.webkitExitFullscreen();
     } else if (document.mozCancelFullScreen) {
       document.mozCancelFullScreen();
-    } else if (document.msCancelFullScreen) {
-      document.msCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
     }
   }
 

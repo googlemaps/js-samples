@@ -113,7 +113,7 @@
       }
     ]; // Create markers.
 
-    for (var i = 0; i < features.length; i++) {
+    for (let i = 0; i < features.length; i++) {
       var marker = new google.maps.Marker({
         position: features[i].position,
         icon: icons[features[i].type].icon,

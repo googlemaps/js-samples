@@ -67,7 +67,7 @@
           var directionsService = new google.maps.DirectionsService();
           var directionsRenderer = new google.maps.DirectionsRenderer({
             draggable: true,
-            map: map,
+            map,
             panel: document.getElementById("right-panel")
           });
           directionsRenderer.addListener("directions_changed", function() {
@@ -94,12 +94,12 @@
                   location: "Broken Hill, NSW"
                 }
               ],
-              travelMode: "DRIVING",
+              travelMode: google.maps.TravelMode.DRIVING,
               avoidTolls: true
             },
-            function(response, status) {
+            function(result, status) {
               if (status === "OK") {
-                display.setDirections(response);
+                display.setDirections(result);
               } else {
                 alert("Could not display directions due to: " + status);
               }
@@ -111,7 +111,7 @@
           var total = 0;
           var myroute = result.routes[0];
 
-          for (var i = 0; i < myroute.legs.length; i++) {
+          for (let i = 0; i < myroute.legs.length; i++) {
             total += myroute.legs[i].distance.value;
           }
 

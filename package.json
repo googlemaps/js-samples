@@ -35,14 +35,17 @@
   },
   "devDependencies": {
     "@babel/preset-env": "^7.9.6",
-    "@bazel/bazel": "^1.1.0",
     "@bazel/buildifier": "^0.26.0",
-    "@bazel/buildozer": "^0.29.0",
-    "@bazel/rollup": "0.42.1",
+    "@bazel/buildozer": "^0.29.0i",
+    "@bazel/rollup": "2.0.0-rc.1",
+    "@bazel/typescript": "2.0.0-rc.1",
+    "@material/select": "^7.0.0",
     "@rollup/plugin-babel": "^5.0.0",
+    "@types/google.visualization": "0.0.53",
     "@types/googlemaps": "^3.37.7",
     "@types/jest": "^25.2.1",
     "core-js": "^3.6.5",
+    "deck.gl": "^8.2.2",
     "eslint": "^7.0.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-jest": "^22.21.0",
@@ -59,6 +62,7 @@
     "rollup": "^2.0.0",
     "selenium-standalone": "^6.17.0",
     "selenium-webdriver": "^4.0.0-alpha.7",
+    "typescript": "^3.9.6",
     "web-resource-inliner": "^4.3.4"
   }
 }

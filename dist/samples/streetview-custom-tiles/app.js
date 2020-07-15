@@ -9,7 +9,6 @@
     return {
       location: {
         pano: "reception",
-        // The ID for this custom panorama.
         description: "Google Sydney - Reception",
         latLng: new google.maps.LatLng(-33.86684, 151.19583)
       },
@@ -54,7 +53,7 @@
         return getReceptionPanoramaData();
       }
 
-      return null;
+      return {};
     }); // Add a link to our custom panorama from outside the Google Sydney office.
 
     exports.panorama.addListener("links_changed", function() {
@@ -80,7 +79,7 @@
         }
       },
       function(result, status) {
-        if (status === "OK") {
+        if (status === google.maps.StreetViewStatus.OK && result) {
           exports.outsideGoogle = result;
           initPanorama();
         }

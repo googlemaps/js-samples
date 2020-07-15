@@ -29,7 +29,7 @@
   }
 
   var styles = {
-    default: null,
+    default: [],
     hide: [
       {
         featureType: "poi.business",
