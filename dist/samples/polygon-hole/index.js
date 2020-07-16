@@ -1,12 +1,12 @@
 // [START maps_polygon_hole]
 // This example creates a triangular polygon with a hole in it.
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 5,
     center: { lat: 24.886, lng: -70.268 }
   });
   // Define the LatLng coordinates for the polygon's  outer path.
-  var outerCoords = [
+  const outerCoords = [
     { lat: 25.774, lng: -80.19 },
     { lat: 18.466, lng: -66.118 },
     { lat: 32.321, lng: -64.757 }
@@ -14,13 +14,13 @@ function initMap() {
   // Define the LatLng coordinates for the polygon's inner path.
   // Note that the points forming the inner path are wound in the
   // opposite direction to those in the outer path, to form the hole.
-  var innerCoords = [
+  const innerCoords = [
     { lat: 28.745, lng: -70.579 },
     { lat: 29.57, lng: -67.514 },
     { lat: 27.339, lng: -66.668 }
   ];
   // Construct the polygon, including both paths.
-  var bermudaTriangle = new google.maps.Polygon({
+  const bermudaTriangle = new google.maps.Polygon({
     paths: [outerCoords, innerCoords],
     strokeColor: "#FFC107",
     strokeOpacity: 0.8,

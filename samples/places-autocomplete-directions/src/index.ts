@@ -111,12 +111,13 @@ class AutocompleteDirectionsHandler {
     autocomplete.bindTo("bounds", this.map);
 
     autocomplete.addListener("place_changed", () => {
-      var place = autocomplete.getPlace();
+      const place = autocomplete.getPlace();
 
       if (!place.place_id) {
         window.alert("Please select an option from the dropdown list.");
         return;
       }
+
       if (mode === "ORIG") {
         this.originPlaceId = place.place_id;
       } else {
@@ -130,7 +131,7 @@ class AutocompleteDirectionsHandler {
     if (!this.originPlaceId || !this.destinationPlaceId) {
       return;
     }
-    var me = this;
+    const me = this;
 
     this.directionsService.route(
       {

@@ -19,7 +19,7 @@
   const MARKER_PATH =
     "https://developers.google.com/maps/documentation/javascript/images/marker_green";
   const hostnameRegexp = new RegExp("^https?://.+?/");
-  var countries = {
+  const countries = {
     au: {
       center: {
         lat: -25.3,
@@ -144,7 +144,7 @@
   // zoom the map in on the city.
 
   function onPlaceChanged() {
-    var place = exports.autocomplete.getPlace();
+    const place = exports.autocomplete.getPlace();
 
     if (place.geometry) {
       exports.map.panTo(place.geometry.location);
@@ -156,7 +156,7 @@
   } // Search for hotels in the selected city, within the viewport of the map.
 
   function search() {
-    var search = {
+    const search = {
       bounds: exports.map.getBounds(),
       types: ["lodging"]
     };
@@ -167,8 +167,10 @@
         // assign a letter of the alphabetic to each marker icon.
 
         for (let i = 0; i < results.length; i++) {
-          var markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
-          var markerIcon = MARKER_PATH + markerLetter + ".png"; // Use marker animation to drop the icons incrementally on the map.
+          const markerLetter = String.fromCharCode(
+            "A".charCodeAt(0) + (i % 26)
+          );
+          const markerIcon = MARKER_PATH + markerLetter + ".png"; // Use marker animation to drop the icons incrementally on the map.
 
           exports.markers[i] = new google.maps.Marker({
             position: results[i].geometry.location,
@@ -203,7 +205,7 @@
   // Also center and zoom the map on the given country.
 
   function setAutocompleteCountry() {
-    var country = document.getElementById("country").value;
+    const country = document.getElementById("country").value;
 
     if (country == "all") {
       exports.autocomplete.setComponentRestrictions({
@@ -233,23 +235,23 @@
   }
 
   function addResult(result, i) {
-    var results = document.getElementById("results");
-    var markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
-    var markerIcon = MARKER_PATH + markerLetter + ".png";
-    var tr = document.createElement("tr");
+    const results = document.getElementById("results");
+    const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+    const markerIcon = MARKER_PATH + markerLetter + ".png";
+    const tr = document.createElement("tr");
     tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
 
     tr.onclick = function() {
       google.maps.event.trigger(exports.markers[i], "click");
     };
 
-    var iconTd = document.createElement("td");
-    var nameTd = document.createElement("td");
-    var icon = document.createElement("img");
+    const iconTd = document.createElement("td");
+    const nameTd = document.createElement("td");
+    const icon = document.createElement("img");
     icon.src = markerIcon;
     icon.setAttribute("class", "placeIcon");
     icon.setAttribute("className", "placeIcon");
-    var name = document.createTextNode(result.name);
+    const name = document.createTextNode(result.name);
     iconTd.appendChild(icon);
     nameTd.appendChild(name);
     tr.appendChild(iconTd);
@@ -258,7 +260,7 @@
   }
 
   function clearResults() {
-    var results = document.getElementById("results");
+    const results = document.getElementById("results");
 
     while (results.childNodes[0]) {
       results.removeChild(results.childNodes[0]);
@@ -268,7 +270,7 @@
 
   function showInfoWindow() {
     // @ts-ignore
-    var marker = this;
+    const marker = this;
     places.getDetails(
       {
         placeId: marker.placeResult.place_id
@@ -302,7 +304,7 @@
     // for the rating points not achieved.
 
     if (place.rating) {
-      var ratingHtml = "";
+      let ratingHtml = "";
 
       for (let i = 0; i < 5; i++) {
         if (place.rating < i + 0.5) {
@@ -320,8 +322,8 @@
     // to give a short URL for displaying in the info window.
 
     if (place.website) {
-      var fullUrl = place.website;
-      var website = String(hostnameRegexp.exec(place.website));
+      let fullUrl = place.website;
+      let website = String(hostnameRegexp.exec(place.website));
 
       if (!website) {
         website = "http://" + place.website + "/";

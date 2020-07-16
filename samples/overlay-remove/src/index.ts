@@ -27,7 +27,7 @@ function initMap() {
     center: { lat: 40.74, lng: -74.18 }
   });
 
-  var imageBounds = {
+  const imageBounds = {
     north: 40.773941,
     south: 40.712216,
     east: -74.12544,

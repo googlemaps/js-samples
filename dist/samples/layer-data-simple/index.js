@@ -1,5 +1,6 @@
 // [START maps_layer_data_simple]
 let map;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,

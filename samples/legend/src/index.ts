@@ -24,8 +24,8 @@ function initMap() {
     mapTypeId: "roadmap"
   });
 
-  var iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
-  var icons: Record<string, any> = {
+  const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
+  const icons: Record<string, any> = {
     parking: {
       name: "Parking",
       icon: iconBase + "parking_lot_maps.png"
@@ -40,7 +40,7 @@ function initMap() {
     }
   };
 
-  var features = [
+  const features = [
     {
       position: new google.maps.LatLng(-33.91721, 151.2263),
       type: "info"
@@ -121,19 +121,20 @@ function initMap() {
 
   // Create markers.
   features.forEach(function(feature) {
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: feature.position,
       icon: icons[feature.type].icon,
       map: map
     });
   });
 
-  var legend = document.getElementById("legend") as HTMLElement;
+  const legend = document.getElementById("legend") as HTMLElement;
+
   for (const key in icons) {
-    var type = icons[key];
-    var name = type.name;
-    var icon = type.icon;
-    var div = document.createElement("div");
+    const type = icons[key];
+    const name = type.name;
+    const icon = type.icon;
+    const div = document.createElement("div");
     div.innerHTML = '<img src="' + icon + '"> ' + name;
     legend.appendChild(div);
   }

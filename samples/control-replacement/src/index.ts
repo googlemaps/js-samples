@@ -56,6 +56,7 @@ function initZoomControl(map: google.maps.Map) {
   ) as HTMLElement).onclick = function() {
     map.setZoom(map.getZoom() + 1);
   };
+
   (document.querySelector(
     ".zoom-control-out"
   ) as HTMLElement).onclick = function() {
@@ -67,9 +68,10 @@ function initZoomControl(map: google.maps.Map) {
 }
 
 function initMapTypeControl(map: google.maps.Map) {
-  var mapTypeControlDiv = document.querySelector(
+  const mapTypeControlDiv = document.querySelector(
     ".maptype-control"
   ) as HTMLElement;
+
   (document.querySelector(
     ".maptype-control-map"
   ) as HTMLElement).onclick = function() {
@@ -77,6 +79,7 @@ function initMapTypeControl(map: google.maps.Map) {
     mapTypeControlDiv.classList.remove("maptype-control-is-satellite");
     map.setMapTypeId("roadmap");
   };
+
   (document.querySelector(
     ".maptype-control-satellite"
   ) as HTMLElement).onclick = function() {
@@ -89,8 +92,8 @@ function initMapTypeControl(map: google.maps.Map) {
 }
 
 function initFullscreenControl(map: google.maps.Map) {
-  var elementToSendFullscreen = map.getDiv().firstChild as HTMLElement;
-  var fullscreenControl = document.querySelector(
+  const elementToSendFullscreen = map.getDiv().firstChild as HTMLElement;
+  const fullscreenControl = document.querySelector(
     ".fullscreen-control"
   ) as HTMLElement;
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
@@ -120,6 +123,7 @@ function isFullscreen(element: HTMLElement) {
       document.msFullscreenElement) == element
   );
 }
+
 function requestFullscreen(element: HTMLElement) {
   if (element.requestFullscreen) {
     element.requestFullscreen();
@@ -131,6 +135,7 @@ function requestFullscreen(element: HTMLElement) {
     element.msRequestFullScreen();
   }
 }
+
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();

@@ -16,13 +16,16 @@
 
 // [START maps_event_properties]
 function initMap() {
-  var originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 4,
-    center: originalMapCenter
-  });
+  const originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 4,
+      center: originalMapCenter
+    }
+  );
 
-  var infowindow = new google.maps.InfoWindow({
+  const infowindow = new google.maps.InfoWindow({
     content: "Change the zoom level",
     position: originalMapCenter
   });

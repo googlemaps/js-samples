@@ -22,7 +22,7 @@ google.load("visualization", "1", { packages: ["columnchart"] });
 function initMap() {
   // The following path marks a path from Mt. Whitney, the highest point in the
   // continental United States to Badwater, Death Valley, the lowest point.
-  var path = [
+  const path = [
     { lat: 36.579, lng: -118.292 }, // Mt. Whitney
     { lat: 36.606, lng: -118.0638 }, // Lone Pine
     { lat: 36.433, lng: -117.951 }, // Owens Lake
@@ -31,14 +31,17 @@ function initMap() {
     { lat: 36.24, lng: -116.832 }
   ]; // Badwater, Death Valley
 
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 8,
-    center: path[1],
-    mapTypeId: "terrain"
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 8,
+      center: path[1],
+      mapTypeId: "terrain"
+    }
+  );
 
   // Create an ElevationService.
-  var elevator = new google.maps.ElevationService();
+  const elevator = new google.maps.ElevationService();
 
   // Draw the path, using the Visualization API and the Elevation service.
   displayPathElevation(path, elevator, map);
@@ -73,7 +76,8 @@ function displayPathElevation(
 // Takes an array of ElevationResult objects, draws the path on the map
 // and plots the elevation profile on a Visualization API ColumnChart.
 function plotElevation(elevations, status) {
-  var chartDiv = document.getElementById("elevation_chart") as HTMLElement;
+  const chartDiv = document.getElementById("elevation_chart") as HTMLElement;
+
   if (status !== "OK") {
     // Show the error code inside the chartDiv.
     chartDiv.innerHTML =
@@ -81,15 +85,16 @@ function plotElevation(elevations, status) {
     return;
   }
   // Create a new chart in the elevation_chart DIV.
-  var chart = new google.visualization.ColumnChart(chartDiv);
+  const chart = new google.visualization.ColumnChart(chartDiv);
 
   // Extract the data from which to populate the chart.
   // Because the samples are equidistant, the 'Sample'
   // column here does double duty as distance along the
   // X axis.
-  var data = new google.visualization.DataTable();
+  const data = new google.visualization.DataTable();
   data.addColumn("string", "Sample");
   data.addColumn("number", "Elevation");
+
   for (let i = 0; i < elevations.length; i++) {
     data.addRow(["", elevations[i].elevation]);
   }

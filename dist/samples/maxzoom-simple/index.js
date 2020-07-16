@@ -2,6 +2,7 @@
 let map;
 let maxZoomService;
 let infoWindow;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
@@ -12,6 +13,7 @@ function initMap() {
   maxZoomService = new google.maps.MaxZoomService();
   map.addListener("click", showMaxZoom);
 }
+
 function showMaxZoom(e) {
   maxZoomService.getMaxZoomAtLatLng(e.latLng, function(result) {
     if (result.status !== "OK") {

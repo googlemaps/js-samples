@@ -1,16 +1,8 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": "2018",
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "sourceType": "module"
   },
   "globals": {
     "google": "writable",
@@ -24,9 +16,27 @@
     "browser": true
   },
   "rules": {
-    "no-var": 1,
-    "@typescript-eslint/ban-ts-comment": 1,
-    "@typescript-eslint/no-this-alias": 1,
-    "@typescript-eslint/no-empty-function": 1
+    "no-unused-vars": 1,
+    "no-var": 2,
+    "padding-line-between-statements": [
+      1,
+      {
+        "blankLine": "always",
+        "prev": ["*"],
+        "next": [
+          "if",
+          "block",
+          "block-like",
+          "switch",
+          "class",
+          "function",
+          "try",
+          "for",
+          "do",
+          "while",
+          "with"
+        ]
+      }
+    ]
   }
 }

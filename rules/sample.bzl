@@ -24,12 +24,13 @@ def sample():
 
     native.genrule(
         name = "_index_js",
-        srcs = [":_compile_outputs"],
+        srcs = [":_compile_outputs", "//:.eslintrc.json"],
         outs = ["_index.js"],
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
               "$(location //rules:remove_apache_license) $@; " +
-              "$(location //rules:strip_source_map_url_bin) $@; ",
-        tools = ["//rules:remove_apache_license", "//rules:strip_source_map_url_bin"],
+              "$(location //rules:strip_source_map_url_bin) $@; " +
+              "$(location //rules:eslint) -c $(location //:.eslintrc.json) --fix $@; ",
+        tools = ["//rules:eslint","//rules:remove_apache_license", "//rules:strip_source_map_url_bin"],
     )
 
     native.genrule(

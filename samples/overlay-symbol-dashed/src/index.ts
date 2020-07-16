@@ -20,15 +20,18 @@
 // at a regular interval on the polyline.
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 6,
-    center: { lat: 20.291, lng: 153.027 },
-    mapTypeId: "terrain"
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 6,
+      center: { lat: 20.291, lng: 153.027 },
+      mapTypeId: "terrain"
+    }
+  );
 
   // [START maps_overlay_symbol_dashed_region_polyline]
   // Define a symbol using SVG path notation, with an opacity of 1.
-  var lineSymbol = {
+  const lineSymbol = {
     path: "M 0,-1 0,1",
     strokeOpacity: 1,
     scale: 4
@@ -37,7 +40,7 @@ function initMap() {
   // Create the polyline, passing the symbol in the 'icons' property.
   // Give the line an opacity of 0.
   // Repeat the symbol at intervals of 20 pixels to create the dashed effect.
-  var line = new google.maps.Polyline({
+  const line = new google.maps.Polyline({
     path: [
       { lat: 22.291, lng: 153.027 },
       { lat: 18.291, lng: 153.027 }

@@ -2,7 +2,7 @@
   "use strict";
 
   let autocomplete;
-  var componentForm = {
+  const componentForm = {
     street_number: "short_name",
     route: "long_name",
     locality: "long_name",
@@ -30,7 +30,7 @@
 
   function fillInAddress() {
     // Get the place details from the autocomplete object.
-    var place = autocomplete.getPlace();
+    const place = autocomplete.getPlace();
 
     for (const component in componentForm) {
       document.getElementById(component).value = "";

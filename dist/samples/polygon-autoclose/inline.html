@@ -31,7 +31,7 @@
         // API automatically draws a stroke connecting the last LatLng back to the first
         // LatLng.
         function initMap() {
-          var map = new google.maps.Map(document.getElementById("map"), {
+          const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 5,
             center: {
               lat: 24.886,
@@ -42,7 +42,7 @@
           // no need to specify the final coordinates to complete the polygon, because
           // The Google Maps JavaScript API will automatically draw the closing side.
 
-          var triangleCoords = [
+          const triangleCoords = [
             {
               lat: 25.774,
               lng: -80.19
@@ -56,7 +56,7 @@
               lng: -64.757
             }
           ];
-          var bermudaTriangle = new google.maps.Polygon({
+          const bermudaTriangle = new google.maps.Polygon({
             paths: triangleCoords,
             strokeColor: "#FF0000",
             strokeOpacity: 0.8,

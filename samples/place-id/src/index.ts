@@ -30,7 +30,7 @@ function initMap() {
     query: "Google Sydney"
   };
 
-  var service = new google.maps.places.PlacesService(map);
+  const service = new google.maps.places.PlacesService(map);
   service.textSearch(request, callback);
 }
 

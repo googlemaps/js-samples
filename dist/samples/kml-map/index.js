@@ -7,6 +7,7 @@
 let map;
 const url =
   "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-19.257753, 146.823688),

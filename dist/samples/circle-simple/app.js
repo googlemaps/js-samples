@@ -1,7 +1,7 @@
 (function(exports) {
   "use strict";
 
-  var citymap = {
+  const citymap = {
     chicago: {
       center: {
         lat: 41.878,
@@ -34,7 +34,7 @@
 
   function initMap() {
     // Create the map.
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 4,
       center: {
         lat: 37.09,
@@ -46,7 +46,7 @@
 
     for (const city in citymap) {
       // Add the circle for this city to the map.
-      var cityCircle = new google.maps.Circle({
+      const cityCircle = new google.maps.Circle({
         strokeColor: "#FF0000",
         strokeOpacity: 0.8,
         strokeWeight: 2,

@@ -4,7 +4,7 @@
   // This example adds a predefined symbol (an arrow) to a polyline.
   // Setting offset to 100% places the arrow at the end of the line.
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 6,
       center: {
         lat: 20.291,
@@ -14,11 +14,11 @@
     }); // Define a symbol using a predefined path (an arrow)
     // supplied by the Google Maps JavaScript API.
 
-    var lineSymbol = {
+    const lineSymbol = {
       path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
     }; // Create the polyline and add the symbol via the 'icons' property.
 
-    var line = new google.maps.Polyline({
+    const line = new google.maps.Polyline({
       path: [
         {
           lat: 22.291,

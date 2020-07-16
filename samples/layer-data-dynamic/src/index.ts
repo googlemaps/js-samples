@@ -32,7 +32,8 @@ function initMap() {
   // Color each letter gray. Change the color when the isColorful property
   // is set to true.
   map.data.setStyle(function(feature) {
-    var color = "gray";
+    let color = "gray";
+
     if (feature.getProperty("isColorful")) {
       color = feature.getProperty("color");
     }

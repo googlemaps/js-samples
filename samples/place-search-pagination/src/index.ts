@@ -34,8 +34,10 @@ function initMap() {
   const service = new google.maps.places.PlacesService(map);
   let getNextPage: () => void | false;
   const moreButton = document.getElementById("more") as HTMLButtonElement;
+
   moreButton.onclick = function() {
     moreButton.disabled = true;
+
     if (getNextPage) {
       getNextPage();
     }

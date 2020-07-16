@@ -15,14 +15,15 @@ function initMap() {
     center: { lat: 62.323907, lng: -150.109291 },
     mapTypeId: "satellite"
   });
-  var bounds = new google.maps.LatLngBounds(
+  const bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(62.281819, -150.287132),
     new google.maps.LatLng(62.400471, -150.005608)
   );
   // The photograph is courtesy of the U.S. Geological Survey.
-  var srcImage =
+  const srcImage =
     "https://developers.google.com/maps/documentation/" +
     "javascript/examples/full/images/talkeetna.png";
+
   // The custom USGSOverlay object contains the USGS image,
   // the bounds of the image, and a reference to the map.
   class USGSOverlay extends google.maps.OverlayView {
@@ -49,14 +50,14 @@ function initMap() {
       this.div_.style.borderWidth = "0px";
       this.div_.style.position = "absolute";
       // Create the img element and attach it to the div.
-      var img = document.createElement("img");
+      const img = document.createElement("img");
       img.src = this.image_;
       img.style.width = "100%";
       img.style.height = "100%";
       img.style.position = "absolute";
       this.div_.appendChild(img);
       // Add the element to the "overlayLayer" pane.
-      var panes = this.getPanes();
+      const panes = this.getPanes();
       panes.overlayLayer.appendChild(this.div_);
     }
     // [END maps_overlay_simple_region_attachment]
@@ -65,16 +66,17 @@ function initMap() {
       // We use the south-west and north-east
       // coordinates of the overlay to peg it to the correct position and size.
       // To do this, we need to retrieve the projection from the overlay.
-      var overlayProjection = this.getProjection();
+      const overlayProjection = this.getProjection();
       // Retrieve the south-west and north-east coordinates of this overlay
       // in LatLngs and convert them to pixel coordinates.
       // We'll use these coordinates to resize the div.
-      var sw = overlayProjection.fromLatLngToDivPixel(
+      const sw = overlayProjection.fromLatLngToDivPixel(
         this.bounds_.getSouthWest()
       );
-      var ne = overlayProjection.fromLatLngToDivPixel(
+      const ne = overlayProjection.fromLatLngToDivPixel(
         this.bounds_.getNorthEast()
       );
+
       // Resize the image's div to fit the indicated dimensions.
       if (this.div_) {
         this.div_.style.left = sw.x + "px";

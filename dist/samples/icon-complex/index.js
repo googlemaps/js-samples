@@ -18,6 +18,7 @@ const beaches = [
   ["Manly Beach", -33.80010128657071, 151.28747820854187, 2],
   ["Maroubra Beach", -33.950198, 151.259302, 1]
 ];
+
 function setMarkers(map) {
   // Adds markers to the map.
   // Marker sizes are expressed as a Size of X,Y where the origin of the image
@@ -41,6 +42,7 @@ function setMarkers(map) {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],
     type: "poly"
   };
+
   for (let i = 0; i < beaches.length; i++) {
     const beach = beaches[i];
     const marker = new google.maps.Marker({

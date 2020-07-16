@@ -39,7 +39,7 @@ function toggleHeatmap() {
 }
 
 function changeGradient() {
-  var gradient = [
+  const gradient = [
     "rgba(0, 255, 255, 0)",
     "rgba(0, 255, 255, 1)",
     "rgba(0, 191, 255, 1)",

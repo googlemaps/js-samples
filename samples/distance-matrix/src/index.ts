@@ -16,27 +16,27 @@
 
 // [START maps_distance_matrix]
 function initMap() {
-  var bounds = new google.maps.LatLngBounds();
-  var markersArray: google.maps.Marker[] = [];
+  const bounds = new google.maps.LatLngBounds();
+  const markersArray: google.maps.Marker[] = [];
 
-  var origin1 = { lat: 55.93, lng: -3.118 };
-  var origin2 = "Greenwich, England";
-  var destinationA = "Stockholm, Sweden";
-  var destinationB = { lat: 50.087, lng: 14.421 };
+  const origin1 = { lat: 55.93, lng: -3.118 };
+  const origin2 = "Greenwich, England";
+  const destinationA = "Stockholm, Sweden";
+  const destinationB = { lat: 50.087, lng: 14.421 };
 
-  var destinationIcon =
+  const destinationIcon =
     "https://chart.googleapis.com/chart?" +
     "chst=d_map_pin_letter&chld=D|FF0000|000000";
-  var originIcon =
+  const originIcon =
     "https://chart.googleapis.com/chart?" +
     "chst=d_map_pin_letter&chld=O|FFFF00|000000";
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+  const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 55.53, lng: 9.4 },
     zoom: 10
   });
-  var geocoder = new google.maps.Geocoder();
+  const geocoder = new google.maps.Geocoder();
 
-  var service = new google.maps.DistanceMatrixService();
+  const service = new google.maps.DistanceMatrixService();
   service.getDistanceMatrix(
     {
       // @ts-ignore TODO(jpoehnelt) fix typings
@@ -52,14 +52,14 @@ function initMap() {
       if (status !== "OK") {
         alert("Error was: " + status);
       } else {
-        var originList = response.originAddresses;
-        var destinationList = response.destinationAddresses;
-        var outputDiv = document.getElementById("output") as HTMLDivElement;
+        const originList = response.originAddresses;
+        const destinationList = response.destinationAddresses;
+        const outputDiv = document.getElementById("output") as HTMLDivElement;
         outputDiv.innerHTML = "";
         deleteMarkers(markersArray);
 
-        var showGeocodedAddressOnMap = function(asDestination: boolean) {
-          var icon = asDestination ? destinationIcon : originIcon;
+        const showGeocodedAddressOnMap = function(asDestination: boolean) {
+          const icon = asDestination ? destinationIcon : originIcon;
           return function(
             results: google.maps.GeocoderResult[],
             status: google.maps.GeocoderStatus
@@ -80,7 +80,7 @@ function initMap() {
         };
 
         for (let i = 0; i < originList.length; i++) {
-          var results = response.rows[i].elements;
+          const results = response.rows[i].elements;
           geocoder.geocode(
             { address: originList[i] },
             showGeocodedAddressOnMap(false)

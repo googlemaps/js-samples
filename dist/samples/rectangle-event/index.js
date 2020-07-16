@@ -5,12 +5,13 @@
 let rectangle;
 let map;
 let infoWindow;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 44.5452, lng: -78.5389 },
     zoom: 9
   });
-  var bounds = {
+  const bounds = {
     north: 44.599,
     south: 44.49,
     east: -78.443,
@@ -28,11 +29,12 @@ function initMap() {
   // Define an info window on the map.
   infoWindow = new google.maps.InfoWindow();
 }
+
 /** Show the new coordinates for the rectangle in an info window. */
 function showNewRect() {
-  var ne = rectangle.getBounds().getNorthEast();
-  var sw = rectangle.getBounds().getSouthWest();
-  var contentString =
+  const ne = rectangle.getBounds().getNorthEast();
+  const sw = rectangle.getBounds().getSouthWest();
+  const contentString =
     "<b>Rectangle moved.</b><br>" +
     "New north-east corner: " +
     ne.lat() +

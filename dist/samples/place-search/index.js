@@ -5,6 +5,7 @@
 let map;
 let service;
 let infowindow;
+
 function initMap() {
   const sydney = new google.maps.LatLng(-33.867, 151.195);
   infowindow = new google.maps.InfoWindow();
@@ -26,6 +27,7 @@ function initMap() {
     }
   });
 }
+
 function createMarker(place) {
   const marker = new google.maps.Marker({
     map,

@@ -1,4 +1,5 @@
 let mapLeft, mapRight;
+
 // [START maps_split_map_panes]
 function initMap() {
   const mapOptions = {
@@ -35,9 +36,11 @@ function initMap() {
       position: google.maps.ControlPosition.RIGHT_BOTTOM
     }
   });
+
   // helper function to keep maps in sync
   function sync(...maps) {
     let center, zoom;
+
     function update(changedMap) {
       maps.forEach(m => {
         if (m === changedMap) {
@@ -51,6 +54,7 @@ function initMap() {
       m.addListener("bounds_changed", () => {
         const changedCenter = m.getCenter();
         const changedZoom = m.getZoom();
+
         if (changedCenter !== center || changedZoom !== zoom) {
           center = changedCenter;
           zoom = changedZoom;
@@ -60,6 +64,7 @@ function initMap() {
     });
   }
   sync(mapLeft, mapRight);
+
   function handleContainerResize() {
     const width = document.getElementById("container").offsetWidth;
     document.getElementById("map-left").style.width = `${width}px`;

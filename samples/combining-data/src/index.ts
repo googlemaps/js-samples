@@ -15,7 +15,7 @@
  */
 
 // [START maps_combining_data]
-var mapStyle: google.maps.MapTypeStyle[] = [
+const mapStyle: google.maps.MapTypeStyle[] = [
   {
     stylers: [{ visibility: "off" }]
   },
@@ -32,7 +32,7 @@ var mapStyle: google.maps.MapTypeStyle[] = [
 ];
 let map: google.maps.Map;
 
-var censusMin = Number.MAX_VALUE,
+let censusMin = Number.MAX_VALUE,
   censusMax = -Number.MAX_VALUE;
 
 function initMap() {
@@ -49,7 +49,7 @@ function initMap() {
   map.data.addListener("mouseout", mouseOutOfRegion);
 
   // wire up the button
-  var selectBox = document.getElementById(
+  const selectBox = document.getElementById(
     "census-variable"
   ) as HTMLSelectElement;
   google.maps.event.addDomListener(selectBox, "change", function() {
@@ -86,20 +86,22 @@ function loadMapShapes() {
  */
 function loadCensusData(variable: string) {
   // load the requested variable from the census API (using local copies)
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open("GET", variable + ".json");
+
   // [START maps_combining_data_snippet_loadcensus]
   xhr.onload = function() {
-    var censusData = JSON.parse(xhr.responseText);
+    const censusData = JSON.parse(xhr.responseText);
     censusData.shift(); // the first row contains column names
     censusData.forEach(function(row: string) {
-      var censusVariable = parseFloat(row[0]);
-      var stateId = row[1];
+      const censusVariable = parseFloat(row[0]);
+      const stateId = row[1];
 
       // keep track of min and max values
       if (censusVariable < censusMin) {
         censusMin = censusVariable;
       }
+
       if (censusVariable > censusMax) {
         censusMax = censusVariable;
       }
@@ -142,22 +144,24 @@ function clearCensusData() {
  */
 // [START maps_combining_data_snippet_stylefeature]
 function styleFeature(feature: google.maps.Data.Feature) {
-  var low = [5, 69, 54]; // color of smallest datum
-  var high = [151, 83, 34]; // color of largest datum
+  const low = [5, 69, 54]; // color of smallest datum
+  const high = [151, 83, 34]; // color of largest datum
 
   // delta represents where the value sits between the min and max
-  var delta =
+  const delta =
     (feature.getProperty("census_variable") - censusMin) /
     (censusMax - censusMin);
 
-  var color: number[] = [];
+  const color: number[] = [];
+
   for (let i = 0; i < 3; i++) {
     // calculate an integer color based on the delta
     color.push((high[i] - low[i]) * delta + low[i]);
   }
 
   // determine whether to show this shape or not
-  var showRow = true;
+  let showRow = true;
+
   if (
     feature.getProperty("census_variable") == null ||
     isNaN(feature.getProperty("census_variable"))
@@ -165,8 +169,9 @@ function styleFeature(feature: google.maps.Data.Feature) {
     showRow = false;
   }
 
-  var outlineWeight = 0.5,
+  let outlineWeight = 0.5,
     zIndex = 1;
+
   if (feature.getProperty("state") === "hover") {
     outlineWeight = zIndex = 2;
   }
@@ -192,7 +197,7 @@ function mouseInToRegion(e: any) {
   // set the hover state so the setStyle function can change the border
   e.feature.setProperty("state", "hover");
 
-  var percent =
+  const percent =
     ((e.feature.getProperty("census_variable") - censusMin) /
       (censusMax - censusMin)) *
     100;

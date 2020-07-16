@@ -61,6 +61,7 @@ class ClickEventHandler {
 
   handleClick(event: google.maps.MouseEvent | google.maps.IconMouseEvent) {
     console.log("You clicked on: " + event.latLng);
+
     // If the event has a placeId, use it.
     if (isIconMouseEvent(event)) {
       console.log("You clicked on place:" + event.placeId);
@@ -76,7 +77,7 @@ class ClickEventHandler {
   }
 
   calculateAndDisplayRoute(placeId: string) {
-    var me = this;
+    const me = this;
     this.directionsService.route(
       {
         origin: this.origin,
@@ -94,7 +95,7 @@ class ClickEventHandler {
   }
 
   getPlaceInformation(placeId: string) {
-    var me = this;
+    const me = this;
     this.placesService.getDetails({ placeId: placeId }, function(
       place: google.maps.places.PlaceResult,
       status: google.maps.places.PlacesServiceStatus

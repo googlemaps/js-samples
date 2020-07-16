@@ -18,17 +18,20 @@
 let panorama: google.maps.StreetViewPanorama;
 
 function initMap() {
-  var astorPlace = { lat: 40.729884, lng: -73.990988 };
+  const astorPlace = { lat: 40.729884, lng: -73.990988 };
 
   // Set up the map
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    center: astorPlace,
-    zoom: 18,
-    streetViewControl: false
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      center: astorPlace,
+      zoom: 18,
+      streetViewControl: false
+    }
+  );
 
   // Set up the markers on the map
-  var cafeMarker = new google.maps.Marker({
+  const cafeMarker = new google.maps.Marker({
     position: { lat: 40.730031, lng: -73.991428 },
     map,
     icon:
@@ -36,7 +39,7 @@ function initMap() {
     title: "Cafe"
   });
 
-  var bankMarker = new google.maps.Marker({
+  const bankMarker = new google.maps.Marker({
     position: { lat: 40.729681, lng: -73.991138 },
     map,
     icon:
@@ -44,7 +47,7 @@ function initMap() {
     title: "Bank"
   });
 
-  var busMarker = new google.maps.Marker({
+  const busMarker = new google.maps.Marker({
     position: { lat: 40.729559, lng: -73.990741 },
     map,
     icon:
@@ -65,7 +68,8 @@ function initMap() {
 }
 
 function toggleStreetView() {
-  var toggle = panorama.getVisible();
+  const toggle = panorama.getVisible();
+
   if (toggle == false) {
     panorama.setVisible(true);
   } else {

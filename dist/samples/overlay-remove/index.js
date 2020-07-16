@@ -3,12 +3,13 @@
 // ground overlay from the map.
 let historicalOverlay;
 let map;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: { lat: 40.74, lng: -74.18 }
   });
-  var imageBounds = {
+  const imageBounds = {
     north: 40.773941,
     south: 40.712216,
     east: -74.12544,
@@ -20,9 +21,11 @@ function initMap() {
   );
   addOverlay();
 }
+
 function addOverlay() {
   historicalOverlay.setMap(map);
 }
+
 // [START maps_overlay_remove_region_removal]
 function removeOverlay() {
   historicalOverlay.setMap(null);

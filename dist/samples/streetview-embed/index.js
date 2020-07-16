@@ -1,5 +1,6 @@
 // [START maps_streetview_embed]
 let panorama;
+
 function initialize() {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view"),

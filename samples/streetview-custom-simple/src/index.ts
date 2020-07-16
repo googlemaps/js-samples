@@ -19,7 +19,7 @@ function initPano() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
   // the custom panorama 'reception' which we check for below.
-  var panorama = new google.maps.StreetViewPanorama(
+  const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("map") as HTMLElement,
     { pano: "reception", visible: true }
   );

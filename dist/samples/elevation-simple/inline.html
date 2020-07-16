@@ -27,7 +27,7 @@
         "use strict";
 
         function initMap() {
-          var map = new google.maps.Map(document.getElementById("map"), {
+          const map = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
             center: {
               lat: 63.333,
@@ -35,8 +35,8 @@
             },
             mapTypeId: "terrain"
           });
-          var elevator = new google.maps.ElevationService();
-          var infowindow = new google.maps.InfoWindow({}); // Add a listener for the click event. Display the elevation for the LatLng of
+          const elevator = new google.maps.ElevationService();
+          const infowindow = new google.maps.InfoWindow({}); // Add a listener for the click event. Display the elevation for the LatLng of
           // the click inside the infowindow.
 
           map.addListener("click", function(event) {

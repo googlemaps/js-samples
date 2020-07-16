@@ -1,6 +1,7 @@
 // eslint-disable no-undef
 // [START maps_marker_collision_management]
 let map;
+
 // Initialize and add the map
 function initMap() {
   let markers = [];
@@ -12,6 +13,7 @@ function initMap() {
     zoom: 17
   });
   const menuList = document.querySelector(".mdc-list");
+
   // Add the behaviors to the select options
   // @ts-ignore Beta functionality
   for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {

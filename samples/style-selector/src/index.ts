@@ -27,13 +27,13 @@ function initMap() {
   });
 
   // Add a style-selector control to the map.
-  var styleControl = document.getElementById(
+  const styleControl = document.getElementById(
     "style-selector-control"
   ) as HTMLElement;
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
 
   // Set the map's style to the initial value of the selector.
-  var styleSelector = document.getElementById(
+  const styleSelector = document.getElementById(
     "style-selector"
   ) as HTMLSelectElement;
   map.setOptions({ styles: styles[styleSelector.value] });
@@ -44,7 +44,7 @@ function initMap() {
   });
 }
 
-var styles: Record<string, google.maps.MapTypeStyle[]> = {
+const styles: Record<string, google.maps.MapTypeStyle[]> = {
   default: [],
   silver: [
     {

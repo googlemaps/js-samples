@@ -30,7 +30,7 @@ function initMap() {
     zoom: 9
   });
 
-  var bounds = {
+  const bounds = {
     north: 44.599,
     south: 44.49,
     east: -78.443,
@@ -55,10 +55,10 @@ function initMap() {
 
 /** Show the new coordinates for the rectangle in an info window. */
 function showNewRect() {
-  var ne = rectangle.getBounds().getNorthEast();
-  var sw = rectangle.getBounds().getSouthWest();
+  const ne = rectangle.getBounds().getNorthEast();
+  const sw = rectangle.getBounds().getSouthWest();
 
-  var contentString =
+  const contentString =
     "<b>Rectangle moved.</b><br>" +
     "New north-east corner: " +
     ne.lat() +

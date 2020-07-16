@@ -16,22 +16,25 @@
 
 // [START maps_directions_complex]
 function initMap() {
-  var markerArray: google.maps.Marker[] = [];
+  const markerArray: google.maps.Marker[] = [];
 
   // Instantiate a directions service.
-  var directionsService = new google.maps.DirectionsService();
+  const directionsService = new google.maps.DirectionsService();
 
   // Create a map and center it on Manhattan.
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 13,
-    center: { lat: 40.771, lng: -73.974 }
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 13,
+      center: { lat: 40.771, lng: -73.974 }
+    }
+  );
 
   // Create a renderer for directions and bind it to the map.
-  var directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
+  const directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
 
   // Instantiate an info window to hold step text.
-  var stepDisplay = new google.maps.InfoWindow();
+  const stepDisplay = new google.maps.InfoWindow();
 
   // Display the route between the initial start and end selections.
   calculateAndDisplayRoute(
@@ -41,8 +44,9 @@ function initMap() {
     stepDisplay,
     map
   );
+
   // Listen to change events from the start and end lists.
-  var onChangeHandler = function() {
+  const onChangeHandler = function() {
     calculateAndDisplayRoute(
       directionsRenderer,
       directionsService,
@@ -108,9 +112,11 @@ function showSteps(
   // For each step, place a marker, and add the text to the marker's infowindow.
   // Also attach the marker to an array so we can keep track of it and remove it
   // when calculating new routes.
-  var myRoute = directionResult.routes[0].legs[0];
+  const myRoute = directionResult.routes[0].legs[0];
+
   for (let i = 0; i < myRoute.steps.length; i++) {
-    var marker = (markerArray[i] = markerArray[i] || new google.maps.Marker());
+    const marker = (markerArray[i] =
+      markerArray[i] || new google.maps.Marker());
     marker.setMap(map);
     marker.setPosition(myRoute.steps[i].start_location);
     attachInstructionText(

@@ -5,7 +5,7 @@
   // Note also that the red triangle is geodesic, so its shape changes
   // as you drag it north or south.
   function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
+    const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 1,
       center: {
         lat: 24.886,
@@ -13,7 +13,7 @@
       },
       mapTypeId: "terrain"
     });
-    var blueCoords = [
+    const blueCoords = [
       {
         lat: 25.774,
         lng: -60.19
@@ -27,7 +27,7 @@
         lng: -44.757
       }
     ];
-    var redCoords = [
+    const redCoords = [
       {
         lat: 25.774,
         lng: -80.19

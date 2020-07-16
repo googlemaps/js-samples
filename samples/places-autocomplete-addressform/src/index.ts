@@ -26,7 +26,7 @@
 let placeSearch: google.maps.places.PlacesService;
 let autocomplete: google.maps.places.Autocomplete;
 
-var componentForm = {
+const componentForm = {
   street_number: "short_name",
   route: "long_name",
   locality: "long_name",
@@ -55,7 +55,7 @@ function initAutocomplete() {
 // [START maps_places_autocomplete_addressform_fillform]
 function fillInAddress() {
   // Get the place details from the autocomplete object.
-  var place = autocomplete.getPlace();
+  const place = autocomplete.getPlace();
 
   for (const component in componentForm) {
     (document.getElementById(component) as HTMLInputElement).value = "";
@@ -66,6 +66,7 @@ function fillInAddress() {
   // and then fill-in the corresponding field on the form.
   for (const component of place.address_components as google.maps.GeocoderAddressComponent[]) {
     const addressType = component.types[0];
+
     if (componentForm[addressType]) {
       const val = component[componentForm[addressType]];
       (document.getElementById(addressType) as HTMLInputElement).value = val;
@@ -80,11 +81,11 @@ function fillInAddress() {
 function geolocate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      var geolocation = {
+      const geolocation = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
       };
-      var circle = new google.maps.Circle({
+      const circle = new google.maps.Circle({
         center: geolocation,
         radius: position.coords.accuracy
       });

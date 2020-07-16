@@ -20,11 +20,14 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 14,
-    center: { lat: 34.366, lng: -89.519 }
-  });
-  var poly = new google.maps.Polyline({
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 14,
+      center: { lat: 34.366, lng: -89.519 }
+    }
+  );
+  const poly = new google.maps.Polyline({
     strokeColor: "#000000",
     strokeOpacity: 1,
     strokeWeight: 3,
@@ -45,13 +48,14 @@ function addLatLngToPoly(
   latLng: google.maps.LatLng,
   poly: google.maps.Polyline
 ) {
-  var path = poly.getPath();
+  const path = poly.getPath();
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear
   path.push(latLng);
 
   // Update the text field to display the polyline encodings
-  var encodeString = google.maps.geometry.encoding.encodePath(path);
+  const encodeString = google.maps.geometry.encoding.encodePath(path);
+
   if (encodeString) {
     (document.getElementById(
       "encoded-polyline"

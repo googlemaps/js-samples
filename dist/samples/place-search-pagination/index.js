@@ -13,8 +13,10 @@ function initMap() {
   const service = new google.maps.places.PlacesService(map);
   let getNextPage;
   const moreButton = document.getElementById("more");
+
   moreButton.onclick = function() {
     moreButton.disabled = true;
+
     if (getNextPage) {
       getNextPage();
     }
@@ -26,15 +28,18 @@ function initMap() {
       if (status !== "OK") return;
       createMarkers(results, map);
       moreButton.disabled = !pagination.hasNextPage;
+
       if (pagination.hasNextPage) {
         getNextPage = pagination.nextPage;
       }
     }
   );
 }
+
 function createMarkers(places, map) {
   const bounds = new google.maps.LatLngBounds();
   const placesList = document.getElementById("places");
+
   for (let i = 0, place; (place = places[i]); i++) {
     const image = {
       url: place.icon,

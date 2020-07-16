@@ -3,12 +3,12 @@
 // When the user clicks the marker, an info window opens.
 // The maximum width of the info window is set to 200 pixels.
 function initMap() {
-  var uluru = { lat: -25.363, lng: 131.044 };
-  var map = new google.maps.Map(document.getElementById("map"), {
+  const uluru = { lat: -25.363, lng: 131.044 };
+  const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
     center: uluru
   });
-  var contentString =
+  const contentString =
     '<div id="content">' +
     '<div id="siteNotice">' +
     "</div>" +
@@ -29,11 +29,11 @@ function initMap() {
     "(last visited June 22, 2009).</p>" +
     "</div>" +
     "</div>";
-  var infowindow = new google.maps.InfoWindow({
+  const infowindow = new google.maps.InfoWindow({
     content: contentString,
     maxWidth: 200
   });
-  var marker = new google.maps.Marker({
+  const marker = new google.maps.Marker({
     position: uluru,
     map,
     title: "Uluru (Ayers Rock)"

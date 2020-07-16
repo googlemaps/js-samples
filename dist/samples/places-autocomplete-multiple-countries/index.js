@@ -3,38 +3,40 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 50.064192, lng: -130.605469 },
     zoom: 3
   });
-  var card = document.getElementById("pac-card");
-  var input = document.getElementById("pac-input");
-  var countries = document.getElementById("country-selector");
+  const card = document.getElementById("pac-card");
+  const input = document.getElementById("pac-input");
+  const countries = document.getElementById("country-selector");
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-  var autocomplete = new google.maps.places.Autocomplete(input);
+  const autocomplete = new google.maps.places.Autocomplete(input);
   // Set initial restrict to the greater list of countries.
   autocomplete.setComponentRestrictions({
     country: ["us", "pr", "vi", "gu", "mp"]
   });
   // Specify only the data fields that are needed.
   autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
-  var infowindow = new google.maps.InfoWindow();
-  var infowindowContent = document.getElementById("infowindow-content");
+  const infowindow = new google.maps.InfoWindow();
+  const infowindowContent = document.getElementById("infowindow-content");
   infowindow.setContent(infowindowContent);
-  var marker = new google.maps.Marker({
+  const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(0, -29)
   });
   autocomplete.addListener("place_changed", function() {
     infowindow.close();
     marker.setVisible(false);
-    var place = autocomplete.getPlace();
+    const place = autocomplete.getPlace();
+
     if (!place.geometry) {
       // User entered the name of a Place that was not suggested and
       // pressed the Enter key, or the Place Details request failed.
       window.alert("No details available for input: '" + place.name + "'");
       return;
     }
+
     // If the place has a geometry, then present it on a map.
     if (place.geometry.viewport) {
       map.fitBounds(place.geometry.viewport);
@@ -44,7 +46,8 @@ function initMap() {
     }
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
-    var address = "";
+    let address = "";
+
     if (place.address_components) {
       address = [
         (place.address_components[0] &&
@@ -63,10 +66,11 @@ function initMap() {
     infowindowContent.children["place-address"].textContent = address;
     infowindow.open(map, marker);
   });
+
   // Sets a listener on a given radio button. The radio buttons specify
   // the countries used to restrict the autocomplete search.
   function setupClickListener(id, countries) {
-    var radioButton = document.getElementById(id);
+    const radioButton = document.getElementById(id);
     radioButton.addEventListener("click", function() {
       autocomplete.setComponentRestrictions({ country: countries });
     });

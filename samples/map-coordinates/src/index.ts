@@ -16,14 +16,17 @@
 
 // [START maps_map_coordinates]
 function initMap() {
-  var chicago = new google.maps.LatLng(41.85, -87.65);
+  const chicago = new google.maps.LatLng(41.85, -87.65);
 
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    center: chicago,
-    zoom: 3
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      center: chicago,
+      zoom: 3
+    }
+  );
 
-  var coordInfoWindow = new google.maps.InfoWindow();
+  const coordInfoWindow = new google.maps.InfoWindow();
   coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
   coordInfoWindow.setPosition(chicago);
   coordInfoWindow.open(map);
@@ -34,19 +37,19 @@ function initMap() {
   });
 }
 
-var TILE_SIZE = 256;
+const TILE_SIZE = 256;
 
 function createInfoWindowContent(latLng: google.maps.LatLng, zoom: number) {
-  var scale = 1 << zoom;
+  const scale = 1 << zoom;
 
-  var worldCoordinate = project(latLng);
+  const worldCoordinate = project(latLng);
 
-  var pixelCoordinate = new google.maps.Point(
+  const pixelCoordinate = new google.maps.Point(
     Math.floor(worldCoordinate.x * scale),
     Math.floor(worldCoordinate.y * scale)
   );
 
-  var tileCoordinate = new google.maps.Point(
+  const tileCoordinate = new google.maps.Point(
     Math.floor((worldCoordinate.x * scale) / TILE_SIZE),
     Math.floor((worldCoordinate.y * scale) / TILE_SIZE)
   );
@@ -64,7 +67,7 @@ function createInfoWindowContent(latLng: google.maps.LatLng, zoom: number) {
 // The mapping between latitude, longitude and pixels is defined by the web
 // mercator projection.
 function project(latLng: google.maps.LatLng) {
-  var siny = Math.sin((latLng.lat() * Math.PI) / 180);
+  let siny = Math.sin((latLng.lat() * Math.PI) / 180);
 
   // Truncating to 0.9999 effectively limits latitude to 89.189. This is
   // about a third of a tile past the edge of the world tile.

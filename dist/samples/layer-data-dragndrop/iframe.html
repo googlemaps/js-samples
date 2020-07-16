@@ -125,9 +125,7 @@
       var files = e.dataTransfer.files;
 
       if (files.length) {
-        // process file(s) being dropped
-        // grab the file data from each file
-        for (var i = 0, file; (file = files[i]); i++) {
+        var _loop = function _loop(i, file) {
           var reader = new FileReader();
 
           reader.onload = function(e) {
@@ -139,6 +137,12 @@
           };
 
           reader.readAsText(file);
+        };
+
+        // process file(s) being dropped
+        // grab the file data from each file
+        for (var i = 0, file; (file = files[i]); i++) {
+          _loop(i, file);
         }
       } else {
         // process non-file (e.g. text or html) content being dropped

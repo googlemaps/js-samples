@@ -4,6 +4,7 @@
 // information about the polygon's coordinates.
 let map;
 let infoWindow;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 5,
@@ -30,6 +31,7 @@ function initMap() {
   bermudaTriangle.addListener("click", showArrays);
   infoWindow = new google.maps.InfoWindow();
 }
+
 function showArrays(event) {
   // Since this polygon has only one path, we can call getPath() to return the
   // MVCArray of LatLngs.
@@ -43,6 +45,7 @@ function showArrays(event) {
     "," +
     event.latLng.lng() +
     "<br>";
+
   // Iterate over the vertices.
   for (let i = 0; i < vertices.getLength(); i++) {
     const xy = vertices.getAt(i);

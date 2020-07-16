@@ -8,7 +8,7 @@
       mapTypeId: "terrain"
     };
     const map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    var flightPlanCoordinates = [
+    const flightPlanCoordinates = [
       new google.maps.LatLng(37.772323, -122.214897),
       new google.maps.LatLng(21.291982, -157.821856),
       new google.maps.LatLng(-18.142599, 178.431),
@@ -32,15 +32,15 @@
         this.div_ = document.createElement("div");
         this.div_.className = "delete-menu";
         this.div_.innerHTML = "Delete";
-        var menu = this;
+        const menu = this;
         google.maps.event.addDomListener(this.div_, "click", function() {
           menu.removeVertex();
         });
       }
 
       onAdd() {
-        var deleteMenu = this;
-        var map = this.getMap();
+        const deleteMenu = this;
+        const map = this.getMap();
         this.getPanes().floatPane.appendChild(this.div_); // mousedown anywhere on the map except on the menu div will close the
         // menu.
 
@@ -74,14 +74,14 @@
       }
 
       draw() {
-        var position = this.get("position");
-        var projection = this.getProjection();
+        const position = this.get("position");
+        const projection = this.getProjection();
 
         if (!position || !projection) {
           return;
         }
 
-        var point = projection.fromLatLngToDivPixel(position);
+        const point = projection.fromLatLngToDivPixel(position);
         this.div_.style.top = point.y + "px";
         this.div_.style.left = point.x + "px";
       }
@@ -101,8 +101,8 @@
        */
 
       removeVertex() {
-        var path = this.get("path");
-        var vertex = this.get("vertex");
+        const path = this.get("path");
+        const vertex = this.get("vertex");
 
         if (!path || vertex == undefined) {
           this.close();
@@ -114,7 +114,7 @@
       }
     }
 
-    var deleteMenu = new DeleteMenu();
+    const deleteMenu = new DeleteMenu();
     google.maps.event.addListener(flightPath, "rightclick", function(e) {
       // Check if click was on a vertex control point
       if (e.vertex == undefined) {

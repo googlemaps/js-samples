@@ -2,6 +2,7 @@
 let panorama;
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
 let outsideGoogle;
+
 // StreetViewPanoramaData for a custom panorama: the Google Sydney reception.
 function getReceptionPanoramaData() {
   return {
@@ -37,6 +38,7 @@ function getReceptionPanoramaData() {
     }
   };
 }
+
 function initPanorama() {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view"),
@@ -61,10 +63,11 @@ function initPanorama() {
     }
   });
 }
+
 function initMap() {
   // Use the Street View service to find a pano ID on Pirrama Rd, outside the
   // Google office.
-  var streetviewService = new google.maps.StreetViewService();
+  const streetviewService = new google.maps.StreetViewService();
   streetviewService.getPanorama(
     { location: { lat: -33.867386, lng: 151.195767 } },
     function(result, status) {

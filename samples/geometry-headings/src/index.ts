@@ -19,8 +19,8 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
 
-var marker1: google.maps.Marker, marker2: google.maps.Marker;
-var poly: google.maps.Polyline, geodesicPoly: google.maps.Polyline;
+let marker1: google.maps.Marker, marker2: google.maps.Marker;
+let poly: google.maps.Polyline, geodesicPoly: google.maps.Polyline;
 
 function initMap() {
   const map = new google.maps.Map(

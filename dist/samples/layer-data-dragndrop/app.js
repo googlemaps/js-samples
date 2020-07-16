@@ -12,7 +12,7 @@
   }
 
   function loadGeoJsonString(geoString) {
-    var geojson = JSON.parse(geoString);
+    const geojson = JSON.parse(geoString);
     exports.map.data.addGeoJson(geojson);
     zoom(exports.map);
   }
@@ -22,7 +22,7 @@
    */
 
   function zoom(map) {
-    var bounds = new google.maps.LatLngBounds();
+    const bounds = new google.maps.LatLngBounds();
     map.data.forEach(function(feature) {
       processPoints(feature.getGeometry(), bounds.extend, bounds);
     });
@@ -53,8 +53,8 @@
 
   function initEvents() {
     // set up the drag & drop events
-    var mapContainer = document.getElementById("map");
-    var dropContainer = document.getElementById("drop-container"); // map-specific events
+    const mapContainer = document.getElementById("map");
+    const dropContainer = document.getElementById("drop-container"); // map-specific events
 
     mapContainer.addEventListener("dragenter", showPanel, false); // overlay specific events (since it only appears once drag starts)
 
@@ -78,13 +78,13 @@
     e.preventDefault();
     e.stopPropagation();
     hidePanel();
-    var files = e.dataTransfer.files;
+    const files = e.dataTransfer.files;
 
     if (files.length) {
       // process file(s) being dropped
       // grab the file data from each file
       for (let i = 0, file; (file = files[i]); i++) {
-        var reader = new FileReader();
+        const reader = new FileReader();
 
         reader.onload = function(e) {
           loadGeoJsonString(reader.result);
@@ -99,7 +99,7 @@
     } else {
       // process non-file (e.g. text or html) content being dropped
       // grab the plain text version of the data
-      var plainText = e.dataTransfer.getData("text/plain");
+      const plainText = e.dataTransfer.getData("text/plain");
 
       if (plainText) {
         loadGeoJsonString(plainText);

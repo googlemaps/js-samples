@@ -1,5 +1,6 @@
 // [START maps_layer_data_dynamic]
 let map;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -13,7 +14,8 @@ function initMap() {
   // Color each letter gray. Change the color when the isColorful property
   // is set to true.
   map.data.setStyle(function(feature) {
-    var color = "gray";
+    let color = "gray";
+
     if (feature.getProperty("isColorful")) {
       color = feature.getProperty("color");
     }

@@ -19,15 +19,18 @@
 // of the map controls.
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 4,
-    center: { lat: -33, lng: 151 },
-    mapTypeControl: true,
-    mapTypeControlOptions: {
-      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-      mapTypeIds: ["roadmap", "terrain"]
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 4,
+      center: { lat: -33, lng: 151 },
+      mapTypeControl: true,
+      mapTypeControlOptions: {
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+        mapTypeIds: ["roadmap", "terrain"]
+      }
     }
-  });
+  );
 }
 // [END maps_control_options]
 export { initMap };

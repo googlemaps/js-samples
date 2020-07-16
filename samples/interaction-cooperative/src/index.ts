@@ -21,15 +21,18 @@
  * finger to scroll the page and two fingers to pan the map.
  */
 function initMap() {
-  var myLatLng = { lat: -25.363, lng: 131.044 };
+  const myLatLng = { lat: -25.363, lng: 131.044 };
 
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 4,
-    center: myLatLng,
-    gestureHandling: "cooperative"
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 4,
+      center: myLatLng,
+      gestureHandling: "cooperative"
+    }
+  );
 
-  var marker = new google.maps.Marker({
+  const marker = new google.maps.Marker({
     position: myLatLng,
     map,
     title: "Hello World!"

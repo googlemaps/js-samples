@@ -10,15 +10,19 @@ function initMap() {
     geocodeLatLng(geocoder, map, infowindow);
   });
 }
+
 function geocodeLatLng(geocoder, map, infowindow) {
-  var input = document.getElementById("latlng").value;
-  var latlngStr = input.split(",", 2);
-  var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+  const input = document.getElementById("latlng").value;
+  const latlngStr = input.split(",", 2);
+  const latlng = {
+    lat: parseFloat(latlngStr[0]),
+    lng: parseFloat(latlngStr[1])
+  };
   geocoder.geocode({ location: latlng }, function(results, status) {
     if (status === "OK") {
       if (results[0]) {
         map.setZoom(11);
-        var marker = new google.maps.Marker({
+        const marker = new google.maps.Marker({
           position: latlng,
           map: map
         });

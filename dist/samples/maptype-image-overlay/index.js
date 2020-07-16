@@ -1,10 +1,10 @@
 // [START maps_maptype_image_overlay]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 18,
     center: { lat: 37.783, lng: -122.403 }
   });
-  var bounds = {
+  const bounds = {
     17: [
       [20969, 20970],
       [50657, 50658]
@@ -22,7 +22,7 @@ function initMap() {
       [405263, 405269]
     ]
   };
-  var imageMapType = new google.maps.ImageMapType({
+  const imageMapType = new google.maps.ImageMapType({
     getTileUrl: function(coord, zoom) {
       if (
         zoom < 17 ||

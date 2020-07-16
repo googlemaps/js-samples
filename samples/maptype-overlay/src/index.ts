@@ -38,7 +38,7 @@ class CoordMapType {
     zoom: number,
     ownerDocument: Document
   ): HTMLElement {
-    var div = ownerDocument.createElement("div");
+    const div = ownerDocument.createElement("div");
     div.innerHTML = String(coord);
     div.style.width = this.tileSize.width + "px";
     div.style.height = this.tileSize.height + "px";
@@ -52,10 +52,13 @@ class CoordMapType {
 }
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 10,
-    center: { lat: 41.85, lng: -87.65 }
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 10,
+      center: { lat: 41.85, lng: -87.65 }
+    }
+  );
 
   // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of

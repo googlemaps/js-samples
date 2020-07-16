@@ -4,7 +4,7 @@
   function initPano() {
     // Note: constructed panorama objects have visible: true
     // set by default.
-    var panorama = new google.maps.StreetViewPanorama(
+    const panorama = new google.maps.StreetViewPanorama(
       document.getElementById("map"),
       {
         position: {

@@ -4,9 +4,10 @@
  */
 let map;
 let panorama;
+
 function initMap() {
-  var berkeley = { lat: 37.869085, lng: -122.254775 };
-  var sv = new google.maps.StreetViewService();
+  const berkeley = { lat: 37.869085, lng: -122.254775 };
+  const sv = new google.maps.StreetViewService();
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano")
   );
@@ -25,6 +26,7 @@ function initMap() {
     sv.getPanorama({ location: event.latLng, radius: 50 }, processSVData);
   });
 }
+
 function processSVData(data, status) {
   if (status === "OK") {
     const location = data.location;
@@ -40,7 +42,7 @@ function processSVData(data, status) {
     });
     panorama.setVisible(true);
     marker.addListener("click", function() {
-      var markerPanoID = location.pano;
+      const markerPanoID = location.pano;
       // Set the Pano to use the passed panoID.
       panorama.setPano(markerPanoID);
       panorama.setPov({

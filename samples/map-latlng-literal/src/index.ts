@@ -23,7 +23,7 @@
 let map: google.maps.Map;
 
 function initMap() {
-  var mapOptions = {
+  const mapOptions = {
     zoom: 8,
     center: { lat: -34.397, lng: 150.644 }
   };
@@ -32,7 +32,7 @@ function initMap() {
     mapOptions
   );
 
-  var marker = new google.maps.Marker({
+  const marker = new google.maps.Marker({
     // The below line is equivalent to writing:
     // position: new google.maps.LatLng(-34.397, 150.644)
     position: { lat: -34.397, lng: 150.644 },
@@ -44,7 +44,7 @@ function initMap() {
   // position will be available as a google.maps.LatLng object. In this case,
   // we retrieve the marker's position using the
   // google.maps.LatLng.getPosition() method.
-  var infowindow = new google.maps.InfoWindow({
+  const infowindow = new google.maps.InfoWindow({
     content: "<p>Marker Location:" + marker.getPosition() + "</p>"
   });
 

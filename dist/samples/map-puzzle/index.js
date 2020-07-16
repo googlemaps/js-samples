@@ -17,32 +17,32 @@ class PuzzleDemo {
     this.loadData_();
   }
   createMenu_() {
-    var menuDiv = document.createElement("div");
+    const menuDiv = document.createElement("div");
     menuDiv.style.cssText =
       "margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;" +
       "background-color: white; font-size: 14px; font-family: Roboto;" +
       "text-align: center; color: grey;line-height: 32px; overflow: hidden";
-    var titleDiv = document.createElement("div");
+    const titleDiv = document.createElement("div");
     titleDiv.style.cssText =
       "width: 100%; background-color: #4285f4; color: white; font-size: 20px;" +
       "line-height: 40px;margin-bottom: 24px";
     titleDiv.innerText = "Game Options";
-    var pieceTitleDiv = document.createElement("div");
+    const pieceTitleDiv = document.createElement("div");
     pieceTitleDiv.innerText = "PIECE:";
     pieceTitleDiv.style.fontWeight = "800";
-    var pieceDiv = this.pieceDiv_;
+    const pieceDiv = this.pieceDiv_;
     pieceDiv.innerText = "0 / " + this.NUM_PIECES_;
-    var timeTitleDiv = document.createElement("div");
+    const timeTitleDiv = document.createElement("div");
     timeTitleDiv.innerText = "TIME:";
     timeTitleDiv.style.fontWeight = "800";
-    var timeDiv = this.timeDiv_;
+    const timeDiv = this.timeDiv_;
     timeDiv.innerText = "0.0 seconds";
-    var difficultyTitleDiv = document.createElement("div");
+    const difficultyTitleDiv = document.createElement("div");
     difficultyTitleDiv.innerText = "DIFFICULTY:";
     difficultyTitleDiv.style.fontWeight = "800";
-    var difficultySelect = document.createElement("select");
+    const difficultySelect = document.createElement("select");
     ["Easy", "Moderate", "Hard", "Extreme"].forEach(function(level) {
-      var option = document.createElement("option");
+      const option = document.createElement("option");
       option.value = level.toLowerCase();
       option.innerText = level;
       difficultySelect.appendChild(option);
@@ -50,11 +50,12 @@ class PuzzleDemo {
     difficultySelect.style.cssText =
       "border: 2px solid lightgrey; background-color: white; color: #4275f4;" +
       "padding: 6px;";
+
     difficultySelect.onchange = () => {
       this.setDifficulty_(difficultySelect.value);
       this.resetGame_();
     };
-    var resetDiv = document.createElement("div");
+    const resetDiv = document.createElement("div");
     resetDiv.innerText = "Reset";
     resetDiv.style.cssText =
       "cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;" +
@@ -77,7 +78,8 @@ class PuzzleDemo {
     this.start_();
   }
   loadData_() {
-    var xmlhttpRequest = new XMLHttpRequest();
+    const xmlhttpRequest = new XMLHttpRequest();
+
     xmlhttpRequest.onreadystatechange = () => {
       if (
         xmlhttpRequest.status != 200 ||
@@ -104,12 +106,13 @@ class PuzzleDemo {
    */
   setDifficulty_(difficulty) {
     this.difficulty_ = difficulty;
+
     if (this.map_) {
       this.setDifficultyStyle_();
     }
   }
   setDifficultyStyle_() {
-    var styles = {
+    const styles = {
       easy: [
         {
           stylers: [{ visibility: "off" }]
@@ -182,6 +185,7 @@ class PuzzleDemo {
   }
   setCount_() {
     this.pieceDiv_.innerText = this.count_ + " / " + this.NUM_PIECES_;
+
     if (this.count_ == this.NUM_PIECES_) {
       this.stopClock_();
     }
@@ -191,11 +195,13 @@ class PuzzleDemo {
   }
   startClock_() {
     this.stopClock_();
-    var timeDiv = this.timeDiv_;
+    const timeDiv = this.timeDiv_;
+
     if (timeDiv) timeDiv.textContent = "0.0 seconds";
-    var t = new Date();
+    const t = new Date();
     this.timer_ = window.setInterval(function() {
-      var diff = new Date().getTime() - t.getTime();
+      const diff = new Date().getTime() - t.getTime();
+
       if (timeDiv) timeDiv.textContent = (diff / 1000).toFixed(2) + " seconds";
     }, 100);
   }
@@ -204,13 +210,14 @@ class PuzzleDemo {
     this.countries_.sort(function() {
       return Math.round(Math.random()) - 0.5;
     });
-    var countries = this.countries_.slice(0, this.NUM_PIECES_);
+    const countries = this.countries_.slice(0, this.NUM_PIECES_);
+
     for (let i = 0, country; (country = countries[i]); i++) {
       this.addCountry_(country);
     }
   }
   addCountry_(country) {
-    var options = {
+    const options = {
       strokeColor: this.START_COLOR_,
       strokeOpacity: 0.8,
       strokeWeight: 2,
@@ -222,7 +229,7 @@ class PuzzleDemo {
       zIndex: 2,
       paths: country.start.map(google.maps.geometry.encoding.decodePath)
     };
-    var poly = new google.maps.Polygon(options);
+    const poly = new google.maps.Polygon(options);
     google.maps.event.addListener(poly, "dragend", () => {
       this.checkPosition_(poly, country);
     });
@@ -232,13 +239,15 @@ class PuzzleDemo {
    * Checks that every point in the polygon is inside the bounds.
    */
   boundsContainsPoly_(bounds, poly) {
-    var b = new google.maps.LatLngBounds(
+    const b = new google.maps.LatLngBounds(
       new google.maps.LatLng(bounds[0][0], bounds[0][1]),
       new google.maps.LatLng(bounds[1][0], bounds[1][1])
     );
-    var paths = poly.getPaths().getArray();
+    const paths = poly.getPaths().getArray();
+
     for (let i = 0; i < paths.length; i++) {
-      var p = paths[i].getArray();
+      const p = paths[i].getArray();
+
       for (let j = 0; j < p.length; j++) {
         if (!b.contains(p[j])) {
           return false;
@@ -251,7 +260,7 @@ class PuzzleDemo {
    * Replace a poly with the correct 'end' position of the country.
    */
   replacePiece_(poly, country) {
-    var options = {
+    const options = {
       strokeColor: this.END_COLOR_,
       fillColor: this.END_COLOR_,
       draggable: false,
@@ -278,8 +287,9 @@ class PuzzleDemo {
     this.polys_ = [];
   }
 }
+
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("map"), {
     disableDefaultUI: true,
     center: { lat: 10, lng: 60 },
     zoom: 2

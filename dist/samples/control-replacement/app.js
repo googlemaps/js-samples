@@ -30,7 +30,7 @@
   }
 
   function initMapTypeControl(map) {
-    var mapTypeControlDiv = document.querySelector(".maptype-control");
+    const mapTypeControlDiv = document.querySelector(".maptype-control");
 
     document.querySelector(".maptype-control-map").onclick = function() {
       mapTypeControlDiv.classList.add("maptype-control-is-map");
@@ -48,8 +48,8 @@
   }
 
   function initFullscreenControl(map) {
-    var elementToSendFullscreen = map.getDiv().firstChild;
-    var fullscreenControl = document.querySelector(".fullscreen-control");
+    const elementToSendFullscreen = map.getDiv().firstChild;
+    const fullscreenControl = document.querySelector(".fullscreen-control");
     map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
 
     fullscreenControl.onclick = function() {

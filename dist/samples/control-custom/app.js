@@ -1,7 +1,7 @@
 (function(exports) {
   "use strict";
 
-  var chicago = {
+  const chicago = {
     lat: 41.85,
     lng: -87.65
   };
@@ -14,7 +14,7 @@
 
   function CenterControl(controlDiv, map) {
     // Set CSS for the control border.
-    var controlUI = document.createElement("div");
+    const controlUI = document.createElement("div");
     controlUI.style.backgroundColor = "#fff";
     controlUI.style.border = "2px solid #fff";
     controlUI.style.borderRadius = "3px";
@@ -25,7 +25,7 @@
     controlUI.title = "Click to recenter the map";
     controlDiv.appendChild(controlUI); // Set CSS for the control interior.
 
-    var controlText = document.createElement("div");
+    const controlText = document.createElement("div");
     controlText.style.color = "rgb(25,25,25)";
     controlText.style.fontFamily = "Roboto,Arial,sans-serif";
     controlText.style.fontSize = "16px";
@@ -47,7 +47,7 @@
     }); // Create the DIV to hold the control and call the CenterControl()
     // constructor passing in this DIV.
 
-    var centerControlDiv = document.createElement("div");
+    const centerControlDiv = document.createElement("div");
     CenterControl(centerControlDiv, exports.map); // @ts-ignore TODO(jpoehnelt)
 
     centerControlDiv.index = 1;

@@ -12,7 +12,7 @@
     // This feed is a copy from the USGS feed, you can find the originals here:
     //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
 
-    var script = document.createElement("script");
+    const script = document.createElement("script");
     script.setAttribute(
       "src",
       "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
@@ -20,7 +20,7 @@
     document.getElementsByTagName("head")[0].appendChild(script); // Add a basic style.
 
     exports.map.data.setStyle(function(feature) {
-      var mag = Math.exp(parseFloat(feature.getProperty("mag"))) * 0.1;
+      const mag = Math.exp(parseFloat(feature.getProperty("mag"))) * 0.1;
       return (
         /** @type {google.maps.Data.StyleOptions} */
         ({

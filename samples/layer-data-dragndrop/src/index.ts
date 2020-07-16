@@ -28,7 +28,7 @@ function initMap() {
 }
 
 function loadGeoJsonString(geoString: string) {
-  var geojson = JSON.parse(geoString);
+  const geojson = JSON.parse(geoString);
   map.data.addGeoJson(geojson);
   zoom(map);
 }
@@ -38,7 +38,7 @@ function loadGeoJsonString(geoString: string) {
  * @param {google.maps.Map} map The map to adjust
  */
 function zoom(map: google.maps.Map) {
-  var bounds = new google.maps.LatLngBounds();
+  const bounds = new google.maps.LatLngBounds();
   map.data.forEach(function(feature) {
     processPoints(feature.getGeometry(), bounds.extend, bounds);
   });
@@ -74,8 +74,10 @@ function processPoints(
 
 function initEvents() {
   // set up the drag & drop events
-  var mapContainer = document.getElementById("map") as HTMLElement;
-  var dropContainer = document.getElementById("drop-container") as HTMLElement;
+  const mapContainer = document.getElementById("map") as HTMLElement;
+  const dropContainer = document.getElementById(
+    "drop-container"
+  ) as HTMLElement;
 
   // map-specific events
   mapContainer.addEventListener("dragenter", showPanel, false);
@@ -104,15 +106,18 @@ function handleDrop(e: DragEvent) {
   e.stopPropagation();
   hidePanel(e);
 
-  var files = (e.dataTransfer as DataTransfer).files;
+  const files = (e.dataTransfer as DataTransfer).files;
+
   if (files.length) {
     // process file(s) being dropped
     // grab the file data from each file
     for (let i = 0, file; (file = files[i]); i++) {
-      var reader = new FileReader();
+      const reader = new FileReader();
+
       reader.onload = function(e) {
         loadGeoJsonString(reader.result as string);
       };
+
       reader.onerror = function(e) {
         console.error("reading failed");
       };
@@ -121,7 +126,8 @@ function handleDrop(e: DragEvent) {
   } else {
     // process non-file (e.g. text or html) content being dropped
     // grab the plain text version of the data
-    var plainText = (e.dataTransfer as DataTransfer).getData("text/plain");
+    const plainText = (e.dataTransfer as DataTransfer).getData("text/plain");
+
     if (plainText) {
       loadGeoJsonString(plainText);
     }

@@ -2,8 +2,9 @@
 // This example requires the Geometry library. Include the libraries=geometry
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
-var marker1, marker2;
-var poly, geodesicPoly;
+let marker1, marker2;
+let poly, geodesicPoly;
+
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -44,6 +45,7 @@ function initMap() {
   });
   update();
 }
+
 function update() {
   const path = [marker1.getPosition(), marker2.getPosition()];
   poly.setPath(path);

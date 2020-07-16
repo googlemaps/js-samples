@@ -48,7 +48,7 @@
     }
 
     calculateAndDisplayRoute(placeId) {
-      var me = this;
+      const me = this;
       this.directionsService.route(
         {
           origin: this.origin,
@@ -68,7 +68,7 @@
     }
 
     getPlaceInformation(placeId) {
-      var me = this;
+      const me = this;
       this.placesService.getDetails(
         {
           placeId: placeId

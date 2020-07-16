@@ -1,15 +1,15 @@
 // [START maps_disable_zoom_and_pan]
 // [START maps_disable_zoom_and_pan_script_snippet]
 function initMap() {
-  var locationRio = { lat: -22.915, lng: -43.197 };
-  var map = new google.maps.Map(document.getElementById("map"), {
+  const locationRio = { lat: -22.915, lng: -43.197 };
+  const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: locationRio,
     gestureHandling: "none",
     zoomControl: false
   });
   // [END maps_disable_zoom_and_pan_script_snippet]
-  var marker = new google.maps.Marker({
+  const marker = new google.maps.Marker({
     position: locationRio,
     map,
     title: "Hello World!"

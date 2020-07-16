@@ -16,24 +16,27 @@
 
 // [START maps_layer_kml_features]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 12,
-    center: { lat: 37.06, lng: -95.68 }
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 12,
+      center: { lat: 37.06, lng: -95.68 }
+    }
+  );
 
-  var kmlLayer = new google.maps.KmlLayer({
+  const kmlLayer = new google.maps.KmlLayer({
     url: "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
     suppressInfoWindows: true,
     map: map
   });
 
   kmlLayer.addListener("click", function(kmlEvent) {
-    var text = kmlEvent.featureData.description;
+    const text = kmlEvent.featureData.description;
     showInContentWindow(text);
   });
 
   function showInContentWindow(text: string) {
-    var sidediv = document.getElementById("content-window") as HTMLElement;
+    const sidediv = document.getElementById("content-window") as HTMLElement;
     sidediv.innerHTML = text;
   }
 }

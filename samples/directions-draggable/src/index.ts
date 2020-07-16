@@ -16,13 +16,16 @@
 
 // [START maps_directions_draggable]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 4,
-    center: { lat: -24.345, lng: 134.46 } // Australia.
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 4,
+      center: { lat: -24.345, lng: 134.46 } // Australia.
+    }
+  );
 
-  var directionsService = new google.maps.DirectionsService();
-  var directionsRenderer = new google.maps.DirectionsRenderer({
+  const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer({
     draggable: true,
     map,
     panel: document.getElementById("right-panel") as HTMLElement
@@ -71,8 +74,9 @@ function displayRoute(
 }
 
 function computeTotalDistance(result: google.maps.DirectionsResult) {
-  var total = 0;
-  var myroute = result.routes[0];
+  let total = 0;
+  const myroute = result.routes[0];
+
   for (let i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i].distance.value;
   }

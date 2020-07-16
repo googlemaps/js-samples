@@ -1,25 +1,27 @@
 // [START maps_directions_panel]
 function initMap() {
-  var directionsRenderer = new google.maps.DirectionsRenderer();
-  var directionsService = new google.maps.DirectionsService();
-  var map = new google.maps.Map(document.getElementById("map"), {
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  const directionsService = new google.maps.DirectionsService();
+  const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 7,
     center: { lat: 41.85, lng: -87.65 }
   });
   directionsRenderer.setMap(map);
   directionsRenderer.setPanel(document.getElementById("right-panel"));
-  var control = document.getElementById("floating-panel");
+  const control = document.getElementById("floating-panel");
   control.style.display = "block";
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-  var onChangeHandler = function() {
+
+  const onChangeHandler = function() {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
   document.getElementById("start").addEventListener("change", onChangeHandler);
   document.getElementById("end").addEventListener("change", onChangeHandler);
 }
+
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-  var start = document.getElementById("start").value;
-  var end = document.getElementById("end").value;
+  const start = document.getElementById("start").value;
+  const end = document.getElementById("end").value;
   directionsService.route(
     {
       origin: start,

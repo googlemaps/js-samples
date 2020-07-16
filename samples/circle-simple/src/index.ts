@@ -25,7 +25,7 @@ interface City {
   population: number;
 }
 
-var citymap: Record<string, City> = {
+const citymap: Record<string, City> = {
   chicago: {
     center: { lat: 41.878, lng: -87.629 },
     population: 2714856
@@ -46,17 +46,20 @@ var citymap: Record<string, City> = {
 
 function initMap() {
   // Create the map.
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 4,
-    center: { lat: 37.09, lng: -95.712 },
-    mapTypeId: "terrain"
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 4,
+      center: { lat: 37.09, lng: -95.712 },
+      mapTypeId: "terrain"
+    }
+  );
 
   // Construct the circle for each value in citymap.
   // Note: We scale the area of the circle based on the population.
   for (const city in citymap) {
     // Add the circle for this city to the map.
-    var cityCircle = new google.maps.Circle({
+    const cityCircle = new google.maps.Circle({
       strokeColor: "#FF0000",
       strokeOpacity: 0.8,
       strokeWeight: 2,

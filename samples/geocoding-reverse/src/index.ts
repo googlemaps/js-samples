@@ -39,9 +39,12 @@ function geocodeLatLng(
   map: google.maps.Map,
   infowindow: google.maps.InfoWindow
 ) {
-  var input = (document.getElementById("latlng") as HTMLInputElement).value;
-  var latlngStr = input.split(",", 2);
-  var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+  const input = (document.getElementById("latlng") as HTMLInputElement).value;
+  const latlngStr = input.split(",", 2);
+  const latlng = {
+    lat: parseFloat(latlngStr[0]),
+    lng: parseFloat(latlngStr[1])
+  };
   geocoder.geocode({ location: latlng }, function(
     results: google.maps.GeocoderResult[],
     status: google.maps.GeocoderStatus
@@ -49,7 +52,7 @@ function geocodeLatLng(
     if (status === "OK") {
       if (results[0]) {
         map.setZoom(11);
-        var marker = new google.maps.Marker({
+        const marker = new google.maps.Marker({
           position: latlng,
           map: map
         });

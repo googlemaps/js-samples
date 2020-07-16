@@ -3,6 +3,7 @@
 // map.
 let flightPath;
 let map;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
@@ -23,9 +24,11 @@ function initMap() {
   });
   addLine();
 }
+
 function addLine() {
   flightPath.setMap(map);
 }
+
 function removeLine() {
   flightPath.setMap(null);
 }

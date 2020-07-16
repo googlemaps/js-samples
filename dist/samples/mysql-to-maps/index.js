@@ -7,6 +7,7 @@ const customLabel = {
     label: "B"
   }
 };
+
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-33.863276, 151.207977),
@@ -17,27 +18,27 @@ function initMap() {
   downloadUrl(
     "https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml",
     function(data) {
-      var xml = data.responseXML;
-      var markers = xml.documentElement.getElementsByTagName("marker");
+      const xml = data.responseXML;
+      const markers = xml.documentElement.getElementsByTagName("marker");
       Array.prototype.forEach.call(markers, function(markerElem) {
-        var id = markerElem.getAttribute("id");
-        var name = markerElem.getAttribute("name");
-        var address = markerElem.getAttribute("address");
-        var type = markerElem.getAttribute("type");
-        var point = new google.maps.LatLng(
+        const id = markerElem.getAttribute("id");
+        const name = markerElem.getAttribute("name");
+        const address = markerElem.getAttribute("address");
+        const type = markerElem.getAttribute("type");
+        const point = new google.maps.LatLng(
           parseFloat(markerElem.getAttribute("lat")),
           parseFloat(markerElem.getAttribute("lng"))
         );
-        var infowincontent = document.createElement("div");
-        var strong = document.createElement("strong");
+        const infowincontent = document.createElement("div");
+        const strong = document.createElement("strong");
         strong.textContent = name;
         infowincontent.appendChild(strong);
         infowincontent.appendChild(document.createElement("br"));
-        var text = document.createElement("text");
+        const text = document.createElement("text");
         text.textContent = address;
         infowincontent.appendChild(text);
-        var icon = customLabel[type] || {};
-        var marker = new google.maps.Marker({
+        const icon = customLabel[type] || {};
+        const marker = new google.maps.Marker({
           map,
           position: point,
           label: icon.label
@@ -50,12 +51,14 @@ function initMap() {
     }
   );
 }
+
 function downloadUrl(url, callback) {
   // @ts-ignore
   const request = window.ActiveXObject
     ? // @ts-ignore
       new ActiveXObject("Microsoft.XMLHTTP")
     : new XMLHttpRequest();
+
   request.onreadystatechange = function() {
     if (request.readyState == 4) {
       request.onreadystatechange = doNothing;
@@ -65,6 +68,7 @@ function downloadUrl(url, callback) {
   request.open("GET", url, true);
   request.send(null);
 }
+
 function doNothing() {}
 // [END maps_mysql_to_maps]
 export { customLabel, initMap, downloadUrl, doNothing };

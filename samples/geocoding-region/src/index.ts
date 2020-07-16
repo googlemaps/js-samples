@@ -16,10 +16,13 @@
 
 // [START maps_geocoding_region]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 8
-  });
-  var geocoder = new google.maps.Geocoder();
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 8
+    }
+  );
+  const geocoder = new google.maps.Geocoder();
   geocoder.geocode({ address: "Toledo" }, function(results, status) {
     if (status === "OK") {
       map.setCenter(results[0].geometry.location);

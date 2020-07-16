@@ -25,7 +25,7 @@ function initMap() {
   });
 
   // Create a <script> tag and set the USGS URL as the source.
-  var script = document.createElement("script");
+  const script = document.createElement("script");
 
   // This example uses a local copy of the GeoJSON stored at
   // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
@@ -36,18 +36,19 @@ function initMap() {
 
 const eqfeed_callback = function(results: any) {
   // TODO(jpoehnelt) fix typings
-  var heatmapData: any[] = [];
+  const heatmapData: any[] = [];
+
   for (let i = 0; i < results.features.length; i++) {
-    var coords = results.features[i].geometry.coordinates;
-    var latLng = new google.maps.LatLng(coords[1], coords[0]);
-    var magnitude = results.features[i].properties.mag;
-    var weightedLoc = {
+    const coords = results.features[i].geometry.coordinates;
+    const latLng = new google.maps.LatLng(coords[1], coords[0]);
+    const magnitude = results.features[i].properties.mag;
+    const weightedLoc = {
       location: latLng,
       weight: Math.pow(2, magnitude)
     };
     heatmapData.push(weightedLoc);
   }
-  var heatmap = new google.maps.visualization.HeatmapLayer({
+  const heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
     dissipating: false,
     map: map

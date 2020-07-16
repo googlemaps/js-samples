@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-var events = [
+const events = [
   "bounds_changed",
   "center_changed",
   "click",
@@ -37,10 +37,10 @@ var events = [
 ];
 
 function setupListener(map: google.maps.Map, name: string) {
-  var eventRow = document.getElementById(name) as HTMLElement;
+  const eventRow = document.getElementById(name) as HTMLElement;
   google.maps.event.addListener(map, name, function() {
     eventRow.className = "event active";
-    var timeout = setTimeout(function() {
+    const timeout = setTimeout(function() {
       eventRow.className = "event inactive";
     }, 1000);
   });
@@ -48,12 +48,13 @@ function setupListener(map: google.maps.Map, name: string) {
 
 function initMap() {
   populateTable();
-  var mapDiv = document.getElementById("map") as HTMLElement;
-  var map = new google.maps.Map(mapDiv, {
+  const mapDiv = document.getElementById("map") as HTMLElement;
+  const map = new google.maps.Map(mapDiv, {
     center: new google.maps.LatLng(37.4419, -122.1419),
     zoom: 13,
     mapTypeId: "roadmap"
   });
+
   for (let i = 0; i < events.length; i++) {
     setupListener(map, events[i]);
   }
@@ -61,8 +62,9 @@ function initMap() {
 
 // Dynamically create the table of events from the defined hashmap
 function populateTable() {
-  var eventsTable = document.getElementById("events") as HTMLElement;
-  var content = "";
+  const eventsTable = document.getElementById("events") as HTMLElement;
+  let content = "";
+
   for (let i = 0; i < events.length; i++) {
     content +=
       '<div class="event" id="' + events[i] + '">' + events[i] + "</div>";

@@ -27,7 +27,7 @@
             radius: 500,
             query: "Google Sydney"
           };
-          var service = new google.maps.places.PlacesService(exports.map);
+          const service = new google.maps.places.PlacesService(exports.map);
           service.textSearch(request, callback);
         } // Checks that the PlacesServiceStatus is OK, and adds a marker
         // using the place ID and location from the PlacesService.

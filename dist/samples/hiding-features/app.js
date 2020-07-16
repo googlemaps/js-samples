@@ -11,7 +11,7 @@
       mapTypeControl: false
     }); // Add controls to the map, allowing users to hide/show features.
 
-    var styleControl = document.getElementById("style-selector-control");
+    const styleControl = document.getElementById("style-selector-control");
     exports.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
       styleControl
     ); // Apply new JSON when the user chooses to hide/show features.
@@ -28,7 +28,7 @@
     });
   }
 
-  var styles = {
+  const styles = {
     default: [],
     hide: [
       {

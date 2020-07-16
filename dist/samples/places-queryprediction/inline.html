@@ -51,20 +51,20 @@
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
         function initService() {
-          var displaySuggestions = function(predictions, status) {
+          const displaySuggestions = function(predictions, status) {
             if (status != google.maps.places.PlacesServiceStatus.OK) {
               alert(status);
               return;
             }
 
             predictions.forEach(function(prediction) {
-              var li = document.createElement("li");
+              const li = document.createElement("li");
               li.appendChild(document.createTextNode(prediction.description));
               document.getElementById("results").appendChild(li);
             });
           };
 
-          var service = new google.maps.places.AutocompleteService();
+          const service = new google.maps.places.AutocompleteService();
           service.getQueryPredictions(
             {
               input: "pizza near Syd"

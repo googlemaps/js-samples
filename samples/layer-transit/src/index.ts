@@ -16,12 +16,15 @@
 
 // [START maps_layer_transit]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 13,
-    center: { lat: 51.501904, lng: -0.115871 }
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 13,
+      center: { lat: 51.501904, lng: -0.115871 }
+    }
+  );
 
-  var transitLayer = new google.maps.TransitLayer();
+  const transitLayer = new google.maps.TransitLayer();
   transitLayer.setMap(map);
 }
 // [END maps_layer_transit]

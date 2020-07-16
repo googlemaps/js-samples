@@ -66,6 +66,7 @@ function setMarkers(map: google.maps.Map) {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],
     type: "poly"
   };
+
   for (let i = 0; i < beaches.length; i++) {
     const beach = beaches[i];
     const marker = new google.maps.Marker({

@@ -18,13 +18,16 @@
 // This example adds a red rectangle to a map.
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 11,
-    center: { lat: 33.678, lng: -116.243 },
-    mapTypeId: "terrain"
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 11,
+      center: { lat: 33.678, lng: -116.243 },
+      mapTypeId: "terrain"
+    }
+  );
 
-  var rectangle = new google.maps.Rectangle({
+  const rectangle = new google.maps.Rectangle({
     strokeColor: "#FF0000",
     strokeOpacity: 0.8,
     strokeWeight: 2,

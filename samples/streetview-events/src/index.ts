@@ -29,22 +29,24 @@ function initPano() {
   );
 
   panorama.addListener("pano_changed", function() {
-    var panoCell = document.getElementById("pano-cell") as HTMLElement;
+    const panoCell = document.getElementById("pano-cell") as HTMLElement;
     panoCell.innerHTML = panorama.getPano();
   });
 
   panorama.addListener("links_changed", function() {
-    var linksTable = document.getElementById("links_table") as HTMLElement;
+    const linksTable = document.getElementById("links_table") as HTMLElement;
+
     while (linksTable.hasChildNodes()) {
       linksTable.removeChild(linksTable.lastChild as ChildNode);
     }
-    var links = panorama.getLinks();
+    const links = panorama.getLinks();
+
     for (const i in links) {
-      var row = document.createElement("tr");
+      const row = document.createElement("tr");
       linksTable.appendChild(row);
-      var labelCell = document.createElement("td");
+      const labelCell = document.createElement("td");
       labelCell.innerHTML = "<b>Link: " + i + "</b>";
-      var valueCell = document.createElement("td");
+      const valueCell = document.createElement("td");
       valueCell.innerHTML = links[i].description as string;
       linksTable.appendChild(labelCell);
       linksTable.appendChild(valueCell);
@@ -52,14 +54,16 @@ function initPano() {
   });
 
   panorama.addListener("position_changed", function() {
-    var positionCell = document.getElementById("position-cell") as HTMLElement;
+    const positionCell = document.getElementById(
+      "position-cell"
+    ) as HTMLElement;
     (positionCell.firstChild as HTMLElement).nodeValue =
       panorama.getPosition() + "";
   });
 
   panorama.addListener("pov_changed", function() {
-    var headingCell = document.getElementById("heading-cell") as HTMLElement;
-    var pitchCell = document.getElementById("pitch-cell") as HTMLElement;
+    const headingCell = document.getElementById("heading-cell") as HTMLElement;
+    const pitchCell = document.getElementById("pitch-cell") as HTMLElement;
     (headingCell.firstChild as HTMLElement).nodeValue =
       panorama.getPov().heading + "";
     (pitchCell.firstChild as HTMLElement).nodeValue =

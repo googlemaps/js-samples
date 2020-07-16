@@ -35,7 +35,7 @@ function initMap() {
   map.setMapTypeId("gallPeters");
 
   // Show the lat and lng under the mouse cursor.
-  var coordsDiv = document.getElementById("coords") as HTMLElement;
+  const coordsDiv = document.getElementById("coords") as HTMLElement;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
   map.addListener("mousemove", function(event: google.maps.MouseEvent) {
     coordsDiv.textContent =
@@ -56,21 +56,23 @@ function initMap() {
   map.data.addGeoJson(cities);
 }
 
-var gallPetersMapType;
+let gallPetersMapType;
+
 function initGallPeters() {
-  var GALL_PETERS_RANGE_X = 800;
-  var GALL_PETERS_RANGE_Y = 512;
+  const GALL_PETERS_RANGE_X = 800;
+  const GALL_PETERS_RANGE_Y = 512;
 
   // Fetch Gall-Peters tiles stored locally on our server.
   gallPetersMapType = new google.maps.ImageMapType({
     getTileUrl: function(coord, zoom) {
-      var scale = 1 << zoom;
+      const scale = 1 << zoom;
 
       // Wrap tiles horizontally.
-      var x = ((coord.x % scale) + scale) % scale;
+      const x = ((coord.x % scale) + scale) % scale;
 
       // Don't wrap tiles vertically.
-      var y = coord.y;
+      const y = coord.y;
+
       if (y < 0 || y >= scale) return "";
 
       return (
@@ -93,15 +95,15 @@ function initGallPeters() {
   // Describe the Gall-Peters projection used by these tiles.
   gallPetersMapType.projection = {
     fromLatLngToPoint: function(latLng) {
-      var latRadians = (latLng.lat() * Math.PI) / 180;
+      const latRadians = (latLng.lat() * Math.PI) / 180;
       return new google.maps.Point(
         GALL_PETERS_RANGE_X * (0.5 + latLng.lng() / 360),
         GALL_PETERS_RANGE_Y * (0.5 - 0.5 * Math.sin(latRadians))
       );
     },
     fromPointToLatLng: function(point, noWrap) {
-      var x = point.x / GALL_PETERS_RANGE_X;
-      var y = Math.max(0, Math.min(1, point.y / GALL_PETERS_RANGE_Y));
+      const x = point.x / GALL_PETERS_RANGE_X;
+      const y = Math.max(0, Math.min(1, point.y / GALL_PETERS_RANGE_Y));
 
       return new google.maps.LatLng(
         (Math.asin(1 - 2 * y) * 180) / Math.PI,
@@ -113,7 +115,7 @@ function initGallPeters() {
 }
 
 // GeoJSON, describing the locations and names of some cities.
-var cities = {
+const cities = {
   type: "FeatureCollection",
   features: [
     {

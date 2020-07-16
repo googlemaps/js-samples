@@ -38,11 +38,12 @@ function initMap() {
   // For each of these markers, give them a title with their index, and when
   // they are clicked they should open an infowindow with text from a secret
   // message.
-  var secretMessages = ["This", "is", "the", "secret", "message"];
-  var lngSpan = bounds.east - bounds.west;
-  var latSpan = bounds.north - bounds.south;
+  const secretMessages = ["This", "is", "the", "secret", "message"];
+  const lngSpan = bounds.east - bounds.west;
+  const latSpan = bounds.north - bounds.south;
+
   for (let i = 0; i < secretMessages.length; ++i) {
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: {
         lat: bounds.south + latSpan * Math.random(),
         lng: bounds.west + lngSpan * Math.random()
@@ -59,7 +60,7 @@ function attachSecretMessage(
   marker: google.maps.Marker,
   secretMessage: string
 ) {
-  var infowindow = new google.maps.InfoWindow({
+  const infowindow = new google.maps.InfoWindow({
     content: secretMessage
   });
 

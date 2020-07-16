@@ -16,6 +16,7 @@
 
 // [START maps_streetview_embed]
 let panorama: google.maps.StreetViewPanorama;
+
 function initialize() {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view") as HTMLElement,

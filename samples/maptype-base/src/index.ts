@@ -38,7 +38,7 @@ class CoordMapType {
     zoom: number,
     ownerDocument: Document
   ): HTMLElement {
-    var div = ownerDocument.createElement("div");
+    const div = ownerDocument.createElement("div");
     div.innerHTML = String(coord);
     div.style.width = this.tileSize.width + "px";
     div.style.height = this.tileSize.height + "px";
@@ -54,19 +54,23 @@ class CoordMapType {
 }
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 10,
-    center: { lat: 41.85, lng: -87.65 },
-    streetViewControl: false,
-    mapTypeId: "coordinate",
-    mapTypeControlOptions: {
-      mapTypeIds: ["coordinate", "roadmap"],
-      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 10,
+      center: { lat: 41.85, lng: -87.65 },
+      streetViewControl: false,
+      mapTypeId: "coordinate",
+      mapTypeControlOptions: {
+        mapTypeIds: ["coordinate", "roadmap"],
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
+      }
     }
-  });
+  );
 
   map.addListener("maptypeid_changed", function() {
-    var showStreetViewControl = (map.getMapTypeId() as string) !== "coordinate";
+    const showStreetViewControl =
+      (map.getMapTypeId() as string) !== "coordinate";
     map.setOptions({
       streetViewControl: showStreetViewControl
     });

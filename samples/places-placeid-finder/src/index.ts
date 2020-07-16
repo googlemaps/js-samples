@@ -25,14 +25,17 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    center: { lat: -33.8688, lng: 151.2195 },
-    zoom: 13
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      center: { lat: -33.8688, lng: 151.2195 },
+      zoom: 13
+    }
+  );
 
-  var input = document.getElementById("pac-input") as HTMLInputElement;
+  const input = document.getElementById("pac-input") as HTMLInputElement;
 
-  var autocomplete = new google.maps.places.Autocomplete(input);
+  const autocomplete = new google.maps.places.Autocomplete(input);
   autocomplete.bindTo("bounds", map);
 
   // Specify just the place data fields that you need.
@@ -40,13 +43,13 @@ function initMap() {
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-  var infowindow = new google.maps.InfoWindow();
-  var infowindowContent = document.getElementById(
+  const infowindow = new google.maps.InfoWindow();
+  const infowindowContent = document.getElementById(
     "infowindow-content"
   ) as HTMLElement;
   infowindow.setContent(infowindowContent);
 
-  var marker = new google.maps.Marker({ map: map });
+  const marker = new google.maps.Marker({ map: map });
 
   marker.addListener("click", function() {
     infowindow.open(map, marker);
@@ -55,7 +58,7 @@ function initMap() {
   autocomplete.addListener("place_changed", function() {
     infowindow.close();
 
-    var place = autocomplete.getPlace();
+    const place = autocomplete.getPlace();
 
     if (!place.geometry) {
       return;

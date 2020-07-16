@@ -12,33 +12,35 @@ function initPano() {
     }
   );
   panorama.addListener("pano_changed", function() {
-    var panoCell = document.getElementById("pano-cell");
+    const panoCell = document.getElementById("pano-cell");
     panoCell.innerHTML = panorama.getPano();
   });
   panorama.addListener("links_changed", function() {
-    var linksTable = document.getElementById("links_table");
+    const linksTable = document.getElementById("links_table");
+
     while (linksTable.hasChildNodes()) {
       linksTable.removeChild(linksTable.lastChild);
     }
-    var links = panorama.getLinks();
+    const links = panorama.getLinks();
+
     for (const i in links) {
-      var row = document.createElement("tr");
+      const row = document.createElement("tr");
       linksTable.appendChild(row);
-      var labelCell = document.createElement("td");
+      const labelCell = document.createElement("td");
       labelCell.innerHTML = "<b>Link: " + i + "</b>";
-      var valueCell = document.createElement("td");
+      const valueCell = document.createElement("td");
       valueCell.innerHTML = links[i].description;
       linksTable.appendChild(labelCell);
       linksTable.appendChild(valueCell);
     }
   });
   panorama.addListener("position_changed", function() {
-    var positionCell = document.getElementById("position-cell");
+    const positionCell = document.getElementById("position-cell");
     positionCell.firstChild.nodeValue = panorama.getPosition() + "";
   });
   panorama.addListener("pov_changed", function() {
-    var headingCell = document.getElementById("heading-cell");
-    var pitchCell = document.getElementById("pitch-cell");
+    const headingCell = document.getElementById("heading-cell");
+    const pitchCell = document.getElementById("pitch-cell");
     headingCell.firstChild.nodeValue = panorama.getPov().heading + "";
     pitchCell.firstChild.nodeValue = panorama.getPov().pitch + "";
   });

@@ -35,7 +35,7 @@ const MARKER_PATH =
   "https://developers.google.com/maps/documentation/javascript/images/marker_green";
 const hostnameRegexp = new RegExp("^https?://.+?/");
 
-var countries: Record<
+const countries: Record<
   string,
   { center: google.maps.LatLngLiteral; zoom: number }
 > = {
@@ -130,7 +130,8 @@ function initMap() {
 // When the user selects a city, get the place details for the city and
 // zoom the map in on the city.
 function onPlaceChanged() {
-  var place = autocomplete.getPlace();
+  const place = autocomplete.getPlace();
+
   if (place.geometry) {
     map.panTo(place.geometry.location);
     map.setZoom(15);
@@ -143,7 +144,7 @@ function onPlaceChanged() {
 
 // Search for hotels in the selected city, within the viewport of the map.
 function search() {
-  var search = {
+  const search = {
     bounds: map.getBounds() as google.maps.LatLngBounds,
     types: ["lodging"]
   };
@@ -156,11 +157,12 @@ function search() {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearResults();
       clearMarkers();
+
       // Create a marker for each hotel found, and
       // assign a letter of the alphabetic to each marker icon.
       for (let i = 0; i < results.length; i++) {
-        var markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
-        var markerIcon = MARKER_PATH + markerLetter + ".png";
+        const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+        const markerIcon = MARKER_PATH + markerLetter + ".png";
         // Use marker animation to drop the icons incrementally on the map.
         markers[i] = new google.maps.Marker({
           position: (results[i].geometry as google.maps.places.PlaceGeometry)
@@ -193,7 +195,9 @@ function clearMarkers() {
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
 function setAutocompleteCountry() {
-  var country = (document.getElementById("country") as HTMLInputElement).value;
+  const country = (document.getElementById("country") as HTMLInputElement)
+    .value;
+
   if (country == "all") {
     autocomplete.setComponentRestrictions({ country: [] });
     map.setCenter({ lat: 15, lng: 0 });
@@ -215,23 +219,24 @@ function dropMarker(i) {
 }
 
 function addResult(result, i) {
-  var results = document.getElementById("results") as HTMLElement;
-  var markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
-  var markerIcon = MARKER_PATH + markerLetter + ".png";
+  const results = document.getElementById("results") as HTMLElement;
+  const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
+  const markerIcon = MARKER_PATH + markerLetter + ".png";
 
-  var tr = document.createElement("tr");
+  const tr = document.createElement("tr");
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
+
   tr.onclick = function() {
     google.maps.event.trigger(markers[i], "click");
   };
 
-  var iconTd = document.createElement("td");
-  var nameTd = document.createElement("td");
-  var icon = document.createElement("img");
+  const iconTd = document.createElement("td");
+  const nameTd = document.createElement("td");
+  const icon = document.createElement("img");
   icon.src = markerIcon;
   icon.setAttribute("class", "placeIcon");
   icon.setAttribute("className", "placeIcon");
-  var name = document.createTextNode(result.name);
+  const name = document.createTextNode(result.name);
   iconTd.appendChild(icon);
   nameTd.appendChild(name);
   tr.appendChild(iconTd);
@@ -240,7 +245,8 @@ function addResult(result, i) {
 }
 
 function clearResults() {
-  var results = document.getElementById("results") as HTMLElement;
+  const results = document.getElementById("results") as HTMLElement;
+
   while (results.childNodes[0]) {
     results.removeChild(results.childNodes[0]);
   }
@@ -250,7 +256,7 @@ function clearResults() {
 // anchored on the marker for the hotel that the user selected.
 function showInfoWindow() {
   // @ts-ignore
-  var marker = this;
+  const marker = this;
   places.getDetails({ placeId: marker.placeResult.place_id }, function(
     place,
     status
@@ -285,7 +291,8 @@ function buildIWContent(place) {
   // to indicate the rating the hotel has earned, and a white star ('&#10025;')
   // for the rating points not achieved.
   if (place.rating) {
-    var ratingHtml = "";
+    let ratingHtml = "";
+
     for (let i = 0; i < 5; i++) {
       if (place.rating < i + 0.5) {
         ratingHtml += "&#10025;";
@@ -306,8 +313,9 @@ function buildIWContent(place) {
   // The regexp isolates the first part of the URL (domain plus subdomain)
   // to give a short URL for displaying in the info window.
   if (place.website) {
-    var fullUrl = place.website;
-    var website = String(hostnameRegexp.exec(place.website));
+    let fullUrl = place.website;
+    let website = String(hostnameRegexp.exec(place.website));
+
     if (!website) {
       website = "http://" + place.website + "/";
       fullUrl = website;

@@ -1,6 +1,7 @@
 // [START maps_control_custom]
 let map;
-var chicago = { lat: 41.85, lng: -87.65 };
+const chicago = { lat: 41.85, lng: -87.65 };
+
 /**
  * The CenterControl adds a control to the map that recenters the map on
  * Chicago.
@@ -9,7 +10,7 @@ var chicago = { lat: 41.85, lng: -87.65 };
  */
 function CenterControl(controlDiv, map) {
   // Set CSS for the control border.
-  var controlUI = document.createElement("div");
+  const controlUI = document.createElement("div");
   controlUI.style.backgroundColor = "#fff";
   controlUI.style.border = "2px solid #fff";
   controlUI.style.borderRadius = "3px";
@@ -20,7 +21,7 @@ function CenterControl(controlDiv, map) {
   controlUI.title = "Click to recenter the map";
   controlDiv.appendChild(controlUI);
   // Set CSS for the control interior.
-  var controlText = document.createElement("div");
+  const controlText = document.createElement("div");
   controlText.style.color = "rgb(25,25,25)";
   controlText.style.fontFamily = "Roboto,Arial,sans-serif";
   controlText.style.fontSize = "16px";
@@ -34,6 +35,7 @@ function CenterControl(controlDiv, map) {
     map.setCenter(chicago);
   });
 }
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
@@ -41,7 +43,7 @@ function initMap() {
   });
   // Create the DIV to hold the control and call the CenterControl()
   // constructor passing in this DIV.
-  var centerControlDiv = document.createElement("div");
+  const centerControlDiv = document.createElement("div");
   CenterControl(centerControlDiv, map);
   // @ts-ignore TODO(jpoehnelt)
   centerControlDiv.index = 1;

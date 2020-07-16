@@ -25,7 +25,7 @@ function initMap() {
   });
 
   // Add controls to the map, allowing users to hide/show features.
-  var styleControl = document.getElementById(
+  const styleControl = document.getElementById(
     "style-selector-control"
   ) as HTMLElement;
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
@@ -45,7 +45,7 @@ function initMap() {
   );
 }
 
-var styles: Record<string, google.maps.MapTypeStyle[]> = {
+const styles: Record<string, google.maps.MapTypeStyle[]> = {
   default: [],
   hide: [
     {

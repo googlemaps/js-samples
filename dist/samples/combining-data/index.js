@@ -1,5 +1,5 @@
 // [START maps_combining_data]
-var mapStyle = [
+const mapStyle = [
   {
     stylers: [{ visibility: "off" }]
   },
@@ -15,8 +15,9 @@ var mapStyle = [
   }
 ];
 let map;
-var censusMin = Number.MAX_VALUE,
+let censusMin = Number.MAX_VALUE,
   censusMax = -Number.MAX_VALUE;
+
 function initMap() {
   // load the map
   map = new google.maps.Map(document.getElementById("map"), {
@@ -29,7 +30,7 @@ function initMap() {
   map.data.addListener("mouseover", mouseInToRegion);
   map.data.addListener("mouseout", mouseOutOfRegion);
   // wire up the button
-  var selectBox = document.getElementById("census-variable");
+  const selectBox = document.getElementById("census-variable");
   google.maps.event.addDomListener(selectBox, "change", function() {
     clearCensusData();
     loadCensusData(selectBox.options[selectBox.selectedIndex].value);
@@ -37,6 +38,7 @@ function initMap() {
   // state polygons only need to be loaded once, do them now
   loadMapShapes();
 }
+
 /** Loads the state boundary polygons from a GeoJSON source. */
 function loadMapShapes() {
   // load US state outline polygons from a GeoJson file
@@ -53,6 +55,7 @@ function loadMapShapes() {
     );
   });
 }
+
 /**
  * Loads the census data from a simulated API call to the US Census API.
  *
@@ -60,19 +63,22 @@ function loadMapShapes() {
  */
 function loadCensusData(variable) {
   // load the requested variable from the census API (using local copies)
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open("GET", variable + ".json");
+
   // [START maps_combining_data_snippet_loadcensus]
   xhr.onload = function() {
-    var censusData = JSON.parse(xhr.responseText);
+    const censusData = JSON.parse(xhr.responseText);
     censusData.shift(); // the first row contains column names
     censusData.forEach(function(row) {
-      var censusVariable = parseFloat(row[0]);
-      var stateId = row[1];
+      const censusVariable = parseFloat(row[0]);
+      const stateId = row[1];
+
       // keep track of min and max values
       if (censusVariable < censusMin) {
         censusMin = censusVariable;
       }
+
       if (censusVariable > censusMax) {
         censusMax = censusVariable;
       }
@@ -92,6 +98,7 @@ function loadCensusData(variable) {
   xhr.send();
   // [END maps_combining_data_snippet_loadcensus]
 }
+
 /** Removes census data from each shape on the map and resets the UI. */
 function clearCensusData() {
   censusMin = Number.MAX_VALUE;
@@ -102,6 +109,7 @@ function clearCensusData() {
   document.getElementById("data-box").style.display = "none";
   document.getElementById("data-caret").style.display = "none";
 }
+
 /**
  * Applies a gradient style based on the 'census_variable' column.
  * This is the callback passed to data.setStyle() and is called for each row in
@@ -111,27 +119,30 @@ function clearCensusData() {
  */
 // [START maps_combining_data_snippet_stylefeature]
 function styleFeature(feature) {
-  var low = [5, 69, 54]; // color of smallest datum
-  var high = [151, 83, 34]; // color of largest datum
+  const low = [5, 69, 54]; // color of smallest datum
+  const high = [151, 83, 34]; // color of largest datum
   // delta represents where the value sits between the min and max
-  var delta =
+  const delta =
     (feature.getProperty("census_variable") - censusMin) /
     (censusMax - censusMin);
-  var color = [];
+  const color = [];
+
   for (let i = 0; i < 3; i++) {
     // calculate an integer color based on the delta
     color.push((high[i] - low[i]) * delta + low[i]);
   }
   // determine whether to show this shape or not
-  var showRow = true;
+  let showRow = true;
+
   if (
     feature.getProperty("census_variable") == null ||
     isNaN(feature.getProperty("census_variable"))
   ) {
     showRow = false;
   }
-  var outlineWeight = 0.5,
+  let outlineWeight = 0.5,
     zIndex = 1;
+
   if (feature.getProperty("state") === "hover") {
     outlineWeight = zIndex = 2;
   }
@@ -144,6 +155,7 @@ function styleFeature(feature) {
     visible: showRow
   };
 }
+
 // [END maps_combining_data_snippet_stylefeature]
 // [START maps_combining_data_snippet_mouseevents]
 /**
@@ -154,7 +166,7 @@ function styleFeature(feature) {
 function mouseInToRegion(e) {
   // set the hover state so the setStyle function can change the border
   e.feature.setProperty("state", "hover");
-  var percent =
+  const percent =
     ((e.feature.getProperty("census_variable") - censusMin) /
       (censusMax - censusMin)) *
     100;
@@ -169,6 +181,7 @@ function mouseInToRegion(e) {
   document.getElementById("data-caret").style.display = "block";
   document.getElementById("data-caret").style.paddingLeft = percent + "%";
 }
+
 /**
  * Responds to the mouse-out event on a map shape (state).
  *

@@ -70,7 +70,7 @@
   function initMap() {
     // Use the Street View service to find a pano ID on Pirrama Rd, outside the
     // Google office.
-    var streetviewService = new google.maps.StreetViewService();
+    const streetviewService = new google.maps.StreetViewService();
     streetviewService.getPanorama(
       {
         location: {

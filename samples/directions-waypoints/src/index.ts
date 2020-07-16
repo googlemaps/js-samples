@@ -16,12 +16,15 @@
 
 // [START maps_directions_waypoints]
 function initMap() {
-  var directionsService = new google.maps.DirectionsService();
-  var directionsRenderer = new google.maps.DirectionsRenderer();
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 6,
-    center: { lat: 41.85, lng: -87.65 }
-  });
+  const directionsService = new google.maps.DirectionsService();
+  const directionsRenderer = new google.maps.DirectionsRenderer();
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 6,
+      center: { lat: 41.85, lng: -87.65 }
+    }
+  );
   directionsRenderer.setMap(map);
 
   (document.getElementById("submit") as HTMLElement).addEventListener(
@@ -36,8 +39,11 @@ function calculateAndDisplayRoute(
   directionsService: google.maps.DirectionsService,
   directionsRenderer: google.maps.DirectionsRenderer
 ) {
-  var waypts: google.maps.DirectionsWaypoint[] = [];
-  var checkboxArray = document.getElementById("waypoints") as HTMLSelectElement;
+  const waypts: google.maps.DirectionsWaypoint[] = [];
+  const checkboxArray = document.getElementById(
+    "waypoints"
+  ) as HTMLSelectElement;
+
   for (let i = 0; i < checkboxArray.length; i++) {
     if (checkboxArray.options[i].selected) {
       waypts.push({
@@ -58,14 +64,15 @@ function calculateAndDisplayRoute(
     function(response, status) {
       if (status === "OK") {
         directionsRenderer.setDirections(response);
-        var route = response.routes[0];
-        var summaryPanel = document.getElementById(
+        const route = response.routes[0];
+        const summaryPanel = document.getElementById(
           "directions-panel"
         ) as HTMLElement;
         summaryPanel.innerHTML = "";
+
         // For each route, display summary information.
         for (let i = 0; i < route.legs.length; i++) {
-          var routeSegment = i + 1;
+          const routeSegment = i + 1;
           summaryPanel.innerHTML +=
             "<b>Route Segment: " + routeSegment + "</b><br>";
           summaryPanel.innerHTML += route.legs[i].start_address + " to ";

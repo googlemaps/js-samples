@@ -23,7 +23,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initService() {
-  var displaySuggestions = function(
+  const displaySuggestions = function(
     predictions: google.maps.places.QueryAutocompletePrediction[],
     status: google.maps.places.PlacesServiceStatus
   ) {
@@ -33,13 +33,13 @@ function initService() {
     }
 
     predictions.forEach(function(prediction) {
-      var li = document.createElement("li");
+      const li = document.createElement("li");
       li.appendChild(document.createTextNode(prediction.description));
       (document.getElementById("results") as HTMLUListElement).appendChild(li);
     });
   };
 
-  var service = new google.maps.places.AutocompleteService();
+  const service = new google.maps.places.AutocompleteService();
   service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
 }
 // [END maps_places_queryprediction]

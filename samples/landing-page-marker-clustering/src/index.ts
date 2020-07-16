@@ -16,23 +16,26 @@
 
 // [START maps_landing_page_marker_clustering]
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    zoom: 3,
-    center: { lat: -28.024, lng: 140.887 },
-    scrollwheel: false,
-    zoomControl: false,
-    scaleControl: false,
-    streetViewControl: false
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      zoom: 3,
+      center: { lat: -28.024, lng: 140.887 },
+      scrollwheel: false,
+      zoomControl: false,
+      scaleControl: false,
+      streetViewControl: false
+    }
+  );
 
   // Create an array of alphabetical characters used to label the markers.
-  var labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
   // Add some markers to the map.
   // Note: The code uses the JavaScript Array.prototype.map() method to
   // create an array of markers based on a given "locations" array.
   // The map() method here has nothing to do with the Google Maps API.
-  var markers = locations.map(function(location, i) {
+  const markers = locations.map(function(location, i) {
     return new google.maps.Marker({
       position: location,
       label: labels[i % labels.length]
@@ -41,12 +44,12 @@ function initMap() {
 
   // Add a marker clusterer to manage the markers.
   // @ts-ignore
-  var markerCluster = new google.maps.plugins.MarkerClusterer(map, markers, {
+  const markerCluster = new google.maps.plugins.MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
   });
 }
-var locations = [
+const locations = [
   { lat: -31.56391, lng: 147.154312 },
   { lat: -33.718234, lng: 150.363181 },
   { lat: -33.727111, lng: 150.371124 },

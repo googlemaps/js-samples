@@ -29,13 +29,13 @@ function initMap() {
     }
   );
 
-  var bounds = new google.maps.LatLngBounds(
+  const bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(62.281819, -150.287132),
     new google.maps.LatLng(62.400471, -150.005608)
   );
 
   // The photograph is courtesy of the U.S. Geological Survey.
-  var srcImage = "https://developers.google.com/maps/documentation/javascript/";
+  let srcImage = "https://developers.google.com/maps/documentation/javascript/";
   srcImage += "examples/full/images/talkeetna.png";
 
   // The custom USGSOverlay object contains the USGS image,
@@ -69,7 +69,7 @@ function initMap() {
       this.div_.style.position = "absolute";
 
       // Create the img element and attach it to the div.
-      var img = document.createElement("img");
+      const img = document.createElement("img");
       img.src = this.image_;
       img.style.width = "100%";
       img.style.height = "100%";
@@ -77,7 +77,7 @@ function initMap() {
       this.div_.appendChild(img);
 
       // Add the element to the "overlayLayer" pane.
-      var panes = this.getPanes();
+      const panes = this.getPanes();
       panes.overlayLayer.appendChild(this.div_);
     }
 
@@ -85,15 +85,15 @@ function initMap() {
       // We use the south-west and north-east
       // coordinates of the overlay to peg it to the correct position and size.
       // To do this, we need to retrieve the projection from the overlay.
-      var overlayProjection = this.getProjection();
+      const overlayProjection = this.getProjection();
 
       // Retrieve the south-west and north-east coordinates of this overlay
       // in LatLngs and convert them to pixel coordinates.
       // We'll use these coordinates to resize the div.
-      var sw = overlayProjection.fromLatLngToDivPixel(
+      const sw = overlayProjection.fromLatLngToDivPixel(
         this.bounds_.getSouthWest()
       );
-      var ne = overlayProjection.fromLatLngToDivPixel(
+      const ne = overlayProjection.fromLatLngToDivPixel(
         this.bounds_.getNorthEast()
       );
 

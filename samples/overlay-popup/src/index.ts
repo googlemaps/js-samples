@@ -38,7 +38,7 @@ function initMap() {
       content.classList.add("popup-bubble");
 
       // This zero-height div is positioned at the bottom of the bubble.
-      var bubbleAnchor = document.createElement("div");
+      const bubbleAnchor = document.createElement("div");
       bubbleAnchor.classList.add("popup-bubble-anchor");
       bubbleAnchor.appendChild(content);
 
@@ -65,12 +65,12 @@ function initMap() {
 
     /** Called each frame when the popup needs to draw itself. */
     draw() {
-      var divPosition = this.getProjection().fromLatLngToDivPixel(
+      const divPosition = this.getProjection().fromLatLngToDivPixel(
         this.position
       );
 
       // Hide the popup when it is far out of view.
-      var display =
+      const display =
         Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000
           ? "block"
           : "none";
@@ -79,6 +79,7 @@ function initMap() {
         this.containerDiv.style.left = divPosition.x + "px";
         this.containerDiv.style.top = divPosition.y + "px";
       }
+
       if (this.containerDiv.style.display !== display) {
         this.containerDiv.style.display = display;
       }

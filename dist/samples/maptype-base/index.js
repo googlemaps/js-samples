@@ -14,7 +14,7 @@ class CoordMapType {
     this.tileSize = tileSize;
   }
   getTile(coord, zoom, ownerDocument) {
-    var div = ownerDocument.createElement("div");
+    const div = ownerDocument.createElement("div");
     div.innerHTML = String(coord);
     div.style.width = this.tileSize.width + "px";
     div.style.height = this.tileSize.height + "px";
@@ -27,8 +27,9 @@ class CoordMapType {
   }
   releaseTile(tile) {}
 }
+
 function initMap() {
-  var map = new google.maps.Map(document.getElementById("map"), {
+  const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
     center: { lat: 41.85, lng: -87.65 },
     streetViewControl: false,
@@ -39,7 +40,7 @@ function initMap() {
     }
   });
   map.addListener("maptypeid_changed", function() {
-    var showStreetViewControl = map.getMapTypeId() !== "coordinate";
+    const showStreetViewControl = map.getMapTypeId() !== "coordinate";
     map.setOptions({
       streetViewControl: showStreetViewControl
     });

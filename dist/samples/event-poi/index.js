@@ -7,9 +7,11 @@ function initMap() {
   });
   new ClickEventHandler(map, origin);
 }
+
 function isIconMouseEvent(e) {
   return "placeId" in e;
 }
+
 class ClickEventHandler {
   constructor(map, origin) {
     this.origin = origin;
@@ -26,6 +28,7 @@ class ClickEventHandler {
   }
   handleClick(event) {
     console.log("You clicked on: " + event.latLng);
+
     // If the event has a placeId, use it.
     if (isIconMouseEvent(event)) {
       console.log("You clicked on place:" + event.placeId);
@@ -39,7 +42,7 @@ class ClickEventHandler {
     }
   }
   calculateAndDisplayRoute(placeId) {
-    var me = this;
+    const me = this;
     this.directionsService.route(
       {
         origin: this.origin,
@@ -56,7 +59,7 @@ class ClickEventHandler {
     );
   }
   getPlaceInformation(placeId) {
-    var me = this;
+    const me = this;
     this.placesService.getDetails({ placeId: placeId }, function(
       place,
       status

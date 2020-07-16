@@ -32,7 +32,7 @@ function initMap() {
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
-  var autocomplete = new google.maps.places.Autocomplete(input);
+  const autocomplete = new google.maps.places.Autocomplete(input);
 
   // Bind the map's bounds (viewport) property to the autocomplete object,
   // so that the autocomplete requests use the current map bounds for the
@@ -42,12 +42,12 @@ function initMap() {
   // Set the data fields to return when the user selects a place.
   autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
 
-  var infowindow = new google.maps.InfoWindow();
-  var infowindowContent = document.getElementById(
+  const infowindow = new google.maps.InfoWindow();
+  const infowindowContent = document.getElementById(
     "infowindow-content"
   ) as HTMLElement;
   infowindow.setContent(infowindowContent);
-  var marker = new google.maps.Marker({
+  const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(0, -29)
   });
@@ -55,7 +55,8 @@ function initMap() {
   autocomplete.addListener("place_changed", function() {
     infowindow.close();
     marker.setVisible(false);
-    var place = autocomplete.getPlace();
+    const place = autocomplete.getPlace();
+
     if (!place.geometry) {
       // User entered the name of a Place that was not suggested and
       // pressed the Enter key, or the Place Details request failed.
@@ -73,7 +74,8 @@ function initMap() {
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
 
-    var address = "";
+    let address = "";
+
     if (place.address_components) {
       address = [
         (place.address_components[0] &&
@@ -97,7 +99,7 @@ function initMap() {
   // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
   function setupClickListener(id, types) {
-    var radioButton = document.getElementById(id) as HTMLInputElement;
+    const radioButton = document.getElementById(id) as HTMLInputElement;
     radioButton.addEventListener("click", function() {
       autocomplete.setTypes(types);
     });

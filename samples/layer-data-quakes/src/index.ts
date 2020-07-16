@@ -29,7 +29,7 @@ function initMap() {
   // Get the earthquake data (JSONP format)
   // This feed is a copy from the USGS feed, you can find the originals here:
   //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-  var script = document.createElement("script");
+  const script = document.createElement("script");
   script.setAttribute(
     "src",
     "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
@@ -43,16 +43,16 @@ function eqfeed_callback(data: any) {
 }
 
 function styleFeature(feature: google.maps.Data.Feature) {
-  var low = [151, 83, 34]; // color of mag 1.0
-  var high = [5, 69, 54]; // color of mag 6.0 and above
-  var minMag = 1.0;
-  var maxMag = 6.0;
+  const low = [151, 83, 34]; // color of mag 1.0
+  const high = [5, 69, 54]; // color of mag 6.0 and above
+  const minMag = 1.0;
+  const maxMag = 6.0;
 
   // fraction represents where the value sits between the min and max
-  var fraction =
+  const fraction =
     (Math.min(feature.getProperty("mag"), maxMag) - minMag) / (maxMag - minMag);
 
-  var color = interpolateHsl(low, high, fraction);
+  const color = interpolateHsl(low, high, fraction);
 
   return {
     icon: {
@@ -69,7 +69,8 @@ function styleFeature(feature: google.maps.Data.Feature) {
 }
 
 function interpolateHsl(lowHsl: number[], highHsl: number[], fraction: number) {
-  var color: number[] = [];
+  const color: number[] = [];
+
   for (let i = 0; i < 3; i++) {
     // Calculate color based on the fraction.
     color.push((highHsl[i] - lowHsl[i]) * fraction + lowHsl[i]);

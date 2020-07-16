@@ -1,11 +1,13 @@
 // [START maps_overlay_popup]
 let map, popup, Popup;
+
 /** Initializes the map and the custom popup. */
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.9, lng: 151.1 },
     zoom: 10
   });
+
   /**
    * A customized popup on the map.
    */
@@ -15,7 +17,7 @@ function initMap() {
       this.position = position;
       content.classList.add("popup-bubble");
       // This zero-height div is positioned at the bottom of the bubble.
-      var bubbleAnchor = document.createElement("div");
+      const bubbleAnchor = document.createElement("div");
       bubbleAnchor.classList.add("popup-bubble-anchor");
       bubbleAnchor.appendChild(content);
       // This zero-height div is positioned at the bottom of the tip.
@@ -37,18 +39,20 @@ function initMap() {
     }
     /** Called each frame when the popup needs to draw itself. */
     draw() {
-      var divPosition = this.getProjection().fromLatLngToDivPixel(
+      const divPosition = this.getProjection().fromLatLngToDivPixel(
         this.position
       );
       // Hide the popup when it is far out of view.
-      var display =
+      const display =
         Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000
           ? "block"
           : "none";
+
       if (display === "block") {
         this.containerDiv.style.left = divPosition.x + "px";
         this.containerDiv.style.top = divPosition.y + "px";
       }
+
       if (this.containerDiv.style.display !== display) {
         this.containerDiv.style.display = display;
       }

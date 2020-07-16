@@ -6,6 +6,7 @@ load("@rules_pkg//:pkg.bzl", "pkg_deb", "pkg_tar")
 exports_files(
     [
         "LICENSE",
+        ".eslintrc.json",
         "package.json",
         "rollup.config.js",
         "rollup.config.iframe.js",
@@ -71,8 +72,6 @@ ESLINT_DATA = [
     # config files
     ":.eslintrc.json",
     "//samples:.eslintrc.json",
-    # files to test
-    "//samples:inputs",
     # plugins
     "@npm//eslint-config-prettier",
     "@npm//eslint-plugin-jest",
@@ -83,8 +82,14 @@ ESLINT_DATA = [
 
 eslint_test(
     name = "eslint",
-    args = ["samples/**/*.ts"],
-    data = ESLINT_DATA,
+    args = [
+        "samples/**/*.ts",
+        "samples/**/*.js",
+    ],
+    data = ESLINT_DATA + [
+        "//samples:inputs",
+        "//samples:outputs",
+    ],
 )
 
 eslint(
@@ -93,7 +98,9 @@ eslint(
         "samples/**/*.ts",
         "--fix",
     ],
-    data = ESLINT_DATA,
+    data = ESLINT_DATA + [
+        "//samples:inputs",
+    ],
 )
 
 pkg_tar(

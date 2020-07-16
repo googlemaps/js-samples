@@ -1,13 +1,14 @@
 // [START maps_custom_markers]
 let map;
+
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     zoom: 16
   });
-  var iconBase =
+  const iconBase =
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
-  var icons = {
+  const icons = {
     parking: {
       icon: iconBase + "parking_lot_maps.png"
     },
@@ -18,7 +19,7 @@ function initMap() {
       icon: iconBase + "info-i_maps.png"
     }
   };
-  var features = [
+  const features = [
     {
       position: new google.maps.LatLng(-33.91721, 151.2263),
       type: "info"
@@ -96,9 +97,10 @@ function initMap() {
       type: "library"
     }
   ];
+
   // Create markers.
   for (let i = 0; i < features.length; i++) {
-    var marker = new google.maps.Marker({
+    const marker = new google.maps.Marker({
       position: features[i].position,
       icon: icons[features[i].type].icon,
       map: map

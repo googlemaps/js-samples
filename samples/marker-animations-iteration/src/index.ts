@@ -19,7 +19,7 @@
 // consecutively rather than all at once. This example shows how to use
 // window.setTimeout() to space your markers' animation.
 
-var neighborhoods: google.maps.LatLngLiteral[] = [
+const neighborhoods: google.maps.LatLngLiteral[] = [
   { lat: 52.511, lng: 13.447 },
   { lat: 52.549, lng: 13.422 },
   { lat: 52.497, lng: 13.396 },
@@ -38,6 +38,7 @@ function initMap() {
 
 function drop() {
   clearMarkers();
+
   for (let i = 0; i < neighborhoods.length; i++) {
     addMarkerWithTimeout(neighborhoods[i], i * 200);
   }
