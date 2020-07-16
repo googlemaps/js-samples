@@ -15,7 +15,7 @@
  */
 
 // [START maps_map_id_style]
-function initMap() {
+function initMap(): void {
   new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

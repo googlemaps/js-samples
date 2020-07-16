@@ -17,7 +17,7 @@
 // [START maps_icon_simple]
 // This example adds a marker to indicate the position of Bondi Beach in Sydney,
 // Australia.
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

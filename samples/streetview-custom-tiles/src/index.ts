@@ -92,7 +92,7 @@ function initPanorama() {
   });
 }
 
-function initMap() {
+function initMap(): void {
   // Use the Street View service to find a pano ID on Pirrama Rd, outside the
   // Google office.
   const streetviewService = new google.maps.StreetViewService();

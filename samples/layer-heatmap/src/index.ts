@@ -21,7 +21,7 @@
 
 let map: google.maps.Map, heatmap: google.maps.visualization.HeatmapLayer;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 13,
     center: { lat: 37.775, lng: -122.434 },

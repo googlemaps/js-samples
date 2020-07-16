@@ -15,7 +15,7 @@
  */
 
 // [START maps_distance_matrix]
-function initMap() {
+function initMap(): void {
   const bounds = new google.maps.LatLngBounds();
   const markersArray: google.maps.Marker[] = [];
 
@@ -30,10 +30,13 @@ function initMap() {
   const originIcon =
     "https://chart.googleapis.com/chart?" +
     "chst=d_map_pin_letter&chld=O|FFFF00|000000";
-  const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    center: { lat: 55.53, lng: 9.4 },
-    zoom: 10
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      center: { lat: 55.53, lng: 9.4 },
+      zoom: 10
+    }
+  );
   const geocoder = new google.maps.Geocoder();
 
   const service = new google.maps.DistanceMatrixService();

@@ -23,7 +23,7 @@ let map: google.maps.Map;
 
 let panorama: google.maps.StreetViewPanorama;
 
-function initMap() {
+function initMap(): void {
   const berkeley = { lat: 37.869085, lng: -122.254775 };
   const sv = new google.maps.StreetViewService();
 

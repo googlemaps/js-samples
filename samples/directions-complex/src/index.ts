@@ -15,7 +15,7 @@
  */
 
 // [START maps_directions_complex]
-function initMap() {
+function initMap(): void {
   const markerArray: google.maps.Marker[] = [];
 
   // Instantiate a directions service.

@@ -17,7 +17,7 @@
 // [START maps_streetview_overlays]
 let panorama: google.maps.StreetViewPanorama;
 
-function initMap() {
+function initMap(): void {
   const astorPlace = { lat: 40.729884, lng: -73.990988 };
 
   // Set up the map

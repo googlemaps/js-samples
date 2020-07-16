@@ -21,7 +21,7 @@
 let historicalOverlay: google.maps.GroundOverlay;
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 13,
     center: { lat: 40.74, lng: -74.18 }

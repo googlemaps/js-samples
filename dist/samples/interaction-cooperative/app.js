@@ -16,7 +16,7 @@
       center: myLatLng,
       gestureHandling: "cooperative"
     });
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: myLatLng,
       map,
       title: "Hello World!"

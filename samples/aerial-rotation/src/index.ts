@@ -17,7 +17,7 @@
 // [START maps_aerial_rotation]
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 45.518, lng: -122.672 },
     zoom: 18,

@@ -7,7 +7,7 @@ function initMap() {
     zoom: 4,
     center: { lat: -25.363882, lng: 131.044922 }
   });
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: map.getCenter(),
     icon: {
       path: google.maps.SymbolPath.CIRCLE,

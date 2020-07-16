@@ -15,7 +15,7 @@
  */
 
 // [START maps_event_properties]
-function initMap() {
+function initMap(): void {
   const originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,

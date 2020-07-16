@@ -114,10 +114,9 @@
         ),
         type: "library"
       }
-    ]; // Create markers.
-
+    ];
     features.forEach(function(feature) {
-      const marker = new google.maps.Marker({
+      new google.maps.Marker({
         position: feature.position,
         icon: icons[feature.type].icon,
         map: exports.map

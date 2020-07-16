@@ -17,7 +17,7 @@
 // [START maps_earthquake_heatmap_weighted]
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 2,
     center: new google.maps.LatLng(2.8, -187.3),

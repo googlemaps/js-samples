@@ -15,7 +15,7 @@
  */
 
 // [START maps_control_default]
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

@@ -15,7 +15,7 @@
  */
 
 // [START maps_elevation_simple]
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

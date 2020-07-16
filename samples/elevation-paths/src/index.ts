@@ -19,7 +19,7 @@
 // @ts-ignore TODO(jpoehnelt)
 google.load("visualization", "1", { packages: ["columnchart"] });
 
-function initMap() {
+function initMap(): void {
   // The following path marks a path from Mt. Whitney, the highest point in the
   // continental United States to Badwater, Death Valley, the lowest point.
   const path = [

@@ -46,7 +46,7 @@ function setupListener(map: google.maps.Map, name: string) {
   });
 }
 
-function initMap() {
+function initMap(): void {
   populateTable();
   const mapDiv = document.getElementById("map") as HTMLElement;
   const map = new google.maps.Map(mapDiv, {

@@ -18,7 +18,7 @@
 // This example creates a rectangle based on the viewport
 // on any 'zoom-changed' event.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

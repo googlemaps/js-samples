@@ -19,7 +19,7 @@
 // projection.
 // https://en.wikipedia.org/wiki/Gall%E2%80%93Peters_projection
 
-function initMap() {
+function initMap(): void {
   // Create a map. Use the Gall-Peters map type.
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,

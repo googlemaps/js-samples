@@ -15,7 +15,7 @@
  */
 
 // [START maps_geocoding_region]
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

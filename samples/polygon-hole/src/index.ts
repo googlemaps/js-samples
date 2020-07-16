@@ -17,7 +17,7 @@
 // [START maps_polygon_hole]
 // This example creates a triangular polygon with a hole in it.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

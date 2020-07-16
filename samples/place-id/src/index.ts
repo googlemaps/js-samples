@@ -16,7 +16,7 @@
 
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   // Create a map centered in Pyrmont, Sydney (Australia).
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: -33.8666, lng: 151.1958 },
@@ -41,7 +41,7 @@ function callback(
   status: google.maps.places.PlacesServiceStatus
 ) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       map,
       place: {
         placeId: results[0].place_id,

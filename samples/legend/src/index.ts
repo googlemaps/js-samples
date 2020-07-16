@@ -17,7 +17,7 @@
 // [START maps_legend]
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 16,
     center: new google.maps.LatLng(-33.91722, 151.23064),
@@ -119,9 +119,8 @@ function initMap() {
     }
   ];
 
-  // Create markers.
   features.forEach(function(feature) {
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: feature.position,
       icon: icons[feature.type].icon,
       map: map

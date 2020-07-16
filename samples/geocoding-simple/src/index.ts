@@ -15,7 +15,7 @@
  */
 
 // [START maps_geocoding_simple]
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
@@ -42,7 +42,7 @@ function geocodeAddress(
   geocoder.geocode({ address: address }, function(results, status) {
     if (status === "OK") {
       resultsMap.setCenter(results[0].geometry.location);
-      const marker = new google.maps.Marker({
+      new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location
       });

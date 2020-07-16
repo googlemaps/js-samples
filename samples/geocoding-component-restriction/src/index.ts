@@ -15,7 +15,7 @@
  */
 
 // [START maps_geocoding_component_restriction]
-function initMap() {
+function initMap(): void {
   const geocoder = new google.maps.Geocoder();
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,

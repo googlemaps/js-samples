@@ -17,7 +17,7 @@
 /* eslint-disable no-undef */
 // [START maps_deckgl_points]
 // Initialize and add the map
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

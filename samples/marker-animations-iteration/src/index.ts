@@ -29,7 +29,7 @@ const neighborhoods: google.maps.LatLngLiteral[] = [
 let markers: google.maps.Marker[] = [];
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: { lat: 52.52, lng: 13.41 }

@@ -18,7 +18,7 @@
 // This example adds a predefined symbol (an arrow) to a polyline.
 // Setting offset to 100% places the arrow at the end of the line.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

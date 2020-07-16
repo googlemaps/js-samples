@@ -45,7 +45,7 @@ function setMarkers(map) {
 
   for (let i = 0; i < beaches.length; i++) {
     const beach = beaches[i];
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: { lat: beach[1], lng: beach[2] },
       map,
       icon: image,

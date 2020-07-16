@@ -17,7 +17,7 @@
 // [START maps_layer_data_quakes_simple]
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 20, lng: -160 },
     zoom: 2

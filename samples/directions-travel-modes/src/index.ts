@@ -15,7 +15,7 @@
  */
 
 // [START maps_directions_travel_modes]
-function initMap() {
+function initMap(): void {
   const directionsRenderer = new google.maps.DirectionsRenderer();
   const directionsService = new google.maps.DirectionsService();
   const map = new google.maps.Map(

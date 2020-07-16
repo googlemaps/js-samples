@@ -27,7 +27,7 @@ function addLatLng(event) {
   // and it will automatically appear.
   path.push(event.latLng);
   // Add a new marker at the new plotted point on the polyline.
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: event.latLng,
     title: "#" + path.getLength(),
     map: map

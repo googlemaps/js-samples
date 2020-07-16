@@ -20,7 +20,7 @@
 // API automatically draws a stroke connecting the last LatLng back to the first
 // LatLng.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

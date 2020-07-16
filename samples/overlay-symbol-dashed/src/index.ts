@@ -19,7 +19,7 @@
 // setting the opacity of the polyline to 0, and drawing an opaque symbol
 // at a regular interval on the polyline.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

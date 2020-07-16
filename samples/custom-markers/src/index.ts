@@ -17,7 +17,7 @@
 // [START maps_custom_markers]
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     zoom: 16

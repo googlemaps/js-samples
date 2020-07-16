@@ -16,7 +16,7 @@
 
 // [START maps_user_editable_shapes]
 // This example adds a user-editable rectangle to the map.
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

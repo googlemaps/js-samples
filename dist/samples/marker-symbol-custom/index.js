@@ -16,7 +16,7 @@ function initMap() {
     strokeColor: "gold",
     strokeWeight: 14
   };
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: map.getCenter(),
     icon: goldStar,
     map: map

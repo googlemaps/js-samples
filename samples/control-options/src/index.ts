@@ -18,7 +18,7 @@
 // You can set control options to change the default position or style of many
 // of the map controls.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

@@ -20,7 +20,7 @@
 const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 let labelIndex = 0;
 
-function initMap() {
+function initMap(): void {
   const bangalore = { lat: 12.97, lng: 77.59 };
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
@@ -43,7 +43,7 @@ function initMap() {
 function addMarker(location: google.maps.LatLngLiteral, map: google.maps.Map) {
   // Add the marker at the clicked location, and add the next-available label
   // from the array of alphabetical characters.
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: location,
     label: labels[labelIndex++ % labels.length],
     map: map

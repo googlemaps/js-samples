@@ -15,7 +15,7 @@
  */
 
 // [START maps_event_arguments]
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
@@ -30,7 +30,7 @@ function initMap() {
 }
 
 function placeMarkerAndPanTo(latLng: google.maps.LatLng, map: google.maps.Map) {
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: latLng,
     map: map
   });

@@ -19,7 +19,7 @@
 // These methods toggle the visibility of the container <div>.
 // overlay to or from the map.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

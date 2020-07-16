@@ -18,7 +18,7 @@
 let map: google.maps.Map;
 
 // Initialize and add the map
-function initMap() {
+function initMap(): void {
   let markers: google.maps.Marker[] = [];
 
   // @ts-ignore Beta functionality

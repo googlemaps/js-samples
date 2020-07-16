@@ -93,7 +93,7 @@ const countries: Record<
   }
 };
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: countries["us"].zoom,
     center: countries["us"].center,

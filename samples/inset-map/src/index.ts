@@ -20,7 +20,7 @@ const OVERVIEW_DIFFERENCE = 5;
 const OVERVIEW_MIN_ZOOM = 3;
 const OVERVIEW_MAX_ZOOM = 10;
 
-function initMap() {
+function initMap(): void {
   const mapOptions = {
     center: { lat: 50, lng: 8 },
     zoom: 7

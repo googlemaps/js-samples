@@ -17,7 +17,7 @@
 // [START maps_overlay_symbol_animate]
 // This example adds an animated symbol to a polyline.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

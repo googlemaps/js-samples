@@ -17,7 +17,7 @@
 // [START maps_hiding_features]
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: -33.86, lng: 151.209 },
     zoom: 13,

@@ -23,7 +23,7 @@ let map: google.maps.Map;
 let service: google.maps.places.PlacesService;
 let infowindow: google.maps.InfoWindow;
 
-function initMap() {
+function initMap(): void {
   const sydney = new google.maps.LatLng(-33.867, 151.195);
 
   infowindow = new google.maps.InfoWindow();

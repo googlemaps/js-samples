@@ -15,7 +15,7 @@
  */
 
 // [START maps_map_coordinates]
-function initMap() {
+function initMap(): void {
   const chicago = new google.maps.LatLng(41.85, -87.65);
 
   const map = new google.maps.Map(

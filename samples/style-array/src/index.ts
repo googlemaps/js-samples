@@ -15,7 +15,7 @@
  */
 
 // [START maps_style_array]
-function initMap() {
+function initMap(): void {
   // Styles a map in night mode.
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,

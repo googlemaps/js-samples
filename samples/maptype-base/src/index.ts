@@ -53,7 +53,7 @@ class CoordMapType {
   releaseTile(tile: HTMLElement): void {}
 }
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

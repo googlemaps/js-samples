@@ -15,7 +15,7 @@
  */
 
 // [START maps_event_domListener]
-function initMap() {
+function initMap(): void {
   const mapDiv = document.getElementById("map") as HTMLElement;
   const map = new google.maps.Map(mapDiv, {
     zoom: 8,

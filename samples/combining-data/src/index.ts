@@ -35,7 +35,7 @@ let map: google.maps.Map;
 let censusMin = Number.MAX_VALUE,
   censusMax = -Number.MAX_VALUE;
 
-function initMap() {
+function initMap(): void {
   // load the map
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 40, lng: -100 },

@@ -19,7 +19,7 @@
 // The symbol uses one of the predefined vector paths ('CIRCLE') supplied by the
 // Google Maps JavaScript API.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
@@ -28,7 +28,7 @@ function initMap() {
     }
   );
 
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: map.getCenter(),
     icon: {
       path: google.maps.SymbolPath.CIRCLE,

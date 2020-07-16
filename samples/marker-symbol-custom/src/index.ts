@@ -19,7 +19,7 @@
 // as the icon for a marker. The resulting icon is a star-shaped symbol
 // with a pale yellow fill and a thick yellow border.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
@@ -38,7 +38,7 @@ function initMap() {
     strokeWeight: 14
   };
 
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: map.getCenter(),
     icon: goldStar,
     map: map

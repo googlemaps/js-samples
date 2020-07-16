@@ -17,7 +17,7 @@
 // [START maps_rectangle_simple]
 // This example adds a red rectangle to a map.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

@@ -16,7 +16,7 @@
 
 // [START maps_vector_use_static_map]
 // Initialize and add the side by side maps
-function initMap() {
+function initMap(): void {
   const sharedOptions = {
     center: { lat: 47.609414458375674, lng: -122.33897030353548 },
     zoom: 17,

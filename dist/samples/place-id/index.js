@@ -20,7 +20,7 @@ function initMap() {
 // using the place ID and location from the PlacesService.
 function callback(results, status) {
   if (status == google.maps.places.PlacesServiceStatus.OK) {
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       map,
       place: {
         placeId: results[0].place_id,

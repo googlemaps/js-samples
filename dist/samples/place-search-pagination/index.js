@@ -48,7 +48,7 @@ function createMarkers(places, map) {
       anchor: new google.maps.Point(17, 34),
       scaledSize: new google.maps.Size(25, 25)
     };
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       map,
       icon: image,
       title: place.name,

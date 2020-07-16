@@ -27,7 +27,7 @@
 // parent class itself, because we do not wish to modify the parent class.
 
 // Initialize the map and the custom overlay.
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

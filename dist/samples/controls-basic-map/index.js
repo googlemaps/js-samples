@@ -8,7 +8,7 @@ function initMap() {
     gestureHandling: "greedy"
   });
   // [END smaps_controls_basic_map_script_snippet]
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: locationRio,
     map,
     title: "Hello World!"

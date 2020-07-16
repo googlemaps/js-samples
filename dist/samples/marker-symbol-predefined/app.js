@@ -12,7 +12,7 @@
         lng: 131.044922
       }
     });
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: map.getCenter(),
       icon: {
         path: google.maps.SymbolPath.CIRCLE,

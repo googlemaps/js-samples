@@ -18,7 +18,7 @@
 // This example displays a marker at the center of Australia.
 // When the user clicks the marker, an info window opens.
 
-function initMap() {
+function initMap(): void {
   const uluru = { lat: -25.363, lng: 131.044 };
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,

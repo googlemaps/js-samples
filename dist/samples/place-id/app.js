@@ -23,7 +23,7 @@
 
   function callback(results, status) {
     if (status == google.maps.places.PlacesServiceStatus.OK) {
-      const marker = new google.maps.Marker({
+      new google.maps.Marker({
         map: exports.map,
         place: {
           placeId: results[0].place_id,

@@ -22,7 +22,7 @@
 
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   const mapOptions = {
     zoom: 8,
     center: { lat: -34.397, lng: 150.644 }

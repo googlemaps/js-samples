@@ -22,7 +22,7 @@
 let poly: google.maps.Polyline;
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 7,
     center: { lat: 41.879, lng: -87.624 } // Center the map on Chicago, USA.
@@ -48,7 +48,7 @@ function addLatLng(event: google.maps.MouseEvent) {
   path.push(event.latLng);
 
   // Add a new marker at the new plotted point on the polyline.
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: event.latLng,
     title: "#" + path.getLength(),
     map: map

@@ -15,7 +15,7 @@
  */
 
 // [START maps_event_poi]
-function initMap() {
+function initMap(): void {
   const origin = { lat: -33.871, lng: 151.197 };
 
   const map = new google.maps.Map(

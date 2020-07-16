@@ -22,7 +22,7 @@
 let marker1: google.maps.Marker, marker2: google.maps.Marker;
 let poly: google.maps.Polyline, geodesicPoly: google.maps.Polyline;
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

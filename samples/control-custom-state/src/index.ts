@@ -77,7 +77,7 @@ class CenterControl {
   }
 }
 
-function initMap() {
+function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
     center: chicago

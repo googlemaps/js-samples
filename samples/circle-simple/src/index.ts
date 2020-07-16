@@ -44,7 +44,7 @@ const citymap: Record<string, City> = {
   }
 };
 
-function initMap() {
+function initMap(): void {
   // Create the map.
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,

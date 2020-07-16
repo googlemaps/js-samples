@@ -19,7 +19,7 @@
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-function initMap() {
+function initMap(): void {
   // Create the map.
   const pyrmont = { lat: -33.866, lng: 151.196 };
   const map = new google.maps.Map(
@@ -79,7 +79,7 @@ function createMarkers(
       scaledSize: new google.maps.Size(25, 25)
     };
 
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       map,
       icon: image,
       title: place.name,

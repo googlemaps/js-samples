@@ -16,7 +16,7 @@
 
 // [START maps_geocoding_place_id]
 // Initialize the map.
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

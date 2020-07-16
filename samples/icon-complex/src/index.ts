@@ -19,7 +19,7 @@
 // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
 // to the base of the flagpole.
 
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
@@ -69,7 +69,7 @@ function setMarkers(map: google.maps.Map) {
 
   for (let i = 0; i < beaches.length; i++) {
     const beach = beaches[i];
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: { lat: beach[1], lng: beach[2] },
       map,
       icon: image,

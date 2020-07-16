@@ -15,7 +15,7 @@
  */
 
 // [START maps_maptype_styled_simple]
-function initMap() {
+function initMap(): void {
   // Create a new StyledMapType object, passing it an array of styles,
   // and the name to be displayed on the map type control.
   const styledMapType = new google.maps.StyledMapType(

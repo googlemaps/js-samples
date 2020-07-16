@@ -11,7 +11,7 @@
       center: locationRio,
       gestureHandling: "cooperative"
     });
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: locationRio,
       map,
       title: "Hello World!"

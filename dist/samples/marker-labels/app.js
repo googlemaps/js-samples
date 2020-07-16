@@ -26,7 +26,7 @@
   function addMarker(location, map) {
     // Add the marker at the clicked location, and add the next-available label
     // from the array of alphabetical characters.
-    const marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: location,
       label: labels[exports.labelIndex++ % labels.length],
       map: map

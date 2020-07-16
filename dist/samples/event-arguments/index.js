@@ -10,7 +10,7 @@ function initMap() {
 }
 
 function placeMarkerAndPanTo(latLng, map) {
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: latLng,
     map: map
   });

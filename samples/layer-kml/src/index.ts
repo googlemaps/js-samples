@@ -15,7 +15,7 @@
  */
 
 // [START maps_layer_kml]
-function initMap() {
+function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {

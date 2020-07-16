@@ -17,7 +17,7 @@
 // [START maps_style_selector]
 let map: google.maps.Map;
 
-function initMap() {
+function initMap(): void {
   // Create the map with no initial style specified.
   // It therefore has default styling.
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {

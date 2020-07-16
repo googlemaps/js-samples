@@ -9,7 +9,7 @@ function initMap() {
     zoomControl: false
   });
   // [END maps_disable_zoom_and_pan_script_snippet]
-  const marker = new google.maps.Marker({
+  new google.maps.Marker({
     position: locationRio,
     map,
     title: "Hello World!"
