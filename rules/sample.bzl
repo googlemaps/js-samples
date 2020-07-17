@@ -2,6 +2,7 @@ load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
+load("//rules:tags.bzl", "tags_test")
 load("@npm//@bazel/typescript:index.bzl", "ts_library")
 
 def sample():
@@ -29,6 +30,7 @@ def sample():
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
+              "sed -i'.bak' 's/ ?\\/\\/ *@ts-.*//g' $@; " +
               "$(location //rules:eslint) -c $(location //:.eslintrc.json) --fix $@; ",
         tools = ["//rules:eslint","//rules:remove_apache_license", "//rules:strip_source_map_url_bin"],
     )
@@ -264,3 +266,8 @@ def sample():
         srcs = ["src/index.ts", "src/style.scss", "src/index.njk"],
         visibility = ["//visibility:public"],
     )
+
+    tags_test(name="test_tags_ts", file=":src/index.ts")
+    tags_test(name="test_tags_js", file=":index.js")
+    tags_test(name="test_tags_css", file=":style.css")
+    tags_test(name="test_tags_html", file=":sample.html")

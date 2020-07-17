@@ -1,6 +1,9 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
-exports_files(["diff.js"])
+exports_files([
+    "diff.js",
+    "tags.js",
+])
 
 nodejs_binary(
     name = "json",
