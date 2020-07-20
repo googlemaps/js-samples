@@ -67,4 +67,4 @@ var locations = [
   { lat: -43.999792, lng: 170.463352 }
 ];
 // [END maps_marker_clustering]
-export { MarkerClusterer, initMap, locations };
+export { initMap, locations };
