@@ -16,7 +16,8 @@
     "firebase": "readonly",
     "ActiveXObject": "readonly",
     "mdc": "readonly",
-    "Split": "readonly"
+    "Split": "readonly",
+    "MarkerClusterer": "readonly"
   },
   "env": {
     "browser": true
