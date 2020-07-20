@@ -40,9 +40,9 @@ function initMap(): void {
       ...sharedOptions,
       mapId: "ed1309c122a3dfcb",
       useStaticMap: true
-    } as google.maps.MapOptions
+    } as google.maps.MapOptions // TODO(jpoehnelt) add mapId to @types/googlemaps
   );
   // [END maps_vector_use_static_map_js_instantiate]
 }
 // [END maps_vector_use_static_map]
-export { initMap };
+export {};

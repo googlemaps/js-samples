@@ -1,4 +1,3 @@
-// [START maps_marker_animations]
 // The following example creates a marker in Stockholm, Sweden using a DROP
 // animation. Clicking on the marker will toggle the animation between a BOUNCE
 // animation and no animation.
@@ -25,5 +24,3 @@ function toggleBounce() {
     marker.setAnimation(google.maps.Animation.BOUNCE);
   }
 }
-// [END maps_marker_animations]
-export { marker, initMap, toggleBounce };

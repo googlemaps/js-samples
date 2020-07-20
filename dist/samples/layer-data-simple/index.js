@@ -1,4 +1,3 @@
-// [START maps_layer_data_simple]
 let map;
 
 function initMap() {
@@ -11,5 +10,3 @@ function initMap() {
     "https://storage.googleapis.com/mapsdevsite/json/google.json"
   );
 }
-// [END maps_layer_data_simple]
-export { map, initMap };

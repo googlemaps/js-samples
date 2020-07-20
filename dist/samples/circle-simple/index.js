@@ -41,5 +41,3 @@ function initMap() {
     });
   }
 }
-// [END maps_circle_simple]
-export { citymap, initMap };

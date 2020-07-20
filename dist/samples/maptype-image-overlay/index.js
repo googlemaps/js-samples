@@ -1,4 +1,3 @@
-// [START maps_maptype_image_overlay]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 18,
@@ -48,5 +47,3 @@ function initMap() {
   });
   map.overlayMapTypes.push(imageMapType);
 }
-// [END maps_maptype_image_overlay]
-export { initMap };

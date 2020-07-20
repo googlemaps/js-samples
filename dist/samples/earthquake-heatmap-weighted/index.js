@@ -1,4 +1,3 @@
-// [START maps_earthquake_heatmap_weighted]
 let map;
 
 function initMap() {
@@ -36,5 +35,3 @@ const eqfeed_callback = function(results) {
     map: map
   });
 };
-// [END maps_earthquake_heatmap_weighted]
-export { map, initMap, eqfeed_callback };

@@ -161,4 +161,4 @@ const cities = {
   ]
 };
 // [END maps_map_projection_simple]
-export { initMap, gallPetersMapType, initGallPeters, cities };
+export {};

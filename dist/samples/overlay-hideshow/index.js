@@ -1,4 +1,3 @@
-// [START maps_overlay_hideshow]
 // This example adds hide() and show() methods to a custom overlay's prototype.
 // These methods toggle the visibility of the container <div>.
 // overlay to or from the map.
@@ -105,5 +104,3 @@ function initMap() {
   const overlay = new USGSOverlay(bounds, srcImage);
   overlay.setMap(map);
 }
-// [END maps_overlay_hideshow]
-export { initMap };

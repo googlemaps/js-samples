@@ -1,5 +1,4 @@
 // eslint-disable no-undef
-// [START maps_marker_collision_management]
 let map;
 
 // Initialize and add the map
@@ -54,14 +53,10 @@ function initMap() {
     [-122.3378, 47.6095]
   ].map(
     ([lng, lat]) =>
-      // [START maps_marker_collision_management_create_marker]
       new google.maps.Marker({
         position: new google.maps.LatLng({ lat, lng }),
         map,
         collisionBehavior: collisionBehavior
       })
-    // [END maps_marker_collision_management_create_marker]
   );
 }
-// [END maps_marker_collision_management]
-export { initMap, map };

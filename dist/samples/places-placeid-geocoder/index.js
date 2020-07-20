@@ -1,4 +1,3 @@
-// [START maps_places_placeid_geocoder]
 // This sample requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
@@ -51,5 +50,3 @@ function initMap() {
     });
   });
 }
-// [END maps_places_placeid_geocoder]
-export { initMap };

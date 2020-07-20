@@ -60,4 +60,4 @@ function eqfeed_callback(results: any) {
   map.data.addGeoJson(results);
 }
 // [END maps_landing_page_visualize_data]
-export { map, initMap, getCircle, eqfeed_callback };
+export {};

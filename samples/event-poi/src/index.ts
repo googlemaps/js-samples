@@ -123,4 +123,4 @@ class ClickEventHandler {
   }
 }
 // [END maps_event_poi]
-export { initMap, ClickEventHandler };
+export {};

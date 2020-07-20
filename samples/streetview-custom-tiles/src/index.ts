@@ -110,10 +110,4 @@ function initMap(): void {
   );
 }
 // [END maps_streetview_custom_tiles]
-export {
-  panorama,
-  outsideGoogle,
-  getReceptionPanoramaData,
-  initPanorama,
-  initMap
-};
+export {};

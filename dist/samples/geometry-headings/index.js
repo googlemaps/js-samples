@@ -1,4 +1,3 @@
-// [START maps_geometry_headings]
 // This example requires the Geometry library. Include the libraries=geometry
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
@@ -58,5 +57,3 @@ function update() {
   document.getElementById("origin").value = String(path[0]);
   document.getElementById("destination").value = String(path[1]);
 }
-// [END maps_geometry_headings]
-export { marker1, poly, initMap, update };

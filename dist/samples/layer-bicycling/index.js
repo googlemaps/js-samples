@@ -1,4 +1,3 @@
-// [START maps_layer_bicycling]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 14,
@@ -7,5 +6,3 @@ function initMap() {
   const bikeLayer = new google.maps.BicyclingLayer();
   bikeLayer.setMap(map);
 }
-// [END maps_layer_bicycling]
-export { initMap };

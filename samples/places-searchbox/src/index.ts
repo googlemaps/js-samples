@@ -98,4 +98,4 @@ function initAutocomplete() {
 }
 
 // [END maps_places_searchbox]
-export { initAutocomplete };
+export {};

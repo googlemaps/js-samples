@@ -7,9 +7,9 @@ exports_files(
     [
         "LICENSE",
         ".eslintrc.json",
+        ".babelrc",
+        ".babelrc.jsfiddle.json",
         "package.json",
-        "rollup.config.js",
-        "rollup.config.iframe.js",
         "jest.config.js",
         "tsconfig.json",
     ],

@@ -1,4 +1,3 @@
-// [START maps_control_options]
 // You can set control options to change the default position or style of many
 // of the map controls.
 function initMap() {
@@ -12,5 +11,3 @@ function initMap() {
     }
   });
 }
-// [END maps_control_options]
-export { initMap };

@@ -1,4 +1,3 @@
-// [START maps_earthquake_heatmap]
 let map;
 
 function initMap() {
@@ -30,5 +29,3 @@ function eqfeed_callback(results) {
     map: map
   });
 }
-// [END maps_earthquake_heatmap]
-export { map, initMap, eqfeed_callback };

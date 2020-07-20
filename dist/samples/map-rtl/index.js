@@ -1,4 +1,3 @@
-// [START maps_map_rtl]
 // This example displays a map with the language set to Arabic and the
 // regions set to Egypt. These settings are specified in the HTML script
 // element when loading the Google Maps JavaScript API.
@@ -20,5 +19,3 @@ function initMap() {
     infowindow.open(map, marker);
   });
 }
-// [END maps_map_rtl]
-export { initMap };

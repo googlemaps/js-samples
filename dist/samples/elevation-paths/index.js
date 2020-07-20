@@ -1,4 +1,3 @@
-// [START maps_elevation_paths]
 // Load the Visualization API and the columnchart package.
 // @ts-ignore TODO(jpoehnelt)
 google.load("visualization", "1", { packages: ["columnchart"] });
@@ -78,5 +77,3 @@ function plotElevation(elevations, status) {
     titleY: "Elevation (m)"
   });
 }
-// [END maps_elevation_paths]
-export { initMap, displayPathElevation, plotElevation };

@@ -1,4 +1,3 @@
-// [START maps_control_simple]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -7,5 +6,3 @@ function initMap() {
     scaleControl: true
   });
 }
-// [END maps_control_simple]
-export { initMap };

@@ -1,4 +1,3 @@
-// [START maps_groundoverlay_simple]
 // This example uses a GroundOverlay to place an image on the map
 // showing an antique map of Newark, NJ.
 let historicalOverlay;
@@ -20,5 +19,3 @@ function initMap() {
   );
   historicalOverlay.setMap(map);
 }
-// [END maps_groundoverlay_simple]
-export { historicalOverlay, initMap };

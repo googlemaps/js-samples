@@ -329,22 +329,4 @@ function buildIWContent(place) {
   }
 }
 // [END maps_places_autocomplete_hotelsearch]
-export {
-  map,
-  markers,
-  autocomplete,
-  countryRestrict,
-  MARKER_PATH,
-  hostnameRegexp,
-  countries,
-  initMap,
-  onPlaceChanged,
-  search,
-  clearMarkers,
-  setAutocompleteCountry,
-  dropMarker,
-  addResult,
-  clearResults,
-  showInfoWindow,
-  buildIWContent
-};
+export {};

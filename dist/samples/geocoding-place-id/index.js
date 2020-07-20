@@ -1,4 +1,3 @@
-// [START maps_geocoding_place_id]
 // Initialize the map.
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -35,5 +34,3 @@ function geocodePlaceId(geocoder, map, infowindow) {
     }
   });
 }
-// [END maps_geocoding_place_id]
-export { initMap, geocodePlaceId };

@@ -43,4 +43,4 @@ function initService() {
   service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
 }
 // [END maps_places_queryprediction]
-export { initService };
+export {};

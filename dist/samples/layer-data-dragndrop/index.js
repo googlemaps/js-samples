@@ -1,4 +1,3 @@
-// [START maps_layer_data_dragndrop]
 /* Map functions */
 let map;
 
@@ -111,16 +110,3 @@ function initialize() {
   initMap();
   initEvents();
 }
-// [END maps_layer_data_dragndrop]
-export {
-  map,
-  initMap,
-  loadGeoJsonString,
-  zoom,
-  processPoints,
-  initEvents,
-  showPanel,
-  hidePanel,
-  handleDrop,
-  initialize
-};

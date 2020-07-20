@@ -229,15 +229,4 @@ function mouseOutOfRegion(e: any) {
 // [END maps_combining_data_snippet_mouseevents]
 
 // [END maps_combining_data]
-export {
-  mapStyle,
-  map,
-  censusMin,
-  initMap,
-  loadMapShapes,
-  loadCensusData,
-  clearCensusData,
-  styleFeature,
-  mouseInToRegion,
-  mouseOutOfRegion
-};
+export {};

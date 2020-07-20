@@ -24,54 +24,44 @@ def sample():
     )
 
     native.genrule(
-        name = "_index_js",
+        name = "index_js",
         srcs = [":_compile_outputs", "//:.eslintrc.json"],
-        outs = ["_index.js"],
+        outs = ["index.js"],
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
               "sed -i'.bak' 's/ ?\\/\\/ *@ts-.*//g' $@; " +
+              "$(location //rules:prettier) --write $@; " +
               "$(location //rules:eslint) -c $(location //:.eslintrc.json) --fix $@; ",
-        tools = ["//rules:eslint","//rules:remove_apache_license", "//rules:strip_source_map_url_bin"],
+        tools = ["//rules:eslint", "//rules:remove_apache_license", "//rules:strip_source_map_url_bin", "//rules:strip_region_tags_bin", "//rules:prettier"],
+        visibility = ["//visibility:public"],
     )
 
     native.genrule(
-        name = "_app_without_region_tags",
-        srcs = [":_index.js"],
-        outs = ["_app_without_region_tags.js"],
-        cmd = "cat $(location _index.js) > $@; " +
-              "$(location //rules:strip_region_tags_bin) $@; ",
-        tools = ["//rules:strip_region_tags_bin"],
+        name = "iframe_js",
+        outs = [":iframe.js"],
+        cmd = "$(location //rules:babel) --config-file $(location //:.babelrc) --out-file $@ $(location :index.js)",
+        srcs = [
+            ":index.js",
+            "//:.babelrc",
+            "@npm//:node_modules",
+        ],
+        tools = ["//rules:babel"],
     )
 
-    rollup_bundle(
-        name = "iframe",
-        srcs = [":_app_without_region_tags.js"],
-        entry_point = "_app_without_region_tags.js",
-        config_file = "//:rollup.config.iframe.js",
-        format = "iife",
-        sourcemap = "false",
-        visibility = ["//visibility:public"],
-        deps = [
-            "@npm//@babel/core",
-            "@npm//@babel/preset-env",
-            "@npm//@rollup/plugin-babel",
+    native.genrule(
+        name = "app_js",
+        outs = [":app.js"],
+        cmd = "$(location //rules:babel) --config-file $(location //:.babelrc.jsfiddle.json) --out-file $@ $(location :index.js); " +
+              "$(location //rules:prettier) --write $@; ",
+        srcs = [
+            ":index.js",
+            "//:.babelrc.jsfiddle.json",
+            "@npm//:node_modules",
         ],
-    )
-
-    rollup_bundle(
-        name = "_app",
-        srcs = [":_app_without_region_tags.js"],
-        entry_point = "_app_without_region_tags.js",
-        config_file = "//:rollup.config.js",
-        format = "iife",
-        sourcemap = "false",
+        tools = ["//rules:babel", "//rules:prettier"],
         visibility = ["//visibility:public"],
-        deps = [
-            "@npm//@babel/core",
-            "@npm//@babel/preset-env",
-            "@npm//@rollup/plugin-babel",
-        ],
     )
 
     native.genrule(
@@ -99,8 +89,6 @@ def sample():
 
     for src, out in [
         (":_style.css", "style.css"),
-        (":_app.js", "app.js"),
-        (":_index.js", "index.js"),
     ]:
         prettier(
             src = src,
@@ -267,6 +255,6 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
-    tags_test(name="test_tags_ts", file=":src/index.ts")
-    tags_test(name="test_tags_css", file=":style.css")
-    tags_test(name="test_tags_html", file=":sample.html")
+    tags_test(name = "test_tags_ts", file = ":src/index.ts")
+    tags_test(name = "test_tags_css", file = ":style.css")
+    tags_test(name = "test_tags_html", file = ":sample.html")

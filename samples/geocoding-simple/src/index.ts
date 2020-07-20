@@ -52,4 +52,4 @@ function geocodeAddress(
   });
 }
 // [END maps_geocoding_simple]
-export { initMap, geocodeAddress };
+export {};

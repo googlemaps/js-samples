@@ -1,4 +1,3 @@
-// [START maps_infowindow_simple]
 // This example displays a marker at the center of Australia.
 // When the user clicks the marker, an info window opens.
 function initMap() {
@@ -40,5 +39,3 @@ function initMap() {
     infowindow.open(map, marker);
   });
 }
-// [END maps_infowindow_simple]
-export { initMap };

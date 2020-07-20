@@ -68,4 +68,4 @@ function createMarker(place: google.maps.places.PlaceResult) {
   });
 }
 // [END maps_place_search]
-export { initMap };
+export {};

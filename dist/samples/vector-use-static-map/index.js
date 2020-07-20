@@ -1,4 +1,3 @@
-// [START maps_vector_use_static_map]
 // Initialize and add the side by side maps
 function initMap() {
   const sharedOptions = {
@@ -12,13 +11,12 @@ function initMap() {
     mapId: "ed1309c122a3dfcb",
     useStaticMap: false
   });
-  // [START maps_vector_use_static_map_js_instantiate]
-  new google.maps.Map(document.getElementById("right"), {
-    ...sharedOptions,
-    mapId: "ed1309c122a3dfcb",
-    useStaticMap: true
-  });
-  // [END maps_vector_use_static_map_js_instantiate]
+  new google.maps.Map(
+    document.getElementById("right"),
+    {
+      ...sharedOptions,
+      mapId: "ed1309c122a3dfcb",
+      useStaticMap: true
+    } // TODO(jpoehnelt) add mapId to @types/googlemaps
+  );
 }
-// [END maps_vector_use_static_map]
-export { initMap };

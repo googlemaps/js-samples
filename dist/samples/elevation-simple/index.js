@@ -1,4 +1,3 @@
-// [START maps_elevation_simple]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
@@ -41,5 +40,3 @@ function displayLocationElevation(location, elevator, infowindow) {
     }
   );
 }
-// [END maps_elevation_simple]
-export { initMap, displayLocationElevation };

@@ -1,4 +1,3 @@
-// [START maps_streetview_simple]
 function initialize() {
   const fenway = { lat: 42.345573, lng: -71.098326 };
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -17,5 +16,3 @@ function initialize() {
   );
   map.setStreetView(panorama);
 }
-// [END maps_streetview_simple]
-export { initialize };

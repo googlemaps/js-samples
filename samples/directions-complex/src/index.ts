@@ -142,4 +142,4 @@ function attachInstructionText(
   });
 }
 // [END maps_directions_complex]
-export { initMap, calculateAndDisplayRoute, showSteps, attachInstructionText };
+export {};

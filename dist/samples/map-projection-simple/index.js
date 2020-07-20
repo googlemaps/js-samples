@@ -1,4 +1,3 @@
-// [START maps_map_projection_simple]
 // This example defines an image map type using the Gall-Peters
 // projection.
 // https://en.wikipedia.org/wiki/Gall%E2%80%93Peters_projection
@@ -129,5 +128,3 @@ const cities = {
     }
   ]
 };
-// [END maps_map_projection_simple]
-export { initMap, gallPetersMapType, initGallPeters, cities };

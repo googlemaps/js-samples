@@ -67,4 +67,4 @@ function geocodeLatLng(
   });
 }
 // [END maps_geocoding_reverse]
-export { initMap, geocodeLatLng };
+export {};

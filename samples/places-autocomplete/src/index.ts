@@ -118,4 +118,4 @@ function initMap(): void {
   });
 }
 // [END maps_places_autocomplete]
-export { initMap };
+export {};

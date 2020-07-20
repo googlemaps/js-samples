@@ -36,4 +36,4 @@ function initMap(): void {
   });
 }
 // [END maps_control_bounds_restriction]
-export { map, NEW_ZEALAND_BOUNDS, AUCKLAND, initMap };
+export {};

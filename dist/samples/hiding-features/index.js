@@ -1,4 +1,3 @@
-// [START maps_hiding_features]
 let map;
 
 function initMap() {
@@ -32,5 +31,3 @@ const styles = {
     }
   ]
 };
-// [END maps_hiding_features]
-export { map, initMap, styles };

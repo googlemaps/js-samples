@@ -1,4 +1,3 @@
-// [START maps_map_event]
 const events = [
   "bounds_changed",
   "center_changed",
@@ -56,5 +55,3 @@ function populateTable() {
   }
   eventsTable.innerHTML = content;
 }
-// [END maps_map_event]
-export { events, setupListener, initMap, populateTable };

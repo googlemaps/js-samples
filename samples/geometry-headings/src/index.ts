@@ -96,4 +96,4 @@ function update() {
   );
 }
 // [END maps_geometry_headings]
-export { marker1, poly, initMap, update };
+export {};

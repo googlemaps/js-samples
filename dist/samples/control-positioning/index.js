@@ -1,4 +1,3 @@
-// [START maps_control_positioning]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
@@ -20,5 +19,3 @@ function initMap() {
     fullscreenControl: true
   });
 }
-// [END maps_control_positioning]
-export { initMap };

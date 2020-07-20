@@ -1,4 +1,3 @@
-// [START maps_control_custom_state]
 let map;
 const chicago = { lat: 41.85, lng: -87.65 };
 
@@ -62,5 +61,3 @@ function initMap() {
   centerControlDiv.style.paddingTop = "10px";
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
-// [END maps_control_custom_state]
-export { map, chicago, CenterControl, initMap };

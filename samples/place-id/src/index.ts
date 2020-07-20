@@ -52,4 +52,4 @@ function callback(
   }
 }
 // [END maps_place_id]
-export { map, initMap, callback };
+export {};

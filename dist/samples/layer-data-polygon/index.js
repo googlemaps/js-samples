@@ -1,4 +1,3 @@
-// [START maps_layer_data_polygon]
 // This example uses the Google Maps JavaScript API's Data layer
 // to create a rectangular polygon with 2 holes in it.
 function initMap() {
@@ -35,5 +34,3 @@ function initMap() {
     ])
   });
 }
-// [END maps_layer_data_polygon]
-export { initMap };

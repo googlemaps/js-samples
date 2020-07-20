@@ -148,13 +148,4 @@ function exitFullscreen() {
   }
 }
 // [END maps_control_replacement]
-export {
-  map,
-  initMap,
-  initZoomControl,
-  initMapTypeControl,
-  initFullscreenControl,
-  isFullscreen,
-  requestFullscreen,
-  exitFullscreen
-};
+export {};

@@ -1,4 +1,3 @@
-// [START maps_maptype_overlay]
 /*
  * This demo illustrates the coordinate system used to display map tiles in the
  * API.
@@ -41,5 +40,3 @@ function initMap() {
     new CoordMapType(new google.maps.Size(256, 256))
   );
 }
-// [END maps_maptype_overlay]
-export { CoordMapType, initMap };

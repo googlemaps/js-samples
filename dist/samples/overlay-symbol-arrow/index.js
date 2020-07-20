@@ -1,4 +1,3 @@
-// [START maps_overlay_symbol_arrow]
 // This example adds a predefined symbol (an arrow) to a polyline.
 // Setting offset to 100% places the arrow at the end of the line.
 function initMap() {
@@ -7,7 +6,6 @@ function initMap() {
     center: { lat: 20.291, lng: 153.027 },
     mapTypeId: "terrain"
   });
-  // [START maps_overlay_symbol_arrow_region_polyline]
   // Define a symbol using a predefined path (an arrow)
   // supplied by the Google Maps JavaScript API.
   const lineSymbol = {
@@ -27,7 +25,4 @@ function initMap() {
     ],
     map: map
   });
-  // [END maps_overlay_symbol_arrow_region_polyline]
 }
-// [END maps_overlay_symbol_arrow]
-export { initMap };

@@ -29,103 +29,94 @@
       }
     </style>
     <script>
-      (function(exports) {
-        "use strict";
+      "use strict";
 
-        function _defineProperty(obj, key, value) {
-          if (key in obj) {
-            Object.defineProperty(obj, key, {
-              value: value,
-              enumerable: true,
-              configurable: true,
-              writable: true
+      function ownKeys(object, enumerableOnly) {
+        var keys = Object.keys(object);
+        if (Object.getOwnPropertySymbols) {
+          var symbols = Object.getOwnPropertySymbols(object);
+          if (enumerableOnly)
+            symbols = symbols.filter(function(sym) {
+              return Object.getOwnPropertyDescriptor(object, sym).enumerable;
             });
+          keys.push.apply(keys, symbols);
+        }
+        return keys;
+      }
+
+      function _objectSpread(target) {
+        for (var i = 1; i < arguments.length; i++) {
+          var source = arguments[i] != null ? arguments[i] : {};
+          if (i % 2) {
+            ownKeys(Object(source), true).forEach(function(key) {
+              _defineProperty(target, key, source[key]);
+            });
+          } else if (Object.getOwnPropertyDescriptors) {
+            Object.defineProperties(
+              target,
+              Object.getOwnPropertyDescriptors(source)
+            );
           } else {
-            obj[key] = value;
-          }
-
-          return obj;
-        }
-
-        function ownKeys(object, enumerableOnly) {
-          var keys = Object.keys(object);
-
-          if (Object.getOwnPropertySymbols) {
-            var symbols = Object.getOwnPropertySymbols(object);
-            if (enumerableOnly)
-              symbols = symbols.filter(function(sym) {
-                return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-              });
-            keys.push.apply(keys, symbols);
-          }
-
-          return keys;
-        }
-
-        function _objectSpread2(target) {
-          for (var i = 1; i < arguments.length; i++) {
-            var source = arguments[i] != null ? arguments[i] : {};
-
-            if (i % 2) {
-              ownKeys(Object(source), true).forEach(function(key) {
-                _defineProperty(target, key, source[key]);
-              });
-            } else if (Object.getOwnPropertyDescriptors) {
-              Object.defineProperties(
+            ownKeys(Object(source)).forEach(function(key) {
+              Object.defineProperty(
                 target,
-                Object.getOwnPropertyDescriptors(source)
+                key,
+                Object.getOwnPropertyDescriptor(source, key)
               );
-            } else {
-              ownKeys(Object(source)).forEach(function(key) {
-                Object.defineProperty(
-                  target,
-                  key,
-                  Object.getOwnPropertyDescriptor(source, key)
-                );
-              });
-            }
+            });
           }
-
-          return target;
         }
+        return target;
+      }
 
-        // Initialize and add the side by side maps
-        function initMap() {
-          var sharedOptions = {
-            center: {
-              lat: 47.609414458375674,
-              lng: -122.33897030353548
-            },
-            zoom: 17,
-            disableDefaultUI: true,
-            gestureHandling: "none"
-          };
-          new google.maps.Map(
-            document.getElementById("left"),
-            _objectSpread2(
-              _objectSpread2({}, sharedOptions),
-              {},
-              {
-                mapId: "ed1309c122a3dfcb",
-                useStaticMap: false
-              }
-            )
-          );
-          new google.maps.Map(
-            document.getElementById("right"),
-            _objectSpread2(
-              _objectSpread2({}, sharedOptions),
-              {},
-              {
-                mapId: "ed1309c122a3dfcb",
-                useStaticMap: true
-              }
-            )
-          );
+      function _defineProperty(obj, key, value) {
+        if (key in obj) {
+          Object.defineProperty(obj, key, {
+            value: value,
+            enumerable: true,
+            configurable: true,
+            writable: true
+          });
+        } else {
+          obj[key] = value;
         }
+        return obj;
+      }
 
-        exports.initMap = initMap;
-      })((this.window = this.window || {}));
+      // Initialize and add the side by side maps
+      function initMap() {
+        var sharedOptions = {
+          center: {
+            lat: 47.609414458375674,
+            lng: -122.33897030353548
+          },
+          zoom: 17,
+          disableDefaultUI: true,
+          gestureHandling: "none"
+        };
+        new google.maps.Map(
+          document.getElementById("left"),
+          _objectSpread(
+            _objectSpread({}, sharedOptions),
+            {},
+            {
+              mapId: "ed1309c122a3dfcb",
+              useStaticMap: false
+            }
+          )
+        );
+        new google.maps.Map(
+          document.getElementById("right"),
+          _objectSpread(
+            _objectSpread({}, sharedOptions),
+            {},
+            {
+              mapId: "ed1309c122a3dfcb",
+              useStaticMap: true
+            }
+          ) // TODO(jpoehnelt) add mapId to @types/googlemaps
+        );
+      }
     </script>
   </head>
   <body>

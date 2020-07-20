@@ -572,12 +572,4 @@ function getPoints() {
   ];
 }
 // [END maps_layer_heatmap]
-export {
-  map,
-  initMap,
-  toggleHeatmap,
-  changeGradient,
-  changeRadius,
-  changeOpacity,
-  getPoints
-};
+export {};

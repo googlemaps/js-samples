@@ -1,4 +1,3 @@
-// [START maps_mysql_to_maps]
 const customLabel = {
   restaurant: {
     label: "R"
@@ -70,5 +69,3 @@ function downloadUrl(url, callback) {
 }
 
 function doNothing() {}
-// [END maps_mysql_to_maps]
-export { customLabel, initMap, downloadUrl, doNothing };

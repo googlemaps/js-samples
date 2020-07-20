@@ -1,4 +1,3 @@
-// [START maps_layer_kml_features]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
@@ -19,5 +18,3 @@ function initMap() {
     sidediv.innerHTML = text;
   }
 }
-// [END maps_layer_kml_features]
-export { initMap };

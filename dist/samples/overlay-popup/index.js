@@ -1,4 +1,3 @@
-// [START maps_overlay_popup]
 let map, popup, Popup;
 
 /** Initializes the map and the custom popup. */
@@ -64,5 +63,3 @@ function initMap() {
   );
   popup.setMap(map);
 }
-// [END maps_overlay_popup]
-export { initMap };

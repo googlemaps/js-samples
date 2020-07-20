@@ -142,15 +142,4 @@ function initialize() {
   initEvents();
 }
 // [END maps_layer_data_dragndrop]
-export {
-  map,
-  initMap,
-  loadGeoJsonString,
-  zoom,
-  processPoints,
-  initEvents,
-  showPanel,
-  hidePanel,
-  handleDrop,
-  initialize
-};
+export {};

@@ -1,4 +1,3 @@
-// [START maps_style_array]
 function initMap() {
   // Styles a map in night mode.
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -86,5 +85,3 @@ function initMap() {
     ]
   });
 }
-// [END maps_style_array]
-export { initMap };

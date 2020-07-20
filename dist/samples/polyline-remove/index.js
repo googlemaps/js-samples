@@ -1,4 +1,3 @@
-// [START maps_polyline_remove]
 // This example adds a UI control allowing users to remove the polyline from the
 // map.
 let flightPath;
@@ -32,5 +31,3 @@ function addLine() {
 function removeLine() {
   flightPath.setMap(null);
 }
-// [END maps_polyline_remove]
-export { flightPath, map, initMap, addLine, removeLine };

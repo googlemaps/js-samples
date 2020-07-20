@@ -1,4 +1,3 @@
-// [START maps_layer_traffic]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
@@ -7,5 +6,3 @@ function initMap() {
   const trafficLayer = new google.maps.TrafficLayer();
   trafficLayer.setMap(map);
 }
-// [END maps_layer_traffic]
-export { initMap };

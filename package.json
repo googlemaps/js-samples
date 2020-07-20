@@ -34,6 +34,7 @@
     "test:e2e": "bazel test //e2e:e2e"
   },
   "devDependencies": {
+    "@babel/cli": "^7.10.5",
     "@babel/preset-env": "^7.9.6",
     "@bazel/buildifier": "^0.26.0",
     "@bazel/buildozer": "^0.29.0i",
