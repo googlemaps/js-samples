@@ -3,6 +3,7 @@
   <head>
     <title>Marker Clustering</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=&v=weekly"
       defer
@@ -26,16 +27,6 @@
       (function(exports) {
         "use strict";
 
-        // Declarations to keep the compiler happy.
-
-        /**
-         * @param {!google.maps.Map} map
-         * @param {!Array<!google.maps.Marker>} markers
-         * @param {!Object} options
-         * @constructor
-         */
-        function MarkerClusterer(map, markers, options) {}
-
         function initMap() {
           var map = new google.maps.Map(document.getElementById("map"), {
             zoom: 3,
@@ -56,6 +47,11 @@
               label: labels[i % labels.length]
             });
           }); // Add a marker clusterer to manage the markers.
+
+          var markerCluster = new MarkerClusterer(map, markers, {
+            imagePath:
+              "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+          });
         }
 
         var locations = [
@@ -153,7 +149,6 @@
           }
         ];
 
-        exports.MarkerClusterer = MarkerClusterer;
         exports.initMap = initMap;
         exports.locations = locations;
       })((this.window = this.window || {}));
