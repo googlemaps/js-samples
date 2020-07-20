@@ -14,15 +14,6 @@
  * limitations under the License.
  */
 
-// Declarations to keep the compiler happy.
-/**
- * @param {!google.maps.Map} map
- * @param {!Array<!google.maps.Marker>} markers
- * @param {!Object} options
- * @constructor
- */
-function MarkerClusterer(map, markers, options) {}
-
 // [START maps_marker_clustering]
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -76,4 +67,4 @@ var locations = [
   { lat: -43.999792, lng: 170.463352 }
 ];
 // [END maps_marker_clustering]
-export { MarkerClusterer, initMap, locations };
+export { initMap, locations };

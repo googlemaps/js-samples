@@ -1,16 +1,6 @@
 (function(exports) {
   "use strict";
 
-  // Declarations to keep the compiler happy.
-
-  /**
-   * @param {!google.maps.Map} map
-   * @param {!Array<!google.maps.Marker>} markers
-   * @param {!Object} options
-   * @constructor
-   */
-  function MarkerClusterer(map, markers, options) {}
-
   function initMap() {
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 3,
@@ -31,6 +21,11 @@
         label: labels[i % labels.length]
       });
     }); // Add a marker clusterer to manage the markers.
+
+    var markerCluster = new MarkerClusterer(map, markers, {
+      imagePath:
+        "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+    });
   }
 
   var locations = [
@@ -128,7 +123,6 @@
     }
   ];
 
-  exports.MarkerClusterer = MarkerClusterer;
   exports.initMap = initMap;
   exports.locations = locations;
 })((this.window = this.window || {}));
