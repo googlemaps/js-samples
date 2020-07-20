@@ -191,7 +191,6 @@ function clearMarkers() {
   markers = [];
 }
 
-// [START maps_places_autocomplete_hotelsearch]
 // Set the country restriction based on user input.
 // Also center and zoom the map on the given country.
 function setAutocompleteCountry() {
@@ -210,7 +209,6 @@ function setAutocompleteCountry() {
   clearResults();
   clearMarkers();
 }
-// [END maps_places_autocomplete_hotelsearch]
 
 function dropMarker(i) {
   return function() {

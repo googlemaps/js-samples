@@ -15,7 +15,6 @@
  */
 
 // [START maps_overlay_simple]
-// [START maps_overlay_simple_region_initialization]
 // This example creates a custom overlay called USGSOverlay, containing
 // a U.S. Geological Survey (USGS) image of the relevant area on the map.
 
@@ -130,10 +129,11 @@ function initMap(): void {
         this.div_ = null;
       }
     }
+    // [END maps_overlay_simple_region_removal]
   }
 
   const overlay = new USGSOverlay(bounds, srcImage);
   overlay.setMap(map);
 }
-
+// [END maps_overlay_simple]
 export { initMap };

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+// [START maps_place_id]
 let map: google.maps.Map;
 
 function initMap(): void {
@@ -51,4 +51,5 @@ function callback(
     });
   }
 }
+// [END maps_place_id]
 export { map, initMap, callback };

@@ -34,10 +34,10 @@ function main(args) {
   const endTags = removeDuplicates(endMatches).sort();
 
   expect(startTags.length).toBeGreaterThan(0);
-  console.log([...startTags, ...endTags]);
+
   // check tags match format
   for (const tag of [...startTags, ...endTags]) {
-    expect(tag).toMatch(/maps_[a-z_]*$/);
+    expect(tag).toMatch(/maps_[a-zA-Z_]*$/);
   }
 
   // check for duplicates

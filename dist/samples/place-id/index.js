@@ -1,3 +1,4 @@
+// [START maps_place_id]
 let map;
 
 function initMap() {
@@ -29,4 +30,5 @@ function callback(results, status) {
     });
   }
 }
+// [END maps_place_id]
 export { map, initMap, callback };
