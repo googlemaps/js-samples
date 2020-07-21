@@ -1,8 +1,0 @@
-{
-  "title": "Firebase Map",
-  "callback": "initMap",
-  "libraries": ["visualization"],
-  "version": "weekly",
-  "tag": "firebase_map",
-  "name": "firebase-map"
-}

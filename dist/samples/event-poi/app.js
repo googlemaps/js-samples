@@ -1,22 +1,23 @@
-(function(exports) {
-  "use strict";
+"use strict";
 
-  function initMap() {
-    var origin = {
-      lat: -33.871,
-      lng: 151.197
-    };
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 18,
-      center: origin
-    });
-    var clickHandler = new ClickEventHandler(map, origin);
-  }
-  /**
-   * @constructor
-   */
+function initMap() {
+  const origin = {
+    lat: -33.871,
+    lng: 151.197
+  };
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 18,
+    center: origin
+  });
+  new ClickEventHandler(map, origin);
+}
 
-  var ClickEventHandler = function(map, origin) {
+function isIconMouseEvent(e) {
+  return "placeId" in e;
+}
+
+class ClickEventHandler {
+  constructor(map, origin) {
     this.origin = origin;
     this.map = map;
     this.directionsService = new google.maps.DirectionsService();
@@ -28,12 +29,12 @@
     this.infowindow.setContent(this.infowindowContent); // Listen for clicks on the map.
 
     this.map.addListener("click", this.handleClick.bind(this));
-  };
+  }
 
-  ClickEventHandler.prototype.handleClick = function(event) {
+  handleClick(event) {
     console.log("You clicked on: " + event.latLng); // If the event has a placeId, use it.
 
-    if (event.placeId) {
+    if (isIconMouseEvent(event)) {
       console.log("You clicked on place:" + event.placeId); // Calling e.stop() on the event prevents the default info window from
       // showing.
       // If you call stop here when there is no placeId you will prevent some
@@ -43,17 +44,17 @@
       this.calculateAndDisplayRoute(event.placeId);
       this.getPlaceInformation(event.placeId);
     }
-  };
+  }
 
-  ClickEventHandler.prototype.calculateAndDisplayRoute = function(placeId) {
-    var me = this;
+  calculateAndDisplayRoute(placeId) {
+    const me = this;
     this.directionsService.route(
       {
         origin: this.origin,
         destination: {
           placeId: placeId
         },
-        travelMode: "WALKING"
+        travelMode: google.maps.TravelMode.WALKING
       },
       function(response, status) {
         if (status === "OK") {
@@ -63,10 +64,10 @@
         }
       }
     );
-  };
+  }
 
-  ClickEventHandler.prototype.getPlaceInformation = function(placeId) {
-    var me = this;
+  getPlaceInformation(placeId) {
+    const me = this;
     this.placesService.getDetails(
       {
         placeId: placeId
@@ -85,8 +86,5 @@
         }
       }
     );
-  };
-
-  exports.ClickEventHandler = ClickEventHandler;
-  exports.initMap = initMap;
-})((this.window = this.window || {}));
+  }
+}

@@ -6,8 +6,7 @@
         "targets": {
           "browsers": "ie>=11, > 1%"
         },
-        "corejs": "3.6",
-        "useBuiltIns": "usage"
+        "useBuiltIns": false
       }
     ]
   ]

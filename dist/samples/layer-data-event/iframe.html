@@ -30,41 +30,39 @@
   }
 </style>
 <script>
-  (function(exports) {
-    "use strict";
+  "use strict";
 
-    function initMap() {
-      exports.map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: {
-          lat: -28,
-          lng: 137
-        }
-      }); // Load GeoJSON.
+  var map;
 
-      exports.map.data.loadGeoJson(
-        "https://storage.googleapis.com/maps-devrel/google.json"
-      ); // Add some style.
+  function initMap() {
+    map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 4,
+      center: {
+        lat: -28,
+        lng: 137
+      }
+    }); // Load GeoJSON.
 
-      exports.map.data.setStyle(function(feature) {
-        return (
-          /** @type {google.maps.Data.StyleOptions} */
-          ({
-            fillColor: feature.getProperty("color"),
-            strokeWeight: 1
-          })
-        );
-      }); // Set mouseover event for each feature.
+    map.data.loadGeoJson(
+      "https://storage.googleapis.com/maps-devrel/google.json"
+    ); // Add some style.
 
-      exports.map.data.addListener("mouseover", function(event) {
-        document.getElementById(
-          "info-box"
-        ).textContent = event.feature.getProperty("letter");
-      });
-    }
+    map.data.setStyle(function(feature) {
+      return (
+        /** @type {google.maps.Data.StyleOptions} */
+        ({
+          fillColor: feature.getProperty("color"),
+          strokeWeight: 1
+        })
+      );
+    }); // Set mouseover event for each feature.
 
-    exports.initMap = initMap;
-  })((this.window = this.window || {}));
+    map.data.addListener("mouseover", function(event) {
+      document.getElementById(
+        "info-box"
+      ).textContent = event.feature.getProperty("letter");
+    });
+  }
 </script>
 
 <div id="iframe-contents">

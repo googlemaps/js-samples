@@ -75,101 +75,228 @@
       }
     </style>
     <script>
-      (function(exports) {
-        "use strict";
+      "use strict";
 
-        var popup, Popup;
-        /** Initializes the map and the custom popup. */
-
-        function initMap() {
-          exports.map = new google.maps.Map(document.getElementById("map"), {
-            center: {
-              lat: -33.9,
-              lng: 151.1
-            },
-            zoom: 10
-          });
-          Popup = createPopupClass();
-          popup = new Popup(
-            new google.maps.LatLng(-33.866, 151.196),
-            document.getElementById("content")
-          );
-          popup.setMap(exports.map);
+      function _typeof(obj) {
+        "@babel/helpers - typeof";
+        if (
+          typeof Symbol === "function" &&
+          typeof Symbol.iterator === "symbol"
+        ) {
+          _typeof = function _typeof(obj) {
+            return typeof obj;
+          };
+        } else {
+          _typeof = function _typeof(obj) {
+            return obj &&
+              typeof Symbol === "function" &&
+              obj.constructor === Symbol &&
+              obj !== Symbol.prototype
+              ? "symbol"
+              : typeof obj;
+          };
         }
+        return _typeof(obj);
+      }
+
+      function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+          throw new TypeError("Cannot call a class as a function");
+        }
+      }
+
+      function _defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+          var descriptor = props[i];
+          descriptor.enumerable = descriptor.enumerable || false;
+          descriptor.configurable = true;
+          if ("value" in descriptor) descriptor.writable = true;
+          Object.defineProperty(target, descriptor.key, descriptor);
+        }
+      }
+
+      function _createClass(Constructor, protoProps, staticProps) {
+        if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+        if (staticProps) _defineProperties(Constructor, staticProps);
+        return Constructor;
+      }
+
+      function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+          throw new TypeError(
+            "Super expression must either be null or a function"
+          );
+        }
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+          constructor: { value: subClass, writable: true, configurable: true }
+        });
+        if (superClass) _setPrototypeOf(subClass, superClass);
+      }
+
+      function _setPrototypeOf(o, p) {
+        _setPrototypeOf =
+          Object.setPrototypeOf ||
+          function _setPrototypeOf(o, p) {
+            o.__proto__ = p;
+            return o;
+          };
+        return _setPrototypeOf(o, p);
+      }
+
+      function _createSuper(Derived) {
+        var hasNativeReflectConstruct = _isNativeReflectConstruct();
+        return function() {
+          var Super = _getPrototypeOf(Derived),
+            result;
+          if (hasNativeReflectConstruct) {
+            var NewTarget = _getPrototypeOf(this).constructor;
+            result = Reflect.construct(Super, arguments, NewTarget);
+          } else {
+            result = Super.apply(this, arguments);
+          }
+          return _possibleConstructorReturn(this, result);
+        };
+      }
+
+      function _possibleConstructorReturn(self, call) {
+        if (
+          call &&
+          (_typeof(call) === "object" || typeof call === "function")
+        ) {
+          return call;
+        }
+        return _assertThisInitialized(self);
+      }
+
+      function _assertThisInitialized(self) {
+        if (self === void 0) {
+          throw new ReferenceError(
+            "this hasn't been initialised - super() hasn't been called"
+          );
+        }
+        return self;
+      }
+
+      function _isNativeReflectConstruct() {
+        if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+        if (Reflect.construct.sham) return false;
+        if (typeof Proxy === "function") return true;
+        try {
+          Date.prototype.toString.call(
+            Reflect.construct(Date, [], function() {})
+          );
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      function _getPrototypeOf(o) {
+        _getPrototypeOf = Object.setPrototypeOf
+          ? Object.getPrototypeOf
+          : function _getPrototypeOf(o) {
+              return o.__proto__ || Object.getPrototypeOf(o);
+            };
+        return _getPrototypeOf(o);
+      }
+
+      var map, popup, Popup;
+      /** Initializes the map and the custom popup. */
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: {
+            lat: -33.9,
+            lng: 151.1
+          },
+          zoom: 10
+        });
         /**
-         * Returns the Popup class.
-         *
-         * Unfortunately, the Popup class can only be defined after
-         * google.maps.OverlayView is defined, when the Maps API is loaded.
-         * This function should be called by initMap.
+         * A customized popup on the map.
          */
 
-        function createPopupClass() {
-          /**
-           * A customized popup on the map.
-           * @param {!google.maps.LatLng} position
-           * @param {!Element} content The bubble div.
-           * @constructor
-           * @extends {google.maps.OverlayView}
-           */
+        var Popup = /*#__PURE__*/ (function(_google$maps$OverlayV) {
+          _inherits(Popup, _google$maps$OverlayV);
+
+          var _super = _createSuper(Popup);
+
           function Popup(position, content) {
-            this.position = position;
+            var _this;
+
+            _classCallCheck(this, Popup);
+
+            _this = _super.call(this);
+            _this.position = position;
             content.classList.add("popup-bubble"); // This zero-height div is positioned at the bottom of the bubble.
 
             var bubbleAnchor = document.createElement("div");
             bubbleAnchor.classList.add("popup-bubble-anchor");
             bubbleAnchor.appendChild(content); // This zero-height div is positioned at the bottom of the tip.
 
-            this.containerDiv = document.createElement("div");
-            this.containerDiv.classList.add("popup-container");
-            this.containerDiv.appendChild(bubbleAnchor); // Optionally stop clicks, etc., from bubbling up to the map.
+            _this.containerDiv = document.createElement("div");
 
-            google.maps.OverlayView.preventMapHitsAndGesturesFrom(
-              this.containerDiv
-            );
-          } // ES5 magic to extend google.maps.OverlayView.
+            _this.containerDiv.classList.add("popup-container");
 
-          Popup.prototype = Object.create(google.maps.OverlayView.prototype);
+            _this.containerDiv.appendChild(bubbleAnchor); // Optionally stop clicks, etc., from bubbling up to the map.
+
+            Popup.preventMapHitsAndGesturesFrom(_this.containerDiv);
+            return _this;
+          }
           /** Called when the popup is added to the map. */
 
-          Popup.prototype.onAdd = function() {
-            this.getPanes().floatPane.appendChild(this.containerDiv);
-          };
-          /** Called when the popup is removed from the map. */
+          _createClass(Popup, [
+            {
+              key: "onAdd",
+              value: function onAdd() {
+                this.getPanes().floatPane.appendChild(this.containerDiv);
+              }
+              /** Called when the popup is removed from the map. */
+            },
+            {
+              key: "onRemove",
+              value: function onRemove() {
+                if (this.containerDiv.parentElement) {
+                  this.containerDiv.parentElement.removeChild(
+                    this.containerDiv
+                  );
+                }
+              }
+              /** Called each frame when the popup needs to draw itself. */
+            },
+            {
+              key: "draw",
+              value: function draw() {
+                var divPosition = this.getProjection().fromLatLngToDivPixel(
+                  this.position
+                ); // Hide the popup when it is far out of view.
 
-          Popup.prototype.onRemove = function() {
-            if (this.containerDiv.parentElement) {
-              this.containerDiv.parentElement.removeChild(this.containerDiv);
+                var display =
+                  Math.abs(divPosition.x) < 4000 &&
+                  Math.abs(divPosition.y) < 4000
+                    ? "block"
+                    : "none";
+
+                if (display === "block") {
+                  this.containerDiv.style.left = divPosition.x + "px";
+                  this.containerDiv.style.top = divPosition.y + "px";
+                }
+
+                if (this.containerDiv.style.display !== display) {
+                  this.containerDiv.style.display = display;
+                }
+              }
             }
-          };
-          /** Called each frame when the popup needs to draw itself. */
-
-          Popup.prototype.draw = function() {
-            var divPosition = this.getProjection().fromLatLngToDivPixel(
-              this.position
-            ); // Hide the popup when it is far out of view.
-
-            var display =
-              Math.abs(divPosition.x) < 4000 && Math.abs(divPosition.y) < 4000
-                ? "block"
-                : "none";
-
-            if (display === "block") {
-              this.containerDiv.style.left = divPosition.x + "px";
-              this.containerDiv.style.top = divPosition.y + "px";
-            }
-
-            if (this.containerDiv.style.display !== display) {
-              this.containerDiv.style.display = display;
-            }
-          };
+          ]);
 
           return Popup;
-        }
+        })(google.maps.OverlayView);
 
-        exports.createPopupClass = createPopupClass;
-        exports.initMap = initMap;
-      })((this.window = this.window || {}));
+        popup = new Popup(
+          new google.maps.LatLng(-33.866, 151.196),
+          document.getElementById("content")
+        );
+        popup.setMap(map);
+      }
     </script>
   </head>
   <body>

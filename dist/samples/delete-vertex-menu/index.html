@@ -42,133 +42,285 @@
       }
     </style>
     <script>
-      (function(exports) {
-        "use strict";
+      "use strict";
 
-        function initialize() {
-          var mapOptions = {
-            zoom: 3,
-            center: new google.maps.LatLng(0, -180),
-            mapTypeId: "terrain"
+      function _typeof(obj) {
+        "@babel/helpers - typeof";
+        if (
+          typeof Symbol === "function" &&
+          typeof Symbol.iterator === "symbol"
+        ) {
+          _typeof = function _typeof(obj) {
+            return typeof obj;
           };
-          var map = new google.maps.Map(
-            document.getElementById("map"),
-            mapOptions
-          );
-          var flightPlanCoordinates = [
-            new google.maps.LatLng(37.772323, -122.214897),
-            new google.maps.LatLng(21.291982, -157.821856),
-            new google.maps.LatLng(-18.142599, 178.431),
-            new google.maps.LatLng(-27.46758, 153.027892)
-          ];
-          var flightPath = new google.maps.Polyline({
-            path: flightPlanCoordinates,
-            editable: true,
-            strokeColor: "#FF0000",
-            strokeOpacity: 1.0,
-            strokeWeight: 2,
-            map: map
-          });
-          var deleteMenu = new DeleteMenu();
-          google.maps.event.addListener(flightPath, "rightclick", function(e) {
-            // Check if click was on a vertex control point
-            if (e.vertex == undefined) {
-              return;
-            }
-
-            deleteMenu.open(map, flightPath.getPath(), e.vertex);
-          });
-          /**
-           * A menu that lets a user delete a selected vertex of a path.
-           * @constructor
-           */
-
-          function DeleteMenu() {
-            this.div_ = document.createElement("div");
-            this.div_.className = "delete-menu";
-            this.div_.innerHTML = "Delete";
-            var menu = this;
-            google.maps.event.addDomListener(this.div_, "click", function() {
-              menu.removeVertex();
-            });
-          }
-
-          DeleteMenu.prototype = new google.maps.OverlayView();
-
-          DeleteMenu.prototype.onAdd = function() {
-            var deleteMenu = this;
-            var map = this.getMap();
-            this.getPanes().floatPane.appendChild(this.div_); // mousedown anywhere on the map except on the menu div will close the
-            // menu.
-
-            this.divListener_ = google.maps.event.addDomListener(
-              map.getDiv(),
-              "mousedown",
-              function(e) {
-                if (e.target != deleteMenu.div_) {
-                  deleteMenu.close();
-                }
-              },
-              true
-            );
-          };
-
-          DeleteMenu.prototype.onRemove = function() {
-            google.maps.event.removeListener(this.divListener_);
-            this.div_.parentNode.removeChild(this.div_); // clean up
-
-            this.set("position");
-            this.set("path");
-            this.set("vertex");
-          };
-
-          DeleteMenu.prototype.close = function() {
-            this.setMap(null);
-          };
-
-          DeleteMenu.prototype.draw = function() {
-            var position = this.get("position");
-            var projection = this.getProjection();
-
-            if (!position || !projection) {
-              return;
-            }
-
-            var point = projection.fromLatLngToDivPixel(position);
-            this.div_.style.top = point.y + "px";
-            this.div_.style.left = point.x + "px";
-          };
-          /**
-           * Opens the menu at a vertex of a given path.
-           */
-
-          DeleteMenu.prototype.open = function(map, path, vertex) {
-            this.set("position", path.getAt(vertex));
-            this.set("path", path);
-            this.set("vertex", vertex);
-            this.setMap(map);
-            this.draw();
-          };
-          /**
-           * Deletes the vertex from the path.
-           */
-
-          DeleteMenu.prototype.removeVertex = function() {
-            var path = this.get("path");
-            var vertex = this.get("vertex");
-
-            if (!path || vertex == undefined) {
-              this.close();
-              return;
-            }
-
-            path.removeAt(vertex);
-            this.close();
+        } else {
+          _typeof = function _typeof(obj) {
+            return obj &&
+              typeof Symbol === "function" &&
+              obj.constructor === Symbol &&
+              obj !== Symbol.prototype
+              ? "symbol"
+              : typeof obj;
           };
         }
+        return _typeof(obj);
+      }
 
-        exports.initialize = initialize;
-      })((this.window = this.window || {}));
+      function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+          throw new TypeError("Cannot call a class as a function");
+        }
+      }
+
+      function _defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+          var descriptor = props[i];
+          descriptor.enumerable = descriptor.enumerable || false;
+          descriptor.configurable = true;
+          if ("value" in descriptor) descriptor.writable = true;
+          Object.defineProperty(target, descriptor.key, descriptor);
+        }
+      }
+
+      function _createClass(Constructor, protoProps, staticProps) {
+        if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+        if (staticProps) _defineProperties(Constructor, staticProps);
+        return Constructor;
+      }
+
+      function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+          throw new TypeError(
+            "Super expression must either be null or a function"
+          );
+        }
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+          constructor: { value: subClass, writable: true, configurable: true }
+        });
+        if (superClass) _setPrototypeOf(subClass, superClass);
+      }
+
+      function _setPrototypeOf(o, p) {
+        _setPrototypeOf =
+          Object.setPrototypeOf ||
+          function _setPrototypeOf(o, p) {
+            o.__proto__ = p;
+            return o;
+          };
+        return _setPrototypeOf(o, p);
+      }
+
+      function _createSuper(Derived) {
+        var hasNativeReflectConstruct = _isNativeReflectConstruct();
+        return function() {
+          var Super = _getPrototypeOf(Derived),
+            result;
+          if (hasNativeReflectConstruct) {
+            var NewTarget = _getPrototypeOf(this).constructor;
+            result = Reflect.construct(Super, arguments, NewTarget);
+          } else {
+            result = Super.apply(this, arguments);
+          }
+          return _possibleConstructorReturn(this, result);
+        };
+      }
+
+      function _possibleConstructorReturn(self, call) {
+        if (
+          call &&
+          (_typeof(call) === "object" || typeof call === "function")
+        ) {
+          return call;
+        }
+        return _assertThisInitialized(self);
+      }
+
+      function _assertThisInitialized(self) {
+        if (self === void 0) {
+          throw new ReferenceError(
+            "this hasn't been initialised - super() hasn't been called"
+          );
+        }
+        return self;
+      }
+
+      function _isNativeReflectConstruct() {
+        if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+        if (Reflect.construct.sham) return false;
+        if (typeof Proxy === "function") return true;
+        try {
+          Date.prototype.toString.call(
+            Reflect.construct(Date, [], function() {})
+          );
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      function _getPrototypeOf(o) {
+        _getPrototypeOf = Object.setPrototypeOf
+          ? Object.getPrototypeOf
+          : function _getPrototypeOf(o) {
+              return o.__proto__ || Object.getPrototypeOf(o);
+            };
+        return _getPrototypeOf(o);
+      }
+
+      function initialize() {
+        var mapOptions = {
+          zoom: 3,
+          center: new google.maps.LatLng(0, -180),
+          mapTypeId: "terrain"
+        };
+        var map = new google.maps.Map(
+          document.getElementById("map"),
+          mapOptions
+        );
+        var flightPlanCoordinates = [
+          new google.maps.LatLng(37.772323, -122.214897),
+          new google.maps.LatLng(21.291982, -157.821856),
+          new google.maps.LatLng(-18.142599, 178.431),
+          new google.maps.LatLng(-27.46758, 153.027892)
+        ];
+        var flightPath = new google.maps.Polyline({
+          path: flightPlanCoordinates,
+          editable: true,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1.0,
+          strokeWeight: 2,
+          map: map
+        });
+        /**
+         * A menu that lets a user delete a selected vertex of a path.
+         */
+
+        var DeleteMenu = /*#__PURE__*/ (function(_google$maps$OverlayV) {
+          _inherits(DeleteMenu, _google$maps$OverlayV);
+
+          var _super = _createSuper(DeleteMenu);
+
+          function DeleteMenu() {
+            var _this;
+
+            _classCallCheck(this, DeleteMenu);
+
+            _this = _super.call(this);
+            _this.div_ = document.createElement("div");
+            _this.div_.className = "delete-menu";
+            _this.div_.innerHTML = "Delete";
+
+            var menu = _assertThisInitialized(_this);
+
+            google.maps.event.addDomListener(_this.div_, "click", function() {
+              menu.removeVertex();
+            });
+            return _this;
+          }
+
+          _createClass(DeleteMenu, [
+            {
+              key: "onAdd",
+              value: function onAdd() {
+                var deleteMenu = this;
+                var map = this.getMap();
+                this.getPanes().floatPane.appendChild(this.div_); // mousedown anywhere on the map except on the menu div will close the
+                // menu.
+
+                this.divListener_ = google.maps.event.addDomListener(
+                  // @ts-ignore TODO(jpoehnelt) fix typings
+                  map.getDiv(),
+                  "mousedown",
+                  function(e) {
+                    if (e.target != deleteMenu.div_) {
+                      deleteMenu.close();
+                    }
+                  },
+                  true
+                );
+              }
+            },
+            {
+              key: "onRemove",
+              value: function onRemove() {
+                if (this.divListener_) {
+                  google.maps.event.removeListener(this.divListener_);
+                }
+
+                this.div_.parentNode.removeChild(this.div_); // clean up
+
+                this.set("position", null);
+                this.set("path", null);
+                this.set("vertex", null);
+              }
+            },
+            {
+              key: "close",
+              value: function close() {
+                this.setMap(null);
+              }
+            },
+            {
+              key: "draw",
+              value: function draw() {
+                var position = this.get("position");
+                var projection = this.getProjection();
+
+                if (!position || !projection) {
+                  return;
+                }
+
+                var point = projection.fromLatLngToDivPixel(position);
+                this.div_.style.top = point.y + "px";
+                this.div_.style.left = point.x + "px";
+              }
+              /**
+               * Opens the menu at a vertex of a given path.
+               */
+            },
+            {
+              key: "open",
+              value: function open(map, path, vertex) {
+                this.set("position", path.getAt(vertex));
+                this.set("path", path);
+                this.set("vertex", vertex);
+                this.setMap(map);
+                this.draw();
+              }
+              /**
+               * Deletes the vertex from the path.
+               */
+            },
+            {
+              key: "removeVertex",
+              value: function removeVertex() {
+                var path = this.get("path");
+                var vertex = this.get("vertex");
+
+                if (!path || vertex == undefined) {
+                  this.close();
+                  return;
+                }
+
+                path.removeAt(vertex);
+                this.close();
+              }
+            }
+          ]);
+
+          return DeleteMenu;
+        })(google.maps.OverlayView);
+
+        var deleteMenu = new DeleteMenu();
+        google.maps.event.addListener(flightPath, "rightclick", function(e) {
+          // Check if click was on a vertex control point
+          if (e.vertex == undefined) {
+            return;
+          }
+
+          deleteMenu.open(map, flightPath.getPath(), e.vertex);
+        });
+      }
     </script>
   </head>
   <body>
