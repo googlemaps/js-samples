@@ -44,7 +44,7 @@ function initMap(): void {
 
   // Add a marker clusterer to manage the markers.
   // @ts-ignore
-  const markerCluster = new google.maps.plugins.MarkerClusterer(map, markers, {
+  new MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
   });
