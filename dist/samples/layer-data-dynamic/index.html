@@ -23,59 +23,57 @@
       }
     </style>
     <script>
-      (function(exports) {
-        "use strict";
+      "use strict";
 
-        function initMap() {
-          exports.map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
-            center: {
-              lat: -28,
-              lng: 137
-            }
-          }); // Load GeoJSON.
+      var map;
 
-          exports.map.data.loadGeoJson(
-            "https://storage.googleapis.com/mapsdevsite/json/google.json"
-          ); // Color each letter gray. Change the color when the isColorful property
-          // is set to true.
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: {
+            lat: -28,
+            lng: 137
+          }
+        }); // Load GeoJSON.
 
-          exports.map.data.setStyle(function(feature) {
-            var color = "gray";
+        map.data.loadGeoJson(
+          "https://storage.googleapis.com/mapsdevsite/json/google.json"
+        ); // Color each letter gray. Change the color when the isColorful property
+        // is set to true.
 
-            if (feature.getProperty("isColorful")) {
-              color = feature.getProperty("color");
-            }
+        map.data.setStyle(function(feature) {
+          var color = "gray";
 
-            return (
-              /** @type {!google.maps.Data.StyleOptions} */
-              ({
-                fillColor: color,
-                strokeColor: color,
-                strokeWeight: 2
-              })
-            );
-          }); // When the user clicks, set 'isColorful', changing the color of the letters.
+          if (feature.getProperty("isColorful")) {
+            color = feature.getProperty("color");
+          }
 
-          exports.map.data.addListener("click", function(event) {
-            event.feature.setProperty("isColorful", true);
-          }); // When the user hovers, tempt them to click by outlining the letters.
-          // Call revertStyle() to remove all overrides. This will use the style rules
-          // defined in the function passed to setStyle()
+          return (
+            /** @type {!google.maps.Data.StyleOptions} */
+            ({
+              fillColor: color,
+              strokeColor: color,
+              strokeWeight: 2
+            })
+          );
+        }); // When the user clicks, set 'isColorful', changing the color of the letters.
 
-          exports.map.data.addListener("mouseover", function(event) {
-            exports.map.data.revertStyle();
-            exports.map.data.overrideStyle(event.feature, {
-              strokeWeight: 8
-            });
+        map.data.addListener("click", function(event) {
+          event.feature.setProperty("isColorful", true);
+        }); // When the user hovers, tempt them to click by outlining the letters.
+        // Call revertStyle() to remove all overrides. This will use the style rules
+        // defined in the function passed to setStyle()
+
+        map.data.addListener("mouseover", function(event) {
+          map.data.revertStyle();
+          map.data.overrideStyle(event.feature, {
+            strokeWeight: 8
           });
-          exports.map.data.addListener("mouseout", function(event) {
-            exports.map.data.revertStyle();
-          });
-        }
-
-        exports.initMap = initMap;
-      })((this.window = this.window || {}));
+        });
+        map.data.addListener("mouseout", function(event) {
+          map.data.revertStyle();
+        });
+      }
     </script>
   </head>
   <body>

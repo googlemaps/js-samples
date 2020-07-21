@@ -13,6 +13,10 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-{% extends '../../../shared/layout.njk'%} {% block html %}
-<div id="map"></div>
+{% extends '../../../shared/layout.njk'%}
+{% block external %}
+  <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
+{% endblock %}
+{% block html %}
+  <div id="map"></div>
 {% endblock %}

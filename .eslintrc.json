@@ -1,19 +1,12 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:jest/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": "2018",
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
-    }
+    "sourceType": "module"
   },
   "globals": {
     "google": "writable",
-    "firebase": "readonly",
+    "deck": "readonly",
     "ActiveXObject": "readonly",
     "mdc": "readonly",
     "Split": "readonly",
@@ -21,5 +14,29 @@
   },
   "env": {
     "browser": true
+  },
+  "rules": {
+    "no-unused-vars": 1,
+    "no-var": 2,
+    "padding-line-between-statements": [
+      1,
+      {
+        "blankLine": "always",
+        "prev": ["*"],
+        "next": [
+          "if",
+          "block",
+          "block-like",
+          "switch",
+          "class",
+          "function",
+          "try",
+          "for",
+          "do",
+          "while",
+          "with"
+        ]
+      }
+    ]
   }
 }

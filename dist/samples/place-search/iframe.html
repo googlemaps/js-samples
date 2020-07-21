@@ -20,50 +20,48 @@
   }
 </style>
 <script>
-  (function(exports) {
-    "use strict";
+  "use strict";
 
-    // This example requires the Places library. Include the libraries=places
-    // parameter when you first load the API. For example:
-    // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&libraries=places">
+  // This example requires the Places library. Include the libraries=places
+  // parameter when you first load the API. For example:
+  // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&libraries=places">
+  var map;
+  var service;
+  var infowindow;
 
-    function initMap() {
-      var sydney = new google.maps.LatLng(-33.867, 151.195);
-      exports.infowindow = new google.maps.InfoWindow();
-      exports.map = new google.maps.Map(document.getElementById("map"), {
-        center: sydney,
-        zoom: 15
-      });
-      var request = {
-        query: "Museum of Contemporary Art Australia",
-        fields: ["name", "geometry"]
-      };
-      exports.service = new google.maps.places.PlacesService(exports.map);
-      exports.service.findPlaceFromQuery(request, function(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-          }
-
-          exports.map.setCenter(results[0].geometry.location);
+  function initMap() {
+    var sydney = new google.maps.LatLng(-33.867, 151.195);
+    infowindow = new google.maps.InfoWindow();
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: sydney,
+      zoom: 15
+    });
+    var request = {
+      query: "Museum of Contemporary Art Australia",
+      fields: ["name", "geometry"]
+    };
+    service = new google.maps.places.PlacesService(map);
+    service.findPlaceFromQuery(request, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          createMarker(results[i]);
         }
-      });
-    }
 
-    function createMarker(place) {
-      var marker = new google.maps.Marker({
-        map: exports.map,
-        position: place.geometry.location
-      });
-      google.maps.event.addListener(marker, "click", function() {
-        exports.infowindow.setContent(place.name);
-        exports.infowindow.open(exports.map, this);
-      });
-    }
+        map.setCenter(results[0].geometry.location);
+      }
+    });
+  }
 
-    exports.createMarker = createMarker;
-    exports.initMap = initMap;
-  })((this.window = this.window || {}));
+  function createMarker(place) {
+    var marker = new google.maps.Marker({
+      map: map,
+      position: place.geometry.location
+    });
+    google.maps.event.addListener(marker, "click", function() {
+      infowindow.setContent(place.name);
+      infowindow.open(map);
+    });
+  }
 </script>
 
 <div id="iframe-contents">

@@ -1,6 +1,9 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
-exports_files(["diff.js"])
+exports_files([
+    "diff.js",
+    "tags.js",
+])
 
 nodejs_binary(
     name = "json",
@@ -31,6 +34,24 @@ nodejs_binary(
 )
 
 nodejs_binary(
+    name = "eslint",
+    entry_point = "@npm//:node_modules/eslint/bin/eslint.js",
+    node_modules = "@npm//:node_modules",
+    visibility = ["//visibility:public"],
+)
+
+nodejs_binary(
+    name = "babel",
+    entry_point = "@npm//:node_modules/@babel/cli/bin/babel.js",
+    data = [
+        "@npm//@babel/core",
+        "@npm//@babel/preset-env",
+    ],
+    node_modules = "@npm//:node_modules",
+    visibility = ["//visibility:public"],
+)
+
+nodejs_binary(
     name = "inline",
     data = [
         "inline.js",
@@ -55,5 +76,11 @@ sh_binary(
 sh_binary(
     name = "nunjucks",
     srcs = ["nunjucks.sh"],
+    visibility = ["//visibility:public"],
+)
+
+sh_binary(
+    name = "strip_source_map_url_bin",
+    srcs = ["strip_source_map_url.sh"],
     visibility = ["//visibility:public"],
 )

@@ -23,47 +23,46 @@
       }
     </style>
     <script>
-      (function(exports) {
-        "use strict";
+      "use strict";
 
-        function initMap() {
-          exports.map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 2,
-            center: new google.maps.LatLng(2.8, -187.3),
-            mapTypeId: google.maps.MapTypeId.TERRAIN
-          }); // Create a <script> tag and set the USGS URL as the source.
+      let map;
 
-          var script = document.createElement("script"); // This example uses a local copy of the GeoJSON stored at
-          // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8, -187.3),
+          mapTypeId: google.maps.MapTypeId.TERRAIN
+        }); // Create a <script> tag and set the USGS URL as the source.
 
-          script.src =
-            "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
-          document.getElementsByTagName("head")[0].appendChild(script);
+        const script = document.createElement("script"); // This example uses a local copy of the GeoJSON stored at
+        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+
+        script.src =
+          "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
+        document.getElementsByTagName("head")[0].appendChild(script);
+      }
+
+      const eqfeed_callback = function(results) {
+        // TODO(jpoehnelt) fix typings
+        const heatmapData = [];
+
+        for (let i = 0; i < results.features.length; i++) {
+          const coords = results.features[i].geometry.coordinates;
+          const latLng = new google.maps.LatLng(coords[1], coords[0]);
+          const magnitude = results.features[i].properties.mag;
+          const weightedLoc = {
+            location: latLng,
+            weight: Math.pow(2, magnitude)
+          };
+          heatmapData.push(weightedLoc);
         }
 
-        window.eqfeed_callback = function(results) {
-          var heatmapData = [];
-
-          for (var i = 0; i < results.features.length; i++) {
-            var coords = results.features[i].geometry.coordinates;
-            var latLng = new google.maps.LatLng(coords[1], coords[0]);
-            var magnitude = results.features[i].properties.mag;
-            var weightedLoc = {
-              location: latLng,
-              weight: Math.pow(2, magnitude)
-            };
-            heatmapData.push(weightedLoc);
-          }
-
-          var heatmap = new google.maps.visualization.HeatmapLayer({
-            data: heatmapData,
-            dissipating: false,
-            map: exports.map
-          });
-        };
-
-        exports.initMap = initMap;
-      })((this.window = this.window || {}));
+        const heatmap = new google.maps.visualization.HeatmapLayer({
+          data: heatmapData,
+          dissipating: false,
+          map: map
+        });
+      };
     </script>
   </head>
   <body>

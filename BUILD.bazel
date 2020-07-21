@@ -6,10 +6,12 @@ load("@rules_pkg//:pkg.bzl", "pkg_deb", "pkg_tar")
 exports_files(
     [
         "LICENSE",
+        ".eslintrc.json",
+        ".babelrc",
+        ".babelrc.jsfiddle.json",
         "package.json",
-        "rollup.config.js",
-        "rollup.config.iframe.js",
         "jest.config.js",
+        "tsconfig.json",
     ],
     visibility = ["//:__subpackages__"],
 )
@@ -66,19 +68,38 @@ genrule(
     tools = ["@npm//nunjucks-cli/bin:nunjucks"],
 )
 
+ESLINT_DATA = [
+    # config files
+    ":.eslintrc.json",
+    "//samples:.eslintrc.json",
+    # plugins
+    "@npm//eslint-config-prettier",
+    "@npm//eslint-plugin-jest",
+    "@npm//eslint-plugin-prettier",
+    "@npm//@typescript-eslint/parser",
+    "@npm//@typescript-eslint/eslint-plugin",
+]
+
 eslint_test(
     name = "eslint",
-    args = ["samples/**/*.js"],
-    data = [
-        # config files
-        ":.eslintrc.json",
-        "//samples:.eslintrc.json",
-        # files to test
+    args = [
+        "samples/**/*.ts",
+        "samples/**/*.js",
+    ],
+    data = ESLINT_DATA + [
         "//samples:inputs",
-        # plugins
-        "@npm//eslint-config-prettier",
-        "@npm//eslint-plugin-jest",
-        "@npm//eslint-plugin-prettier",
+        "//samples:outputs",
+    ],
+)
+
+eslint(
+    name = "eslint-fix",
+    args = [
+        "samples/**/*.ts",
+        "--fix",
+    ],
+    data = ESLINT_DATA + [
+        "//samples:inputs",
     ],
 )
 
