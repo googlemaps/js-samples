@@ -28,7 +28,7 @@ function initMap() {
     map,
     anchorPoint: new google.maps.Point(0, -29)
   });
-  autocomplete.addListener("place_changed", function() {
+  autocomplete.addListener("place_changed", () => {
     infowindow.close();
     marker.setVisible(false);
     const place = autocomplete.getPlace();
@@ -74,7 +74,7 @@ function initMap() {
 
   function setupClickListener(id, types) {
     const radioButton = document.getElementById(id);
-    radioButton.addEventListener("click", function() {
+    radioButton.addEventListener("click", () => {
       autocomplete.setTypes(types);
     });
   }

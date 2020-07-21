@@ -28,7 +28,7 @@ function initMap(): void {
 
   (document.getElementById("submit") as HTMLElement).addEventListener(
     "click",
-    function() {
+    () => {
       geocodeLatLng(geocoder, map, infowindow);
     }
   );
@@ -45,26 +45,29 @@ function geocodeLatLng(
     lat: parseFloat(latlngStr[0]),
     lng: parseFloat(latlngStr[1])
   };
-  geocoder.geocode({ location: latlng }, function(
-    results: google.maps.GeocoderResult[],
-    status: google.maps.GeocoderStatus
-  ) {
-    if (status === "OK") {
-      if (results[0]) {
-        map.setZoom(11);
-        const marker = new google.maps.Marker({
-          position: latlng,
-          map: map
-        });
-        infowindow.setContent(results[0].formatted_address);
-        infowindow.open(map, marker);
+  geocoder.geocode(
+    { location: latlng },
+    (
+      results: google.maps.GeocoderResult[],
+      status: google.maps.GeocoderStatus
+    ) => {
+      if (status === "OK") {
+        if (results[0]) {
+          map.setZoom(11);
+          const marker = new google.maps.Marker({
+            position: latlng,
+            map: map
+          });
+          infowindow.setContent(results[0].formatted_address);
+          infowindow.open(map, marker);
+        } else {
+          window.alert("No results found");
+        }
       } else {
-        window.alert("No results found");
+        window.alert("Geocoder failed due to: " + status);
       }
-    } else {
-      window.alert("Geocoder failed due to: " + status);
     }
-  });
+  );
 }
 // [END maps_geocoding_reverse]
 export {};

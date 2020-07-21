@@ -47,7 +47,7 @@ function initPanorama() {
     }
   ); // Register a provider for the custom panorama.
 
-  panorama.registerPanoProvider(function(pano) {
+  panorama.registerPanoProvider(pano => {
     if (pano === "reception") {
       return getReceptionPanoramaData();
     } // @ts-ignore TODO(jpoehnelt) fix typings
@@ -55,7 +55,7 @@ function initPanorama() {
     return null;
   }); // Add a link to our custom panorama from outside the Google Sydney office.
 
-  panorama.addListener("links_changed", function() {
+  panorama.addListener("links_changed", () => {
     if (panorama.getPano() === outsideGoogle.location.pano) {
       panorama.getLinks().push({
         description: "Google Sydney",
@@ -77,7 +77,7 @@ function initMap() {
         lng: 151.195767
       }
     },
-    function(result, status) {
+    (result, status) => {
       if (status === google.maps.StreetViewStatus.OK && result) {
         outsideGoogle = result;
         initPanorama();

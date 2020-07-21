@@ -9,7 +9,7 @@ function initMap() {
     }
   });
   const geocoder = new google.maps.Geocoder();
-  document.getElementById("submit").addEventListener("click", function() {
+  document.getElementById("submit").addEventListener("click", () => {
     geocodeAddress(geocoder, map);
   });
 }
@@ -20,7 +20,7 @@ function geocodeAddress(geocoder, resultsMap) {
     {
       address: address
     },
-    function(results, status) {
+    (results, status) => {
       if (status === "OK") {
         resultsMap.setCenter(results[0].geometry.location);
         new google.maps.Marker({

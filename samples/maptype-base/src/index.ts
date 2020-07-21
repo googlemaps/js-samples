@@ -68,7 +68,7 @@ function initMap(): void {
     }
   );
 
-  map.addListener("maptypeid_changed", function() {
+  map.addListener("maptypeid_changed", () => {
     const showStreetViewControl =
       (map.getMapTypeId() as string) !== "coordinate";
     map.setOptions({

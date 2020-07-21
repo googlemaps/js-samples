@@ -8,7 +8,7 @@ function initMap() {
   coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
   coordInfoWindow.setPosition(chicago);
   coordInfoWindow.open(map);
-  map.addListener("zoom_changed", function() {
+  map.addListener("zoom_changed", () => {
     coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
     coordInfoWindow.open(map);
   });

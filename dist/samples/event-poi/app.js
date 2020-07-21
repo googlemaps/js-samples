@@ -56,7 +56,7 @@ class ClickEventHandler {
         },
         travelMode: google.maps.TravelMode.WALKING
       },
-      function(response, status) {
+      (response, status) => {
         if (status === "OK") {
           me.directionsRenderer.setDirections(response);
         } else {
@@ -72,7 +72,7 @@ class ClickEventHandler {
       {
         placeId: placeId
       },
-      function(place, status) {
+      (place, status) => {
         if (status === "OK") {
           me.infowindow.close();
           me.infowindow.setPosition(place.geometry.location);

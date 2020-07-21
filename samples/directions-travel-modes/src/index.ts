@@ -30,7 +30,7 @@ function initMap(): void {
   calculateAndDisplayRoute(directionsService, directionsRenderer);
   (document.getElementById("mode") as HTMLInputElement).addEventListener(
     "change",
-    function() {
+    () => {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     }
   );
@@ -52,7 +52,7 @@ function calculateAndDisplayRoute(
       // @ts-ignore
       travelMode: google.maps.TravelMode[selectedMode]
     },
-    function(response, status) {
+    (response, status) => {
       if (status == "OK") {
         directionsRenderer.setDirections(response);
       } else {

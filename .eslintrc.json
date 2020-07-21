@@ -37,6 +37,7 @@
           "with"
         ]
       }
-    ]
+    ],
+    "prefer-arrow-callback": 2
   }
 }

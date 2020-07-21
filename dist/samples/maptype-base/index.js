@@ -38,7 +38,7 @@ function initMap() {
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
     }
   });
-  map.addListener("maptypeid_changed", function() {
+  map.addListener("maptypeid_changed", () => {
     const showStreetViewControl = map.getMapTypeId() !== "coordinate";
     map.setOptions({
       streetViewControl: showStreetViewControl

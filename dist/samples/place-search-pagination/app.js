@@ -32,7 +32,7 @@ function initMap() {
       radius: 500,
       type: "store"
     },
-    function(results, status, pagination) {
+    (results, status, pagination) => {
       if (status !== "OK") return;
       createMarkers(results, map);
       moreButton.disabled = !pagination.hasNextPage;

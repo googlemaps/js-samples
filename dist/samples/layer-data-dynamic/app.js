@@ -16,7 +16,7 @@ function initMap() {
   ); // Color each letter gray. Change the color when the isColorful property
   // is set to true.
 
-  map.data.setStyle(function(feature) {
+  map.data.setStyle(feature => {
     let color = "gray";
 
     if (feature.getProperty("isColorful")) {
@@ -33,19 +33,19 @@ function initMap() {
     );
   }); // When the user clicks, set 'isColorful', changing the color of the letters.
 
-  map.data.addListener("click", function(event) {
+  map.data.addListener("click", event => {
     event.feature.setProperty("isColorful", true);
   }); // When the user hovers, tempt them to click by outlining the letters.
   // Call revertStyle() to remove all overrides. This will use the style rules
   // defined in the function passed to setStyle()
 
-  map.data.addListener("mouseover", function(event) {
+  map.data.addListener("mouseover", event => {
     map.data.revertStyle();
     map.data.overrideStyle(event.feature, {
       strokeWeight: 8
     });
   });
-  map.data.addListener("mouseout", function(event) {
+  map.data.addListener("mouseout", event => {
     map.data.revertStyle();
   });
 }

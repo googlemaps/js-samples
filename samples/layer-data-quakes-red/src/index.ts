@@ -34,7 +34,7 @@ function initMap(): void {
   document.getElementsByTagName("head")[0].appendChild(script);
 
   // Add a basic style.
-  map.data.setStyle(function(feature) {
+  map.data.setStyle(feature => {
     const mag = Math.exp(parseFloat(feature.getProperty("mag"))) * 0.1;
     return /** @type {google.maps.Data.StyleOptions} */ {
       icon: {

@@ -51,11 +51,11 @@ function initMap(): void {
 
   const marker = new google.maps.Marker({ map: map });
 
-  marker.addListener("click", function() {
+  marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
 
-  autocomplete.addListener("place_changed", function() {
+  autocomplete.addListener("place_changed", () => {
     infowindow.close();
 
     const place = autocomplete.getPlace();

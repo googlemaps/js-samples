@@ -101,7 +101,7 @@ function initMap() {
       type: "library"
     }
   ];
-  features.forEach(function(feature) {
+  features.forEach(feature => {
     new google.maps.Marker({
       position: feature.position,
       icon: icons[feature.type].icon,

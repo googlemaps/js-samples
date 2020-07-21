@@ -29,7 +29,7 @@ function initMap(): void {
 
   (document.getElementById("submit") as HTMLElement).addEventListener(
     "click",
-    function() {
+    () => {
       geocodePlaceId(geocoder, map, infowindow);
     }
   );
@@ -44,7 +44,7 @@ function geocodePlaceId(
 ) {
   const placeId = (document.getElementById("place-id") as HTMLInputElement)
     .value;
-  geocoder.geocode({ placeId: placeId }, function(results, status) {
+  geocoder.geocode({ placeId: placeId }, (results, status) => {
     if (status === "OK") {
       if (results[0]) {
         map.setZoom(11);

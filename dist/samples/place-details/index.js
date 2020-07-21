@@ -12,7 +12,7 @@ function initMap() {
   };
   const infowindow = new google.maps.InfoWindow();
   const service = new google.maps.places.PlacesService(map);
-  service.getDetails(request, function(place, status) {
+  service.getDetails(request, (place, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       const marker = new google.maps.Marker({
         map,

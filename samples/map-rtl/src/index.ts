@@ -38,7 +38,7 @@ function initMap(): void {
   infowindow.setContent("<b>القاهرة</b>");
 
   const marker = new google.maps.Marker({ map, position: cairo });
-  marker.addListener("click", function() {
+  marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
 }

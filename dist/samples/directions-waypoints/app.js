@@ -11,7 +11,7 @@ function initMap() {
     }
   });
   directionsRenderer.setMap(map);
-  document.getElementById("submit").addEventListener("click", function() {
+  document.getElementById("submit").addEventListener("click", () => {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   });
 }
@@ -37,7 +37,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING
     },
-    function(response, status) {
+    (response, status) => {
       if (status === "OK") {
         directionsRenderer.setDirections(response);
         const route = response.routes[0];

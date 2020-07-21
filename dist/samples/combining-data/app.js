@@ -53,7 +53,7 @@ function initMap() {
   map.data.addListener("mouseout", mouseOutOfRegion); // wire up the button
 
   const selectBox = document.getElementById("census-variable");
-  google.maps.event.addDomListener(selectBox, "change", function() {
+  google.maps.event.addDomListener(selectBox, "change", () => {
     clearCensusData();
     loadCensusData(selectBox.options[selectBox.selectedIndex].value);
   }); // state polygons only need to be loaded once, do them now
@@ -72,7 +72,7 @@ function loadMapShapes() {
   ); // wait for the request to complete by listening for the first feature to be
   // added
 
-  google.maps.event.addListenerOnce(map.data, "addfeature", function() {
+  google.maps.event.addListenerOnce(map.data, "addfeature", () => {
     google.maps.event.trigger(
       document.getElementById("census-variable"),
       "change"
@@ -94,7 +94,7 @@ function loadCensusData(variable) {
     const censusData = JSON.parse(xhr.responseText);
     censusData.shift(); // the first row contains column names
 
-    censusData.forEach(function(row) {
+    censusData.forEach(row => {
       const censusVariable = parseFloat(row[0]);
       const stateId = row[1]; // keep track of min and max values
 
@@ -126,7 +126,7 @@ function loadCensusData(variable) {
 function clearCensusData() {
   censusMin = Number.MAX_VALUE;
   censusMax = -Number.MAX_VALUE;
-  map.data.forEach(function(row) {
+  map.data.forEach(row => {
     row.setProperty("census_variable", undefined);
   });
   document.getElementById("data-box").style.display = "none";

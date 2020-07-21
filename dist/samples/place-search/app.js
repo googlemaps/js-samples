@@ -19,7 +19,7 @@ function initMap() {
     fields: ["name", "geometry"]
   };
   service = new google.maps.places.PlacesService(map);
-  service.findPlaceFromQuery(request, function(results, status) {
+  service.findPlaceFromQuery(request, (results, status) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       for (let i = 0; i < results.length; i++) {
         createMarker(results[i]);
@@ -35,7 +35,7 @@ function createMarker(place) {
     map,
     position: place.geometry.location
   });
-  google.maps.event.addListener(marker, "click", function() {
+  google.maps.event.addListener(marker, "click", () => {
     infowindow.setContent(place.name);
     infowindow.open(map);
   });

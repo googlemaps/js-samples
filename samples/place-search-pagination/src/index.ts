@@ -46,11 +46,11 @@ function initMap(): void {
   // Perform a nearby search.
   service.nearbySearch(
     { location: pyrmont, radius: 500, type: "store" },
-    function(
+    (
       results: google.maps.places.PlaceResult[],
       status: google.maps.places.PlacesServiceStatus,
       pagination: google.maps.places.PlaceSearchPagination
-    ) {
+    ) => {
       if (status !== "OK") return;
 
       createMarkers(results, map);

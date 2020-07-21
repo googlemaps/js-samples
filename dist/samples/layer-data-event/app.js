@@ -15,7 +15,7 @@ function initMap() {
     "https://storage.googleapis.com/maps-devrel/google.json"
   ); // Add some style.
 
-  map.data.setStyle(function(feature) {
+  map.data.setStyle(feature => {
     return (
       /** @type {google.maps.Data.StyleOptions} */
       ({
@@ -25,7 +25,7 @@ function initMap() {
     );
   }); // Set mouseover event for each feature.
 
-  map.data.addListener("mouseover", function(event) {
+  map.data.addListener("mouseover", event => {
     document.getElementById("info-box").textContent = event.feature.getProperty(
       "letter"
     );

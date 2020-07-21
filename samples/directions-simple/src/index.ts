@@ -54,7 +54,7 @@ function calculateAndDisplayRoute(
       },
       travelMode: google.maps.TravelMode.DRIVING
     },
-    function(response, status) {
+    (response, status) => {
       if (status === "OK") {
         directionsRenderer.setDirections(response);
       } else {

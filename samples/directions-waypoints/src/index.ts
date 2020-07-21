@@ -29,7 +29,7 @@ function initMap(): void {
 
   (document.getElementById("submit") as HTMLElement).addEventListener(
     "click",
-    function() {
+    () => {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
     }
   );
@@ -61,7 +61,7 @@ function calculateAndDisplayRoute(
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING
     },
-    function(response, status) {
+    (response, status) => {
       if (status === "OK") {
         directionsRenderer.setDirections(response);
         const route = response.routes[0];

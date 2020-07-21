@@ -12,7 +12,7 @@ function initMap() {
   });
   directionsRenderer.setMap(map);
   calculateAndDisplayRoute(directionsService, directionsRenderer);
-  document.getElementById("mode").addEventListener("change", function() {
+  document.getElementById("mode").addEventListener("change", () => {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   });
 }
@@ -35,7 +35,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       // @ts-ignore
       travelMode: google.maps.TravelMode[selectedMode]
     },
-    function(response, status) {
+    (response, status) => {
       if (status == "OK") {
         directionsRenderer.setDirections(response);
       } else {
