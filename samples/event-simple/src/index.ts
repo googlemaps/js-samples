@@ -32,15 +32,15 @@ function initMap(): void {
     title: "Click to zoom"
   });
 
-  map.addListener("center_changed", function() {
+  map.addListener("center_changed", () => {
     // 3 seconds after the center of the map has changed, pan back to the
     // marker.
-    window.setTimeout(function() {
+    window.setTimeout(() => {
       map.panTo(marker.getPosition() as google.maps.LatLng);
     }, 3000);
   });
 
-  marker.addListener("click", function() {
+  marker.addListener("click", () => {
     map.setZoom(8);
     map.setCenter(marker.getPosition() as google.maps.LatLng);
   });

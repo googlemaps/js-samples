@@ -9,7 +9,7 @@ function initService() {
       alert(status);
       return;
     }
-    predictions.forEach(function(prediction) {
+    predictions.forEach(prediction => {
       const li = document.createElement("li");
       li.appendChild(document.createTextNode(prediction.description));
       document.getElementById("results").appendChild(li);

@@ -8,7 +8,7 @@ function initMap() {
   const infowindow = new google.maps.InfoWindow({});
   // Add a listener for the click event. Display the elevation for the LatLng of
   // the click inside the infowindow.
-  map.addListener("click", function(event) {
+  map.addListener("click", event => {
     displayLocationElevation(event.latLng, elevator, infowindow);
   });
 }
@@ -19,7 +19,7 @@ function displayLocationElevation(location, elevator, infowindow) {
     {
       locations: [location]
     },
-    function(results, status) {
+    (results, status) => {
       infowindow.setPosition(location);
 
       if (status === "OK") {

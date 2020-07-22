@@ -16,10 +16,10 @@ function initMap() {
   // Change this depending on the name of your PHP or XML file
   downloadUrl(
     "https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml",
-    function(data) {
+    data => {
       const xml = data.responseXML;
       const markers = xml.documentElement.getElementsByTagName("marker");
-      Array.prototype.forEach.call(markers, function(markerElem) {
+      Array.prototype.forEach.call(markers, markerElem => {
         const id = markerElem.getAttribute("id");
         const name = markerElem.getAttribute("name");
         const address = markerElem.getAttribute("address");
@@ -42,7 +42,7 @@ function initMap() {
           position: point,
           label: icon.label
         });
-        marker.addListener("click", function() {
+        marker.addListener("click", () => {
           infoWindow.setContent(infowincontent);
           infoWindow.open(map, marker);
         });

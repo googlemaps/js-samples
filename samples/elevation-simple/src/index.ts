@@ -29,7 +29,7 @@ function initMap(): void {
 
   // Add a listener for the click event. Display the elevation for the LatLng of
   // the click inside the infowindow.
-  map.addListener("click", function(event) {
+  map.addListener("click", event => {
     displayLocationElevation(event.latLng, elevator, infowindow);
   });
 }
@@ -44,7 +44,7 @@ function displayLocationElevation(
     {
       locations: [location]
     },
-    function(results, status) {
+    (results, status) => {
       infowindow.setPosition(location);
 
       if (status === "OK") {

@@ -27,7 +27,7 @@ function initMap(): void {
 
   (document.getElementById("submit") as HTMLElement).addEventListener(
     "click",
-    function() {
+    () => {
       geocodeAddress(geocoder, map);
     }
   );
@@ -41,10 +41,10 @@ function geocodeAddress(geocoder: google.maps.Geocoder, map: google.maps.Map) {
         postalCode: "2000"
       }
     },
-    function(
+    (
       results: google.maps.GeocoderResult[],
       status: google.maps.GeocoderStatus
-    ) {
+    ) => {
       if (status === "OK") {
         map.setCenter(results[0].geometry.location);
         new google.maps.Marker({

@@ -13,7 +13,7 @@ function initMap() {
   script.src =
     "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
   document.getElementsByTagName("head")[0].appendChild(script);
-  map.data.setStyle(function(feature) {
+  map.data.setStyle(feature => {
     const magnitude = feature.getProperty("mag");
     return {
       icon: getCircle(magnitude)

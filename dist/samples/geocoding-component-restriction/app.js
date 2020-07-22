@@ -9,7 +9,7 @@ function initMap() {
       lng: 151.209
     }
   });
-  document.getElementById("submit").addEventListener("click", function() {
+  document.getElementById("submit").addEventListener("click", () => {
     geocodeAddress(geocoder, map);
   });
 }
@@ -22,7 +22,7 @@ function geocodeAddress(geocoder, map) {
         postalCode: "2000"
       }
     },
-    function(results, status) {
+    (results, status) => {
       if (status === "OK") {
         map.setCenter(results[0].geometry.location);
         new google.maps.Marker({

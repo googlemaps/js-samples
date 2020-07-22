@@ -149,37 +149,42 @@ function search() {
     types: ["lodging"]
   };
 
-  places.nearbySearch(search, function(
-    results: google.maps.places.PlaceResult[],
-    status: google.maps.places.PlacesServiceStatus,
-    pagination: google.maps.places.PlaceSearchPagination
-  ) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      clearResults();
-      clearMarkers();
+  places.nearbySearch(
+    search,
+    (
+      results: google.maps.places.PlaceResult[],
+      status: google.maps.places.PlacesServiceStatus,
+      pagination: google.maps.places.PlaceSearchPagination
+    ) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        clearResults();
+        clearMarkers();
 
-      // Create a marker for each hotel found, and
-      // assign a letter of the alphabetic to each marker icon.
-      for (let i = 0; i < results.length; i++) {
-        const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
-        const markerIcon = MARKER_PATH + markerLetter + ".png";
-        // Use marker animation to drop the icons incrementally on the map.
-        markers[i] = new google.maps.Marker({
-          position: (results[i].geometry as google.maps.places.PlaceGeometry)
-            .location,
-          animation: google.maps.Animation.DROP,
-          icon: markerIcon
-        });
-        // If the user clicks a hotel marker, show the details of that hotel
-        // in an info window.
-        // @ts-ignore TODO(jpoehnelt) refactor to avoid storing on marker
-        markers[i].placeResult = results[i];
-        google.maps.event.addListener(markers[i], "click", showInfoWindow);
-        setTimeout(dropMarker(i), i * 100);
-        addResult(results[i], i);
+        // Create a marker for each hotel found, and
+        // assign a letter of the alphabetic to each marker icon.
+        for (let i = 0; i < results.length; i++) {
+          const markerLetter = String.fromCharCode(
+            "A".charCodeAt(0) + (i % 26)
+          );
+          const markerIcon = MARKER_PATH + markerLetter + ".png";
+          // Use marker animation to drop the icons incrementally on the map.
+          markers[i] = new google.maps.Marker({
+            position: (results[i].geometry as google.maps.places.PlaceGeometry)
+              .location,
+            animation: google.maps.Animation.DROP,
+            icon: markerIcon
+          });
+          // If the user clicks a hotel marker, show the details of that hotel
+          // in an info window.
+          // @ts-ignore TODO(jpoehnelt) refactor to avoid storing on marker
+          markers[i].placeResult = results[i];
+          google.maps.event.addListener(markers[i], "click", showInfoWindow);
+          setTimeout(dropMarker(i), i * 100);
+          addResult(results[i], i);
+        }
       }
     }
-  });
+  );
 }
 
 function clearMarkers() {
@@ -255,16 +260,16 @@ function clearResults() {
 function showInfoWindow() {
   // @ts-ignore
   const marker = this;
-  places.getDetails({ placeId: marker.placeResult.place_id }, function(
-    place,
-    status
-  ) {
-    if (status !== google.maps.places.PlacesServiceStatus.OK) {
-      return;
+  places.getDetails(
+    { placeId: marker.placeResult.place_id },
+    (place, status) => {
+      if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        return;
+      }
+      infoWindow.open(map, marker);
+      buildIWContent(place);
     }
-    infoWindow.open(map, marker);
-    buildIWContent(place);
-  });
+  );
 }
 
 // Load the place information into the HTML elements used by the info window.

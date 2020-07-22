@@ -50,7 +50,7 @@ function CenterControl(controlDiv: Element, map: google.maps.Map) {
   controlUI.appendChild(controlText);
 
   // Setup the click event listeners: simply set the map to Chicago.
-  controlUI.addEventListener("click", function() {
+  controlUI.addEventListener("click", () => {
     map.setCenter(chicago);
   });
 }

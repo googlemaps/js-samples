@@ -118,7 +118,7 @@ function search() {
     bounds: map.getBounds(),
     types: ["lodging"]
   };
-  places.nearbySearch(search, function(results, status, pagination) {
+  places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearResults();
       clearMarkers();
@@ -216,16 +216,16 @@ function clearResults() {
 function showInfoWindow() {
   // @ts-ignore
   const marker = this;
-  places.getDetails({ placeId: marker.placeResult.place_id }, function(
-    place,
-    status
-  ) {
-    if (status !== google.maps.places.PlacesServiceStatus.OK) {
-      return;
+  places.getDetails(
+    { placeId: marker.placeResult.place_id },
+    (place, status) => {
+      if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        return;
+      }
+      infoWindow.open(map, marker);
+      buildIWContent(place);
     }
-    infoWindow.open(map, marker);
-    buildIWContent(place);
-  });
+  );
 }
 
 // Load the place information into the HTML elements used by the info window.

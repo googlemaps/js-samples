@@ -11,7 +11,7 @@ function initMap() {
   });
   const geocoder = new google.maps.Geocoder();
   const infowindow = new google.maps.InfoWindow();
-  document.getElementById("submit").addEventListener("click", function() {
+  document.getElementById("submit").addEventListener("click", () => {
     geocodePlaceId(geocoder, map, infowindow);
   });
 } // This function is called when the user clicks the UI button requesting
@@ -23,7 +23,7 @@ function geocodePlaceId(geocoder, map, infowindow) {
     {
       placeId: placeId
     },
-    function(results, status) {
+    (results, status) => {
       if (status === "OK") {
         if (results[0]) {
           map.setZoom(11);

@@ -44,7 +44,7 @@ class PuzzleDemo {
     difficultyTitleDiv.innerText = "DIFFICULTY:";
     difficultyTitleDiv.style.fontWeight = "800";
     const difficultySelect = document.createElement("select");
-    ["Easy", "Moderate", "Hard", "Extreme"].forEach(function(level) {
+    ["Easy", "Moderate", "Hard", "Extreme"].forEach(level => {
       const option = document.createElement("option");
       option.value = level.toLowerCase();
       option.innerText = level;
@@ -286,7 +286,7 @@ class PuzzleDemo {
     const timeDiv = this.timeDiv_;
     if (timeDiv) timeDiv.textContent = "0.0 seconds";
     const t = new Date();
-    this.timer_ = window.setInterval(function() {
+    this.timer_ = window.setInterval(() => {
       const diff = new Date().getTime() - t.getTime();
       if (timeDiv) timeDiv.textContent = (diff / 1000).toFixed(2) + " seconds";
     }, 100);
@@ -294,7 +294,7 @@ class PuzzleDemo {
 
   addRandomCountries_() {
     // Shuffle countries
-    this.countries_.sort(function() {
+    this.countries_.sort(() => {
       return Math.round(Math.random()) - 0.5;
     });
     const countries = this.countries_.slice(0, this.NUM_PIECES_);

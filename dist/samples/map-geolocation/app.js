@@ -18,7 +18,7 @@ function initMap() {
 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(
-      function(position) {
+      position => {
         const pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
@@ -28,7 +28,7 @@ function initMap() {
         infoWindow.open(map);
         map.setCenter(pos);
       },
-      function() {
+      () => {
         handleLocationError(true, infoWindow, map.getCenter());
       }
     );

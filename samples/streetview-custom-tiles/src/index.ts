@@ -67,18 +67,18 @@ function initPanorama() {
     { pano: (outsideGoogle.location as google.maps.StreetViewLocation).pano }
   );
   // Register a provider for the custom panorama.
-  panorama.registerPanoProvider(function(
-    pano: string
-  ): google.maps.StreetViewPanoramaData {
-    if (pano === "reception") {
-      return getReceptionPanoramaData();
+  panorama.registerPanoProvider(
+    (pano: string): google.maps.StreetViewPanoramaData => {
+      if (pano === "reception") {
+        return getReceptionPanoramaData();
+      }
+      // @ts-ignore TODO(jpoehnelt) fix typings
+      return null;
     }
-    // @ts-ignore TODO(jpoehnelt) fix typings
-    return null;
-  });
+  );
 
   // Add a link to our custom panorama from outside the Google Sydney office.
-  panorama.addListener("links_changed", function() {
+  panorama.addListener("links_changed", () => {
     if (
       panorama.getPano() ===
       (outsideGoogle.location as google.maps.StreetViewLocation).pano
@@ -98,10 +98,10 @@ function initMap(): void {
   const streetviewService = new google.maps.StreetViewService();
   streetviewService.getPanorama(
     { location: { lat: -33.867386, lng: 151.195767 } },
-    function(
+    (
       result: google.maps.StreetViewPanoramaData | null,
       status: google.maps.StreetViewStatus
-    ) {
+    ) => {
       if (status === google.maps.StreetViewStatus.OK && result) {
         outsideGoogle = result;
         initPanorama();

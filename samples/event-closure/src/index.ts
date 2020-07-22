@@ -64,7 +64,7 @@ function attachSecretMessage(
     content: secretMessage
   });
 
-  marker.addListener("click", function() {
+  marker.addListener("click", () => {
     infowindow.open(marker.get("map"), marker);
   });
 }

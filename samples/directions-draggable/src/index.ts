@@ -31,7 +31,7 @@ function initMap(): void {
     panel: document.getElementById("right-panel") as HTMLElement
   });
 
-  directionsRenderer.addListener("directions_changed", function() {
+  directionsRenderer.addListener("directions_changed", () => {
     computeTotalDistance(directionsRenderer.getDirections());
   });
 
@@ -60,10 +60,10 @@ function displayRoute(
       travelMode: google.maps.TravelMode.DRIVING,
       avoidTolls: true
     },
-    function(
+    (
       result: google.maps.DirectionsResult,
       status: google.maps.DirectionsStatus
-    ) {
+    ) => {
       if (status === "OK") {
         display.setDirections(result);
       } else {

@@ -6,7 +6,7 @@ function initMap() {
   });
   const geocoder = new google.maps.Geocoder();
   const infowindow = new google.maps.InfoWindow();
-  document.getElementById("submit").addEventListener("click", function() {
+  document.getElementById("submit").addEventListener("click", () => {
     geocodePlaceId(geocoder, map, infowindow);
   });
 }
@@ -15,7 +15,7 @@ function initMap() {
 // a geocode of a place ID.
 function geocodePlaceId(geocoder, map, infowindow) {
   const placeId = document.getElementById("place-id").value;
-  geocoder.geocode({ placeId: placeId }, function(results, status) {
+  geocoder.geocode({ placeId: placeId }, (results, status) => {
     if (status === "OK") {
       if (results[0]) {
         map.setZoom(11);

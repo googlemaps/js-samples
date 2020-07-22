@@ -27,7 +27,7 @@ function initMap(): void {
 
   (document.getElementById("submit") as HTMLButtonElement).addEventListener(
     "click",
-    function() {
+    () => {
       geocodeAddress(geocoder, map);
     }
   );
@@ -39,7 +39,7 @@ function geocodeAddress(
 ) {
   const address = (document.getElementById("address") as HTMLInputElement)
     .value;
-  geocoder.geocode({ address: address }, function(results, status) {
+  geocoder.geocode({ address: address }, (results, status) => {
     if (status === "OK") {
       resultsMap.setCenter(results[0].geometry.location);
       new google.maps.Marker({

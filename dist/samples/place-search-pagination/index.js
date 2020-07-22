@@ -23,7 +23,7 @@ function initMap() {
   // Perform a nearby search.
   service.nearbySearch(
     { location: pyrmont, radius: 500, type: "store" },
-    function(results, status, pagination) {
+    (results, status, pagination) => {
       if (status !== "OK") return;
       createMarkers(results, map);
       moreButton.disabled = !pagination.hasNextPage;

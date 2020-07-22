@@ -14,7 +14,7 @@ function initMap() {
     map,
     panel: document.getElementById("right-panel")
   });
-  directionsRenderer.addListener("directions_changed", function() {
+  directionsRenderer.addListener("directions_changed", () => {
     computeTotalDistance(directionsRenderer.getDirections());
   });
   displayRoute(
@@ -41,7 +41,7 @@ function displayRoute(origin, destination, service, display) {
       travelMode: google.maps.TravelMode.DRIVING,
       avoidTolls: true
     },
-    function(result, status) {
+    (result, status) => {
       if (status === "OK") {
         display.setDirections(result);
       } else {

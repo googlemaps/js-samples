@@ -6,7 +6,7 @@ function initMap() {
   });
   // We add a DOM event here to show an alert if the DIV containing the
   // map is clicked.
-  google.maps.event.addDomListener(mapDiv, "click", function() {
+  google.maps.event.addDomListener(mapDiv, "click", () => {
     window.alert("Map was clicked!");
   });
 }

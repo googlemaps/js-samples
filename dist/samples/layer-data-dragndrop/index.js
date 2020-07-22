@@ -21,7 +21,7 @@ function loadGeoJsonString(geoString) {
  */
 function zoom(map) {
   const bounds = new google.maps.LatLngBounds();
-  map.data.forEach(function(feature) {
+  map.data.forEach(feature => {
     processPoints(feature.getGeometry(), bounds.extend, bounds);
   });
   map.fitBounds(bounds);
@@ -42,7 +42,7 @@ function processPoints(geometry, callback, thisArg) {
     callback.call(thisArg, geometry.get());
   } else {
     // @ts-ignore
-    geometry.getArray().forEach(function(g) {
+    geometry.getArray().forEach(g => {
       processPoints(g, callback, thisArg);
     });
   }

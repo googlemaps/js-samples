@@ -24,7 +24,7 @@ function initMap() {
   // create an array of markers based on a given "locations" array.
   // The map() method here has nothing to do with the Google Maps API.
 
-  const markers = locations.map(function(location, i) {
+  const markers = locations.map((location, i) => {
     return new google.maps.Marker({
       position: location,
       label: labels[i % labels.length]

@@ -24,7 +24,7 @@ function initMap() {
     map,
     anchorPoint: new google.maps.Point(0, -29)
   });
-  autocomplete.addListener("place_changed", function() {
+  autocomplete.addListener("place_changed", () => {
     infowindow.close();
     marker.setVisible(false);
     const place = autocomplete.getPlace();
@@ -70,7 +70,7 @@ function initMap() {
   // the countries used to restrict the autocomplete search.
   function setupClickListener(id, countries) {
     const radioButton = document.getElementById(id);
-    radioButton.addEventListener("click", function() {
+    radioButton.addEventListener("click", () => {
       autocomplete.setComponentRestrictions({ country: countries });
     });
   }
