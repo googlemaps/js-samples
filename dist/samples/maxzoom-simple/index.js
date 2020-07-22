@@ -14,7 +14,7 @@ function initMap() {
 }
 
 function showMaxZoom(e) {
-  maxZoomService.getMaxZoomAtLatLng(e.latLng, function(result) {
+  maxZoomService.getMaxZoomAtLatLng(e.latLng, result => {
     if (result.status !== "OK") {
       infoWindow.setContent("Error in MaxZoomService");
     } else {

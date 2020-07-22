@@ -9,7 +9,7 @@ function initMap() {
     {
       address: "Toledo"
     },
-    function(results, status) {
+    (results, status) => {
       if (status === "OK") {
         map.setCenter(results[0].geometry.location);
         new google.maps.Marker({

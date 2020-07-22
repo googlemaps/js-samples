@@ -34,19 +34,20 @@ function initMap(): void {
 }
 
 function showMaxZoom(e: google.maps.MouseEvent) {
-  maxZoomService.getMaxZoomAtLatLng(e.latLng, function(
-    result: google.maps.MaxZoomResult
-  ) {
-    if (result.status !== "OK") {
-      infoWindow.setContent("Error in MaxZoomService");
-    } else {
-      infoWindow.setContent(
-        "The maximum zoom at this location is: " + result.zoom
-      );
+  maxZoomService.getMaxZoomAtLatLng(
+    e.latLng,
+    (result: google.maps.MaxZoomResult) => {
+      if (result.status !== "OK") {
+        infoWindow.setContent("Error in MaxZoomService");
+      } else {
+        infoWindow.setContent(
+          "The maximum zoom at this location is: " + result.zoom
+        );
+      }
+      infoWindow.setPosition(e.latLng);
+      infoWindow.open(map);
     }
-    infoWindow.setPosition(e.latLng);
-    infoWindow.open(map);
-  });
+  );
 }
 // [END maps_maxzoom_simple]
 export {};

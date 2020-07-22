@@ -159,7 +159,7 @@ function search() {
     bounds: map.getBounds(),
     types: ["lodging"]
   };
-  places.nearbySearch(search, function(results, status, pagination) {
+  places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       clearResults();
       clearMarkers(); // Create a marker for each hotel found, and
@@ -268,7 +268,7 @@ function showInfoWindow() {
     {
       placeId: marker.placeResult.place_id
     },
-    function(place, status) {
+    (place, status) => {
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
         return;
       }

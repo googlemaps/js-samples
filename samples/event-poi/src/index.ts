@@ -84,7 +84,7 @@ class ClickEventHandler {
         destination: { placeId: placeId },
         travelMode: google.maps.TravelMode.WALKING
       },
-      function(response, status) {
+      (response, status) => {
         if (status === "OK") {
           me.directionsRenderer.setDirections(response);
         } else {
@@ -96,30 +96,33 @@ class ClickEventHandler {
 
   getPlaceInformation(placeId: string) {
     const me = this;
-    this.placesService.getDetails({ placeId: placeId }, function(
-      place: google.maps.places.PlaceResult,
-      status: google.maps.places.PlacesServiceStatus
-    ) {
-      if (status === "OK") {
-        me.infowindow.close();
-        me.infowindow.setPosition(
-          (place.geometry as google.maps.places.PlaceGeometry).location
-        );
-        (me.infowindowContent.children[
-          "place-icon"
-        ] as HTMLImageElement).src = place.icon as string;
-        (me.infowindowContent.children[
-          "place-name"
-        ] as HTMLElement).textContent = place.name;
-        (me.infowindowContent.children[
-          "place-id"
-        ] as HTMLElement).textContent = place.place_id as string;
-        (me.infowindowContent.children[
-          "place-address"
-        ] as HTMLElement).textContent = place.formatted_address as string;
-        me.infowindow.open(me.map);
+    this.placesService.getDetails(
+      { placeId: placeId },
+      (
+        place: google.maps.places.PlaceResult,
+        status: google.maps.places.PlacesServiceStatus
+      ) => {
+        if (status === "OK") {
+          me.infowindow.close();
+          me.infowindow.setPosition(
+            (place.geometry as google.maps.places.PlaceGeometry).location
+          );
+          (me.infowindowContent.children[
+            "place-icon"
+          ] as HTMLImageElement).src = place.icon as string;
+          (me.infowindowContent.children[
+            "place-name"
+          ] as HTMLElement).textContent = place.name;
+          (me.infowindowContent.children[
+            "place-id"
+          ] as HTMLElement).textContent = place.place_id as string;
+          (me.infowindowContent.children[
+            "place-address"
+          ] as HTMLElement).textContent = place.formatted_address as string;
+          me.infowindow.open(me.map);
+        }
       }
-    });
+    );
   }
 }
 // [END maps_event_poi]

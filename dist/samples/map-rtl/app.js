@@ -23,7 +23,7 @@ function initMap() {
     map,
     position: cairo
   });
-  marker.addListener("click", function() {
+  marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
 }

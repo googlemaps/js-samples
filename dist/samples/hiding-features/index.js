@@ -10,10 +10,10 @@ function initMap() {
   const styleControl = document.getElementById("style-selector-control");
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
   // Apply new JSON when the user chooses to hide/show features.
-  document.getElementById("hide-poi").addEventListener("click", function() {
+  document.getElementById("hide-poi").addEventListener("click", () => {
     map.setOptions({ styles: styles["hide"] });
   });
-  document.getElementById("show-poi").addEventListener("click", function() {
+  document.getElementById("show-poi").addEventListener("click", () => {
     map.setOptions({ styles: styles["default"] });
   });
 }

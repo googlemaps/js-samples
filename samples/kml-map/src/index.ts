@@ -38,7 +38,7 @@ function initMap(): void {
     map,
     url
   });
-  kmlLayer.addListener("click", function(event) {
+  kmlLayer.addListener("click", event => {
     const content = event.featureData.infoWindowHtml;
     const testimonial = document.getElementById("capture") as HTMLElement;
     testimonial.innerHTML = content;

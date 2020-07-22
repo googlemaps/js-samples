@@ -49,18 +49,18 @@ function initMap(): void {
   const geocoder = new google.maps.Geocoder();
 
   const marker = new google.maps.Marker({ map: map });
-  marker.addListener("click", function() {
+  marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
 
-  autocomplete.addListener("place_changed", function() {
+  autocomplete.addListener("place_changed", () => {
     infowindow.close();
     const place = autocomplete.getPlace();
 
     if (!place.place_id) {
       return;
     }
-    geocoder.geocode({ placeId: place.place_id }, function(results, status) {
+    geocoder.geocode({ placeId: place.place_id }, (results, status) => {
       if (status !== "OK") {
         window.alert("Geocoder failed due to: " + status);
         return;

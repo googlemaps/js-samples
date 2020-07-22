@@ -8,7 +8,7 @@ function initMap() {
       lng: 131.044922
     }
   });
-  map.addListener("click", function(e) {
+  map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
 }

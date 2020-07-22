@@ -15,11 +15,11 @@ function initPano() {
       visible: true
     }
   );
-  panorama.addListener("pano_changed", function() {
+  panorama.addListener("pano_changed", () => {
     const panoCell = document.getElementById("pano-cell");
     panoCell.innerHTML = panorama.getPano();
   });
-  panorama.addListener("links_changed", function() {
+  panorama.addListener("links_changed", () => {
     const linksTable = document.getElementById("links_table");
 
     while (linksTable.hasChildNodes()) {
@@ -39,11 +39,11 @@ function initPano() {
       linksTable.appendChild(valueCell);
     }
   });
-  panorama.addListener("position_changed", function() {
+  panorama.addListener("position_changed", () => {
     const positionCell = document.getElementById("position-cell");
     positionCell.firstChild.nodeValue = panorama.getPosition() + "";
   });
-  panorama.addListener("pov_changed", function() {
+  panorama.addListener("pov_changed", () => {
     const headingCell = document.getElementById("heading-cell");
     const pitchCell = document.getElementById("pitch-cell");
     headingCell.firstChild.nodeValue = panorama.getPov().heading + "";

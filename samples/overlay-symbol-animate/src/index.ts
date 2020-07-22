@@ -57,7 +57,7 @@ function initMap(): void {
 // at fixed intervals.
 function animateCircle(line: google.maps.Polyline) {
   let count = 0;
-  window.setInterval(function() {
+  window.setInterval(() => {
     count = (count + 1) % 200;
 
     const icons = line.get("icons");

@@ -30,7 +30,7 @@ function initMap(): void {
     map: map
   });
 
-  kmlLayer.addListener("click", function(kmlEvent) {
+  kmlLayer.addListener("click", kmlEvent => {
     const text = kmlEvent.featureData.description;
     showInContentWindow(text);
   });

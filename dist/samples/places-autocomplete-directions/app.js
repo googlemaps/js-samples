@@ -102,7 +102,7 @@ class AutocompleteDirectionsHandler {
         },
         travelMode: this.travelMode
       },
-      function(response, status) {
+      (response, status) => {
         if (status === "OK") {
           me.directionsRenderer.setDirections(response);
         } else {

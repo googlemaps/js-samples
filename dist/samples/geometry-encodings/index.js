@@ -13,7 +13,7 @@ function initMap() {
     map: map
   });
   // Add a listener for the click event
-  google.maps.event.addListener(map, "click", function(event) {
+  google.maps.event.addListener(map, "click", event => {
     addLatLngToPoly(event.latLng, poly);
   });
 }

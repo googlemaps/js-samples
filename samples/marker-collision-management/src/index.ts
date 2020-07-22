@@ -57,7 +57,7 @@ function initMap(): void {
 
   select.listen("MDCSelect:change", () => {
     collisionBehavior = select.value;
-    markers.forEach(function(marker) {
+    markers.forEach(marker => {
       marker.set("collisionBehavior", collisionBehavior);
     });
   });

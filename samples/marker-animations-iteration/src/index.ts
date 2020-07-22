@@ -48,7 +48,7 @@ function addMarkerWithTimeout(
   position: google.maps.LatLngLiteral,
   timeout: number
 ) {
-  window.setTimeout(function() {
+  window.setTimeout(() => {
     markers.push(
       new google.maps.Marker({
         position: position,

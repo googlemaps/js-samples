@@ -21,7 +21,7 @@ function initMap() {
   // Look for a nearby Street View panorama when the map is clicked.
   // getPanorama will return the nearest pano when the given
   // radius is 50 meters or less.
-  map.addListener("click", function(event) {
+  map.addListener("click", event => {
     sv.getPanorama({ location: event.latLng, radius: 50 }, processSVData);
   });
 }
@@ -40,7 +40,7 @@ function processSVData(data, status) {
       pitch: 0
     });
     panorama.setVisible(true);
-    marker.addListener("click", function() {
+    marker.addListener("click", () => {
       const markerPanoID = location.pano;
       // Set the Pano to use the passed panoID.
       panorama.setPano(markerPanoID);

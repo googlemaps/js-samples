@@ -15,7 +15,7 @@ function initMap() {
     center: bangalore
   }); // This event listener calls addMarker() when the map is clicked.
 
-  google.maps.event.addListener(map, "click", function(event) {
+  google.maps.event.addListener(map, "click", event => {
     addMarker(event.latLng, map);
   }); // Add a marker at the center of the map.
 

@@ -40,20 +40,23 @@ function initMap(): void {
 
   service = new google.maps.places.PlacesService(map);
 
-  service.findPlaceFromQuery(request, function(
-    results: google.maps.places.PlaceResult[],
-    status: google.maps.places.PlacesServiceStatus
-  ) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-      for (let i = 0; i < results.length; i++) {
-        createMarker(results[i]);
-      }
+  service.findPlaceFromQuery(
+    request,
+    (
+      results: google.maps.places.PlaceResult[],
+      status: google.maps.places.PlacesServiceStatus
+    ) => {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (let i = 0; i < results.length; i++) {
+          createMarker(results[i]);
+        }
 
-      map.setCenter(
-        (results[0].geometry as google.maps.places.PlaceGeometry).location
-      );
+        map.setCenter(
+          (results[0].geometry as google.maps.places.PlaceGeometry).location
+        );
+      }
     }
-  });
+  );
 }
 
 function createMarker(place: google.maps.places.PlaceResult) {
@@ -62,7 +65,7 @@ function createMarker(place: google.maps.places.PlaceResult) {
     position: (place.geometry as google.maps.places.PlaceGeometry).location
   });
 
-  google.maps.event.addListener(marker, "click", function() {
+  google.maps.event.addListener(marker, "click", () => {
     infowindow.setContent(place.name);
     infowindow.open(map);
   });

@@ -73,9 +73,9 @@
 
       function setupListener(map, name) {
         const eventRow = document.getElementById(name);
-        google.maps.event.addListener(map, name, function() {
+        google.maps.event.addListener(map, name, () => {
           eventRow.className = "event active";
-          const timeout = setTimeout(function() {
+          const timeout = setTimeout(() => {
             eventRow.className = "event inactive";
           }, 1000);
         });

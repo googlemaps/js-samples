@@ -24,7 +24,7 @@ function initMap() {
   const infowindow = new google.maps.InfoWindow({
     content: "<p>Marker Location:" + marker.getPosition() + "</p>"
   });
-  google.maps.event.addListener(marker, "click", function() {
+  google.maps.event.addListener(marker, "click", () => {
     infowindow.open(map, marker);
   });
 }

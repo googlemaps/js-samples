@@ -28,12 +28,12 @@ function initPano() {
     }
   );
 
-  panorama.addListener("pano_changed", function() {
+  panorama.addListener("pano_changed", () => {
     const panoCell = document.getElementById("pano-cell") as HTMLElement;
     panoCell.innerHTML = panorama.getPano();
   });
 
-  panorama.addListener("links_changed", function() {
+  panorama.addListener("links_changed", () => {
     const linksTable = document.getElementById("links_table") as HTMLElement;
 
     while (linksTable.hasChildNodes()) {
@@ -53,7 +53,7 @@ function initPano() {
     }
   });
 
-  panorama.addListener("position_changed", function() {
+  panorama.addListener("position_changed", () => {
     const positionCell = document.getElementById(
       "position-cell"
     ) as HTMLElement;
@@ -61,7 +61,7 @@ function initPano() {
       panorama.getPosition() + "";
   });
 
-  panorama.addListener("pov_changed", function() {
+  panorama.addListener("pov_changed", () => {
     const headingCell = document.getElementById("heading-cell") as HTMLElement;
     const pitchCell = document.getElementById("pitch-cell") as HTMLElement;
     (headingCell.firstChild as HTMLElement).nodeValue =

@@ -57,7 +57,7 @@ function initialize() {
       this.div_.innerHTML = "Delete";
 
       const menu = this;
-      google.maps.event.addDomListener(this.div_, "click", function() {
+      google.maps.event.addDomListener(this.div_, "click", () => {
         menu.removeVertex();
       });
     }
@@ -73,7 +73,7 @@ function initialize() {
         // @ts-ignore TODO(jpoehnelt) fix typings
         map.getDiv(),
         "mousedown",
-        function(e: Event) {
+        (e: Event) => {
           if (e.target != deleteMenu.div_) {
             deleteMenu.close();
           }
@@ -146,7 +146,7 @@ function initialize() {
 
   const deleteMenu = new DeleteMenu();
 
-  google.maps.event.addListener(flightPath, "rightclick", function(e: any) {
+  google.maps.event.addListener(flightPath, "rightclick", (e: any) => {
     // Check if click was on a vertex control point
     if (e.vertex == undefined) {
       return;

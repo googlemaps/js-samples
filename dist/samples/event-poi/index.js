@@ -48,7 +48,7 @@ class ClickEventHandler {
         destination: { placeId: placeId },
         travelMode: google.maps.TravelMode.WALKING
       },
-      function(response, status) {
+      (response, status) => {
         if (status === "OK") {
           me.directionsRenderer.setDirections(response);
         } else {
@@ -59,10 +59,7 @@ class ClickEventHandler {
   }
   getPlaceInformation(placeId) {
     const me = this;
-    this.placesService.getDetails({ placeId: placeId }, function(
-      place,
-      status
-    ) {
+    this.placesService.getDetails({ placeId: placeId }, (place, status) => {
       if (status === "OK") {
         me.infowindow.close();
         me.infowindow.setPosition(place.geometry.location);

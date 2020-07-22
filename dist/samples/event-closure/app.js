@@ -41,7 +41,7 @@ function attachSecretMessage(marker, secretMessage) {
   const infowindow = new google.maps.InfoWindow({
     content: secretMessage
   });
-  marker.addListener("click", function() {
+  marker.addListener("click", () => {
     infowindow.open(marker.get("map"), marker);
   });
 }

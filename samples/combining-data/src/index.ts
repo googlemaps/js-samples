@@ -52,7 +52,7 @@ function initMap(): void {
   const selectBox = document.getElementById(
     "census-variable"
   ) as HTMLSelectElement;
-  google.maps.event.addDomListener(selectBox, "change", function() {
+  google.maps.event.addDomListener(selectBox, "change", () => {
     clearCensusData();
     loadCensusData(selectBox.options[selectBox.selectedIndex].value);
   });
@@ -71,7 +71,7 @@ function loadMapShapes() {
 
   // wait for the request to complete by listening for the first feature to be
   // added
-  google.maps.event.addListenerOnce(map.data, "addfeature", function() {
+  google.maps.event.addListenerOnce(map.data, "addfeature", () => {
     google.maps.event.trigger(
       document.getElementById("census-variable") as HTMLElement,
       "change"
@@ -93,7 +93,7 @@ function loadCensusData(variable: string) {
   xhr.onload = function() {
     const censusData = JSON.parse(xhr.responseText);
     censusData.shift(); // the first row contains column names
-    censusData.forEach(function(row: string) {
+    censusData.forEach((row: string) => {
       const censusVariable = parseFloat(row[0]);
       const stateId = row[1];
 
@@ -128,7 +128,7 @@ function loadCensusData(variable: string) {
 function clearCensusData() {
   censusMin = Number.MAX_VALUE;
   censusMax = -Number.MAX_VALUE;
-  map.data.forEach(function(row) {
+  map.data.forEach(row => {
     row.setProperty("census_variable", undefined);
   });
   (document.getElementById("data-box") as HTMLElement).style.display = "none";

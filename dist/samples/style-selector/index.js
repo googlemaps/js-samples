@@ -15,7 +15,7 @@ function initMap() {
   const styleSelector = document.getElementById("style-selector");
   map.setOptions({ styles: styles[styleSelector.value] });
   // Apply new JSON when the user selects a different style.
-  styleSelector.addEventListener("change", function() {
+  styleSelector.addEventListener("change", () => {
     map.setOptions({ styles: styles[styleSelector.value] });
   });
 }

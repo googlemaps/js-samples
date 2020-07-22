@@ -53,7 +53,7 @@ function calculateAndDisplayRoute(
       destination: document.getElementById("end").value,
       travelMode: google.maps.TravelMode.WALKING
     },
-    function(result, status) {
+    (result, status) => {
       // Route the directions and pass the response to a function to create
       // markers for each step.
       if (status === "OK") {
@@ -89,7 +89,7 @@ function showSteps(directionResult, markerArray, stepDisplay, map) {
 }
 
 function attachInstructionText(stepDisplay, marker, text, map) {
-  google.maps.event.addListener(marker, "click", function() {
+  google.maps.event.addListener(marker, "click", () => {
     // Open an info window when the marker is clicked on, containing the text
     // of the step.
     stepDisplay.setContent(text);

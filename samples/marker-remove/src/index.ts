@@ -31,7 +31,7 @@ function initMap(): void {
   });
 
   // This event listener will call addMarker() when the map is clicked.
-  map.addListener("click", function(event) {
+  map.addListener("click", event => {
     addMarker(event.latLng);
   });
 

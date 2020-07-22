@@ -33,13 +33,13 @@ function initMap(): void {
   // Apply new JSON when the user chooses to hide/show features.
   (document.getElementById("hide-poi") as HTMLElement).addEventListener(
     "click",
-    function() {
+    () => {
       map.setOptions({ styles: styles["hide"] });
     }
   );
   (document.getElementById("show-poi") as HTMLElement).addEventListener(
     "click",
-    function() {
+    () => {
       map.setOptions({ styles: styles["default"] });
     }
   );

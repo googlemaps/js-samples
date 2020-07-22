@@ -37,7 +37,7 @@ function initMap(): void {
   // Show the lat and lng under the mouse cursor.
   const coordsDiv = document.getElementById("coords") as HTMLElement;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
-  map.addListener("mousemove", function(event: google.maps.MouseEvent) {
+  map.addListener("mousemove", (event: google.maps.MouseEvent) => {
     coordsDiv.textContent =
       "lat: " +
       Math.round(event.latLng.lat()) +
@@ -47,7 +47,7 @@ function initMap(): void {
   });
 
   // Add some markers to the map.
-  map.data.setStyle(function(feature) {
+  map.data.setStyle(feature => {
     return {
       title: feature.getProperty("name"),
       optimized: false

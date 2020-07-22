@@ -24,7 +24,7 @@ function initMap(): void {
     }
   );
 
-  map.addListener("click", function(e) {
+  map.addListener("click", e => {
     placeMarkerAndPanTo(e.latLng, map);
   });
 }
