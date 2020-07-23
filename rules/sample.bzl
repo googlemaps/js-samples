@@ -115,7 +115,7 @@ def sample():
         outs = ["jsfiddle.html"],
         cmd = "cat $(location :_jsfiddle.html) > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' 's/key=YOUR_API_KEY/key=/g' $@; " +
+              "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
