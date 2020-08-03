@@ -14,7 +14,10 @@
  * limitations under the License.
  */
 
-@import "../../../shared/scss/material-design-theme.scss";
+ :root {
+    --mdc-theme-primary: #1a73e8;
+ }
+ 
 /* [START maps_programmatic_load_button] */
 @import "../../../shared/scss/default.scss";
 
