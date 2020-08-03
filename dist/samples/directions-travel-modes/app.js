@@ -32,7 +32,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       // Note that Javascript allows us to access the constant
       // using square brackets and a string value as its
       // "property."
-      // @ts-ignore
       travelMode: google.maps.TravelMode[selectedMode]
     },
     (response, status) => {

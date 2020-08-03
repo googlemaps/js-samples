@@ -24,7 +24,6 @@ function initMap() {
       label: labels[i % labels.length]
     });
   }); // Add a marker clusterer to manage the markers.
-  // @ts-ignore
 
   new MarkerClusterer(map, markers, {
     imagePath:

@@ -29,7 +29,7 @@ function initMap() {
             place.formatted_address +
             "</div>"
         );
-        // @ts-ignore
+
         infowindow.open(map, this);
       });
     }

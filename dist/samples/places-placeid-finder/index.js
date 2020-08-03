@@ -38,7 +38,7 @@ function initMap() {
       map.setZoom(17);
     }
     // Set the position of the marker using the place ID and location.
-    // @ts-ignore This should be in @typings/googlemaps.
+
     marker.setPlace({
       placeId: place.place_id,
       location: place.geometry.location

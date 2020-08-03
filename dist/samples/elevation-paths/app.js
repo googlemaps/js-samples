@@ -1,7 +1,6 @@
 "use strict";
 
 // Load the Visualization API and the columnchart package.
-// @ts-ignore TODO(jpoehnelt)
 google.load("visualization", "1", {
   packages: ["columnchart"]
 });
@@ -60,7 +59,6 @@ function displayPathElevation(path, elevator, map) {
 
   elevator.getElevationAlongPath(
     {
-      // @ts-ignore TODO(jpoehnelt) update typings to support LatLngLiteral
       path: path,
       samples: 256
     },
@@ -95,7 +93,6 @@ function plotElevation(elevations, status) {
   chart.draw(data, {
     height: 150,
     legend: "none",
-    // @ts-ignore TODO(jpoehnelt) check versions
     titleY: "Elevation (m)"
   });
 }

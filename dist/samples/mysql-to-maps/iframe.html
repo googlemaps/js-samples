@@ -62,8 +62,7 @@
   }
 
   function downloadUrl(url, callback) {
-    // @ts-ignore
-    var request = window.ActiveXObject // @ts-ignore
+    var request = window.ActiveXObject
       ? new ActiveXObject("Microsoft.XMLHTTP")
       : new XMLHttpRequest();
 
