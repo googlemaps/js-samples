@@ -115,7 +115,7 @@ def sample():
         outs = ["jsfiddle.html"],
         cmd = "cat $(location :_jsfiddle.html) > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
@@ -177,7 +177,7 @@ def sample():
         outs = ["index.html"],
         cmd = "$(location //rules:inline) $(location :_index.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
@@ -204,7 +204,7 @@ def sample():
         cmd = "$(location //rules:strip_region_tags_bin) $(location :iframe.js); " +
               "$(location //rules:strip_region_tags_bin) $(location :style.css); " +
               "$(location //rules:inline) $(location :_iframe.html) $@; " +
-              "sed -i'.bak' \"s/key=YOUR_API_KEY/key=$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],

@@ -1,0 +1,83 @@
+<!-- [START maps_programmatic_load_button_iframe] -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- Use Material Design Button CSS-->
+<link
+  href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+  rel="stylesheet"
+/>
+<script src="https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js"></script>
+<style type="text/css">
+  :root {
+    --mdc-theme-primary: #1a73e8;
+  }
+
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-size: cover;
+  }
+</style>
+<script>
+  "use strict";
+
+  var map;
+  var center = {
+    lat: 41.90476224706472,
+    lng: 12.49822074385094
+  };
+  var zoom = 14; // @ts-ignore google.maps.plugins
+
+  var loader = new google.maps.plugins.loader.Loader({
+    apiKey: "AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0",
+    version: "weekly"
+  });
+  document.addEventListener("DOMContentLoaded", function() {
+    var wrapper = document.getElementById("wrapper");
+    wrapper.style.backgroundImage = "url(https://maps.googleapis.com/maps/api/staticmap?center="
+      .concat(center.lat, ",")
+      .concat(center.lng, "&zoom=")
+      .concat(zoom, "&scale=2&size=")
+      .concat(wrapper.clientWidth, "x")
+      .concat(
+        wrapper.clientHeight,
+        "&key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0)"
+      );
+    wrapper.addEventListener("click", function() {
+      wrapper.remove();
+      loader.load().then(function() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: center,
+          zoom: zoom
+        });
+      });
+    });
+  });
+</script>
+
+<div id="iframe-contents">
+  <div id="map">
+    <div id="wrapper">
+      <button id="load_map_button" class="mdc-button mdc-button--raised">
+        Load Dynamic Map
+      </button>
+    </div>
+  </div>
+</div>
+<!-- [END maps_programmatic_load_button_iframe] -->

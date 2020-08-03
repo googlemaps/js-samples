@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Programmatically Load Google Maps JS</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js"></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      "use strict";
+
+      var map; // @ts-ignore google.maps.plugins
+
+      var loader = new google.maps.plugins.loader.Loader({
+        apiKey: "AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0",
+        version: "weekly"
+      });
+      loader.load().then(function() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: {
+            lat: -34.397,
+            lng: 150.644
+          },
+          zoom: 8
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+  </body>
+</html>

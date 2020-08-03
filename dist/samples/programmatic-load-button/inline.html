@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Programmatically Load Google Maps JS</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- Use Material Design Button CSS-->
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@googlemaps/js-api-loader@^1.2.0/dist/index.min.js"></script>
+    <style type="text/css">
+      :root {
+        --mdc-theme-primary: #1a73e8;
+      }
+
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-size: cover;
+      }
+    </style>
+    <script>
+      "use strict";
+
+      let map;
+      const center = {
+        lat: 41.90476224706472,
+        lng: 12.49822074385094
+      };
+      const zoom = 14; // @ts-ignore google.maps.plugins
+
+      const loader = new google.maps.plugins.loader.Loader({
+        apiKey: "YOUR_API_KEY",
+        version: "weekly"
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        const wrapper = document.getElementById("wrapper");
+        wrapper.style.backgroundImage = `url(https://maps.googleapis.com/maps/api/staticmap?center=${center.lat},${center.lng}&zoom=${zoom}&scale=2&size=${wrapper.clientWidth}x${wrapper.clientHeight}&key=YOUR_API_KEY)`;
+        wrapper.addEventListener("click", () => {
+          wrapper.remove();
+          loader.load().then(() => {
+            map = new google.maps.Map(document.getElementById("map"), {
+              center,
+              zoom
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="map">
+      <div id="wrapper">
+        <button id="load_map_button" class="mdc-button mdc-button--raised">
+          Load Dynamic Map
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
