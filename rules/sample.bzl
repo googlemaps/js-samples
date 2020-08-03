@@ -31,7 +31,7 @@ def sample():
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' 's/ ?\\/\\/ *@ts-.*//g' $@; " +
+              "sed -i'.bak' 's/\\/\\/ @ts-.*//g' $@; " +
               "$(location //rules:prettier) --write $@; " +
               "$(location //rules:eslint) -c $(location //:.eslintrc.json) --fix $@; ",
         tools = ["//rules:eslint", "//rules:remove_apache_license", "//rules:strip_source_map_url_bin", "//rules:strip_region_tags_bin", "//rules:prettier"],

@@ -41,7 +41,6 @@ function initialize() {
       // mousedown anywhere on the map except on the menu div will close the
       // menu.
       this.divListener_ = google.maps.event.addDomListener(
-        // @ts-ignore TODO(jpoehnelt) fix typings
         map.getDiv(),
         "mousedown",
         e => {

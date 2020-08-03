@@ -136,7 +136,7 @@ function search() {
         });
         // If the user clicks a hotel marker, show the details of that hotel
         // in an info window.
-        // @ts-ignore TODO(jpoehnelt) refactor to avoid storing on marker
+
         markers[i].placeResult = results[i];
         google.maps.event.addListener(markers[i], "click", showInfoWindow);
         setTimeout(dropMarker(i), i * 100);
@@ -214,7 +214,6 @@ function clearResults() {
 // Get the place details for a hotel. Show the information in an info window,
 // anchored on the marker for the hotel that the user selected.
 function showInfoWindow() {
-  // @ts-ignore
   const marker = this;
   places.getDetails(
     { placeId: marker.placeResult.place_id },

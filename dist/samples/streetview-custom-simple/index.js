@@ -46,6 +46,6 @@ function getCustomPanorama(pano) {
       }
     };
   }
-  // @ts-ignore TODO(jpoehnelt) fix typings
+
   return null;
 }

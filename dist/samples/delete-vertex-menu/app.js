@@ -44,7 +44,6 @@ function initialize() {
       // menu.
 
       this.divListener_ = google.maps.event.addDomListener(
-        // @ts-ignore TODO(jpoehnelt) fix typings
         map.getDiv(),
         "mousedown",
         e => {

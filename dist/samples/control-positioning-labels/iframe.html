@@ -73,8 +73,7 @@
     for (var i = 0; i < controlText.length; i++) {
       var divLabel = controlText[i][0];
       var divName = document.createElement("div");
-      MakeControl(divName, divLabel); // @ts-ignore
-
+      MakeControl(divName, divLabel);
       map.controls[controlText[i][1]].push(divName);
     }
   }

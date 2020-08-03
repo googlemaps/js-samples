@@ -4,8 +4,7 @@
 let map; // Initialize and add the map
 
 function initMap() {
-  let markers = []; // @ts-ignore Beta functionality
-
+  let markers = [];
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
   map = new google.maps.Map(document.getElementById("map"), {
     mapId: "3a3b33f0edd6ed2a",
@@ -16,7 +15,6 @@ function initMap() {
     zoom: 17
   });
   const menuList = document.querySelector(".mdc-list"); // Add the behaviors to the select options
-  // @ts-ignore Beta functionality
 
   for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {
     const item = document.createElement("LI");
@@ -27,7 +25,7 @@ function initMap() {
     itemText.innerText = value;
     item.appendChild(itemText);
     menuList.appendChild(item);
-  } // @ts-ignore
+  }
 
   const select = new mdc.select.MDCSelect(
     document.querySelector(".mdc-select")
