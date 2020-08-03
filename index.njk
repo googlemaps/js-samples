@@ -75,7 +75,7 @@
           <ul class="menu-list">
             {% for title, path in packages|dictsort %}
               <li>
-                <a id="{{ path }}" onClick="setIframe('{{ path }}')">{{ title }}</a>
+                <a id="{{ path }}" onClick="setIframe('{{ path }}', '{{ title }}')">{{ title }}</a>
                 <ul>
                   <li>
                     <a href="https://github.com/googlemaps/js-samples/tree/master/samples/{{ path }}/src" target="_blank">
@@ -115,14 +115,15 @@
   <script>
     let active = "";
 
-    function setIframe(package) {
+    function setIframe(package, title) {
       if (active === package) {
         return
       }
 
-      document
-        .getElementById('iframe')
-        .src = "./samples/" + package + "/index.html";
+      const iframe = document.getElementById('iframe');
+
+      iframe.src = "./samples/" + package + "/index.html";
+      iframe.setAttribute('title', `Map Sample: ${title}`);
 
       const previous = document.getElementById(active)
 
@@ -142,7 +143,7 @@
     }
 
     // initialize
-    setIframe("aerial-simple");
+    setIframe("aerial-simple", "45° Imagery");
   </script>
 </body>
 </html>
