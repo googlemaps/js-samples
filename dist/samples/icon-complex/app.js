@@ -56,7 +56,6 @@ function setMarkers(map) {
       },
       map,
       icon: image,
-      // @ts-ignore TODO(jpoehnelt) fix typings
       shape: shape,
       title: beach[0],
       zIndex: beach[3]

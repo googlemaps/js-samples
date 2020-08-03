@@ -9,11 +9,9 @@ function initMap() {
       lng: -110
     },
     zoom: 4
-  }); // @ts-ignore TODO(jpoehnelt)
-
+  });
   const deckOverlay = new deck.GoogleMapsOverlay({
     layers: [
-      // @ts-ignore TODO(jpoehnelt)
       new deck.GeoJsonLayer({
         id: "earthquakes",
         data:
@@ -36,7 +34,6 @@ function initMap() {
           }
         },
         onDataLoad: _ => {
-          // @ts-ignore defined in include
           progress.done(); // hides progress bar
         }
       })

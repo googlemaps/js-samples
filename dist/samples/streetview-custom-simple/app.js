@@ -48,7 +48,7 @@ function getCustomPanorama(pano) {
         getTileUrl: getCustomPanoramaTileUrl
       }
     };
-  } // @ts-ignore TODO(jpoehnelt) fix typings
+  }
 
   return null;
 }

@@ -54,8 +54,7 @@ function initMap() {
 }
 
 function downloadUrl(url, callback) {
-  // @ts-ignore
-  const request = window.ActiveXObject // @ts-ignore
+  const request = window.ActiveXObject
     ? new ActiveXObject("Microsoft.XMLHTTP")
     : new XMLHttpRequest();
 

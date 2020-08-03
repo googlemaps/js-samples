@@ -20,7 +20,7 @@ function initMap() {
     });
   });
   // Add a marker clusterer to manage the markers.
-  // @ts-ignore
+
   new MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"

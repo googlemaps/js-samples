@@ -41,7 +41,6 @@ function processPoints(geometry, callback, thisArg) {
   } else if (geometry instanceof google.maps.Data.Point) {
     callback.call(thisArg, geometry.get());
   } else {
-    // @ts-ignore
     geometry.getArray().forEach(g => {
       processPoints(g, callback, thisArg);
     });

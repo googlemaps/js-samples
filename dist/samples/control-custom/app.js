@@ -48,8 +48,7 @@ function initMap() {
   // constructor passing in this DIV.
 
   const centerControlDiv = document.createElement("div");
-  CenterControl(centerControlDiv, map); // @ts-ignore TODO(jpoehnelt)
-
+  CenterControl(centerControlDiv, map);
   centerControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }

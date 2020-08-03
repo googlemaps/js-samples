@@ -121,8 +121,7 @@
         // constructor passing in this DIV.
 
         var centerControlDiv = document.createElement("div");
-        var control = new CenterControl(centerControlDiv, map, chicago); // @ts-ignore
-
+        var control = new CenterControl(centerControlDiv, map, chicago);
         centerControlDiv.index = 1;
         centerControlDiv.style.paddingTop = "10px";
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(

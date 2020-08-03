@@ -1,5 +1,5 @@
 let map;
-// @ts-ignore google.maps.plugins
+
 const loader = new google.maps.plugins.loader.Loader({
   apiKey: "YOUR_API_KEY",
   version: "weekly"

@@ -46,7 +46,7 @@ function initialize() {
     const divLabel = controlText[i][0];
     const divName = document.createElement("div");
     MakeControl(divName, divLabel);
-    // @ts-ignore
+
     map.controls[controlText[i][1]].push(divName);
   }
 }
