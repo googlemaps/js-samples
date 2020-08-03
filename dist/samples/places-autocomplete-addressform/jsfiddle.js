@@ -6,7 +6,7 @@
 // This sample requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
-// src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+// src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&libraries=places">
 let placeSearch;
 let autocomplete;
 const componentForm = {

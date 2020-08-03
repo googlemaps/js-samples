@@ -42,11 +42,11 @@ nodejs_binary(
 
 nodejs_binary(
     name = "babel",
-    entry_point = "@npm//:node_modules/@babel/cli/bin/babel.js",
     data = [
         "@npm//@babel/core",
         "@npm//@babel/preset-env",
     ],
+    entry_point = "@npm//:node_modules/@babel/cli/bin/babel.js",
     node_modules = "@npm//:node_modules",
     visibility = ["//visibility:public"],
 )
