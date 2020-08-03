@@ -136,6 +136,7 @@ SAMPLES = [
     "polyline-complex",
     "polyline-remove",
     "polyline-simple",
+    "programmatic-load",
     "rectangle-event",
     "rectangle-simple",
     "rectangle-zoom",

@@ -134,6 +134,7 @@
     "Complex Polylines": "polyline-complex",
     "Removing Polylines": "polyline-remove",
     "Simple Polylines": "polyline-simple",
+    "Programattic Maps Script Load": "programattic-load",
     "Listening to Events": "rectangle-event",
     "Rectangles": "rectangle-simple",
     "Rectangle Zoom": "rectangle-zoom",
