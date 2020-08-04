@@ -7,12 +7,12 @@ const center = {
 };
 const zoom = 14;
 const loader = new google.maps.plugins.loader.Loader({
-  apiKey: "YOUR_API_KEY",
+  apiKey: "AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0",
   version: "weekly"
 });
 document.addEventListener("DOMContentLoaded", () => {
   const wrapper = document.getElementById("wrapper");
-  wrapper.style.backgroundImage = `url(https://maps.googleapis.com/maps/api/staticmap?center=${center.lat},${center.lng}&zoom=${zoom}&scale=2&size=${wrapper.clientWidth}x${wrapper.clientHeight}&key=YOUR_API_KEY)`;
+  wrapper.style.backgroundImage = `url(https://maps.googleapis.com/maps/api/staticmap?center=${center.lat},${center.lng}&zoom=${zoom}&scale=2&size=${wrapper.clientWidth}x${wrapper.clientHeight}&key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0)`;
   wrapper.addEventListener("click", () => {
     wrapper.remove();
     loader.load().then(() => {

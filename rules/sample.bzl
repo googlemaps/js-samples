@@ -121,6 +121,18 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    native.genrule(
+        name = "jsfiddle_js",
+        outs = [":jsfiddle.js"],
+        cmd = "sed  \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :app.js) > $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        srcs = [
+            ":app.js",
+        ],
+        tools = ["//rules:prettier"],
+        visibility = ["//visibility:public"],
+    )
+
     ## sample html - two version, inlined and linked css/js
     nunjucks(
         name = "_sample",
@@ -214,7 +226,7 @@ def sample():
         name = "js",
         srcs = [
             ":index.js",
-            ":app.js",
+            ":jsfiddle.js",
         ],
         visibility = ["//visibility:public"],
     )
