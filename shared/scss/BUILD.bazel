@@ -34,7 +34,10 @@ sass_library(
 
 sass_library(
     name = "material-design-theme",
-    srcs = ["_material-design-theme.scss"],
+    srcs = [
+        "_material-design-select.scss",
+        "_material-design-theme.scss",
+    ],
 )
 
 sass_library(
