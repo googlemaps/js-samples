@@ -46,13 +46,15 @@
         lng: 12.49822074385094
       };
       var zoom = 14;
+      var url = "https://maps.googleapis.com/maps/api/staticmap";
       var loader = new google.maps.plugins.loader.Loader({
         apiKey: "AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0",
         version: "weekly"
       });
       document.addEventListener("DOMContentLoaded", function() {
         var wrapper = document.getElementById("wrapper");
-        wrapper.style.backgroundImage = "url(https://maps.googleapis.com/maps/api/staticmap?center="
+        wrapper.style.backgroundImage = "url("
+          .concat(url, "?center=")
           .concat(center.lat, ",")
           .concat(center.lng, "&zoom=")
           .concat(zoom, "&scale=2&size=")
