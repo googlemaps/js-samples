@@ -6,7 +6,7 @@ exports_files(glob(["**/*"]))
 FILES = [
     # JS
     "index.js",
-    "app.js",
+    "jsfiddle.js",
     # CSS
     "style.css",
     # HTML
