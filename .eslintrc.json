@@ -13,7 +13,8 @@
     "MarkerClusterer": "readonly"
   },
   "env": {
-    "browser": true
+    "browser": true,
+    "es6": true
   },
   "rules": {
     "no-unused-vars": 1,
