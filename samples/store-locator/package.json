@@ -1,0 +1,8 @@
+{
+  "name": "store-locator",
+  "title": "Store Locator",
+  "callback": "initMap",
+  "libraries": ["places", "geometry"],
+  "version": "weekly",
+  "tag": "store_locator"
+}

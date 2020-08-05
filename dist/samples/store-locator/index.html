@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Store Locator</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@^4.0.1/dist/markerclustererplus.min.js"></script>
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      />
+    </head>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&callback=initMap&libraries=places,geometry&v=weekly"
+      defer
+    ></script>
+    <style type="text/css">
+      :root {
+        --mdc-theme-primary: #1a73e8;
+        --mdc-theme-secondary: #rgb(225, 245, 254);
+        --mdc-theme-on-primary: #fff;
+        --mdc-theme-on-secondary: rgb(1, 87, 155);
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        height: 100%;
+        display: flex;
+      }
+
+      #sidebar {
+        flex-basis: 15rem;
+        flex-grow: 1;
+        padding: 1rem;
+        max-width: 30rem;
+      }
+
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+
+      #search,
+      .mdc-card {
+        margin-bottom: 1rem;
+      }
+
+      #search {
+        display: flex;
+        align-items: center;
+      }
+      #search .mdc-icon-button,
+      #search .mdc-text-field {
+        margin: 0 0.1rem 0 0;
+      }
+      #search .mdc-icon-button {
+        color: var(--mdc-theme-primary);
+      }
+      #search .mdc-text-field {
+        flex-grow: 1;
+      }
+
+      #cards {
+        height: calc(100% - 56px);
+        overflow: scroll;
+      }
+
+      #card-body,
+      #card-header {
+        padding: 0 1rem;
+      }
+
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+    </style>
+    <script>
+      "use strict";
+
+      var map;
+      var autocomplete;
+      var autocompleteInput;
+      var distanceMatrixService;
+      var progress;
+      var isUpdateInProgress = false;
+      var stores = []; // Initialize and add the map
+
+      function initMap() {
+        distanceMatrixService = new google.maps.DistanceMatrixService();
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: {
+            lat: 39.79,
+            lng: -104.98
+          },
+          zoom: 10
+        });
+        new mdc.textField.MDCTextField(
+          document.querySelector(".mdc-text-field")
+        );
+        autocompleteInput = document.getElementById("search-input");
+        autocomplete = new google.maps.places.Autocomplete(
+          autocompleteInput,
+          {}
+        );
+        autocomplete.addListener("place_changed", placeChanged);
+        autocomplete.bindTo("bounds", map); // bias to map viewport
+
+        fetch(
+          "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
+        )
+          .then(function(response) {
+            return response.json();
+          })
+          .then(function(data) {
+            var features = data.features;
+            var markers = [];
+            features.forEach(function(_ref) {
+              var name = _ref.attributes.NAME,
+                _ref$geometry = _ref.geometry,
+                lng = _ref$geometry.x,
+                lat = _ref$geometry.y;
+              stores.push({
+                name: name,
+                location: {
+                  lat: lat,
+                  lng: lng
+                },
+                address: ""
+              });
+              var marker = new google.maps.Marker({
+                position: {
+                  lat: lat,
+                  lng: lng
+                }
+              });
+              marker.addListener("click", function() {
+                update(
+                  new google.maps.LatLng({
+                    lat: lat,
+                    lng: lng
+                  })
+                );
+              });
+              markers.push(marker);
+            });
+            new MarkerClusterer(map, markers, {
+              imagePath:
+                "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+            });
+            progress.done();
+            update(map.getCenter());
+          });
+        document
+          .getElementById("near-me")
+          .addEventListener("click", function() {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(_ref2) {
+                var _ref2$coords = _ref2.coords,
+                  lat = _ref2$coords.latitude,
+                  lng = _ref2$coords.longitude;
+                update(
+                  new google.maps.LatLng({
+                    lat: lat,
+                    lng: lng
+                  })
+                );
+              });
+            }
+          });
+        document
+          .getElementById("refresh")
+          .addEventListener("click", function() {
+            update(map.getCenter());
+          });
+      }
+
+      function renderCards(stores) {
+        var cardsDiv = document.getElementById("cards");
+        cardsDiv.innerHTML = "";
+        stores.slice(0, 25).forEach(function(_ref3) {
+          var name = _ref3.name,
+            location = _ref3.location,
+            address = _ref3.address,
+            travelDistanceText = _ref3.travelDistanceText,
+            travelDurationText = _ref3.travelDurationText;
+          var card = document.createElement("div");
+          card.classList.add("mdc-card", "mdc-card--outlined");
+          card.innerHTML = '\n<div class="mdc-card__primary-action">\n  <div id="card-header">\n    <h2 class="mdc-typography--headline6">'
+            .concat(
+              name,
+              '</h2>\n  </div>\n</div>\n<div id="card-body">\n  </div>\n<div class="mdc-card__actions">\n  <a class="mdc-button mdc-card__action mdc-card__action--button" \n    target="_blank" href="https://maps.google.com?q='
+            )
+            .concat(
+              address ? address : name,
+              '">\n    <div class="mdc-button__ripple"></div>\n    <span class="mdc-button__label">Directions</span>\n  </a>\n  <button class="mdc-button mdc-card__action mdc-card__action--button">\n    <div class="mdc-button__ripple"></div>\n    <span class="mdc-button__label">More Information</span>\n  </button>\n</div>'
+            );
+          var cardBody = card.querySelector("#card-body");
+
+          if (address) {
+            cardBody.innerHTML = '<h2 class="mdc-typography--body1">'.concat(
+              address,
+              "</h2>"
+            );
+          }
+
+          if (travelDistanceText) {
+            cardBody.innerHTML += '<h2 class="mdc-typography--body2">'
+              .concat(travelDistanceText, ", ")
+              .concat(travelDurationText, "</h2>");
+          }
+
+          card
+            .querySelector(".mdc-card__primary-action")
+            .addEventListener("click", function() {
+              map.panTo(location);
+            });
+          cardsDiv.appendChild(card);
+        });
+        cardsDiv.scrollTo(0, 0);
+      }
+
+      function getDistances(place) {
+        var origins = [place];
+        return new Promise(function(resolve, reject) {
+          var callback = function callback(response, status) {
+            if (status === google.maps.DistanceMatrixStatus.OK) {
+              resolve(response);
+            } else {
+              reject(status);
+            }
+          };
+
+          distanceMatrixService.getDistanceMatrix(
+            {
+              origins: origins,
+              destinations: stores.slice(0, 25).map(function(store) {
+                return store.location;
+              }),
+              travelMode: google.maps.TravelMode.DRIVING,
+              unitSystem: google.maps.UnitSystem.IMPERIAL
+            }, // TODO(jpoehnelt) incorrect origins typing and travelMode is required
+            callback
+          );
+        });
+      }
+
+      function placeChanged() {
+        autocompleteInput.disabled = true;
+        var placeResult = autocomplete.getPlace();
+        var location = placeResult.geometry.location;
+        update(location);
+      }
+
+      function update(location) {
+        if (isUpdateInProgress) {
+          alert("Update in progress, please try again.");
+          return;
+        }
+
+        autocompleteInput.disabled = true;
+        isUpdateInProgress = true;
+        map.setCenter(location); // reset values
+
+        stores.forEach(function(store) {
+          delete store.travelDistance;
+          delete store.travelDistanceText;
+          delete store.travelDuration;
+          delete store.travelDurationText;
+        }); // sort by distance
+
+        stores.sort(function(a, b) {
+          return (
+            google.maps.geometry.spherical.computeDistanceBetween(
+              new google.maps.LatLng(a.location),
+              location
+            ) -
+            google.maps.geometry.spherical.computeDistanceBetween(
+              new google.maps.LatLng(b.location),
+              location
+            )
+          );
+        });
+        getDistances(location)
+          .then(function(response) {
+            for (var i = 0; i < response.rows[0].elements.length; i++) {
+              stores[i].address = response.destinationAddresses[i];
+              stores[i].travelDistance =
+                response.rows[0].elements[i].distance.value;
+              stores[i].travelDistanceText =
+                response.rows[0].elements[i].distance.text;
+              stores[i].travelDuration =
+                response.rows[0].elements[i].duration.value;
+              stores[i].travelDurationText =
+                response.rows[0].elements[i].duration.text;
+            }
+          })
+          .finally(function() {
+            renderCards(stores);
+            autocompleteInput.disabled = false;
+            isUpdateInProgress = false;
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <div id="search">
+          <label class="mdc-text-field mdc-text-field--outlined">
+            <input
+              type="text"
+              class="mdc-text-field__input"
+              aria-labelledby="my-label-id"
+              id="search-input"
+            />
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__notch">
+                <span class="mdc-floating-label" id="my-label-id"
+                  >Enter a location</span
+                >
+              </span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+          </label>
+          <button id="near-me" class="mdc-icon-button material-icons">
+            near_me
+          </button>
+          <button id="refresh" class="mdc-icon-button material-icons">
+            refresh
+          </button>
+        </div>
+        <div id="cards">
+          <div class="progress-wrapper"></div>
+          <style>
+            .progress-wrapper {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+          </style>
+          <script>
+            var progressWrapper, progress, progressDiv;
+            progressWrapper = document.querySelector(".progress-wrapper");
+            // because white space impacts rendering, add via JS to avoid formatting/linting issues
+            progressWrapper.innerHTML = `
+<div class="mdc-circular-progress mdc-circular-progress--large" role="progressbar" aria-label="Example Progress Bar" aria-valuemin="0" aria-valuemax="1">
+  <div class="mdc-circular-progress__determinate-container">
+    <svg class="mdc-circular-progress__determinate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <circle class="mdc-circular-progress__determinate-circle" cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="113.097"/>
+    </svg>
+  </div>
+  <div class="mdc-circular-progress__indeterminate-container">
+    <div class="mdc-circular-progress__spinner-layer">
+      <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549"/>
+        </svg>
+      </div><div class="mdc-circular-progress__gap-patch">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549"/>
+        </svg>
+      </div><div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+            progress = new mdc.circularProgress.MDCCircularProgress(
+              document.querySelector(".mdc-circular-progress")
+            );
+            progress.open();
+            progress.determinate = false;
+            progress.done = function() {
+              progress.close();
+              progressWrapper.remove();
+            };
+          </script>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
