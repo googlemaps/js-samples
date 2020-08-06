@@ -15,9 +15,9 @@
  */
 
 /* [START maps_marker_collision_management] */
-@import "../../../shared/scss/material-design-theme.scss";
-@import "../../../shared/scss/material-design-select.scss";
-@import "../../../shared/scss/sidebar.scss";
+@use "../../../shared/scss/material-design-theme.scss";
+@use "../../../shared/scss/material-design-select.scss";
+@use "../../../shared/scss/sidebar.scss";
 
 .mdc-select__anchor,
 .mdc-select__menu {

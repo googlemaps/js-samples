@@ -1,4 +1,3 @@
-/* [START maps_infowindow_simple] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -13,4 +12,5 @@ body {
   padding: 0;
 }
 
+/* [START maps_infowindow_simple] */
 /* [END maps_infowindow_simple] */

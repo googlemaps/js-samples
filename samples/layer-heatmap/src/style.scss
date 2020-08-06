@@ -15,8 +15,8 @@
  */
 
 /* [START maps_layer_heatmap] */
-@import "../../../shared/scss/default.scss";
-@import "../../../shared/scss/floating-panel.scss";
+@use "../../../shared/scss/default.scss";
+@use "../../../shared/scss/floating-panel.scss";
 
 #floating-panel {
   background-color: #fff;

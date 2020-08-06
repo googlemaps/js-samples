@@ -1,4 +1,3 @@
-/* [START maps_control_custom_state] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -39,4 +38,5 @@ body {
   margin-left: 12px;
 }
 
+/* [START maps_control_custom_state] */
 /* [END maps_control_custom_state] */

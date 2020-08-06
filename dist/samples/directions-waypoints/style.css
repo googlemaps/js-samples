@@ -1,4 +1,3 @@
-/* [START maps_directions_waypoints] */
 #right-panel {
   font-family: "Roboto", "sans-serif";
   line-height: 30px;
@@ -18,6 +17,7 @@
   font-size: 12px;
 }
 
+/* [START maps_directions_waypoints] */
 html,
 body {
   height: 100%;

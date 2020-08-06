@@ -5,7 +5,6 @@
   --mdc-theme-on-secondary: rgb(1, 87, 155);
 }
 
-/* [START maps_deckgl_points] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -20,4 +19,5 @@ body {
   padding: 0;
 }
 
+/* [START maps_deckgl_points] */
 /* [END maps_deckgl_points] */
