@@ -1,4 +1,3 @@
-/* [START maps_delete_vertex_menu] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -13,6 +12,7 @@ body {
   padding: 0;
 }
 
+/* [START maps_delete_vertex_menu] */
 .delete-menu {
   position: absolute;
   background: white;

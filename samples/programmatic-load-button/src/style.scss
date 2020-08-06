@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
- :root {
-    --mdc-theme-primary: #1a73e8;
- }
- 
 /* [START maps_programmatic_load_button] */
-@import "../../../shared/scss/default.scss";
+@use "../../../shared/scss/default.scss";
+
+:root {
+  --mdc-theme-primary: #1a73e8;
+}
 
 #wrapper {
     width: 100%;

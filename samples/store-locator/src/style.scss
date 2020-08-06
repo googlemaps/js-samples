@@ -15,8 +15,14 @@
  */
 
 /* [START maps_store_locator] */
-@import "../../../shared/scss/material-design-theme.scss";
-@import "../../../shared/scss/sidebar.scss";
+@use "../../../shared/scss/material-design-theme.scss";
+@use "../../../shared/scss/sidebar.scss" with (
+  $sidebar-flex-basis: 5rem,
+);
+
+#sidebar {
+  flex-basis: 5rem; // override the default sidebar basis
+}
 
 #search,
 .mdc-card {

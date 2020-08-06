@@ -1,4 +1,6 @@
 /* Optional: Makes the sample page fill the window. */
+$sidebar-flex-basis: 15rem !default;
+
 html,
 body {
   height: 100%;
@@ -12,7 +14,7 @@ body {
 }
 
 #sidebar {
-  flex-basis: 15rem;
+  flex-basis: $sidebar-flex-basis;
   flex-grow: 1;
   padding: 1rem;
   max-width: 30rem;
