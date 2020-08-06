@@ -15,8 +15,8 @@
  */
 
 /* [START maps_place_search_pagination] */
-@import "../../../shared/scss/default.scss";
-@import "../../../shared/scss/right-panel.scss";
+@use "../../../shared/scss/default.scss";
+@use "../../../shared/scss/right-panel.scss";
 
 #right-panel {
   font-family: Arial, Helvetica, sans-serif;

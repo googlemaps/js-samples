@@ -15,8 +15,8 @@
  */
 
 /* [START maps_places_searchbox] */
-@import "../../../shared/scss/default.scss";
-@import "../../../shared/scss/autocomplete.scss";
+@use "../../../shared/scss/default.scss";
+@use "../../../shared/scss/autocomplete.scss";
 
 #target {
   width: 345px;

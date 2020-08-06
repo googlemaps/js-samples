@@ -1,8 +1,3 @@
-:root {
-  --mdc-theme-primary: #1a73e8;
-}
-
-/* [START maps_programmatic_load_button] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -15,6 +10,11 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+/* [START maps_programmatic_load_button] */
+:root {
+  --mdc-theme-primary: #1a73e8;
 }
 
 #wrapper {

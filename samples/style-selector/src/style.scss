@@ -15,7 +15,7 @@
  */
 
 /* [START maps_style_selector] */
-@import "../../../shared/scss/default.scss";
+@use "../../../shared/scss/default.scss";
 
 .map-control {
   background-color: #fff;
