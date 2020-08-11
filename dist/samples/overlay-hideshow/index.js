@@ -20,7 +20,7 @@ function initMap() {
    * the bounds of the image, and a reference to the map.
    */
   class USGSOverlay extends google.maps.OverlayView {
-    constructor(bounds, image, map) {
+    constructor(bounds, image) {
       super();
       this.bounds = bounds;
       this.image = image;
@@ -106,7 +106,7 @@ function initMap() {
       }
     }
   }
-  const overlay = new USGSOverlay(bounds, image, map);
+  const overlay = new USGSOverlay(bounds, image);
   overlay.setMap(map);
   const toggleButton = document.createElement("button");
   toggleButton.textContent = "Toggle";
