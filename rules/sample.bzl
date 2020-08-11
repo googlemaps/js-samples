@@ -80,6 +80,7 @@ def sample():
             "//shared/scss:default",
             "//shared/scss:sidebar",
             "//shared/scss:material-design-theme",
+            "//shared/scss:mixins",
         ],
         output_name = "_style.css",
         sourcemap = False,

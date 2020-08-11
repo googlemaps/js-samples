@@ -22,18 +22,17 @@
         padding: 0;
       }
 
-      #floating-panel {
-        position: absolute;
-        top: 10px;
-        left: 25%;
-        z-index: 5;
+      .custom-map-control-button {
+        appearance: button;
         background-color: #fff;
-        padding: 5px;
-        border: 1px solid #999;
-        text-align: center;
-        font-family: "Roboto", "sans-serif";
-        line-height: 30px;
-        padding-left: 10px;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        margin: 10px;
+        height: 40px;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
       }
     </style>
     <script>
@@ -179,29 +178,27 @@
           new google.maps.LatLng(62.400471, -150.005608)
         ); // The photograph is courtesy of the U.S. Geological Survey.
 
-        var srcImage =
+        var image =
           "https://developers.google.com/maps/documentation/javascript/";
-        srcImage += "examples/full/images/talkeetna.png"; // The custom USGSOverlay object contains the USGS image,
-        // the bounds of the image, and a reference to the map.
+        image += "examples/full/images/talkeetna.png";
+        /**
+         * The custom USGSOverlay object contains the USGS image,
+         * the bounds of the image, and a reference to the map.
+         */
 
         var USGSOverlay = /*#__PURE__*/ (function(_google$maps$OverlayV) {
           _inherits(USGSOverlay, _google$maps$OverlayV);
 
           var _super = _createSuper(USGSOverlay);
 
-          function USGSOverlay(bounds, image) {
+          function USGSOverlay(bounds, image, map) {
             var _this;
 
             _classCallCheck(this, USGSOverlay);
 
-            _this = _super.call(this); // Initialize all properties.
-
-            _this.bounds_ = bounds;
-            _this.image_ = image; // Define a property to hold the image's div. We'll
-            // actually create this div upon receipt of the onAdd()
-            // method so we'll leave it null for now.
-
-            _this.div_ = null;
+            _this = _super.call(this);
+            _this.bounds = bounds;
+            _this.image = image;
             return _this;
           }
           /**
@@ -213,20 +210,20 @@
             {
               key: "onAdd",
               value: function onAdd() {
-                this.div_ = document.createElement("div");
-                this.div_.style.borderStyle = "none";
-                this.div_.style.borderWidth = "0px";
-                this.div_.style.position = "absolute"; // Create the img element and attach it to the div.
+                this.div = document.createElement("div");
+                this.div.style.borderStyle = "none";
+                this.div.style.borderWidth = "0px";
+                this.div.style.position = "absolute"; // Create the img element and attach it to the div.
 
                 var img = document.createElement("img");
-                img.src = this.image_;
+                img.src = this.image;
                 img.style.width = "100%";
                 img.style.height = "100%";
                 img.style.position = "absolute";
-                this.div_.appendChild(img); // Add the element to the "overlayLayer" pane.
+                this.div.appendChild(img); // Add the element to the "overlayLayer" pane.
 
                 var panes = this.getPanes();
-                panes.overlayLayer.appendChild(this.div_);
+                panes.overlayLayer.appendChild(this.div);
               }
             },
             {
@@ -240,17 +237,17 @@
                 // We'll use these coordinates to resize the div.
 
                 var sw = overlayProjection.fromLatLngToDivPixel(
-                  this.bounds_.getSouthWest()
+                  this.bounds.getSouthWest()
                 );
                 var ne = overlayProjection.fromLatLngToDivPixel(
-                  this.bounds_.getNorthEast()
+                  this.bounds.getNorthEast()
                 ); // Resize the image's div to fit the indicated dimensions.
 
-                if (this.div_) {
-                  this.div_.style.left = sw.x + "px";
-                  this.div_.style.top = ne.y + "px";
-                  this.div_.style.width = ne.x - sw.x + "px";
-                  this.div_.style.height = sw.y - ne.y + "px";
+                if (this.div) {
+                  this.div.style.left = sw.x + "px";
+                  this.div.style.top = ne.y + "px";
+                  this.div.style.width = ne.x - sw.x + "px";
+                  this.div.style.height = sw.y - ne.y + "px";
                 }
               } // The onRemove() method will be called automatically from the API if
               // we ever set the overlay's map property to 'null'.
@@ -258,38 +255,50 @@
             {
               key: "onRemove",
               value: function onRemove() {
-                if (this.div_) {
-                  this.div_.parentNode.removeChild(this.div_);
-                  this.div_ = null;
+                if (this.div) {
+                  this.div.parentNode.removeChild(this.div);
+                  delete this.div;
                 }
-              } // Set the visibility to 'hidden' or 'visible'.
+              }
+              /**
+               *  Set the visibility to 'hidden' or 'visible'.
+               */
             },
             {
               key: "hide",
               value: function hide() {
-                if (this.div_) {
-                  // The visibility property must be a string enclosed in quotes.
-                  this.div_.style.visibility = "hidden";
+                if (this.div) {
+                  this.div.style.visibility = "hidden";
                 }
               }
             },
             {
               key: "show",
               value: function show() {
-                if (this.div_) {
-                  this.div_.style.visibility = "visible";
+                if (this.div) {
+                  this.div.style.visibility = "visible";
                 }
               }
             },
             {
               key: "toggle",
               value: function toggle() {
-                if (this.div_) {
-                  if (this.div_.style.visibility === "hidden") {
+                if (this.div) {
+                  if (this.div.style.visibility === "hidden") {
                     this.show();
                   } else {
                     this.hide();
                   }
+                }
+              }
+            },
+            {
+              key: "toggleDOM",
+              value: function toggleDOM(map) {
+                if (this.getMap()) {
+                  this.setMap(null);
+                } else {
+                  this.setMap(map);
                 }
               }
             }
@@ -298,25 +307,28 @@
           return USGSOverlay;
         })(google.maps.OverlayView);
 
-        var overlay = new USGSOverlay(bounds, srcImage);
+        var overlay = new USGSOverlay(bounds, image, map);
         overlay.setMap(map);
+        var toggleButton = document.createElement("button");
+        toggleButton.textContent = "Toggle";
+        toggleButton.classList.add("custom-map-control-button");
+        var toggleDOMButton = document.createElement("button");
+        toggleDOMButton.textContent = "Toggle DOM Attachment";
+        toggleDOMButton.classList.add("custom-map-control-button");
+        toggleButton.addEventListener("click", function() {
+          overlay.toggle();
+        });
+        toggleDOMButton.addEventListener("click", function() {
+          overlay.toggleDOM(map);
+        });
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(
+          toggleDOMButton
+        );
+        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleButton);
       }
     </script>
   </head>
   <body>
-    <!-- Add an input button to initiate the toggle method on the overlay. -->
-    <div id="floating-panel">
-      <input
-        type="button"
-        value="Toggle visibility"
-        onclick="overlay.toggle();"
-      />
-      <input
-        type="button"
-        value="Toggle DOM attachment"
-        onclick="overlay.toggleDOM();"
-      />
-    </div>
     <div id="map"></div>
   </body>
 </html>

@@ -16,6 +16,10 @@
 
 /* [START maps_overlay_hideshow] */
 @use "../../../shared/scss/default.scss";
-@use "../../../shared/scss/floating-panel.scss";
+@import "../../../shared/scss/mixins.scss";
+
+.custom-map-control-button {
+    @include map-control-button;
+}
 
 /* [END maps_overlay_hideshow] */
