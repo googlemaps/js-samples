@@ -167,12 +167,12 @@ function initMap(): void {
   // [START maps_overlay_hideshow_controls]
   const toggleButton = document.createElement("button");
   toggleButton.textContent = "Toggle";
-  toggleButton.classList.add('custom-map-control-button');
+  toggleButton.classList.add("custom-map-control-button");
 
   const toggleDOMButton = document.createElement("button");
   toggleDOMButton.textContent = "Toggle DOM Attachment";
-  toggleDOMButton.classList.add('custom-map-control-button');
-  
+  toggleDOMButton.classList.add("custom-map-control-button");
+
   toggleButton.addEventListener("click", () => {
     overlay.toggle();
   });
