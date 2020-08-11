@@ -177,7 +177,7 @@
 
       var _super = _createSuper(USGSOverlay);
 
-      function USGSOverlay(bounds, image, map) {
+      function USGSOverlay(bounds, image) {
         var _this;
 
         _classCallCheck(this, USGSOverlay);
@@ -293,7 +293,7 @@
       return USGSOverlay;
     })(google.maps.OverlayView);
 
-    var overlay = new USGSOverlay(bounds, image, map);
+    var overlay = new USGSOverlay(bounds, image);
     overlay.setMap(map);
     var toggleButton = document.createElement("button");
     toggleButton.textContent = "Toggle";

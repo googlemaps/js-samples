@@ -48,11 +48,7 @@ function initMap(): void {
     private image: string;
     private div?: HTMLElement;
 
-    constructor(
-      bounds: google.maps.LatLngBounds,
-      image: string,
-      map: google.maps.Map
-    ) {
+    constructor(bounds: google.maps.LatLngBounds, image: string) {
       super();
 
       this.bounds = bounds;
@@ -160,7 +156,7 @@ function initMap(): void {
   }
 
   // [START maps_overlay_hideshow_init]
-  const overlay: USGSOverlay = new USGSOverlay(bounds, image, map);
+  const overlay: USGSOverlay = new USGSOverlay(bounds, image);
   overlay.setMap(map);
   // [END maps_overlay_hideshow_init]
 
