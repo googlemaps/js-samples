@@ -2,7 +2,7 @@
 
 let map;
 const loader = new google.maps.plugins.loader.Loader({
-  apiKey: "AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0",
+  apiKey: "AIzaSyCPJpjD-qcR_yIxJnS8maR5W9KB0E3EzYI",
   version: "weekly"
 });
 loader.load().then(() => {

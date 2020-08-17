@@ -2,7 +2,7 @@
 
 // This example requires the Geometry library. Include the libraries=geometry
 // parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&libraries=geometry">
+// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPJpjD-qcR_yIxJnS8maR5W9KB0E3EzYI&libraries=geometry">
 let marker1, marker2;
 let poly, geodesicPoly;
 
