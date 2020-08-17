@@ -2,7 +2,7 @@
 
 // This example requires the Drawing library. Include the libraries=drawing
 // parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCb1xprYSpXd0q_yDsJ1W2UGhfl9_YGKU0&libraries=drawing">
+// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPJpjD-qcR_yIxJnS8maR5W9KB0E3EzYI&libraries=drawing">
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: {
