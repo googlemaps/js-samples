@@ -227,6 +227,7 @@ def sample():
         name = "package",
         srcs = [":style.css", ":sample.html", ":src/index.ts", "//shared:package"],
         strip_prefix = ".",
+        extension = "tgz",
         remap_paths = {
             "/sample.html": "static/index.html",
             "/style.css": "public/style.css",
@@ -269,7 +270,7 @@ def sample():
             ":css",
             ":html",
             ":js",
-            ":package",
+            ":package.tgz",
         ],
         visibility = ["//visibility:public"],
     )
