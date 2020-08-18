@@ -1,9 +1,9 @@
-load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
 load("//rules:tags.bzl", "tags_test")
 load("@npm//@bazel/typescript:index.bzl", "ts_library")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
 def sample():
     """ generates the various outputs"""
@@ -223,6 +223,17 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    pkg_tar(
+        name = "package",
+        srcs = [":style.css", ":sample.html", ":src/index.ts", "//shared:package"],
+        strip_prefix = ".",
+        remap_paths = {
+            "/sample.html": "static/index.html",
+            "/style.css": "public/style.css",
+            "shared/package/": "",
+        }
+    )
+
     native.filegroup(
         name = "js",
         srcs = [
@@ -258,6 +269,7 @@ def sample():
             ":css",
             ":html",
             ":js",
+            ":package",
         ],
         visibility = ["//visibility:public"],
     )
@@ -271,3 +283,5 @@ def sample():
     tags_test(name = "test_tags_ts", file = ":src/index.ts")
     tags_test(name = "test_tags_css", file = ":style.css")
     tags_test(name = "test_tags_html", file = ":sample.html")
+
+    

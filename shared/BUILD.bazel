@@ -4,3 +4,8 @@ filegroup(
     name = "templates",
     srcs = glob(["*.njk"]),
 )
+
+filegroup(
+    name = "package",
+    srcs = glob(["package/**/*"]),
+)

@@ -1,7 +1,6 @@
 load("@npm//eslint:index.bzl", "eslint", "eslint_test")
 load("@npm//http-server:index.bzl", "http_server")
-load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "nodejs_test")
-load("@rules_pkg//:pkg.bzl", "pkg_deb", "pkg_tar")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
 exports_files(
     [
