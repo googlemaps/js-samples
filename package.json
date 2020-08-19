@@ -19,6 +19,7 @@
   "bin": {
     "googlemaps-js-samples": "cli/index.js"
   },
+  "files": [],
   "license": "Apache-2.0",
   "scripts": {
     "build": "bazel build :public.tar",
