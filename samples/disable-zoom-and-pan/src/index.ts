@@ -35,4 +35,4 @@ function initMap(): void {
   });
 }
 // [END maps_disable_zoom_and_pan]
-export {};
+export { initMap };

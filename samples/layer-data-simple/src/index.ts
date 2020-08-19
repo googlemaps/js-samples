@@ -29,4 +29,4 @@ function initMap(): void {
   );
 }
 // [END maps_layer_data_simple]
-export {};
+export { initMap };

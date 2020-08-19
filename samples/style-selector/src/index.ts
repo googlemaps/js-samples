@@ -341,4 +341,4 @@ const styles: Record<string, google.maps.MapTypeStyle[]> = {
 };
 
 // [END maps_style_selector]
-export {};
+export { initMap };

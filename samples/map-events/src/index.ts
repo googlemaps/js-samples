@@ -72,4 +72,4 @@ function populateTable() {
   eventsTable.innerHTML = content;
 }
 // [END maps_map_event]
-export {};
+export { initMap };

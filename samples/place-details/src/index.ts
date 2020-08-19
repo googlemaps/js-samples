@@ -60,4 +60,4 @@ function initMap(): void {
   });
 }
 // [END maps_place_details]
-export {};
+export { initMap };

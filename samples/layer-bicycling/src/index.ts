@@ -28,4 +28,4 @@ function initMap(): void {
   bikeLayer.setMap(map);
 }
 // [END maps_layer_bicycling]
-export {};
+export { initMap };

@@ -30,4 +30,4 @@ function initMap(): void {
   });
 }
 // [END maps_layer_kml]
-export {};
+export { initMap };

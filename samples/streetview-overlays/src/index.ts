@@ -77,4 +77,4 @@ function toggleStreetView() {
   }
 }
 // [END maps_streetview_overlays]
-export {};
+export { initMap };

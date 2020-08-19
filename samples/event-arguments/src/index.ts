@@ -37,4 +37,4 @@ function placeMarkerAndPanTo(latLng: google.maps.LatLng, map: google.maps.Map) {
   map.panTo(latLng);
 }
 // [END maps_event_arguments]
-export {};
+export { initMap };

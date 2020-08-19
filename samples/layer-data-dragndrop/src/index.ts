@@ -142,4 +142,4 @@ function initialize() {
   initEvents();
 }
 // [END maps_layer_data_dragndrop]
-export {};
+export { initialize };

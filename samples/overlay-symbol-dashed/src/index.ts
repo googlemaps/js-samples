@@ -58,4 +58,4 @@ function initMap(): void {
   // [END maps_overlay_symbol_dashed_region_polyline]
 }
 // [END maps_overlay_symbol_dashed]
-export {};
+export { initMap };

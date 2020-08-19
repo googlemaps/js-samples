@@ -29,4 +29,4 @@ function initMap(): void {
   });
 }
 // [END maps_event_domListener]
-export {};
+export { initMap };

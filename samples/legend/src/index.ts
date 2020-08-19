@@ -141,4 +141,4 @@ function initMap(): void {
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }
 // [END maps_legend]
-export {};
+export { initMap };

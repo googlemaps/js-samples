@@ -43,4 +43,4 @@ function initMap(): void {
   });
 }
 // [END maps_rectangle_simple]
-export {};
+export { initMap };

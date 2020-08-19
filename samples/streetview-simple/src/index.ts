@@ -37,4 +37,4 @@ function initialize() {
   map.setStreetView(panorama);
 }
 // [END maps_streetview_simple]
-export {};
+export { initialize };

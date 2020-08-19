@@ -27,4 +27,4 @@ function initMap(): void {
   );
 }
 // [END maps_control_simple]
-export {};
+export { initMap };

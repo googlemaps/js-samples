@@ -28,4 +28,4 @@ function initMap(): void {
   transitLayer.setMap(map);
 }
 // [END maps_layer_transit]
-export {};
+export { initMap };

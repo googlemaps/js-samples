@@ -60,4 +60,4 @@ function initMap(): void {
   });
 }
 // [END maps_layer_data_polygon]
-export {};
+export { initMap };

@@ -39,4 +39,4 @@ function eqfeed_callback(data: any) {
   map.data.addGeoJson(data);
 }
 // [END maps_layer_data_quakes_simple]
-export {};
+export { initMap };

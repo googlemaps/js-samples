@@ -39,4 +39,4 @@ function initMap(): void {
   });
 }
 // [END maps_marker_symbol_predefined]
-export {};
+export { initMap };

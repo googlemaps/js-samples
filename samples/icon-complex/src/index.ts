@@ -81,4 +81,4 @@ function setMarkers(map: google.maps.Map) {
   }
 }
 // [END maps_icon_complex]
-export {};
+export { initMap };

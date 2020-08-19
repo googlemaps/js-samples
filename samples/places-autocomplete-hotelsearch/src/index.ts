@@ -334,4 +334,4 @@ function buildIWContent(place) {
   }
 }
 // [END maps_places_autocomplete_hotelsearch]
-export {};
+export { initMap };

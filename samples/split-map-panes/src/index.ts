@@ -112,4 +112,4 @@ function initMap(): void {
   });
 }
 // [END maps_split_map_panes]
-export {};
+export { initMap };

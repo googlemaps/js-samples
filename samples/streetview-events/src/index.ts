@@ -71,4 +71,4 @@ function initPano() {
   });
 }
 // [END maps_streetview_events]
-export {};
+export { initPano };

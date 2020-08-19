@@ -106,4 +106,4 @@ function initMap(): void {
   );
 }
 // [END maps_style_array]
-export {};
+export { initMap };

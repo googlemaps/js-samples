@@ -25,4 +25,4 @@ function initMap(): void {
   );
 }
 // [END maps_control_default]
-export {};
+export { initMap };

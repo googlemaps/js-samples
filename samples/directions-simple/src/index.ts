@@ -64,4 +64,4 @@ function calculateAndDisplayRoute(
   );
 }
 // [END maps_directions_simple]
-export {};
+export { initMap };

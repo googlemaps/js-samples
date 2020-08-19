@@ -63,4 +63,4 @@ function addLatLngToPoly(
   }
 }
 // [END maps_geometry_encodings]
-export {};
+export { initMap };

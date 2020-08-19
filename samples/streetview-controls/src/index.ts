@@ -32,4 +32,4 @@ function initPano() {
   );
 }
 // [END maps_streetview_controls]
-export {};
+export { initPano };

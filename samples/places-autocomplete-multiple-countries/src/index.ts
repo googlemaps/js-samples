@@ -116,4 +116,4 @@ function initMap(): void {
   ]);
 }
 // [END maps_places_autocomplete_multiple_countries]
-export {};
+export { initMap };

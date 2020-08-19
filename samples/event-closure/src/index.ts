@@ -69,4 +69,4 @@ function attachSecretMessage(
   });
 }
 // [END maps_event_closure]
-export {};
+export { initMap };

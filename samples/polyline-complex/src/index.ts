@@ -55,4 +55,4 @@ function addLatLng(event: google.maps.MouseEvent) {
   });
 }
 // [END maps_polyline_complex]
-export {};
+export { initMap };

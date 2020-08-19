@@ -71,4 +71,4 @@ function deleteMarkers() {
   markers = [];
 }
 // [END maps_marker_remove]
-export {};
+export { initMap };

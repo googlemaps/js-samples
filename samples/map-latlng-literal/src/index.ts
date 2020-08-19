@@ -53,4 +53,4 @@ function initMap(): void {
   });
 }
 // [END maps_map_latlng_literal]
-export {};
+export { initMap };

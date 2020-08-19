@@ -57,4 +57,4 @@ function initMap(): void {
   drawingManager.setMap(map);
 }
 // [END maps_drawing_tools]
-export {};
+export { initMap };

@@ -43,4 +43,4 @@ function initMap(): void {
   });
 }
 // [END maps_map_rtl]
-export {};
+export { initMap };

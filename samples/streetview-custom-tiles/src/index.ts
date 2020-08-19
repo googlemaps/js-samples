@@ -110,4 +110,4 @@ function initMap(): void {
   );
 }
 // [END maps_streetview_custom_tiles]
-export {};
+export { initMap };

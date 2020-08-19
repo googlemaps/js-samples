@@ -182,4 +182,4 @@ function initMap(): void {
   // [END maps_overlay_hideshow_controls]
 }
 // [END maps_overlay_hideshow]
-export {};
+export { initMap };
