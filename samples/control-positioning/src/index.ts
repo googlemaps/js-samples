@@ -40,4 +40,4 @@ function initMap(): void {
   );
 }
 // [END maps_control_positioning]
-export {};
+export { initMap };

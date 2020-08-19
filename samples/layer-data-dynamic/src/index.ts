@@ -63,4 +63,4 @@ function initMap(): void {
   // [END maps_layer_data_dynamic_snippet]
 }
 // [END maps_layer_data_dynamic]
-export {};
+export { initMap };

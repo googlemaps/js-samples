@@ -91,4 +91,4 @@ function initMap(): void {
   );
 }
 // [END maps_marker_collision_management]
-export {};
+export { initMap };

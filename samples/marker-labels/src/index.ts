@@ -50,4 +50,4 @@ function addMarker(location: google.maps.LatLngLiteral, map: google.maps.Map) {
   });
 }
 // [END maps_marker_labels]
-export {};
+export { initMap };

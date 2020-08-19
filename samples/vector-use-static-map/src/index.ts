@@ -45,4 +45,4 @@ function initMap(): void {
   // [END maps_vector_use_static_map_js_instantiate]
 }
 // [END maps_vector_use_static_map]
-export {};
+export { initMap };

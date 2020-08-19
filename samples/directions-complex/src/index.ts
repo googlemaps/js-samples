@@ -142,4 +142,4 @@ function attachInstructionText(
   });
 }
 // [END maps_directions_complex]
-export {};
+export { initMap };

@@ -150,4 +150,4 @@ function initMap(): void {
   map.setMapTypeId("styled_map");
 }
 // [END maps_maptype_styled_simple]
-export {};
+export { initMap };

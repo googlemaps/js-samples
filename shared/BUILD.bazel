@@ -7,5 +7,14 @@ filegroup(
 
 filegroup(
     name = "package",
-    srcs = glob(["package/**/*"]),
+    srcs = glob(
+        [
+            "package/*",
+        ],
+        exclude = [
+            "package/node_modules/",
+            "package/src/index.ts",
+            "package/static/index.html",
+        ],
+    ),
 )

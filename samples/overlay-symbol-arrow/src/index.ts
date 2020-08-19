@@ -52,4 +52,4 @@ function initMap(): void {
   // [END maps_overlay_symbol_arrow_region_polyline]
 }
 // [END maps_overlay_symbol_arrow]
-export {};
+export { initMap };

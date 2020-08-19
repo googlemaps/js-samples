@@ -1,6 +1,7 @@
 {
-  "name": "js-samples",
+  "name": "@googlemaps/js-samples",
   "description": "Samples for Google Maps JavaScript",
+  "version": "2.1.4",
   "keywords": [
     "google",
     "javascript",
@@ -14,6 +15,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/googlemaps/js-samples.git"
+  },
+  "bin": {
+    "googlemaps-js-samples": "cli/index.js"
   },
   "license": "Apache-2.0",
   "scripts": {
@@ -32,6 +36,11 @@
     "test": "bazel test //...",
     "test:tags": "./build/test_tags.sh",
     "test:e2e": "bazel test //e2e:e2e"
+  },
+  "dependencies": {
+    "tar": "^6.0.5",
+    "tmp": "^0.2.1",
+    "yargs": "^15.4.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -67,5 +76,9 @@
     "selenium-webdriver": "^4.0.0-alpha.7",
     "typescript": "^3.9.6",
     "web-resource-inliner": "^4.3.4"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://wombat-dressing-room.appspot.com"
   }
 }

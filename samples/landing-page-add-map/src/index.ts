@@ -36,4 +36,4 @@ function initMap(): void {
   });
 }
 // [END maps_landing_page_add_map]
-export {};
+export { initMap };

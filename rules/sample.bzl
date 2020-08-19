@@ -31,6 +31,8 @@ def sample():
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
+              "sed -i'.bak' 's/export const/const/g' $@; " +
+              "sed -i'.bak' 's/export {.*};//g' $@; " +
               "sed -i'.bak' 's/\\/\\/ @ts-.*//g' $@; " +
               "$(location //rules:prettier) --write $@; " +
               "$(location //rules:eslint) -c $(location //:.eslintrc.json) --fix $@; ",
@@ -228,6 +230,7 @@ def sample():
         srcs = [":style.css", ":sample.html", ":src/index.ts", "//shared:package"],
         strip_prefix = ".",
         extension = "tgz",
+        mode = "0755",
         remap_paths = {
             "/sample.html": "static/index.html",
             "/style.css": "public/style.css",

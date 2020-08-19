@@ -79,4 +79,4 @@ function project(latLng: google.maps.LatLng) {
   );
 }
 // [END maps_map_coordinates]
-export {};
+export { initMap };

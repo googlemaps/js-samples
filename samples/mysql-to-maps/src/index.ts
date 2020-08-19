@@ -94,4 +94,4 @@ function downloadUrl(url: string, callback: (data: any) => void) {
 
 function doNothing() {}
 // [END maps_mysql_to_maps]
-export {};
+export { initMap };

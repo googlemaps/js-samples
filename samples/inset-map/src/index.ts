@@ -58,4 +58,4 @@ function initMap(): void {
   });
 }
 // [END maps_inset_map]
-export {};
+export { initMap };

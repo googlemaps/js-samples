@@ -95,4 +95,4 @@ function createMarkers(
   map.fitBounds(bounds);
 }
 // [END maps_place_search_pagination]
-export {};
+export { initMap };

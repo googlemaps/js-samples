@@ -44,4 +44,4 @@ function initMap(): void {
   });
 }
 // [END maps_rectangle_zoom]
-export {};
+export { initMap };

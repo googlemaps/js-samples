@@ -93,4 +93,4 @@ function initMap(): void {
   });
 }
 // [END maps_places_placeid_finder]
-export {};
+export { initMap };

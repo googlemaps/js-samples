@@ -46,4 +46,4 @@ function initMap(): void {
   // [END maps_layer_data_event_snippet]
 }
 // [END maps_layer_data_event]
-export {};
+export { initMap };

@@ -93,4 +93,4 @@ function initMap(): void {
   popup.setMap(map);
 }
 // [END maps_overlay_popup]
-export {};
+export { initMap };

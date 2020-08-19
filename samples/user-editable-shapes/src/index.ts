@@ -42,4 +42,4 @@ function initMap(): void {
   rectangle.setMap(map);
 }
 // [END maps_user_editable_shapes]
-export {};
+export { initMap };

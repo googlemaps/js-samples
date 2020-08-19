@@ -76,4 +76,4 @@ function initMap(): void {
   // [END maps_overlay_symbol_custom_region_polyline]
 }
 // [END maps_overlay_symbol_custom]
-export {};
+export { initMap };

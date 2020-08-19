@@ -69,4 +69,4 @@ function initMap(): void {
   );
 }
 // [END maps_maptype_overlay]
-export {};
+export { initMap };

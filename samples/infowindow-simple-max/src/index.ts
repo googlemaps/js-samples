@@ -66,4 +66,4 @@ function initMap(): void {
   });
 }
 // [END maps_infowindow_simple_max]
-export {};
+export { initMap };

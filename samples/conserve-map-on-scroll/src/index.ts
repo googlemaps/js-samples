@@ -34,4 +34,4 @@ function initMap(): void {
   });
 }
 // [END maps_conserve_map_on_scroll]
-export {};
+export { initMap };

@@ -41,4 +41,4 @@ function initMap(): void {
   }
 }
 // [END maps_layer_kml_features]
-export {};
+export { initMap };

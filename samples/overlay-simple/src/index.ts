@@ -136,4 +136,4 @@ function initMap(): void {
   overlay.setMap(map);
 }
 // [END maps_overlay_simple]
-export {};
+export { initMap };

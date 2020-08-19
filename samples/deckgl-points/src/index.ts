@@ -62,4 +62,4 @@ function initMap(): void {
   deckOverlay.setMap(map);
 }
 // [END maps_deckgl_points]
-export {};
+export { initMap };

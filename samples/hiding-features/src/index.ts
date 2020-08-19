@@ -61,4 +61,4 @@ const styles: Record<string, google.maps.MapTypeStyle[]> = {
 };
 
 // [END maps_hiding_features]
-export {};
+export { initMap };

@@ -72,4 +72,4 @@ function initMap(): void {
   }
 }
 // [END maps_circle_simple]
-export {};
+export { initMap };

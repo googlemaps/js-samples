@@ -2,13 +2,15 @@
   "name": "ts-webpack-googlemaps-sample",
   "scripts": {
     "build": "webpack --config ./webpack.prod.js --mode production",
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --config ./webpack.dev.js",
     "format": "eslint --fix src/*.ts",
     "lint": "eslint src/*.ts",
     "test": "jest --passWithNoTests src/*",
-    "watch": "webpack --config ./webpack.config.js --mode development"
+    "watch": "webpack --config ./webpack.dev.js --mode development"
   },
-  "dependencies": {},
+  "dependencies": {
+    "webpack-merge": "^5.1.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.11.0",
     "@babel/preset-env": "^7.11.0",

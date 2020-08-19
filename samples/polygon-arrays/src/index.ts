@@ -83,4 +83,4 @@ function showArrays(event: any) {
   infoWindow.open(map);
 }
 // [END maps_polygon_arrays]
-export {};
+export { initMap };

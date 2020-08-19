@@ -94,4 +94,4 @@ function initMap(): void {
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
 // [END maps_control_custom_state]
-export {};
+export { initMap };

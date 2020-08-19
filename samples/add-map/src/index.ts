@@ -31,4 +31,4 @@ function initMap(): void {
   new google.maps.Marker({ position: uluru, map: map });
 }
 // [END maps_add_map]
-export {};
+export { initMap };

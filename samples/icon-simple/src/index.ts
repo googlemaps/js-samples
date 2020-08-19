@@ -35,4 +35,4 @@ function initMap(): void {
   });
 }
 // [END maps_icon_simple]
-export {};
+export { initMap };

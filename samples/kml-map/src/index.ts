@@ -45,4 +45,4 @@ function initMap(): void {
   });
 }
 // [END maps_kml_map]
-export {};
+export { initMap };

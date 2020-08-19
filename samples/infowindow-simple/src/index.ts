@@ -64,4 +64,4 @@ function initMap(): void {
   });
 }
 // [END maps_infowindow_simple]
-export {};
+export { initMap };

@@ -108,4 +108,4 @@ function plotElevation(elevations, status) {
   });
 }
 // [END maps_elevation_paths]
-export {};
+export { initMap };

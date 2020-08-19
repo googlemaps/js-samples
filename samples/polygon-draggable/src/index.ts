@@ -70,4 +70,4 @@ function initMap(): void {
   });
 }
 // [END maps_polygon_draggable]
-export {};
+export { initMap };
