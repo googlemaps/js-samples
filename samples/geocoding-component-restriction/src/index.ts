@@ -60,4 +60,4 @@ function geocodeAddress(geocoder: google.maps.Geocoder, map: google.maps.Map) {
   );
 }
 // [END maps_geocoding_component_restriction]
-export {};
+export { initMap };

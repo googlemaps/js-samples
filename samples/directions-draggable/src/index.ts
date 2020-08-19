@@ -84,4 +84,4 @@ function computeTotalDistance(result: google.maps.DirectionsResult) {
   (document.getElementById("total") as HTMLElement).innerHTML = total + " km";
 }
 // [END maps_directions_draggable]
-export {};
+export { initMap };

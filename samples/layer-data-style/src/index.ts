@@ -39,4 +39,4 @@ function initMap(): void {
   // [END maps_layer_data_style_script_snippet_style]
 }
 // [END maps_layer_data_style]
-export {};
+export { initMap };

@@ -257,4 +257,4 @@ function update(location: google.maps.LatLng) {
 }
 
 // [END maps_store_locator]
-export {};
+export { initMap };

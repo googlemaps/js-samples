@@ -43,4 +43,4 @@ function initMap(): void {
   historicalOverlay.setMap(map);
 }
 // [END maps_groundoverlay_simple]
-export {};
+export { initMap };

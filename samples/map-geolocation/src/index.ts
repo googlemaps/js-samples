@@ -66,4 +66,4 @@ function handleLocationError(
   infoWindow.open(map);
 }
 // [END maps_map_geolocation]
-export {};
+export { initMap };

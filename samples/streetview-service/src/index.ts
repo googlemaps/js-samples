@@ -84,4 +84,4 @@ function processSVData(
   }
 }
 // [END maps_streetview_service]
-export {};
+export { initMap };

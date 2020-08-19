@@ -83,4 +83,4 @@ function initMap(): void {
   );
 }
 // [END maps_maptype_base]
-export {};
+export { initMap };

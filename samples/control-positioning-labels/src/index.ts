@@ -70,4 +70,4 @@ function initialize() {
   }
 }
 // [END maps_control_positioning_labels]
-export {};
+export { initialize };

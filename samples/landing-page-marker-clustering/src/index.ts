@@ -75,4 +75,4 @@ const locations = [
   { lat: -43.999792, lng: 170.463352 }
 ];
 // [END maps_landing_page_marker_clustering]
-export {};
+export { initMap };

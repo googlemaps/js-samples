@@ -28,4 +28,4 @@ function initialize() {
   );
 }
 // [END maps_streetview_embed]
-export {};
+export { initialize };

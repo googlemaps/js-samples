@@ -360,4 +360,4 @@ function initMap(): void {
   new PuzzleDemo(map);
 }
 // [END maps_map_puzzle]
-export {};
+export { initMap };

@@ -67,4 +67,4 @@ function initMap(): void {
   });
 }
 // [END maps_poly_containsLocation]
-export {};
+export { initMap };

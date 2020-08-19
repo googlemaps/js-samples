@@ -28,4 +28,4 @@ function initMap(): void {
   trafficLayer.setMap(map);
 }
 // [END maps_layer_traffic]
-export {};
+export { initMap };

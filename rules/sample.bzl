@@ -1,9 +1,9 @@
-load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
 load("//rules:tags.bzl", "tags_test")
 load("@npm//@bazel/typescript:index.bzl", "ts_library")
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
 def sample():
     """ generates the various outputs"""
@@ -31,6 +31,8 @@ def sample():
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
+              "sed -i'.bak' 's/export const/const/g' $@; " +
+              "sed -i'.bak' 's/export {.*};//g' $@; " +
               "sed -i'.bak' 's/\\/\\/ @ts-.*//g' $@; " +
               "$(location //rules:prettier) --write $@; " +
               "$(location //rules:eslint) -c $(location //:.eslintrc.json) --fix $@; ",
@@ -223,6 +225,19 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    pkg_tar(
+        name = "package",
+        srcs = [":style.css", ":sample.html", ":src/index.ts", "//shared:package"],
+        strip_prefix = ".",
+        extension = "tgz",
+        mode = "0755",
+        remap_paths = {
+            "/sample.html": "static/index.html",
+            "/style.css": "public/style.css",
+            "shared/package/": "",
+        }
+    )
+
     native.filegroup(
         name = "js",
         srcs = [
@@ -258,6 +273,7 @@ def sample():
             ":css",
             ":html",
             ":js",
+            ":package.tgz",
         ],
         visibility = ["//visibility:public"],
     )
@@ -271,3 +287,5 @@ def sample():
     tags_test(name = "test_tags_ts", file = ":src/index.ts")
     tags_test(name = "test_tags_css", file = ":style.css")
     tags_test(name = "test_tags_html", file = ":sample.html")
+
+    

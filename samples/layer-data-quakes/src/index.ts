@@ -102,4 +102,4 @@ const mapStyle: google.maps.MapTypeStyle[] = [
   }
 ];
 // [END maps_layer_data_quakes]
-export {};
+export { initMap };

@@ -82,4 +82,4 @@ function getNormalizedCoord(coord, zoom) {
   return { x: x, y: y };
 }
 // [END maps_maptype_image]
-export {};
+export { initMap };

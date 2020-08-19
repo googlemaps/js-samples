@@ -229,4 +229,4 @@ function mouseOutOfRegion(e: any) {
 // [END maps_combining_data_snippet_mouseevents]
 
 // [END maps_combining_data]
-export {};
+export { initMap };

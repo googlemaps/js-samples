@@ -47,4 +47,4 @@ function toggleBounce() {
   }
 }
 // [END maps_marker_animations]
-export {};
+export { initMap };

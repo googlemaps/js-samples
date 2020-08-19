@@ -156,4 +156,4 @@ function initialize() {
 }
 
 // [END maps_delete_vertex_menu]
-export {};
+export { initialize };

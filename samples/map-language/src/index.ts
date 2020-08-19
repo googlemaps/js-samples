@@ -30,4 +30,4 @@ function initMap(): void {
   );
 }
 // [END maps_map_language]
-export {};
+export { initMap };

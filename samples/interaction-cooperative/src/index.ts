@@ -39,4 +39,4 @@ function initMap(): void {
   });
 }
 // [END maps_interaction_cooperative]
-export {};
+export { initMap };

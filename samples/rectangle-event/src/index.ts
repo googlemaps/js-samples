@@ -77,4 +77,4 @@ function showNewRect() {
   infoWindow.open(map);
 }
 // [END maps_rectangle_event]
-export {};
+export { initMap };

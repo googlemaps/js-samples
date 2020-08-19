@@ -49,4 +49,4 @@ function eqfeed_callback(results: any) {
   });
 }
 // [END maps_earthquake_heatmap]
-export {};
+export { initMap };

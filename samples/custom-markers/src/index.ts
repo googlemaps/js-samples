@@ -127,4 +127,4 @@ function initMap(): void {
   }
 }
 // [END maps_custom_markers]
-export {};
+export { initMap };

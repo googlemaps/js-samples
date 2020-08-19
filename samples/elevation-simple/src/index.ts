@@ -67,4 +67,4 @@ function displayLocationElevation(
   );
 }
 // [END maps_elevation_simple]
-export {};
+export { initMap };

@@ -50,4 +50,4 @@ function showMaxZoom(e: google.maps.MouseEvent) {
   );
 }
 // [END maps_maxzoom_simple]
-export {};
+export { initMap };

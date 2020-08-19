@@ -31,4 +31,4 @@ function initMap(): void {
   georssLayer.setMap(map);
 }
 // [END maps_layer_georss]
-export {};
+export {initMap};

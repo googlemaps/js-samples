@@ -95,4 +95,4 @@ function geolocate() {
 }
 // [END maps_places_autocomplete_addressform_geolocation]
 // [END maps_places_autocomplete_addressform]
-export {};
+export { initAutocomplete };

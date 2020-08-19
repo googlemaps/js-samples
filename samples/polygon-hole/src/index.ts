@@ -54,4 +54,4 @@ function initMap(): void {
   bermudaTriangle.setMap(map);
 }
 // [END maps_polygon_hole]
-export {};
+export { initMap };

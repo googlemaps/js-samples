@@ -46,4 +46,4 @@ function initMap(): void {
   flightPath.setMap(map);
 }
 // [END maps_polyline_simple]
-export {};
+export { initMap };

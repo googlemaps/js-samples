@@ -45,4 +45,4 @@ function initMap(): void {
   });
 }
 // [END maps_marker_symbol_custom]
-export {};
+export { initMap };

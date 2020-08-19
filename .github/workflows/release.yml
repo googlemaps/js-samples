@@ -69,5 +69,7 @@ jobs:
             "@semantic-release/release-notes-generator"
             "@semantic-release/git
             "@semantic-release/github
+            "@semantic-release/npm
         env:
           GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          NPM_TOKEN: ${{ secrets.NPM_WOMBAT_TOKEN }}

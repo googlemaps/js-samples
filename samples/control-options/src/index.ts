@@ -33,4 +33,4 @@ function initMap(): void {
   );
 }
 // [END maps_control_options]
-export {};
+export { initMap };

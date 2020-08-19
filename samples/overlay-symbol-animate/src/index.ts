@@ -66,4 +66,4 @@ function animateCircle(line: google.maps.Polyline) {
   }, 20);
 }
 // [END maps_overlay_symbol_animate]
-export {};
+export { initMap };

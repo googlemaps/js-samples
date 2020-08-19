@@ -116,4 +116,4 @@ function deleteMarkers(markersArray: google.maps.Marker[]) {
   markersArray = [];
 }
 // [END maps_distance_matrix]
-export {};
+export {initMap};

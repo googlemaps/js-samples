@@ -151,4 +151,4 @@ class AutocompleteDirectionsHandler {
 }
 
 // [END maps_places_autocomplete_directions]
-export {};
+export { initMap };

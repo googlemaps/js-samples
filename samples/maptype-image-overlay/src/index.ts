@@ -72,4 +72,4 @@ function initMap(): void {
   map.overlayMapTypes.push(imageMapType);
 }
 // [END maps_maptype_image_overlay]
-export {};
+export { initMap };

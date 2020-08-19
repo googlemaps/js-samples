@@ -38,4 +38,4 @@ function initMap(): void {
   });
 }
 // [END maps_geocoding_region]
-export {};
+export { initMap };

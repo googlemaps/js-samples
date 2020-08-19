@@ -86,4 +86,4 @@ function calculateAndDisplayRoute(
   );
 }
 // [END maps_directions_waypoints]
-export {};
+export { initMap };

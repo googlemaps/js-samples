@@ -88,4 +88,4 @@ function initMap(): void {
   });
 }
 // [END maps_places_placeid_geocoder]
-export {};
+export { initMap };

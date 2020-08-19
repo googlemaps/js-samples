@@ -27,4 +27,4 @@ function initMap(): void {
   map.setTilt(45);
 }
 // [END maps_aerial_simple]
-export {};
+export { initMap };

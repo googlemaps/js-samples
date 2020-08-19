@@ -47,4 +47,4 @@ function initMap(): void {
   bermudaTriangle.setMap(map);
 }
 // [END maps_polygon_simple]
-export {};
+export { initMap };

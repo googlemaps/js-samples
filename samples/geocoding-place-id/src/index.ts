@@ -64,4 +64,4 @@ function geocodePlaceId(
   });
 }
 // [END maps_geocoding_place_id]
-export {};
+export { initMap };
