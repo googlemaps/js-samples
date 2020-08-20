@@ -39,6 +39,7 @@
     "test:e2e": "bazel test //e2e:e2e"
   },
   "dependencies": {
+    "node-fetch": "^2.6.0",
     "tar": "^6.0.5",
     "tmp": "^0.2.1",
     "yargs": "^15.4.1"
