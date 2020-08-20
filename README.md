@@ -9,9 +9,24 @@
 
 Samples for the Google Maps JavaScript API.
 
-**[View the samples](https://googlemaps.github.io/js-samples/dist/)**
+The samples can be demoed on the [GitHub demo page](https://googlemaps.github.io/js-samples/dist/) or at the [official documentation site](https://developers.google.com/maps/documentation/javascript/examples).
 
-**Note::** Many of these samples were written in 2010-2012. Many are still functional and are in the samples folder.
+## Initialize an app from a sample
+> **Note**: This is a beta feature.
+```
+# install the package
+npm i -g @googlemaps/js-samples
+
+# extract a sample to a destination folder
+googlemaps-js-samples init map-simple destFolder
+
+# run the sample
+cd destFolder
+npm i
+npm run dev
+```
+
+Replace `map-simple` with the path to another sample in this repository.
 
 ## Development
 
