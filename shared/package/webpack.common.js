@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+require('dotenv').config({debug: true});
+
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlReplaceWebpackPlugin = require("html-replace-webpack-plugin");

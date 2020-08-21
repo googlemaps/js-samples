@@ -2,10 +2,11 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
 load("//rules:tags.bzl", "tags_test")
+load("//rules:template.bzl", "template_file")
 load("@npm//@bazel/typescript:index.bzl", "ts_library")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
 
-def sample():
+def sample(name):
     """ generates the various outputs"""
     ts_library(
         name = "_compile",
@@ -225,9 +226,16 @@ def sample():
         visibility = ["//visibility:public"],
     )
 
+    native.genrule(
+        name = "env",
+        srcs = ["//shared:env.tpl"],
+        outs = [".env"],
+        cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location //shared:env.tpl) > $@;",
+    )
+
     pkg_tar(
         name = "package",
-        srcs = [":style.css", ":sample.html", ":src/index.ts", "//shared:package"],
+        srcs = [":.env", ":style.css", ":sample.html", ":src/index.ts", "//shared:package"],
         strip_prefix = ".",
         extension = "tgz",
         mode = "0755",
@@ -235,7 +243,14 @@ def sample():
             "/sample.html": "static/index.html",
             "/style.css": "public/style.css",
             "shared/package/": "",
-        }
+        },
+    )
+
+    template_file(
+        name = "cloud-shell-instructions",
+        out = "CLOUD_SHELL_INSTRUCTIONS.md",
+        template = "//shared:cloud_shell_instructions.tpl.md",
+        substitutions = {"TMPL_SAMPLE": name},
     )
 
     native.filegroup(
@@ -274,6 +289,7 @@ def sample():
             ":html",
             ":js",
             ":package.tgz",
+            ":CLOUD_SHELL_INSTRUCTIONS.md"
         ],
         visibility = ["//visibility:public"],
     )
@@ -287,5 +303,3 @@ def sample():
     tags_test(name = "test_tags_ts", file = ":src/index.ts")
     tags_test(name = "test_tags_css", file = ":style.css")
     tags_test(name = "test_tags_html", file = ":sample.html")
-
-    

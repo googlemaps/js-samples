@@ -13,4 +13,4 @@
  # limitations under the License.
 load("//rules:sample.bzl", "sample")
 
-sample()
+sample(name = "aerial-rotation")
