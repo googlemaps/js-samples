@@ -1,5 +1,10 @@
 package(default_visibility = ["//visibility:public"])
 
+exports_files([
+    "env.tpl",
+    "cloud_shell_instructions.tpl.md",
+])
+
 filegroup(
     name = "templates",
     srcs = glob(["*.njk"]),
