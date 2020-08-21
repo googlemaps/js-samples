@@ -11,7 +11,7 @@ The samples in this repository can be run in Google Cloud Shell for interactive 
     ```
 1. Initialize the sample application. 
     ```
-    googlemaps-js-samples init -v --no-open programmatic-load-button programmatic-load-button
+    googlemaps-js-samples init -v --no-open programmatic-load-button ~/programmatic-load-button
     ```
 1. Enable `Web Preview` in the Google Cloud Shell toolbar
 1. Update the Google Maps API key in the `.env` file.
