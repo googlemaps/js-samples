@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
 /* [START maps_delete_vertex_menu] */
-@use "../../../shared/scss/default.scss";
+@include meta.load-css("../../../shared/scss/default.scss");
 
 .delete-menu {
   position: absolute;

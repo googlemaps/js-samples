@@ -1,10 +1,4 @@
-:root {
-  --mdc-theme-primary: #1a73e8;
-  --mdc-theme-secondary: #rgb(225, 245, 254);
-  --mdc-theme-on-primary: #fff;
-  --mdc-theme-on-secondary: rgb(1, 87, 155);
-}
-
+/* [START maps_store_locator] */
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
@@ -31,7 +25,13 @@ body {
   height: 100%;
 }
 
-/* [START maps_store_locator] */
+:root {
+  --mdc-theme-primary: #1a73e8;
+  --mdc-theme-secondary: #rgb(225, 245, 254);
+  --mdc-theme-on-primary: #fff;
+  --mdc-theme-on-secondary: rgb(1, 87, 155);
+}
+
 #sidebar {
   flex-basis: 5rem;
 }

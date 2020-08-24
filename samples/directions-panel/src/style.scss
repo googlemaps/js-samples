@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
 /* [START maps_directions_panel] */
-@use "../../../shared/scss/default.scss";
-@use "../../../shared/scss/floating-panel.scss";
-@use "../../../shared/scss/right-panel.scss";
+@include meta.load-css("../../../shared/scss/default.scss");
+@include meta.load-css("../../../shared/scss/floating-panel.scss");
+@include meta.load-css("../../../shared/scss/right-panel.scss");
 
 #right-panel {
   height: 100%;

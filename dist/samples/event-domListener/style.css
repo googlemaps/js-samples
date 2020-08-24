@@ -1,3 +1,4 @@
+/* [START maps_event_domListener] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -12,5 +13,4 @@ body {
   padding: 0;
 }
 
-/* [START maps_event_domListener] */
 /* [END maps_event_domListener] */

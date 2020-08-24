@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
 /* [START maps_layer_data_event] */
-@use "../../../shared/scss/default.scss";
+@include meta.load-css("../../../shared/scss/default.scss");
 
 #info-box {
   background-color: white;

@@ -1,3 +1,4 @@
+/* [START maps_places_autocomplete] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -80,5 +81,4 @@ body {
   padding: 6px 12px;
 }
 
-/* [START maps_places_autocomplete] */
 /* [END maps_places_autocomplete] */

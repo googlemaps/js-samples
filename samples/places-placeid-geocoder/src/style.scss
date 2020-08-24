@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
 /* [START maps_places_placeid_geocoder] */
-@use "../../../shared/scss/default.scss";
+@include meta.load-css("../../../shared/scss/default.scss");
 
 .controls {
   background-color: #fff;
