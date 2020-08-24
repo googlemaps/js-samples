@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
 /* [START maps_marker_collision_management] */
-@use "../../../shared/scss/material-design-theme.scss";
-@use "../../../shared/scss/material-design-select.scss";
-@use "../../../shared/scss/sidebar.scss";
+@include meta.load-css("../../../shared/scss/material-design-theme.scss");
+@include meta.load-css("../../../shared/scss/material-design-select.scss");
+@include meta.load-css("../../../shared/scss/sidebar.scss");
 
 .mdc-select__anchor,
 .mdc-select__menu {

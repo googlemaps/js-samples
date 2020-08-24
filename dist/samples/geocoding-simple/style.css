@@ -1,3 +1,4 @@
+/* [START maps_geocoding_simple] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -26,5 +27,4 @@ body {
   padding-left: 10px;
 }
 
-/* [START maps_geocoding_simple] */
 /* [END maps_geocoding_simple] */

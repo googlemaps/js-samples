@@ -14,11 +14,14 @@
  * limitations under the License.
  */
 
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
 /* [START maps_store_locator] */
-@use "../../../shared/scss/material-design-theme.scss";
-@use "../../../shared/scss/sidebar.scss" with (
-  $sidebar-flex-basis: 5rem,
+@include meta.load-css(  // TODO(jpoehnelt) https://github.com/sass/dart-sass/issues/1033
+  "../../../shared/scss/sidebar.scss",
+  $with: ("sidebar-flex-basis": 5rem)
 );
+@include meta.load-css("../../../shared/scss/material-design-theme.scss");
 
 #sidebar {
   flex-basis: 5rem; // override the default sidebar basis
@@ -33,7 +36,8 @@
   display: flex;
   align-items: center;
 
-  .mdc-icon-button, .mdc-text-field {
+  .mdc-icon-button,
+  .mdc-text-field {
     margin: 0 0.1rem 0 0;
   }
 

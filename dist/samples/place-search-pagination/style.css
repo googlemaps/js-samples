@@ -1,3 +1,4 @@
+/* [START maps_place_search_pagination] */
 /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
 #map {
@@ -31,7 +32,6 @@ body {
   font-size: 12px;
 }
 
-/* [START maps_place_search_pagination] */
 #right-panel {
   font-family: Arial, Helvetica, sans-serif;
   position: absolute;

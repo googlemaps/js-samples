@@ -1,3 +1,4 @@
+/* [START maps_marker_collision_management] */
 :root {
   --mdc-theme-primary: #1a73e8;
   --mdc-theme-secondary: #rgb(225, 245, 254);
@@ -36,7 +37,6 @@ body {
   height: 100%;
 }
 
-/* [START maps_marker_collision_management] */
 .mdc-select__anchor,
 .mdc-select__menu {
   width: 100%;

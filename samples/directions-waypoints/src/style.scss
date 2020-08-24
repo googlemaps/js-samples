@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
 /* [START maps_directions_waypoints] */
-@use "../../../shared/scss/right-panel.scss";
+@include meta.load-css("../../../shared/scss/right-panel.scss");
 
 html,
 body {
