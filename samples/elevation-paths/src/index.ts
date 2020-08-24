@@ -16,7 +16,7 @@
 
 // [START maps_elevation_paths]
 // Load the Visualization API and the columnchart package.
-// @ts-ignore TODO(jpoehnelt)
+// @ts-ignore TODO(jpoehnelt) update to newest visualization library
 google.load("visualization", "1", { packages: ["columnchart"] });
 
 function initMap(): void {
@@ -65,7 +65,6 @@ function displayPathElevation(
   // Initiate the path request.
   elevator.getElevationAlongPath(
     {
-      // @ts-ignore TODO(jpoehnelt) update typings to support LatLngLiteral
       path: path,
       samples: 256
     },
@@ -103,7 +102,7 @@ function plotElevation(elevations, status) {
   chart.draw(data, {
     height: 150,
     legend: "none",
-    // @ts-ignore TODO(jpoehnelt) check versions
+    // @ts-ignore TODO(jpoehnelt) update to newest visualization library
     titleY: "Elevation (m)"
   });
 }

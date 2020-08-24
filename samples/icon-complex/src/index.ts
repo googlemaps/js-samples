@@ -65,7 +65,7 @@ function setMarkers(map: google.maps.Map) {
   const shape = {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],
     type: "poly"
-  };
+  } as google.maps.MarkerShapePoly;
 
   for (let i = 0; i < beaches.length; i++) {
     const beach = beaches[i];
@@ -73,7 +73,6 @@ function setMarkers(map: google.maps.Map) {
       position: { lat: beach[1], lng: beach[2] },
       map,
       icon: image,
-      // @ts-ignore TODO(jpoehnelt) fix typings
       shape: shape,
       title: beach[0],
       zIndex: beach[3]

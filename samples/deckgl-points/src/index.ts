@@ -26,10 +26,10 @@ function initMap(): void {
     }
   );
 
-  // @ts-ignore TODO(jpoehnelt)
+  // @ts-ignore TODO(jpoehnelt) fix deckgl typings
   const deckOverlay = new deck.GoogleMapsOverlay({
     layers: [
-      // @ts-ignore TODO(jpoehnelt)
+      // @ts-ignore TODO(jpoehnelt) fix deckgl typings
       new deck.GeoJsonLayer({
         id: "earthquakes",
         data:
