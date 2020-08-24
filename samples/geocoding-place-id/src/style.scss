@@ -14,9 +14,11 @@
  * limitations under the License.
  */
 
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
 /* [START maps_geocoding_place_id] */
-@use "../../../shared/scss/default.scss";
-@use "../../../shared/scss/floating-panel.scss";
+@include meta.load-css("../../../shared/scss/default.scss");
+@include meta.load-css("../../../shared/scss/floating-panel.scss");
 
 #floating-panel {
   width: 440px;

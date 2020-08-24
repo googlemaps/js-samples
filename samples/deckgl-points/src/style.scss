@@ -13,7 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-@use "../../../shared/scss/material-design-theme.scss";
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+@include meta.load-css("../../../shared/scss/material-design-theme.scss");
 /* [START maps_deckgl_points] */
-@use "../../../shared/scss/default.scss";
+@include meta.load-css("../../../shared/scss/default.scss");
 /* [END maps_deckgl_points] */
