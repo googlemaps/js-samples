@@ -1,14 +1,21 @@
 # Run the `disable-zoom-and-pan` sample in Google Cloud Shell
 
+<walkthrough-tutorial-duration duration="10"/>
+
 ## Introduction
 
 This tutorial will walk through the process of running a web application from the `disable-zoom-and-pan` sample using TypeScript, Babel, and Webpack.
 
+Click the **Start** button to continue.
+
 ## Install the `@googlemaps/js-samples` cli tool
+
+Open Cloud Shell by clicking the
+<walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> button in the navigation bar in the upper-right corner of the console.
 
 The following package will be used to load the sample skeleton and can be installed by entering the following in the shell:
 
-```
+```bash
 npm i -g '@googlemaps/js-samples'
 ```
 
@@ -16,7 +23,7 @@ npm i -g '@googlemaps/js-samples'
 
 After installation is complete, the following command will be used to extract the sample contents into the current directory.
 
-```
+```bash
 googlemaps-js-samples init -v --no-open --no-hot disable-zoom-and-pan .
 ```
 
@@ -26,13 +33,13 @@ The command can also be run outside of the Cloud Shell.
 
 To install the application and its requirements, run the following command.
 
-```
+```bash
 npm i
 ```
 
 After installation, Webpack can be called using the following command.
 
-```
+```bash
 npm run dev
 ```
 
@@ -58,7 +65,7 @@ The key can be replaced by following these instructions to
 
 After changing the key, the Webpack server must be restarted with the following command:
 
-```
+```bash
 npm run dev
 ```
 
