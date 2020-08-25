@@ -49,7 +49,7 @@
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/preset-env": "^7.9.6",
-    "@bazel/buildifier": "^0.26.0",
+    "@bazel/buildifier": "^3.4.0",
     "@bazel/buildozer": "^0.29.0i",
     "@bazel/rollup": "2.0.0-rc.1",
     "@bazel/typescript": "2.0.0-rc.1",
