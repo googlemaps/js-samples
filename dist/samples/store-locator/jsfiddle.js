@@ -153,7 +153,7 @@ function getDistances(place) {
         destinations: stores.slice(0, 25).map(store => store.location),
         travelMode: google.maps.TravelMode.DRIVING,
         unitSystem: google.maps.UnitSystem.IMPERIAL
-      }, // TODO(jpoehnelt) incorrect origins typing and travelMode is required
+      },
       callback
     );
   });

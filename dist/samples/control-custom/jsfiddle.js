@@ -49,6 +49,5 @@ function initMap() {
 
   const centerControlDiv = document.createElement("div");
   CenterControl(centerControlDiv, map);
-  centerControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }

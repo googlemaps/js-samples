@@ -48,7 +48,6 @@ function setMarkers(map) {
       position: { lat: beach[1], lng: beach[2] },
       map,
       icon: image,
-
       shape: shape,
       title: beach[0],
       zIndex: beach[3]
