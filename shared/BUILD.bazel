@@ -20,6 +20,7 @@ filegroup(
             "package/node_modules/",
             "package/src/index.ts",
             "package/static/index.html",
+            "package/.env",
         ],
     ),
 )

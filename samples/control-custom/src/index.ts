@@ -66,9 +66,6 @@ function initMap(): void {
   const centerControlDiv = document.createElement("div");
   CenterControl(centerControlDiv, map);
 
-  // @ts-ignore TODO(jpoehnelt)
-  centerControlDiv.index = 1;
-
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 }
 // [END maps_control_custom]
