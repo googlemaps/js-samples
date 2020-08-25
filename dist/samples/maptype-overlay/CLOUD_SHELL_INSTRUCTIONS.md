@@ -1,8 +1,8 @@
-# Run maptype-overlay in Google Cloud Shell
+# Run the `maptype-overlay` sample in Google Cloud Shell
 
 ## Introduction
 
-This tutorial will walk through the process of running a web application from the maptype-overlay using TypeScript, Babel, and Webpack.
+This tutorial will walk through the process of running a web application from the `maptype-overlay` sample using TypeScript, Babel, and Webpack.
 
 ## Install the `@googlemaps/js-samples` cli tool
 
@@ -14,7 +14,7 @@ npm i -g '@googlemaps/js-samples'
 
 ## Initialize the sample application
 
-After installation is complete, the following command will be used to actually extract the sample contents into the current directory.
+After installation is complete, the following command will be used to extract the sample contents into the current directory.
 
 ```
 googlemaps-js-samples init -v --no-open --no-hot maptype-overlay .
@@ -74,4 +74,4 @@ There are three main files for this sample:
 
 <walkthrough-conclusion-trophy></walkthrough-conclusion-trophy>
 
-Congratulations! You've just run a web application using the Google Maps Platform JS API.
+Congratulations! You've just launched a web application using the Google Maps Platform JS API.
