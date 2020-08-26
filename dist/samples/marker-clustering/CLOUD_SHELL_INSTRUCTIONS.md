@@ -24,7 +24,7 @@ npm i -g '@googlemaps/js-samples'
 After installation is complete, the following command will be used to extract the sample contents into the current directory.
 
 ```bash
-googlemaps-js-samples init -v --no-open --no-hot marker-clustering .
+googlemaps-js-samples init -v --no-open --no-hot marker-clustering ~/marker-clustering
 ```
 
 The command can also be run outside of the Cloud Shell.
