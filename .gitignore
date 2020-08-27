@@ -15,7 +15,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 bazel-*
-dist/samples/*/*-package.tgz
 # Firebase
 .firebase/
 
@@ -77,7 +76,6 @@ typings/
 
 # Output of 'npm pack'
 *.tgz
-!dist/**/*.tgz
 
 # Yarn Integrity file
 .yarn-integrity
