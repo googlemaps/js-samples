@@ -27,6 +27,7 @@ nodejs_binary(
         "@npm//:node_modules/prettier/parser-babylon.js",
         "@npm//:node_modules/prettier/parser-html.js",
         "@npm//:node_modules/prettier/parser-postcss.js",
+        "@npm//:node_modules/prettier/parser-typescript.js",
         "@npm//:node_modules/prettier/third-party.js",
     ],
     entry_point = "@npm//:node_modules/prettier/bin-prettier.js",

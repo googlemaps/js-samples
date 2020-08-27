@@ -2,7 +2,6 @@
 samples/**/package-lock.json
 **/.npmrc
 **/docs
-**/src/*.html
 /index.html
 bazel-*
 .bazelrc.user

@@ -53,4 +53,5 @@ jobs:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build --jobs 8 //:public.tar
+      - run: bazel build //samples/add-map:app.webpack.js
       - run: bazel test --jobs 1 e2e:e2e

@@ -233,15 +233,47 @@ def sample(name):
         cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location //shared:env.tpl) > $@;",
     )
 
+    native.genrule(
+        name = "package_html",
+        srcs = [":sample.html"],
+        outs = ["_package.html"],
+        cmd = "cat $(location :sample.html) >$@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
+    )
+
+    native.genrule(
+        name = "package_ts",
+        srcs = [":src/index.ts"],
+        outs = ["_package.ts"],
+        cmd = "cat $(location :src/index.ts) > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "echo '\nimport \"./style.css\"; // required for webpack' >> $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
+    )
+
+    native.genrule(
+        name = "package_css",
+        srcs = [":style.css"],
+        outs = ["_package.css"],
+        cmd = "cat $(location :style.css) > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
+    )
+
     pkg_tar(
         name = "package",
-        srcs = [":.env", ":style.css", ":sample.html", ":src/index.ts", "//shared:package"],
+        srcs = [":.env", ":_package.css", ":_package.html", ":_package.ts", "//shared:package"],
         strip_prefix = ".",
         extension = "tgz",
         mode = "0755",
         remap_paths = {
-            "/sample.html": "static/index.html",
-            "/style.css": "public/style.css",
+            "/_package.ts": "src/index.ts",
+            "/_package.html": "src/index.html",
+            "/_package.css": "src/style.css",
             "shared/package/": "",
         },
     )
@@ -289,7 +321,7 @@ def sample(name):
             ":html",
             ":js",
             ":package.tgz",
-            ":CLOUD_SHELL_INSTRUCTIONS.md"
+            ":CLOUD_SHELL_INSTRUCTIONS.md",
         ],
         visibility = ["//visibility:public"],
     )
@@ -303,3 +335,13 @@ def sample(name):
     tags_test(name = "test_tags_ts", file = ":src/index.ts")
     tags_test(name = "test_tags_css", file = ":style.css")
     tags_test(name = "test_tags_html", file = ":sample.html")
+
+    native.genrule(
+        name = "package_test",
+        srcs = [":package.tgz"],
+        cmd = "set -x; tar xf $(location :package.tgz); " +
+              "npm i; npm run build; cat public/app.js > $@",
+        local = 1,
+        tags = ["manual", "package"],
+        outs = ["app.webpack.js"],
+    )
