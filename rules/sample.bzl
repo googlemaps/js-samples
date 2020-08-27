@@ -339,7 +339,7 @@ def sample(name):
     native.genrule(
         name = "package_test",
         srcs = [":{}-package.tgz".format(name)],
-        cmd = "set -x; tar xf $(location :package.tgz); " +
+        cmd = "set -x; tar xf $(location :{}-package.tgz); ".format(name) +
               "npm i; npm run build; cat public/app.js > $@",
         local = 1,
         tags = ["manual", "package"],
