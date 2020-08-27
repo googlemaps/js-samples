@@ -14,52 +14,60 @@
  * limitations under the License.
  */
 
-require('dotenv').config({debug: true});
+require("dotenv").config({});
 
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlReplaceWebpackPlugin = require("html-replace-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: ["./src/index.ts"],
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.js$/i,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: ["babel-loader"],
       },
       {
-        test: /\.ts?$/,
+        test: /\.ts$/i,
         use: "ts-loader",
-        exclude: /node_modules/
-      }
-    ]
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/i,
+        exclude: /node_modules/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+    ],
   },
   resolve: {
-    extensions: [".ts", ".js"]
+    extensions: [".ts", ".js"],
   },
   output: {
     path: `${__dirname}/public`,
     publicPath: "/",
     filename: "app.js",
     library: "",
-    libraryTarget: "window"
+    libraryTarget: "window",
   },
   plugins: [
     new webpack.DefinePlugin({
-      __DEV__: true
+      __DEV__: true,
     }),
     new HtmlWebpackPlugin({
-      template: "static/index.html",
-      inject: false
+      template: "src/index.html",
+      inject: false,
     }),
     new HtmlReplaceWebpackPlugin([
       {
         pattern: "YOUR_API_KEY",
-        replacement: process.env.GOOGLE_MAPS_API_KEY
-      }
-    ])
-  ]
-  
+        replacement: process.env.GOOGLE_MAPS_API_KEY,
+      },
+    ]),
+    new MiniCssExtractPlugin({
+      filename: "style.css",
+    }),
+  ],
 };
