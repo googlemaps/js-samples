@@ -8,7 +8,7 @@ plugins:
   - 
     - "@semantic-release/github"
     - assets:
-      - path: "dist/samples/*/package.tgz"
+      - path: "dist/samples/*/*-package.tgz"
   - "@semantic-release/npm"
 options:
   debug: true
