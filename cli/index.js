@@ -25,30 +25,30 @@ const fetch = require("node-fetch");
 const npm = require("npm");
 const openBrowser = require("open");
 
-const GITHUB_CONTENTS_API =
-  "https://api.github.com/repos/googlemaps/js-samples/contents";
+const getPackageFromTag = async (sample, tag, verbose) => {
+  const url = `https://github.com/googlemaps/js-samples/releases/${
+    tag === "latest" ? "latest/download" : `download/${tag}`
+  }/${sample}-package.tgz`;
 
-const getPackageFromRef = async (sample, ref, verbose) => {
-  const url = `${GITHUB_CONTENTS_API}/dist/samples/${sample}/${sample}-package.tgz?ref=${ref}`;
   if (verbose) {
     console.info(`Downloading: ${url}`);
   }
+
   const response = await fetch(url);
 
   if (!response.ok) {
     throw new Error(`${response.statusText}: ${url}`);
   }
 
-  const data = await response.json();
   const tempFile = tmp.fileSync();
-  fs.writeSync(tempFile.fd, Buffer.from(data.content, data.encoding));
+  fs.writeSync(tempFile.fd, await response.buffer());
   return tempFile.name;
 };
 
 const main = async argv => {
   const {
     sample,
-    ref,
+    tag,
     destination,
     verbose,
     hot: shouldRun,
@@ -56,8 +56,8 @@ const main = async argv => {
   } = argv;
   let file;
 
-  if (ref) {
-    file = await getPackageFromRef(sample, ref, verbose);
+  if (tag) {
+    file = await getPackageFromTag(sample, tag, verbose);
   } else {
     file = path.join(__dirname, "..", "dist", "samples", sample, "package.tgz");
   }
@@ -82,9 +82,18 @@ const main = async argv => {
 
   if (shouldRun) {
     npm.load({}, () => {
+      if (verbose) {
+        console.info("Installing application via 'npm i'.");
+      }
       npm.commands.install([""], () => {
+        if (verbose) {
+          console.info("Running application via 'npm run dev'.");
+        }
         npm.commands["run-script"](["dev"]);
         if (shouldOpen) {
+          if (verbose) {
+            console.info("Opening application in browser.");
+          }
           setTimeout(() => {
             openBrowser("http://localhost:8080");
           }, 1000);
@@ -126,8 +135,8 @@ yargs
     description: "Open application in browser",
     default: true
   })
-  .option("ref", {
-    alias: "r",
-    describe: "The git ref of git@github.com:googlemaps/js-samples.git",
-    default: "master"
+  .option("tag", {
+    alias: "t",
+    describe: "The target release of git@github.com:googlemaps/js-samples.git",
+    default: "latest"
   }).argv;
