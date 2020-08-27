@@ -29,7 +29,7 @@ const GITHUB_CONTENTS_API =
   "https://api.github.com/repos/googlemaps/js-samples/contents";
 
 const getPackageFromRef = async (sample, ref, verbose) => {
-  const url = `${GITHUB_CONTENTS_API}/dist/samples/${sample}/package.tgz?ref=${ref}`;
+  const url = `${GITHUB_CONTENTS_API}/dist/samples/${sample}/${sample}-package.tgz?ref=${ref}`;
   if (verbose) {
     console.info(`Downloading: ${url}`);
   }

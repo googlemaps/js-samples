@@ -265,7 +265,7 @@ def sample(name):
     )
 
     pkg_tar(
-        name = "package",
+        name = "{}-package".format(name),
         srcs = [":.env", ":_package.css", ":_package.html", ":_package.ts", "//shared:package"],
         strip_prefix = ".",
         extension = "tgz",
@@ -320,7 +320,7 @@ def sample(name):
             ":css",
             ":html",
             ":js",
-            ":package.tgz",
+            "{}-package.tgz".format(name),
             ":CLOUD_SHELL_INSTRUCTIONS.md",
         ],
         visibility = ["//visibility:public"],
@@ -338,7 +338,7 @@ def sample(name):
 
     native.genrule(
         name = "package_test",
-        srcs = [":package.tgz"],
+        srcs = [":{}-package.tgz".format(name)],
         cmd = "set -x; tar xf $(location :package.tgz); " +
               "npm i; npm run build; cat public/app.js > $@",
         local = 1,
