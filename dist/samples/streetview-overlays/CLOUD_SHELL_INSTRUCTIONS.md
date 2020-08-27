@@ -54,10 +54,10 @@ npm run dev
 ```
 
 For configuration of Webpack, check
-<walkthrough-editor-open-file filePath="~/streetview-overlays/webpack.dev.js">webpack.dev.js</walkthrough-editor-open-file>,
-<walkthrough-editor-open-file filePath="~/streetview-overlays/webpack.prod.js">webpack.prod.js</walkthrough-editor-open-file>,
+<walkthrough-editor-open-file filePath="streetview-overlays/webpack.dev.js">webpack.dev.js</walkthrough-editor-open-file>,
+<walkthrough-editor-open-file filePath="streetview-overlays/webpack.prod.js">webpack.prod.js</walkthrough-editor-open-file>,
 and
-<walkthrough-editor-open-file filePath="~/streetview-overlays/webpack.common.js">webpack.common.js</walkthrough-editor-open-file>.
+<walkthrough-editor-open-file filePath="streetview-overlays/webpack.common.js">webpack.common.js</walkthrough-editor-open-file>.
 
 ## Enable Web Preview in the Google Cloud Shell
 
@@ -68,7 +68,7 @@ Preview button</walkthrough-spotlight-pointer> using the **port 8080**.
 ## Update the Google Maps API key
 
 The application is currently using the
-<walkthrough-editor-open-file filePath="~/streetview-overlays/.env">.env</walkthrough-editor-open-file>
+<walkthrough-editor-open-file filePath="streetview-overlays/.env">.env</walkthrough-editor-open-file>
 file to embed the API key in the HTML document. This is a temporary key and is
 not valid for production usage.
 
@@ -86,11 +86,11 @@ npm run dev
 
 There are three main files for this sample:
 
-*   <walkthrough-editor-open-file filePath="~/streetview-overlays/src/index.ts">src/index.ts</walkthrough-editor-open-file>
-*   <walkthrough-editor-open-file filePath="~/streetview-overlays/src/index.html">src/index.html</walkthrough-editor-open-file>
-*   <walkthrough-editor-open-file filePath="~/streetview-overlays/src/style.css">src/style.css</walkthrough-editor-open-file>
+*   <walkthrough-editor-open-file filePath="streetview-overlays/src/index.ts">src/index.ts</walkthrough-editor-open-file>
+*   <walkthrough-editor-open-file filePath="streetview-overlays/src/index.html">src/index.html</walkthrough-editor-open-file>
+*   <walkthrough-editor-open-file filePath="streetview-overlays/src/style.css">src/style.css</walkthrough-editor-open-file>
 
-Try editing the <walkthrough-editor-open-file filePath="~/streetview-overlays/src/index.ts">src/index.ts</walkthrough-editor-open-file> file and see how the web application in the web preview immediately reloads with the changes.
+Try editing the <walkthrough-editor-open-file filePath="streetview-overlays/src/index.ts">src/index.ts</walkthrough-editor-open-file> file and see how the web application in the web preview immediately reloads with the changes.
 
 ## Conclusion
 
