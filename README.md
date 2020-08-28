@@ -12,7 +12,6 @@ Samples for the Google Maps JavaScript API.
 The samples can be demoed on the [GitHub demo page](https://googlemaps.github.io/js-samples/dist/) or at the [official documentation site](https://developers.google.com/maps/documentation/javascript/examples).
 
 ## Initialize an app from a sample
-> **Note**: This is a beta feature.
 ```
 # install the package
 npm i -g @googlemaps/js-samples
