@@ -29,7 +29,7 @@ let autocompleteTypeElement: HTMLInputElement;
 let map: google.maps.Map;
 
 const debounce = <F extends (...args: any[]) => void>(delay: number, fn: F) => {
-  let timeout: number = 0;
+  let timeout = 0;
 
   const debounced = (...args: any[]) => {
     window.clearTimeout(timeout);
@@ -96,6 +96,7 @@ const inputChangeCallback = debounce(100, () => {
   };
 
   const bounds = map.getBounds();
+
   if (biasToMapSwitchElement.checked && bounds) {
     request.bounds = bounds;
   }
@@ -145,7 +146,7 @@ const initializeMaterialDesignComponents = () => {
   );
   const contentElements = document.querySelectorAll(".tab-content");
 
-  tabBar.listen("MDCTabBar:activated", function(event) {
+  tabBar.listen("MDCTabBar:activated", event => {
     document
       .querySelector(".tab-content--active")!
       .classList.remove("tab-content--active");
