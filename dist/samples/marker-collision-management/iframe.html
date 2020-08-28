@@ -26,6 +26,11 @@
       no-repeat center;
   }
 
+  .mdc-select:not(.mdc-select--disabled).mdc-select--focused
+    .mdc-floating-label {
+    color: var(--mdc-theme-primary);
+  }
+
   /* Optional: Makes the sample page fill the window. */
   html,
   body {
@@ -44,6 +49,9 @@
     flex-grow: 1;
     padding: 1rem;
     max-width: 30rem;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
   }
 
   #map {

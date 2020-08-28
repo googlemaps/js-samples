@@ -123,6 +123,7 @@ SAMPLES = [
     "places-autocomplete-directions",
     "places-autocomplete-hotelsearch",
     "places-autocomplete-multiple-countries",
+    "places-autocomplete-service",
     "places-placeid-finder",
     "places-placeid-geocoder",
     "places-queryprediction",

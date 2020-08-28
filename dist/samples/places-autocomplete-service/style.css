@@ -1,4 +1,4 @@
-/* [START maps_marker_collision_management] */
+/* [START maps_places_autocomplete_service] */
 :root {
   --mdc-theme-primary: #1a73e8;
   --mdc-theme-secondary: #rgb(225, 245, 254);
@@ -49,4 +49,68 @@ body {
   width: 100%;
 }
 
-/* [END maps_marker_collision_management] */
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--mdc-theme-primary);
+}
+
+.mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+  background-color: var(--mdc-theme-primary);
+  border-color: var(--mdc-theme-primary);
+}
+
+.mdc-switch.mdc-switch--checked .mdc-switch__track {
+  background-color: var(--mdc-theme-primary);
+}
+
+.mdc-switch__thumb-underlay::before,
+.mdc-switch__thumb-underlay::after {
+  background-color: var(--mdc-theme-primary);
+}
+
+#sidebar {
+  flex-direction: column;
+  flex-grow: 4;
+  max-width: 50%;
+}
+
+#search {
+  flex-grow: 0;
+}
+#search .mdc-text-field {
+  width: 100%;
+}
+#search .row {
+  display: flex;
+  margin-bottom: 1.5em;
+  width: 100%;
+}
+#search .row label,
+#search .row .mdc-select {
+  flex-grow: 1;
+}
+
+#results {
+  flex-grow: 1;
+  overflow: auto;
+}
+#results .tab-content {
+  display: none;
+}
+#results .tab-content--active {
+  display: block;
+}
+
+pre {
+  background: whitesmoke;
+  border: #f0f0f0 1px solid;
+  border-radius: 2px;
+  page-break-inside: avoid;
+  font-family: monospace;
+  max-width: 100%;
+  overflow: auto;
+  padding: 0.5em;
+  word-wrap: break-word;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* [END maps_places_autocomplete_service] */
