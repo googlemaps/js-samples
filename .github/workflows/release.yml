@@ -55,11 +55,7 @@ jobs:
           git config --global user.name 'googlemaps-bot'
           git config --global user.email 'googlemaps-bot@users.noreply.github.com'
           git add dist
-          git commit -m "chore: update dist folder [skip ci]" || true          
-      - uses: actions/checkout@v2
-        with:
-          ref: master
-          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          git commit -m "chore: update dist folder [skip ci]" || true
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
         with:
