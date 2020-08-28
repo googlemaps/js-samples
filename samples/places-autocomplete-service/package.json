@@ -1,0 +1,8 @@
+{
+  "name": "places-autocomplete-service",
+  "title": "Places Autocomplet Service",
+  "callback": "initialize",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "places_autocomplete_service"
+}

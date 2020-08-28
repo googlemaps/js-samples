@@ -121,6 +121,7 @@
     "Place Autocomplete Hotel Search": "places-autocomplete-hotelsearch",
     "Place Autocomplete Restricted to Multiple Countries": "places-autocomplete-multiple-countries",
     "Place Autocomplete": "places-autocomplete",
+    "Place Autocomplete Service": "places-autocomplete-service",
     "Place ID Finder": "places-placeid-finder",
     "Place ID Geocoder": "places-placeid-geocoder",
     "Retrieving Autocomplete Predictions": "places-queryprediction",
