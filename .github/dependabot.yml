@@ -18,3 +18,7 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "npm"
+    directory: "/shared/package"
+    schedule:
+      interval: "weekly"
