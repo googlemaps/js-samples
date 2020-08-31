@@ -38,9 +38,7 @@ body {
 
   #inputs {
     margin-right: 1em;
-    .mdc-text-field {
-      width: 100%;
-    }
+    max-width: 250px;
     flex-basis: 0;
     flex-grow: 1;
 
@@ -51,6 +49,9 @@ body {
       label,
       .mdc-select {
         flex-grow: 1;
+      }
+      .mdc-text-field {
+        width: 100%;
       }
     }
   }
