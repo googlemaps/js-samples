@@ -29,12 +29,17 @@ body {
 
 #container {
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 #service {
   margin-top: 1rem;
   box-sizing: border-box;
   display: flex;
+  flex-basis: 0;
+  flex-grow: 3;
+  overflow: auto;
 
   #inputs {
     margin-right: 1em;
@@ -70,7 +75,9 @@ body {
 }
 
 #map {
-  height: 200px;
+  min-height: 200px;
+  flex-basis: 0;
+  flex-grow: 1;
 }
 
 pre {
