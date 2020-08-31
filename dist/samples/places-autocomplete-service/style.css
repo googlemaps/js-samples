@@ -65,9 +65,6 @@ body {
 #service #results .tab-content--active {
   display: block;
 }
-#service #results pre {
-  height: 100%;
-}
 
 #map {
   min-height: 200px;
