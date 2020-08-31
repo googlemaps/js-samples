@@ -81,6 +81,9 @@
   #service #results .tab-content--active {
     display: block;
   }
+  #service #results pre {
+    height: 100%;
+  }
 
   #map {
     min-height: 200px;
@@ -94,7 +97,6 @@
     border-radius: 2px;
     page-break-inside: avoid;
     font-family: monospace;
-    max-width: 100%;
     overflow: auto;
     padding: 0.5em;
     word-wrap: break-word;
@@ -382,10 +384,10 @@
           </div>
         </div>
         <div class="tab-content tab-content--active">
-          <pre><code id="request"></code></pre>
+          <pre class="prettyprint"><code id="request"></code></pre>
         </div>
         <div class="tab-content">
-          <pre><code id="response"></code></pre>
+          <pre class="prettyprint"><code id="response"></code></pre>
         </div>
       </div>
     </div>

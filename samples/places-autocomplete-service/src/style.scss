@@ -71,6 +71,10 @@ body {
     .tab-content--active {
       display: block;
     }
+
+    pre {
+      height: 100%;
+    }
   }
 }
 
@@ -86,7 +90,6 @@ pre {
   border-radius: 2px;
   page-break-inside: avoid;
   font-family: monospace;
-  max-width: 100%;
   overflow: auto;
   padding: 0.5em;
   word-wrap: break-word;
