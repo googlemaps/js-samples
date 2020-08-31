@@ -27,7 +27,7 @@ body {
 }
 
 #service {
-  padding: 1rem;
+  margin-top: 1rem;
   box-sizing: border-box;
   display: flex;
 }
