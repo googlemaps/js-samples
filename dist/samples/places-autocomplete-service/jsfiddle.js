@@ -58,6 +58,7 @@ const initialize = () => {
       inputChangeCallback();
     }
   });
+  inputChangeCallback();
 };
 
 const inputChangeCallback = debounce(100, () => {

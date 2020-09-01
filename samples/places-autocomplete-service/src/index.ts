@@ -83,6 +83,8 @@ const initialize = (): void => {
       inputChangeCallback();
     }
   });
+
+  inputChangeCallback();
 };
 
 const inputChangeCallback = debounce(100, () => {
