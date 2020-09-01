@@ -202,13 +202,16 @@
   };
 
   var inputChangeCallback = debounce(100, function() {
-    if (!inputElement.value) {
-      return;
-    }
-
     var request = {
       input: inputElement.value
     };
+
+    if (!inputElement.value) {
+      request.input = "";
+      requestElement.innerText = JSON.stringify(request, null, 2);
+      return;
+    }
+
     var bounds = map.getBounds();
 
     if (biasToMapSwitchElement.checked && bounds) {

@@ -61,13 +61,16 @@ const initialize = () => {
 };
 
 const inputChangeCallback = debounce(100, () => {
-  if (!inputElement.value) {
-    return;
-  }
-
   const request = {
     input: inputElement.value
   };
+
+  if (!inputElement.value) {
+    request.input = "";
+    requestElement.innerText = JSON.stringify(request, null, 2);
+    return;
+  }
+
   const bounds = map.getBounds();
 
   if (biasToMapSwitchElement.checked && bounds) {
