@@ -16,7 +16,8 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "types": ["googlemaps"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/*.spec.ts"]
