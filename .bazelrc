@@ -50,12 +50,6 @@ build:debug --compilation_mode=dbg
 # This prevents accidentally depending on this feature, which Bazel will remove.
 build --nolegacy_external_runfiles
 
-# Turn on the "Managed Directories" feature.
-# This allows Bazel to share the same node_modules directory with other tools
-# NB: this option was introduced in Bazel 0.26
-# See https://docs.bazel.build/versions/master/command-line-reference.html#flag--experimental_allow_incremental_repository_updates
-common --experimental_allow_incremental_repository_updates
-
 # Turn on --incompatible_strict_action_env which was on by default
 # in Bazel 0.21.0 but turned off again in 0.22.0. Follow
 # https://github.com/bazelbuild/bazel/issues/7026 for more details.
@@ -65,7 +59,7 @@ common --experimental_allow_incremental_repository_updates
 build --incompatible_strict_action_env
 run --incompatible_strict_action_env
 
-build --action_env GOOGLE_MAPS_JS_SAMPLES_KEY=AIzaSyCPJpjD-qcR_yIxJnS8maR5W9KB0E3EzYI  # low quota restricted key
+build --action_env GOOGLE_MAPS_JS_SAMPLES_KEY=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE  # low quota restricted key
 run --action_env GOOGLE_MAPS_JS_SAMPLES_KEY  # User should provide own key to run
 
 # Load any settings specific to the current user.
