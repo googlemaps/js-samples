@@ -43,27 +43,22 @@
 
       #container {
         height: 100%;
-        display: flex;
-        flex-direction: column;
       }
 
       #service {
         margin-top: 1rem;
+        padding: 0 1em;
         box-sizing: border-box;
         display: flex;
-        flex-basis: 0;
-        flex-grow: 3;
-        overflow: auto;
       }
       #service #inputs {
         margin-right: 1em;
-        max-width: 250px;
         flex-basis: 0;
         flex-grow: 1;
       }
       #service #inputs .row {
         display: flex;
-        margin-bottom: 1.5em;
+        margin-bottom: 1em;
         width: 100%;
       }
       #service #inputs .row label,
@@ -86,9 +81,7 @@
       }
 
       #map {
-        min-height: 200px;
-        flex-basis: 0;
-        flex-grow: 1;
+        height: 200px;
       }
 
       pre {
@@ -195,7 +188,6 @@
           item.appendChild(itemText);
           autocompleteTypeListElement.appendChild(item);
         });
-        initializeMaterialDesignComponents();
         inputElement.addEventListener("input", inputChangeCallback);
         biasToMapSwitchElement.addEventListener("change", inputChangeCallback);
         map.addListener("bounds_changed", function() {
@@ -203,6 +195,8 @@
             inputChangeCallback();
           }
         });
+        biasToMapSwitchElement.checked = true;
+        initializeMaterialDesignComponents();
         inputChangeCallback();
       };
 
@@ -210,13 +204,6 @@
         var request = {
           input: inputElement.value
         };
-
-        if (!inputElement.value) {
-          request.input = "";
-          requestElement.innerText = JSON.stringify(request, null, 2);
-          return;
-        }
-
         var bounds = map.getBounds();
 
         if (biasToMapSwitchElement.checked && bounds) {
@@ -235,6 +222,11 @@
         }
 
         requestElement.innerText = JSON.stringify(request, null, 2);
+
+        if (!inputElement.value) {
+          return;
+        }
+
         autocompleteService.getPlacePredictions(request, predictionsCallback);
       });
 

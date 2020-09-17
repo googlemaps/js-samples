@@ -29,27 +29,22 @@ body {
 
 #container {
   height: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 #service {
   margin-top: 1rem;
+  padding: 0 1em;
   box-sizing: border-box;
   display: flex;
-  flex-basis: 0;
-  flex-grow: 3;
-  overflow: auto;
 
   #inputs {
     margin-right: 1em;
-    max-width: 250px;
     flex-basis: 0;
     flex-grow: 1;
 
     .row {
       display: flex;
-      margin-bottom: 1.5em;
+      margin-bottom: 1em;
       width: 100%;
       label,
       .mdc-select {
@@ -75,9 +70,7 @@ body {
 }
 
 #map {
-  min-height: 200px;
-  flex-basis: 0;
-  flex-grow: 1;
+  height: 200px;
 }
 
 pre {
