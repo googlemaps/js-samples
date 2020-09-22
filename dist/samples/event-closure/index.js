@@ -1,13 +1,13 @@
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
-    center: { lat: -25.363882, lng: 131.044922 }
+    center: { lat: -25.363882, lng: 131.044922 },
   });
   const bounds = {
     north: -25.363882,
     south: -31.203405,
     east: 131.044922,
-    west: 125.244141
+    west: 125.244141,
   };
   // Display the area between the location southWest and northEast.
   map.fitBounds(bounds);
@@ -23,9 +23,9 @@ function initMap() {
     const marker = new google.maps.Marker({
       position: {
         lat: bounds.south + latSpan * Math.random(),
-        lng: bounds.west + lngSpan * Math.random()
+        lng: bounds.west + lngSpan * Math.random(),
       },
-      map: map
+      map: map,
     });
     attachSecretMessage(marker, secretMessages[i]);
   }
@@ -35,7 +35,7 @@ function initMap() {
 // marker is clicked, the info window will open with the secret message.
 function attachSecretMessage(marker, secretMessage) {
   const infowindow = new google.maps.InfoWindow({
-    content: secretMessage
+    content: secretMessage,
   });
   marker.addListener("click", () => {
     infowindow.open(marker.get("map"), marker);

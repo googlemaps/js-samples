@@ -97,9 +97,9 @@
     var map = new google.maps.Map(document.getElementById("map"), {
       center: {
         lat: 50.064192,
-        lng: -130.605469
+        lng: -130.605469,
       },
-      zoom: 3
+      zoom: 3,
     });
     var card = document.getElementById("pac-card");
     var input = document.getElementById("pac-input");
@@ -108,7 +108,7 @@
     var autocomplete = new google.maps.places.Autocomplete(input); // Set initial restrict to the greater list of countries.
 
     autocomplete.setComponentRestrictions({
-      country: ["us", "pr", "vi", "gu", "mp"]
+      country: ["us", "pr", "vi", "gu", "mp"],
     }); // Specify only the data fields that are needed.
 
     autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
@@ -117,9 +117,9 @@
     infowindow.setContent(infowindowContent);
     var marker = new google.maps.Marker({
       map: map,
-      anchorPoint: new google.maps.Point(0, -29)
+      anchorPoint: new google.maps.Point(0, -29),
     });
-    autocomplete.addListener("place_changed", function() {
+    autocomplete.addListener("place_changed", function () {
       infowindow.close();
       marker.setVisible(false);
       var place = autocomplete.getPlace();
@@ -152,7 +152,7 @@
             "",
           (place.address_components[2] &&
             place.address_components[2].short_name) ||
-            ""
+            "",
         ].join(" ");
       }
 
@@ -165,9 +165,9 @@
 
     function setupClickListener(id, countries) {
       var radioButton = document.getElementById(id);
-      radioButton.addEventListener("click", function() {
+      radioButton.addEventListener("click", function () {
         autocomplete.setComponentRestrictions({
-          country: countries
+          country: countries,
         });
       });
     }
@@ -178,7 +178,7 @@
       "pr",
       "vi",
       "gu",
-      "mp"
+      "mp",
     ]);
   }
 </script>
@@ -186,9 +186,7 @@
 <div id="iframe-contents">
   <div class="pac-card" id="pac-card">
     <div>
-      <div id="title">
-        Countries
-      </div>
+      <div id="title">Countries</div>
       <div id="country-selector" class="pac-controls">
         <input type="radio" name="type" id="changecountry-usa" />
         <label for="changecountry-usa">USA</label>

@@ -2,14 +2,14 @@ function initialize() {
   const mapOptions = {
     zoom: 3,
     center: new google.maps.LatLng(0, -180),
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   };
   const map = new google.maps.Map(document.getElementById("map"), mapOptions);
   const flightPlanCoordinates = [
     new google.maps.LatLng(37.772323, -122.214897),
     new google.maps.LatLng(21.291982, -157.821856),
     new google.maps.LatLng(-18.142599, 178.431),
-    new google.maps.LatLng(-27.46758, 153.027892)
+    new google.maps.LatLng(-27.46758, 153.027892),
   ];
   const flightPath = new google.maps.Polyline({
     path: flightPlanCoordinates,
@@ -17,7 +17,7 @@ function initialize() {
     strokeColor: "#FF0000",
     strokeOpacity: 1.0,
     strokeWeight: 2,
-    map: map
+    map: map,
   });
 
   /**
@@ -43,7 +43,7 @@ function initialize() {
       this.divListener_ = google.maps.event.addDomListener(
         map.getDiv(),
         "mousedown",
-        e => {
+        (e) => {
           if (e.target != deleteMenu.div_) {
             deleteMenu.close();
           }
@@ -101,7 +101,7 @@ function initialize() {
     }
   }
   const deleteMenu = new DeleteMenu();
-  google.maps.event.addListener(flightPath, "rightclick", e => {
+  google.maps.event.addListener(flightPath, "rightclick", (e) => {
     // Check if click was on a vertex control point
     if (e.vertex == undefined) {
       return;

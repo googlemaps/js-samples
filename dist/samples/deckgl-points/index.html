@@ -46,9 +46,9 @@
         var map = new google.maps.Map(document.getElementById("map"), {
           center: {
             lat: 40,
-            lng: -110
+            lng: -110,
           },
-          zoom: 4
+          zoom: 4,
         });
         var deckOverlay = new deck.GoogleMapsOverlay({
           layers: [
@@ -74,14 +74,14 @@
                   enter: function enter(_) {
                     return [0];
                   },
-                  duration: 10000
-                }
+                  duration: 10000,
+                },
               },
               onDataLoad: function onDataLoad(_) {
                 progress.done(); // hides progress bar
-              }
-            })
-          ]
+              },
+            }),
+          ],
         });
         deckOverlay.setMap(map);
       }
@@ -110,7 +110,7 @@
       progress = new mdc.linearProgress.MDCLinearProgress(progressDiv);
       progress.open();
       progress.determinate = false;
-      progress.done = function() {
+      progress.done = function () {
         progress.close();
         progressDiv.remove();
       };

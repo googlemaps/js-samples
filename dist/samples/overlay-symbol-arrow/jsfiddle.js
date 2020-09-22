@@ -7,33 +7,33 @@ function initMap() {
     zoom: 6,
     center: {
       lat: 20.291,
-      lng: 153.027
+      lng: 153.027,
     },
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   }); // Define a symbol using a predefined path (an arrow)
   // supplied by the Google Maps JavaScript API.
 
   const lineSymbol = {
-    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+    path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
   }; // Create the polyline and add the symbol via the 'icons' property.
 
   const line = new google.maps.Polyline({
     path: [
       {
         lat: 22.291,
-        lng: 153.027
+        lng: 153.027,
       },
       {
         lat: 18.291,
-        lng: 153.027
-      }
+        lng: 153.027,
+      },
     ],
     icons: [
       {
         icon: lineSymbol,
-        offset: "100%"
-      }
+        offset: "100%",
+      },
     ],
-    map: map
+    map: map,
   });
 }

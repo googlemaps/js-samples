@@ -54,7 +54,7 @@
         // set up the map
         map = new google.maps.Map(document.getElementById("map"), {
           center: new google.maps.LatLng(0, 0),
-          zoom: 2
+          zoom: 2,
         });
       }
 
@@ -70,7 +70,7 @@
 
       function zoom(map) {
         var bounds = new google.maps.LatLngBounds();
-        map.data.forEach(function(feature) {
+        map.data.forEach(function (feature) {
           processPoints(feature.getGeometry(), bounds.extend, bounds);
         });
         map.fitBounds(bounds);
@@ -90,7 +90,7 @@
         } else if (geometry instanceof google.maps.Data.Point) {
           callback.call(thisArg, geometry.get());
         } else {
-          geometry.getArray().forEach(function(g) {
+          geometry.getArray().forEach(function (g) {
             processPoints(g, callback, thisArg);
           });
         }
@@ -130,11 +130,11 @@
           var _loop = function _loop(i, file) {
             var reader = new FileReader();
 
-            reader.onload = function(e) {
+            reader.onload = function (e) {
               loadGeoJsonString(reader.result);
             };
 
-            reader.onerror = function(e) {
+            reader.onerror = function (e) {
               console.error("reading failed");
             };
 

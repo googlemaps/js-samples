@@ -46,9 +46,9 @@
         const map = new google.maps.Map(document.getElementById("map"), {
           center: {
             lat: 40,
-            lng: -110
+            lng: -110,
           },
-          zoom: 4
+          zoom: 4,
         });
         const deckOverlay = new deck.GoogleMapsOverlay({
           layers: [
@@ -61,7 +61,7 @@
               pointRadiusMaxPixels: 200,
               opacity: 0.4,
               pointRadiusScale: 0.3,
-              getRadius: f => Math.pow(10, f.properties.mag),
+              getRadius: (f) => Math.pow(10, f.properties.mag),
               getFillColor: [255, 70, 30, 180],
               autoHighlight: true,
               transitions: {
@@ -69,15 +69,15 @@
                   type: "spring",
                   stiffness: 0.1,
                   damping: 0.15,
-                  enter: _ => [0],
-                  duration: 10000
-                }
+                  enter: (_) => [0],
+                  duration: 10000,
+                },
               },
-              onDataLoad: _ => {
+              onDataLoad: (_) => {
                 progress.done(); // hides progress bar
-              }
-            })
-          ]
+              },
+            }),
+          ],
         });
         deckOverlay.setMap(map);
       }
@@ -106,7 +106,7 @@
       progress = new mdc.linearProgress.MDCLinearProgress(progressDiv);
       progress.open();
       progress.determinate = false;
-      progress.done = function() {
+      progress.done = function () {
         progress.close();
         progressDiv.remove();
       };

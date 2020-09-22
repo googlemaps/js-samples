@@ -4,16 +4,16 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 0,
-      lng: 0
+      lng: 0,
     },
     zoom: 1,
     streetViewControl: false,
     mapTypeControlOptions: {
-      mapTypeIds: ["moon"]
-    }
+      mapTypeIds: ["moon"],
+    },
   });
   const moonMapType = new google.maps.ImageMapType({
-    getTileUrl: function(coord, zoom) {
+    getTileUrl: function (coord, zoom) {
       const normalizedCoord = getNormalizedCoord(coord, zoom);
 
       if (!normalizedCoord) {
@@ -36,7 +36,7 @@ function initMap() {
     maxZoom: 9,
     minZoom: 0,
     radius: 1738000,
-    name: "Moon"
+    name: "Moon",
   });
   map.mapTypes.set("moon", moonMapType);
   map.setMapTypeId("moon");
@@ -60,6 +60,6 @@ function getNormalizedCoord(coord, zoom) {
 
   return {
     x: x,
-    y: y
+    y: y,
   };
 }

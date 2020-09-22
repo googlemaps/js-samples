@@ -9,21 +9,21 @@ function getReceptionPanoramaData() {
     location: {
       pano: "reception",
       description: "Google Sydney - Reception",
-      latLng: new google.maps.LatLng(-33.86684, 151.19583)
+      latLng: new google.maps.LatLng(-33.86684, 151.19583),
     },
     links: [
       {
         heading: 195,
         description: "Exit",
-        pano: outsideGoogle.location.pano
-      }
+        pano: outsideGoogle.location.pano,
+      },
     ],
     copyright: "Imagery (c) 2010 Google",
     tiles: {
       tileSize: new google.maps.Size(1024, 512),
       worldSize: new google.maps.Size(2048, 1024),
       centerHeading: 105,
-      getTileUrl: function(pano, zoom, tileX, tileY) {
+      getTileUrl: function (pano, zoom, tileX, tileY) {
         return (
           "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
           "panoReception1024-" +
@@ -34,8 +34,8 @@ function getReceptionPanoramaData() {
           tileY +
           ".jpg"
         );
-      }
-    }
+      },
+    },
   };
 }
 
@@ -43,11 +43,11 @@ function initPanorama() {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view"),
     {
-      pano: outsideGoogle.location.pano
+      pano: outsideGoogle.location.pano,
     }
   ); // Register a provider for the custom panorama.
 
-  panorama.registerPanoProvider(pano => {
+  panorama.registerPanoProvider((pano) => {
     if (pano === "reception") {
       return getReceptionPanoramaData();
     }
@@ -60,7 +60,7 @@ function initPanorama() {
       panorama.getLinks().push({
         description: "Google Sydney",
         heading: 25,
-        pano: "reception"
+        pano: "reception",
       });
     }
   });
@@ -74,8 +74,8 @@ function initMap() {
     {
       location: {
         lat: -33.867386,
-        lng: 151.195767
-      }
+        lng: 151.195767,
+      },
     },
     (result, status) => {
       if (status === google.maps.StreetViewStatus.OK && result) {

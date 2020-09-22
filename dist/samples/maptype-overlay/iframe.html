@@ -55,7 +55,7 @@
    *
    * Try panning and zooming the map to see how the coordinates change.
    */
-  var CoordMapType = /*#__PURE__*/ (function() {
+  var CoordMapType = /*#__PURE__*/ (function () {
     function CoordMapType(tileSize) {
       _classCallCheck(this, CoordMapType);
 
@@ -75,12 +75,12 @@
           div.style.borderWidth = "1px";
           div.style.borderColor = "#AAAAAA";
           return div;
-        }
+        },
       },
       {
         key: "releaseTile",
-        value: function releaseTile(tile) {}
-      }
+        value: function releaseTile(tile) {},
+      },
     ]);
 
     return CoordMapType;
@@ -91,8 +91,8 @@
       zoom: 10,
       center: {
         lat: 41.85,
-        lng: -87.65
-      }
+        lng: -87.65,
+      },
     }); // Insert this overlay map type as the first overlay map type at
     // position 0. Note that all overlay map types appear on top of
     // their parent base map.

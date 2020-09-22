@@ -3,7 +3,7 @@ let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 20, lng: -160 },
-    zoom: 2
+    zoom: 2,
   });
   // Get the earthquake data (JSONP format)
   // This feed is a copy from the USGS feed, you can find the originals here:
@@ -15,7 +15,7 @@ function initMap() {
   );
   document.getElementsByTagName("head")[0].appendChild(script);
   // Add a basic style.
-  map.data.setStyle(feature => {
+  map.data.setStyle((feature) => {
     const mag = Math.exp(parseFloat(feature.getProperty("mag"))) * 0.1;
     return /** @type {google.maps.Data.StyleOptions} */ {
       icon: {
@@ -23,8 +23,8 @@ function initMap() {
         scale: mag,
         fillColor: "#f00",
         fillOpacity: 0.35,
-        strokeWeight: 0
-      }
+        strokeWeight: 0,
+      },
     };
   });
 }

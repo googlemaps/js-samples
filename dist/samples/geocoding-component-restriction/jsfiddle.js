@@ -6,8 +6,8 @@ function initMap() {
     zoom: 8,
     center: {
       lat: -33.865,
-      lng: 151.209
-    }
+      lng: 151.209,
+    },
   });
   document.getElementById("submit").addEventListener("click", () => {
     geocodeAddress(geocoder, map);
@@ -19,15 +19,15 @@ function geocodeAddress(geocoder, map) {
     {
       componentRestrictions: {
         country: "AU",
-        postalCode: "2000"
-      }
+        postalCode: "2000",
+      },
     },
     (results, status) => {
       if (status === "OK") {
         map.setCenter(results[0].geometry.location);
         new google.maps.Marker({
           map,
-          position: results[0].geometry.location
+          position: results[0].geometry.location,
         });
       } else {
         window.alert(

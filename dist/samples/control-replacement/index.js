@@ -4,7 +4,7 @@ function initMap() {
   map = new google.maps.Map(document.querySelector("#map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
-    disableDefaultUI: true
+    disableDefaultUI: true,
   });
   initZoomControl(map);
   initMapTypeControl(map);
@@ -12,11 +12,11 @@ function initMap() {
 }
 
 function initZoomControl(map) {
-  document.querySelector(".zoom-control-in").onclick = function() {
+  document.querySelector(".zoom-control-in").onclick = function () {
     map.setZoom(map.getZoom() + 1);
   };
 
-  document.querySelector(".zoom-control-out").onclick = function() {
+  document.querySelector(".zoom-control-out").onclick = function () {
     map.setZoom(map.getZoom() - 1);
   };
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
@@ -27,13 +27,13 @@ function initZoomControl(map) {
 function initMapTypeControl(map) {
   const mapTypeControlDiv = document.querySelector(".maptype-control");
 
-  document.querySelector(".maptype-control-map").onclick = function() {
+  document.querySelector(".maptype-control-map").onclick = function () {
     mapTypeControlDiv.classList.add("maptype-control-is-map");
     mapTypeControlDiv.classList.remove("maptype-control-is-satellite");
     map.setMapTypeId("roadmap");
   };
 
-  document.querySelector(".maptype-control-satellite").onclick = function() {
+  document.querySelector(".maptype-control-satellite").onclick = function () {
     mapTypeControlDiv.classList.remove("maptype-control-is-map");
     mapTypeControlDiv.classList.add("maptype-control-is-satellite");
     map.setMapTypeId("hybrid");
@@ -46,7 +46,7 @@ function initFullscreenControl(map) {
   const fullscreenControl = document.querySelector(".fullscreen-control");
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
 
-  fullscreenControl.onclick = function() {
+  fullscreenControl.onclick = function () {
     if (isFullscreen(elementToSendFullscreen)) {
       exitFullscreen();
     } else {
@@ -54,7 +54,7 @@ function initFullscreenControl(map) {
     }
   };
 
-  document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function() {
+  document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function () {
     if (isFullscreen(elementToSendFullscreen)) {
       fullscreenControl.classList.add("is-fullscreen");
     } else {

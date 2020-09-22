@@ -30,7 +30,7 @@ function getCustomPanorama(pano) {
     return {
       location: {
         pano: "reception",
-        description: "Google Sydney - Reception"
+        description: "Google Sydney - Reception",
       },
       links: [],
       // The text for the copyright control.
@@ -42,8 +42,8 @@ function getCustomPanorama(pano) {
         // The heading in degrees at the origin of the panorama
         // tile set.
         centerHeading: 105,
-        getTileUrl: getCustomPanoramaTileUrl
-      }
+        getTileUrl: getCustomPanoramaTileUrl,
+      },
     };
   }
 

@@ -9,10 +9,10 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
     center: haightAshbury,
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   });
   // This event listener will call addMarker() when the map is clicked.
-  map.addListener("click", event => {
+  map.addListener("click", (event) => {
     addMarker(event.latLng);
   });
   // Adds a marker at the center of the map.
@@ -23,7 +23,7 @@ function initMap() {
 function addMarker(location) {
   const marker = new google.maps.Marker({
     position: location,
-    map: map
+    map: map,
   });
   markers.push(marker);
 }

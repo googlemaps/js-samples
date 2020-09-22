@@ -4,7 +4,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 2,
     center: { lat: -33.865427, lng: 151.196123 },
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   });
   // Create a <script> tag and set the USGS URL as the source.
   const script = document.createElement("script");
@@ -13,10 +13,10 @@ function initMap() {
   script.src =
     "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
   document.getElementsByTagName("head")[0].appendChild(script);
-  map.data.setStyle(feature => {
+  map.data.setStyle((feature) => {
     const magnitude = feature.getProperty("mag");
     return {
-      icon: getCircle(magnitude)
+      icon: getCircle(magnitude),
     };
   });
 }
@@ -28,7 +28,7 @@ function getCircle(magnitude) {
     fillOpacity: 0.2,
     scale: Math.pow(2, magnitude) / 2,
     strokeColor: "white",
-    strokeWeight: 0.5
+    strokeWeight: 0.5,
   };
 }
 

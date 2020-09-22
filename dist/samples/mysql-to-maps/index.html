@@ -13,26 +13,26 @@
 
       var customLabel = {
         restaurant: {
-          label: "R"
+          label: "R",
         },
         bar: {
-          label: "B"
-        }
+          label: "B",
+        },
       };
 
       function initMap() {
         var map = new google.maps.Map(document.getElementById("map"), {
           center: new google.maps.LatLng(-33.863276, 151.207977),
-          zoom: 12
+          zoom: 12,
         });
         var infoWindow = new google.maps.InfoWindow(); // Change this depending on the name of your PHP or XML file
 
         downloadUrl(
           "https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml",
-          function(data) {
+          function (data) {
             var xml = data.responseXML;
             var markers = xml.documentElement.getElementsByTagName("marker");
-            Array.prototype.forEach.call(markers, function(markerElem) {
+            Array.prototype.forEach.call(markers, function (markerElem) {
               var id = markerElem.getAttribute("id");
               var name = markerElem.getAttribute("name");
               var address = markerElem.getAttribute("address");
@@ -53,9 +53,9 @@
               var marker = new google.maps.Marker({
                 map: map,
                 position: point,
-                label: icon.label
+                label: icon.label,
               });
-              marker.addListener("click", function() {
+              marker.addListener("click", function () {
                 infoWindow.setContent(infowincontent);
                 infoWindow.open(map, marker);
               });
@@ -69,7 +69,7 @@
           ? new ActiveXObject("Microsoft.XMLHTTP")
           : new XMLHttpRequest();
 
-        request.onreadystatechange = function() {
+        request.onreadystatechange = function () {
           if (request.readyState == 4) {
             request.onreadystatechange = doNothing;
             callback(request);

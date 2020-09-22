@@ -24,9 +24,9 @@ const initialize = () => {
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 47.609414458375674,
-      lng: -122.33897030353548
+      lng: -122.33897030353548,
     },
-    zoom: 12
+    zoom: 12,
   });
   autocompleteService = new google.maps.places.AutocompleteService();
   placesService = new google.maps.places.PlacesService(map);
@@ -39,7 +39,7 @@ const initialize = () => {
     "autocomplete-type-list"
   );
   ["", "establishment", "geocode", "address", "(cities)", "(regions)"].forEach(
-    type => {
+    (type) => {
       const item = document.createElement("LI");
       item.classList.add("mdc-list-item");
       item.setAttribute("data-value", type);
@@ -64,7 +64,7 @@ const initialize = () => {
 
 const inputChangeCallback = debounce(100, () => {
   const request = {
-    input: inputElement.value
+    input: inputElement.value,
   };
   const bounds = map.getBounds();
 
@@ -96,7 +96,7 @@ const predictionsCallback = (results, status) => {
   responseElement.innerText = JSON.stringify(
     {
       results,
-      status
+      status,
     },
     null,
     2
@@ -106,13 +106,13 @@ const predictionsCallback = (results, status) => {
 const initializeMaterialDesignComponents = () => {
   document
     .querySelectorAll(".mdc-text-field")
-    .forEach(el => new mdc.textField.MDCTextField(el));
+    .forEach((el) => new mdc.textField.MDCTextField(el));
   document
     .querySelectorAll(".mdc-switch")
-    .forEach(el => new mdc.switchControl.MDCSwitch(el));
+    .forEach((el) => new mdc.switchControl.MDCSwitch(el));
   document
     .querySelectorAll(".mdc-select")
-    .forEach(el =>
+    .forEach((el) =>
       new mdc.select.MDCSelect(el).listen(
         "MDCSelect:change",
         inputChangeCallback
@@ -122,7 +122,7 @@ const initializeMaterialDesignComponents = () => {
     document.querySelector(".mdc-tab-bar")
   );
   const contentElements = document.querySelectorAll(".tab-content");
-  tabBar.listen("MDCTabBar:activated", event => {
+  tabBar.listen("MDCTabBar:activated", (event) => {
     document
       .querySelector(".tab-content--active")
       .classList.remove("tab-content--active");

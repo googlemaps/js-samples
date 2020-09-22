@@ -4,7 +4,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 2,
     center: { lat: -33.865427, lng: 151.196123 },
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   });
   // Create a <script> tag and set the USGS URL as the source.
   const script = document.createElement("script");
@@ -26,6 +26,6 @@ function eqfeed_callback(results) {
   const heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
     dissipating: false,
-    map: map
+    map: map,
   });
 }

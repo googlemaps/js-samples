@@ -4,11 +4,11 @@
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.866, lng: 151.196 },
-    zoom: 15
+    zoom: 15,
   });
   const request = {
     placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
-    fields: ["name", "formatted_address", "place_id", "geometry"]
+    fields: ["name", "formatted_address", "place_id", "geometry"],
   };
   const infowindow = new google.maps.InfoWindow();
   const service = new google.maps.places.PlacesService(map);
@@ -16,9 +16,9 @@ function initMap() {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
       const marker = new google.maps.Marker({
         map,
-        position: place.geometry.location
+        position: place.geometry.location,
       });
-      google.maps.event.addListener(marker, "click", function() {
+      google.maps.event.addListener(marker, "click", function () {
         infowindow.setContent(
           "<div><strong>" +
             place.name +

@@ -6,13 +6,13 @@ function initPano() {
     {
       position: {
         lat: 37.869,
-        lng: -122.255
+        lng: -122.255,
       },
       pov: {
         heading: 270,
-        pitch: 0
+        pitch: 0,
       },
-      visible: true
+      visible: true,
     }
   );
   panorama.addListener("pano_changed", () => {

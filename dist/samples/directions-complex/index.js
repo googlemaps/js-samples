@@ -5,7 +5,7 @@ function initMap() {
   // Create a map and center it on Manhattan.
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
-    center: { lat: 40.771, lng: -73.974 }
+    center: { lat: 40.771, lng: -73.974 },
   });
   // Create a renderer for directions and bind it to the map.
   const directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
@@ -21,7 +21,7 @@ function initMap() {
   );
 
   // Listen to change events from the start and end lists.
-  const onChangeHandler = function() {
+  const onChangeHandler = function () {
     calculateAndDisplayRoute(
       directionsRenderer,
       directionsService,
@@ -51,7 +51,7 @@ function calculateAndDisplayRoute(
     {
       origin: document.getElementById("start").value,
       destination: document.getElementById("end").value,
-      travelMode: google.maps.TravelMode.WALKING
+      travelMode: google.maps.TravelMode.WALKING,
     },
     (result, status) => {
       // Route the directions and pass the response to a function to create

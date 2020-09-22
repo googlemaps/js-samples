@@ -24,7 +24,7 @@ function initialize() {
   const mapOptions = {
     zoom: 11,
     center: { lat: 47.46, lng: -122.52 },
-    disableDefaultUI: true
+    disableDefaultUI: true,
   };
   const map = new google.maps.Map(mapDiv, mapOptions);
   const controlText = [
@@ -39,7 +39,7 @@ function initialize() {
     ["LEFT_BOTTOM", google.maps.ControlPosition.LEFT_BOTTOM],
     ["BOTTOM_CENTER", google.maps.ControlPosition.BOTTOM_CENTER],
     ["BOTTOM_RIGHT", google.maps.ControlPosition.BOTTOM_RIGHT],
-    ["RIGHT_BOTTOM", google.maps.ControlPosition.RIGHT_BOTTOM]
+    ["RIGHT_BOTTOM", google.maps.ControlPosition.RIGHT_BOTTOM],
   ];
 
   for (let i = 0; i < controlText.length; i++) {

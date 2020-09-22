@@ -11,12 +11,12 @@ function initMap() {
     { lat: 36.433, lng: -117.951 },
     { lat: 36.588, lng: -116.943 },
     { lat: 36.34, lng: -117.468 },
-    { lat: 36.24, lng: -116.832 }
+    { lat: 36.24, lng: -116.832 },
   ]; // Badwater, Death Valley
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
     center: path[1],
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   });
   // Create an ElevationService.
   const elevator = new google.maps.ElevationService();
@@ -30,7 +30,7 @@ function displayPathElevation(path, elevator, map) {
     path: path,
     strokeColor: "#0000CC",
     strokeOpacity: 0.4,
-    map: map
+    map: map,
   });
   // Create a PathElevationRequest object using this array.
   // Ask for 256 samples along that path.
@@ -38,7 +38,7 @@ function displayPathElevation(path, elevator, map) {
   elevator.getElevationAlongPath(
     {
       path: path,
-      samples: 256
+      samples: 256,
     },
     plotElevation
   );
@@ -73,6 +73,6 @@ function plotElevation(elevations, status) {
     height: 150,
     legend: "none",
 
-    titleY: "Elevation (m)"
+    titleY: "Elevation (m)",
   });
 }

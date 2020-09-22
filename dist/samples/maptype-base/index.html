@@ -54,7 +54,7 @@
        *
        * Try panning and zooming the map to see how the coordinates change.
        */
-      var CoordMapType = /*#__PURE__*/ (function() {
+      var CoordMapType = /*#__PURE__*/ (function () {
         function CoordMapType(tileSize) {
           _classCallCheck(this, CoordMapType);
 
@@ -78,12 +78,12 @@
               div.style.borderColor = "#AAAAAA";
               div.style.backgroundColor = "#E5E3DF";
               return div;
-            }
+            },
           },
           {
             key: "releaseTile",
-            value: function releaseTile(tile) {}
-          }
+            value: function releaseTile(tile) {},
+          },
         ]);
 
         return CoordMapType;
@@ -94,19 +94,19 @@
           zoom: 10,
           center: {
             lat: 41.85,
-            lng: -87.65
+            lng: -87.65,
           },
           streetViewControl: false,
           mapTypeId: "coordinate",
           mapTypeControlOptions: {
             mapTypeIds: ["coordinate", "roadmap"],
-            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-          }
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+          },
         });
-        map.addListener("maptypeid_changed", function() {
+        map.addListener("maptypeid_changed", function () {
           var showStreetViewControl = map.getMapTypeId() !== "coordinate";
           map.setOptions({
-            streetViewControl: showStreetViewControl
+            streetViewControl: showStreetViewControl,
           });
         }); // Now attach the coordinate map type to the map's registry.
 

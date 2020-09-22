@@ -141,7 +141,7 @@
       }
 
       window.clearTimeout(timeout);
-      timeout = window.setTimeout(function() {
+      timeout = window.setTimeout(function () {
         return fn.apply(void 0, args);
       }, delay);
     };
@@ -153,9 +153,9 @@
     map = new google.maps.Map(document.getElementById("map"), {
       center: {
         lat: 47.609414458375674,
-        lng: -122.33897030353548
+        lng: -122.33897030353548,
       },
-      zoom: 12
+      zoom: 12,
     });
     autocompleteService = new google.maps.places.AutocompleteService();
     placesService = new google.maps.places.PlacesService(map);
@@ -173,8 +173,8 @@
       "geocode",
       "address",
       "(cities)",
-      "(regions)"
-    ].forEach(function(type) {
+      "(regions)",
+    ].forEach(function (type) {
       var item = document.createElement("LI");
       item.classList.add("mdc-list-item");
       item.setAttribute("data-value", type);
@@ -186,7 +186,7 @@
     });
     inputElement.addEventListener("input", inputChangeCallback);
     biasToMapSwitchElement.addEventListener("change", inputChangeCallback);
-    map.addListener("bounds_changed", function() {
+    map.addListener("bounds_changed", function () {
       if (biasToMapSwitchElement.checked) {
         inputChangeCallback();
       }
@@ -196,9 +196,9 @@
     inputChangeCallback();
   };
 
-  var inputChangeCallback = debounce(100, function() {
+  var inputChangeCallback = debounce(100, function () {
     var request = {
-      input: inputElement.value
+      input: inputElement.value,
     };
     var bounds = map.getBounds();
 
@@ -230,7 +230,7 @@
     responseElement.innerText = JSON.stringify(
       {
         results: results,
-        status: status
+        status: status,
       },
       null,
       2
@@ -238,13 +238,13 @@
   };
 
   var initializeMaterialDesignComponents = function initializeMaterialDesignComponents() {
-    document.querySelectorAll(".mdc-text-field").forEach(function(el) {
+    document.querySelectorAll(".mdc-text-field").forEach(function (el) {
       return new mdc.textField.MDCTextField(el);
     });
-    document.querySelectorAll(".mdc-switch").forEach(function(el) {
+    document.querySelectorAll(".mdc-switch").forEach(function (el) {
       return new mdc.switchControl.MDCSwitch(el);
     });
-    document.querySelectorAll(".mdc-select").forEach(function(el) {
+    document.querySelectorAll(".mdc-select").forEach(function (el) {
       return new mdc.select.MDCSelect(el).listen(
         "MDCSelect:change",
         inputChangeCallback
@@ -254,7 +254,7 @@
       document.querySelector(".mdc-tab-bar")
     );
     var contentElements = document.querySelectorAll(".tab-content");
-    tabBar.listen("MDCTabBar:activated", function(event) {
+    tabBar.listen("MDCTabBar:activated", function (event) {
       document
         .querySelector(".tab-content--active")
         .classList.remove("tab-content--active");

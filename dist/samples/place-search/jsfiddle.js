@@ -12,11 +12,11 @@ function initMap() {
   infowindow = new google.maps.InfoWindow();
   map = new google.maps.Map(document.getElementById("map"), {
     center: sydney,
-    zoom: 15
+    zoom: 15,
   });
   const request = {
     query: "Museum of Contemporary Art Australia",
-    fields: ["name", "geometry"]
+    fields: ["name", "geometry"],
   };
   service = new google.maps.places.PlacesService(map);
   service.findPlaceFromQuery(request, (results, status) => {
@@ -33,7 +33,7 @@ function initMap() {
 function createMarker(place) {
   const marker = new google.maps.Marker({
     map,
-    position: place.geometry.location
+    position: place.geometry.location,
   });
   google.maps.event.addListener(marker, "click", () => {
     infowindow.setContent(place.name);

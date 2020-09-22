@@ -3,7 +3,7 @@
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 40, lng: -110 },
-    zoom: 4
+    zoom: 4,
   });
 
   const deckOverlay = new deck.GoogleMapsOverlay({
@@ -17,7 +17,7 @@ function initMap() {
         pointRadiusMaxPixels: 200,
         opacity: 0.4,
         pointRadiusScale: 0.3,
-        getRadius: f => Math.pow(10, f.properties.mag),
+        getRadius: (f) => Math.pow(10, f.properties.mag),
         getFillColor: [255, 70, 30, 180],
         autoHighlight: true,
         transitions: {
@@ -25,15 +25,15 @@ function initMap() {
             type: "spring",
             stiffness: 0.1,
             damping: 0.15,
-            enter: _ => [0],
-            duration: 10000
-          }
+            enter: (_) => [0],
+            duration: 10000,
+          },
         },
-        onDataLoad: _ => {
+        onDataLoad: (_) => {
           progress.done(); // hides progress bar
-        }
-      })
-    ]
+        },
+      }),
+    ],
   });
   deckOverlay.setMap(map);
 }

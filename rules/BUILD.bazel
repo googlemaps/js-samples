@@ -23,13 +23,7 @@ nodejs_binary(
 
 nodejs_binary(
     name = "prettier",
-    data = [
-        "@npm//:node_modules/prettier/parser-babylon.js",
-        "@npm//:node_modules/prettier/parser-html.js",
-        "@npm//:node_modules/prettier/parser-postcss.js",
-        "@npm//:node_modules/prettier/parser-typescript.js",
-        "@npm//:node_modules/prettier/third-party.js",
-    ],
+    node_modules = "@npm//:node_modules",
     entry_point = "@npm//:node_modules/prettier/bin-prettier.js",
     visibility = ["//visibility:public"],
 )

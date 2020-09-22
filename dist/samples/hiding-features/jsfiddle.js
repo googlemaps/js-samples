@@ -6,10 +6,10 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: -33.86,
-      lng: 151.209
+      lng: 151.209,
     },
     zoom: 13,
-    mapTypeControl: false
+    mapTypeControl: false,
   }); // Add controls to the map, allowing users to hide/show features.
 
   const styleControl = document.getElementById("style-selector-control");
@@ -17,12 +17,12 @@ function initMap() {
 
   document.getElementById("hide-poi").addEventListener("click", () => {
     map.setOptions({
-      styles: styles["hide"]
+      styles: styles["hide"],
     });
   });
   document.getElementById("show-poi").addEventListener("click", () => {
     map.setOptions({
-      styles: styles["default"]
+      styles: styles["default"],
     });
   });
 }
@@ -34,18 +34,18 @@ const styles = {
       featureType: "poi.business",
       stylers: [
         {
-          visibility: "off"
-        }
-      ]
+          visibility: "off",
+        },
+      ],
     },
     {
       featureType: "transit",
       elementType: "labels.icon",
       stylers: [
         {
-          visibility: "off"
-        }
-      ]
-    }
-  ]
+          visibility: "off",
+        },
+      ],
+    },
+  ],
 };

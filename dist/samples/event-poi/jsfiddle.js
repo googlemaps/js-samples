@@ -3,11 +3,11 @@
 function initMap() {
   const origin = {
     lat: -33.871,
-    lng: 151.197
+    lng: 151.197,
   };
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 18,
-    center: origin
+    center: origin,
   });
   new ClickEventHandler(map, origin);
 }
@@ -52,9 +52,9 @@ class ClickEventHandler {
       {
         origin: this.origin,
         destination: {
-          placeId: placeId
+          placeId: placeId,
         },
-        travelMode: google.maps.TravelMode.WALKING
+        travelMode: google.maps.TravelMode.WALKING,
       },
       (response, status) => {
         if (status === "OK") {
@@ -70,7 +70,7 @@ class ClickEventHandler {
     const me = this;
     this.placesService.getDetails(
       {
-        placeId: placeId
+        placeId: placeId,
       },
       (place, status) => {
         if (status === "OK") {

@@ -97,14 +97,14 @@
           mapTypeControl: false,
           center: {
             lat: -33.8688,
-            lng: 151.2195
+            lng: 151.2195,
           },
-          zoom: 13
+          zoom: 13,
         });
         new AutocompleteDirectionsHandler(map);
       }
 
-      var AutocompleteDirectionsHandler = /*#__PURE__*/ (function() {
+      var AutocompleteDirectionsHandler = /*#__PURE__*/ (function () {
         function AutocompleteDirectionsHandler(map) {
           _classCallCheck(this, AutocompleteDirectionsHandler);
 
@@ -161,12 +161,12 @@
               var _this = this;
 
               var radioButton = document.getElementById(id);
-              radioButton.addEventListener("click", function() {
+              radioButton.addEventListener("click", function () {
                 _this.travelMode = mode;
 
                 _this.route();
               });
-            }
+            },
           },
           {
             key: "setupPlaceChangedListener",
@@ -174,7 +174,7 @@
               var _this2 = this;
 
               autocomplete.bindTo("bounds", this.map);
-              autocomplete.addListener("place_changed", function() {
+              autocomplete.addListener("place_changed", function () {
                 var place = autocomplete.getPlace();
 
                 if (!place.place_id) {
@@ -192,7 +192,7 @@
 
                 _this2.route();
               });
-            }
+            },
           },
           {
             key: "route",
@@ -205,14 +205,14 @@
               this.directionsService.route(
                 {
                   origin: {
-                    placeId: this.originPlaceId
+                    placeId: this.originPlaceId,
                   },
                   destination: {
-                    placeId: this.destinationPlaceId
+                    placeId: this.destinationPlaceId,
                   },
-                  travelMode: this.travelMode
+                  travelMode: this.travelMode,
                 },
-                function(response, status) {
+                function (response, status) {
                   if (status === "OK") {
                     me.directionsRenderer.setDirections(response);
                   } else {
@@ -220,8 +220,8 @@
                   }
                 }
               );
-            }
-          }
+            },
+          },
         ]);
 
         return AutocompleteDirectionsHandler;

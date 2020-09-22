@@ -6,10 +6,10 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 20,
-      lng: -160
+      lng: -160,
     },
     zoom: 2,
-    styles: mapStyle
+    styles: mapStyle,
   });
   map.data.setStyle(styleFeature); // Get the earthquake data (JSONP format)
   // This feed is a copy from the USGS feed, you can find the originals here:
@@ -46,9 +46,9 @@ function styleFeature(feature) {
       fillColor: color,
       fillOpacity: 2 / feature.getProperty("mag"),
       // while an exponent would technically be correct, quadratic looks nicer
-      scale: Math.pow(feature.getProperty("mag"), 2)
+      scale: Math.pow(feature.getProperty("mag"), 2),
     },
-    zIndex: Math.floor(feature.getProperty("mag"))
+    zIndex: Math.floor(feature.getProperty("mag")),
   };
 }
 
@@ -69,44 +69,44 @@ const mapStyle = [
     elementType: "all",
     stylers: [
       {
-        visibility: "off"
-      }
-    ]
+        visibility: "off",
+      },
+    ],
   },
   {
     featureType: "landscape",
     elementType: "geometry",
     stylers: [
       {
-        visibility: "on"
+        visibility: "on",
       },
       {
-        color: "#fcfcfc"
-      }
-    ]
+        color: "#fcfcfc",
+      },
+    ],
   },
   {
     featureType: "water",
     elementType: "labels",
     stylers: [
       {
-        visibility: "off"
-      }
-    ]
+        visibility: "off",
+      },
+    ],
   },
   {
     featureType: "water",
     elementType: "geometry",
     stylers: [
       {
-        visibility: "on"
+        visibility: "on",
       },
       {
-        hue: "#5f94ff"
+        hue: "#5f94ff",
       },
       {
-        lightness: 60
-      }
-    ]
-  }
+        lightness: 60,
+      },
+    ],
+  },
 ];

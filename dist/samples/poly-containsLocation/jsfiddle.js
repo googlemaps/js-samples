@@ -7,28 +7,28 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 24.886,
-      lng: -70.269
+      lng: -70.269,
     },
-    zoom: 5
+    zoom: 5,
   });
   const triangleCoords = [
     {
       lat: 25.774,
-      lng: -80.19
+      lng: -80.19,
     },
     {
       lat: 18.466,
-      lng: -66.118
+      lng: -66.118,
     },
     {
       lat: 32.321,
-      lng: -64.757
-    }
+      lng: -64.757,
+    },
   ];
   const bermudaTriangle = new google.maps.Polygon({
-    paths: triangleCoords
+    paths: triangleCoords,
   });
-  google.maps.event.addListener(map, "click", e => {
+  google.maps.event.addListener(map, "click", (e) => {
     const resultColor = google.maps.geometry.poly.containsLocation(
       e.latLng,
       bermudaTriangle
@@ -50,8 +50,8 @@ function initMap() {
         fillOpacity: 0.2,
         strokeColor: "white",
         strokeWeight: 0.5,
-        scale: 10
-      }
+        scale: 10,
+      },
     });
   });
 }

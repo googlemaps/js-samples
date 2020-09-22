@@ -44,7 +44,7 @@
     return Constructor;
   }
 
-  var PuzzleDemo = /*#__PURE__*/ (function() {
+  var PuzzleDemo = /*#__PURE__*/ (function () {
     function PuzzleDemo(map) {
       _classCallCheck(this, PuzzleDemo);
 
@@ -95,7 +95,7 @@
           difficultyTitleDiv.innerText = "DIFFICULTY:";
           difficultyTitleDiv.style.fontWeight = "800";
           var difficultySelect = document.createElement("select");
-          ["Easy", "Moderate", "Hard", "Extreme"].forEach(function(level) {
+          ["Easy", "Moderate", "Hard", "Extreme"].forEach(function (level) {
             var option = document.createElement("option");
             option.value = level.toLowerCase();
             option.innerText = level;
@@ -105,7 +105,7 @@
             "border: 2px solid lightgrey; background-color: white; color: #4275f4;" +
             "padding: 6px;";
 
-          difficultySelect.onchange = function() {
+          difficultySelect.onchange = function () {
             _this.setDifficulty_(difficultySelect.value);
 
             _this.resetGame_();
@@ -128,7 +128,7 @@
           this.map_.controls[google.maps.ControlPosition.TOP_LEFT].push(
             menuDiv
           );
-        }
+        },
       },
       {
         key: "render",
@@ -138,7 +138,7 @@
           }
 
           this.start_();
-        }
+        },
       },
       {
         key: "loadData_",
@@ -147,7 +147,7 @@
 
           var xmlhttpRequest = new XMLHttpRequest();
 
-          xmlhttpRequest.onreadystatechange = function() {
+          xmlhttpRequest.onreadystatechange = function () {
             if (
               xmlhttpRequest.status != 200 ||
               xmlhttpRequest.readyState != XMLHttpRequest.DONE
@@ -163,7 +163,7 @@
             true
           );
           xmlhttpRequest.send(null);
-        }
+        },
       },
       {
         key: "loadDataComplete_",
@@ -171,7 +171,7 @@
           this.dataLoaded_ = true;
           this.countries_ = data;
           this.start_();
-        }
+        },
         /**
          * @param {string} difficulty
          * @private
@@ -185,7 +185,7 @@
           if (this.map_) {
             this.setDifficultyStyle_();
           }
-        }
+        },
       },
       {
         key: "setDifficultyStyle_",
@@ -195,138 +195,138 @@
               {
                 stylers: [
                   {
-                    visibility: "off"
-                  }
-                ]
+                    visibility: "off",
+                  },
+                ],
               },
               {
                 featureType: "water",
                 stylers: [
                   {
-                    visibility: "on"
+                    visibility: "on",
                   },
                   {
-                    color: "#d4d4d4"
-                  }
-                ]
+                    color: "#d4d4d4",
+                  },
+                ],
               },
               {
                 featureType: "landscape",
                 stylers: [
                   {
-                    visibility: "on"
+                    visibility: "on",
                   },
                   {
-                    color: "#e5e3df"
-                  }
-                ]
+                    color: "#e5e3df",
+                  },
+                ],
               },
               {
                 featureType: "administrative.country",
                 elementType: "labels",
                 stylers: [
                   {
-                    visibility: "on"
-                  }
-                ]
+                    visibility: "on",
+                  },
+                ],
               },
               {
                 featureType: "administrative.country",
                 elementType: "geometry",
                 stylers: [
                   {
-                    visibility: "on"
+                    visibility: "on",
                   },
                   {
-                    weight: 1.3
-                  }
-                ]
-              }
+                    weight: 1.3,
+                  },
+                ],
+              },
             ],
             moderate: [
               {
                 stylers: [
                   {
-                    visibility: "off"
-                  }
-                ]
+                    visibility: "off",
+                  },
+                ],
               },
               {
                 featureType: "water",
                 stylers: [
                   {
-                    visibility: "on"
+                    visibility: "on",
                   },
                   {
-                    color: "#d4d4d4"
-                  }
-                ]
+                    color: "#d4d4d4",
+                  },
+                ],
               },
               {
                 featureType: "landscape",
                 stylers: [
                   {
-                    visibility: "on"
+                    visibility: "on",
                   },
                   {
-                    color: "#e5e3df"
-                  }
-                ]
+                    color: "#e5e3df",
+                  },
+                ],
               },
               {
                 featureType: "administrative.country",
                 elementType: "labels",
                 stylers: [
                   {
-                    visibility: "on"
-                  }
-                ]
-              }
+                    visibility: "on",
+                  },
+                ],
+              },
             ],
             hard: [
               {
                 stylers: [
                   {
-                    visibility: "off"
-                  }
-                ]
+                    visibility: "off",
+                  },
+                ],
               },
               {
                 featureType: "water",
                 stylers: [
                   {
-                    visibility: "on"
+                    visibility: "on",
                   },
                   {
-                    color: "#d4d4d4"
-                  }
-                ]
+                    color: "#d4d4d4",
+                  },
+                ],
               },
               {
                 featureType: "landscape",
                 stylers: [
                   {
-                    visibility: "on"
+                    visibility: "on",
                   },
                   {
-                    color: "#e5e3df"
-                  }
-                ]
-              }
+                    color: "#e5e3df",
+                  },
+                ],
+              },
             ],
             extreme: [
               {
                 elementType: "geometry",
                 stylers: [
                   {
-                    visibility: "off"
-                  }
-                ]
-              }
-            ]
+                    visibility: "off",
+                  },
+                ],
+              },
+            ],
           };
           this.map_.set("styles", styles[this.difficulty_]);
-        }
+        },
       },
       {
         key: "resetGame_",
@@ -336,7 +336,7 @@
           this.setCount_();
           this.startClock_();
           this.addRandomCountries_();
-        }
+        },
       },
       {
         key: "setCount_",
@@ -346,13 +346,13 @@
           if (this.count_ == this.NUM_PIECES_) {
             this.stopClock_();
           }
-        }
+        },
       },
       {
         key: "stopClock_",
         value: function stopClock_() {
           window.clearInterval(this.timer_);
-        }
+        },
       },
       {
         key: "startClock_",
@@ -361,18 +361,18 @@
           var timeDiv = this.timeDiv_;
           if (timeDiv) timeDiv.textContent = "0.0 seconds";
           var t = new Date();
-          this.timer_ = window.setInterval(function() {
+          this.timer_ = window.setInterval(function () {
             var diff = new Date().getTime() - t.getTime();
             if (timeDiv)
               timeDiv.textContent = (diff / 1000).toFixed(2) + " seconds";
           }, 100);
-        }
+        },
       },
       {
         key: "addRandomCountries_",
         value: function addRandomCountries_() {
           // Shuffle countries
-          this.countries_.sort(function() {
+          this.countries_.sort(function () {
             return Math.round(Math.random()) - 0.5;
           });
           var countries = this.countries_.slice(0, this.NUM_PIECES_);
@@ -380,7 +380,7 @@
           for (var i = 0, country; (country = countries[i]); i++) {
             this.addCountry_(country);
           }
-        }
+        },
       },
       {
         key: "addCountry_",
@@ -397,14 +397,14 @@
             map: this.map_,
             draggable: true,
             zIndex: 2,
-            paths: country.start.map(google.maps.geometry.encoding.decodePath)
+            paths: country.start.map(google.maps.geometry.encoding.decodePath),
           };
           var poly = new google.maps.Polygon(options);
-          google.maps.event.addListener(poly, "dragend", function() {
+          google.maps.event.addListener(poly, "dragend", function () {
             _this3.checkPosition_(poly, country);
           });
           this.polys_.push(poly);
-        }
+        },
         /**
          * Checks that every point in the polygon is inside the bounds.
          */
@@ -429,7 +429,7 @@
           }
 
           return true;
-        }
+        },
         /**
          * Replace a poly with the correct 'end' position of the country.
          */
@@ -442,12 +442,12 @@
             fillColor: this.END_COLOR_,
             draggable: false,
             zIndex: 1,
-            paths: country.end.map(google.maps.geometry.encoding.decodePath)
+            paths: country.end.map(google.maps.geometry.encoding.decodePath),
           };
           poly.setOptions(options);
           this.count_++;
           this.setCount_();
-        }
+        },
       },
       {
         key: "checkPosition_",
@@ -455,14 +455,14 @@
           if (this.boundsContainsPoly_(country.bounds, poly)) {
             this.replacePiece_(poly, country);
           }
-        }
+        },
       },
       {
         key: "start_",
         value: function start_() {
           this.setDifficultyStyle_();
           this.resetGame_();
-        }
+        },
       },
       {
         key: "removeCountries_",
@@ -472,8 +472,8 @@
           }
 
           this.polys_ = [];
-        }
-      }
+        },
+      },
     ]);
 
     return PuzzleDemo;
@@ -484,9 +484,9 @@
       disableDefaultUI: true,
       center: {
         lat: 10,
-        lng: 60
+        lng: 60,
       },
-      zoom: 2
+      zoom: 2,
     });
     new PuzzleDemo(map);
   }

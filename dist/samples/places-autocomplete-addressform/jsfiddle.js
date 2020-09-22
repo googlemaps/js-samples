@@ -15,7 +15,7 @@ const componentForm = {
   locality: "long_name",
   administrative_area_level_1: "short_name",
   country: "long_name",
-  postal_code: "short_name"
+  postal_code: "short_name",
 };
 
 function initAutocomplete() {
@@ -24,7 +24,7 @@ function initAutocomplete() {
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById("autocomplete"),
     {
-      types: ["geocode"]
+      types: ["geocode"],
     }
   ); // Avoid paying for data that you don't need by restricting the set of
   // place fields that are returned to just the address components.
@@ -58,14 +58,14 @@ function fillInAddress() {
 
 function geolocate() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition((position) => {
       const geolocation = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude
+        lng: position.coords.longitude,
       };
       const circle = new google.maps.Circle({
         center: geolocation,
-        radius: position.coords.accuracy
+        radius: position.coords.accuracy,
       });
       autocomplete.setBounds(circle.getBounds());
     });

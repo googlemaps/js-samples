@@ -7,7 +7,7 @@ function initMap() {
     mapTypeControl: true,
     mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-      mapTypeIds: ["roadmap", "terrain"]
-    }
+      mapTypeIds: ["roadmap", "terrain"],
+    },
   });
 }

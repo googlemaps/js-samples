@@ -32,11 +32,11 @@
         );
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 4,
-          center: originalMapCenter
+          center: originalMapCenter,
         });
         const infowindow = new google.maps.InfoWindow({
           content: "Change the zoom level",
-          position: originalMapCenter
+          position: originalMapCenter,
         });
         infowindow.open(map);
         map.addListener("zoom_changed", () => {

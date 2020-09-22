@@ -3,7 +3,7 @@ function initMap() {
   const directionsService = new google.maps.DirectionsService();
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 7,
-    center: { lat: 41.85, lng: -87.65 }
+    center: { lat: 41.85, lng: -87.65 },
   });
   directionsRenderer.setMap(map);
   directionsRenderer.setPanel(document.getElementById("right-panel"));
@@ -11,7 +11,7 @@ function initMap() {
   control.style.display = "block";
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
-  const onChangeHandler = function() {
+  const onChangeHandler = function () {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
   document.getElementById("start").addEventListener("change", onChangeHandler);
@@ -25,7 +25,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     {
       origin: start,
       destination: end,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.DRIVING,
     },
     (response, status) => {
       if (status === "OK") {

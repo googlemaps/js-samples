@@ -4,16 +4,16 @@
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 14,
-    center: { lat: 34.366, lng: -89.519 }
+    center: { lat: 34.366, lng: -89.519 },
   });
   const poly = new google.maps.Polyline({
     strokeColor: "#000000",
     strokeOpacity: 1,
     strokeWeight: 3,
-    map: map
+    map: map,
   });
   // Add a listener for the click event
-  google.maps.event.addListener(map, "click", event => {
+  google.maps.event.addListener(map, "click", (event) => {
     addLatLngToPoly(event.latLng, poly);
   });
 }

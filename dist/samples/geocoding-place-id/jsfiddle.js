@@ -6,8 +6,8 @@ function initMap() {
     zoom: 8,
     center: {
       lat: 40.72,
-      lng: -73.96
-    }
+      lng: -73.96,
+    },
   });
   const geocoder = new google.maps.Geocoder();
   const infowindow = new google.maps.InfoWindow();
@@ -21,7 +21,7 @@ function geocodePlaceId(geocoder, map, infowindow) {
   const placeId = document.getElementById("place-id").value;
   geocoder.geocode(
     {
-      placeId: placeId
+      placeId: placeId,
     },
     (results, status) => {
       if (status === "OK") {
@@ -30,7 +30,7 @@ function geocodePlaceId(geocoder, map, infowindow) {
           map.setCenter(results[0].geometry.location);
           const marker = new google.maps.Marker({
             map,
-            position: results[0].geometry.location
+            position: results[0].geometry.location,
           });
           infowindow.setContent(results[0].formatted_address);
           infowindow.open(map, marker);

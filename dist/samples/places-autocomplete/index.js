@@ -4,7 +4,7 @@
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -33.8688, lng: 151.2195 },
-    zoom: 13
+    zoom: 13,
   });
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
@@ -21,7 +21,7 @@ function initMap() {
   infowindow.setContent(infowindowContent);
   const marker = new google.maps.Marker({
     map,
-    anchorPoint: new google.maps.Point(0, -29)
+    anchorPoint: new google.maps.Point(0, -29),
   });
   autocomplete.addListener("place_changed", () => {
     infowindow.close();
@@ -56,7 +56,7 @@ function initMap() {
           "",
         (place.address_components[2] &&
           place.address_components[2].short_name) ||
-          ""
+          "",
       ].join(" ");
     }
     infowindowContent.children["place-icon"].src = place.icon;
@@ -79,7 +79,7 @@ function initMap() {
   setupClickListener("changetype-geocode", ["geocode"]);
   document
     .getElementById("use-strict-bounds")
-    .addEventListener("click", function() {
+    .addEventListener("click", function () {
       console.log("Checkbox clicked! New state=" + this.checked);
       autocomplete.setOptions({ strictBounds: this.checked });
     });

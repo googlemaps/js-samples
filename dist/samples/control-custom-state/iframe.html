@@ -57,7 +57,7 @@
   var map;
   var chicago = {
     lat: 41.85,
-    lng: -87.65
+    lng: -87.65,
   };
   /**
    * The CenterControl adds a control to the map that recenters the map on
@@ -96,14 +96,14 @@
     // the map
     // to the current center of the control.
 
-    goCenterUI.addEventListener("click", function() {
+    goCenterUI.addEventListener("click", function () {
       var currentCenter = _this.center_;
 
       _this.map_.setCenter(currentCenter);
     }); // Set up the click event listener for 'Set Center': Set the center of
     // the control to the current center of the map.
 
-    setCenterUI.addEventListener("click", function() {
+    setCenterUI.addEventListener("click", function () {
       var newCenter = _this.map_.getCenter();
 
       _this.center_ = newCenter;
@@ -113,7 +113,7 @@
   function initMap() {
     map = new google.maps.Map(document.getElementById("map"), {
       zoom: 12,
-      center: chicago
+      center: chicago,
     }); // Create the DIV to hold the control and call the CenterControl()
     // constructor passing in this DIV.
 

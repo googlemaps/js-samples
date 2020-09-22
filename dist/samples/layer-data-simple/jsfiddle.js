@@ -7,8 +7,8 @@ function initMap() {
     zoom: 4,
     center: {
       lat: -28,
-      lng: 137
-    }
+      lng: 137,
+    },
   }); // NOTE: This uses cross-domain XHR, and may not work on older browsers.
 
   map.data.loadGeoJson(

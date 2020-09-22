@@ -7,8 +7,8 @@ function initMap() {
     zoom: 14,
     center: {
       lat: 37.77,
-      lng: -122.447
-    }
+      lng: -122.447,
+    },
   });
   directionsRenderer.setMap(map);
   calculateAndDisplayRoute(directionsService, directionsRenderer);
@@ -23,16 +23,16 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     {
       origin: {
         lat: 37.77,
-        lng: -122.447
+        lng: -122.447,
       },
       destination: {
         lat: 37.768,
-        lng: -122.511
+        lng: -122.511,
       },
       // Note that Javascript allows us to access the constant
       // using square brackets and a string value as its
       // "property."
-      travelMode: google.maps.TravelMode[selectedMode]
+      travelMode: google.maps.TravelMode[selectedMode],
     },
     (response, status) => {
       if (status == "OK") {

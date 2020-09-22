@@ -6,7 +6,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: astorPlace,
     zoom: 18,
-    streetViewControl: false
+    streetViewControl: false,
   });
   // Set up the markers on the map
   const cafeMarker = new google.maps.Marker({
@@ -14,21 +14,21 @@ function initMap() {
     map,
     icon:
       "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
-    title: "Cafe"
+    title: "Cafe",
   });
   const bankMarker = new google.maps.Marker({
     position: { lat: 40.729681, lng: -73.991138 },
     map,
     icon:
       "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
-    title: "Bank"
+    title: "Bank",
   });
   const busMarker = new google.maps.Marker({
     position: { lat: 40.729559, lng: -73.990741 },
     map,
     icon:
       "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
-    title: "Bus Stop"
+    title: "Bus Stop",
   });
   // We get the map's default panorama and set up some defaults.
   // Note that we don't yet set it visible.
@@ -37,7 +37,7 @@ function initMap() {
   panorama.setPov(
     /** @type {google.maps.StreetViewPov} */ {
       heading: 265,
-      pitch: 0
+      pitch: 0,
     }
   );
 }

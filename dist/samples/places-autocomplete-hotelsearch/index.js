@@ -17,56 +17,56 @@ const hostnameRegexp = new RegExp("^https?://.+?/");
 const countries = {
   au: {
     center: { lat: -25.3, lng: 133.8 },
-    zoom: 4
+    zoom: 4,
   },
   br: {
     center: { lat: -14.2, lng: -51.9 },
-    zoom: 3
+    zoom: 3,
   },
   ca: {
     center: { lat: 62, lng: -110.0 },
-    zoom: 3
+    zoom: 3,
   },
   fr: {
     center: { lat: 46.2, lng: 2.2 },
-    zoom: 5
+    zoom: 5,
   },
   de: {
     center: { lat: 51.2, lng: 10.4 },
-    zoom: 5
+    zoom: 5,
   },
   mx: {
     center: { lat: 23.6, lng: -102.5 },
-    zoom: 4
+    zoom: 4,
   },
   nz: {
     center: { lat: -40.9, lng: 174.9 },
-    zoom: 5
+    zoom: 5,
   },
   it: {
     center: { lat: 41.9, lng: 12.6 },
-    zoom: 5
+    zoom: 5,
   },
   za: {
     center: { lat: -30.6, lng: 22.9 },
-    zoom: 5
+    zoom: 5,
   },
   es: {
     center: { lat: 40.5, lng: -3.7 },
-    zoom: 5
+    zoom: 5,
   },
   pt: {
     center: { lat: 39.4, lng: -8.2 },
-    zoom: 6
+    zoom: 6,
   },
   us: {
     center: { lat: 37.1, lng: -95.7 },
-    zoom: 3
+    zoom: 3,
   },
   uk: {
     center: { lat: 54.8, lng: -4.6 },
-    zoom: 5
-  }
+    zoom: 5,
+  },
 };
 
 function initMap() {
@@ -76,10 +76,10 @@ function initMap() {
     mapTypeControl: false,
     panControl: false,
     zoomControl: false,
-    streetViewControl: false
+    streetViewControl: false,
   });
   infoWindow = new google.maps.InfoWindow({
-    content: document.getElementById("info-content")
+    content: document.getElementById("info-content"),
   });
   // Create the autocomplete object and associate it with the UI input control.
   // Restrict the search to the default country, and to place type "cities".
@@ -87,7 +87,7 @@ function initMap() {
     document.getElementById("autocomplete"),
     {
       types: ["(cities)"],
-      componentRestrictions: countryRestrict
+      componentRestrictions: countryRestrict,
     }
   );
   places = new google.maps.places.PlacesService(map);
@@ -116,7 +116,7 @@ function onPlaceChanged() {
 function search() {
   const search = {
     bounds: map.getBounds(),
-    types: ["lodging"]
+    types: ["lodging"],
   };
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -132,7 +132,7 @@ function search() {
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
           animation: google.maps.Animation.DROP,
-          icon: markerIcon
+          icon: markerIcon,
         });
         // If the user clicks a hotel marker, show the details of that hotel
         // in an info window.
@@ -174,7 +174,7 @@ function setAutocompleteCountry() {
 }
 
 function dropMarker(i) {
-  return function() {
+  return function () {
     markers[i].setMap(map);
   };
 }
@@ -186,7 +186,7 @@ function addResult(result, i) {
   const tr = document.createElement("tr");
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
 
-  tr.onclick = function() {
+  tr.onclick = function () {
     google.maps.event.trigger(markers[i], "click");
   };
   const iconTd = document.createElement("td");

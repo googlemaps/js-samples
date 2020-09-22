@@ -9,7 +9,7 @@ let panorama;
 function initMap() {
   const berkeley = {
     lat: 37.869085,
-    lng: -122.254775
+    lng: -122.254775,
   };
   const sv = new google.maps.StreetViewService();
   panorama = new google.maps.StreetViewPanorama(
@@ -19,24 +19,24 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: berkeley,
     zoom: 16,
-    streetViewControl: false
+    streetViewControl: false,
   }); // Set the initial Street View camera to the center of the map
 
   sv.getPanorama(
     {
       location: berkeley,
-      radius: 50
+      radius: 50,
     },
     processSVData
   ); // Look for a nearby Street View panorama when the map is clicked.
   // getPanorama will return the nearest pano when the given
   // radius is 50 meters or less.
 
-  map.addListener("click", event => {
+  map.addListener("click", (event) => {
     sv.getPanorama(
       {
         location: event.latLng,
-        radius: 50
+        radius: 50,
       },
       processSVData
     );
@@ -49,12 +49,12 @@ function processSVData(data, status) {
     const marker = new google.maps.Marker({
       position: location.latLng,
       map,
-      title: location.description
+      title: location.description,
     });
     panorama.setPano(location.pano);
     panorama.setPov({
       heading: 270,
-      pitch: 0
+      pitch: 0,
     });
     panorama.setVisible(true);
     marker.addListener("click", () => {
@@ -63,7 +63,7 @@ function processSVData(data, status) {
       panorama.setPano(markerPanoID);
       panorama.setPov({
         heading: 270,
-        pitch: 0
+        pitch: 0,
       });
       panorama.setVisible(true);
     });

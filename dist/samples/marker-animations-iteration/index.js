@@ -5,7 +5,7 @@ const neighborhoods = [
   { lat: 52.511, lng: 13.447 },
   { lat: 52.549, lng: 13.422 },
   { lat: 52.497, lng: 13.396 },
-  { lat: 52.517, lng: 13.394 }
+  { lat: 52.517, lng: 13.394 },
 ];
 let markers = [];
 let map;
@@ -13,7 +13,7 @@ let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
-    center: { lat: 52.52, lng: 13.41 }
+    center: { lat: 52.52, lng: 13.41 },
   });
 }
 
@@ -31,7 +31,7 @@ function addMarkerWithTimeout(position, timeout) {
       new google.maps.Marker({
         position: position,
         map,
-        animation: google.maps.Animation.DROP
+        animation: google.maps.Animation.DROP,
       })
     );
   }, timeout);
