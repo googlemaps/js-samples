@@ -52,10 +52,11 @@ body {
 #service #results {
   flex-basis: 0;
   flex-grow: 3;
-  overflow: auto;
 }
 #service #results .tab-content {
   display: none;
+  height: 300px;
+  overflow: auto;
 }
 #service #results .tab-content--active {
   display: block;
