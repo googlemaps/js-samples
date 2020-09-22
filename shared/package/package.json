@@ -19,7 +19,7 @@
     "@types/jest": "^26.0.13",
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
-    "@typescript-eslint/parser": "^3.9.0",
+    "@typescript-eslint/parser": "^3.10.1",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.2.2",
     "dotenv": "^8.2.0",
