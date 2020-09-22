@@ -15,7 +15,6 @@
   color: var(--mdc-theme-primary);
 }
 
-/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -25,23 +24,57 @@ body {
 
 #container {
   height: 100%;
-  display: flex;
 }
 
-#sidebar {
-  flex-basis: 15rem;
-  flex-grow: 1;
-  padding: 1rem;
-  max-width: 30rem;
-  height: 100%;
+#service {
+  margin-top: 1rem;
   box-sizing: border-box;
   display: flex;
+  overflow: initial;
+}
+#service #inputs {
+  margin-right: 1em;
+  flex-basis: 0;
+  flex-grow: 1;
+}
+#service #inputs .row {
+  display: flex;
+  margin-bottom: 1em;
+  width: 100%;
+}
+#service #inputs .row label,
+#service #inputs .row .mdc-select {
+  flex-grow: 1;
+}
+#service #inputs .row .mdc-text-field {
+  width: 100%;
+}
+#service #results {
+  flex-basis: 0;
+  flex-grow: 3;
+  overflow: auto;
+}
+#service #results .tab-content {
+  display: none;
+}
+#service #results .tab-content--active {
+  display: block;
 }
 
 #map {
-  flex-basis: 0;
-  flex-grow: 4;
-  height: 100%;
+  height: 200px;
+}
+
+pre {
+  background: whitesmoke;
+  border: #f0f0f0 1px solid;
+  border-radius: 2px;
+  page-break-inside: avoid;
+  font-family: monospace;
+  overflow: auto;
+  padding: 0.5em;
+  word-wrap: break-word;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .mdc-select__anchor,
@@ -65,52 +98,6 @@ body {
 .mdc-switch__thumb-underlay::before,
 .mdc-switch__thumb-underlay::after {
   background-color: var(--mdc-theme-primary);
-}
-
-#sidebar {
-  flex-direction: column;
-  flex-grow: 4;
-  max-width: 50%;
-}
-
-#search {
-  flex-grow: 0;
-}
-#search .mdc-text-field {
-  width: 100%;
-}
-#search .row {
-  display: flex;
-  margin-bottom: 1.5em;
-  width: 100%;
-}
-#search .row label,
-#search .row .mdc-select {
-  flex-grow: 1;
-}
-
-#results {
-  flex-grow: 1;
-  overflow: auto;
-}
-#results .tab-content {
-  display: none;
-}
-#results .tab-content--active {
-  display: block;
-}
-
-pre {
-  background: whitesmoke;
-  border: #f0f0f0 1px solid;
-  border-radius: 2px;
-  page-break-inside: avoid;
-  font-family: monospace;
-  max-width: 100%;
-  overflow: auto;
-  padding: 0.5em;
-  word-wrap: break-word;
-  color: rgba(0, 0, 0, 0.6);
 }
 
 /* [END maps_places_autocomplete_service] */

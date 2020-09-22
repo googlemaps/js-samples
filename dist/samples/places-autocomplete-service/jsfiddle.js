@@ -50,7 +50,6 @@ const initialize = () => {
       autocompleteTypeListElement.appendChild(item);
     }
   );
-  initializeMaterialDesignComponents();
   inputElement.addEventListener("input", inputChangeCallback);
   biasToMapSwitchElement.addEventListener("change", inputChangeCallback);
   map.addListener("bounds_changed", () => {
@@ -58,13 +57,12 @@ const initialize = () => {
       inputChangeCallback();
     }
   });
+  biasToMapSwitchElement.checked = true;
+  initializeMaterialDesignComponents();
+  inputChangeCallback();
 };
 
 const inputChangeCallback = debounce(100, () => {
-  if (!inputElement.value) {
-    return;
-  }
-
   const request = {
     input: inputElement.value
   };
@@ -86,6 +84,11 @@ const inputChangeCallback = debounce(100, () => {
   }
 
   requestElement.innerText = JSON.stringify(request, null, 2);
+
+  if (!inputElement.value) {
+    return;
+  }
+
   autocompleteService.getPlacePredictions(request, predictionsCallback);
 });
 
