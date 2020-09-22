@@ -20,7 +20,7 @@ let map: google.maps.Map;
 function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 4,
-    center: { lat: -28, lng: 137 }
+    center: { lat: -28, lng: 137 },
   });
 
   // NOTE: This uses cross-domain XHR, and may not work on older browsers.

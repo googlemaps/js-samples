@@ -25,7 +25,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       center: { lat: -33.8688, lng: 151.2195 },
-      zoom: 13
+      zoom: 13,
     }
   );
 
@@ -73,7 +73,7 @@ function initMap(): void {
       // @ts-ignore TODO(jpoehnelt) This should be in @typings/googlemaps.
       marker.setPlace({
         placeId: place.place_id,
-        location: results[0].geometry.location
+        location: results[0].geometry.location,
       });
 
       marker.setVisible(true);

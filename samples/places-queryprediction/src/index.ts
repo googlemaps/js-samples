@@ -23,7 +23,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 function initService() {
-  const displaySuggestions = function(
+  const displaySuggestions = function (
     predictions: google.maps.places.QueryAutocompletePrediction[],
     status: google.maps.places.PlacesServiceStatus
   ) {
@@ -32,7 +32,7 @@ function initService() {
       return;
     }
 
-    predictions.forEach(prediction => {
+    predictions.forEach((prediction) => {
       const li = document.createElement("li");
       li.appendChild(document.createTextNode(prediction.description));
       (document.getElementById("results") as HTMLUListElement).appendChild(li);

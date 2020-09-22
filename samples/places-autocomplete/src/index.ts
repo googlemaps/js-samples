@@ -24,7 +24,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       center: { lat: -33.8688, lng: 151.2195 },
-      zoom: 13
+      zoom: 13,
     }
   );
   const card = document.getElementById("pac-card") as HTMLElement;
@@ -49,7 +49,7 @@ function initMap(): void {
   infowindow.setContent(infowindowContent);
   const marker = new google.maps.Marker({
     map,
-    anchorPoint: new google.maps.Point(0, -29)
+    anchorPoint: new google.maps.Point(0, -29),
   });
 
   autocomplete.addListener("place_changed", () => {
@@ -86,7 +86,7 @@ function initMap(): void {
           "",
         (place.address_components[2] &&
           place.address_components[2].short_name) ||
-          ""
+          "",
       ].join(" ");
     }
 
@@ -112,7 +112,7 @@ function initMap(): void {
 
   (document.getElementById(
     "use-strict-bounds"
-  ) as HTMLInputElement).addEventListener("click", function() {
+  ) as HTMLInputElement).addEventListener("click", function () {
     console.log("Checkbox clicked! New state=" + this.checked);
     autocomplete.setOptions({ strictBounds: this.checked });
   });

@@ -47,7 +47,7 @@ function CopyrightCollection(opt_prefix) {
  *
  * @param {Copyright} copyright  New copyright to add.
  */
-CopyrightCollection.prototype.addCopyright = function(copyright) {
+CopyrightCollection.prototype.addCopyright = function (copyright) {
   if (this.copyrights_[copyright.id]) {
     return false;
   }
@@ -69,7 +69,7 @@ CopyrightCollection.prototype.addCopyright = function(copyright) {
  *     copyrights.
  * @return {Array.<Copyright>} Resulting array of copyrights.
  */
-CopyrightCollection.prototype.getCopyrightsAtPoint = function(point) {
+CopyrightCollection.prototype.getCopyrightsAtPoint = function (point) {
   var ret = [];
   var zoomLevels = this.zoomLevels_;
   for (var i = 0; i < zoomLevels.length; i++) {
@@ -90,7 +90,7 @@ CopyrightCollection.prototype.getCopyrightsAtPoint = function(point) {
  * @param {number} zoom  Zoom level.
  * @return {Array.<string>} Resulting array of copyright strings.
  */
-CopyrightCollection.prototype.getCopyrights = function(bounds, zoom) {
+CopyrightCollection.prototype.getCopyrights = function (bounds, zoom) {
   var seenCopyrights = {};
   var copyrights = [];
 
@@ -121,7 +121,7 @@ CopyrightCollection.prototype.getCopyrights = function(bounds, zoom) {
  * @return {string} Resulting Copyright notice, or an empty string if there were
  *     no copyright notices in the provided bounds.
  */
-CopyrightCollection.prototype.getCopyrightNotice = function(bounds, zoom) {
+CopyrightCollection.prototype.getCopyrightNotice = function (bounds, zoom) {
   var copyrights = this.getCopyrights(bounds, zoom);
   return copyrights.length ? this.prefix_ + " " + copyrights.join(", ") : "";
 };

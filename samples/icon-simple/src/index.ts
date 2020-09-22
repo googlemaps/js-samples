@@ -22,7 +22,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
-      center: { lat: -33, lng: 151 }
+      center: { lat: -33, lng: 151 },
     }
   );
 
@@ -31,7 +31,7 @@ function initMap(): void {
   const beachMarker = new google.maps.Marker({
     position: { lat: -33.89, lng: 151.274 },
     map,
-    icon: image
+    icon: image,
   });
 }
 // [END maps_icon_simple]

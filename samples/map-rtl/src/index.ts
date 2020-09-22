@@ -30,7 +30,7 @@ function initMap(): void {
     {
       scaleControl: true,
       center: cairo,
-      zoom: 10
+      zoom: 10,
     }
   );
 

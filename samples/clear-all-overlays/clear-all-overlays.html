@@ -27,13 +27,13 @@
         map: null,
         markers: [],
         polyline: null,
-        polygon: null
+        polygon: null,
       };
 
       /**
        * Shows or hides all marker overlays on the map.
        */
-      Demo.toggleMarkers = function(opt_enable) {
+      Demo.toggleMarkers = function (opt_enable) {
         if (typeof opt_enable == "undefined") {
           opt_enable = !Demo.markers[0].getMap();
         }
@@ -45,7 +45,7 @@
       /**
        * Shows or hides the polyline overlay on the map.
        */
-      Demo.togglePolyline = function(opt_enable) {
+      Demo.togglePolyline = function (opt_enable) {
         if (typeof opt_enable == "undefined") {
           opt_enable = !Demo.polyline.getMap();
         }
@@ -55,14 +55,14 @@
       /**
        * Shows or hides the polygon overlay on the map.
        */
-      Demo.togglePolygon = function(opt_enable) {
+      Demo.togglePolygon = function (opt_enable) {
         if (typeof opt_enable == "undefined") {
           opt_enable = !Demo.polygon.getMap();
         }
         Demo.polygon.setMap(opt_enable ? Demo.map : null);
       };
 
-      Demo.toggleAllOverlays = function() {
+      Demo.toggleAllOverlays = function () {
         var enable = true;
         if (
           Demo.markers[0].getMap() ||
@@ -79,7 +79,7 @@
       /**
        * Called only once on initial page load to initialize the map.
        */
-      Demo.init = function() {
+      Demo.init = function () {
         // Create single instance of a Google Map.
         Demo.map = new google.maps.Map(document.getElementById("map-canvas"), {
           zoom: 7,
@@ -87,18 +87,18 @@
             20.352524120908313,
             -156.51013176888227
           ),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
 
         // Create multiple Marker objects at various positions.
         var markerPositions = [
           new google.maps.LatLng(21.297222168933754, -157.86145012825727),
           new google.maps.LatLng(19.650520003641244, -155.09289544075727),
-          new google.maps.LatLng(19.072501451715087, -155.753173828125)
+          new google.maps.LatLng(19.072501451715087, -155.753173828125),
         ];
         for (var n = 0, latLng; (latLng = markerPositions[n]); n++) {
           var marker = new google.maps.Marker({
-            position: latLng
+            position: latLng,
           });
 
           // Add marker to collection.
@@ -108,7 +108,7 @@
         // Create a polyline connected all markers.
         Demo.polyline = new google.maps.Polyline({
           path: markerPositions.concat(markerPositions[0]),
-          strokeWeight: 6
+          strokeWeight: 6,
         });
 
         // Create a polyline connected all markers.
@@ -116,7 +116,7 @@
           path: markerPositions.concat(markerPositions[0]),
           strokeColor: "#3f3",
           strokeWeight: 1,
-          fillColor: "#00f"
+          fillColor: "#00f",
         });
 
         // Initially show all overlays.
@@ -140,6 +140,6 @@
         value="All Overlays"
       />
     </div>
-    <div id="map-canvas" style="width:600px; height:500px"></div>
+    <div id="map-canvas" style="width: 600px; height: 500px"></div>
   </body>
 </html>

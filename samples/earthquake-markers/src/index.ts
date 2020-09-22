@@ -21,7 +21,7 @@ function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 2,
     center: new google.maps.LatLng(2.8, -187.3),
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   });
 
   // Create a <script> tag and set the USGS URL as the source.
@@ -35,13 +35,13 @@ function initMap(): void {
 
 // Loop through the results array and place a marker for each
 // set of coordinates.
-const eqfeed_callback = function(results: any) {
+const eqfeed_callback = function (results: any) {
   for (let i = 0; i < results.features.length; i++) {
     const coords = results.features[i].geometry.coordinates;
     const latLng = new google.maps.LatLng(coords[1], coords[0]);
     new google.maps.Marker({
       position: latLng,
-      map: map
+      map: map,
     });
   }
 };

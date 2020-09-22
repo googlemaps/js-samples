@@ -21,7 +21,7 @@ function initMap(): void {
     {
       zoom: 4,
       center: { lat: -33, lng: 151 },
-      disableDefaultUI: true
+      disableDefaultUI: true,
     }
   );
 }

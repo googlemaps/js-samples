@@ -26,7 +26,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 13,
-      center: { lat: 59.325, lng: 18.07 }
+      center: { lat: 59.325, lng: 18.07 },
     }
   );
 
@@ -34,7 +34,7 @@ function initMap(): void {
     map,
     draggable: true,
     animation: google.maps.Animation.DROP,
-    position: { lat: 59.327, lng: 18.067 }
+    position: { lat: 59.327, lng: 18.067 },
   });
   marker.addListener("click", toggleBounce);
 }

@@ -45,14 +45,14 @@
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           styles: [
             {
-              stylers: [{ saturation: -100 }]
+              stylers: [{ saturation: -100 }],
             },
             {
               featureType: "poi.park",
-              stylers: [{ visibility: "off" }]
-            }
+              stylers: [{ visibility: "off" }],
+            },
           ],
-          disableDefaultUI: true
+          disableDefaultUI: true,
         });
 
         heatmap = new google.maps.visualization.HeatmapLayer({
@@ -64,12 +64,12 @@
           gradient: [
             "rgba(0, 0, 0, 0)",
             "rgba(255, 255, 0, 0.50)",
-            "rgba(0, 0, 255, 1.0)"
-          ]
+            "rgba(0, 0, 255, 1.0)",
+          ],
         });
 
         google.maps.event.addListener(map, "mouseout", stop);
-        google.maps.event.addListener(map, "tilesloaded", function() {
+        google.maps.event.addListener(map, "tilesloaded", function () {
           unlock = true;
         });
       }

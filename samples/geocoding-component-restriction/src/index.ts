@@ -21,7 +21,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 8,
-      center: { lat: -33.865, lng: 151.209 }
+      center: { lat: -33.865, lng: 151.209 },
     }
   );
 
@@ -38,8 +38,8 @@ function geocodeAddress(geocoder: google.maps.Geocoder, map: google.maps.Map) {
     {
       componentRestrictions: {
         country: "AU",
-        postalCode: "2000"
-      }
+        postalCode: "2000",
+      },
     },
     (
       results: google.maps.GeocoderResult[],
@@ -49,7 +49,7 @@ function geocodeAddress(geocoder: google.maps.Geocoder, map: google.maps.Map) {
         map.setCenter(results[0].geometry.location);
         new google.maps.Marker({
           map,
-          position: results[0].geometry.location
+          position: results[0].geometry.location,
         });
       } else {
         window.alert(

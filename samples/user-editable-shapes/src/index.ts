@@ -21,7 +21,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       center: { lat: 44.5452, lng: -78.5389 },
-      zoom: 9
+      zoom: 9,
     }
   );
 
@@ -30,13 +30,13 @@ function initMap(): void {
     north: 44.599,
     south: 44.49,
     east: -78.443,
-    west: -78.649
+    west: -78.649,
   };
 
   // Define a rectangle and set its editable property to true.
   const rectangle = new google.maps.Rectangle({
     bounds: bounds,
-    editable: true
+    editable: true,
   });
   // [END maps_user_editable_shapes_rectangle]
   rectangle.setMap(map);

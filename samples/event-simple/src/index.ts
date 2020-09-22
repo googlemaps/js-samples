@@ -22,14 +22,14 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
-      center: myLatlng
+      center: myLatlng,
     }
   );
 
   const marker = new google.maps.Marker({
     position: myLatlng,
     map,
-    title: "Click to zoom"
+    title: "Click to zoom",
   });
 
   map.addListener("center_changed", () => {

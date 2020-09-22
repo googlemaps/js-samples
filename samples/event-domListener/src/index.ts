@@ -19,7 +19,7 @@ function initMap(): void {
   const mapDiv = document.getElementById("map") as HTMLElement;
   const map = new google.maps.Map(mapDiv, {
     zoom: 8,
-    center: new google.maps.LatLng(-34.397, 150.644)
+    center: new google.maps.LatLng(-34.397, 150.644),
   });
 
   // We add a DOM event here to show an alert if the DIV containing the

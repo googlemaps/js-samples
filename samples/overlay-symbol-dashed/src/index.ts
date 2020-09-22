@@ -25,7 +25,7 @@ function initMap(): void {
     {
       zoom: 6,
       center: { lat: 20.291, lng: 153.027 },
-      mapTypeId: "terrain"
+      mapTypeId: "terrain",
     }
   );
 
@@ -34,7 +34,7 @@ function initMap(): void {
   const lineSymbol = {
     path: "M 0,-1 0,1",
     strokeOpacity: 1,
-    scale: 4
+    scale: 4,
   };
 
   // Create the polyline, passing the symbol in the 'icons' property.
@@ -43,17 +43,17 @@ function initMap(): void {
   const line = new google.maps.Polyline({
     path: [
       { lat: 22.291, lng: 153.027 },
-      { lat: 18.291, lng: 153.027 }
+      { lat: 18.291, lng: 153.027 },
     ],
     strokeOpacity: 0,
     icons: [
       {
         icon: lineSymbol,
         offset: "0",
-        repeat: "20px"
-      }
+        repeat: "20px",
+      },
     ],
-    map: map
+    map: map,
   });
   // [END maps_overlay_symbol_dashed_region_polyline]
 }

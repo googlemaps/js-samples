@@ -24,7 +24,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
-      center: uluru
+      center: uluru,
     }
   );
   // The marker, positioned at Uluru

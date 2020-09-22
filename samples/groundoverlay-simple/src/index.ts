@@ -25,7 +25,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 13,
-      center: { lat: 40.74, lng: -74.18 }
+      center: { lat: 40.74, lng: -74.18 },
     }
   );
 
@@ -33,7 +33,7 @@ function initMap(): void {
     north: 40.773941,
     south: 40.712216,
     east: -74.12544,
-    west: -74.22655
+    west: -74.22655,
   };
 
   historicalOverlay = new google.maps.GroundOverlay(

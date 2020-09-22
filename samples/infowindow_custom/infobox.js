@@ -39,7 +39,7 @@ InfoBox.prototype = new google.maps.OverlayView();
 /* Creates the DIV representing this InfoBox
  * @param {GMap2} map The map to add infobox to
  */
-InfoBox.prototype.panes_changed = function() {
+InfoBox.prototype.panes_changed = function () {
   if (this.div_) {
     this.div_.parentNode.removeChild(this.div_);
     this.div_ = null;
@@ -70,7 +70,7 @@ InfoBox.prototype.panes_changed = function() {
     topDiv.appendChild(closeImg);
 
     function removeInfoBox(ib) {
-      return function() {
+      return function () {
         ib.setMap(null);
       };
     }
@@ -89,7 +89,7 @@ InfoBox.prototype.panes_changed = function() {
 
 /* Redraw the Bar based on the current projection and zoom level
  */
-InfoBox.prototype.draw = function() {
+InfoBox.prototype.draw = function () {
   if (!this.div_) return;
 
   // Calculate the DIV coordinates of two opposite corners of our bounds to

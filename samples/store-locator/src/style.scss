@@ -17,7 +17,8 @@
 @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
 /* [START maps_store_locator] */
-@include meta.load-css(  // TODO(jpoehnelt) https://github.com/sass/dart-sass/issues/1033
+@include meta.load-css(
+  // TODO(jpoehnelt) https://github.com/sass/dart-sass/issues/1033
   "../../../shared/scss/sidebar.scss",
   $with: ("sidebar-flex-basis": 5rem)
 );

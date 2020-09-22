@@ -20,7 +20,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
-      center: { lat: -24.345, lng: 134.46 } // Australia.
+      center: { lat: -24.345, lng: 134.46 }, // Australia.
     }
   );
 
@@ -28,7 +28,7 @@ function initMap(): void {
   const directionsRenderer = new google.maps.DirectionsRenderer({
     draggable: true,
     map,
-    panel: document.getElementById("right-panel") as HTMLElement
+    panel: document.getElementById("right-panel") as HTMLElement,
   });
 
   directionsRenderer.addListener("directions_changed", () => {
@@ -55,10 +55,10 @@ function displayRoute(
       destination: destination,
       waypoints: [
         { location: "Adelaide, SA" },
-        { location: "Broken Hill, NSW" }
+        { location: "Broken Hill, NSW" },
       ],
       travelMode: google.maps.TravelMode.DRIVING,
-      avoidTolls: true
+      avoidTolls: true,
     },
     (
       result: google.maps.DirectionsResult,

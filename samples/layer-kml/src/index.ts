@@ -20,13 +20,13 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 11,
-      center: { lat: 41.876, lng: -87.624 }
+      center: { lat: 41.876, lng: -87.624 },
     }
   );
 
   const ctaLayer = new google.maps.KmlLayer({
     url: "https://googlearchive.github.io/js-v2-samples/ggeoxml/cta.kml",
-    map: map
+    map: map,
   });
 }
 // [END maps_layer_kml]

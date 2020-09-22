@@ -23,7 +23,7 @@ function initMap(): void {
     zoom: 18,
     mapTypeId: "satellite",
     heading: 90,
-    tilt: 45
+    tilt: 45,
   });
 }
 

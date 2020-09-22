@@ -22,7 +22,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 14,
-      center: { lat: 37.77, lng: -122.447 }
+      center: { lat: 37.77, lng: -122.447 },
     }
   );
   directionsRenderer.setMap(map);
@@ -50,7 +50,7 @@ function calculateAndDisplayRoute(
       // using square brackets and a string value as its
       // "property."
       // @ts-ignore
-      travelMode: google.maps.TravelMode[selectedMode]
+      travelMode: google.maps.TravelMode[selectedMode],
     },
     (response, status) => {
       if (status == "OK") {

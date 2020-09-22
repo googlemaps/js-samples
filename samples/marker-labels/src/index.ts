@@ -26,12 +26,12 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 12,
-      center: bangalore
+      center: bangalore,
     }
   );
 
   // This event listener calls addMarker() when the map is clicked.
-  google.maps.event.addListener(map, "click", event => {
+  google.maps.event.addListener(map, "click", (event) => {
     addMarker(event.latLng, map);
   });
 
@@ -46,7 +46,7 @@ function addMarker(location: google.maps.LatLngLiteral, map: google.maps.Map) {
   new google.maps.Marker({
     position: location,
     label: labels[labelIndex++ % labels.length],
-    map: map
+    map: map,
   });
 }
 // [END maps_marker_labels]

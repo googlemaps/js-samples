@@ -10,7 +10,7 @@
     <script type="text/javascript">
       google.load("maps", "3", {
         callback: initialize,
-        other_params: "sensor=false"
+        other_params: "sensor=false",
       });
 
       function initialize() {
@@ -33,7 +33,7 @@
         var myOptions = {
           zoom: zoom,
           center: latlng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         };
 
         var map = new google.maps.Map(
@@ -64,7 +64,7 @@
     </script>
   </head>
   <body>
-    <div style="width:500;height:300" id="map"></div>
+    <div style="width: 500; height: 300" id="map"></div>
     <div id="location"></div>
   </body>
 </html>

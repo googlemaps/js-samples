@@ -133,7 +133,7 @@
         var myOptions = {
           zoom: 12,
           center: new google.maps.LatLng(41.850033, -87.6500523),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         };
         var map = new google.maps.Map(mapDiv, myOptions);
 
@@ -156,17 +156,17 @@
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(control);
 
         // When the button is clicked pan to sydney
-        google.maps.event.addDomListener(control, "click", function() {
+        google.maps.event.addDomListener(control, "click", function () {
           map.panTo(new google.maps.LatLng(-33.9, 151.2));
         });
 
         // Change the style when the user mousedowns
-        google.maps.event.addDomListener(control, "mousedown", function() {
+        google.maps.event.addDomListener(control, "mousedown", function () {
           control.className = "button-selected";
         });
 
         // Change the style back when the user mouseups
-        google.maps.event.addDomListener(control, "mouseup", function() {
+        google.maps.event.addDomListener(control, "mouseup", function () {
           control.className = "button";
         });
       }

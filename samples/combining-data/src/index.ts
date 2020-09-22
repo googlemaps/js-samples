@@ -17,18 +17,18 @@
 // [START maps_combining_data]
 const mapStyle: google.maps.MapTypeStyle[] = [
   {
-    stylers: [{ visibility: "off" }]
+    stylers: [{ visibility: "off" }],
   },
   {
     featureType: "landscape",
     elementType: "geometry",
-    stylers: [{ visibility: "on" }, { color: "#fcfcfc" }]
+    stylers: [{ visibility: "on" }, { color: "#fcfcfc" }],
   },
   {
     featureType: "water",
     elementType: "geometry",
-    stylers: [{ visibility: "on" }, { color: "#bfd4ff" }]
-  }
+    stylers: [{ visibility: "on" }, { color: "#bfd4ff" }],
+  },
 ];
 let map: google.maps.Map;
 
@@ -40,7 +40,7 @@ function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 40, lng: -100 },
     zoom: 4,
-    styles: mapStyle
+    styles: mapStyle,
   });
 
   // set up the style rules and events for google.maps.Data
@@ -90,7 +90,7 @@ function loadCensusData(variable: string) {
   xhr.open("GET", variable + ".json");
 
   // [START maps_combining_data_snippet_loadcensus]
-  xhr.onload = function() {
+  xhr.onload = function () {
     const censusData = JSON.parse(xhr.responseText);
     censusData.shift(); // the first row contains column names
     censusData.forEach((row: string) => {
@@ -128,7 +128,7 @@ function loadCensusData(variable: string) {
 function clearCensusData() {
   censusMin = Number.MAX_VALUE;
   censusMax = -Number.MAX_VALUE;
-  map.data.forEach(row => {
+  map.data.forEach((row) => {
     row.setProperty("census_variable", undefined);
   });
   (document.getElementById("data-box") as HTMLElement).style.display = "none";
@@ -182,7 +182,7 @@ function styleFeature(feature: google.maps.Data.Feature) {
     zIndex: zIndex,
     fillColor: "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)",
     fillOpacity: 0.75,
-    visible: showRow
+    visible: showRow,
   };
 }
 // [END maps_combining_data_snippet_stylefeature]

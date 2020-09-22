@@ -26,7 +26,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 13,
-      center: { lat: 40.771, lng: -73.974 }
+      center: { lat: 40.771, lng: -73.974 },
     }
   );
 
@@ -46,7 +46,7 @@ function initMap(): void {
   );
 
   // Listen to change events from the start and end lists.
-  const onChangeHandler = function() {
+  const onChangeHandler = function () {
     calculateAndDisplayRoute(
       directionsRenderer,
       directionsService,
@@ -83,7 +83,7 @@ function calculateAndDisplayRoute(
     {
       origin: (document.getElementById("start") as HTMLInputElement).value,
       destination: (document.getElementById("end") as HTMLInputElement).value,
-      travelMode: google.maps.TravelMode.WALKING
+      travelMode: google.maps.TravelMode.WALKING,
     },
     (
       result: google.maps.DirectionsResult,

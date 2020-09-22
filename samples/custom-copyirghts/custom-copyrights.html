@@ -14,7 +14,7 @@
         this.alt = "Tile coordinate custom map type";
       }
 
-      CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
+      CoordMapType.prototype.getTile = function (coord, zoom, ownerDocument) {
         var div = ownerDocument.createElement("DIV");
         div.innerHTML = coord;
         div.style.width = this.tileSize.width + "px";
@@ -40,8 +40,8 @@
           center: chicago,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           mapTypeControlOptions: {
-            mapTypeIds: ["custom1", "custom2", google.maps.MapTypeId.ROADMAP]
-          }
+            mapTypeIds: ["custom1", "custom2", google.maps.MapTypeId.ROADMAP],
+          },
         });
 
         map.mapTypes.set("custom1", new CoordMapType("Custom 1"));
@@ -123,6 +123,6 @@
     </script>
   </head>
   <body onload="initialize()">
-    <div id="map-canvas" style="width: 640px; height: 480px;">map div</div>
+    <div id="map-canvas" style="width: 640px; height: 480px">map div</div>
   </body>
 </html>

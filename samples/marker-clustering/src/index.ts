@@ -29,7 +29,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 3,
-      center: { lat: -28.024, lng: 140.887 }
+      center: { lat: -28.024, lng: 140.887 },
     }
   );
 
@@ -43,14 +43,14 @@ function initMap(): void {
   const markers = locations.map((location, i) => {
     return new google.maps.Marker({
       position: location,
-      label: labels[i % labels.length]
+      label: labels[i % labels.length],
     });
   });
 
   // Add a marker clusterer to manage the markers.
   const markerCluster = new MarkerClusterer(map, markers, {
     imagePath:
-      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
   });
 }
 const locations = [
@@ -76,7 +76,7 @@ const locations = [
   { lat: -42.734358, lng: 147.439506 },
   { lat: -42.734358, lng: 147.501315 },
   { lat: -42.735258, lng: 147.438 },
-  { lat: -43.999792, lng: 170.463352 }
+  { lat: -43.999792, lng: 170.463352 },
 ];
 // [END maps_marker_clustering]
 export { initMap };

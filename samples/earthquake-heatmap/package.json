@@ -1,6 +1,8 @@
 {
   "title": "Earthquake Heatmap",
-  "libraries": ["visualization"],
+  "libraries": [
+    "visualization"
+  ],
   "callback": "initMap",
   "version": "weekly",
   "tag": "earthquake_heatmap",

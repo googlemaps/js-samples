@@ -26,7 +26,7 @@ function initMap(): void {
     {
       mapTypeControl: false,
       center: { lat: -33.8688, lng: 151.2195 },
-      zoom: 13
+      zoom: 13,
     }
   );
 
@@ -137,7 +137,7 @@ class AutocompleteDirectionsHandler {
       {
         origin: { placeId: this.originPlaceId },
         destination: { placeId: this.destinationPlaceId },
-        travelMode: this.travelMode
+        travelMode: this.travelMode,
       },
       (response, status) => {
         if (status === "OK") {

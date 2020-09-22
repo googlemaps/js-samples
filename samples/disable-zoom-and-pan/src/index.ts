@@ -24,14 +24,14 @@ function initMap(): void {
       zoom: 13,
       center: locationRio,
       gestureHandling: "none",
-      zoomControl: false
+      zoomControl: false,
     }
   );
   // [END maps_disable_zoom_and_pan_script_snippet]
   new google.maps.Marker({
     position: locationRio,
     map,
-    title: "Hello World!"
+    title: "Hello World!",
   });
 }
 // [END maps_disable_zoom_and_pan]

@@ -21,7 +21,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 8,
-      center: { lat: 40.72, lng: -73.96 }
+      center: { lat: 40.72, lng: -73.96 },
     }
   );
   const geocoder = new google.maps.Geocoder();
@@ -51,7 +51,7 @@ function geocodePlaceId(
         map.setCenter(results[0].geometry.location);
         const marker = new google.maps.Marker({
           map,
-          position: results[0].geometry.location
+          position: results[0].geometry.location,
         });
         infowindow.setContent(results[0].formatted_address);
         infowindow.open(map, marker);

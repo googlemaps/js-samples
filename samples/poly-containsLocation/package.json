@@ -1,6 +1,8 @@
 {
   "title": "Polygon Contains Location",
-  "libraries": ["geometry"],
+  "libraries": [
+    "geometry"
+  ],
   "callback": "initMap",
   "version": "weekly",
   "tag": "poly_containsLocation",

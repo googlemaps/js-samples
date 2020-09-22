@@ -22,7 +22,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 6,
-      center: { lat: 41.85, lng: -87.65 }
+      center: { lat: 41.85, lng: -87.65 },
     }
   );
   directionsRenderer.setMap(map);
@@ -48,7 +48,7 @@ function calculateAndDisplayRoute(
     if (checkboxArray.options[i].selected) {
       waypts.push({
         location: (checkboxArray[i] as HTMLOptionElement).value,
-        stopover: true
+        stopover: true,
       });
     }
   }
@@ -59,7 +59,7 @@ function calculateAndDisplayRoute(
       destination: (document.getElementById("end") as HTMLInputElement).value,
       waypoints: waypts,
       optimizeWaypoints: true,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.DRIVING,
     },
     (response, status) => {
       if (status === "OK") {

@@ -87,13 +87,13 @@ MapOfTheDead.prototype.currentScore_ = 0;
  *
  * @private
  */
-MapOfTheDead.prototype.createMap_ = function() {
+MapOfTheDead.prototype.createMap_ = function () {
   this.map_ = new google.maps.Map(this.mapDiv_, {
     center: new google.maps.LatLng(34.0214, -118.286426),
     zoom: 17,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     disableDefaultUI: true,
-    scrollwheel: false
+    scrollwheel: false,
   });
 };
 
@@ -102,15 +102,15 @@ MapOfTheDead.prototype.createMap_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.addKeyboardHandlers_ = function() {
+MapOfTheDead.prototype.addKeyboardHandlers_ = function () {
   var that = this;
-  google.maps.event.addDomListener(document, "keypress", function(e) {
+  google.maps.event.addDomListener(document, "keypress", function (e) {
     that.handleKeyPress_(e);
   });
-  google.maps.event.addDomListener(document, "keydown", function(e) {
+  google.maps.event.addDomListener(document, "keydown", function (e) {
     that.handleKeyPress_(e);
   });
-  google.maps.event.addDomListener(document, "keyup", function(e) {
+  google.maps.event.addDomListener(document, "keyup", function (e) {
     that.handleKeyPress_(e);
   });
 };
@@ -121,7 +121,7 @@ MapOfTheDead.prototype.addKeyboardHandlers_ = function() {
  * @param {Event} e The event.
  * @private
  */
-MapOfTheDead.prototype.handleKeyPress_ = function(e) {
+MapOfTheDead.prototype.handleKeyPress_ = function (e) {
   switch (e.keyCode) {
     case 32: // Space
       this.checkForZombieHit_();
@@ -152,7 +152,7 @@ MapOfTheDead.prototype.handleKeyPress_ = function(e) {
  * @return {number} The distance between the points.
  * @private
  */
-MapOfTheDead.prototype.distanceFrom_ = function(p1, p2) {
+MapOfTheDead.prototype.distanceFrom_ = function (p1, p2) {
   var lat1 = (p1.lat() * Math.PI) / 180.0;
   var lat2 = (p2.lat() * Math.PI) / 180.0;
   var lngDiff = ((p2.lng() - p1.lng()) * Math.PI) / 180.0;
@@ -174,7 +174,7 @@ MapOfTheDead.prototype.distanceFrom_ = function(p1, p2) {
  *
  * @private
  */
-MapOfTheDead.prototype.checkForZombieHit_ = function() {
+MapOfTheDead.prototype.checkForZombieHit_ = function () {
   if (!this.isPlaying_) {
     return;
   }
@@ -201,7 +201,7 @@ MapOfTheDead.prototype.checkForZombieHit_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.setupScreen_ = function() {
+MapOfTheDead.prototype.setupScreen_ = function () {
   var logoDiv = document.createElement("DIV");
   logoDiv.style.paddingTop = "5px";
   logoDiv.style.paddingLeft = "10px";
@@ -276,7 +276,7 @@ MapOfTheDead.prototype.setupScreen_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.setupIcons_ = function() {
+MapOfTheDead.prototype.setupIcons_ = function () {
   var zombieIcons = {};
 
   zombieIcons.still = new google.maps.MarkerImage(
@@ -331,7 +331,7 @@ MapOfTheDead.prototype.setupIcons_ = function() {
   this.reticule_ = new google.maps.Marker({
     icon: reticuleImage,
     zIndex: 100,
-    clickable: false
+    clickable: false,
   });
 
   this.reticule_.bindTo("position", this.map_, "center");
@@ -342,7 +342,7 @@ MapOfTheDead.prototype.setupIcons_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.removeAllZombies_ = function() {
+MapOfTheDead.prototype.removeAllZombies_ = function () {
   for (var i = 0, zombie; (zombie = this.zombies_[i]); i++) {
     zombie.setMap(null);
     delete zombie;
@@ -355,7 +355,7 @@ MapOfTheDead.prototype.removeAllZombies_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.startGame_ = function() {
+MapOfTheDead.prototype.startGame_ = function () {
   this.gameSeconds_ = 0;
   this.currentScore_ = 0;
 
@@ -374,17 +374,17 @@ MapOfTheDead.prototype.startGame_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.startIntervals_ = function() {
+MapOfTheDead.prototype.startIntervals_ = function () {
   var that = this;
-  this.gameTimer_ = window.setInterval(function() {
+  this.gameTimer_ = window.setInterval(function () {
     that.updateTime_();
   }, 1000);
 
-  this.spawnTimer_ = window.setInterval(function() {
+  this.spawnTimer_ = window.setInterval(function () {
     that.spawnZombie_();
   }, 5000);
 
-  this.animationTimer_ = window.setInterval(function() {
+  this.animationTimer_ = window.setInterval(function () {
     that.moveZombies_();
   }, 300);
 };
@@ -394,7 +394,7 @@ MapOfTheDead.prototype.startIntervals_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.clearIntervals_ = function() {
+MapOfTheDead.prototype.clearIntervals_ = function () {
   if (this.gameTimer_) {
     window.clearInterval(this.gameTimer_);
   }
@@ -413,7 +413,7 @@ MapOfTheDead.prototype.clearIntervals_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.spawnZombie_ = function() {
+MapOfTheDead.prototype.spawnZombie_ = function () {
   var bounds = this.map_.getBounds();
   var southWest = bounds.getSouthWest();
   var northEast = bounds.getNorthEast();
@@ -443,7 +443,7 @@ MapOfTheDead.prototype.spawnZombie_ = function() {
     position: position,
     clickable: false,
     zIndex: this.ZOMBIE_ZINDEX_,
-    map: this.map_
+    map: this.map_,
   });
 
   zombie.moveForward = moveForward;
@@ -456,7 +456,7 @@ MapOfTheDead.prototype.spawnZombie_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.moveZombies_ = function() {
+MapOfTheDead.prototype.moveZombies_ = function () {
   for (var i = 0, zombie; (zombie = this.zombies_[i]); i++) {
     if (!zombie.isDead) {
       var oldPosition = zombie.getPosition();
@@ -486,7 +486,7 @@ MapOfTheDead.prototype.moveZombies_ = function() {
  *
  * @private
  */
-MapOfTheDead.prototype.updateTime_ = function() {
+MapOfTheDead.prototype.updateTime_ = function () {
   this.gameSeconds_++;
 
   this.timeSpan_.innerHTML = this.GAME_TIME_ - this.gameSeconds_;
@@ -500,7 +500,7 @@ MapOfTheDead.prototype.updateTime_ = function() {
  * End the game
  *
  */
-MapOfTheDead.prototype.endGame = function() {
+MapOfTheDead.prototype.endGame = function () {
   this.clearIntervals_();
 
   // For each of our zombie markers set the icon to be image still
@@ -520,7 +520,7 @@ MapOfTheDead.prototype.endGame = function() {
  * @param {string} score The score to set.
  * @private
  */
-MapOfTheDead.prototype.setScore_ = function(score) {
+MapOfTheDead.prototype.setScore_ = function (score) {
   this.scoreSpan_.innerHTML = score;
 };
 

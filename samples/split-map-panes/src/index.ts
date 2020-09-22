@@ -21,7 +21,7 @@ function initMap(): void {
     center: { lat: 44.5250489, lng: -110.83819 },
     zoom: 18,
     scaleControl: false,
-    streetViewControl: false
+    streetViewControl: false,
   };
 
   // instantiate the map on the left with control positioning
@@ -32,14 +32,14 @@ function initMap(): void {
       mapTypeId: "satellite",
       tilt: 0, // at high zoom levels we need to maintain the same projection
       fullscreenControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
+        position: google.maps.ControlPosition.LEFT_BOTTOM,
       },
       mapTypeControlOptions: {
-        position: google.maps.ControlPosition.LEFT_TOP
+        position: google.maps.ControlPosition.LEFT_TOP,
       },
       zoomControlOptions: {
-        position: google.maps.ControlPosition.LEFT_BOTTOM
-      }
+        position: google.maps.ControlPosition.LEFT_BOTTOM,
+      },
     }
   );
 
@@ -49,14 +49,14 @@ function initMap(): void {
     {
       ...mapOptions,
       fullscreenControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_BOTTOM
+        position: google.maps.ControlPosition.RIGHT_BOTTOM,
       },
       mapTypeControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_TOP
+        position: google.maps.ControlPosition.RIGHT_TOP,
       },
       zoomControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_BOTTOM
-      }
+        position: google.maps.ControlPosition.RIGHT_BOTTOM,
+      },
     }
   );
 
@@ -65,7 +65,7 @@ function initMap(): void {
     let center: google.maps.LatLng, zoom: number;
 
     function update(changedMap) {
-      maps.forEach(m => {
+      maps.forEach((m) => {
         if (m === changedMap) {
           return;
         }
@@ -74,7 +74,7 @@ function initMap(): void {
       });
     }
 
-    maps.forEach(m => {
+    maps.forEach((m) => {
       m.addListener("bounds_changed", () => {
         const changedCenter = m.getCenter();
         const changedZoom = m.getZoom();
@@ -108,7 +108,7 @@ function initMap(): void {
 
   //@ts-ignore
   Split(["#left", "#right"], {
-    sizes: [50, 50]
+    sizes: [50, 50],
   });
 }
 // [END maps_split_map_panes]

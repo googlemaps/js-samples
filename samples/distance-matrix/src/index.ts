@@ -34,7 +34,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       center: { lat: 55.53, lng: 9.4 },
-      zoom: 10
+      zoom: 10,
     }
   );
   const geocoder = new google.maps.Geocoder();
@@ -49,9 +49,9 @@ function initMap(): void {
       travelMode: google.maps.TravelMode.DRIVING,
       unitSystem: google.maps.UnitSystem.METRIC,
       avoidHighways: false,
-      avoidTolls: false
+      avoidTolls: false,
     },
-    function(response, status) {
+    function (response, status) {
       if (status !== "OK") {
         alert("Error was: " + status);
       } else {
@@ -61,9 +61,9 @@ function initMap(): void {
         outputDiv.innerHTML = "";
         deleteMarkers(markersArray);
 
-        const showGeocodedAddressOnMap = function(asDestination: boolean) {
+        const showGeocodedAddressOnMap = function (asDestination: boolean) {
           const icon = asDestination ? destinationIcon : originIcon;
-          return function(
+          return function (
             results: google.maps.GeocoderResult[],
             status: google.maps.GeocoderStatus
           ) {
@@ -73,7 +73,7 @@ function initMap(): void {
                 new google.maps.Marker({
                   map,
                   position: results[0].geometry.location,
-                  icon: icon
+                  icon: icon,
                 })
               );
             } else {
@@ -116,4 +116,4 @@ function deleteMarkers(markersArray: google.maps.Marker[]) {
   markersArray = [];
 }
 // [END maps_distance_matrix]
-export {initMap};
+export { initMap };

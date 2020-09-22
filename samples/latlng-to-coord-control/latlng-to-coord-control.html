@@ -72,14 +72,14 @@
 
       // Extend OverlayView so we can access MapCanvasProjection.
       LatLngControl.prototype = new google.maps.OverlayView();
-      LatLngControl.prototype.draw = function() {};
+      LatLngControl.prototype.draw = function () {};
 
       /**
        * @private
        * Helper function creates the HTML node which is the control container.
        * @return {HTMLDivElement}
        */
-      LatLngControl.prototype.createHtmlNode_ = function() {
+      LatLngControl.prototype.createHtmlNode_ = function () {
         var divNode = document.createElement("div");
         divNode.id = "latlng-control";
         divNode.index = 100;
@@ -90,7 +90,7 @@
        * MVC property's state change handler function to show/hide the
        * control container.
        */
-      LatLngControl.prototype.visible_changed = function() {
+      LatLngControl.prototype.visible_changed = function () {
         this.node_.style.display = this.get("visible") ? "" : "none";
       };
 
@@ -99,7 +99,7 @@
        * update the control display. Container is also repositioned.
        * @param {google.maps.LatLng} latLng Position to display
        */
-      LatLngControl.prototype.updatePosition = function(latLng) {
+      LatLngControl.prototype.updatePosition = function (latLng) {
         var projection = this.getProjection();
         var point = projection.fromLatLngToContainerPixel(latLng);
 
@@ -114,7 +114,7 @@
           point.x,
           "px, ",
           point.y,
-          "px"
+          "px",
         ].join("");
       };
 
@@ -126,20 +126,20 @@
         var map = new google.maps.Map(document.getElementById("map"), {
           zoom: 10,
           center: centerLatLng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
 
         // Create new control to display latlng and coordinates under mouse.
         var latLngControl = new LatLngControl(map);
 
         // Register event listeners
-        google.maps.event.addListener(map, "mouseover", function(mEvent) {
+        google.maps.event.addListener(map, "mouseover", function (mEvent) {
           latLngControl.set("visible", true);
         });
-        google.maps.event.addListener(map, "mouseout", function(mEvent) {
+        google.maps.event.addListener(map, "mouseout", function (mEvent) {
           latLngControl.set("visible", false);
         });
-        google.maps.event.addListener(map, "mousemove", function(mEvent) {
+        google.maps.event.addListener(map, "mousemove", function (mEvent) {
           latLngControl.updatePosition(mEvent.latLng);
         });
       }

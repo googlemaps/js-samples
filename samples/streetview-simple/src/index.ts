@@ -21,7 +21,7 @@ function initialize() {
     document.getElementById("map") as HTMLElement,
     {
       center: fenway,
-      zoom: 14
+      zoom: 14,
     }
   );
   const panorama = new google.maps.StreetViewPanorama(
@@ -30,8 +30,8 @@ function initialize() {
       position: fenway,
       pov: {
         heading: 34,
-        pitch: 10
-      }
+        pitch: 10,
+      },
     }
   );
   map.setStreetView(panorama);

@@ -33,7 +33,7 @@ const events = [
   "rightclick",
   "tilesloaded",
   "tilt_changed",
-  "zoom_changed"
+  "zoom_changed",
 ];
 
 function setupListener(map: google.maps.Map, name: string) {
@@ -52,7 +52,7 @@ function initMap(): void {
   const map = new google.maps.Map(mapDiv, {
     center: new google.maps.LatLng(37.4419, -122.1419),
     zoom: 13,
-    mapTypeId: "roadmap"
+    mapTypeId: "roadmap",
   });
 
   for (let i = 0; i < events.length; i++) {
