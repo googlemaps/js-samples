@@ -4,7 +4,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 2,
     center: new google.maps.LatLng(2.8, -187.3),
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
   });
   // Create a <script> tag and set the USGS URL as the source.
   const script = document.createElement("script");
@@ -15,7 +15,7 @@ function initMap() {
   document.getElementsByTagName("head")[0].appendChild(script);
 }
 
-const eqfeed_callback = function(results) {
+const eqfeed_callback = function (results) {
   // TODO(jpoehnelt) fix typings
   const heatmapData = [];
 
@@ -25,13 +25,13 @@ const eqfeed_callback = function(results) {
     const magnitude = results.features[i].properties.mag;
     const weightedLoc = {
       location: latLng,
-      weight: Math.pow(2, magnitude)
+      weight: Math.pow(2, magnitude),
     };
     heatmapData.push(weightedLoc);
   }
   const heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
     dissipating: false,
-    map: map
+    map: map,
   });
 };

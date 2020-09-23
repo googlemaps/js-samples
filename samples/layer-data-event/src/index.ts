@@ -20,7 +20,7 @@ let map: google.maps.Map;
 function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 4,
-    center: { lat: -28, lng: 137 }
+    center: { lat: -28, lng: 137 },
   });
 
   // Load GeoJSON.
@@ -29,16 +29,16 @@ function initMap(): void {
   );
 
   // Add some style.
-  map.data.setStyle(feature => {
+  map.data.setStyle((feature) => {
     return /** @type {google.maps.Data.StyleOptions} */ {
       fillColor: feature.getProperty("color"),
-      strokeWeight: 1
+      strokeWeight: 1,
     };
   });
 
   // [START maps_layer_data_event_snippet]
   // Set mouseover event for each feature.
-  map.data.addListener("mouseover", event => {
+  map.data.addListener("mouseover", (event) => {
     (document.getElementById(
       "info-box"
     ) as HTMLElement).textContent = event.feature.getProperty("letter");

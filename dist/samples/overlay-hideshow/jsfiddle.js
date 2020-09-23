@@ -8,9 +8,9 @@ function initMap() {
     zoom: 11,
     center: {
       lat: 62.323907,
-      lng: -150.109291
+      lng: -150.109291,
     },
-    mapTypeId: "satellite"
+    mapTypeId: "satellite",
   });
   const bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(62.281819, -150.287132),

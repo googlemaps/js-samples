@@ -33,7 +33,7 @@
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
       if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
       keys.push.apply(keys, symbols);
@@ -45,7 +45,7 @@
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys(Object(source), true).forEach(function(key) {
+        ownKeys(Object(source), true).forEach(function (key) {
           _defineProperty(target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -54,7 +54,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys(Object(source)).forEach(function(key) {
+        ownKeys(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -72,7 +72,7 @@
         value: value,
         enumerable: true,
         configurable: true,
-        writable: true
+        writable: true,
       });
     } else {
       obj[key] = value;
@@ -85,11 +85,11 @@
     var sharedOptions = {
       center: {
         lat: 47.609414458375674,
-        lng: -122.33897030353548
+        lng: -122.33897030353548,
       },
       zoom: 17,
       disableDefaultUI: true,
-      gestureHandling: "none"
+      gestureHandling: "none",
     };
     new google.maps.Map(
       document.getElementById("left"),
@@ -98,7 +98,7 @@
         {},
         {
           mapId: "ed1309c122a3dfcb",
-          useStaticMap: false
+          useStaticMap: false,
         }
       )
     );
@@ -109,7 +109,7 @@
         {},
         {
           mapId: "ed1309c122a3dfcb",
-          useStaticMap: true
+          useStaticMap: true,
         }
       ) // TODO(jpoehnelt) add mapId to @types/googlemaps
     );

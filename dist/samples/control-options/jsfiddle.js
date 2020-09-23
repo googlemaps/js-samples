@@ -7,12 +7,12 @@ function initMap() {
     zoom: 4,
     center: {
       lat: -33,
-      lng: 151
+      lng: 151,
     },
     mapTypeControl: true,
     mapTypeControlOptions: {
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-      mapTypeIds: ["roadmap", "terrain"]
-    }
+      mapTypeIds: ["roadmap", "terrain"],
+    },
   });
 }

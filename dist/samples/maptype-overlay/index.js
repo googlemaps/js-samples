@@ -30,7 +30,7 @@ class CoordMapType {
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
-    center: { lat: 41.85, lng: -87.65 }
+    center: { lat: 41.85, lng: -87.65 },
   });
   // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of

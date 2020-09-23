@@ -26,21 +26,21 @@ function getReceptionPanoramaData(): google.maps.StreetViewPanoramaData {
     location: {
       pano: "reception", // The ID for this custom panorama.
       description: "Google Sydney - Reception",
-      latLng: new google.maps.LatLng(-33.86684, 151.19583)
+      latLng: new google.maps.LatLng(-33.86684, 151.19583),
     },
     links: [
       {
         heading: 195,
         description: "Exit",
-        pano: (outsideGoogle.location as google.maps.StreetViewLocation).pano
-      }
+        pano: (outsideGoogle.location as google.maps.StreetViewLocation).pano,
+      },
     ],
     copyright: "Imagery (c) 2010 Google",
     tiles: {
       tileSize: new google.maps.Size(1024, 512),
       worldSize: new google.maps.Size(2048, 1024),
       centerHeading: 105,
-      getTileUrl: function(
+      getTileUrl: function (
         pano: string,
         zoom: number,
         tileX: number,
@@ -56,8 +56,8 @@ function getReceptionPanoramaData(): google.maps.StreetViewPanoramaData {
           tileY +
           ".jpg"
         );
-      }
-    }
+      },
+    },
   };
 }
 
@@ -86,7 +86,7 @@ function initPanorama() {
       panorama.getLinks().push({
         description: "Google Sydney",
         heading: 25,
-        pano: "reception"
+        pano: "reception",
       });
     }
   });

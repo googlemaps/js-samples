@@ -4,11 +4,11 @@ function initMap() {
     zoom: 13,
     center: locationRio,
     gestureHandling: "none",
-    zoomControl: false
+    zoomControl: false,
   });
   new google.maps.Marker({
     position: locationRio,
     map,
-    title: "Hello World!"
+    title: "Hello World!",
   });
 }

@@ -21,7 +21,7 @@ function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 2,
     center: new google.maps.LatLng(2.8, -187.3),
-    mapTypeId: google.maps.MapTypeId.TERRAIN
+    mapTypeId: google.maps.MapTypeId.TERRAIN,
   });
 
   // Create a <script> tag and set the USGS URL as the source.
@@ -34,7 +34,7 @@ function initMap(): void {
   document.getElementsByTagName("head")[0].appendChild(script);
 }
 
-const eqfeed_callback = function(results: any) {
+const eqfeed_callback = function (results: any) {
   // TODO(jpoehnelt) fix typings
   const heatmapData: any[] = [];
 
@@ -44,14 +44,14 @@ const eqfeed_callback = function(results: any) {
     const magnitude = results.features[i].properties.mag;
     const weightedLoc = {
       location: latLng,
-      weight: Math.pow(2, magnitude)
+      weight: Math.pow(2, magnitude),
     };
     heatmapData.push(weightedLoc);
   }
   const heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
     dissipating: false,
-    map: map
+    map: map,
   });
 };
 // [END maps_earthquake_heatmap_weighted]

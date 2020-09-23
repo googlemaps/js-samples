@@ -17,11 +17,11 @@
 // [START maps_mysql_to_maps]
 const customLabel = {
   restaurant: {
-    label: "R"
+    label: "R",
   },
   bar: {
-    label: "B"
-  }
+    label: "B",
+  },
 };
 
 function initMap(): void {
@@ -29,7 +29,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       center: new google.maps.LatLng(-33.863276, 151.207977),
-      zoom: 12
+      zoom: 12,
     }
   );
   const infoWindow = new google.maps.InfoWindow();
@@ -37,10 +37,10 @@ function initMap(): void {
   // Change this depending on the name of your PHP or XML file
   downloadUrl(
     "https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml",
-    data => {
+    (data) => {
       const xml = data.responseXML;
       const markers = xml.documentElement.getElementsByTagName("marker");
-      Array.prototype.forEach.call(markers, markerElem => {
+      Array.prototype.forEach.call(markers, (markerElem) => {
         const id = markerElem.getAttribute("id");
         const name = markerElem.getAttribute("name");
         const address = markerElem.getAttribute("address");
@@ -63,7 +63,7 @@ function initMap(): void {
         const marker = new google.maps.Marker({
           map,
           position: point,
-          label: icon.label
+          label: icon.label,
         });
         marker.addListener("click", () => {
           infoWindow.setContent(infowincontent);
@@ -81,7 +81,7 @@ function downloadUrl(url: string, callback: (data: any) => void) {
       new ActiveXObject("Microsoft.XMLHTTP")
     : new XMLHttpRequest();
 
-  request.onreadystatechange = function() {
+  request.onreadystatechange = function () {
     if (request.readyState == 4) {
       request.onreadystatechange = doNothing;
       callback(request);

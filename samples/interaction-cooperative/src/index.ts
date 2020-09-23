@@ -28,14 +28,14 @@ function initMap(): void {
     {
       zoom: 4,
       center: myLatLng,
-      gestureHandling: "cooperative"
+      gestureHandling: "cooperative",
     }
   );
 
   new google.maps.Marker({
     position: myLatLng,
     map,
-    title: "Hello World!"
+    title: "Hello World!",
   });
 }
 // [END maps_interaction_cooperative]

@@ -20,14 +20,14 @@ function initMap(): void {
   // Create a map centered in Pyrmont, Sydney (Australia).
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: -33.8666, lng: 151.1958 },
-    zoom: 15
+    zoom: 15,
   });
 
   // Search for Google's office in Australia.
   const request = {
     location: map.getCenter(),
     radius: 500,
-    query: "Google Sydney"
+    query: "Google Sydney",
   };
 
   const service = new google.maps.places.PlacesService(map);
@@ -46,8 +46,8 @@ function callback(
       place: {
         placeId: results[0].place_id,
         location: (results[0].geometry as google.maps.places.PlaceGeometry)
-          .location
-      }
+          .location,
+      },
     });
   }
 }

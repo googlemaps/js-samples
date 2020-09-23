@@ -20,15 +20,15 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
-      center: { lat: 49.496675, lng: -102.65625 }
+      center: { lat: 49.496675, lng: -102.65625 },
     }
   );
 
   const georssLayer = new google.maps.KmlLayer({
     url:
-      "http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss"
+      "http://api.flickr.com/services/feeds/geo/?g=322338@N20&lang=en-us&format=feed-georss",
   });
   georssLayer.setMap(map);
 }
 // [END maps_layer_georss]
-export {initMap};
+export { initMap };

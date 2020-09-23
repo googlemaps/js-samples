@@ -13,9 +13,9 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 39.79,
-      lng: -104.98
+      lng: -104.98,
     },
-    zoom: 10
+    zoom: 10,
   });
   new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
   autocompleteInput = document.getElementById("search-input");
@@ -26,10 +26,10 @@ function initMap() {
   fetch(
     "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
   )
-    .then(response => {
+    .then((response) => {
       return response.json();
     })
-    .then(data => {
+    .then((data) => {
       const features = data.features;
       const markers = [];
       features.forEach(
@@ -38,21 +38,21 @@ function initMap() {
             name,
             location: {
               lat,
-              lng
+              lng,
             },
-            address: ""
+            address: "",
           });
           const marker = new google.maps.Marker({
             position: {
               lat,
-              lng
-            }
+              lng,
+            },
           });
           marker.addListener("click", () => {
             update(
               new google.maps.LatLng({
                 lat,
-                lng
+                lng,
               })
             );
           });
@@ -61,7 +61,7 @@ function initMap() {
       );
       new MarkerClusterer(map, markers, {
         imagePath:
-          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+          "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
       });
       progress.done();
       update(map.getCenter());
@@ -73,7 +73,7 @@ function initMap() {
           update(
             new google.maps.LatLng({
               lat,
-              lng
+              lng,
             })
           );
         }
@@ -150,9 +150,9 @@ function getDistances(place) {
     distanceMatrixService.getDistanceMatrix(
       {
         origins,
-        destinations: stores.slice(0, 25).map(store => store.location),
+        destinations: stores.slice(0, 25).map((store) => store.location),
         travelMode: google.maps.TravelMode.DRIVING,
-        unitSystem: google.maps.UnitSystem.IMPERIAL
+        unitSystem: google.maps.UnitSystem.IMPERIAL,
       },
       callback
     );
@@ -176,7 +176,7 @@ function update(location) {
   isUpdateInProgress = true;
   map.setCenter(location); // reset values
 
-  stores.forEach(store => {
+  stores.forEach((store) => {
     delete store.travelDistance;
     delete store.travelDistanceText;
     delete store.travelDuration;
@@ -196,7 +196,7 @@ function update(location) {
     );
   });
   getDistances(location)
-    .then(response => {
+    .then((response) => {
       for (let i = 0; i < response.rows[0].elements.length; i++) {
         stores[i].address = response.destinationAddresses[i];
         stores[i].travelDistance = response.rows[0].elements[i].distance.value;

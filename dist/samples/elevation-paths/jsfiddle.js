@@ -2,7 +2,7 @@
 
 // Load the Visualization API and the columnchart package.
 google.load("visualization", "1", {
-  packages: ["columnchart"]
+  packages: ["columnchart"],
 });
 
 function initMap() {
@@ -11,34 +11,34 @@ function initMap() {
   const path = [
     {
       lat: 36.579,
-      lng: -118.292
+      lng: -118.292,
     },
     {
       lat: 36.606,
-      lng: -118.0638
+      lng: -118.0638,
     },
     {
       lat: 36.433,
-      lng: -117.951
+      lng: -117.951,
     },
     {
       lat: 36.588,
-      lng: -116.943
+      lng: -116.943,
     },
     {
       lat: 36.34,
-      lng: -117.468
+      lng: -117.468,
     },
     {
       lat: 36.24,
-      lng: -116.832
-    }
+      lng: -116.832,
+    },
   ]; // Badwater, Death Valley
 
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
     center: path[1],
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   }); // Create an ElevationService.
 
   const elevator = new google.maps.ElevationService(); // Draw the path, using the Visualization API and the Elevation service.
@@ -52,7 +52,7 @@ function displayPathElevation(path, elevator, map) {
     path: path,
     strokeColor: "#0000CC",
     strokeOpacity: 0.4,
-    map: map
+    map: map,
   }); // Create a PathElevationRequest object using this array.
   // Ask for 256 samples along that path.
   // Initiate the path request.
@@ -60,7 +60,7 @@ function displayPathElevation(path, elevator, map) {
   elevator.getElevationAlongPath(
     {
       path: path,
-      samples: 256
+      samples: 256,
     },
     plotElevation
   );
@@ -93,6 +93,6 @@ function plotElevation(elevations, status) {
   chart.draw(data, {
     height: 150,
     legend: "none",
-    titleY: "Elevation (m)"
+    titleY: "Elevation (m)",
   });
 }

@@ -29,7 +29,7 @@ function initMap(): void {
     {
       mapId: "3a3b33f0edd6ed2a",
       center: { lat: 47.609414458375674, lng: -122.33897030353548 },
-      zoom: 17
+      zoom: 17,
     } as google.maps.MapOptions
   );
 
@@ -57,7 +57,7 @@ function initMap(): void {
 
   select.listen("MDCSelect:change", () => {
     collisionBehavior = select.value;
-    markers.forEach(marker => {
+    markers.forEach((marker) => {
       marker.set("collisionBehavior", collisionBehavior);
     });
   });
@@ -78,14 +78,14 @@ function initMap(): void {
     [-122.3383, 47.6089],
     [-122.3379, 47.6093],
     [-122.3381, 47.6095],
-    [-122.3378, 47.6095]
+    [-122.3378, 47.6095],
   ].map(
     ([lng, lat]: number[]) =>
       // [START maps_marker_collision_management_create_marker]
       new google.maps.Marker({
         position: new google.maps.LatLng({ lat, lng }),
         map,
-        collisionBehavior: collisionBehavior
+        collisionBehavior: collisionBehavior,
       } as google.maps.MarkerOptions)
     // [END maps_marker_collision_management_create_marker]
   );

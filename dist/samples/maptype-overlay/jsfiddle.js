@@ -36,8 +36,8 @@ function initMap() {
     zoom: 10,
     center: {
       lat: 41.85,
-      lng: -87.65
-    }
+      lng: -87.65,
+    },
   }); // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of
   // their parent base map.

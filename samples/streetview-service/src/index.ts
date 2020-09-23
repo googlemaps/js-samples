@@ -35,7 +35,7 @@ function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: berkeley,
     zoom: 16,
-    streetViewControl: false
+    streetViewControl: false,
   });
 
   // Set the initial Street View camera to the center of the map
@@ -44,7 +44,7 @@ function initMap(): void {
   // Look for a nearby Street View panorama when the map is clicked.
   // getPanorama will return the nearest pano when the given
   // radius is 50 meters or less.
-  map.addListener("click", event => {
+  map.addListener("click", (event) => {
     sv.getPanorama({ location: event.latLng, radius: 50 }, processSVData);
   });
 }
@@ -59,13 +59,13 @@ function processSVData(
     const marker = new google.maps.Marker({
       position: location.latLng,
       map,
-      title: location.description
+      title: location.description,
     });
 
     panorama.setPano(location.pano as string);
     panorama.setPov({
       heading: 270,
-      pitch: 0
+      pitch: 0,
     });
     panorama.setVisible(true);
 
@@ -75,7 +75,7 @@ function processSVData(
       panorama.setPano(markerPanoID as string);
       panorama.setPov({
         heading: 270,
-        pitch: 0
+        pitch: 0,
       });
       panorama.setVisible(true);
     });

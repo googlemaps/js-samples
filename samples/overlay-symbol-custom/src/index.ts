@@ -23,7 +23,7 @@ function initMap(): void {
     {
       zoom: 6,
       center: { lat: 20.291, lng: 153.027 },
-      mapTypeId: "terrain"
+      mapTypeId: "terrain",
     }
   );
 
@@ -35,43 +35,43 @@ function initMap(): void {
     path: "M -2,0 0,-2 2,0 0,2 z",
     strokeColor: "#F00",
     fillColor: "#F00",
-    fillOpacity: 1
+    fillOpacity: 1,
   };
 
   const symbolTwo = {
     path:
       "M -1,0 A 1,1 0 0 0 -3,0 1,1 0 0 0 -1,0M 1,0 A 1,1 0 0 0 3,0 1,1 0 0 0 1,0M -3,3 Q 0,5 3,3",
     strokeColor: "#00F",
-    rotation: 45
+    rotation: 45,
   };
 
   const symbolThree = {
     path: "M -2,-2 2,2 M 2,-2 -2,2",
     strokeColor: "#292",
-    strokeWeight: 4
+    strokeWeight: 4,
   };
 
   // Create the polyline and add the symbols via the 'icons' property.
   const line = new google.maps.Polyline({
     path: [
       { lat: 22.291, lng: 153.027 },
-      { lat: 18.291, lng: 153.027 }
+      { lat: 18.291, lng: 153.027 },
     ],
     icons: [
       {
         icon: symbolOne,
-        offset: "0%"
+        offset: "0%",
       },
       {
         icon: symbolTwo,
-        offset: "50%"
+        offset: "50%",
       },
       {
         icon: symbolThree,
-        offset: "100%"
-      }
+        offset: "100%",
+      },
     ],
-    map: map
+    map: map,
   });
   // [END maps_overlay_symbol_custom_region_polyline]
 }

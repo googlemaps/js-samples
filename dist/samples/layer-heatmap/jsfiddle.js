@@ -10,13 +10,13 @@ function initMap() {
     zoom: 13,
     center: {
       lat: 37.775,
-      lng: -122.434
+      lng: -122.434,
     },
-    mapTypeId: "satellite"
+    mapTypeId: "satellite",
   });
   heatmap = new google.maps.visualization.HeatmapLayer({
     data: getPoints(),
-    map: map
+    map: map,
   });
 }
 
@@ -39,7 +39,7 @@ function changeGradient() {
     "rgba(63, 0, 91, 1)",
     "rgba(127, 0, 63, 1)",
     "rgba(191, 0, 31, 1)",
-    "rgba(255, 0, 0, 1)"
+    "rgba(255, 0, 0, 1)",
   ];
   heatmap.set("gradient", heatmap.get("gradient") ? null : gradient);
 }
@@ -553,6 +553,6 @@ function getPoints() {
     new google.maps.LatLng(37.754665, -122.403242),
     new google.maps.LatLng(37.753837, -122.403172),
     new google.maps.LatLng(37.752986, -122.403112),
-    new google.maps.LatLng(37.751266, -122.403355)
+    new google.maps.LatLng(37.751266, -122.403355),
   ];
 }

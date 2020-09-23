@@ -10,8 +10,8 @@ function initMap() {
     zoom: 13,
     center: {
       lat: 59.325,
-      lng: 18.07
-    }
+      lng: 18.07,
+    },
   });
   marker = new google.maps.Marker({
     map,
@@ -19,8 +19,8 @@ function initMap() {
     animation: google.maps.Animation.DROP,
     position: {
       lat: 59.327,
-      lng: 18.067
-    }
+      lng: 18.067,
+    },
   });
   marker.addListener("click", toggleBounce);
 }

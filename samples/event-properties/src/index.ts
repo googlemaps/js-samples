@@ -21,13 +21,13 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
-      center: originalMapCenter
+      center: originalMapCenter,
     }
   );
 
   const infowindow = new google.maps.InfoWindow({
     content: "Change the zoom level",
-    position: originalMapCenter
+    position: originalMapCenter,
   });
   infowindow.open(map);
 

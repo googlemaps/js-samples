@@ -27,9 +27,9 @@
       function geocodePosition(pos) {
         geocoder.geocode(
           {
-            latLng: pos
+            latLng: pos,
           },
-          function(responses) {
+          function (responses) {
             if (responses && responses.length > 0) {
               updateMarkerAddress(responses[0].formatted_address);
             } else {
@@ -46,7 +46,7 @@
       function updateMarkerPosition(latLng) {
         document.getElementById("info").innerHTML = [
           latLng.lat(),
-          latLng.lng()
+          latLng.lng(),
         ].join(", ");
       }
 
@@ -59,13 +59,13 @@
         var map = new google.maps.Map(document.getElementById("mapCanvas"), {
           zoom: 8,
           center: latLng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
         var marker = new google.maps.Marker({
           position: latLng,
           title: "Point A",
           map: map,
-          draggable: true
+          draggable: true,
         });
 
         // Update current position info.
@@ -73,16 +73,16 @@
         geocodePosition(latLng);
 
         // Add dragging event listeners.
-        google.maps.event.addListener(marker, "dragstart", function() {
+        google.maps.event.addListener(marker, "dragstart", function () {
           updateMarkerAddress("Dragging...");
         });
 
-        google.maps.event.addListener(marker, "drag", function() {
+        google.maps.event.addListener(marker, "drag", function () {
           updateMarkerStatus("Dragging...");
           updateMarkerPosition(marker.getPosition());
         });
 
-        google.maps.event.addListener(marker, "dragend", function() {
+        google.maps.event.addListener(marker, "dragend", function () {
           updateMarkerStatus("Drag ended");
           geocodePosition(marker.getPosition());
         });

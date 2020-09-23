@@ -80,7 +80,7 @@ class CenterControl {
 function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 12,
-    center: chicago
+    center: chicago,
   });
 
   // Create the DIV to hold the control and call the CenterControl()

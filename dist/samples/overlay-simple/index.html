@@ -76,7 +76,7 @@
           );
         }
         subClass.prototype = Object.create(superClass && superClass.prototype, {
-          constructor: { value: subClass, writable: true, configurable: true }
+          constructor: { value: subClass, writable: true, configurable: true },
         });
         if (superClass) _setPrototypeOf(subClass, superClass);
       }
@@ -93,7 +93,7 @@
 
       function _createSuper(Derived) {
         var hasNativeReflectConstruct = _isNativeReflectConstruct();
-        return function() {
+        return function () {
           var Super = _getPrototypeOf(Derived),
             result;
           if (hasNativeReflectConstruct) {
@@ -131,7 +131,7 @@
         if (typeof Proxy === "function") return true;
         try {
           Date.prototype.toString.call(
-            Reflect.construct(Date, [], function() {})
+            Reflect.construct(Date, [], function () {})
           );
           return true;
         } catch (e) {
@@ -162,9 +162,9 @@
           zoom: 11,
           center: {
             lat: 62.323907,
-            lng: -150.109291
+            lng: -150.109291,
           },
-          mapTypeId: "satellite"
+          mapTypeId: "satellite",
         });
         var bounds = new google.maps.LatLngBounds(
           new google.maps.LatLng(62.281819, -150.287132),
@@ -176,7 +176,7 @@
           "javascript/examples/full/images/talkeetna.png"; // The custom USGSOverlay object contains the USGS image,
         // the bounds of the image, and a reference to the map.
 
-        var USGSOverlay = /*#__PURE__*/ (function(_google$maps$OverlayV) {
+        var USGSOverlay = /*#__PURE__*/ (function (_google$maps$OverlayV) {
           _inherits(USGSOverlay, _google$maps$OverlayV);
 
           var _super = _createSuper(USGSOverlay);
@@ -219,7 +219,7 @@
 
                 var panes = this.getPanes();
                 panes.overlayLayer.appendChild(this.div_);
-              }
+              },
             },
             {
               key: "draw",
@@ -244,7 +244,7 @@
                   this.div_.style.width = ne.x - sw.x + "px";
                   this.div_.style.height = sw.y - ne.y + "px";
                 }
-              } // The onRemove() method will be called automatically from the API if
+              }, // The onRemove() method will be called automatically from the API if
               // we ever set the overlay's map property to 'null'.
             },
             {
@@ -254,8 +254,8 @@
                   this.div_.parentNode.removeChild(this.div_);
                   this.div_ = null;
                 }
-              }
-            }
+              },
+            },
           ]);
 
           return USGSOverlay;

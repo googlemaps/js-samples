@@ -24,7 +24,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 10,
-      center: { lat: -33.9, lng: 151.2 }
+      center: { lat: -33.9, lng: 151.2 },
     }
   );
 
@@ -38,7 +38,7 @@ const beaches: [string, number, number, number][] = [
   ["Coogee Beach", -33.923036, 151.259052, 5],
   ["Cronulla Beach", -34.028249, 151.157507, 3],
   ["Manly Beach", -33.80010128657071, 151.28747820854187, 2],
-  ["Maroubra Beach", -33.950198, 151.259302, 1]
+  ["Maroubra Beach", -33.950198, 151.259302, 1],
 ];
 
 function setMarkers(map: google.maps.Map) {
@@ -57,14 +57,14 @@ function setMarkers(map: google.maps.Map) {
     // The origin for this image is (0, 0).
     origin: new google.maps.Point(0, 0),
     // The anchor for this image is the base of the flagpole at (0, 32).
-    anchor: new google.maps.Point(0, 32)
+    anchor: new google.maps.Point(0, 32),
   };
   // Shapes define the clickable region of the icon. The type defines an HTML
   // <area> element 'poly' which traces out a polygon as a series of X,Y points.
   // The final coordinate closes the poly by connecting to the first coordinate.
   const shape = {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],
-    type: "poly"
+    type: "poly",
   } as google.maps.MarkerShapePoly;
 
   for (let i = 0; i < beaches.length; i++) {
@@ -75,7 +75,7 @@ function setMarkers(map: google.maps.Map) {
       icon: image,
       shape: shape,
       title: beach[0],
-      zIndex: beach[3]
+      zIndex: beach[3],
     });
   }
 }

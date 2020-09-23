@@ -126,7 +126,7 @@
         var button = document.createElement("span");
         button.className = "color-button";
         button.style.backgroundColor = color;
-        google.maps.event.addDomListener(button, "click", function() {
+        google.maps.event.addDomListener(button, "click", function () {
           selectColor(color);
           setSelectedShapeColor(color);
         });
@@ -151,34 +151,34 @@
           center: new google.maps.LatLng(22.344, 114.048),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           disableDefaultUI: true,
-          zoomControl: true
+          zoomControl: true,
         });
 
         var polyOptions = {
           strokeWeight: 0,
           fillOpacity: 0.45,
-          editable: true
+          editable: true,
         };
         // Creates a drawing manager attached to the map that allows the user to draw
         // markers, lines, and shapes.
         drawingManager = new google.maps.drawing.DrawingManager({
           drawingMode: google.maps.drawing.OverlayType.POLYGON,
           markerOptions: {
-            draggable: true
+            draggable: true,
           },
           polylineOptions: {
-            editable: true
+            editable: true,
           },
           rectangleOptions: polyOptions,
           circleOptions: polyOptions,
           polygonOptions: polyOptions,
-          map: map
+          map: map,
         });
 
         google.maps.event.addListener(
           drawingManager,
           "overlaycomplete",
-          function(e) {
+          function (e) {
             if (e.type != google.maps.drawing.OverlayType.MARKER) {
               // Switch back to non-drawing mode after drawing a shape.
               drawingManager.setDrawingMode(null);
@@ -187,7 +187,7 @@
               // mouses down on it.
               var newShape = e.overlay;
               newShape.type = e.type;
-              google.maps.event.addListener(newShape, "click", function() {
+              google.maps.event.addListener(newShape, "click", function () {
                 setSelection(newShape);
               });
               setSelection(newShape);

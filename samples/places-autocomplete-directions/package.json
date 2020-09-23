@@ -1,6 +1,8 @@
 {
   "title": "Place Autocomplete and Directions",
-  "libraries": ["places"],
+  "libraries": [
+    "places"
+  ],
   "callback": "initMap",
   "version": "weekly",
   "tag": "places_autocomplete_directions",

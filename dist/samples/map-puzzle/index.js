@@ -41,7 +41,7 @@ class PuzzleDemo {
     difficultyTitleDiv.innerText = "DIFFICULTY:";
     difficultyTitleDiv.style.fontWeight = "800";
     const difficultySelect = document.createElement("select");
-    ["Easy", "Moderate", "Hard", "Extreme"].forEach(level => {
+    ["Easy", "Moderate", "Hard", "Extreme"].forEach((level) => {
       const option = document.createElement("option");
       option.value = level.toLowerCase();
       option.innerText = level;
@@ -115,64 +115,64 @@ class PuzzleDemo {
     const styles = {
       easy: [
         {
-          stylers: [{ visibility: "off" }]
+          stylers: [{ visibility: "off" }],
         },
         {
           featureType: "water",
-          stylers: [{ visibility: "on" }, { color: "#d4d4d4" }]
+          stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
         },
         {
           featureType: "landscape",
-          stylers: [{ visibility: "on" }, { color: "#e5e3df" }]
+          stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
         },
         {
           featureType: "administrative.country",
           elementType: "labels",
-          stylers: [{ visibility: "on" }]
+          stylers: [{ visibility: "on" }],
         },
         {
           featureType: "administrative.country",
           elementType: "geometry",
-          stylers: [{ visibility: "on" }, { weight: 1.3 }]
-        }
+          stylers: [{ visibility: "on" }, { weight: 1.3 }],
+        },
       ],
       moderate: [
         {
-          stylers: [{ visibility: "off" }]
+          stylers: [{ visibility: "off" }],
         },
         {
           featureType: "water",
-          stylers: [{ visibility: "on" }, { color: "#d4d4d4" }]
+          stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
         },
         {
           featureType: "landscape",
-          stylers: [{ visibility: "on" }, { color: "#e5e3df" }]
+          stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
         },
         {
           featureType: "administrative.country",
           elementType: "labels",
-          stylers: [{ visibility: "on" }]
-        }
+          stylers: [{ visibility: "on" }],
+        },
       ],
       hard: [
         {
-          stylers: [{ visibility: "off" }]
+          stylers: [{ visibility: "off" }],
         },
         {
           featureType: "water",
-          stylers: [{ visibility: "on" }, { color: "#d4d4d4" }]
+          stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
         },
         {
           featureType: "landscape",
-          stylers: [{ visibility: "on" }, { color: "#e5e3df" }]
-        }
+          stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
+        },
       ],
       extreme: [
         {
           elementType: "geometry",
-          stylers: [{ visibility: "off" }]
-        }
-      ]
+          stylers: [{ visibility: "off" }],
+        },
+      ],
     };
     this.map_.set("styles", styles[this.difficulty_]);
   }
@@ -227,7 +227,7 @@ class PuzzleDemo {
       map: this.map_,
       draggable: true,
       zIndex: 2,
-      paths: country.start.map(google.maps.geometry.encoding.decodePath)
+      paths: country.start.map(google.maps.geometry.encoding.decodePath),
     };
     const poly = new google.maps.Polygon(options);
     google.maps.event.addListener(poly, "dragend", () => {
@@ -265,7 +265,7 @@ class PuzzleDemo {
       fillColor: this.END_COLOR_,
       draggable: false,
       zIndex: 1,
-      paths: country.end.map(google.maps.geometry.encoding.decodePath)
+      paths: country.end.map(google.maps.geometry.encoding.decodePath),
     };
     poly.setOptions(options);
     this.count_++;
@@ -292,7 +292,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     disableDefaultUI: true,
     center: { lat: 10, lng: 60 },
-    zoom: 2
+    zoom: 2,
   });
   new PuzzleDemo(map);
 }

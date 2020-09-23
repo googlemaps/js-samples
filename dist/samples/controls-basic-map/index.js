@@ -3,11 +3,11 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
     center: locationRio,
-    gestureHandling: "greedy"
+    gestureHandling: "greedy",
   });
   new google.maps.Marker({
     position: locationRio,
     map,
-    title: "Hello World!"
+    title: "Hello World!",
   });
 }

@@ -68,14 +68,14 @@
         "rightclick",
         "tilesloaded",
         "tilt_changed",
-        "zoom_changed"
+        "zoom_changed",
       ];
 
       function setupListener(map, name) {
         var eventRow = document.getElementById(name);
-        google.maps.event.addListener(map, name, function() {
+        google.maps.event.addListener(map, name, function () {
           eventRow.className = "event active";
-          var timeout = setTimeout(function() {
+          var timeout = setTimeout(function () {
             eventRow.className = "event inactive";
           }, 1000);
         });
@@ -87,7 +87,7 @@
         var map = new google.maps.Map(mapDiv, {
           center: new google.maps.LatLng(37.4419, -122.1419),
           zoom: 13,
-          mapTypeId: "roadmap"
+          mapTypeId: "roadmap",
         });
 
         for (var i = 0; i < events.length; i++) {

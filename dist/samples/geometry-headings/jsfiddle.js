@@ -11,8 +11,8 @@ function initMap() {
     zoom: 4,
     center: {
       lat: 34,
-      lng: -40.605
-    }
+      lng: -40.605,
+    },
   });
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(
     document.getElementById("info")
@@ -22,16 +22,16 @@ function initMap() {
     draggable: true,
     position: {
       lat: 40.714,
-      lng: -74.006
-    }
+      lng: -74.006,
+    },
   });
   marker2 = new google.maps.Marker({
     map,
     draggable: true,
     position: {
       lat: 48.857,
-      lng: 2.352
-    }
+      lng: 2.352,
+    },
   });
   const bounds = new google.maps.LatLngBounds(
     marker1.getPosition(),
@@ -44,14 +44,14 @@ function initMap() {
     strokeColor: "#FF0000",
     strokeOpacity: 1.0,
     strokeWeight: 3,
-    map: map
+    map: map,
   });
   geodesicPoly = new google.maps.Polyline({
     strokeColor: "#CC0099",
     strokeOpacity: 1.0,
     strokeWeight: 3,
     geodesic: true,
-    map: map
+    map: map,
   });
   update();
 }

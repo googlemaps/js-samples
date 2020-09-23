@@ -52,7 +52,7 @@ function getCustomPanorama(pano: string): google.maps.StreetViewPanoramaData {
     return {
       location: {
         pano: "reception",
-        description: "Google Sydney - Reception"
+        description: "Google Sydney - Reception",
       },
       links: [],
       // The text for the copyright control.
@@ -64,8 +64,8 @@ function getCustomPanorama(pano: string): google.maps.StreetViewPanoramaData {
         // The heading in degrees at the origin of the panorama
         // tile set.
         centerHeading: 105,
-        getTileUrl: getCustomPanoramaTileUrl
-      }
+        getTileUrl: getCustomPanoramaTileUrl,
+      },
     };
   }
   // @ts-ignore TODO(jpoehnelt) fix typings

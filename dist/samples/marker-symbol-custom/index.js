@@ -4,7 +4,7 @@
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
-    center: { lat: -25.363882, lng: 131.044922 }
+    center: { lat: -25.363882, lng: 131.044922 },
   });
   const goldStar = {
     path:
@@ -13,11 +13,11 @@ function initMap() {
     fillOpacity: 0.8,
     scale: 1,
     strokeColor: "gold",
-    strokeWeight: 14
+    strokeWeight: 14,
   };
   new google.maps.Marker({
     position: map.getCenter(),
     icon: goldStar,
-    map: map
+    map: map,
   });
 }

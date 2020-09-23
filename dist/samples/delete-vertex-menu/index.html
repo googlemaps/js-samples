@@ -95,7 +95,7 @@
           );
         }
         subClass.prototype = Object.create(superClass && superClass.prototype, {
-          constructor: { value: subClass, writable: true, configurable: true }
+          constructor: { value: subClass, writable: true, configurable: true },
         });
         if (superClass) _setPrototypeOf(subClass, superClass);
       }
@@ -112,7 +112,7 @@
 
       function _createSuper(Derived) {
         var hasNativeReflectConstruct = _isNativeReflectConstruct();
-        return function() {
+        return function () {
           var Super = _getPrototypeOf(Derived),
             result;
           if (hasNativeReflectConstruct) {
@@ -150,7 +150,7 @@
         if (typeof Proxy === "function") return true;
         try {
           Date.prototype.toString.call(
-            Reflect.construct(Date, [], function() {})
+            Reflect.construct(Date, [], function () {})
           );
           return true;
         } catch (e) {
@@ -171,7 +171,7 @@
         var mapOptions = {
           zoom: 3,
           center: new google.maps.LatLng(0, -180),
-          mapTypeId: "terrain"
+          mapTypeId: "terrain",
         };
         var map = new google.maps.Map(
           document.getElementById("map"),
@@ -181,7 +181,7 @@
           new google.maps.LatLng(37.772323, -122.214897),
           new google.maps.LatLng(21.291982, -157.821856),
           new google.maps.LatLng(-18.142599, 178.431),
-          new google.maps.LatLng(-27.46758, 153.027892)
+          new google.maps.LatLng(-27.46758, 153.027892),
         ];
         var flightPath = new google.maps.Polyline({
           path: flightPlanCoordinates,
@@ -189,13 +189,13 @@
           strokeColor: "#FF0000",
           strokeOpacity: 1.0,
           strokeWeight: 2,
-          map: map
+          map: map,
         });
         /**
          * A menu that lets a user delete a selected vertex of a path.
          */
 
-        var DeleteMenu = /*#__PURE__*/ (function(_google$maps$OverlayV) {
+        var DeleteMenu = /*#__PURE__*/ (function (_google$maps$OverlayV) {
           _inherits(DeleteMenu, _google$maps$OverlayV);
 
           var _super = _createSuper(DeleteMenu);
@@ -212,7 +212,7 @@
 
             var menu = _assertThisInitialized(_this);
 
-            google.maps.event.addDomListener(_this.div_, "click", function() {
+            google.maps.event.addDomListener(_this.div_, "click", function () {
               menu.removeVertex();
             });
             return _this;
@@ -230,14 +230,14 @@
                 this.divListener_ = google.maps.event.addDomListener(
                   map.getDiv(),
                   "mousedown",
-                  function(e) {
+                  function (e) {
                     if (e.target != deleteMenu.div_) {
                       deleteMenu.close();
                     }
                   },
                   true
                 );
-              }
+              },
             },
             {
               key: "onRemove",
@@ -251,13 +251,13 @@
                 this.set("position", null);
                 this.set("path", null);
                 this.set("vertex", null);
-              }
+              },
             },
             {
               key: "close",
               value: function close() {
                 this.setMap(null);
-              }
+              },
             },
             {
               key: "draw",
@@ -272,7 +272,7 @@
                 var point = projection.fromLatLngToDivPixel(position);
                 this.div_.style.top = point.y + "px";
                 this.div_.style.left = point.x + "px";
-              }
+              },
               /**
                * Opens the menu at a vertex of a given path.
                */
@@ -285,7 +285,7 @@
                 this.set("vertex", vertex);
                 this.setMap(map);
                 this.draw();
-              }
+              },
               /**
                * Deletes the vertex from the path.
                */
@@ -303,15 +303,15 @@
 
                 path.removeAt(vertex);
                 this.close();
-              }
-            }
+              },
+            },
           ]);
 
           return DeleteMenu;
         })(google.maps.OverlayView);
 
         var deleteMenu = new DeleteMenu();
-        google.maps.event.addListener(flightPath, "rightclick", function(e) {
+        google.maps.event.addListener(flightPath, "rightclick", function (e) {
           // Check if click was on a vertex control point
           if (e.vertex == undefined) {
             return;

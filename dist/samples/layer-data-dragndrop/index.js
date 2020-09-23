@@ -5,7 +5,7 @@ function initMap() {
   // set up the map
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(0, 0),
-    zoom: 2
+    zoom: 2,
   });
 }
 
@@ -21,7 +21,7 @@ function loadGeoJsonString(geoString) {
  */
 function zoom(map) {
   const bounds = new google.maps.LatLngBounds();
-  map.data.forEach(feature => {
+  map.data.forEach((feature) => {
     processPoints(feature.getGeometry(), bounds.extend, bounds);
   });
   map.fitBounds(bounds);
@@ -41,7 +41,7 @@ function processPoints(geometry, callback, thisArg) {
   } else if (geometry instanceof google.maps.Data.Point) {
     callback.call(thisArg, geometry.get());
   } else {
-    geometry.getArray().forEach(g => {
+    geometry.getArray().forEach((g) => {
       processPoints(g, callback, thisArg);
     });
   }
@@ -83,11 +83,11 @@ function handleDrop(e) {
     for (let i = 0, file; (file = files[i]); i++) {
       const reader = new FileReader();
 
-      reader.onload = function(e) {
+      reader.onload = function (e) {
         loadGeoJsonString(reader.result);
       };
 
-      reader.onerror = function(e) {
+      reader.onerror = function (e) {
         console.error("reading failed");
       };
       reader.readAsText(file);

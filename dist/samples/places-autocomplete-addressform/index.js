@@ -13,7 +13,7 @@ const componentForm = {
   locality: "long_name",
   administrative_area_level_1: "short_name",
   country: "long_name",
-  postal_code: "short_name"
+  postal_code: "short_name",
 };
 
 function initAutocomplete() {
@@ -56,14 +56,14 @@ function fillInAddress() {
 // as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(position => {
+    navigator.geolocation.getCurrentPosition((position) => {
       const geolocation = {
         lat: position.coords.latitude,
-        lng: position.coords.longitude
+        lng: position.coords.longitude,
       };
       const circle = new google.maps.Circle({
         center: geolocation,
-        radius: position.coords.accuracy
+        radius: position.coords.accuracy,
       });
       autocomplete.setBounds(circle.getBounds());
     });

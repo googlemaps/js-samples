@@ -5,7 +5,7 @@ function initMap() {
   // The map, centered at Uluru
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
-    center: uluru
+    center: uluru,
   });
   // The marker, positioned at Uluru
   new google.maps.Marker({ position: uluru, map: map });

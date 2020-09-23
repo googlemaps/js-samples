@@ -6,9 +6,9 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 20,
-      lng: -160
+      lng: -160,
     },
-    zoom: 2
+    zoom: 2,
   }); // Get the earthquake data (JSONP format)
   // This feed is a copy from the USGS feed, you can find the originals here:
   //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php

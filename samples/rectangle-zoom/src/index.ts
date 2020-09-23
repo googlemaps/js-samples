@@ -24,7 +24,7 @@ function initMap(): void {
     {
       zoom: 11,
       center: { lat: 40.74852, lng: -73.981687 },
-      mapTypeId: "terrain"
+      mapTypeId: "terrain",
     }
   );
 
@@ -39,7 +39,7 @@ function initMap(): void {
       fillColor: "#FF0000",
       fillOpacity: 0.35,
       map,
-      bounds: map.getBounds() as google.maps.LatLngBounds
+      bounds: map.getBounds() as google.maps.LatLngBounds,
     });
   });
 }

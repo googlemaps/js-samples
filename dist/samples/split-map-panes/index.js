@@ -5,7 +5,7 @@ function initMap() {
     center: { lat: 44.5250489, lng: -110.83819 },
     zoom: 18,
     scaleControl: false,
-    streetViewControl: false
+    streetViewControl: false,
   };
   // instantiate the map on the left with control positioning
   mapLeft = new google.maps.Map(document.getElementById("map-left"), {
@@ -13,27 +13,27 @@ function initMap() {
     mapTypeId: "satellite",
     tilt: 0,
     fullscreenControlOptions: {
-      position: google.maps.ControlPosition.LEFT_BOTTOM
+      position: google.maps.ControlPosition.LEFT_BOTTOM,
     },
     mapTypeControlOptions: {
-      position: google.maps.ControlPosition.LEFT_TOP
+      position: google.maps.ControlPosition.LEFT_TOP,
     },
     zoomControlOptions: {
-      position: google.maps.ControlPosition.LEFT_BOTTOM
-    }
+      position: google.maps.ControlPosition.LEFT_BOTTOM,
+    },
   });
   // instantiate the map on the right with control positioning
   mapRight = new google.maps.Map(document.getElementById("map-right"), {
     ...mapOptions,
     fullscreenControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_BOTTOM
+      position: google.maps.ControlPosition.RIGHT_BOTTOM,
     },
     mapTypeControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_TOP
+      position: google.maps.ControlPosition.RIGHT_TOP,
     },
     zoomControlOptions: {
-      position: google.maps.ControlPosition.RIGHT_BOTTOM
-    }
+      position: google.maps.ControlPosition.RIGHT_BOTTOM,
+    },
   });
 
   // helper function to keep maps in sync
@@ -41,7 +41,7 @@ function initMap() {
     let center, zoom;
 
     function update(changedMap) {
-      maps.forEach(m => {
+      maps.forEach((m) => {
         if (m === changedMap) {
           return;
         }
@@ -49,7 +49,7 @@ function initMap() {
         m.setZoom(zoom);
       });
     }
-    maps.forEach(m => {
+    maps.forEach((m) => {
       m.addListener("bounds_changed", () => {
         const changedCenter = m.getCenter();
         const changedZoom = m.getZoom();
@@ -75,6 +75,6 @@ function initMap() {
   window.addEventListener("resize", handleContainerResize);
   //@ts-ignore
   Split(["#left", "#right"], {
-    sizes: [50, 50]
+    sizes: [50, 50],
   });
 }

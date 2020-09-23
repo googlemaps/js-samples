@@ -26,7 +26,7 @@ function initMap(): void {
     {
       zoom: 0,
       center: { lat: 0, lng: 0 },
-      mapTypeControl: false
+      mapTypeControl: false,
     }
   );
 
@@ -47,10 +47,10 @@ function initMap(): void {
   });
 
   // Add some markers to the map.
-  map.data.setStyle(feature => {
+  map.data.setStyle((feature) => {
     return {
       title: feature.getProperty("name"),
-      optimized: false
+      optimized: false,
     };
   });
   map.data.addGeoJson(cities);
@@ -64,7 +64,7 @@ function initGallPeters() {
 
   // Fetch Gall-Peters tiles stored locally on our server.
   gallPetersMapType = new google.maps.ImageMapType({
-    getTileUrl: function(coord, zoom) {
+    getTileUrl: function (coord, zoom) {
       const scale = 1 << zoom;
 
       // Wrap tiles horizontally.
@@ -89,19 +89,19 @@ function initGallPeters() {
     tileSize: new google.maps.Size(GALL_PETERS_RANGE_X, GALL_PETERS_RANGE_Y),
     minZoom: 0,
     maxZoom: 1,
-    name: "Gall-Peters"
+    name: "Gall-Peters",
   });
 
   // Describe the Gall-Peters projection used by these tiles.
   gallPetersMapType.projection = {
-    fromLatLngToPoint: function(latLng) {
+    fromLatLngToPoint: function (latLng) {
       const latRadians = (latLng.lat() * Math.PI) / 180;
       return new google.maps.Point(
         GALL_PETERS_RANGE_X * (0.5 + latLng.lng() / 360),
         GALL_PETERS_RANGE_Y * (0.5 - 0.5 * Math.sin(latRadians))
       );
     },
-    fromPointToLatLng: function(point, noWrap) {
+    fromPointToLatLng: function (point, noWrap) {
       const x = point.x / GALL_PETERS_RANGE_X;
       const y = Math.max(0, Math.min(1, point.y / GALL_PETERS_RANGE_Y));
 
@@ -110,7 +110,7 @@ function initGallPeters() {
         -180 + 360 * x,
         noWrap
       );
-    }
+    },
   };
 }
 
@@ -121,44 +121,44 @@ const cities = {
     {
       type: "Feature",
       geometry: { type: "Point", coordinates: [-87.65, 41.85] },
-      properties: { name: "Chicago" }
+      properties: { name: "Chicago" },
     },
     {
       type: "Feature",
       geometry: { type: "Point", coordinates: [-149.9, 61.218] },
-      properties: { name: "Anchorage" }
+      properties: { name: "Anchorage" },
     },
     {
       type: "Feature",
       geometry: { type: "Point", coordinates: [-99.127, 19.427] },
-      properties: { name: "Mexico City" }
+      properties: { name: "Mexico City" },
     },
     {
       type: "Feature",
       geometry: { type: "Point", coordinates: [-0.126, 51.5] },
-      properties: { name: "London" }
+      properties: { name: "London" },
     },
     {
       type: "Feature",
       geometry: { type: "Point", coordinates: [28.045, -26.201] },
-      properties: { name: "Johannesburg" }
+      properties: { name: "Johannesburg" },
     },
     {
       type: "Feature",
       geometry: { type: "Point", coordinates: [15.322, -4.325] },
-      properties: { name: "Kinshasa" }
+      properties: { name: "Kinshasa" },
     },
     {
       type: "Feature",
       geometry: { type: "Point", coordinates: [151.207, -33.867] },
-      properties: { name: "Sydney" }
+      properties: { name: "Sydney" },
     },
     {
       type: "Feature",
       geometry: { type: "Point", coordinates: [0, 0] },
-      properties: { name: "0°N 0°E" }
-    }
-  ]
+      properties: { name: "0°N 0°E" },
+    },
+  ],
 };
 // [END maps_map_projection_simple]
 export { initMap };

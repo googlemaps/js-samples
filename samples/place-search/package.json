@@ -1,6 +1,8 @@
 {
   "title": "Place Searches",
-  "libraries": ["places"],
+  "libraries": [
+    "places"
+  ],
   "callback": "initMap",
   "version": "weekly",
   "tag": "place_search",

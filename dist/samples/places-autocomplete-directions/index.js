@@ -6,7 +6,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
     center: { lat: -33.8688, lng: 151.2195 },
-    zoom: 13
+    zoom: 13,
   });
   new AutocompleteDirectionsHandler(map);
 }
@@ -87,7 +87,7 @@ class AutocompleteDirectionsHandler {
       {
         origin: { placeId: this.originPlaceId },
         destination: { placeId: this.destinationPlaceId },
-        travelMode: this.travelMode
+        travelMode: this.travelMode,
       },
       (response, status) => {
         if (status === "OK") {

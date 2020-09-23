@@ -21,7 +21,7 @@ function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: -33.86, lng: 151.209 },
     zoom: 13,
-    mapTypeControl: false
+    mapTypeControl: false,
   });
 
   // Add controls to the map, allowing users to hide/show features.
@@ -50,14 +50,14 @@ const styles: Record<string, google.maps.MapTypeStyle[]> = {
   hide: [
     {
       featureType: "poi.business",
-      stylers: [{ visibility: "off" }]
+      stylers: [{ visibility: "off" }],
     },
     {
       featureType: "transit",
       elementType: "labels.icon",
-      stylers: [{ visibility: "off" }]
-    }
-  ]
+      stylers: [{ visibility: "off" }],
+    },
+  ],
 };
 
 // [END maps_hiding_features]

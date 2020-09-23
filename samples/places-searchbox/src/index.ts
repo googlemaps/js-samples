@@ -29,7 +29,7 @@ function initAutocomplete() {
     {
       center: { lat: -33.8688, lng: 151.2195 },
       zoom: 13,
-      mapTypeId: "roadmap"
+      mapTypeId: "roadmap",
     }
   );
 
@@ -55,14 +55,14 @@ function initAutocomplete() {
     }
 
     // Clear out the old markers.
-    markers.forEach(marker => {
+    markers.forEach((marker) => {
       marker.setMap(null);
     });
     markers = [];
 
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
-    places.forEach(place => {
+    places.forEach((place) => {
       if (!place.geometry) {
         console.log("Returned place contains no geometry");
         return;
@@ -72,7 +72,7 @@ function initAutocomplete() {
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
-        scaledSize: new google.maps.Size(25, 25)
+        scaledSize: new google.maps.Size(25, 25),
       };
 
       // Create a marker for each place.
@@ -81,7 +81,7 @@ function initAutocomplete() {
           map,
           icon,
           title: place.name,
-          position: place.geometry.location
+          position: place.geometry.location,
         })
       );
 

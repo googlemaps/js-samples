@@ -63,8 +63,8 @@ function initMap(): void {
       mapTypeId: "coordinate",
       mapTypeControlOptions: {
         mapTypeIds: ["coordinate", "roadmap"],
-        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-      }
+        style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+      },
     }
   );
 
@@ -72,7 +72,7 @@ function initMap(): void {
     const showStreetViewControl =
       (map.getMapTypeId() as string) !== "coordinate";
     map.setOptions({
-      streetViewControl: showStreetViewControl
+      streetViewControl: showStreetViewControl,
     });
   });
 

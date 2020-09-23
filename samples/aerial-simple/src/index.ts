@@ -21,7 +21,7 @@ function initMap(): void {
     {
       center: { lat: 36.964, lng: -122.015 },
       zoom: 18,
-      mapTypeId: "satellite"
+      mapTypeId: "satellite",
     }
   );
   map.setTilt(45);

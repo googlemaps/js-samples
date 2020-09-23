@@ -107,9 +107,9 @@
     map = new google.maps.Map(document.getElementById("map"), {
       center: {
         lat: 39.79,
-        lng: -104.98
+        lng: -104.98,
       },
-      zoom: 10
+      zoom: 10,
     });
     new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
     autocompleteInput = document.getElementById("search-input");
@@ -120,13 +120,13 @@
     fetch(
       "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
     )
-      .then(function(response) {
+      .then(function (response) {
         return response.json();
       })
-      .then(function(data) {
+      .then(function (data) {
         var features = data.features;
         var markers = [];
-        features.forEach(function(_ref) {
+        features.forEach(function (_ref) {
           var name = _ref.attributes.NAME,
             _ref$geometry = _ref.geometry,
             lng = _ref$geometry.x,
@@ -135,21 +135,21 @@
             name: name,
             location: {
               lat: lat,
-              lng: lng
+              lng: lng,
             },
-            address: ""
+            address: "",
           });
           var marker = new google.maps.Marker({
             position: {
               lat: lat,
-              lng: lng
-            }
+              lng: lng,
+            },
           });
-          marker.addListener("click", function() {
+          marker.addListener("click", function () {
             update(
               new google.maps.LatLng({
                 lat: lat,
-                lng: lng
+                lng: lng,
               })
             );
           });
@@ -157,27 +157,27 @@
         });
         new MarkerClusterer(map, markers, {
           imagePath:
-            "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+            "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
         });
         progress.done();
         update(map.getCenter());
       });
-    document.getElementById("near-me").addEventListener("click", function() {
+    document.getElementById("near-me").addEventListener("click", function () {
       if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(_ref2) {
+        navigator.geolocation.getCurrentPosition(function (_ref2) {
           var _ref2$coords = _ref2.coords,
             lat = _ref2$coords.latitude,
             lng = _ref2$coords.longitude;
           update(
             new google.maps.LatLng({
               lat: lat,
-              lng: lng
+              lng: lng,
             })
           );
         });
       }
     });
-    document.getElementById("refresh").addEventListener("click", function() {
+    document.getElementById("refresh").addEventListener("click", function () {
       update(map.getCenter());
     });
   }
@@ -185,7 +185,7 @@
   function renderCards(stores) {
     var cardsDiv = document.getElementById("cards");
     cardsDiv.innerHTML = "";
-    stores.slice(0, 25).forEach(function(_ref3) {
+    stores.slice(0, 25).forEach(function (_ref3) {
       var name = _ref3.name,
         location = _ref3.location,
         address = _ref3.address,
@@ -219,7 +219,7 @@
 
       card
         .querySelector(".mdc-card__primary-action")
-        .addEventListener("click", function() {
+        .addEventListener("click", function () {
           map.panTo(location);
         });
       cardsDiv.appendChild(card);
@@ -229,7 +229,7 @@
 
   function getDistances(place) {
     var origins = [place];
-    return new Promise(function(resolve, reject) {
+    return new Promise(function (resolve, reject) {
       var callback = function callback(response, status) {
         if (status === google.maps.DistanceMatrixStatus.OK) {
           resolve(response);
@@ -241,11 +241,11 @@
       distanceMatrixService.getDistanceMatrix(
         {
           origins: origins,
-          destinations: stores.slice(0, 25).map(function(store) {
+          destinations: stores.slice(0, 25).map(function (store) {
             return store.location;
           }),
           travelMode: google.maps.TravelMode.DRIVING,
-          unitSystem: google.maps.UnitSystem.IMPERIAL
+          unitSystem: google.maps.UnitSystem.IMPERIAL,
         },
         callback
       );
@@ -269,14 +269,14 @@
     isUpdateInProgress = true;
     map.setCenter(location); // reset values
 
-    stores.forEach(function(store) {
+    stores.forEach(function (store) {
       delete store.travelDistance;
       delete store.travelDistanceText;
       delete store.travelDuration;
       delete store.travelDurationText;
     }); // sort by distance
 
-    stores.sort(function(a, b) {
+    stores.sort(function (a, b) {
       return (
         google.maps.geometry.spherical.computeDistanceBetween(
           new google.maps.LatLng(a.location),
@@ -289,7 +289,7 @@
       );
     });
     getDistances(location)
-      .then(function(response) {
+      .then(function (response) {
         for (var i = 0; i < response.rows[0].elements.length; i++) {
           stores[i].address = response.destinationAddresses[i];
           stores[i].travelDistance =
@@ -302,7 +302,7 @@
             response.rows[0].elements[i].duration.text;
         }
       })
-      .finally(function() {
+      .finally(function () {
         renderCards(stores);
         autocompleteInput.disabled = false;
         isUpdateInProgress = false;
@@ -385,7 +385,7 @@
           );
           progress.open();
           progress.determinate = false;
-          progress.done = function() {
+          progress.done = function () {
             progress.close();
             progressWrapper.remove();
           };

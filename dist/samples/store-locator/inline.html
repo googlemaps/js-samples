@@ -111,9 +111,9 @@
         map = new google.maps.Map(document.getElementById("map"), {
           center: {
             lat: 39.79,
-            lng: -104.98
+            lng: -104.98,
           },
-          zoom: 10
+          zoom: 10,
         });
         new mdc.textField.MDCTextField(
           document.querySelector(".mdc-text-field")
@@ -129,36 +129,36 @@
         fetch(
           "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
         )
-          .then(response => {
+          .then((response) => {
             return response.json();
           })
-          .then(data => {
+          .then((data) => {
             const features = data.features;
             const markers = [];
             features.forEach(
               ({
                 attributes: { NAME: name },
-                geometry: { x: lng, y: lat }
+                geometry: { x: lng, y: lat },
               }) => {
                 stores.push({
                   name,
                   location: {
                     lat,
-                    lng
+                    lng,
                   },
-                  address: ""
+                  address: "",
                 });
                 const marker = new google.maps.Marker({
                   position: {
                     lat,
-                    lng
-                  }
+                    lng,
+                  },
                 });
                 marker.addListener("click", () => {
                   update(
                     new google.maps.LatLng({
                       lat,
-                      lng
+                      lng,
                     })
                   );
                 });
@@ -167,7 +167,7 @@
             );
             new MarkerClusterer(map, markers, {
               imagePath:
-                "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+                "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
             });
             progress.done();
             update(map.getCenter());
@@ -179,7 +179,7 @@
                 update(
                   new google.maps.LatLng({
                     lat,
-                    lng
+                    lng,
                   })
                 );
               }
@@ -202,7 +202,7 @@
               location,
               address,
               travelDistanceText,
-              travelDurationText
+              travelDurationText,
             }) => {
               const card = document.createElement("div");
               card.classList.add("mdc-card", "mdc-card--outlined");
@@ -262,9 +262,9 @@
           distanceMatrixService.getDistanceMatrix(
             {
               origins,
-              destinations: stores.slice(0, 25).map(store => store.location),
+              destinations: stores.slice(0, 25).map((store) => store.location),
               travelMode: google.maps.TravelMode.DRIVING,
-              unitSystem: google.maps.UnitSystem.IMPERIAL
+              unitSystem: google.maps.UnitSystem.IMPERIAL,
             },
             callback
           );
@@ -288,7 +288,7 @@
         isUpdateInProgress = true;
         map.setCenter(location); // reset values
 
-        stores.forEach(store => {
+        stores.forEach((store) => {
           delete store.travelDistance;
           delete store.travelDistanceText;
           delete store.travelDuration;
@@ -308,7 +308,7 @@
           );
         });
         getDistances(location)
-          .then(response => {
+          .then((response) => {
             for (let i = 0; i < response.rows[0].elements.length; i++) {
               stores[i].address = response.destinationAddresses[i];
               stores[i].travelDistance =
@@ -404,7 +404,7 @@
             );
             progress.open();
             progress.determinate = false;
-            progress.done = function() {
+            progress.done = function () {
               progress.close();
               progressWrapper.remove();
             };

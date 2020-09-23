@@ -41,7 +41,7 @@
         var map = new google.maps.Map(document.getElementById("map"), {
           zoom: 1,
           center: mapCenter,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
 
         // Create a draggable marker which will later on be binded to a
@@ -50,13 +50,13 @@
           map: map,
           position: new google.maps.LatLng(55, 0),
           draggable: true,
-          title: "Drag me!"
+          title: "Drag me!",
         });
 
         // Add a Circle overlay to the map.
         var circle = new google.maps.Circle({
           map: map,
-          radius: 3000000 // 3000 km
+          radius: 3000000, // 3000 km
         });
 
         // Since Circle and Marker both extend MVCObject, you can bind them

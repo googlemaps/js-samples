@@ -46,7 +46,7 @@
     if (Object.getOwnPropertySymbols) {
       var symbols = Object.getOwnPropertySymbols(object);
       if (enumerableOnly)
-        symbols = symbols.filter(function(sym) {
+        symbols = symbols.filter(function (sym) {
           return Object.getOwnPropertyDescriptor(object, sym).enumerable;
         });
       keys.push.apply(keys, symbols);
@@ -58,7 +58,7 @@
     for (var i = 1; i < arguments.length; i++) {
       var source = arguments[i] != null ? arguments[i] : {};
       if (i % 2) {
-        ownKeys(Object(source), true).forEach(function(key) {
+        ownKeys(Object(source), true).forEach(function (key) {
           _defineProperty(target, key, source[key]);
         });
       } else if (Object.getOwnPropertyDescriptors) {
@@ -67,7 +67,7 @@
           Object.getOwnPropertyDescriptors(source)
         );
       } else {
-        ownKeys(Object(source)).forEach(function(key) {
+        ownKeys(Object(source)).forEach(function (key) {
           Object.defineProperty(
             target,
             key,
@@ -85,7 +85,7 @@
         value: value,
         enumerable: true,
         configurable: true,
-        writable: true
+        writable: true,
       });
     } else {
       obj[key] = value;
@@ -102,9 +102,9 @@
     var mapOptions = {
       center: {
         lat: 50,
-        lng: 8
+        lng: 8,
       },
-      zoom: 7
+      zoom: 7,
     }; // instantiate the primary map
 
     map = new google.maps.Map(
@@ -120,7 +120,7 @@
         {
           disableDefaultUI: true,
           gestureHandling: "none",
-          zoomControl: false
+          zoomControl: false,
         }
       )
     );
@@ -129,7 +129,7 @@
       return Math.min(Math.max(num, min), max);
     }
 
-    map.addListener("bounds_changed", function() {
+    map.addListener("bounds_changed", function () {
       overview.setCenter(map.getCenter());
       overview.setZoom(
         clamp(

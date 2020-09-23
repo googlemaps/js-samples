@@ -21,7 +21,7 @@ function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 2,
     center: { lat: -33.865427, lng: 151.196123 },
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   });
 
   // Create a <script> tag and set the USGS URL as the source.
@@ -45,7 +45,7 @@ function eqfeed_callback(results: any) {
   const heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
     dissipating: false,
-    map: map
+    map: map,
   });
 }
 // [END maps_earthquake_heatmap]

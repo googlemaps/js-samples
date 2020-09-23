@@ -27,7 +27,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
-      center: { lat: 34, lng: -40.605 }
+      center: { lat: 34, lng: -40.605 },
     }
   );
 
@@ -38,13 +38,13 @@ function initMap(): void {
   marker1 = new google.maps.Marker({
     map,
     draggable: true,
-    position: { lat: 40.714, lng: -74.006 }
+    position: { lat: 40.714, lng: -74.006 },
   });
 
   marker2 = new google.maps.Marker({
     map,
     draggable: true,
-    position: { lat: 48.857, lng: 2.352 }
+    position: { lat: 48.857, lng: 2.352 },
   });
 
   const bounds = new google.maps.LatLngBounds(
@@ -60,7 +60,7 @@ function initMap(): void {
     strokeColor: "#FF0000",
     strokeOpacity: 1.0,
     strokeWeight: 3,
-    map: map
+    map: map,
   });
 
   geodesicPoly = new google.maps.Polyline({
@@ -68,7 +68,7 @@ function initMap(): void {
     strokeOpacity: 1.0,
     strokeWeight: 3,
     geodesic: true,
-    map: map
+    map: map,
   });
 
   update();
@@ -77,7 +77,7 @@ function initMap(): void {
 function update() {
   const path = [
     marker1.getPosition() as google.maps.LatLng,
-    marker2.getPosition() as google.maps.LatLng
+    marker2.getPosition() as google.maps.LatLng,
   ];
   poly.setPath(path);
   geodesicPoly.setPath(path);

@@ -23,13 +23,13 @@ function initMap(): void {
       zoom: 1,
       streetViewControl: false,
       mapTypeControlOptions: {
-        mapTypeIds: ["moon"]
-      }
+        mapTypeIds: ["moon"],
+      },
     }
   );
 
   const moonMapType = new google.maps.ImageMapType({
-    getTileUrl: function(coord, zoom): string {
+    getTileUrl: function (coord, zoom): string {
       const normalizedCoord = getNormalizedCoord(coord, zoom);
 
       if (!normalizedCoord) {
@@ -52,7 +52,7 @@ function initMap(): void {
     minZoom: 0,
     // @ts-ignore TODO(jpoehnelt) 'radius' does not exist in type 'ImageMapTypeOptions'
     radius: 1738000,
-    name: "Moon"
+    name: "Moon",
   });
 
   map.mapTypes.set("moon", moonMapType);

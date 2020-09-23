@@ -7,8 +7,8 @@ function initMap() {
     zoom: 6,
     center: {
       lat: 41.85,
-      lng: -87.65
-    }
+      lng: -87.65,
+    },
   });
   directionsRenderer.setMap(map);
   document.getElementById("submit").addEventListener("click", () => {
@@ -24,7 +24,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     if (checkboxArray.options[i].selected) {
       waypts.push({
         location: checkboxArray[i].value,
-        stopover: true
+        stopover: true,
       });
     }
   }
@@ -35,7 +35,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       destination: document.getElementById("end").value,
       waypoints: waypts,
       optimizeWaypoints: true,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.DRIVING,
     },
     (response, status) => {
       if (status === "OK") {

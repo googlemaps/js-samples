@@ -24,7 +24,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       center: { lat: 50.064192, lng: -130.605469 },
-      zoom: 3
+      zoom: 3,
     }
   );
   const card = document.getElementById("pac-card") as HTMLElement;
@@ -37,7 +37,7 @@ function initMap(): void {
 
   // Set initial restrict to the greater list of countries.
   autocomplete.setComponentRestrictions({
-    country: ["us", "pr", "vi", "gu", "mp"]
+    country: ["us", "pr", "vi", "gu", "mp"],
   });
 
   // Specify only the data fields that are needed.
@@ -50,7 +50,7 @@ function initMap(): void {
   infowindow.setContent(infowindowContent);
   const marker = new google.maps.Marker({
     map,
-    anchorPoint: new google.maps.Point(0, -29)
+    anchorPoint: new google.maps.Point(0, -29),
   });
 
   autocomplete.addListener("place_changed", () => {
@@ -87,7 +87,7 @@ function initMap(): void {
           "",
         (place.address_components[2] &&
           place.address_components[2].short_name) ||
-          ""
+          "",
       ].join(" ");
     }
 
@@ -112,7 +112,7 @@ function initMap(): void {
     "pr",
     "vi",
     "gu",
-    "mp"
+    "mp",
   ]);
 }
 // [END maps_places_autocomplete_multiple_countries]

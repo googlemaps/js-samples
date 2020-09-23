@@ -24,7 +24,7 @@ const url = "https://maps.googleapis.com/maps/api/staticmap";
 // @ts-ignore google.maps.plugins
 const loader = new google.maps.plugins.loader.Loader({
   apiKey: "YOUR_API_KEY",
-  version: "weekly"
+  version: "weekly",
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     loader.load().then(() => {
       map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
         center,
-        zoom
+        zoom,
       });
     });
   });

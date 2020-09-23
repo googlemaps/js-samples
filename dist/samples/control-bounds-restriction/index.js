@@ -3,7 +3,7 @@ const NEW_ZEALAND_BOUNDS = {
   north: -34.36,
   south: -47.35,
   west: 166.28,
-  east: -175.81
+  east: -175.81,
 };
 const AUCKLAND = { lat: -37.06, lng: 174.58 };
 
@@ -12,8 +12,8 @@ function initMap() {
     center: AUCKLAND,
     restriction: {
       latLngBounds: NEW_ZEALAND_BOUNDS,
-      strictBounds: false
+      strictBounds: false,
     },
-    zoom: 7
+    zoom: 7,
   });
 }

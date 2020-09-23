@@ -1,6 +1,8 @@
 {
   "title": "Retrieving Autocomplete Predictions",
-  "libraries": ["places"],
+  "libraries": [
+    "places"
+  ],
   "callback": "initService",
   "version": "weekly",
   "tag": "places_queryprediction",

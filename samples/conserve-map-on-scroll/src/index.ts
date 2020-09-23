@@ -23,14 +23,14 @@ function initMap(): void {
     {
       zoom: 13,
       center: locationRio,
-      gestureHandling: "cooperative"
+      gestureHandling: "cooperative",
     }
   );
   // [END maps_conserve_map_script_snippet]
   new google.maps.Marker({
     position: locationRio,
     map,
-    title: "Hello World!"
+    title: "Hello World!",
   });
 }
 // [END maps_conserve_map_on_scroll]

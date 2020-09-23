@@ -18,10 +18,10 @@
 
 /* [START maps_overlay_hideshow] */
 @include meta.load-css("../../../shared/scss/default.scss");
-@import "../../../shared/scss/mixins.scss" ;
+@import "../../../shared/scss/mixins.scss";
 
 .custom-map-control-button {
-    @include map-control-button;
+  @include map-control-button;
 }
 
 /* [END maps_overlay_hideshow] */

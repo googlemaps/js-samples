@@ -67,9 +67,9 @@
         var map = new google.maps.Map(document.getElementById("map"), {
           center: {
             lat: -33.8688,
-            lng: 151.2195
+            lng: 151.2195,
           },
-          zoom: 13
+          zoom: 13,
         });
         var input = document.getElementById("pac-input");
         var autocomplete = new google.maps.places.Autocomplete(input);
@@ -79,7 +79,7 @@
           "place_id",
           "geometry",
           "name",
-          "formatted_address"
+          "formatted_address",
         ]);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
         var infowindow = new google.maps.InfoWindow();
@@ -87,12 +87,12 @@
         infowindow.setContent(infowindowContent);
         var geocoder = new google.maps.Geocoder();
         var marker = new google.maps.Marker({
-          map: map
+          map: map,
         });
-        marker.addListener("click", function() {
+        marker.addListener("click", function () {
           infowindow.open(map, marker);
         });
-        autocomplete.addListener("place_changed", function() {
+        autocomplete.addListener("place_changed", function () {
           infowindow.close();
           var place = autocomplete.getPlace();
 
@@ -102,9 +102,9 @@
 
           geocoder.geocode(
             {
-              placeId: place.place_id
+              placeId: place.place_id,
             },
-            function(results, status) {
+            function (results, status) {
               if (status !== "OK") {
                 window.alert("Geocoder failed due to: " + status);
                 return;
@@ -115,7 +115,7 @@
 
               marker.setPlace({
                 placeId: place.place_id,
-                location: results[0].geometry.location
+                location: results[0].geometry.location,
               });
               marker.setVisible(true);
               infowindowContent.children["place-name"].textContent = place.name;

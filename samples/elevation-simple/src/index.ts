@@ -21,7 +21,7 @@ function initMap(): void {
     {
       zoom: 8,
       center: { lat: 63.333, lng: -150.5 }, // Denali.
-      mapTypeId: "terrain"
+      mapTypeId: "terrain",
     }
   );
   const elevator = new google.maps.ElevationService();
@@ -30,7 +30,7 @@ function initMap(): void {
 
   // Add a listener for the click event. Display the elevation for the LatLng of
   // the click inside the infowindow.
-  map.addListener("click", event => {
+  map.addListener("click", (event) => {
     displayLocationElevation(event.latLng, elevator, infowindow);
   });
 }
@@ -43,7 +43,7 @@ function displayLocationElevation(
   // Initiate the location request
   elevator.getElevationForLocations(
     {
-      locations: [location]
+      locations: [location],
     },
     (results, status) => {
       infowindow.setPosition(location);

@@ -23,7 +23,7 @@ function initMap(): void {
     {
       zoom: 11,
       center: { lat: 33.678, lng: -116.243 },
-      mapTypeId: "terrain"
+      mapTypeId: "terrain",
     }
   );
 
@@ -38,8 +38,8 @@ function initMap(): void {
       north: 33.685,
       south: 33.671,
       east: -116.234,
-      west: -116.251
-    }
+      west: -116.251,
+    },
   });
 }
 // [END maps_rectangle_simple]

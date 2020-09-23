@@ -5,15 +5,15 @@ function initMap() {
     zoom: 12,
     center: {
       lat: 37.06,
-      lng: -95.68
-    }
+      lng: -95.68,
+    },
   });
   const kmlLayer = new google.maps.KmlLayer({
     url: "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
     suppressInfoWindows: true,
-    map: map
+    map: map,
   });
-  kmlLayer.addListener("click", kmlEvent => {
+  kmlLayer.addListener("click", (kmlEvent) => {
     const text = kmlEvent.featureData.description;
     showInContentWindow(text);
   });

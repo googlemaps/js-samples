@@ -9,9 +9,9 @@ function initMap() {
   const mapOptions = {
     center: {
       lat: 50,
-      lng: 8
+      lng: 8,
     },
-    zoom: 7
+    zoom: 7,
   }; // instantiate the primary map
 
   map = new google.maps.Map(document.getElementById("map"), { ...mapOptions }); // instantiate the overview map without controls
@@ -20,7 +20,7 @@ function initMap() {
     ...mapOptions,
     disableDefaultUI: true,
     gestureHandling: "none",
-    zoomControl: false
+    zoomControl: false,
   });
 
   function clamp(num, min, max) {

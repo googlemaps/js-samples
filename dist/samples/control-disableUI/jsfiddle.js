@@ -5,8 +5,8 @@ function initMap() {
     zoom: 4,
     center: {
       lat: -33,
-      lng: 151
+      lng: 151,
     },
-    disableDefaultUI: true
+    disableDefaultUI: true,
   });
 }

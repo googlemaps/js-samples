@@ -28,7 +28,7 @@ function initMap(): void {
     { lat: 36.433, lng: -117.951 }, // Owens Lake
     { lat: 36.588, lng: -116.943 }, // Beatty Junction
     { lat: 36.34, lng: -117.468 }, // Panama Mint Springs
-    { lat: 36.24, lng: -116.832 }
+    { lat: 36.24, lng: -116.832 },
   ]; // Badwater, Death Valley
 
   const map = new google.maps.Map(
@@ -36,7 +36,7 @@ function initMap(): void {
     {
       zoom: 8,
       center: path[1],
-      mapTypeId: "terrain"
+      mapTypeId: "terrain",
     }
   );
 
@@ -57,7 +57,7 @@ function displayPathElevation(
     path: path,
     strokeColor: "#0000CC",
     strokeOpacity: 0.4,
-    map: map
+    map: map,
   });
 
   // Create a PathElevationRequest object using this array.
@@ -66,7 +66,7 @@ function displayPathElevation(
   elevator.getElevationAlongPath(
     {
       path: path,
-      samples: 256
+      samples: 256,
     },
     plotElevation
   );
@@ -103,7 +103,7 @@ function plotElevation(elevations, status) {
     height: 150,
     legend: "none",
     // @ts-ignore TODO(jpoehnelt) update to newest visualization library
-    titleY: "Elevation (m)"
+    titleY: "Elevation (m)",
   });
 }
 // [END maps_elevation_paths]

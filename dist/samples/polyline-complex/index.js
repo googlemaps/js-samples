@@ -7,12 +7,12 @@ let map;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 7,
-    center: { lat: 41.879, lng: -87.624 } // Center the map on Chicago, USA.
+    center: { lat: 41.879, lng: -87.624 },
   });
   poly = new google.maps.Polyline({
     strokeColor: "#000000",
     strokeOpacity: 1.0,
-    strokeWeight: 3
+    strokeWeight: 3,
   });
   poly.setMap(map);
   // Add a listener for the click event
@@ -29,6 +29,6 @@ function addLatLng(event) {
   new google.maps.Marker({
     position: event.latLng,
     title: "#" + path.getLength(),
-    map: map
+    map: map,
   });
 }

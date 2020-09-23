@@ -46,7 +46,7 @@
         map = new google.maps.Map(document.getElementById("map"), {
           zoom: 3,
           center: new google.maps.LatLng(70, 0),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
 
         // Plot two markers to represent the Rectangle's bounds.
@@ -54,13 +54,13 @@
           map: map,
           position: new google.maps.LatLng(65, -10),
           draggable: true,
-          title: "Drag me!"
+          title: "Drag me!",
         });
         marker2 = new google.maps.Marker({
           map: map,
           position: new google.maps.LatLng(71, 10),
           draggable: true,
-          title: "Drag me!"
+          title: "Drag me!",
         });
 
         // Allow user to drag each marker to resize the size of the Rectangle.
@@ -71,7 +71,7 @@
         // will be determined by the LatLngBounds based on the two Marker
         // positions.
         rectangle = new google.maps.Rectangle({
-          map: map
+          map: map,
         });
         redraw();
       }

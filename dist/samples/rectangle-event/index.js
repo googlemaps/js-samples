@@ -8,19 +8,19 @@ let infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 44.5452, lng: -78.5389 },
-    zoom: 9
+    zoom: 9,
   });
   const bounds = {
     north: 44.599,
     south: 44.49,
     east: -78.443,
-    west: -78.649
+    west: -78.649,
   };
   // Define the rectangle and set its editable property to true.
   rectangle = new google.maps.Rectangle({
     bounds: bounds,
     editable: true,
-    draggable: true
+    draggable: true,
   });
   rectangle.setMap(map);
   // Add an event listener on the rectangle.

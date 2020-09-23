@@ -22,7 +22,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       center: chicago,
-      zoom: 3
+      zoom: 3,
     }
   );
 
@@ -60,7 +60,7 @@ function createInfoWindowContent(latLng: google.maps.LatLng, zoom: number) {
     "Zoom level: " + zoom,
     "World Coordinate: " + worldCoordinate,
     "Pixel Coordinate: " + pixelCoordinate,
-    "Tile Coordinate: " + tileCoordinate
+    "Tile Coordinate: " + tileCoordinate,
   ].join("<br>");
 }
 

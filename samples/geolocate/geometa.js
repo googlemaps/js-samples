@@ -22,9 +22,9 @@ function prepareGeolocation(opt_force) {
     typeof navigator.geolocation == "undefined" ||
     navigator.geolocation.shim
   )
-    (function() {
+    (function () {
       // -- BEGIN GEARS_INIT
-      (function() {
+      (function () {
         // We are already defined. Hooray!
         if (window.google && google.gears) {
           return;
@@ -80,13 +80,13 @@ function prepareGeolocation(opt_force) {
       })();
       // -- END GEARS_INIT
 
-      var GearsGeoLocation = (function() {
+      var GearsGeoLocation = (function () {
         // -- PRIVATE
         var geo = google.gears.factory.create("beta.geolocation");
 
-        var wrapSuccess = function(callback, self) {
+        var wrapSuccess = function (callback, self) {
           // wrap it for lastPosition love
-          return function(position) {
+          return function (position) {
             callback(position);
             self.lastPosition = position;
           };
@@ -100,7 +100,7 @@ function prepareGeolocation(opt_force) {
 
           lastPosition: null,
 
-          getCurrentPosition: function(
+          getCurrentPosition: function (
             successCallback,
             errorCallback,
             options
@@ -110,24 +110,24 @@ function prepareGeolocation(opt_force) {
             geo.getCurrentPosition(sc, errorCallback, options);
           },
 
-          watchPosition: function(successCallback, errorCallback, options) {
+          watchPosition: function (successCallback, errorCallback, options) {
             geo.watchPosition(successCallback, errorCallback, options);
           },
 
-          clearWatch: function(watchId) {
+          clearWatch: function (watchId) {
             geo.clearWatch(watchId);
           },
 
-          getPermission: function(siteName, imageUrl, extraMessage) {
+          getPermission: function (siteName, imageUrl, extraMessage) {
             geo.getPermission(siteName, imageUrl, extraMessage);
-          }
+          },
         };
       })();
 
-      var AjaxGeoLocation = (function() {
+      var AjaxGeoLocation = (function () {
         // -- PRIVATE
         var loading = false;
-        var loadGoogleLoader = function() {
+        var loadGoogleLoader = function () {
           if (!hasGoogleLoader() && !loading) {
             loading = true;
             var s = document.createElement("script");
@@ -139,11 +139,11 @@ function prepareGeolocation(opt_force) {
         };
 
         var queue = [];
-        var addLocationQueue = function(callback) {
+        var addLocationQueue = function (callback) {
           queue.push(callback);
         };
 
-        var runLocationQueue = function() {
+        var runLocationQueue = function () {
           if (hasGoogleLoader()) {
             while (queue.length > 0) {
               var call = queue.pop();
@@ -152,15 +152,15 @@ function prepareGeolocation(opt_force) {
           }
         };
 
-        window["_google_loader_apiLoaded"] = function() {
+        window["_google_loader_apiLoaded"] = function () {
           runLocationQueue();
         };
 
-        var hasGoogleLoader = function() {
+        var hasGoogleLoader = function () {
           return window["google"] && google["loader"];
         };
 
-        var checkGoogleLoader = function(callback) {
+        var checkGoogleLoader = function (callback) {
           if (hasGoogleLoader()) return true;
 
           addLocationQueue(callback);
@@ -180,14 +180,14 @@ function prepareGeolocation(opt_force) {
 
           lastPosition: null,
 
-          getCurrentPosition: function(
+          getCurrentPosition: function (
             successCallback,
             errorCallback,
             options
           ) {
             var self = this;
             if (
-              !checkGoogleLoader(function() {
+              !checkGoogleLoader(function () {
                 self.getCurrentPosition(
                   successCallback,
                   errorCallback,
@@ -215,8 +215,8 @@ function prepareGeolocation(opt_force) {
                   city: cl.address.city,
                   country: cl.address.country,
                   country_code: cl.address.country_code,
-                  region: cl.address.region
-                }
+                  region: cl.address.region,
+                },
               };
 
               successCallback(position);
@@ -226,30 +226,30 @@ function prepareGeolocation(opt_force) {
               errorCallback({
                 code: 3,
                 message:
-                  "Using the Google ClientLocation API and it is not able to calculate a location."
+                  "Using the Google ClientLocation API and it is not able to calculate a location.",
               });
             }
           },
 
-          watchPosition: function(successCallback, errorCallback, options) {
+          watchPosition: function (successCallback, errorCallback, options) {
             this.getCurrentPosition(successCallback, errorCallback, options);
 
             var self = this;
-            var watchId = setInterval(function() {
+            var watchId = setInterval(function () {
               self.getCurrentPosition(successCallback, errorCallback, options);
             }, 10000);
 
             return watchId;
           },
 
-          clearWatch: function(watchId) {
+          clearWatch: function (watchId) {
             clearInterval(watchId);
           },
 
-          getPermission: function(siteName, imageUrl, extraMessage) {
+          getPermission: function (siteName, imageUrl, extraMessage) {
             // for now just say yes :)
             return true;
-          }
+          },
         };
       })();
 

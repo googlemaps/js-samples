@@ -120,7 +120,7 @@
       throw new TypeError("Super expression must either be null or a function");
     }
     subClass.prototype = Object.create(superClass && superClass.prototype, {
-      constructor: { value: subClass, writable: true, configurable: true }
+      constructor: { value: subClass, writable: true, configurable: true },
     });
     if (superClass) _setPrototypeOf(subClass, superClass);
   }
@@ -137,7 +137,7 @@
 
   function _createSuper(Derived) {
     var hasNativeReflectConstruct = _isNativeReflectConstruct();
-    return function() {
+    return function () {
       var Super = _getPrototypeOf(Derived),
         result;
       if (hasNativeReflectConstruct) {
@@ -171,7 +171,7 @@
     if (Reflect.construct.sham) return false;
     if (typeof Proxy === "function") return true;
     try {
-      Date.prototype.toString.call(Reflect.construct(Date, [], function() {}));
+      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
       return true;
     } catch (e) {
       return false;
@@ -194,15 +194,15 @@
     map = new google.maps.Map(document.getElementById("map"), {
       center: {
         lat: -33.9,
-        lng: 151.1
+        lng: 151.1,
       },
-      zoom: 10
+      zoom: 10,
     });
     /**
      * A customized popup on the map.
      */
 
-    var Popup = /*#__PURE__*/ (function(_google$maps$OverlayV) {
+    var Popup = /*#__PURE__*/ (function (_google$maps$OverlayV) {
       _inherits(Popup, _google$maps$OverlayV);
 
       var _super = _createSuper(Popup);
@@ -236,7 +236,7 @@
           key: "onAdd",
           value: function onAdd() {
             this.getPanes().floatPane.appendChild(this.containerDiv);
-          }
+          },
           /** Called when the popup is removed from the map. */
         },
         {
@@ -245,7 +245,7 @@
             if (this.containerDiv.parentElement) {
               this.containerDiv.parentElement.removeChild(this.containerDiv);
             }
-          }
+          },
           /** Called each frame when the popup needs to draw itself. */
         },
         {
@@ -268,8 +268,8 @@
             if (this.containerDiv.style.display !== display) {
               this.containerDiv.style.display = display;
             }
-          }
-        }
+          },
+        },
       ]);
 
       return Popup;
@@ -285,8 +285,6 @@
 
 <div id="iframe-contents">
   <div id="map"></div>
-  <div id="content">
-    Hello world!
-  </div>
+  <div id="content">Hello world!</div>
 </div>
 <!-- [END maps_overlay_popup_iframe] -->

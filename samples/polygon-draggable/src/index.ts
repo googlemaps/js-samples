@@ -25,21 +25,21 @@ function initMap(): void {
     {
       zoom: 1,
       center: { lat: 24.886, lng: -70.268 },
-      mapTypeId: "terrain"
+      mapTypeId: "terrain",
     }
   );
 
   const blueCoords = [
     { lat: 25.774, lng: -60.19 },
     { lat: 18.466, lng: -46.118 },
-    { lat: 32.321, lng: -44.757 }
+    { lat: 32.321, lng: -44.757 },
   ];
 
   // [START maps_polygon_draggable_red_triangle]
   const redCoords = [
     { lat: 25.774, lng: -80.19 },
     { lat: 18.466, lng: -66.118 },
-    { lat: 32.321, lng: -64.757 }
+    { lat: 32.321, lng: -64.757 },
   ];
 
   // Construct a draggable red triangle with geodesic set to true.
@@ -52,7 +52,7 @@ function initMap(): void {
     fillColor: "#FF0000",
     fillOpacity: 0.35,
     draggable: true,
-    geodesic: true
+    geodesic: true,
   });
   // [END maps_polygon_draggable_red_triangle]
 
@@ -66,7 +66,7 @@ function initMap(): void {
     fillColor: "#0000FF",
     fillOpacity: 0.35,
     draggable: true,
-    geodesic: false
+    geodesic: false,
   });
 }
 // [END maps_polygon_draggable]

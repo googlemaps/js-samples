@@ -89,7 +89,7 @@
           );
         }
         subClass.prototype = Object.create(superClass && superClass.prototype, {
-          constructor: { value: subClass, writable: true, configurable: true }
+          constructor: { value: subClass, writable: true, configurable: true },
         });
         if (superClass) _setPrototypeOf(subClass, superClass);
       }
@@ -106,7 +106,7 @@
 
       function _createSuper(Derived) {
         var hasNativeReflectConstruct = _isNativeReflectConstruct();
-        return function() {
+        return function () {
           var Super = _getPrototypeOf(Derived),
             result;
           if (hasNativeReflectConstruct) {
@@ -144,7 +144,7 @@
         if (typeof Proxy === "function") return true;
         try {
           Date.prototype.toString.call(
-            Reflect.construct(Date, [], function() {})
+            Reflect.construct(Date, [], function () {})
           );
           return true;
         } catch (e) {
@@ -169,9 +169,9 @@
           zoom: 11,
           center: {
             lat: 62.323907,
-            lng: -150.109291
+            lng: -150.109291,
           },
-          mapTypeId: "satellite"
+          mapTypeId: "satellite",
         });
         var bounds = new google.maps.LatLngBounds(
           new google.maps.LatLng(62.281819, -150.287132),
@@ -186,7 +186,7 @@
          * the bounds of the image, and a reference to the map.
          */
 
-        var USGSOverlay = /*#__PURE__*/ (function(_google$maps$OverlayV) {
+        var USGSOverlay = /*#__PURE__*/ (function (_google$maps$OverlayV) {
           _inherits(USGSOverlay, _google$maps$OverlayV);
 
           var _super = _createSuper(USGSOverlay);
@@ -224,7 +224,7 @@
 
                 var panes = this.getPanes();
                 panes.overlayLayer.appendChild(this.div);
-              }
+              },
             },
             {
               key: "draw",
@@ -249,7 +249,7 @@
                   this.div.style.width = ne.x - sw.x + "px";
                   this.div.style.height = sw.y - ne.y + "px";
                 }
-              } // The onRemove() method will be called automatically from the API if
+              }, // The onRemove() method will be called automatically from the API if
               // we ever set the overlay's map property to 'null'.
             },
             {
@@ -259,7 +259,7 @@
                   this.div.parentNode.removeChild(this.div);
                   delete this.div;
                 }
-              }
+              },
               /**
                *  Set the visibility to 'hidden' or 'visible'.
                */
@@ -270,7 +270,7 @@
                 if (this.div) {
                   this.div.style.visibility = "hidden";
                 }
-              }
+              },
             },
             {
               key: "show",
@@ -278,7 +278,7 @@
                 if (this.div) {
                   this.div.style.visibility = "visible";
                 }
-              }
+              },
             },
             {
               key: "toggle",
@@ -290,7 +290,7 @@
                     this.hide();
                   }
                 }
-              }
+              },
             },
             {
               key: "toggleDOM",
@@ -300,8 +300,8 @@
                 } else {
                   this.setMap(map);
                 }
-              }
-            }
+              },
+            },
           ]);
 
           return USGSOverlay;
@@ -315,10 +315,10 @@
         var toggleDOMButton = document.createElement("button");
         toggleDOMButton.textContent = "Toggle DOM Attachment";
         toggleDOMButton.classList.add("custom-map-control-button");
-        toggleButton.addEventListener("click", function() {
+        toggleButton.addEventListener("click", function () {
           overlay.toggle();
         });
-        toggleDOMButton.addEventListener("click", function() {
+        toggleDOMButton.addEventListener("click", function () {
           overlay.toggleDOM(map);
         });
         map.controls[google.maps.ControlPosition.TOP_RIGHT].push(

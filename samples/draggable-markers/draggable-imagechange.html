@@ -41,7 +41,7 @@
         var map = new google.maps.Map(document.getElementById("mapCanvas"), {
           zoom: 8,
           center: latLng,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
         createMarker(map, latLng);
       }
@@ -52,15 +52,15 @@
           title: "Point A",
           map: map,
           icon: gYellowIcon,
-          draggable: true
+          draggable: true,
         });
 
         // Add dragging event listeners.
-        google.maps.event.addListener(marker, "dragstart", function() {
+        google.maps.event.addListener(marker, "dragstart", function () {
           marker.setOptions({ icon: gRedIcon });
         });
 
-        google.maps.event.addListener(marker, "dragend", function() {
+        google.maps.event.addListener(marker, "dragend", function () {
           marker.setOptions({ icon: gYellowIcon });
         });
       }

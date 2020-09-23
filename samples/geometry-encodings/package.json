@@ -1,6 +1,8 @@
 {
   "title": "Encoding Methods",
-  "libraries": ["geometry"],
+  "libraries": [
+    "geometry"
+  ],
   "callback": "initMap",
   "version": "weekly",
   "tag": "geometry_encodings",

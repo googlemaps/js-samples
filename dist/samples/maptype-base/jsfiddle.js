@@ -36,19 +36,19 @@ function initMap() {
     zoom: 10,
     center: {
       lat: 41.85,
-      lng: -87.65
+      lng: -87.65,
     },
     streetViewControl: false,
     mapTypeId: "coordinate",
     mapTypeControlOptions: {
       mapTypeIds: ["coordinate", "roadmap"],
-      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-    }
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+    },
   });
   map.addListener("maptypeid_changed", () => {
     const showStreetViewControl = map.getMapTypeId() !== "coordinate";
     map.setOptions({
-      streetViewControl: showStreetViewControl
+      streetViewControl: showStreetViewControl,
     });
   }); // Now attach the coordinate map type to the map's registry.
 

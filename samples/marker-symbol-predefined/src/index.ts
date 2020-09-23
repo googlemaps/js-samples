@@ -24,7 +24,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
-      center: { lat: -25.363882, lng: 131.044922 }
+      center: { lat: -25.363882, lng: 131.044922 },
     }
   );
 
@@ -32,10 +32,10 @@ function initMap(): void {
     position: map.getCenter(),
     icon: {
       path: google.maps.SymbolPath.CIRCLE,
-      scale: 10
+      scale: 10,
     },
     draggable: true,
-    map: map
+    map: map,
   });
 }
 // [END maps_marker_symbol_predefined]

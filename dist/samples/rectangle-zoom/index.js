@@ -4,7 +4,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
     center: { lat: 40.74852, lng: -73.981687 },
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   });
   const rectangle = new google.maps.Rectangle();
   map.addListener("zoom_changed", () => {
@@ -16,7 +16,7 @@ function initMap() {
       fillColor: "#FF0000",
       fillOpacity: 0.35,
       map,
-      bounds: map.getBounds()
+      bounds: map.getBounds(),
     });
   });
 }

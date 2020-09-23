@@ -7,9 +7,9 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 50.064192,
-      lng: -130.605469
+      lng: -130.605469,
     },
-    zoom: 3
+    zoom: 3,
   });
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
@@ -18,7 +18,7 @@ function initMap() {
   const autocomplete = new google.maps.places.Autocomplete(input); // Set initial restrict to the greater list of countries.
 
   autocomplete.setComponentRestrictions({
-    country: ["us", "pr", "vi", "gu", "mp"]
+    country: ["us", "pr", "vi", "gu", "mp"],
   }); // Specify only the data fields that are needed.
 
   autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
@@ -27,7 +27,7 @@ function initMap() {
   infowindow.setContent(infowindowContent);
   const marker = new google.maps.Marker({
     map,
-    anchorPoint: new google.maps.Point(0, -29)
+    anchorPoint: new google.maps.Point(0, -29),
   });
   autocomplete.addListener("place_changed", () => {
     infowindow.close();
@@ -62,7 +62,7 @@ function initMap() {
           "",
         (place.address_components[2] &&
           place.address_components[2].short_name) ||
-          ""
+          "",
       ].join(" ");
     }
 
@@ -77,7 +77,7 @@ function initMap() {
     const radioButton = document.getElementById(id);
     radioButton.addEventListener("click", () => {
       autocomplete.setComponentRestrictions({
-        country: countries
+        country: countries,
       });
     });
   }
@@ -88,6 +88,6 @@ function initMap() {
     "pr",
     "vi",
     "gu",
-    "mp"
+    "mp",
   ]);
 }

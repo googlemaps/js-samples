@@ -8,9 +8,9 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: -33.8688,
-      lng: 151.2195
+      lng: 151.2195,
     },
-    zoom: 13
+    zoom: 13,
   });
   const input = document.getElementById("pac-input");
   const autocomplete = new google.maps.places.Autocomplete(input);
@@ -23,7 +23,7 @@ function initMap() {
   infowindow.setContent(infowindowContent);
   const geocoder = new google.maps.Geocoder();
   const marker = new google.maps.Marker({
-    map: map
+    map: map,
   });
   marker.addListener("click", () => {
     infowindow.open(map, marker);
@@ -38,7 +38,7 @@ function initMap() {
 
     geocoder.geocode(
       {
-        placeId: place.place_id
+        placeId: place.place_id,
       },
       (results, status) => {
         if (status !== "OK") {
@@ -51,7 +51,7 @@ function initMap() {
 
         marker.setPlace({
           placeId: place.place_id,
-          location: results[0].geometry.location
+          location: results[0].geometry.location,
         });
         marker.setVisible(true);
         infowindowContent.children["place-name"].textContent = place.name;

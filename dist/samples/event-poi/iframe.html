@@ -59,11 +59,11 @@
   function initMap() {
     var origin = {
       lat: -33.871,
-      lng: 151.197
+      lng: 151.197,
     };
     var map = new google.maps.Map(document.getElementById("map"), {
       zoom: 18,
-      center: origin
+      center: origin,
     });
     new ClickEventHandler(map, origin);
   }
@@ -72,7 +72,7 @@
     return "placeId" in e;
   }
 
-  var ClickEventHandler = /*#__PURE__*/ (function() {
+  var ClickEventHandler = /*#__PURE__*/ (function () {
     function ClickEventHandler(map, origin) {
       _classCallCheck(this, ClickEventHandler);
 
@@ -105,7 +105,7 @@
             this.calculateAndDisplayRoute(event.placeId);
             this.getPlaceInformation(event.placeId);
           }
-        }
+        },
       },
       {
         key: "calculateAndDisplayRoute",
@@ -115,11 +115,11 @@
             {
               origin: this.origin,
               destination: {
-                placeId: placeId
+                placeId: placeId,
               },
-              travelMode: google.maps.TravelMode.WALKING
+              travelMode: google.maps.TravelMode.WALKING,
             },
-            function(response, status) {
+            function (response, status) {
               if (status === "OK") {
                 me.directionsRenderer.setDirections(response);
               } else {
@@ -127,7 +127,7 @@
               }
             }
           );
-        }
+        },
       },
       {
         key: "getPlaceInformation",
@@ -135,9 +135,9 @@
           var me = this;
           this.placesService.getDetails(
             {
-              placeId: placeId
+              placeId: placeId,
             },
-            function(place, status) {
+            function (place, status) {
               if (status === "OK") {
                 me.infowindow.close();
                 me.infowindow.setPosition(place.geometry.location);
@@ -152,8 +152,8 @@
               }
             }
           );
-        }
-      }
+        },
+      },
     ]);
 
     return ClickEventHandler;

@@ -23,7 +23,7 @@ function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     zoom: 11,
     center: { lat: 35.6894, lng: 139.692 },
-    mapTypeId: "hybrid"
+    mapTypeId: "hybrid",
   });
 
   infoWindow = new google.maps.InfoWindow();

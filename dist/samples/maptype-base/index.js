@@ -35,13 +35,13 @@ function initMap() {
     mapTypeId: "coordinate",
     mapTypeControlOptions: {
       mapTypeIds: ["coordinate", "roadmap"],
-      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU
-    }
+      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+    },
   });
   map.addListener("maptypeid_changed", () => {
     const showStreetViewControl = map.getMapTypeId() !== "coordinate";
     map.setOptions({
-      streetViewControl: showStreetViewControl
+      streetViewControl: showStreetViewControl,
     });
   });
   // Now attach the coordinate map type to the map's registry.

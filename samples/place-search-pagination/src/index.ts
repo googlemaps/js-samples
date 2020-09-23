@@ -26,7 +26,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       center: pyrmont,
-      zoom: 17
+      zoom: 17,
     }
   );
 
@@ -35,7 +35,7 @@ function initMap(): void {
   let getNextPage: () => void | false;
   const moreButton = document.getElementById("more") as HTMLButtonElement;
 
-  moreButton.onclick = function() {
+  moreButton.onclick = function () {
     moreButton.disabled = true;
 
     if (getNextPage) {
@@ -76,14 +76,14 @@ function createMarkers(
       size: new google.maps.Size(71, 71),
       origin: new google.maps.Point(0, 0),
       anchor: new google.maps.Point(17, 34),
-      scaledSize: new google.maps.Size(25, 25)
+      scaledSize: new google.maps.Size(25, 25),
     };
 
     new google.maps.Marker({
       map,
       icon: image,
       title: place.name,
-      position: place.geometry.location
+      position: place.geometry.location,
     });
 
     const li = document.createElement("li");

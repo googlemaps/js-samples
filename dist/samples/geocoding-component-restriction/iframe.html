@@ -42,10 +42,10 @@
       zoom: 8,
       center: {
         lat: -33.865,
-        lng: 151.209
-      }
+        lng: 151.209,
+      },
     });
-    document.getElementById("submit").addEventListener("click", function() {
+    document.getElementById("submit").addEventListener("click", function () {
       geocodeAddress(geocoder, map);
     });
   }
@@ -55,15 +55,15 @@
       {
         componentRestrictions: {
           country: "AU",
-          postalCode: "2000"
-        }
+          postalCode: "2000",
+        },
       },
-      function(results, status) {
+      function (results, status) {
         if (status === "OK") {
           map.setCenter(results[0].geometry.location);
           new google.maps.Marker({
             map: map,
-            position: results[0].geometry.location
+            position: results[0].geometry.location,
           });
         } else {
           window.alert(

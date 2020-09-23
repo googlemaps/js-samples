@@ -23,12 +23,12 @@ const OVERVIEW_MAX_ZOOM = 10;
 function initMap(): void {
   const mapOptions = {
     center: { lat: 50, lng: 8 },
-    zoom: 7
+    zoom: 7,
   };
 
   // instantiate the primary map
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    ...mapOptions
+    ...mapOptions,
   });
 
   // instantiate the overview map without controls
@@ -38,7 +38,7 @@ function initMap(): void {
       ...mapOptions,
       disableDefaultUI: true,
       gestureHandling: "none",
-      zoomControl: false
+      zoomControl: false,
     }
   );
 

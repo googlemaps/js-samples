@@ -104,34 +104,34 @@
         {
           stylers: [
             {
-              visibility: "off"
-            }
-          ]
+              visibility: "off",
+            },
+          ],
         },
         {
           featureType: "landscape",
           elementType: "geometry",
           stylers: [
             {
-              visibility: "on"
+              visibility: "on",
             },
             {
-              color: "#fcfcfc"
-            }
-          ]
+              color: "#fcfcfc",
+            },
+          ],
         },
         {
           featureType: "water",
           elementType: "geometry",
           stylers: [
             {
-              visibility: "on"
+              visibility: "on",
             },
             {
-              color: "#bfd4ff"
-            }
-          ]
-        }
+              color: "#bfd4ff",
+            },
+          ],
+        },
       ];
       let map;
       let censusMin = Number.MAX_VALUE,
@@ -142,10 +142,10 @@
         map = new google.maps.Map(document.getElementById("map"), {
           center: {
             lat: 40,
-            lng: -100
+            lng: -100,
           },
           zoom: 4,
-          styles: mapStyle
+          styles: mapStyle,
         }); // set up the style rules and events for google.maps.Data
 
         map.data.setStyle(styleFeature);
@@ -167,7 +167,7 @@
         map.data.loadGeoJson(
           "https://storage.googleapis.com/mapsdevsite/json/states.js",
           {
-            idPropertyName: "STATE"
+            idPropertyName: "STATE",
           }
         ); // wait for the request to complete by listening for the first feature to be
         // added
@@ -190,11 +190,11 @@
         const xhr = new XMLHttpRequest();
         xhr.open("GET", variable + ".json");
 
-        xhr.onload = function() {
+        xhr.onload = function () {
           const censusData = JSON.parse(xhr.responseText);
           censusData.shift(); // the first row contains column names
 
-          censusData.forEach(row => {
+          censusData.forEach((row) => {
             const censusVariable = parseFloat(row[0]);
             const stateId = row[1]; // keep track of min and max values
 
@@ -226,7 +226,7 @@
       function clearCensusData() {
         censusMin = Number.MAX_VALUE;
         censusMax = -Number.MAX_VALUE;
-        map.data.forEach(row => {
+        map.data.forEach((row) => {
           row.setProperty("census_variable", undefined);
         });
         document.getElementById("data-box").style.display = "none";
@@ -279,7 +279,7 @@
           fillColor:
             "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)",
           fillOpacity: 0.75,
-          visible: showRow
+          visible: showRow,
         };
       }
       /**
@@ -325,24 +325,29 @@
         <select id="census-variable">
           <option
             value="https://storage.googleapis.com/mapsdevsite/json/DP02_0066PE"
-            >Percent of population over 25 that completed high school</option
           >
+            Percent of population over 25 that completed high school
+          </option>
           <option
             value="https://storage.googleapis.com/mapsdevsite/json/DP05_0017E"
-            >Median age</option
           >
+            Median age
+          </option>
           <option
             value="https://storage.googleapis.com/mapsdevsite/json/DP05_0001E"
-            >Total population</option
           >
+            Total population
+          </option>
           <option
             value="https://storage.googleapis.com/mapsdevsite/json/DP02_0016E"
-            >Average family size</option
           >
+            Average family size
+          </option>
           <option
             value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E"
-            >Per-capita income</option
           >
+            Per-capita income
+          </option>
         </select>
       </div>
       <div id="legend">

@@ -22,7 +22,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 18,
-      center: origin
+      center: origin,
     }
   );
   new ClickEventHandler(map, origin);
@@ -82,7 +82,7 @@ class ClickEventHandler {
       {
         origin: this.origin,
         destination: { placeId: placeId },
-        travelMode: google.maps.TravelMode.WALKING
+        travelMode: google.maps.TravelMode.WALKING,
       },
       (response, status) => {
         if (status === "OK") {

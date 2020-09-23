@@ -19,7 +19,7 @@ function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
-      zoom: 8
+      zoom: 8,
     }
   );
   const geocoder = new google.maps.Geocoder();
@@ -28,7 +28,7 @@ function initMap(): void {
       map.setCenter(results[0].geometry.location);
       new google.maps.Marker({
         map,
-        position: results[0].geometry.location
+        position: results[0].geometry.location,
       });
     } else {
       window.alert(

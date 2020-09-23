@@ -25,7 +25,7 @@ function initMap(): void {
     zoomControl: false,
     scaleControl: false,
     streetViewControl: false,
-    gestureHandling: "cooperative"
+    gestureHandling: "cooperative",
   });
 
   // Create a <script> tag and set the USGS URL as the source.
@@ -37,10 +37,10 @@ function initMap(): void {
     "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
   document.getElementsByTagName("head")[0].appendChild(script);
 
-  map.data.setStyle(feature => {
+  map.data.setStyle((feature) => {
     const magnitude = feature.getProperty("mag");
     return {
-      icon: getCircle(magnitude)
+      icon: getCircle(magnitude),
     };
   });
 }
@@ -52,7 +52,7 @@ function getCircle(magnitude: number) {
     fillOpacity: 0.2,
     scale: Math.pow(2, magnitude) / 2,
     strokeColor: "white",
-    strokeWeight: 0.5
+    strokeWeight: 0.5,
   };
 }
 

@@ -7,9 +7,9 @@ function initMap() {
     zoom: 2,
     center: {
       lat: -33.865427,
-      lng: 151.196123
+      lng: 151.196123,
     },
-    mapTypeId: "terrain"
+    mapTypeId: "terrain",
   }); // Create a <script> tag and set the USGS URL as the source.
 
   const script = document.createElement("script"); // This example uses a local copy of the GeoJSON stored at
@@ -32,6 +32,6 @@ function eqfeed_callback(results) {
   const heatmap = new google.maps.visualization.HeatmapLayer({
     data: heatmapData,
     dissipating: false,
-    map: map
+    map: map,
   });
 }

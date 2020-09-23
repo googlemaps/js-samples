@@ -26,13 +26,13 @@ function initMap(): void {
       zoomControl: false,
       scaleControl: false,
       streetViewControl: false,
-      scrollwheel: false
+      scrollwheel: false,
     }
   );
 
   const marker = new google.maps.Marker({
     position: uluru,
-    map: map
+    map: map,
   });
 }
 // [END maps_landing_page_add_map]

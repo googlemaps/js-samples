@@ -9,9 +9,9 @@ function initMap() {
     mapTypeControl: false,
     center: {
       lat: -33.8688,
-      lng: 151.2195
+      lng: 151.2195,
     },
-    zoom: 13
+    zoom: 13,
   });
   new AutocompleteDirectionsHandler(map);
 }
@@ -95,12 +95,12 @@ class AutocompleteDirectionsHandler {
     this.directionsService.route(
       {
         origin: {
-          placeId: this.originPlaceId
+          placeId: this.originPlaceId,
         },
         destination: {
-          placeId: this.destinationPlaceId
+          placeId: this.destinationPlaceId,
         },
-        travelMode: this.travelMode
+        travelMode: this.travelMode,
       },
       (response, status) => {
         if (status === "OK") {

@@ -60,7 +60,7 @@
           zoom: 4,
           center: latlng,
           mapTypeId: google.maps.MapTypeId.TERRAIN,
-          disableDefaultUI: true
+          disableDefaultUI: true,
         };
         map = new google.maps.Map(
           document.getElementById("map_canvas"),
@@ -111,7 +111,7 @@
         var marker = new google.maps.Marker({
           map: map,
           position: latLng,
-          title: "Why, there you are!"
+          title: "Why, there you are!",
         });
         document.getElementById("info").innerHTML =
           "Looking for <b>" +
@@ -121,7 +121,7 @@
           "</b>...";
 
         // And reverse geocode.
-        new google.maps.Geocoder().geocode({ latLng: latLng }, function(resp) {
+        new google.maps.Geocoder().geocode({ latLng: latLng }, function (resp) {
           var place = "You're around here somewhere!";
           if (resp[0]) {
             var bits = [];

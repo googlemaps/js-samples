@@ -10,7 +10,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     scaleControl: true,
     center: cairo,
-    zoom: 10
+    zoom: 10,
   });
   const infowindow = new google.maps.InfoWindow();
   infowindow.setContent("<b>القاهرة</b>");

@@ -33,15 +33,15 @@
           zoom: 6,
           center: {
             lat: 20.291,
-            lng: 153.027
+            lng: 153.027,
           },
-          mapTypeId: "terrain"
+          mapTypeId: "terrain",
         }); // Define a symbol using SVG path notation, with an opacity of 1.
 
         const lineSymbol = {
           path: "M 0,-1 0,1",
           strokeOpacity: 1,
-          scale: 4
+          scale: 4,
         }; // Create the polyline, passing the symbol in the 'icons' property.
         // Give the line an opacity of 0.
         // Repeat the symbol at intervals of 20 pixels to create the dashed effect.
@@ -50,22 +50,22 @@
           path: [
             {
               lat: 22.291,
-              lng: 153.027
+              lng: 153.027,
             },
             {
               lat: 18.291,
-              lng: 153.027
-            }
+              lng: 153.027,
+            },
           ],
           strokeOpacity: 0,
           icons: [
             {
               icon: lineSymbol,
               offset: "0",
-              repeat: "20px"
-            }
+              repeat: "20px",
+            },
           ],
-          map: map
+          map: map,
         });
       }
     </script>

@@ -30,7 +30,7 @@
           zoom: 15,
           center: googleIO,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
-          streetViewControl: true
+          streetViewControl: true,
         };
 
         var map = new google.maps.Map(
@@ -38,7 +38,7 @@
           myOptions
         );
 
-        google.maps.event.addListener(marker, "click", function() {
+        google.maps.event.addListener(marker, "click", function () {
           infowindow.open(
             map.getStreetView().getVisible() ? map.getStreetView() : map,
             marker
@@ -47,10 +47,10 @@
       }
     </script>
   </head>
-  <body style="margin:0px; padding:0px;" onload="initialize()">
+  <body style="margin: 0px; padding: 0px" onload="initialize()">
     <div
       id="map_canvas"
-      style="width:610px; height:358px; border: 1px solid black"
+      style="width: 610px; height: 358px; border: 1px solid black"
     ></div>
   </body>
 </html>

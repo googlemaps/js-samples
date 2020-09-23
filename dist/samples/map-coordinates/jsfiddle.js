@@ -4,7 +4,7 @@ function initMap() {
   const chicago = new google.maps.LatLng(41.85, -87.65);
   const map = new google.maps.Map(document.getElementById("map"), {
     center: chicago,
-    zoom: 3
+    zoom: 3,
   });
   const coordInfoWindow = new google.maps.InfoWindow();
   coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
@@ -35,7 +35,7 @@ function createInfoWindowContent(latLng, zoom) {
     "Zoom level: " + zoom,
     "World Coordinate: " + worldCoordinate,
     "Pixel Coordinate: " + pixelCoordinate,
-    "Tile Coordinate: " + tileCoordinate
+    "Tile Coordinate: " + tileCoordinate,
   ].join("<br>");
 } // The mapping between latitude, longitude and pixels is defined by the web
 // mercator projection.

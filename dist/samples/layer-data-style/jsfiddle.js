@@ -7,8 +7,8 @@ function initMap() {
     zoom: 4,
     center: {
       lat: -28,
-      lng: 137
-    }
+      lng: 137,
+    },
   }); // Load GeoJSON.
 
   map.data.loadGeoJson(
@@ -17,6 +17,6 @@ function initMap() {
 
   map.data.setStyle({
     fillColor: "green",
-    strokeWeight: 1
+    strokeWeight: 1,
   });
 }

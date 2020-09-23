@@ -30,7 +30,7 @@
           zoom: 14,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           center: center,
-          streetViewControl: false
+          streetViewControl: false,
         };
         map = new google.maps.Map(
           document.getElementById("map_canvas"),
@@ -39,7 +39,7 @@
         directionsDisplay.setMap(map);
         directionsDisplay.setPanel(document.getElementById("directionsPanel"));
 
-        google.maps.event.addListener(map, "click", function(event) {
+        google.maps.event.addListener(map, "click", function (event) {
           if (origin == null) {
             origin = event.latLng;
             addMarker(origin);
@@ -66,7 +66,7 @@
             icon:
               "https://maps.google.com/mapfiles/marker_green" +
               String.fromCharCode(markers.length + 65) +
-              ".png"
+              ".png",
           })
         );
       }
@@ -76,10 +76,10 @@
           origin: origin,
           destination: destination,
           waypoints: waypoints,
-          travelMode: google.maps.DirectionsTravelMode.DRIVING
+          travelMode: google.maps.DirectionsTravelMode.DRIVING,
         };
 
-        directionsService.route(request, function(response, status) {
+        directionsService.route(request, function (response, status) {
           if (status == google.maps.DirectionsStatus.OK) {
             clearMarkers();
             directionsDisplay.setDirections(response);
@@ -98,14 +98,25 @@
     onload="initialize()"
     style="font-family: sans-serif; margin: 0px; padding: 0px"
   >
-    <div style="position:relative; border: 1px; width: 650px; height: 360px;">
+    <div style="position: relative; border: 1px; width: 650px; height: 360px">
       <div
         id="map_canvas"
-        style="border: 1px solid black; position:absolute; width:398px; height:358px"
+        style="
+          border: 1px solid black;
+          position: absolute;
+          width: 398px;
+          height: 358px;
+        "
       ></div>
       <div
         id="directionsPanel"
-        style="position:absolute; left: 410px; width:240px; height:360px; overflow: auto"
+        style="
+          position: absolute;
+          left: 410px;
+          width: 240px;
+          height: 360px;
+          overflow: auto;
+        "
       ></div>
     </div>
   </body>

@@ -100,9 +100,9 @@
         const map = new google.maps.Map(document.getElementById("map"), {
           center: {
             lat: -33.8688,
-            lng: 151.2195
+            lng: 151.2195,
           },
-          zoom: 13
+          zoom: 13,
         });
         const card = document.getElementById("pac-card");
         const input = document.getElementById("pac-input");
@@ -117,14 +117,14 @@
           "address_components",
           "geometry",
           "icon",
-          "name"
+          "name",
         ]);
         const infowindow = new google.maps.InfoWindow();
         const infowindowContent = document.getElementById("infowindow-content");
         infowindow.setContent(infowindowContent);
         const marker = new google.maps.Marker({
           map,
-          anchorPoint: new google.maps.Point(0, -29)
+          anchorPoint: new google.maps.Point(0, -29),
         });
         autocomplete.addListener("place_changed", () => {
           infowindow.close();
@@ -161,7 +161,7 @@
                 "",
               (place.address_components[2] &&
                 place.address_components[2].short_name) ||
-                ""
+                "",
             ].join(" ");
           }
 
@@ -185,10 +185,10 @@
         setupClickListener("changetype-geocode", ["geocode"]);
         document
           .getElementById("use-strict-bounds")
-          .addEventListener("click", function() {
+          .addEventListener("click", function () {
             console.log("Checkbox clicked! New state=" + this.checked);
             autocomplete.setOptions({
-              strictBounds: this.checked
+              strictBounds: this.checked,
             });
           });
       }
@@ -197,9 +197,7 @@
   <body>
     <div class="pac-card" id="pac-card">
       <div>
-        <div id="title">
-          Autocomplete search
-        </div>
+        <div id="title">Autocomplete search</div>
         <div id="type-selector" class="pac-controls">
           <input
             type="radio"

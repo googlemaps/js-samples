@@ -44,7 +44,7 @@
         this.boundsChangedListener_ = google.maps.event.addListener(
           this.map_,
           "bounds_changed",
-          function() {
+          function () {
             return me.panMap.apply(me);
           }
         );
@@ -61,7 +61,7 @@
 
       /* Creates the DIV representing this InfoBox
        */
-      InfoBox.prototype.remove = function() {
+      InfoBox.prototype.remove = function () {
         if (this.div_) {
           this.div_.parentNode.removeChild(this.div_);
           this.div_ = null;
@@ -70,7 +70,7 @@
 
       /* Redraw the Bar based on the current projection and zoom level
        */
-      InfoBox.prototype.draw = function() {
+      InfoBox.prototype.draw = function () {
         // Creates the element if it doesn't exist already.
         this.createElement();
         if (!this.div_) return;
@@ -97,7 +97,7 @@
        * Called from within draw.  Alternatively, this can be called specifically on
        * a panes_changed event.
        */
-      InfoBox.prototype.createElement = function() {
+      InfoBox.prototype.createElement = function () {
         var panes = this.getPanes();
         var div = this.div_;
         if (!div) {
@@ -125,7 +125,7 @@
           topDiv.appendChild(closeImg);
 
           function removeInfoBox(ib) {
-            return function() {
+            return function () {
               ib.setMap(null);
             };
           }
@@ -152,7 +152,7 @@
 
       /* Pan the map to fit the InfoBox.
        */
-      InfoBox.prototype.panMap = function() {
+      InfoBox.prototype.panMap = function () {
         // if we go beyond map, pan map
         var map = this.map_;
         var bounds = map.getBounds();
@@ -225,7 +225,7 @@
           zoom: 8,
           center: new google.maps.LatLng(-33.397, 150.644),
           mapTypeId: google.maps.MapTypeId.ROADMAP,
-          sensor: "true"
+          sensor: "true",
         };
         var map = new google.maps.Map(
           document.getElementById("map_canvas"),
@@ -234,16 +234,16 @@
 
         var marker = new google.maps.Marker({
           position: new google.maps.LatLng(-34, 150),
-          map: map
+          map: map,
         });
-        google.maps.event.addListener(marker, "click", function(e) {
+        google.maps.event.addListener(marker, "click", function (e) {
           var infoBox = new InfoBox({ latlng: marker.getPosition(), map: map });
         });
         google.maps.event.trigger(marker, "click");
       }
     </script>
   </head>
-  <body style="margin:0px; padding:0px;" onload="initialize()">
-    <div id="map_canvas" style="width:100%; height:100%"></div>
+  <body style="margin: 0px; padding: 0px" onload="initialize()">
+    <div id="map_canvas" style="width: 100%; height: 100%"></div>
   </body>
 </html>

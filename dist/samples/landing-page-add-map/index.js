@@ -6,10 +6,10 @@ function initMap() {
     zoomControl: false,
     scaleControl: false,
     streetViewControl: false,
-    scrollwheel: false
+    scrollwheel: false,
   });
   const marker = new google.maps.Marker({
     position: uluru,
-    map: map
+    map: map,
   });
 }

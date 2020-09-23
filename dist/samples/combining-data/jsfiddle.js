@@ -4,34 +4,34 @@ const mapStyle = [
   {
     stylers: [
       {
-        visibility: "off"
-      }
-    ]
+        visibility: "off",
+      },
+    ],
   },
   {
     featureType: "landscape",
     elementType: "geometry",
     stylers: [
       {
-        visibility: "on"
+        visibility: "on",
       },
       {
-        color: "#fcfcfc"
-      }
-    ]
+        color: "#fcfcfc",
+      },
+    ],
   },
   {
     featureType: "water",
     elementType: "geometry",
     stylers: [
       {
-        visibility: "on"
+        visibility: "on",
       },
       {
-        color: "#bfd4ff"
-      }
-    ]
-  }
+        color: "#bfd4ff",
+      },
+    ],
+  },
 ];
 let map;
 let censusMin = Number.MAX_VALUE,
@@ -42,10 +42,10 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: 40,
-      lng: -100
+      lng: -100,
     },
     zoom: 4,
-    styles: mapStyle
+    styles: mapStyle,
   }); // set up the style rules and events for google.maps.Data
 
   map.data.setStyle(styleFeature);
@@ -67,7 +67,7 @@ function loadMapShapes() {
   map.data.loadGeoJson(
     "https://storage.googleapis.com/mapsdevsite/json/states.js",
     {
-      idPropertyName: "STATE"
+      idPropertyName: "STATE",
     }
   ); // wait for the request to complete by listening for the first feature to be
   // added
@@ -90,11 +90,11 @@ function loadCensusData(variable) {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", variable + ".json");
 
-  xhr.onload = function() {
+  xhr.onload = function () {
     const censusData = JSON.parse(xhr.responseText);
     censusData.shift(); // the first row contains column names
 
-    censusData.forEach(row => {
+    censusData.forEach((row) => {
       const censusVariable = parseFloat(row[0]);
       const stateId = row[1]; // keep track of min and max values
 
@@ -126,7 +126,7 @@ function loadCensusData(variable) {
 function clearCensusData() {
   censusMin = Number.MAX_VALUE;
   censusMax = -Number.MAX_VALUE;
-  map.data.forEach(row => {
+  map.data.forEach((row) => {
     row.setProperty("census_variable", undefined);
   });
   document.getElementById("data-box").style.display = "none";
@@ -178,7 +178,7 @@ function styleFeature(feature) {
     zIndex: zIndex,
     fillColor: "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)",
     fillOpacity: 0.75,
-    visible: showRow
+    visible: showRow,
   };
 }
 /**

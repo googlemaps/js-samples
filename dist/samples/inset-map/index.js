@@ -6,18 +6,18 @@ const OVERVIEW_MAX_ZOOM = 10;
 function initMap() {
   const mapOptions = {
     center: { lat: 50, lng: 8 },
-    zoom: 7
+    zoom: 7,
   };
   // instantiate the primary map
   map = new google.maps.Map(document.getElementById("map"), {
-    ...mapOptions
+    ...mapOptions,
   });
   // instantiate the overview map without controls
   overview = new google.maps.Map(document.getElementById("overview"), {
     ...mapOptions,
     disableDefaultUI: true,
     gestureHandling: "none",
-    zoomControl: false
+    zoomControl: false,
   });
 
   function clamp(num, min, max) {

@@ -9,9 +9,9 @@ function initMap() {
     zoom: 11,
     center: {
       lat: 35.6894,
-      lng: 139.692
+      lng: 139.692,
     },
-    mapTypeId: "hybrid"
+    mapTypeId: "hybrid",
   });
   infoWindow = new google.maps.InfoWindow();
   maxZoomService = new google.maps.MaxZoomService();
@@ -19,7 +19,7 @@ function initMap() {
 }
 
 function showMaxZoom(e) {
-  maxZoomService.getMaxZoomAtLatLng(e.latLng, result => {
+  maxZoomService.getMaxZoomAtLatLng(e.latLng, (result) => {
     if (result.status !== "OK") {
       infoWindow.setContent("Error in MaxZoomService");
     } else {

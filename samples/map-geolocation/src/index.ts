@@ -24,7 +24,7 @@ let map: google.maps.Map, infoWindow: google.maps.InfoWindow;
 function initMap(): void {
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: -34.397, lng: 150.644 },
-    zoom: 6
+    zoom: 6,
   });
   infoWindow = new google.maps.InfoWindow();
 
@@ -34,7 +34,7 @@ function initMap(): void {
       (position: Position) => {
         const pos = {
           lat: position.coords.latitude,
-          lng: position.coords.longitude
+          lng: position.coords.longitude,
         };
 
         infoWindow.setPosition(pos);

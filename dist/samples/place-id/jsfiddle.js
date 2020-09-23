@@ -7,15 +7,15 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: {
       lat: -33.8666,
-      lng: 151.1958
+      lng: 151.1958,
     },
-    zoom: 15
+    zoom: 15,
   }); // Search for Google's office in Australia.
 
   const request = {
     location: map.getCenter(),
     radius: 500,
-    query: "Google Sydney"
+    query: "Google Sydney",
   };
   const service = new google.maps.places.PlacesService(map);
   service.textSearch(request, callback);
@@ -28,8 +28,8 @@ function callback(results, status) {
       map,
       place: {
         placeId: results[0].place_id,
-        location: results[0].geometry.location
-      }
+        location: results[0].geometry.location,
+      },
     });
   }
 }
