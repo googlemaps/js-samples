@@ -27,7 +27,7 @@ function initMap() {
     {
       lat: -32.364,
       lng: 158.207,
-    }, // north east
+    },
   ]; // Define the LatLng coordinates for an inner path.
 
   const innerCoords1 = [

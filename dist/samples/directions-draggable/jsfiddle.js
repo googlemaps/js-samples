@@ -6,7 +6,7 @@ function initMap() {
     center: {
       lat: -24.345,
       lng: 134.46,
-    }, // Australia.
+    },
   });
   const directionsService = new google.maps.DirectionsService();
   const directionsRenderer = new google.maps.DirectionsRenderer({

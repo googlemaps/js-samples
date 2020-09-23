@@ -12,7 +12,7 @@ function initMap() {
     center: {
       lat: 41.879,
       lng: -87.624,
-    }, // Center the map on Chicago, USA.
+    },
   });
   poly = new google.maps.Polyline({
     strokeColor: "#000000",
