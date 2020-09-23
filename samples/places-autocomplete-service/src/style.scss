@@ -59,6 +59,7 @@ body {
   #results {
     flex-basis: 0;
     flex-grow: 3;
+    overflow: hidden;
     .tab-content {
       display: none;
       height: 300px;
