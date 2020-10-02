@@ -1,5 +1,3 @@
-"use strict";
-
 /*
  * This demo illustrates the coordinate system used to display map tiles in the
  * API.
@@ -15,7 +13,6 @@ class CoordMapType {
   constructor(tileSize) {
     this.tileSize = tileSize;
   }
-
   getTile(coord, zoom, ownerDocument) {
     const div = ownerDocument.createElement("div");
     div.innerHTML = String(coord);
@@ -27,21 +24,17 @@ class CoordMapType {
     div.style.borderColor = "#AAAAAA";
     return div;
   }
-
   releaseTile(tile) {}
 }
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
-    center: {
-      lat: 41.85,
-      lng: -87.65,
-    },
-  }); // Insert this overlay map type as the first overlay map type at
+    center: { lat: 41.85, lng: -87.65 },
+  });
+  // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of
   // their parent base map.
-
   map.overlayMapTypes.insertAt(
     0,
     new CoordMapType(new google.maps.Size(256, 256))

@@ -1,5 +1,3 @@
-"use strict";
-
 function initialize() {
   const mapOptions = {
     zoom: 3,
@@ -21,10 +19,10 @@ function initialize() {
     strokeWeight: 2,
     map: map,
   });
+
   /**
    * A menu that lets a user delete a selected vertex of a path.
    */
-
   class DeleteMenu extends google.maps.OverlayView {
     constructor() {
       super();
@@ -36,13 +34,12 @@ function initialize() {
         menu.removeVertex();
       });
     }
-
     onAdd() {
       const deleteMenu = this;
       const map = this.getMap();
-      this.getPanes().floatPane.appendChild(this.div_); // mousedown anywhere on the map except on the menu div will close the
+      this.getPanes().floatPane.appendChild(this.div_);
+      // mousedown anywhere on the map except on the menu div will close the
       // menu.
-
       this.divListener_ = google.maps.event.addDomListener(
         map.getDiv(),
         "mousedown",
@@ -54,23 +51,19 @@ function initialize() {
         true
       );
     }
-
     onRemove() {
       if (this.divListener_) {
         google.maps.event.removeListener(this.divListener_);
       }
-
-      this.div_.parentNode.removeChild(this.div_); // clean up
-
+      this.div_.parentNode.removeChild(this.div_);
+      // clean up
       this.set("position", null);
       this.set("path", null);
       this.set("vertex", null);
     }
-
     close() {
       this.setMap(null);
     }
-
     draw() {
       const position = this.get("position");
       const projection = this.getProjection();
@@ -78,7 +71,6 @@ function initialize() {
       if (!position || !projection) {
         return;
       }
-
       const point = projection.fromLatLngToDivPixel(position);
       this.div_.style.top = point.y + "px";
       this.div_.style.left = point.x + "px";
@@ -86,7 +78,6 @@ function initialize() {
     /**
      * Opens the menu at a vertex of a given path.
      */
-
     open(map, path, vertex) {
       this.set("position", path.getAt(vertex));
       this.set("path", path);
@@ -97,7 +88,6 @@ function initialize() {
     /**
      * Deletes the vertex from the path.
      */
-
     removeVertex() {
       const path = this.get("path");
       const vertex = this.get("vertex");
@@ -106,19 +96,16 @@ function initialize() {
         this.close();
         return;
       }
-
       path.removeAt(vertex);
       this.close();
     }
   }
-
   const deleteMenu = new DeleteMenu();
   google.maps.event.addListener(flightPath, "rightclick", (e) => {
     // Check if click was on a vertex control point
     if (e.vertex == undefined) {
       return;
     }
-
     deleteMenu.open(map, flightPath.getPath(), e.vertex);
   });
 }

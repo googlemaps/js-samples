@@ -1,19 +1,15 @@
-"use strict";
-
 function initPano() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
   // the custom panorama 'reception' which we check for below.
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("map"),
-    {
-      pano: "reception",
-      visible: true,
-    }
+    { pano: "reception", visible: true }
   );
   panorama.registerPanoProvider(getCustomPanorama);
-} // Return a pano image given the panoID.
+}
 
+// Return a pano image given the panoID.
 function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
   return (
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
@@ -25,9 +21,10 @@ function getCustomPanoramaTileUrl(pano, zoom, tileX, tileY) {
     tileY +
     ".jpg"
   );
-} // Construct the appropriate StreetViewPanoramaData given
-// the passed pano IDs.
+}
 
+// Construct the appropriate StreetViewPanoramaData given
+// the passed pano IDs.
 function getCustomPanorama(pano) {
   if (pano === "reception") {
     return {

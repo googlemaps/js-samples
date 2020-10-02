@@ -23,43 +23,37 @@
       }
     </style>
     <script>
-      "use strict";
-
       let map;
 
       function initMap() {
         map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: 20,
-            lng: -160,
-          },
+          center: { lat: 20, lng: -160 },
           zoom: 2,
           styles: mapStyle,
         });
-        map.data.setStyle(styleFeature); // Get the earthquake data (JSONP format)
+        map.data.setStyle(styleFeature);
+        // Get the earthquake data (JSONP format)
         // This feed is a copy from the USGS feed, you can find the originals here:
         //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-
         const script = document.createElement("script");
         script.setAttribute(
           "src",
           "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
         );
         document.getElementsByTagName("head")[0].appendChild(script);
-      } // Defines the callback function referenced in the jsonp file.
+      }
 
+      // Defines the callback function referenced in the jsonp file.
       function eqfeed_callback(data) {
         map.data.addGeoJson(data);
       }
 
       function styleFeature(feature) {
         const low = [151, 83, 34]; // color of mag 1.0
-
         const high = [5, 69, 54]; // color of mag 6.0 and above
-
         const minMag = 1.0;
-        const maxMag = 6.0; // fraction represents where the value sits between the min and max
-
+        const maxMag = 6.0;
+        // fraction represents where the value sits between the min and max
         const fraction =
           (Math.min(feature.getProperty("mag"), maxMag) - minMag) /
           (maxMag - minMag);
@@ -85,54 +79,31 @@
           // Calculate color based on the fraction.
           color.push((highHsl[i] - lowHsl[i]) * fraction + lowHsl[i]);
         }
-
         return "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)";
       }
-
       const mapStyle = [
         {
           featureType: "all",
           elementType: "all",
-          stylers: [
-            {
-              visibility: "off",
-            },
-          ],
+          stylers: [{ visibility: "off" }],
         },
         {
           featureType: "landscape",
           elementType: "geometry",
-          stylers: [
-            {
-              visibility: "on",
-            },
-            {
-              color: "#fcfcfc",
-            },
-          ],
+          stylers: [{ visibility: "on" }, { color: "#fcfcfc" }],
         },
         {
           featureType: "water",
           elementType: "labels",
-          stylers: [
-            {
-              visibility: "off",
-            },
-          ],
+          stylers: [{ visibility: "off" }],
         },
         {
           featureType: "water",
           elementType: "geometry",
           stylers: [
-            {
-              visibility: "on",
-            },
-            {
-              hue: "#5f94ff",
-            },
-            {
-              lightness: 60,
-            },
+            { visibility: "on" },
+            { hue: "#5f94ff" },
+            { lightness: 60 },
           ],
         },
       ];

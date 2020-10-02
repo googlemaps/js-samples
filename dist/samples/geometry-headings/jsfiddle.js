@@ -1,5 +1,3 @@
-"use strict";
-
 // This example requires the Geometry library. Include the libraries=geometry
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=geometry">
@@ -9,10 +7,7 @@ let poly, geodesicPoly;
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
-    center: {
-      lat: 34,
-      lng: -40.605,
-    },
+    center: { lat: 34, lng: -40.605 },
   });
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(
     document.getElementById("info")
@@ -20,18 +15,12 @@ function initMap() {
   marker1 = new google.maps.Marker({
     map,
     draggable: true,
-    position: {
-      lat: 40.714,
-      lng: -74.006,
-    },
+    position: { lat: 40.714, lng: -74.006 },
   });
   marker2 = new google.maps.Marker({
     map,
     draggable: true,
-    position: {
-      lat: 48.857,
-      lng: 2.352,
-    },
+    position: { lat: 48.857, lng: 2.352 },
   });
   const bounds = new google.maps.LatLngBounds(
     marker1.getPosition(),

@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * @fileoverview Sample showing capturing a KML file click
  *   and displaying the contents in a side panel instead of

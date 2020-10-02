@@ -1,5 +1,3 @@
-"use strict";
-
 let map;
 let maxZoomService;
 let infoWindow;
@@ -7,10 +5,7 @@ let infoWindow;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
-    center: {
-      lat: 35.6894,
-      lng: 139.692,
-    },
+    center: { lat: 35.6894, lng: 139.692 },
     mapTypeId: "hybrid",
   });
   infoWindow = new google.maps.InfoWindow();
@@ -27,7 +22,6 @@ function showMaxZoom(e) {
         "The maximum zoom at this location is: " + result.zoom
       );
     }
-
     infoWindow.setPosition(e.latLng);
     infoWindow.open(map);
   });

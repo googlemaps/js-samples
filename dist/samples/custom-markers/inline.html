@@ -23,8 +23,6 @@
       }
     </style>
     <script>
-      "use strict";
-
       let map;
 
       function initMap() {
@@ -146,8 +144,9 @@
             ),
             type: "library",
           },
-        ]; // Create markers.
+        ];
 
+        // Create markers.
         for (let i = 0; i < features.length; i++) {
           const marker = new google.maps.Marker({
             position: features[i].position,

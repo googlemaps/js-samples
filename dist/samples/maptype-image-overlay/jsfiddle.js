@@ -1,12 +1,7 @@
-"use strict";
-
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 18,
-    center: {
-      lat: 37.783,
-      lng: -122.403,
-    },
+    center: { lat: 37.783, lng: -122.403 },
   });
   const bounds = {
     17: [
@@ -38,7 +33,6 @@ function initMap() {
       ) {
         return "";
       }
-
       return [
         "https://www.gstatic.com/io2010maps/tiles/5/L2_",
         zoom,

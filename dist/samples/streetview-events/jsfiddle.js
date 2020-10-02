@@ -1,13 +1,8 @@
-"use strict";
-
 function initPano() {
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano"),
     {
-      position: {
-        lat: 37.869,
-        lng: -122.255,
-      },
+      position: { lat: 37.869, lng: -122.255 },
       pov: {
         heading: 270,
         pitch: 0,
@@ -25,7 +20,6 @@ function initPano() {
     while (linksTable.hasChildNodes()) {
       linksTable.removeChild(linksTable.lastChild);
     }
-
     const links = panorama.getLinks();
 
     for (const i in links) {

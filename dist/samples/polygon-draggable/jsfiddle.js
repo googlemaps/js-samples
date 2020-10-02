@@ -1,46 +1,23 @@
-"use strict";
-
 // This example creates draggable triangles on the map.
 // Note also that the red triangle is geodesic, so its shape changes
 // as you drag it north or south.
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 1,
-    center: {
-      lat: 24.886,
-      lng: -70.268,
-    },
+    center: { lat: 24.886, lng: -70.268 },
     mapTypeId: "terrain",
   });
   const blueCoords = [
-    {
-      lat: 25.774,
-      lng: -60.19,
-    },
-    {
-      lat: 18.466,
-      lng: -46.118,
-    },
-    {
-      lat: 32.321,
-      lng: -44.757,
-    },
+    { lat: 25.774, lng: -60.19 },
+    { lat: 18.466, lng: -46.118 },
+    { lat: 32.321, lng: -44.757 },
   ];
   const redCoords = [
-    {
-      lat: 25.774,
-      lng: -80.19,
-    },
-    {
-      lat: 18.466,
-      lng: -66.118,
-    },
-    {
-      lat: 32.321,
-      lng: -64.757,
-    },
-  ]; // Construct a draggable red triangle with geodesic set to true.
-
+    { lat: 25.774, lng: -80.19 },
+    { lat: 18.466, lng: -66.118 },
+    { lat: 32.321, lng: -64.757 },
+  ];
+  // Construct a draggable red triangle with geodesic set to true.
   new google.maps.Polygon({
     map,
     paths: redCoords,
@@ -51,8 +28,8 @@ function initMap() {
     fillOpacity: 0.35,
     draggable: true,
     geodesic: true,
-  }); // Construct a draggable blue triangle with geodesic set to false.
-
+  });
+  // Construct a draggable blue triangle with geodesic set to false.
   new google.maps.Polygon({
     map,
     paths: blueCoords,

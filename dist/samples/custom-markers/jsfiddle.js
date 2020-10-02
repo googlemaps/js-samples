@@ -1,5 +1,3 @@
-"use strict";
-
 let map;
 
 function initMap() {
@@ -97,8 +95,9 @@ function initMap() {
       position: new google.maps.LatLng(-33.91727341958453, 151.23348314155578),
       type: "library",
     },
-  ]; // Create markers.
+  ];
 
+  // Create markers.
   for (let i = 0; i < features.length; i++) {
     const marker = new google.maps.Marker({
       position: features[i].position,

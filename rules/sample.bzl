@@ -5,6 +5,7 @@ load("//rules:tags.bzl", "tags_test")
 load("//rules:template.bzl", "template_file")
 load("@npm//@bazel/typescript:index.bzl", "ts_library")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
+load("@npm//@babel/cli:index.bzl", "babel")
 
 def sample(name):
     """ generates the various outputs"""
@@ -25,7 +26,7 @@ def sample(name):
     )
 
     native.genrule(
-        name = "index_js",
+        name = "app_js",
         srcs = [":_compile_outputs", "//:.eslintrc.json"],
         outs = ["index.js"],
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
@@ -41,30 +42,22 @@ def sample(name):
         visibility = ["//visibility:public"],
     )
 
-    native.genrule(
+    babel(
         name = "iframe_js",
-        outs = [":iframe.js"],
-        cmd = "$(location //rules:babel) --config-file $(location //:.babelrc) --out-file $@ $(location :index.js)",
-        srcs = [
-            ":index.js",
+        outs = [
+            "iframe.js",
+        ],
+        args = [
+            "$(execpath :index.js)",
+            "--config-file $(location //:.babelrc)",
+            "--out-file",
+            "$(execpath :iframe.js)",
+        ],
+        data = [
+            "index.js",
             "//:.babelrc",
-            "@npm//:node_modules",
+            "@npm//@babel/preset-env",
         ],
-        tools = ["//rules:babel"],
-    )
-
-    native.genrule(
-        name = "app_js",
-        outs = [":app.js"],
-        cmd = "$(location //rules:babel) --config-file $(location //:.babelrc.jsfiddle.json) --out-file $@ $(location :index.js); " +
-              "$(location //rules:prettier) --write $@; ",
-        srcs = [
-            ":index.js",
-            "//:.babelrc.jsfiddle.json",
-            "@npm//:node_modules",
-        ],
-        tools = ["//rules:babel", "//rules:prettier"],
-        visibility = ["//visibility:public"],
     )
 
     native.genrule(
@@ -128,10 +121,10 @@ def sample(name):
     native.genrule(
         name = "jsfiddle_js",
         outs = [":jsfiddle.js"],
-        cmd = "sed  \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :app.js) > $@; " +
+        cmd = "sed  \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :index.js) > $@; " +
               "$(location //rules:prettier) --write $@; ",
         srcs = [
-            ":app.js",
+            ":index.js",
         ],
         tools = ["//rules:prettier"],
         visibility = ["//visibility:public"],
@@ -153,7 +146,7 @@ def sample(name):
 
     native.genrule(
         name = "inline_html",
-        srcs = [":_sample.html", ":app.js", ":style.css"],
+        srcs = [":_sample.html", ":index.js", ":style.css"],
         outs = ["inline.html"],
         cmd = "$(location //rules:inline) $(location :_sample.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
@@ -340,8 +333,8 @@ def sample(name):
         name = "package_test",
         srcs = [":{}-package.tgz".format(name)],
         cmd = "set -x; tar xf $(location :{}-package.tgz); ".format(name) +
-              "npm i; npm run build; cat public/app.js > $@",
+              "npm i; npm run build; cat public/index.js > $@",
         local = 1,
         tags = ["manual", "package"],
-        outs = ["app.webpack.js"],
+        outs = ["index.webpack.js"],
     )

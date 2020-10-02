@@ -1,20 +1,18 @@
-"use strict";
-
 // eslint-disable no-undef
-let map; // Initialize and add the map
+let map;
 
+// Initialize and add the map
 function initMap() {
   let markers = [];
+
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
   map = new google.maps.Map(document.getElementById("map"), {
     mapId: "3a3b33f0edd6ed2a",
-    center: {
-      lat: 47.609414458375674,
-      lng: -122.33897030353548,
-    },
+    center: { lat: 47.609414458375674, lng: -122.33897030353548 },
     zoom: 17,
   });
-  const menuList = document.querySelector(".mdc-list"); // Add the behaviors to the select options
+  const menuList = document.querySelector(".mdc-list");
+  // Add the behaviors to the select options
 
   for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {
     const item = document.createElement("LI");
@@ -36,8 +34,8 @@ function initMap() {
       marker.set("collisionBehavior", collisionBehavior);
     });
   });
-  select.value = collisionBehavior; // Create some markers on the map
-
+  select.value = collisionBehavior;
+  // Create some markers on the map
   markers = [
     [-122.3402, 47.6093],
     [-122.3402, 47.6094],
@@ -55,10 +53,7 @@ function initMap() {
   ].map(
     ([lng, lat]) =>
       new google.maps.Marker({
-        position: new google.maps.LatLng({
-          lat,
-          lng,
-        }),
+        position: new google.maps.LatLng({ lat, lng }),
         map,
         collisionBehavior: collisionBehavior,
       })

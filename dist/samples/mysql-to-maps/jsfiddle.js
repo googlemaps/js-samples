@@ -1,5 +1,3 @@
-"use strict";
-
 const customLabel = {
   restaurant: {
     label: "R",
@@ -14,8 +12,8 @@ function initMap() {
     center: new google.maps.LatLng(-33.863276, 151.207977),
     zoom: 12,
   });
-  const infoWindow = new google.maps.InfoWindow(); // Change this depending on the name of your PHP or XML file
-
+  const infoWindow = new google.maps.InfoWindow();
+  // Change this depending on the name of your PHP or XML file
   downloadUrl(
     "https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml",
     (data) => {
@@ -64,7 +62,6 @@ function downloadUrl(url, callback) {
       callback(request);
     }
   };
-
   request.open("GET", url, true);
   request.send(null);
 }

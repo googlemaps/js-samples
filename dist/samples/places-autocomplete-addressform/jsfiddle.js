@@ -1,5 +1,3 @@
-"use strict";
-
 // This sample uses the Autocomplete widget to help the user select a
 // place, then it retrieves the address components associated with that
 // place, and then it populates the form fields with those details.
@@ -23,15 +21,13 @@ function initAutocomplete() {
   // geographical location types.
   autocomplete = new google.maps.places.Autocomplete(
     document.getElementById("autocomplete"),
-    {
-      types: ["geocode"],
-    }
-  ); // Avoid paying for data that you don't need by restricting the set of
+    { types: ["geocode"] }
+  );
+  // Avoid paying for data that you don't need by restricting the set of
   // place fields that are returned to just the address components.
-
-  autocomplete.setFields(["address_component"]); // When the user selects an address from the drop-down, populate the
+  autocomplete.setFields(["address_component"]);
+  // When the user selects an address from the drop-down, populate the
   // address fields in the form.
-
   autocomplete.addListener("place_changed", fillInAddress);
 }
 
@@ -42,9 +38,10 @@ function fillInAddress() {
   for (const component in componentForm) {
     document.getElementById(component).value = "";
     document.getElementById(component).disabled = false;
-  } // Get each component of the address from the place details,
-  // and then fill-in the corresponding field on the form.
+  }
 
+  // Get each component of the address from the place details,
+  // and then fill-in the corresponding field on the form.
   for (const component of place.address_components) {
     const addressType = component.types[0];
 
@@ -53,9 +50,10 @@ function fillInAddress() {
       document.getElementById(addressType).value = val;
     }
   }
-} // Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
+}
 
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
 function geolocate() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition((position) => {

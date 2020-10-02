@@ -1,18 +1,13 @@
-"use strict";
-
 let mapLeft, mapRight;
 
 function initMap() {
   const mapOptions = {
-    center: {
-      lat: 44.5250489,
-      lng: -110.83819,
-    },
+    center: { lat: 44.5250489, lng: -110.83819 },
     zoom: 18,
     scaleControl: false,
     streetViewControl: false,
-  }; // instantiate the map on the left with control positioning
-
+  };
+  // instantiate the map on the left with control positioning
   mapLeft = new google.maps.Map(document.getElementById("map-left"), {
     ...mapOptions,
     mapTypeId: "satellite",
@@ -26,8 +21,8 @@ function initMap() {
     zoomControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM,
     },
-  }); // instantiate the map on the right with control positioning
-
+  });
+  // instantiate the map on the right with control positioning
   mapRight = new google.maps.Map(document.getElementById("map-right"), {
     ...mapOptions,
     fullscreenControlOptions: {
@@ -39,8 +34,9 @@ function initMap() {
     zoomControlOptions: {
       position: google.maps.ControlPosition.RIGHT_BOTTOM,
     },
-  }); // helper function to keep maps in sync
+  });
 
+  // helper function to keep maps in sync
   function sync(...maps) {
     let center, zoom;
 
@@ -49,12 +45,10 @@ function initMap() {
         if (m === changedMap) {
           return;
         }
-
         m.setCenter(center);
         m.setZoom(zoom);
       });
     }
-
     maps.forEach((m) => {
       m.addListener("bounds_changed", () => {
         const changedCenter = m.getCenter();
@@ -68,19 +62,18 @@ function initMap() {
       });
     });
   }
-
   sync(mapLeft, mapRight);
 
   function handleContainerResize() {
     const width = document.getElementById("container").offsetWidth;
     document.getElementById("map-left").style.width = `${width}px`;
     document.getElementById("map-right").style.width = `${width}px`;
-  } // trigger to set map container size since using absolute
-
-  handleContainerResize(); // add event listener
-
-  window.addEventListener("resize", handleContainerResize); //@ts-ignore
-
+  }
+  // trigger to set map container size since using absolute
+  handleContainerResize();
+  // add event listener
+  window.addEventListener("resize", handleContainerResize);
+  //@ts-ignore
   Split(["#left", "#right"], {
     sizes: [50, 50],
   });

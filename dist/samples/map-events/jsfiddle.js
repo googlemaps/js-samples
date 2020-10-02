@@ -1,5 +1,3 @@
-"use strict";
-
 const events = [
   "bounds_changed",
   "center_changed",
@@ -44,8 +42,9 @@ function initMap() {
   for (let i = 0; i < events.length; i++) {
     setupListener(map, events[i]);
   }
-} // Dynamically create the table of events from the defined hashmap
+}
 
+// Dynamically create the table of events from the defined hashmap
 function populateTable() {
   const eventsTable = document.getElementById("events");
   let content = "";
@@ -54,6 +53,5 @@ function populateTable() {
     content +=
       '<div class="event" id="' + events[i] + '">' + events[i] + "</div>";
   }
-
   eventsTable.innerHTML = content;
 }

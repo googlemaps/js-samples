@@ -23,16 +23,11 @@
       }
     </style>
     <script>
-      "use strict";
-
       // This example adds a red rectangle to a map.
       function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
           zoom: 11,
-          center: {
-            lat: 33.678,
-            lng: -116.243,
-          },
+          center: { lat: 33.678, lng: -116.243 },
           mapTypeId: "terrain",
         });
         const rectangle = new google.maps.Rectangle({

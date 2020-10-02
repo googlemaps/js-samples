@@ -48,7 +48,7 @@ module.exports = {
   output: {
     path: `${__dirname}/public`,
     publicPath: "/",
-    filename: "app.js",
+    filename: "index.js",
     library: "",
     libraryTarget: "window",
   },

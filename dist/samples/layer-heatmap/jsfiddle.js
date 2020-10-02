@@ -1,5 +1,3 @@
-"use strict";
-
 // This example requires the Visualization library. Include the libraries=visualization
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=visualization">
@@ -8,10 +6,7 @@ let map, heatmap;
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
-    center: {
-      lat: 37.775,
-      lng: -122.434,
-    },
+    center: { lat: 37.775, lng: -122.434 },
     mapTypeId: "satellite",
   });
   heatmap = new google.maps.visualization.HeatmapLayer({
@@ -50,8 +45,9 @@ function changeRadius() {
 
 function changeOpacity() {
   heatmap.set("opacity", heatmap.get("opacity") ? null : 0.2);
-} // Heatmap data: 500 Points
+}
 
+// Heatmap data: 500 Points
 function getPoints() {
   return [
     new google.maps.LatLng(37.782551, -122.445368),
