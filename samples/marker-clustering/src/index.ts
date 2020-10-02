@@ -14,15 +14,6 @@
  * limitations under the License.
  */
 
-// Declarations to keep the compiler happy.
-/**
- * @param {!google.maps.Map} map
- * @param {!Array<!google.maps.Marker>} markers
- * @param {!Object} options
- * @constructor
- */
-function MarkerClusterer(map, markers, options) {}
-
 // [START maps_marker_clustering]
 function initMap(): void {
   const map = new google.maps.Map(
@@ -48,7 +39,8 @@ function initMap(): void {
   });
 
   // Add a marker clusterer to manage the markers.
-  const markerCluster = new MarkerClusterer(map, markers, {
+  // @ts-ignore MarkerClusterer defined via script
+  new MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
   });
