@@ -60,24 +60,6 @@ def sample(name):
         ],
     )
 
-    # babel(
-    #     name = "app_js",
-    #     outs = [
-    #         "_app.js",
-    #     ],
-    #     args = [
-    #         "$(execpath :index.js)",
-    #         "--config-file $(location //:.babelrc.jsfiddle.json)",
-    #         "--out-file",
-    #         "$(execpath :_app.js)",
-    #     ],
-    #     data = [
-    #         "index.js",
-    #         "//:.babelrc.jsfiddle.json",
-    #         "@npm//@babel/preset-env",
-    #     ],
-    # )
-
     native.genrule(
         name = "_scss_without_header",
         srcs = [":src/style.scss"],
@@ -104,7 +86,6 @@ def sample(name):
 
     for src, out in [
         (":_style.css", "style.css"),
-        # (":_app.js", "app.js"),
     ]:
         prettier(
             src = src,

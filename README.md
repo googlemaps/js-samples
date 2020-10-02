@@ -55,8 +55,7 @@ The following table identifies the inputs and outputs.
 | samples/\*/src/index.njk      | Y    | N        | HTML template for sample                                                                        |
 | samples/\*/src/style.scss     | Y    | N        | SCSS style for sample                                                                           |
 | shared/layout.njk             | Y    | N        | Shared HTML template to extend                                                                  |
-| shared/scss/\*                | Y    | N        | Shared SCSS styles                                                                              |
-| dist/samples/\*/app.js        | N    | Y        | Transpiled JS for >3%                                                                           | 
+| shared/scss/\*                | Y    | N        | Shared SCSS styles                                                                              |                                                                         | 
 | dist/samples/\*/index.html    | N    | N        | Inline HTML, CSS, JS with development key and transpiled for >1%, ie11                          |
 | dist/samples/\*/iframe.html   | N    | N        | Inline HTML, CSS, JS for iframe without html, head, body tags transpiled for ie11 and >1%, ie11 |
 | dist/samples/\*/inline.html   | N    | N        | Inline HTML, CSS, JS for *All* tab transpiled for >3%                                           |
