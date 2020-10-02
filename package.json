@@ -44,7 +44,7 @@
     "open": "^7.1.0",
     "tar": "^6.0.5",
     "tmp": "^0.2.1",
-    "yargs": "^15.4.1"
+    "yargs": "^16.0.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
