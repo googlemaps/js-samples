@@ -1,5 +1,3 @@
-"use strict";
-
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
@@ -24,7 +22,6 @@ function initMap() {
       for (let i = 0; i < results.length; i++) {
         createMarker(results[i]);
       }
-
       map.setCenter(results[0].geometry.location);
     }
   });

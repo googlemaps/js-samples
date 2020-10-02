@@ -1,19 +1,14 @@
-"use strict";
-
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initMap() {
   // Create the map.
-  const pyrmont = {
-    lat: -33.866,
-    lng: 151.196,
-  };
+  const pyrmont = { lat: -33.866, lng: 151.196 };
   const map = new google.maps.Map(document.getElementById("map"), {
     center: pyrmont,
     zoom: 17,
-  }); // Create the places service.
-
+  });
+  // Create the places service.
   const service = new google.maps.places.PlacesService(map);
   let getNextPage;
   const moreButton = document.getElementById("more");
@@ -24,14 +19,10 @@ function initMap() {
     if (getNextPage) {
       getNextPage();
     }
-  }; // Perform a nearby search.
-
+  };
+  // Perform a nearby search.
   service.nearbySearch(
-    {
-      location: pyrmont,
-      radius: 500,
-      type: "store",
-    },
+    { location: pyrmont, radius: 500, type: "store" },
     (results, status, pagination) => {
       if (status !== "OK") return;
       createMarkers(results, map);
@@ -67,6 +58,5 @@ function createMarkers(places, map) {
     placesList.appendChild(li);
     bounds.extend(place.geometry.location);
   }
-
   map.fitBounds(bounds);
 }

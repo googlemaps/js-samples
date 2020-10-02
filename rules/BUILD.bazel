@@ -23,26 +23,24 @@ nodejs_binary(
 
 nodejs_binary(
     name = "prettier",
-    node_modules = "@npm//:node_modules",
+    data = [
+        "@npm//prettier",
+    ],
     entry_point = "@npm//:node_modules/prettier/bin-prettier.js",
     visibility = ["//visibility:public"],
 )
 
 nodejs_binary(
     name = "eslint",
-    entry_point = "@npm//:node_modules/eslint/bin/eslint.js",
-    node_modules = "@npm//:node_modules",
-    visibility = ["//visibility:public"],
-)
-
-nodejs_binary(
-    name = "babel",
     data = [
-        "@npm//@babel/core",
-        "@npm//@babel/preset-env",
+        "@npm//eslint",
+        "@npm//eslint-config-prettier",
+        "@npm//eslint-plugin-jest",
+        "@npm//eslint-plugin-prettier",
+        "@npm//prettier",
+        "@npm//v8-compile-cache",
     ],
-    entry_point = "@npm//:node_modules/@babel/cli/bin/babel.js",
-    node_modules = "@npm//:node_modules",
+    entry_point = "@npm//:node_modules/eslint/bin/eslint.js",
     visibility = ["//visibility:public"],
 )
 
@@ -50,7 +48,7 @@ nodejs_binary(
     name = "inline",
     data = [
         "inline.js",
-        "@npm//:node_modules",
+        "@npm//web-resource-inliner",
     ],
     entry_point = ":inline.js",
     visibility = ["//visibility:public"],

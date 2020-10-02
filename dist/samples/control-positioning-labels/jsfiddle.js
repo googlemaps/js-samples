@@ -1,10 +1,7 @@
-"use strict";
-
 /**
  * Creates a series of custom controls to demonstrate positioning
  * of controls within a map.
  */
-
 /**
  * MakeControl adds a control to the map.
  * This constructor takes the controlDIV name and label text as arguments.
@@ -14,8 +11,8 @@ function MakeControl(controlDiv, label) {
   const controlUI = document.createElement("div");
   controlUI.title = label;
   controlUI.className = "controlUI";
-  controlDiv.appendChild(controlUI); // Set up the inner control.
-
+  controlDiv.appendChild(controlUI);
+  // Set up the inner control.
   const controlText = document.createElement("div");
   controlText.innerHTML = label;
   controlText.className = "controlText";
@@ -26,10 +23,7 @@ function initialize() {
   const mapDiv = document.getElementById("map");
   const mapOptions = {
     zoom: 11,
-    center: {
-      lat: 47.46,
-      lng: -122.52,
-    },
+    center: { lat: 47.46, lng: -122.52 },
     disableDefaultUI: true,
   };
   const map = new google.maps.Map(mapDiv, mapOptions);
@@ -52,6 +46,7 @@ function initialize() {
     const divLabel = controlText[i][0];
     const divName = document.createElement("div");
     MakeControl(divName, divLabel);
+
     map.controls[controlText[i][1]].push(divName);
   }
 }

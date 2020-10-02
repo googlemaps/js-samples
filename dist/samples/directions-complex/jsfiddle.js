@@ -1,32 +1,26 @@
-"use strict";
-
 function initMap() {
-  const markerArray = []; // Instantiate a directions service.
-
-  const directionsService = new google.maps.DirectionsService(); // Create a map and center it on Manhattan.
-
+  const markerArray = [];
+  // Instantiate a directions service.
+  const directionsService = new google.maps.DirectionsService();
+  // Create a map and center it on Manhattan.
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 13,
-    center: {
-      lat: 40.771,
-      lng: -73.974,
-    },
-  }); // Create a renderer for directions and bind it to the map.
-
-  const directionsRenderer = new google.maps.DirectionsRenderer({
-    map: map,
-  }); // Instantiate an info window to hold step text.
-
-  const stepDisplay = new google.maps.InfoWindow(); // Display the route between the initial start and end selections.
-
+    center: { lat: 40.771, lng: -73.974 },
+  });
+  // Create a renderer for directions and bind it to the map.
+  const directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
+  // Instantiate an info window to hold step text.
+  const stepDisplay = new google.maps.InfoWindow();
+  // Display the route between the initial start and end selections.
   calculateAndDisplayRoute(
     directionsRenderer,
     directionsService,
     markerArray,
     stepDisplay,
     map
-  ); // Listen to change events from the start and end lists.
+  );
 
+  // Listen to change events from the start and end lists.
   const onChangeHandler = function () {
     calculateAndDisplayRoute(
       directionsRenderer,
@@ -36,7 +30,6 @@ function initMap() {
       map
     );
   };
-
   document.getElementById("start").addEventListener("change", onChangeHandler);
   document.getElementById("end").addEventListener("change", onChangeHandler);
 }
@@ -51,9 +44,9 @@ function calculateAndDisplayRoute(
   // First, remove any existing markers from the map.
   for (let i = 0; i < markerArray.length; i++) {
     markerArray[i].setMap(null);
-  } // Retrieve the start and end locations and create a DirectionsRequest using
+  }
+  // Retrieve the start and end locations and create a DirectionsRequest using
   // WALKING directions.
-
   directionsService.route(
     {
       origin: document.getElementById("start").value,

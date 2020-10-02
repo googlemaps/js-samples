@@ -1,28 +1,24 @@
-"use strict";
-
 let map;
 let autocomplete;
 let autocompleteInput;
 let distanceMatrixService;
 let progress;
 let isUpdateInProgress = false;
-const stores = []; // Initialize and add the map
+const stores = [];
 
+// Initialize and add the map
 function initMap() {
   distanceMatrixService = new google.maps.DistanceMatrixService();
   map = new google.maps.Map(document.getElementById("map"), {
-    center: {
-      lat: 39.79,
-      lng: -104.98,
-    },
+    center: { lat: 39.79, lng: -104.98 },
     zoom: 10,
   });
+
   new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
   autocompleteInput = document.getElementById("search-input");
   autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {});
   autocomplete.addListener("place_changed", placeChanged);
   autocomplete.bindTo("bounds", map); // bias to map viewport
-
   fetch(
     "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
   )
@@ -34,31 +30,15 @@ function initMap() {
       const markers = [];
       features.forEach(
         ({ attributes: { NAME: name }, geometry: { x: lng, y: lat } }) => {
-          stores.push({
-            name,
-            location: {
-              lat,
-              lng,
-            },
-            address: "",
-          });
-          const marker = new google.maps.Marker({
-            position: {
-              lat,
-              lng,
-            },
-          });
+          stores.push({ name, location: { lat, lng }, address: "" });
+          const marker = new google.maps.Marker({ position: { lat, lng } });
           marker.addListener("click", () => {
-            update(
-              new google.maps.LatLng({
-                lat,
-                lng,
-              })
-            );
+            update(new google.maps.LatLng({ lat, lng }));
           });
           markers.push(marker);
         }
       );
+
       new MarkerClusterer(map, markers, {
         imagePath:
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
@@ -70,12 +50,7 @@ function initMap() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         ({ coords: { latitude: lat, longitude: lng } }) => {
-          update(
-            new google.maps.LatLng({
-              lat,
-              lng,
-            })
-          );
+          update(new google.maps.LatLng({ lat, lng }));
         }
       );
     }
@@ -124,7 +99,6 @@ function renderCards(stores) {
         if (travelDistanceText) {
           cardBody.innerHTML += `<h2 class="mdc-typography--body2">${travelDistanceText}, ${travelDurationText}</h2>`;
         }
-
         card
           .querySelector(".mdc-card__primary-action")
           .addEventListener("click", () => {
@@ -146,7 +120,6 @@ function getDistances(place) {
         reject(status);
       }
     };
-
     distanceMatrixService.getDistanceMatrix(
       {
         origins,
@@ -171,18 +144,17 @@ function update(location) {
     alert("Update in progress, please try again.");
     return;
   }
-
   autocompleteInput.disabled = true;
   isUpdateInProgress = true;
-  map.setCenter(location); // reset values
-
+  map.setCenter(location);
+  // reset values
   stores.forEach((store) => {
     delete store.travelDistance;
     delete store.travelDistanceText;
     delete store.travelDuration;
     delete store.travelDurationText;
-  }); // sort by distance
-
+  });
+  // sort by distance
   stores.sort((a, b) => {
     return (
       google.maps.geometry.spherical.computeDistanceBetween(

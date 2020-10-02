@@ -1,5 +1,3 @@
-"use strict";
-
 let map;
 
 function initMap() {
@@ -118,6 +116,5 @@ function initMap() {
     div.innerHTML = '<img src="' + icon + '"> ' + name;
     legend.appendChild(div);
   }
-
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }

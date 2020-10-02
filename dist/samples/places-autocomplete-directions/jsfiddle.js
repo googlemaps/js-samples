@@ -1,5 +1,3 @@
-"use strict";
-
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
@@ -7,10 +5,7 @@
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     mapTypeControl: false,
-    center: {
-      lat: -33.8688,
-      lng: 151.2195,
-    },
+    center: { lat: -33.8688, lng: 151.2195 },
     zoom: 13,
   });
   new AutocompleteDirectionsHandler(map);
@@ -28,13 +23,13 @@ class AutocompleteDirectionsHandler {
     const originInput = document.getElementById("origin-input");
     const destinationInput = document.getElementById("destination-input");
     const modeSelector = document.getElementById("mode-selector");
-    const originAutocomplete = new google.maps.places.Autocomplete(originInput); // Specify just the place data fields that you need.
-
+    const originAutocomplete = new google.maps.places.Autocomplete(originInput);
+    // Specify just the place data fields that you need.
     originAutocomplete.setFields(["place_id"]);
     const destinationAutocomplete = new google.maps.places.Autocomplete(
       destinationInput
-    ); // Specify just the place data fields that you need.
-
+    );
+    // Specify just the place data fields that you need.
     destinationAutocomplete.setFields(["place_id"]);
     this.setupClickListener(
       "changemode-walking",
@@ -55,9 +50,9 @@ class AutocompleteDirectionsHandler {
       destinationInput
     );
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-  } // Sets a listener on a radio button to change the filter type on Places
+  }
+  // Sets a listener on a radio button to change the filter type on Places
   // Autocomplete.
-
   setupClickListener(id, mode) {
     const radioButton = document.getElementById(id);
     radioButton.addEventListener("click", () => {
@@ -65,7 +60,6 @@ class AutocompleteDirectionsHandler {
       this.route();
     });
   }
-
   setupPlaceChangedListener(autocomplete, mode) {
     autocomplete.bindTo("bounds", this.map);
     autocomplete.addListener("place_changed", () => {
@@ -81,25 +75,18 @@ class AutocompleteDirectionsHandler {
       } else {
         this.destinationPlaceId = place.place_id;
       }
-
       this.route();
     });
   }
-
   route() {
     if (!this.originPlaceId || !this.destinationPlaceId) {
       return;
     }
-
     const me = this;
     this.directionsService.route(
       {
-        origin: {
-          placeId: this.originPlaceId,
-        },
-        destination: {
-          placeId: this.destinationPlaceId,
-        },
+        origin: { placeId: this.originPlaceId },
+        destination: { placeId: this.destinationPlaceId },
         travelMode: this.travelMode,
       },
       (response, status) => {

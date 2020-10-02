@@ -1,15 +1,10 @@
-"use strict";
-
 // This example uses SVG path notation to add a vector-based symbol
 // as the icon for a marker. The resulting icon is a star-shaped symbol
 // with a pale yellow fill and a thick yellow border.
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
-    center: {
-      lat: -25.363882,
-      lng: 131.044922,
-    },
+    center: { lat: -25.363882, lng: 131.044922 },
   });
   const goldStar = {
     path:

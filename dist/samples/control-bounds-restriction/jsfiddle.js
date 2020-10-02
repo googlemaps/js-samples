@@ -1,5 +1,3 @@
-"use strict";
-
 let map;
 const NEW_ZEALAND_BOUNDS = {
   north: -34.36,
@@ -7,10 +5,7 @@ const NEW_ZEALAND_BOUNDS = {
   west: 166.28,
   east: -175.81,
 };
-const AUCKLAND = {
-  lat: -37.06,
-  lng: 174.58,
-};
+const AUCKLAND = { lat: -37.06, lng: 174.58 };
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {

@@ -1,5 +1,3 @@
-"use strict";
-
 /*
  * This demo demonstrates how to replace default map tiles with custom imagery.
  * In this case, the CoordMapType displays gray tiles annotated with the tile
@@ -14,7 +12,6 @@ class CoordMapType {
     this.alt = "Tile Coordinate Map Type";
     this.tileSize = tileSize;
   }
-
   getTile(coord, zoom, ownerDocument) {
     const div = ownerDocument.createElement("div");
     div.innerHTML = String(coord);
@@ -27,17 +24,13 @@ class CoordMapType {
     div.style.backgroundColor = "#E5E3DF";
     return div;
   }
-
   releaseTile(tile) {}
 }
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
-    center: {
-      lat: 41.85,
-      lng: -87.65,
-    },
+    center: { lat: 41.85, lng: -87.65 },
     streetViewControl: false,
     mapTypeId: "coordinate",
     mapTypeControlOptions: {
@@ -50,8 +43,8 @@ function initMap() {
     map.setOptions({
       streetViewControl: showStreetViewControl,
     });
-  }); // Now attach the coordinate map type to the map's registry.
-
+  });
+  // Now attach the coordinate map type to the map's registry.
   map.mapTypes.set(
     "coordinate",
     new CoordMapType(new google.maps.Size(256, 256))

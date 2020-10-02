@@ -1,14 +1,9 @@
-"use strict";
-
 function initMap() {
   const directionsService = new google.maps.DirectionsService();
   const directionsRenderer = new google.maps.DirectionsRenderer();
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 6,
-    center: {
-      lat: 41.85,
-      lng: -87.65,
-    },
+    center: { lat: 41.85, lng: -87.65 },
   });
   directionsRenderer.setMap(map);
   document.getElementById("submit").addEventListener("click", () => {
@@ -28,7 +23,6 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       });
     }
   }
-
   directionsService.route(
     {
       origin: document.getElementById("start").value,
@@ -42,8 +36,9 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
         directionsRenderer.setDirections(response);
         const route = response.routes[0];
         const summaryPanel = document.getElementById("directions-panel");
-        summaryPanel.innerHTML = ""; // For each route, display summary information.
+        summaryPanel.innerHTML = "";
 
+        // For each route, display summary information.
         for (let i = 0; i < route.legs.length; i++) {
           const routeSegment = i + 1;
           summaryPanel.innerHTML +=

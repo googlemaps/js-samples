@@ -1,5 +1,3 @@
-"use strict";
-
 /* Map functions */
 let map;
 
@@ -16,11 +14,11 @@ function loadGeoJsonString(geoString) {
   map.data.addGeoJson(geojson);
   zoom(map);
 }
+
 /**
  * Update a map's viewport to fit each geometry in a dataset
  * @param {google.maps.Map} map The map to adjust
  */
-
 function zoom(map) {
   const bounds = new google.maps.LatLngBounds();
   map.data.forEach((feature) => {
@@ -28,6 +26,7 @@ function zoom(map) {
   });
   map.fitBounds(bounds);
 }
+
 /**
  * Process each point in a Geometry, regardless of how deep the points may lie.
  * @param {google.maps.Data.Geometry} geometry The structure to process
@@ -36,7 +35,6 @@ function zoom(map) {
  * @param {Object} thisArg The value of 'this' as provided to 'callback' (e.g.
  *     myArray)
  */
-
 function processPoints(geometry, callback, thisArg) {
   if (geometry instanceof google.maps.LatLng) {
     callback.call(thisArg, geometry);
@@ -48,15 +46,15 @@ function processPoints(geometry, callback, thisArg) {
     });
   }
 }
-/* DOM (drag/drop) functions */
 
+/* DOM (drag/drop) functions */
 function initEvents() {
   // set up the drag & drop events
   const mapContainer = document.getElementById("map");
-  const dropContainer = document.getElementById("drop-container"); // map-specific events
-
-  mapContainer.addEventListener("dragenter", showPanel, false); // overlay specific events (since it only appears once drag starts)
-
+  const dropContainer = document.getElementById("drop-container");
+  // map-specific events
+  mapContainer.addEventListener("dragenter", showPanel, false);
+  // overlay specific events (since it only appears once drag starts)
   dropContainer.addEventListener("dragover", showPanel, false);
   dropContainer.addEventListener("drop", handleDrop, false);
   dropContainer.addEventListener("dragleave", hidePanel, false);
@@ -92,7 +90,6 @@ function handleDrop(e) {
       reader.onerror = function (e) {
         console.error("reading failed");
       };
-
       reader.readAsText(file);
     }
   } else {
@@ -103,8 +100,8 @@ function handleDrop(e) {
     if (plainText) {
       loadGeoJsonString(plainText);
     }
-  } // prevent drag event from bubbling further
-
+  }
+  // prevent drag event from bubbling further
   return false;
 }
 

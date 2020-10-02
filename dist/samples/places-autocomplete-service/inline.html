@@ -123,8 +123,6 @@
       }
     </style>
     <script>
-      "use strict";
-
       let autocompleteService;
       let placesService;
       let requestElement;
@@ -141,16 +139,12 @@
           window.clearTimeout(timeout);
           timeout = window.setTimeout(() => fn(...args), delay);
         };
-
         return debounced;
       };
 
       const initialize = () => {
         map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: 47.609414458375674,
-            lng: -122.33897030353548,
-          },
+          center: { lat: 47.609414458375674, lng: -122.33897030353548 },
           zoom: 12,
         });
         autocompleteService = new google.maps.places.AutocompleteService();
@@ -191,7 +185,6 @@
         initializeMaterialDesignComponents();
         inputChangeCallback();
       };
-
       const inputChangeCallback = debounce(100, () => {
         const request = {
           input: inputElement.value,
@@ -201,7 +194,6 @@
         if (biasToMapSwitchElement.checked && bounds) {
           request.bounds = bounds;
         }
-
         const selectedAutocompleteType = document.querySelector(
           "#autocomplete-type-list > .mdc-list-item--selected"
         );
@@ -212,22 +204,17 @@
         ) {
           request.types = [selectedAutocompleteType.getAttribute("data-value")];
         }
-
         requestElement.innerText = JSON.stringify(request, null, 2);
 
         if (!inputElement.value) {
           return;
         }
-
         autocompleteService.getPlacePredictions(request, predictionsCallback);
       });
 
       const predictionsCallback = (results, status) => {
         responseElement.innerText = JSON.stringify(
-          {
-            results,
-            status,
-          },
+          { results, status },
           null,
           2
         );
@@ -239,6 +226,7 @@
           .forEach((el) => new mdc.textField.MDCTextField(el));
         document
           .querySelectorAll(".mdc-switch")
+
           .forEach((el) => new mdc.switchControl.MDCSwitch(el));
         document
           .querySelectorAll(".mdc-select")
@@ -248,6 +236,7 @@
               inputChangeCallback
             )
           );
+
         const tabBar = new mdc.tabBar.MDCTabBar(
           document.querySelector(".mdc-tab-bar")
         );

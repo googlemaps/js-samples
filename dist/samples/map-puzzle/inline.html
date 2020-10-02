@@ -23,8 +23,6 @@
       }
     </style>
     <script>
-      "use strict";
-
       class PuzzleDemo {
         constructor(map) {
           this.polys_ = [];
@@ -43,7 +41,6 @@
           this.setDifficultyStyle_();
           this.loadData_();
         }
-
         createMenu_() {
           const menuDiv = document.createElement("div");
           menuDiv.style.cssText =
@@ -83,7 +80,6 @@
             this.setDifficulty_(difficultySelect.value);
             this.resetGame_();
           };
-
           const resetDiv = document.createElement("div");
           resetDiv.innerText = "Reset";
           resetDiv.style.cssText =
@@ -102,15 +98,12 @@
             menuDiv
           );
         }
-
         render() {
           if (!this.dataLoaded_) {
             return;
           }
-
           this.start_();
         }
-
         loadData_() {
           const xmlhttpRequest = new XMLHttpRequest();
 
@@ -122,7 +115,6 @@
               return;
             this.loadDataComplete_(JSON.parse(xmlhttpRequest.responseText));
           };
-
           xmlhttpRequest.open(
             "GET",
             "https://storage.googleapis.com/mapsdevsite/json/puzzle.json",
@@ -130,7 +122,6 @@
           );
           xmlhttpRequest.send(null);
         }
-
         loadDataComplete_(data) {
           this.dataLoaded_ = true;
           this.countries_ = data;
@@ -140,7 +131,6 @@
          * @param {string} difficulty
          * @private
          */
-
         setDifficulty_(difficulty) {
           this.difficulty_ = difficulty;
 
@@ -148,146 +138,71 @@
             this.setDifficultyStyle_();
           }
         }
-
         setDifficultyStyle_() {
           const styles = {
             easy: [
               {
-                stylers: [
-                  {
-                    visibility: "off",
-                  },
-                ],
+                stylers: [{ visibility: "off" }],
               },
               {
                 featureType: "water",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                  {
-                    color: "#d4d4d4",
-                  },
-                ],
+                stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
               },
               {
                 featureType: "landscape",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                  {
-                    color: "#e5e3df",
-                  },
-                ],
+                stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
               },
               {
                 featureType: "administrative.country",
                 elementType: "labels",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                ],
+                stylers: [{ visibility: "on" }],
               },
               {
                 featureType: "administrative.country",
                 elementType: "geometry",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                  {
-                    weight: 1.3,
-                  },
-                ],
+                stylers: [{ visibility: "on" }, { weight: 1.3 }],
               },
             ],
             moderate: [
               {
-                stylers: [
-                  {
-                    visibility: "off",
-                  },
-                ],
+                stylers: [{ visibility: "off" }],
               },
               {
                 featureType: "water",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                  {
-                    color: "#d4d4d4",
-                  },
-                ],
+                stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
               },
               {
                 featureType: "landscape",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                  {
-                    color: "#e5e3df",
-                  },
-                ],
+                stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
               },
               {
                 featureType: "administrative.country",
                 elementType: "labels",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                ],
+                stylers: [{ visibility: "on" }],
               },
             ],
             hard: [
               {
-                stylers: [
-                  {
-                    visibility: "off",
-                  },
-                ],
+                stylers: [{ visibility: "off" }],
               },
               {
                 featureType: "water",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                  {
-                    color: "#d4d4d4",
-                  },
-                ],
+                stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
               },
               {
                 featureType: "landscape",
-                stylers: [
-                  {
-                    visibility: "on",
-                  },
-                  {
-                    color: "#e5e3df",
-                  },
-                ],
+                stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
               },
             ],
             extreme: [
               {
                 elementType: "geometry",
-                stylers: [
-                  {
-                    visibility: "off",
-                  },
-                ],
+                stylers: [{ visibility: "off" }],
               },
             ],
           };
           this.map_.set("styles", styles[this.difficulty_]);
         }
-
         resetGame_() {
           this.removeCountries_();
           this.count_ = 0;
@@ -295,7 +210,6 @@
           this.startClock_();
           this.addRandomCountries_();
         }
-
         setCount_() {
           this.pieceDiv_.innerText = this.count_ + " / " + this.NUM_PIECES_;
 
@@ -303,23 +217,22 @@
             this.stopClock_();
           }
         }
-
         stopClock_() {
           window.clearInterval(this.timer_);
         }
-
         startClock_() {
           this.stopClock_();
           const timeDiv = this.timeDiv_;
+
           if (timeDiv) timeDiv.textContent = "0.0 seconds";
           const t = new Date();
           this.timer_ = window.setInterval(() => {
             const diff = new Date().getTime() - t.getTime();
+
             if (timeDiv)
               timeDiv.textContent = (diff / 1000).toFixed(2) + " seconds";
           }, 100);
         }
-
         addRandomCountries_() {
           // Shuffle countries
           this.countries_.sort(() => {
@@ -331,7 +244,6 @@
             this.addCountry_(country);
           }
         }
-
         addCountry_(country) {
           const options = {
             strokeColor: this.START_COLOR_,
@@ -354,7 +266,6 @@
         /**
          * Checks that every point in the polygon is inside the bounds.
          */
-
         boundsContainsPoly_(bounds, poly) {
           const b = new google.maps.LatLngBounds(
             new google.maps.LatLng(bounds[0][0], bounds[0][1]),
@@ -371,13 +282,11 @@
               }
             }
           }
-
           return true;
         }
         /**
          * Replace a poly with the correct 'end' position of the country.
          */
-
         replacePiece_(poly, country) {
           const options = {
             strokeColor: this.END_COLOR_,
@@ -390,23 +299,19 @@
           this.count_++;
           this.setCount_();
         }
-
         checkPosition_(poly, country) {
           if (this.boundsContainsPoly_(country.bounds, poly)) {
             this.replacePiece_(poly, country);
           }
         }
-
         start_() {
           this.setDifficultyStyle_();
           this.resetGame_();
         }
-
         removeCountries_() {
           for (let i = 0, poly; (poly = this.polys_[i]); i++) {
             poly.setMap(null);
           }
-
           this.polys_ = [];
         }
       }
@@ -414,10 +319,7 @@
       function initMap() {
         const map = new google.maps.Map(document.getElementById("map"), {
           disableDefaultUI: true,
-          center: {
-            lat: 10,
-            lng: 60,
-          },
+          center: { lat: 10, lng: 60 },
           zoom: 2,
         });
         new PuzzleDemo(map);

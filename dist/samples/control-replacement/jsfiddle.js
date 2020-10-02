@@ -1,13 +1,8 @@
-"use strict";
-
 let map;
 
 function initMap() {
   map = new google.maps.Map(document.querySelector("#map"), {
-    center: {
-      lat: -34.397,
-      lng: 150.644,
-    },
+    center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
     disableDefaultUI: true,
   });
@@ -24,7 +19,6 @@ function initZoomControl(map) {
   document.querySelector(".zoom-control-out").onclick = function () {
     map.setZoom(map.getZoom() - 1);
   };
-
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
     document.querySelector(".zoom-control")
   );
@@ -44,7 +38,6 @@ function initMapTypeControl(map) {
     mapTypeControlDiv.classList.add("maptype-control-is-satellite");
     map.setMapTypeId("hybrid");
   };
-
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(mapTypeControlDiv);
 }
 

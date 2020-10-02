@@ -1,12 +1,7 @@
-"use strict";
-
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
-    center: {
-      lat: -24.345,
-      lng: 134.46,
-    },
+    center: { lat: -24.345, lng: 134.46 },
   });
   const directionsService = new google.maps.DirectionsService();
   const directionsRenderer = new google.maps.DirectionsRenderer({
@@ -31,12 +26,8 @@ function displayRoute(origin, destination, service, display) {
       origin: origin,
       destination: destination,
       waypoints: [
-        {
-          location: "Adelaide, SA",
-        },
-        {
-          location: "Broken Hill, NSW",
-        },
+        { location: "Adelaide, SA" },
+        { location: "Broken Hill, NSW" },
       ],
       travelMode: google.maps.TravelMode.DRIVING,
       avoidTolls: true,
@@ -58,7 +49,6 @@ function computeTotalDistance(result) {
   for (let i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i].distance.value;
   }
-
   total = total / 1000;
   document.getElementById("total").innerHTML = total + " km";
 }
