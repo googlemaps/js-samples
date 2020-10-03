@@ -1,12 +1,3 @@
-// Declarations to keep the compiler happy.
-/**
- * @param {!google.maps.Map} map
- * @param {!Array<!google.maps.Marker>} markers
- * @param {!Object} options
- * @constructor
- */
-function MarkerClusterer(map, markers, options) {}
-
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
@@ -25,7 +16,8 @@ function initMap() {
     });
   });
   // Add a marker clusterer to manage the markers.
-  const markerCluster = new MarkerClusterer(map, markers, {
+
+  new MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
   });
