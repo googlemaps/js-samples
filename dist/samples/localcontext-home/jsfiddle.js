@@ -196,8 +196,8 @@ function initMap() {
       { type: "drugstore", weight: 1 },
       { type: "park", weight: 3 },
       { type: "restaurant", weight: 2 },
-      { type: "school", weight: 3 },
-      { type: "shopping_mall", weight: 1 },
+      { type: "primary_school", weight: 3 },
+      { type: "secondary_school", weight: 3 },
       { type: "supermarket", weight: 2 },
     ],
     maxPlaceCount: 24,
@@ -206,6 +206,7 @@ function initMap() {
   map.setOptions({
     center: { lat: 51.507307, lng: -0.08114 },
     zoom: 14,
+    styles,
   });
   // Build and add the Autocomplete search bar
   const input = document.getElementById("input");
