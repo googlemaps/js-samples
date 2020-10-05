@@ -77,7 +77,7 @@ function initMap() {
       map: map,
       zIndex: 30,
     });
-
+    // [START maps_js_localcontext_events_marker_click]
     marker.addListener("click", () => {
       // Close any open details or existing InfoWindows
       localContextMapView.hidePlaceDetailsView();
@@ -94,20 +94,25 @@ function initMap() {
         origin: district.location,
       };
     });
+    // [END maps_js_localcontext_events_marker_click]
   }
 
   // Set the LocalContextMapView event handlers.
+  // [START maps_js_localcontext_events_placedetailsviewshowstart]
   localContextMapView.addListener("placedetailsviewshowstart", () => {
     if (infoWindow) {
       infoWindow.close();
     }
   });
+  // [END maps_js_localcontext_events_placedetailsviewshowstart]
 
+  // [START maps_js_localcontext_events_placedetailsviewhidestart]
   localContextMapView.addListener("placedetailsviewhidestart", () => {
     if (infoStorage) {
       createInfoWindow(infoStorage.district, infoStorage.marker);
     }
   });
+  // [END maps_js_localcontext_events_placedetailsviewhidestart]
 }
 
 // Creates an infoWindow and also stores information associated with the

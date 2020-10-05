@@ -86,6 +86,11 @@ function initMap() {
   });
   // Merge map styles.
   const mergedStyles = map.get("styles").concat(styles);
+  map.setOptions({
+    center: center,
+    zoom: 14,
+    styles: mergedStyles,
+  });
   // Add a marker at the center point
   new google.maps.Marker({
     position: center,
@@ -93,10 +98,5 @@ function initMap() {
     icon:
       "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAdUlEQVR4AWMYOWAU/AfhYWMBCxA3A/FlIN4MxN7I6gjg80DcD8QC+CzIxqIxH6aOSHwfYQmmBZexuQymjgTcj8uCz1gUHybDgvO4LFiMRXE4GRb8x2UBDxCXQ8PxPdSrLNSxAD+g3ALCeNQCKoHhZcHAg1EAAM3cyWj3TGxhAAAAAElFTkSuQmCC",
     zIndex: 30,
-  });
-  map.setOptions({
-    center: center,
-    zoom: 14,
-    styles: mergedStyles,
   });
 }
