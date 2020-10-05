@@ -20,7 +20,6 @@ function initMap() {
   service.getDistanceMatrix(
     {
       origins: [origin1, origin2],
-
       destinations: [destinationA, destinationB],
       travelMode: google.maps.TravelMode.DRIVING,
       unitSystem: google.maps.UnitSystem.METRIC,

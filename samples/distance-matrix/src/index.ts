@@ -49,7 +49,7 @@ function initMap(): void {
       avoidHighways: false,
       avoidTolls: false,
     },
-    function (response, status) {
+    (response, status) => {
       if (status !== "OK") {
         alert("Error was: " + status);
       } else {
@@ -61,6 +61,7 @@ function initMap(): void {
 
         const showGeocodedAddressOnMap = function (asDestination: boolean) {
           const icon = asDestination ? destinationIcon : originIcon;
+
           return function (
             results: google.maps.GeocoderResult[],
             status: google.maps.GeocoderStatus
@@ -86,6 +87,7 @@ function initMap(): void {
             { address: originList[i] },
             showGeocodedAddressOnMap(false)
           );
+
           for (let j = 0; j < results.length; j++) {
             geocoder.geocode(
               { address: destinationList[j] },
