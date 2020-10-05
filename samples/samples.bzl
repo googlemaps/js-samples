@@ -29,7 +29,7 @@ SAMPLES = [
     "directions-travel-modes",
     "directions-waypoints",
     "disable-zoom-and-pan",
-    # "distance-matrix",
+    "distance-matrix",
     "drawing-tools",
     "earthquake-circles",
     "earthquake-heatmap",
