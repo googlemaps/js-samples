@@ -1,0 +1,8 @@
+{
+  "title": "LocalContext Restrictions",
+  "callback": "initMap",
+  "libraries": ["localContext"],
+  "version": "beta",
+  "tag": "js_localcontext_restrictions",
+  "name": "js-localcontext-restrictions"
+}
