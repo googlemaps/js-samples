@@ -1,0 +1,8 @@
+{
+  "title": "LocalContext Home",
+  "callback": "initMap",
+  "libraries": ["localContext", "places"],
+  "version": "beta",
+  "tag": "js_localcontext_home",
+  "name": "js-localcontext-home"
+}
