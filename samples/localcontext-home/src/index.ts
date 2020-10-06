@@ -216,8 +216,8 @@ function initMap() {
       { type: "drugstore", weight: 1 },
       { type: "park", weight: 3 },
       { type: "restaurant", weight: 2 },
-      { type: "school", weight: 3 },
-      { type: "shopping_mall", weight: 1 },
+      { type: "primary_school", weight: 3 },
+      { type: "secondary_school", weight: 3 },
       { type: "supermarket", weight: 2 },
     ],
     // [END maps_js_localcontext_home_preferences]
@@ -229,6 +229,7 @@ function initMap() {
   map.setOptions({
     center: { lat: 51.507307, lng: -0.08114 },
     zoom: 14,
+    styles,
   });
 
   // [START maps_js_localcontext_home_autocomplete]
