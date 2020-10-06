@@ -16,7 +16,7 @@
 
 @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
-/* [START maps_geocoding_region] */
+/* [START maps_js_geocoding_region_us] */
 @include meta.load-css("../../../shared/scss/default.scss");
 
-/* [END maps_geocoding_region] */
+/* [END maps_js_geocoding_region_us] */

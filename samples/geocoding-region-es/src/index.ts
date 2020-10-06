@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_geocoding_region]
+// [START maps_js_geocoding_region_es]
 function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
@@ -37,5 +37,5 @@ function initMap(): void {
     }
   });
 }
-// [END maps_geocoding_region]
+// [END maps_js_geocoding_region_es]
 export { initMap };
