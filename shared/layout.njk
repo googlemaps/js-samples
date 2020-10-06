@@ -11,7 +11,7 @@
     {% block external %}{% endblock %}
     {% block api %}
       <script 
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback={{ callback }}&libraries={{ libraries }}&v={{ version }}" 
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback={{ callback }}&libraries={{ libraries }}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" 
         defer></script>
     {% endblock %}
     {% if mode == "jsfiddle" %}
