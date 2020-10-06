@@ -4,5 +4,7 @@
   "libraries": [],
   "version": "weekly",
   "tag": "map_rtl",
-  "name": "map-rtl"
+  "name": "map-rtl",
+  "language": "ar",
+  "region": "EG"
 }

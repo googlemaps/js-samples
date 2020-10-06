@@ -4,5 +4,7 @@
   "libraries": [],
   "version": "weekly",
   "tag": "map_language",
-  "name": "map-language"
+  "name": "map-language",
+  "language": "ja",
+  "region": "JP"
 }
