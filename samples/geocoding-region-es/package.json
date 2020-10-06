@@ -3,7 +3,7 @@
   "callback": "initMap",
   "libraries": [],
   "version": "weekly",
-  "tag": "js-geocoding_region_es",
+  "tag": "js_geocoding_region_es",
   "name": "geocoding-region-es",
   "region": "ES"
 }
