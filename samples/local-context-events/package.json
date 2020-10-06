@@ -1,0 +1,8 @@
+{
+  "title": "Local Context Events",
+  "callback": "initMap",
+  "libraries": ["localContext"],
+  "version": "beta",
+  "tag": "js_local_context_events",
+  "name": "js-local-context-events"
+}

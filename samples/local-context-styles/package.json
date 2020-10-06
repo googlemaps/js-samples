@@ -1,0 +1,8 @@
+{
+  "title": "Local Context Styles",
+  "callback": "initMap",
+  "libraries": ["localContext"],
+  "version": "beta",
+  "tag": "js_local_context_styles",
+  "name": "js-local-context-styles"
+}
