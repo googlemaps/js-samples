@@ -1,5 +1,4 @@
 {% if mode == "iframe" %}
-  <!-- [START maps_{{tag}}_iframe] -->
 {% else %}
   <!-- [START maps_{{tag}}] -->
   <!DOCTYPE html>
@@ -34,7 +33,6 @@
       {% block html %}{% endblock %}
     {% if mode == "iframe" %}
       </div>
-      <!-- [END maps_{{tag}}_iframe] -->
     {% else %}
     </body>
   </html>
