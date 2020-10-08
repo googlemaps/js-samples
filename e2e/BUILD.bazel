@@ -24,7 +24,7 @@ load("//samples:samples.bzl", "SAMPLES")
             "$(rootpath :selenium.test.js)",
         ],
     )
-    for sample in SAMPLES
+    for sample in SAMPLES if sample != 'local-context-home'
 ]
 
 test_suite(
@@ -32,6 +32,6 @@ test_suite(
     tags = ["manual"],
     tests = [
         sample
-        for sample in SAMPLES
+        for sample in SAMPLES if sample != 'local-context-home'
     ],
 )
