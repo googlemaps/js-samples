@@ -1,3 +1,4 @@
+// [START maps_distance_matrix]
 function initMap() {
   const bounds = new google.maps.LatLngBounds();
   const markersArray = [];
@@ -89,3 +90,4 @@ function deleteMarkers(markersArray) {
   }
   markersArray = [];
 }
+// [END maps_distance_matrix]

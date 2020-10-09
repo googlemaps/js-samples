@@ -1,3 +1,4 @@
+// [START maps_directions_draggable]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -52,3 +53,4 @@ function computeTotalDistance(result) {
   total = total / 1000;
   document.getElementById("total").innerHTML = total + " km";
 }
+// [END maps_directions_draggable]

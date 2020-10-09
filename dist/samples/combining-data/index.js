@@ -1,3 +1,4 @@
+// [START maps_combining_data]
 const mapStyle = [
   {
     stylers: [{ visibility: "off" }],
@@ -65,6 +66,7 @@ function loadCensusData(variable) {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", variable + ".json");
 
+  // [START maps_combining_data_snippet_loadcensus]
   xhr.onload = function () {
     const censusData = JSON.parse(xhr.responseText);
     censusData.shift(); // the first row contains column names
@@ -94,6 +96,7 @@ function loadCensusData(variable) {
     ).textContent = censusMax.toLocaleString();
   };
   xhr.send();
+  // [END maps_combining_data_snippet_loadcensus]
 }
 
 /** Removes census data from each shape on the map and resets the UI. */
@@ -114,6 +117,7 @@ function clearCensusData() {
  *
  * @param {google.maps.Data.Feature} feature
  */
+// [START maps_combining_data_snippet_stylefeature]
 function styleFeature(feature) {
   const low = [5, 69, 54]; // color of smallest datum
   const high = [151, 83, 34]; // color of largest datum
@@ -152,6 +156,8 @@ function styleFeature(feature) {
   };
 }
 
+// [END maps_combining_data_snippet_stylefeature]
+// [START maps_combining_data_snippet_mouseevents]
 /**
  * Responds to the mouse-in event on a map shape (state).
  *
@@ -184,3 +190,5 @@ function mouseOutOfRegion(e) {
   // reset the hover state, returning the border to normal
   e.feature.setProperty("state", "normal");
 }
+// [END maps_combining_data_snippet_mouseevents]
+// [END maps_combining_data]

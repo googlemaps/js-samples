@@ -1,3 +1,4 @@
+// [START maps_layer_data_quakes_red]
 let map;
 
 function initMap() {
@@ -33,3 +34,4 @@ function initMap() {
 function eqfeed_callback(data) {
   map.data.addGeoJson(data);
 }
+// [END maps_layer_data_quakes_red]

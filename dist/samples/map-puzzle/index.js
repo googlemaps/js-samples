@@ -296,3 +296,4 @@ function initMap() {
   });
   new PuzzleDemo(map);
 }
+// [END maps_map_puzzle]

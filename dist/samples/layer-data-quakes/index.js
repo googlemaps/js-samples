@@ -1,3 +1,4 @@
+// [START maps_layer_data_quakes]
 let map;
 
 function initMap() {
@@ -77,3 +78,4 @@ const mapStyle = [
     stylers: [{ visibility: "on" }, { hue: "#5f94ff" }, { lightness: 60 }],
   },
 ];
+// [END maps_layer_data_quakes]

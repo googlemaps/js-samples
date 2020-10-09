@@ -1,3 +1,4 @@
+// [START maps_programmatic_load]
 let map;
 const loader = new google.maps.plugins.loader.Loader({
   apiKey: "YOUR_API_KEY",

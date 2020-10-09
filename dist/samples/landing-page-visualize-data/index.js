@@ -1,3 +1,4 @@
+// [START maps_landing_page_visualize_data]
 let map;
 
 function initMap() {
@@ -39,3 +40,4 @@ function getCircle(magnitude) {
 function eqfeed_callback(results) {
   map.data.addGeoJson(results);
 }
+// [END maps_landing_page_visualize_data]

@@ -1,3 +1,4 @@
+// [START maps_icon_simple]
 // This example adds a marker to indicate the position of Bondi Beach in Sydney,
 // Australia.
 function initMap() {
@@ -13,3 +14,4 @@ function initMap() {
     icon: image,
   });
 }
+// [END maps_icon_simple]

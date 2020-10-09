@@ -1,3 +1,4 @@
+// [START maps_streetview_custom_simple]
 function initPano() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
@@ -48,3 +49,4 @@ function getCustomPanorama(pano) {
   }
   return null;
 }
+// [END maps_streetview_custom_simple]

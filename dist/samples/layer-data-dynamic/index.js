@@ -1,3 +1,4 @@
+// [START maps_layer_data_dynamic]
 let map;
 
 function initMap() {
@@ -9,6 +10,7 @@ function initMap() {
   map.data.loadGeoJson(
     "https://storage.googleapis.com/mapsdevsite/json/google.json"
   );
+  // [START maps_layer_data_dynamic_snippet]
   // Color each letter gray. Change the color when the isColorful property
   // is set to true.
   map.data.setStyle((feature) => {
@@ -37,4 +39,6 @@ function initMap() {
   map.data.addListener("mouseout", (event) => {
     map.data.revertStyle();
   });
+  // [END maps_layer_data_dynamic_snippet]
 }
+// [END maps_layer_data_dynamic]

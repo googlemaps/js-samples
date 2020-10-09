@@ -1,3 +1,4 @@
+// [START maps_event_closure]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -41,3 +42,4 @@ function attachSecretMessage(marker, secretMessage) {
     infowindow.open(marker.get("map"), marker);
   });
 }
+// [END maps_event_closure]

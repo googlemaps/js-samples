@@ -32,7 +32,6 @@ def sample(name):
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
-              "$(location //rules:strip_region_tags_bin) $@; " +
               "sed -i'.bak' 's/export const/const/g' $@; " +
               "sed -i'.bak' 's/export {.*};//g' $@; " +
               "sed -i'.bak' '/^\\s*\\/\\/ @ts-.*/d' $@; " +
@@ -43,19 +42,32 @@ def sample(name):
         visibility = ["//visibility:public"],
     )
 
+    # babel moves trailing region tags after the last non comment line
+    # need to remove before babel transpilation
+    native.genrule(
+        name = "index_no_region_tags",
+        srcs = [":index.js"],
+        outs = ["index_no_region_tags.js"],
+        cmd = "cat $(RULEDIR)/index.js > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:strip_region_tags_bin", "//rules:prettier"],
+        visibility = ["//visibility:public"],
+    )
+
     babel(
         name = "iframe_js",
         outs = [
             "iframe.js",
         ],
         args = [
-            "$(execpath :index.js)",
+            "$(execpath :index_no_region_tags.js)",
             "--config-file $(location //:.babelrc)",
             "--out-file",
             "$(execpath :iframe.js)",
         ],
         data = [
-            "index.js",
+            "index_no_region_tags.js",
             "//:.babelrc",
             "@npm//@babel/preset-env",
         ],
@@ -123,11 +135,12 @@ def sample(name):
         name = "jsfiddle_js",
         outs = [":jsfiddle.js"],
         cmd = "sed  \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :index.js) > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
               "$(location //rules:prettier) --write $@; ",
         srcs = [
             ":index.js",
         ],
-        tools = ["//rules:prettier"],
+        tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
     )
 

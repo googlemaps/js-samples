@@ -1,3 +1,4 @@
+// [START maps_event_domListener]
 function initMap() {
   const mapDiv = document.getElementById("map");
   const map = new google.maps.Map(mapDiv, {
@@ -10,3 +11,4 @@ function initMap() {
     window.alert("Map was clicked!");
   });
 }
+// [END maps_event_domListener]

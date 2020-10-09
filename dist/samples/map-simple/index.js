@@ -1,3 +1,4 @@
+// [START maps_map_simple]
 let map;
 
 function initMap() {
@@ -6,3 +7,4 @@ function initMap() {
     zoom: 8,
   });
 }
+// [END maps_map_simple]

@@ -1,3 +1,4 @@
+// [START maps_icon_complex]
 // The following example creates complex markers to indicate beaches near
 // Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
 // to the base of the flagpole.
@@ -54,3 +55,4 @@ function setMarkers(map) {
     });
   }
 }
+// [END maps_icon_complex]

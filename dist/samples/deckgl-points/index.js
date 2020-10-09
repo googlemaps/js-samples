@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+// [START maps_deckgl_points]
 // Initialize and add the map
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -36,3 +37,4 @@ function initMap() {
   });
   deckOverlay.setMap(map);
 }
+// [END maps_deckgl_points]

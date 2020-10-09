@@ -41,3 +41,4 @@ function initMap() {
     });
   }
 }
+// [END maps_circle_simple]

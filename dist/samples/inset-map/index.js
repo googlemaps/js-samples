@@ -1,4 +1,5 @@
 let map, overview;
+// [START maps_inset_map]
 const OVERVIEW_DIFFERENCE = 5;
 const OVERVIEW_MIN_ZOOM = 3;
 const OVERVIEW_MAX_ZOOM = 10;
@@ -34,3 +35,4 @@ function initMap() {
     );
   });
 }
+// [END maps_inset_map]

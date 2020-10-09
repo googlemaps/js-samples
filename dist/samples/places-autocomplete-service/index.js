@@ -1,3 +1,4 @@
+// [START maps_places_autocomplete_service]
 let autocompleteService;
 let placesService;
 let requestElement;
@@ -112,3 +113,4 @@ const initializeMaterialDesignComponents = () => {
     contentElements[event.detail.index].classList.add("tab-content--active");
   });
 };
+// [END maps_places_autocomplete_service]

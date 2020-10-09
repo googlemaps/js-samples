@@ -1,3 +1,4 @@
+// [START maps_places_queryprediction]
 // This example retrieves autocomplete predictions programmatically from the
 // autocomplete service, and displays them as an HTML list.
 // This example requires the Places library. Include the libraries=places

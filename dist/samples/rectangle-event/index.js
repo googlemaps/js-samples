@@ -1,3 +1,4 @@
+// [START maps_rectangle_event]
 // This example adds a user-editable rectangle to the map.
 // When the user changes the bounds of the rectangle,
 // an info window pops up displaying the new bounds.
@@ -49,3 +50,4 @@ function showNewRect() {
   infoWindow.setPosition(ne);
   infoWindow.open(map);
 }
+// [END maps_rectangle_event]

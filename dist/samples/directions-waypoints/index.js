@@ -1,3 +1,4 @@
+// [START maps_directions_waypoints]
 function initMap() {
   const directionsService = new google.maps.DirectionsService();
   const directionsRenderer = new google.maps.DirectionsRenderer();
@@ -53,3 +54,4 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     }
   );
 }
+// [END maps_directions_waypoints]

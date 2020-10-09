@@ -1,3 +1,4 @@
+// [START maps_geocoding_component_restriction]
 function initMap() {
   const geocoder = new google.maps.Geocoder();
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -32,3 +33,4 @@ function geocodeAddress(geocoder, map) {
     }
   );
 }
+// [END maps_geocoding_component_restriction]

@@ -1,3 +1,4 @@
+// [START maps_js_geocoding_region_es]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 8,
@@ -17,3 +18,4 @@ function initMap() {
     }
   });
 }
+// [END maps_js_geocoding_region_es]

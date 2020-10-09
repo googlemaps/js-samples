@@ -1,3 +1,4 @@
+// [START maps_map_language]
 // This example displays a map with the language and region set
 // to Japan. These settings are specified in the HTML script element
 // when loading the Google Maps JavaScript API.
@@ -9,3 +10,4 @@ function initMap() {
     center: { lat: 35.717, lng: 139.731 },
   });
 }
+// [END maps_map_language]

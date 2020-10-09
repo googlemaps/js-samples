@@ -1,3 +1,4 @@
+// [START maps_directions_complex]
 function initMap() {
   const markerArray = [];
   // Instantiate a directions service.
@@ -96,3 +97,4 @@ function attachInstructionText(stepDisplay, marker, text, map) {
     stepDisplay.open(map, marker);
   });
 }
+// [END maps_directions_complex]

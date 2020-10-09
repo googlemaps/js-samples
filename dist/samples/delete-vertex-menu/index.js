@@ -1,3 +1,4 @@
+// [START maps_delete_vertex_menu]
 function initialize() {
   const mapOptions = {
     zoom: 3,
@@ -109,3 +110,4 @@ function initialize() {
     deleteMenu.open(map, flightPath.getPath(), e.vertex);
   });
 }
+// [END maps_delete_vertex_menu]

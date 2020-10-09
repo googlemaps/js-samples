@@ -1,3 +1,4 @@
+// [START maps_overlay_symbol_animate]
 // This example adds an animated symbol to a polyline.
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -40,3 +41,4 @@ function animateCircle(line) {
     line.set("icons", icons);
   }, 20);
 }
+// [END maps_overlay_symbol_animate]

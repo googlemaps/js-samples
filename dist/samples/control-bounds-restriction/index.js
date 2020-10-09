@@ -1,3 +1,4 @@
+// [START maps_control_bounds_restriction]
 let map;
 const NEW_ZEALAND_BOUNDS = {
   north: -34.36,
@@ -17,3 +18,4 @@ function initMap() {
     zoom: 7,
   });
 }
+// [END maps_control_bounds_restriction]
