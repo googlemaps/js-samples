@@ -56,7 +56,6 @@ function initMap() {
   // constructor passing in this DIV.
   const centerControlDiv = document.createElement("div");
   const control = new CenterControl(centerControlDiv, map, chicago);
-
   centerControlDiv.index = 1;
   centerControlDiv.style.paddingTop = "10px";
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);

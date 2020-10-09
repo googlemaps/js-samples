@@ -34,7 +34,6 @@ function initMap() {
 function showArrays(event) {
   // Since this polygon has only one path, we can call getPath() to return the
   // MVCArray of LatLngs.
-
   const polygon = this;
   const vertices = polygon.getPath();
   let contentString =

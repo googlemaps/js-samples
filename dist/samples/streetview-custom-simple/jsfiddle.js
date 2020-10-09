@@ -46,6 +46,5 @@ function getCustomPanorama(pano) {
       },
     };
   }
-
   return null;
 }

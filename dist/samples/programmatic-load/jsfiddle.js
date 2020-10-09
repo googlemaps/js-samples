@@ -1,5 +1,4 @@
 let map;
-
 const loader = new google.maps.plugins.loader.Loader({
   apiKey: "AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE",
   version: "weekly",

@@ -35,6 +35,7 @@ def sample(name):
               "$(location //rules:strip_region_tags_bin) $@; " +
               "sed -i'.bak' 's/export const/const/g' $@; " +
               "sed -i'.bak' 's/export {.*};//g' $@; " +
+              "sed -i'.bak' '/^\\s*\\/\\/ @ts-.*/d' $@; " +
               "sed -i'.bak' 's/\\/\\/ @ts-.*//g' $@; " +
               "$(location //rules:prettier) --write $@; " +
               "$(location //rules:eslint) -c $(location //:.eslintrc.json) --fix $@; ",

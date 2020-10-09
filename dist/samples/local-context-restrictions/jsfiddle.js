@@ -8,7 +8,6 @@ function initMap() {
     west: -122.094,
     east: -122.074,
   };
-
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
     placeTypePreferences: ["restaurant"],
