@@ -15,7 +15,7 @@
  */
 
 // [START maps_places_queryprediction]
-let PRESERVE_COMMENT_ABOVE; // eslint-disable-line force tsc to maintain the comment above
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
 // This example retrieves autocomplete predictions programmatically from the
 // autocomplete service, and displays them as an HTML list.
 

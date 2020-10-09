@@ -15,7 +15,7 @@
  */
 
 // [START maps_overlay_hideshow]
-let PRESERVE_COMMENT_ABOVE; // eslint-disable-line force tsc to maintain the comment above
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
 
 // This example adds hide() and show() methods to a custom overlay's prototype.
 // These methods toggle the visibility of the container <div>.
@@ -157,7 +157,7 @@ function initMap(): void {
       }
     }
     // [END maps_overlay_hideshow_hideshowtoggle]
-    PRESERVE_COMMENT_ABOVE = 1; // eslint-disable-line force tsc to maintain the comment above
+    PRESERVE_COMMENT_ABOVE = 1; // force tsc to maintain the comment above eslint-disable-line
   }
 
   // [START maps_overlay_hideshow_init]

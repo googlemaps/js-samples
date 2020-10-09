@@ -15,7 +15,7 @@
  */
 
 // [START maps_map_puzzle]
-let PRESERVE_COMMENT_ABOVE; // eslint-disable-line force tsc to maintain the comment above
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
 interface Country {
   bounds: number[][];
   name: string;

@@ -15,7 +15,7 @@
  */
 
 // [START maps_control_replacement]
-let PRESERVE_COMMENT_ABOVE; // eslint-disable-line force tsc to maintain the comment above
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
 
 declare global {
   interface Document {
