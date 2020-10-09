@@ -29,6 +29,7 @@ function initMap() {
     // [START maps_overlay_simple_region_constructor]
     constructor(bounds, image) {
       super();
+      // [END maps_overlay_simple_region_removal]
       // Initialize all properties.
       this.bounds_ = bounds;
       this.image_ = image;
@@ -86,8 +87,10 @@ function initMap() {
     }
     // [END maps_overlay_simple_region_drawing]
     // [START maps_overlay_simple_region_removal]
-    // The onRemove() method will be called automatically from the API if
-    // we ever set the overlay's map property to 'null'.
+    /**
+     * The onRemove() method will be called automatically from the API if
+     * we ever set the overlay's map property to 'null'.
+     */
     onRemove() {
       if (this.div_) {
         this.div_.parentNode.removeChild(this.div_);

@@ -19,3 +19,4 @@ function initService() {
   const service = new google.maps.places.AutocompleteService();
   service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
 }
+// [END maps_places_queryprediction]

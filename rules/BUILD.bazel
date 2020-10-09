@@ -3,6 +3,7 @@ load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 exports_files([
     "diff.js",
     "tags.js",
+    "js_test.js",
 ])
 
 nodejs_binary(

@@ -1,3 +1,4 @@
+// [START maps_map_puzzle]
 class PuzzleDemo {
   constructor(map) {
     this.polys_ = [];

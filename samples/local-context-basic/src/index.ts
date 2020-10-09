@@ -18,7 +18,8 @@
 let map: google.maps.Map;
 
 function initMap() {
-  // @ts-ignore beta feature not in type declarations [START maps_js_local_context_basic_instantiation]
+  // [START maps_js_local_context_basic_instantiation]
+  // @ts-ignore beta feature not in type declarations
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
     placeTypePreferences: ["restaurant", "tourist_attraction"],

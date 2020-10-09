@@ -30,5 +30,4 @@ loader.load().then(() => {
   });
 });
 // [END maps_programmatic_load]
-
-export {};
+export { map };

@@ -1,3 +1,4 @@
+// [START maps_control_replacement]
 let map;
 
 function initMap() {
@@ -95,3 +96,4 @@ function exitFullscreen() {
     document.msExitFullscreen();
   }
 }
+// [END maps_control_replacement]

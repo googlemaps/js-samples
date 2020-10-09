@@ -234,8 +234,11 @@
               this.div.style.width = ne.x - sw.x + "px";
               this.div.style.height = sw.y - ne.y + "px";
             }
-          }, // The onRemove() method will be called automatically from the API if
-          // we ever set the overlay's map property to 'null'.
+          },
+          /**
+           * The onRemove() method will be called automatically from the API if
+           * we ever set the overlay's map property to 'null'.
+           */
         },
         {
           key: "onRemove",

@@ -24,6 +24,7 @@ function initMap() {
   class USGSOverlay extends google.maps.OverlayView {
     constructor(bounds, image) {
       super();
+      // [END maps_overlay_hideshow_hideshowtoggle]
       this.bounds = bounds;
       this.image = image;
     }
@@ -76,8 +77,10 @@ function initMap() {
     }
     // [END maps_overlay_hideshow_draw]
     // [START maps_overlay_hideshow_onremove]
-    // The onRemove() method will be called automatically from the API if
-    // we ever set the overlay's map property to 'null'.
+    /**
+     * The onRemove() method will be called automatically from the API if
+     * we ever set the overlay's map property to 'null'.
+     */
     onRemove() {
       if (this.div) {
         this.div.parentNode.removeChild(this.div);

@@ -45,4 +45,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // [END maps_programmatic_load_button]
-export {};
+export { map };

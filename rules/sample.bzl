@@ -2,6 +2,7 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
 load("//rules:tags.bzl", "tags_test")
+load("//rules:js_test.bzl", "js_test")
 load("//rules:template.bzl", "template_file")
 load("@npm//@bazel/typescript:index.bzl", "ts_library")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
@@ -32,6 +33,7 @@ def sample(name):
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
+              "sed -i'.bak' '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " + # it isn't possible to have tsc preserve some comments
               "sed -i'.bak' 's/export const/const/g' $@; " +
               "sed -i'.bak' 's/export {.*};//g' $@; " +
               "sed -i'.bak' '/^\\s*\\/\\/ @ts-.*/d' $@; " +
@@ -257,6 +259,7 @@ def sample(name):
         cmd = "cat $(location :src/index.ts) > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "echo '\nimport \"./style.css\"; // required for webpack' >> $@; " +
+              "sed -i'.bak' '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " + # it isn't possible to have tsc preserve some comments
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
     )
@@ -343,7 +346,10 @@ def sample(name):
     tags_test(name = "test_tags_ts", file = ":src/index.ts")
     tags_test(name = "test_tags_css", file = ":style.css")
     tags_test(name = "test_tags_html", file = ":sample.html")
-
+    
+    js_test(name = "test_index_js", file = ":index.js")
+    js_test(name = "test_package_ts", file = ":_package.ts")
+    
     native.genrule(
         name = "package_test",
         srcs = [":{}-package.tgz".format(name)],
