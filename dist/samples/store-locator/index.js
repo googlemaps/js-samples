@@ -13,7 +13,6 @@ function initMap() {
     center: { lat: 39.79, lng: -104.98 },
     zoom: 10,
   });
-
   new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
   autocompleteInput = document.getElementById("search-input");
   autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {});
@@ -38,7 +37,6 @@ function initMap() {
           markers.push(marker);
         }
       );
-
       new MarkerClusterer(map, markers, {
         imagePath:
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",

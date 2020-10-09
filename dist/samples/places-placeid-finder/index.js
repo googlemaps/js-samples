@@ -38,7 +38,6 @@ function initMap() {
       map.setZoom(17);
     }
     // Set the position of the marker using the place ID and location.
-
     marker.setPlace({
       placeId: place.place_id,
       location: place.geometry.location,

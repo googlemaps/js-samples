@@ -2,7 +2,6 @@ let map;
 const center = { lat: 41.90476224706472, lng: 12.49822074385094 };
 const zoom = 14;
 const url = "https://maps.googleapis.com/maps/api/staticmap";
-
 const loader = new google.maps.plugins.loader.Loader({
   apiKey: "YOUR_API_KEY",
   version: "weekly",

@@ -48,7 +48,6 @@ function initPanorama() {
     if (pano === "reception") {
       return getReceptionPanoramaData();
     }
-
     return null;
   });
   // Add a link to our custom panorama from outside the Google Sydney office.

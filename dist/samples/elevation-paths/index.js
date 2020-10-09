@@ -1,5 +1,4 @@
 // Load the Visualization API and the columnchart package.
-
 google.load("visualization", "1", { packages: ["columnchart"] });
 
 function initMap() {
@@ -72,7 +71,6 @@ function plotElevation(elevations, status) {
   chart.draw(data, {
     height: 150,
     legend: "none",
-
     titleY: "Elevation (m)",
   });
 }

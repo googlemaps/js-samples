@@ -20,7 +20,6 @@ function initMap() {
     });
   });
   // Add a marker clusterer to manage the markers.
-
   new MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
