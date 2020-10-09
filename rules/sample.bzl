@@ -339,6 +339,7 @@ def sample(name):
         visibility = ["//visibility:public"],
     )
 
+    tags_test(name = "test_tags_js", file = ":index.js")
     tags_test(name = "test_tags_ts", file = ":src/index.ts")
     tags_test(name = "test_tags_css", file = ":style.css")
     tags_test(name = "test_tags_html", file = ":sample.html")
