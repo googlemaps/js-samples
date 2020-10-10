@@ -1,3 +1,4 @@
+// [START maps_places_placeid_finder]
 // This sample uses the Place Autocomplete widget to allow the user to search
 // for and select a place. The sample then displays an info window containing
 // the place ID and other information about the place that the user has
@@ -51,3 +52,4 @@ function initMap() {
     infowindow.open(map, marker);
   });
 }
+// [END maps_places_placeid_finder]

@@ -1,3 +1,4 @@
+// [START maps_layer_kml]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 11,
@@ -8,3 +9,4 @@ function initMap() {
     map: map,
   });
 }
+// [END maps_layer_kml]

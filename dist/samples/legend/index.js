@@ -1,3 +1,4 @@
+// [START maps_legend]
 let map;
 
 function initMap() {
@@ -118,3 +119,4 @@ function initMap() {
   }
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }
+// [END maps_legend]

@@ -1,3 +1,4 @@
+// [START maps_overlay_hideshow]
 // This example adds hide() and show() methods to a custom overlay's prototype.
 // These methods toggle the visibility of the container <div>.
 // overlay to or from the map.
@@ -15,6 +16,7 @@ function initMap() {
   let image = "https://developers.google.com/maps/documentation/javascript/";
   image += "examples/full/images/talkeetna.png";
 
+  // [START maps_overlay_hideshow_subclass]
   /**
    * The custom USGSOverlay object contains the USGS image,
    * the bounds of the image, and a reference to the map.
@@ -22,9 +24,12 @@ function initMap() {
   class USGSOverlay extends google.maps.OverlayView {
     constructor(bounds, image) {
       super();
+      // [END maps_overlay_hideshow_hideshowtoggle]
       this.bounds = bounds;
       this.image = image;
     }
+    // [END maps_overlay_hideshow_subclass]
+    // [START maps_overlay_hideshow_onadd]
     /**
      * onAdd is called when the map's panes are ready and the overlay has been
      * added to the map.
@@ -45,6 +50,8 @@ function initMap() {
       const panes = this.getPanes();
       panes.overlayLayer.appendChild(this.div);
     }
+    // [END maps_overlay_hideshow_onadd]
+    // [START maps_overlay_hideshow_draw]
     draw() {
       // We use the south-west and north-east
       // coordinates of the overlay to peg it to the correct position and size.
@@ -68,14 +75,20 @@ function initMap() {
         this.div.style.height = sw.y - ne.y + "px";
       }
     }
-    // The onRemove() method will be called automatically from the API if
-    // we ever set the overlay's map property to 'null'.
+    // [END maps_overlay_hideshow_draw]
+    // [START maps_overlay_hideshow_onremove]
+    /**
+     * The onRemove() method will be called automatically from the API if
+     * we ever set the overlay's map property to 'null'.
+     */
     onRemove() {
       if (this.div) {
         this.div.parentNode.removeChild(this.div);
         delete this.div;
       }
     }
+    // [END maps_overlay_hideshow_onremove]
+    // [START maps_overlay_hideshow_hideshowtoggle]
     /**
      *  Set the visibility to 'hidden' or 'visible'.
      */
@@ -106,8 +119,11 @@ function initMap() {
       }
     }
   }
+  // [START maps_overlay_hideshow_init]
   const overlay = new USGSOverlay(bounds, image);
   overlay.setMap(map);
+  // [END maps_overlay_hideshow_init]
+  // [START maps_overlay_hideshow_controls]
   const toggleButton = document.createElement("button");
   toggleButton.textContent = "Toggle";
   toggleButton.classList.add("custom-map-control-button");
@@ -122,4 +138,6 @@ function initMap() {
   });
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleDOMButton);
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleButton);
+  // [END maps_overlay_hideshow_controls]
 }
+// [END maps_overlay_hideshow]

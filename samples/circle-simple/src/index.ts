@@ -15,6 +15,8 @@
  */
 
 // [START maps_circle_simple]
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
+
 // This example creates circles on the map, representing populations in North
 // America.
 

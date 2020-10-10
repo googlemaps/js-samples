@@ -1,3 +1,4 @@
+// [START maps_map_id_style]
 function initMap() {
   new google.maps.Map(document.getElementById("map"), {
     mapId: "8e0a97af9386fef",
@@ -5,3 +6,4 @@ function initMap() {
     zoom: 12,
   });
 }
+// [END maps_map_id_style]

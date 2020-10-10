@@ -1,3 +1,4 @@
+// [START maps_overlay_remove]
 // This example adds a UI control allowing users to remove the
 // ground overlay from the map.
 let historicalOverlay;
@@ -25,6 +26,9 @@ function addOverlay() {
   historicalOverlay.setMap(map);
 }
 
+// [START maps_overlay_remove_region_removal]
 function removeOverlay() {
   historicalOverlay.setMap(null);
 }
+// [END maps_overlay_remove_region_removal]
+// [END maps_overlay_remove]

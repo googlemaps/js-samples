@@ -1,3 +1,4 @@
+// [START maps_custom_markers]
 let map;
 
 function initMap() {
@@ -106,3 +107,4 @@ function initMap() {
     });
   }
 }
+// [END maps_custom_markers]

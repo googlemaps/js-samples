@@ -2,6 +2,7 @@ load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
 load("//rules:tags.bzl", "tags_test")
+load("//rules:js_test.bzl", "js_test")
 load("//rules:template.bzl", "template_file")
 load("@npm//@bazel/typescript:index.bzl", "ts_library")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
@@ -32,7 +33,7 @@ def sample(name):
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
-              "$(location //rules:strip_region_tags_bin) $@; " +
+              "sed -i'.bak' '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " + # it isn't possible to have tsc preserve some comments
               "sed -i'.bak' 's/export const/const/g' $@; " +
               "sed -i'.bak' 's/export {.*};//g' $@; " +
               "sed -i'.bak' '/^\\s*\\/\\/ @ts-.*/d' $@; " +
@@ -43,19 +44,32 @@ def sample(name):
         visibility = ["//visibility:public"],
     )
 
+    # babel moves trailing region tags after the last non comment line
+    # need to remove before babel transpilation
+    native.genrule(
+        name = "index_no_region_tags",
+        srcs = [":index.js"],
+        outs = ["index_no_region_tags.js"],
+        cmd = "cat $(RULEDIR)/index.js > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:strip_region_tags_bin", "//rules:prettier"],
+        visibility = ["//visibility:public"],
+    )
+
     babel(
         name = "iframe_js",
         outs = [
             "iframe.js",
         ],
         args = [
-            "$(execpath :index.js)",
+            "$(execpath :index_no_region_tags.js)",
             "--config-file $(location //:.babelrc)",
             "--out-file",
             "$(execpath :iframe.js)",
         ],
         data = [
-            "index.js",
+            "index_no_region_tags.js",
             "//:.babelrc",
             "@npm//@babel/preset-env",
         ],
@@ -123,11 +137,12 @@ def sample(name):
         name = "jsfiddle_js",
         outs = [":jsfiddle.js"],
         cmd = "sed  \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :index.js) > $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
               "$(location //rules:prettier) --write $@; ",
         srcs = [
             ":index.js",
         ],
-        tools = ["//rules:prettier"],
+        tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
     )
 
@@ -244,6 +259,7 @@ def sample(name):
         cmd = "cat $(location :src/index.ts) > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "echo '\nimport \"./style.css\"; // required for webpack' >> $@; " +
+              "sed -i'.bak' '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " + # it isn't possible to have tsc preserve some comments
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
     )
@@ -326,10 +342,14 @@ def sample(name):
         visibility = ["//visibility:public"],
     )
 
+    tags_test(name = "test_tags_js", file = ":index.js")
     tags_test(name = "test_tags_ts", file = ":src/index.ts")
     tags_test(name = "test_tags_css", file = ":style.css")
     tags_test(name = "test_tags_html", file = ":sample.html")
-
+    
+    js_test(name = "test_index_js", file = ":index.js")
+    js_test(name = "test_package_ts", file = ":_package.ts")
+    
     native.genrule(
         name = "package_test",
         srcs = [":{}-package.tgz".format(name)],

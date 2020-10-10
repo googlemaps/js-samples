@@ -1,11 +1,11 @@
-/*
- * Copyright 2019 Google LLC. All Rights Reserved.
+/**
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -14,20 +14,16 @@
  * limitations under the License.
  */
 
-// [START maps_programmatic_load]
-let map: google.maps.Map;
+const expect = require("expect");
+const { readFileSync } = require("fs");
 
-// @ts-ignore google.maps.plugins
-const loader = new google.maps.plugins.loader.Loader({
-  apiKey: "YOUR_API_KEY",
-  version: "weekly",
-});
+const FORBIDDEN_PHRASES = [/PRESERVE_COMMENTS/gi];
 
-loader.load().then(() => {
-  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
+function main(args) {
+  const file = readFileSync(args[2], "utf8");
+  FORBIDDEN_PHRASES.forEach((phrase) => {
+    expect(file).not.toMatch(phrase);
   });
-});
-// [END maps_programmatic_load]
-export { map };
+}
+
+main(process.argv);

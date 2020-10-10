@@ -1,3 +1,4 @@
+// [START maps_streetview_service]
 /*
  * Click the map to set a new location for the Street View camera.
  */
@@ -54,3 +55,4 @@ function processSVData(data, status) {
     console.error("Street View data not found for this location.");
   }
 }
+// [END maps_streetview_service]

@@ -15,6 +15,7 @@
  */
 
 // [START maps_control_replacement]
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
 
 declare global {
   interface Document {
@@ -148,4 +149,4 @@ function exitFullscreen() {
   }
 }
 // [END maps_control_replacement]
-export {};
+export { initMap };

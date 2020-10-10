@@ -1,3 +1,4 @@
+// [START maps_control_positioning_labels]
 /**
  * Creates a series of custom controls to demonstrate positioning
  * of controls within a map.
@@ -49,3 +50,4 @@ function initialize() {
     map.controls[controlText[i][1]].push(divName);
   }
 }
+// [END maps_control_positioning_labels]

@@ -1,3 +1,4 @@
+// [START maps_js_local_context_home]
 let map;
 let localContextMapView;
 const styles = [
@@ -188,6 +189,7 @@ const styles = [
 function initMap() {
   localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
+    // [START maps_js_local_context_home_preferences]
     placeTypePreferences: [
       { type: "bakery", weight: 1 },
       { type: "bank", weight: 1 },
@@ -200,6 +202,7 @@ function initMap() {
       { type: "secondary_school", weight: 3 },
       { type: "supermarket", weight: 2 },
     ],
+    // [END maps_js_local_context_home_preferences]
     maxPlaceCount: 24,
   });
   map = localContextMapView.map;
@@ -208,6 +211,7 @@ function initMap() {
     zoom: 14,
     styles,
   });
+  // [START maps_js_local_context_home_autocomplete]
   // Build and add the Autocomplete search bar
   const input = document.getElementById("input");
   const options = {
@@ -218,6 +222,7 @@ function initMap() {
   };
   const autocomplete = new google.maps.places.Autocomplete(input, options);
   autocomplete.setFields(["address_components", "geometry", "name"]);
+  // [END maps_js_local_context_home_autocomplete]
   autocomplete.addListener("place_changed", () => {
     const place = autocomplete.getPlace();
 
@@ -247,3 +252,4 @@ function initMap() {
     localContextMapView.search();
   });
 }
+// [END maps_js_local_context_home]

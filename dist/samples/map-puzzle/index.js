@@ -1,3 +1,4 @@
+// [START maps_map_puzzle]
 class PuzzleDemo {
   constructor(map) {
     this.polys_ = [];
@@ -296,3 +297,4 @@ function initMap() {
   });
   new PuzzleDemo(map);
 }
+// [END maps_map_puzzle]

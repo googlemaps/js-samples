@@ -1,3 +1,4 @@
+// [START maps_interaction_cooperative]
 /**
  * This sample sets the gesture handling mode to 'cooperative',
  * which means that on a mobile device, the user must swipe with one
@@ -16,3 +17,4 @@ function initMap() {
     title: "Hello World!",
   });
 }
+// [END maps_interaction_cooperative]

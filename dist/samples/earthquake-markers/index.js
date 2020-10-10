@@ -1,3 +1,4 @@
+// [START maps_earthquake_markers]
 let map;
 
 function initMap() {
@@ -27,3 +28,4 @@ const eqfeed_callback = function (results) {
     });
   }
 };
+// [END maps_earthquake_markers]

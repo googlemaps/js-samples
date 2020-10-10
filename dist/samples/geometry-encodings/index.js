@@ -1,3 +1,4 @@
+// [START maps_geometry_encodings]
 // This example requires the Geometry library. Include the libraries=geometry
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry">
@@ -34,3 +35,4 @@ function addLatLngToPoly(latLng, poly) {
     document.getElementById("encoded-polyline").value = encodeString;
   }
 }
+// [END maps_geometry_encodings]

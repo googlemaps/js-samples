@@ -1,3 +1,4 @@
+// [START maps_circle_simple]
 const citymap = {
   chicago: {
     center: { lat: 41.878, lng: -87.629 },
@@ -41,3 +42,4 @@ function initMap() {
     });
   }
 }
+// [END maps_circle_simple]

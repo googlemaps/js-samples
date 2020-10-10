@@ -15,6 +15,7 @@
  */
 
 // [START maps_overlay_simple]
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
 // This example creates a custom overlay called USGSOverlay, containing
 // a U.S. Geological Survey (USGS) image of the relevant area on the map.
 
@@ -121,8 +122,10 @@ function initMap(): void {
     // [END maps_overlay_simple_region_drawing]
 
     // [START maps_overlay_simple_region_removal]
-    // The onRemove() method will be called automatically from the API if
-    // we ever set the overlay's map property to 'null'.
+    /**
+     * The onRemove() method will be called automatically from the API if
+     * we ever set the overlay's map property to 'null'.
+     */
     onRemove() {
       if (this.div_) {
         (this.div_.parentNode as HTMLElement).removeChild(this.div_);
@@ -130,6 +133,7 @@ function initMap(): void {
       }
     }
     // [END maps_overlay_simple_region_removal]
+    PRESERVE_COMMENT_ABOVE = 1; // force tsc to maintain the comment above eslint-disable-line
   }
 
   const overlay = new USGSOverlay(bounds, srcImage);

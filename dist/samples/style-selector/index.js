@@ -1,3 +1,4 @@
+// [START maps_style_selector]
 let map;
 
 function initMap() {
@@ -311,3 +312,4 @@ const styles = {
     },
   ],
 };
+// [END maps_style_selector]

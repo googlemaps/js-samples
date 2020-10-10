@@ -1,3 +1,4 @@
+// [START maps_programmatic_load_button]
 let map;
 const center = { lat: 41.90476224706472, lng: 12.49822074385094 };
 const zoom = 14;
@@ -19,3 +20,4 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+// [END maps_programmatic_load_button]

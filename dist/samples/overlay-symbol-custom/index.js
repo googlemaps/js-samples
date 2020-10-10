@@ -1,3 +1,4 @@
+// [START maps_overlay_symbol_custom]
 // This example adds three custom symbols to a polyline.
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -5,6 +6,7 @@ function initMap() {
     center: { lat: 20.291, lng: 153.027 },
     mapTypeId: "terrain",
   });
+  // [START maps_overlay_symbol_custom_region_polyline]
   // Define the custom symbols. All symbols are defined via SVG path notation.
   // They have varying stroke color, fill color, stroke weight,
   // opacity and rotation properties.
@@ -47,4 +49,6 @@ function initMap() {
     ],
     map: map,
   });
+  // [END maps_overlay_symbol_custom_region_polyline]
 }
+// [END maps_overlay_symbol_custom]

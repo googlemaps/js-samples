@@ -1,3 +1,4 @@
+// [START maps_event_poi]
 function initMap() {
   const origin = { lat: -33.871, lng: 151.197 };
   const map = new google.maps.Map(document.getElementById("map"), {
@@ -73,3 +74,4 @@ class ClickEventHandler {
     });
   }
 }
+// [END maps_event_poi]

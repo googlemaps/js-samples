@@ -1,3 +1,4 @@
+// [START maps_marker_clustering]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
@@ -46,3 +47,4 @@ const locations = [
   { lat: -42.735258, lng: 147.438 },
   { lat: -43.999792, lng: 170.463352 },
 ];
+// [END maps_marker_clustering]

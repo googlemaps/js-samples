@@ -1,3 +1,4 @@
+// [START maps_store_locator]
 let map;
 let autocomplete;
 let autocompleteInput;
@@ -183,3 +184,4 @@ function update(location) {
       isUpdateInProgress = false;
     });
 }
+// [END maps_store_locator]

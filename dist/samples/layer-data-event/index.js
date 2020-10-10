@@ -1,3 +1,4 @@
+// [START maps_layer_data_event]
 let map;
 
 function initMap() {
@@ -16,10 +17,13 @@ function initMap() {
       strokeWeight: 1,
     };
   });
+  // [START maps_layer_data_event_snippet]
   // Set mouseover event for each feature.
   map.data.addListener("mouseover", (event) => {
     document.getElementById("info-box").textContent = event.feature.getProperty(
       "letter"
     );
   });
+  // [END maps_layer_data_event_snippet]
 }
+// [END maps_layer_data_event]

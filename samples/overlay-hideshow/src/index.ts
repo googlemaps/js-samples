@@ -15,6 +15,8 @@
  */
 
 // [START maps_overlay_hideshow]
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
+
 // This example adds hide() and show() methods to a custom overlay's prototype.
 // These methods toggle the visibility of the container <div>.
 // overlay to or from the map.
@@ -109,8 +111,10 @@ function initMap(): void {
     // [END maps_overlay_hideshow_draw]
 
     // [START maps_overlay_hideshow_onremove]
-    // The onRemove() method will be called automatically from the API if
-    // we ever set the overlay's map property to 'null'.
+    /**
+     * The onRemove() method will be called automatically from the API if
+     * we ever set the overlay's map property to 'null'.
+     */
     onRemove() {
       if (this.div) {
         (this.div.parentNode as HTMLElement).removeChild(this.div);
@@ -153,6 +157,7 @@ function initMap(): void {
       }
     }
     // [END maps_overlay_hideshow_hideshowtoggle]
+    PRESERVE_COMMENT_ABOVE = 1; // force tsc to maintain the comment above eslint-disable-line
   }
 
   // [START maps_overlay_hideshow_init]

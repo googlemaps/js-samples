@@ -1,3 +1,4 @@
+// [START maps_aerial_rotation]
 let map;
 
 function initMap() {
@@ -21,3 +22,4 @@ function autoRotate() {
     window.setInterval(rotate90, 3000);
   }
 }
+// [END maps_aerial_rotation]

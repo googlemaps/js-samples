@@ -1,3 +1,4 @@
+// [START maps_event_arguments]
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -15,3 +16,4 @@ function placeMarkerAndPanTo(latLng, map) {
   });
   map.panTo(latLng);
 }
+// [END maps_event_arguments]

@@ -1,3 +1,4 @@
+// [START maps_streetview_overlays]
 let panorama;
 
 function initMap() {
@@ -51,3 +52,4 @@ function toggleStreetView() {
     panorama.setVisible(false);
   }
 }
+// [END maps_streetview_overlays]
