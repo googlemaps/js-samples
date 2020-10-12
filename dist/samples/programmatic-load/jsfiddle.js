@@ -1,7 +1,10 @@
 let map;
-const loader = new google.maps.plugins.loader.Loader({
+const Loader = google.maps.plugins.loader.Loader;
+const additionalOptions = {};
+const loader = new Loader({
   apiKey: "AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE",
   version: "weekly",
+  ...additionalOptions,
 });
 loader.load().then(() => {
   map = new google.maps.Map(document.getElementById("map"), {
