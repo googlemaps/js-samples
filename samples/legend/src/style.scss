@@ -17,18 +17,8 @@
 @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
 /* [START maps_legend] */
+@include meta.load-css("../../../shared/scss/default.scss");
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-}
-#map {
-  height: 400px;
-  width: 100%;
-}
 #legend {
   font-family: Arial, sans-serif;
   background: #fff;
