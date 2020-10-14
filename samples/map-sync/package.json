@@ -1,7 +1,5 @@
 {
   "title": "Synchronous Loading",
-  "callback": "initMap",
-  "libraries": [],
   "version": "weekly",
   "tag": "map_sync",
   "name": "map-sync"
