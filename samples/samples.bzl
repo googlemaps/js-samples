@@ -38,6 +38,7 @@ SAMPLES = [
     "elevation-paths",
     "elevation-simple",
     "event-arguments",
+    "event-click-latlng",
     "event-closure",
     "event-domListener",
     "event-poi",

@@ -36,6 +36,7 @@
     "Showing Elevation Along a Path": "elevation-paths",
     "Elevation Service": "elevation-simple",
     "Accessing Arguments in UI Events": "event-arguments",
+    "Event Click LatLng": "event-click-latlng",
     "Using Closures in Event Listeners": "event-closure",
     "Listening to DOM Events": "event-domListener",
     "POI Click Events": "event-poi",
