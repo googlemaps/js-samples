@@ -1,3 +1,19 @@
+{% macro css() %}
+{% if mode == "iframe" or mode == "dev" %}
+  <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
+{% else %}
+  <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
+{% endif %}
+{% endmacro %}  
+
+{% macro js() %}
+{% if mode == "iframe" or mode == "dev" %}
+  <script src="./iframe.js" data-inline></script>
+{% else %}
+  <script src="./index.js" data-inline></script>
+{% endif %}
+{% endmacro %}  
+
 {% if mode == "iframe" %}
 {% else %}
   <!-- [START maps_{{tag}}] -->
@@ -13,15 +29,14 @@
         src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback={{ callback }}&libraries={{ libraries }}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" 
         defer></script>
     {% endblock %}
+    {% block resources %}
     {% if mode == "jsfiddle" %}
       <!-- jsFiddle will insert css and js -->
-    {% elif mode == "iframe" or mode == "dev" %}
-      <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
-      <script src="./iframe.js" data-inline></script>
     {% else %}
-      <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
-      <script src="./index.js" data-inline></script>
+      {% if css %}{{ css() }}{% endif%}
+      {% if js %}{{ js() }}{% endif%}
     {% endif %}
+    {% endblock %}
     {% if mode != "iframe" %}
     </head>
     <body>

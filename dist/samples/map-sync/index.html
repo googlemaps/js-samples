@@ -3,10 +3,6 @@
   <head>
     <title>Synchronous Loading</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -22,23 +18,20 @@
         padding: 0;
       }
     </style>
-    <script>
-      "use strict";
-
-      var map;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: -34.397,
-            lng: 150.644,
-          },
-          zoom: 8,
-        });
-      }
-    </script>
   </head>
   <body>
     <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&v=weekly"></script>
+    <script>
+      "use strict";
+
+      var map = new google.maps.Map(document.getElementById("map"), {
+        center: {
+          lat: -34.397,
+          lng: 150.644,
+        },
+        zoom: 8,
+      });
+    </script>
   </body>
 </html>

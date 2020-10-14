@@ -13,6 +13,18 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-{% extends '../../../shared/layout.njk'%} {% block html %}
+{% extends '../../../shared/layout.njk'%} 
+{% block api %}
+{% endblock %}
+{% block resources %}
+  {% if mode == "jsfiddle" %}
+  <!-- jsFiddle will insert css and js -->
+  {% else %}
+    {{ css() }}
+  {% endif %}
+{% endblock %}
+{% block html %}
 <div id="map"></div>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&v={{ version }}"></script>
+{{ js() }}
 {% endblock %}
