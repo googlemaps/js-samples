@@ -13,6 +13,24 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-{% extends '../../../shared/layout.njk'%} {% block html %}
-<div id="map"></div>
+{% extends '../../../shared/layout.njk'%} 
+{% block polyfill %}{% endblock %}
+{% block resources %}
+    {% if mode == "jsfiddle" %}
+      <!-- jsFiddle will insert css and js -->
+    {% else %}
+        <!-- [START maps_{{tag}}_resources_style] -->
+        {{ css() -}}
+        <!-- [END maps_{{tag}}_resources_style] -->
+      {% if js %}{{ js() }}{% endif%}
+    {% endif %}
+    {% endblock %}
+{% block html %}
+  <!-- [START maps_{{tag}}_heading] -->
+  <h3>My Google Maps Demo</h3>
+  <!-- [END maps_{{tag}}_heading] -->
+  <!-- [START maps_{{tag}}_div] -->
+  <!--The div element for the map -->
+  <div id="map"></div>
+  <!-- [END maps_{{tag}}_div] -->
 {% endblock %}
