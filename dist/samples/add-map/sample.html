@@ -3,16 +3,23 @@
 <html>
   <head>
     <title>Add Map</title>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
+    <!-- [START maps_add_map_resources_style] -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
+    <!-- [END maps_add_map_resources_style] -->
     <script src="./index.js"></script>
   </head>
   <body>
+    <!-- [START maps_add_map_heading] -->
+    <h3>My Google Maps Demo</h3>
+    <!-- [END maps_add_map_heading] -->
+    <!-- [START maps_add_map_div] -->
+    <!--The div element for the map -->
     <div id="map"></div>
+    <!-- [END maps_add_map_div] -->
   </body>
 </html>
 <!-- [END maps_add_map] -->

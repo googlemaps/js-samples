@@ -22,7 +22,7 @@
     <head>
     <title>{{ title }}</title>
 {% endif %}
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    {% block polyfill %}<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>{% endblock %}
     {% block external %}{% endblock %}
     {% block api %}
       <script 

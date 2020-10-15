@@ -1,8 +1,8 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
   defer
 ></script>
+<!-- [START maps_add_map_resources_style] -->
 <style type="text/css">
   /* Set the size of the div element that contains the map */
   #map {
@@ -12,6 +12,7 @@
     /* The width is the width of the web page */
   }
 </style>
+<!-- [END maps_add_map_resources_style] -->
 <script>
   "use strict";
 
@@ -28,7 +29,7 @@
       center: uluru,
     }); // The marker, positioned at Uluru
 
-    new google.maps.Marker({
+    var marker = new google.maps.Marker({
       position: uluru,
       map: map,
     });
@@ -36,5 +37,11 @@
 </script>
 
 <div id="iframe-contents">
+  <!-- [START maps_add_map_heading] -->
+  <h3>My Google Maps Demo</h3>
+  <!-- [END maps_add_map_heading] -->
+  <!-- [START maps_add_map_div] -->
+  <!--The div element for the map -->
   <div id="map"></div>
+  <!-- [END maps_add_map_div] -->
 </div>

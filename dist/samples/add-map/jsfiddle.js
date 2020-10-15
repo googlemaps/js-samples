@@ -8,5 +8,8 @@ function initMap() {
     center: uluru,
   });
   // The marker, positioned at Uluru
-  new google.maps.Marker({ position: uluru, map: map });
+  const marker = new google.maps.Marker({
+    position: uluru,
+    map: map,
+  });
 }
