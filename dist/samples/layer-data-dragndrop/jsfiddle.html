@@ -3,6 +3,14 @@
   <head>
     <title>Data Layer: Drag and Drop GeoJSON</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initialize&libraries=&v=weekly"
       defer
@@ -10,7 +18,22 @@
     <!-- jsFiddle will insert css and js -->
   </head>
   <body>
-    <div id="map"></div>
-    <div id="drop-container"><div id="drop-silhouette"></div></div>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar" class="mdc-typography">
+        <div class="file" draggable="true" data-value="0">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">polygons.geojson</div>
+        </div>
+        <div class="file" draggable="true" data-value="1">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">points.geojson</div>
+        </div>
+        <div class="file" draggable="true" data-value="2">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">polyline.geojson</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

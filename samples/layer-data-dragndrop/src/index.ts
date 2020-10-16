@@ -16,6 +16,96 @@
 
 // [START maps_layer_data_dragndrop]
 /* Map functions */
+const files = [
+  {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Polygon",
+          coordinates: [
+            [
+              [-99.49218749999999, -11.867350911459294],
+              [24.960937499999996, -11.867350911459294],
+              [24.960937499999996, 47.517200697839414],
+              [-99.49218749999999, 47.517200697839414],
+              [-99.49218749999999, -11.867350911459294],
+            ],
+          ],
+        },
+      },
+    ],
+  },
+  {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Point",
+          coordinates: [81.2109375, 50.064191736659104],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Point",
+          coordinates: [103.35937499999999, -47.98992166741417],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Point",
+          coordinates: [-46.05468749999999, 64.01449619484472],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Point",
+          coordinates: [-113.203125, 37.996162679728116],
+        },
+      },
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "Point",
+          coordinates: [-73.828125, -32.249974455863295],
+        },
+      },
+    ],
+  },
+  {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        properties: {},
+        geometry: {
+          type: "LineString",
+          coordinates: [
+            [147.65625, -5.266007882805485],
+            [118.47656249999999, 43.83452678223682],
+            [80.85937499999999, -30.145127183376115],
+            [35.15625, 51.83577752045248],
+            [-15.468749999999998, -23.563987128451217],
+            [-29.53125, 44.33956524809713],
+            [-73.47656249999999, -32.842673631954305],
+            [-104.765625, 35.460669951495305],
+          ],
+        },
+      },
+    ],
+  },
+];
 
 let map: google.maps.Map;
 
@@ -23,13 +113,17 @@ function initMap(): void {
   // set up the map
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: new google.maps.LatLng(0, 0),
-    zoom: 2,
+    zoom: 4,
   });
 }
 
 function loadGeoJsonString(geoString: string) {
-  const geojson = JSON.parse(geoString);
-  map.data.addGeoJson(geojson);
+  try {
+    const geojson = JSON.parse(geoString);
+    map.data.addGeoJson(geojson);
+  } catch (e) {
+    alert("Not a GeoJSON file!");
+  }
   zoom(map);
 }
 
@@ -71,41 +165,46 @@ function processPoints(
 }
 
 /* DOM (drag/drop) functions */
-
 function initEvents() {
+  [...document.getElementsByClassName("file")].forEach((fileElement) => {
+    fileElement.addEventListener(
+      "dragstart",
+      (e: Event) => {
+        // @ts-ignore
+        e.dataTransfer.setData(
+          "text/plain",
+          JSON.stringify(files[Number((e.target as HTMLElement).dataset.value)])
+        );
+        console.log(e);
+      },
+      false
+    );
+  });
+
   // set up the drag & drop events
   const mapContainer = document.getElementById("map") as HTMLElement;
-  const dropContainer = document.getElementById(
-    "drop-container"
-  ) as HTMLElement;
 
-  // map-specific events
-  mapContainer.addEventListener("dragenter", showPanel, false);
-
-  // overlay specific events (since it only appears once drag starts)
-  dropContainer.addEventListener("dragover", showPanel, false);
-  dropContainer.addEventListener("drop", handleDrop, false);
-  dropContainer.addEventListener("dragleave", hidePanel, false);
+  mapContainer.addEventListener("dragenter", addClassToDropTarget, false);
+  mapContainer.addEventListener("dragover", addClassToDropTarget, false);
+  mapContainer.addEventListener("drop", handleDrop, false);
+  mapContainer.addEventListener("dragleave", removeClassFromDropTarget, false);
 }
 
-function showPanel(e: Event) {
+function addClassToDropTarget(e: Event) {
   e.stopPropagation();
   e.preventDefault();
-  (document.getElementById("drop-container") as HTMLElement).style.display =
-    "block";
+  document.getElementById("map")!.classList.add("over");
   return false;
 }
 
-function hidePanel(e: Event) {
-  (document.getElementById("drop-container") as HTMLElement).style.display =
-    "none";
+function removeClassFromDropTarget(e: Event) {
+  document.getElementById("map")!.classList.remove("over");
 }
 
 function handleDrop(e: DragEvent) {
   e.preventDefault();
   e.stopPropagation();
-  hidePanel(e);
-
+  removeClassFromDropTarget(e);
   const files = (e.dataTransfer as DataTransfer).files;
 
   if (files.length) {
@@ -127,6 +226,7 @@ function handleDrop(e: DragEvent) {
     // process non-file (e.g. text or html) content being dropped
     // grab the plain text version of the data
     const plainText = (e.dataTransfer as DataTransfer).getData("text/plain");
+    console.log(plainText);
 
     if (plainText) {
       loadGeoJsonString(plainText);
