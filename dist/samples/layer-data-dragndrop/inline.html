@@ -3,6 +3,14 @@
   <head>
     <title>Data Layer: Drag and Drop GeoJSON</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
     <script
       src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initialize&libraries=&v=weekly"
       defer
@@ -22,43 +30,182 @@
       #map {
         height: 100%;
       }
-
-      #drop-container {
-        display: none;
-        height: 100%;
-        width: 100%;
-        position: absolute;
-        z-index: 1;
-        top: 0px;
-        left: 0px;
+      #map.over {
+        opacity: 0.5;
         background-color: rgba(100, 100, 100, 0.5);
       }
 
-      #drop-silhouette {
-        color: white;
-        border: white dashed 8px;
-        height: calc(100% - 15px);
-        width: calc(100% - 15px);
-        background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAAAXNSR0IArs4c6QAAAAZiS0dEAGQAZABkkPCsTwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB90LHAIvICWdsKwAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJTVBXgQ4XAAACdklEQVR42u3csU7icBzA8Xp3GBMSeRITH8JHMY7cRMvmVmXoE9TAcJubhjD4ApoiopgqDMWAKAgIcSAiCfxuwhwROVJbkPD9rP23ob8vpZCQKgoAAAAAAAAAAPDYyiK/eNM05bNtr6+vSjgcXiHxDMkE1WpVFvGcfpCVICAIQUAQgoAgBAFBCAKCgCAEAUEIAoIQBAQhCAgCghAEBCEICEIQEIQgIAgIQhAQhCAgCEFAEIKAICAIQUAQgoAgBAFBCDIzhmFINBo9/K6D0XVddnd3ZaneDY7jSCqVcn3SfjyeKRKJbJ2dnYllWbKUl2i5XJaXlxdJJBIy7yDHx8fy9vYm6XR6OWMM3d/fi4hIqVSSWCwmsw5ycHAgrVZLRETOz8+XO8ZQpVJ5H2Y6nRZN0/b9DqLruhSLxfd9MpkMMT6L0uv1JJlMih9BhveJwWDwvv7i4oIY4zw8PIwMtt1uSzweF6+CHB0dSbfbHVmbzWaJMcnj4+OHAd/d3cne3p64DWKapjw/P39Yd3l5SYxpVKvVsYO2LEtUVd2ZNoiu6+I4ztg1V1dXxPAiSq/Xk5OTk0k9pNVqyenp6ch94l+5XI4YbtRqNfHa9fX1t43xcwGa/Nnc3PwdDAY9OZht28rGxgZPvP6KSCSy9fT09OUrw7ZtPqa8jFKv113HuLm5IYbXVFXdcRPl9vaWGH5GaTQaU8fI5/PE8JumafvNZvO/MQqFAjFmJRqNHk6Ksqgx5vr1zzAM2d7edr3/6uqqsra2NnZbp9NR+v2+62OHQqG5zObXPIMEAgFlfX3dl2N79btl1viTA0FAEIKAIAQBAAAAAAAAsMz+Ai1bUgo6ebm8AAAAAElFTkSuQmCC");
-        background-repeat: no-repeat;
-        background-position: center;
+      #sidebar {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: auto;
+      }
+
+      .file {
+        display: flex;
+        flex-flow: column;
+        margin-top: 1em;
+        cursor: move;
+        text-align: center;
+      }
+      .file:hover .material-icons {
+        color: darkorange;
+      }
+      .file:hover .filename {
+        font-weight: bold;
+      }
+      .file .material-icons {
+        font-size: 80px;
+        color: orange;
+      }
+      .file .material-icons:hover {
+        color: darkorange;
+      }
+      .file .filename {
+        margin-top: 0.5em;
+        font-size: 20px;
+        color: #333333;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #container {
+        height: 100%;
+        display: flex;
+      }
+
+      #sidebar {
+        flex-basis: 15rem;
+        flex-grow: 1;
+        padding: 1rem;
+        max-width: 30rem;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+      }
+
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
       }
     </style>
     <script>
       /* Map functions */
+      const files = [
+        {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Polygon",
+                coordinates: [
+                  [
+                    [-99.49218749999999, -11.867350911459294],
+                    [24.960937499999996, -11.867350911459294],
+                    [24.960937499999996, 47.517200697839414],
+                    [-99.49218749999999, 47.517200697839414],
+                    [-99.49218749999999, -11.867350911459294],
+                  ],
+                ],
+              },
+            },
+          ],
+        },
+        {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [81.2109375, 50.064191736659104],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [103.35937499999999, -47.98992166741417],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [-46.05468749999999, 64.01449619484472],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [-113.203125, 37.996162679728116],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [-73.828125, -32.249974455863295],
+              },
+            },
+          ],
+        },
+        {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "LineString",
+                coordinates: [
+                  [147.65625, -5.266007882805485],
+                  [118.47656249999999, 43.83452678223682],
+                  [80.85937499999999, -30.145127183376115],
+                  [35.15625, 51.83577752045248],
+                  [-15.468749999999998, -23.563987128451217],
+                  [-29.53125, 44.33956524809713],
+                  [-73.47656249999999, -32.842673631954305],
+                  [-104.765625, 35.460669951495305],
+                ],
+              },
+            },
+          ],
+        },
+      ];
       let map;
 
       function initMap() {
         // set up the map
         map = new google.maps.Map(document.getElementById("map"), {
           center: new google.maps.LatLng(0, 0),
-          zoom: 2,
+          zoom: 4,
         });
       }
 
       function loadGeoJsonString(geoString) {
-        const geojson = JSON.parse(geoString);
-        map.data.addGeoJson(geojson);
+        try {
+          const geojson = JSON.parse(geoString);
+          map.data.addGeoJson(geojson);
+        } catch (e) {
+          alert("Not a GeoJSON file!");
+        }
         zoom(map);
       }
 
@@ -96,32 +243,46 @@
 
       /* DOM (drag/drop) functions */
       function initEvents() {
+        [...document.getElementsByClassName("file")].forEach((fileElement) => {
+          fileElement.addEventListener(
+            "dragstart",
+            (e) => {
+              e.dataTransfer.setData(
+                "text/plain",
+                JSON.stringify(files[Number(e.target.dataset.value)])
+              );
+              console.log(e);
+            },
+            false
+          );
+        });
         // set up the drag & drop events
         const mapContainer = document.getElementById("map");
-        const dropContainer = document.getElementById("drop-container");
-        // map-specific events
-        mapContainer.addEventListener("dragenter", showPanel, false);
-        // overlay specific events (since it only appears once drag starts)
-        dropContainer.addEventListener("dragover", showPanel, false);
-        dropContainer.addEventListener("drop", handleDrop, false);
-        dropContainer.addEventListener("dragleave", hidePanel, false);
+        mapContainer.addEventListener("dragenter", addClassToDropTarget, false);
+        mapContainer.addEventListener("dragover", addClassToDropTarget, false);
+        mapContainer.addEventListener("drop", handleDrop, false);
+        mapContainer.addEventListener(
+          "dragleave",
+          removeClassFromDropTarget,
+          false
+        );
       }
 
-      function showPanel(e) {
+      function addClassToDropTarget(e) {
         e.stopPropagation();
         e.preventDefault();
-        document.getElementById("drop-container").style.display = "block";
+        document.getElementById("map").classList.add("over");
         return false;
       }
 
-      function hidePanel(e) {
-        document.getElementById("drop-container").style.display = "none";
+      function removeClassFromDropTarget(e) {
+        document.getElementById("map").classList.remove("over");
       }
 
       function handleDrop(e) {
         e.preventDefault();
         e.stopPropagation();
-        hidePanel(e);
+        removeClassFromDropTarget(e);
         const files = e.dataTransfer.files;
 
         if (files.length) {
@@ -143,6 +304,7 @@
           // process non-file (e.g. text or html) content being dropped
           // grab the plain text version of the data
           const plainText = e.dataTransfer.getData("text/plain");
+          console.log(plainText);
 
           if (plainText) {
             loadGeoJsonString(plainText);
@@ -159,7 +321,22 @@
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    <div id="drop-container"><div id="drop-silhouette"></div></div>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar" class="mdc-typography">
+        <div class="file" draggable="true" data-value="0">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">polygons.geojson</div>
+        </div>
+        <div class="file" draggable="true" data-value="1">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">points.geojson</div>
+        </div>
+        <div class="file" draggable="true" data-value="2">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">polyline.geojson</div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
