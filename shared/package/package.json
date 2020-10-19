@@ -12,7 +12,7 @@
     "webpack-merge": "^5.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.0",
+    "@babel/core": "^7.12.3",
     "@babel/preset-env": "^7.11.5",
     "@babel/runtime": "^7.12.1",
     "@types/googlemaps": "^3.39.13",
