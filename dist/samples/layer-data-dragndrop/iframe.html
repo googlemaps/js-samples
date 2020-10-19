@@ -52,7 +52,7 @@
     font-weight: bold;
   }
   .file .material-icons {
-    font-size: 80px;
+    font-size: 50px;
     color: orange;
   }
   .file .material-icons:hover {
@@ -138,97 +138,6 @@
     return arr2;
   }
 
-  /* Map functions */
-  var files = [
-    {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "Polygon",
-            coordinates: [
-              [
-                [-99.49218749999999, -11.867350911459294],
-                [24.960937499999996, -11.867350911459294],
-                [24.960937499999996, 47.517200697839414],
-                [-99.49218749999999, 47.517200697839414],
-                [-99.49218749999999, -11.867350911459294],
-              ],
-            ],
-          },
-        },
-      ],
-    },
-    {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "Point",
-            coordinates: [81.2109375, 50.064191736659104],
-          },
-        },
-        {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "Point",
-            coordinates: [103.35937499999999, -47.98992166741417],
-          },
-        },
-        {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "Point",
-            coordinates: [-46.05468749999999, 64.01449619484472],
-          },
-        },
-        {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "Point",
-            coordinates: [-113.203125, 37.996162679728116],
-          },
-        },
-        {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "Point",
-            coordinates: [-73.828125, -32.249974455863295],
-          },
-        },
-      ],
-    },
-    {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          properties: {},
-          geometry: {
-            type: "LineString",
-            coordinates: [
-              [147.65625, -5.266007882805485],
-              [118.47656249999999, 43.83452678223682],
-              [80.85937499999999, -30.145127183376115],
-              [35.15625, 51.83577752045248],
-              [-15.468749999999998, -23.563987128451217],
-              [-29.53125, 44.33956524809713],
-              [-73.47656249999999, -32.842673631954305],
-              [-104.765625, 35.460669951495305],
-            ],
-          },
-        },
-      ],
-    },
-  ];
   var map;
 
   function initMap() {
@@ -251,7 +160,6 @@
   }
   /**
    * Update a map's viewport to fit each geometry in a dataset
-   * @param {google.maps.Map} map The map to adjust
    */
 
   function zoom(map) {
@@ -263,11 +171,6 @@
   }
   /**
    * Process each point in a Geometry, regardless of how deep the points may lie.
-   * @param {google.maps.Data.Geometry} geometry The structure to process
-   * @param {function(google.maps.LatLng)} callback A function to call on each
-   *     LatLng point encountered (e.g. Array.push)
-   * @param {Object} thisArg The value of 'this' as provided to 'callback' (e.g.
-   *     myArray)
    */
 
   function processPoints(geometry, callback, thisArg) {
@@ -366,6 +269,97 @@
     initMap();
     initEvents();
   }
+
+  var files = [
+    {
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "Polygon",
+            coordinates: [
+              [
+                [-99.49218749999999, -11.867350911459294],
+                [24.960937499999996, -11.867350911459294],
+                [24.960937499999996, 47.517200697839414],
+                [-99.49218749999999, 47.517200697839414],
+                [-99.49218749999999, -11.867350911459294],
+              ],
+            ],
+          },
+        },
+      ],
+    },
+    {
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "Point",
+            coordinates: [81.2109375, 50.064191736659104],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "Point",
+            coordinates: [103.35937499999999, -47.98992166741417],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "Point",
+            coordinates: [-46.05468749999999, 64.01449619484472],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "Point",
+            coordinates: [-113.203125, 37.996162679728116],
+          },
+        },
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "Point",
+            coordinates: [-73.828125, -32.249974455863295],
+          },
+        },
+      ],
+    },
+    {
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          properties: {},
+          geometry: {
+            type: "LineString",
+            coordinates: [
+              [147.65625, -5.266007882805485],
+              [118.47656249999999, 43.83452678223682],
+              [80.85937499999999, -30.145127183376115],
+              [35.15625, 51.83577752045248],
+              [-15.468749999999998, -23.563987128451217],
+              [-29.53125, 44.33956524809713],
+              [-73.47656249999999, -32.842673631954305],
+              [-104.765625, 35.460669951495305],
+            ],
+          },
+        },
+      ],
+    },
+  ];
 </script>
 
 <div id="iframe-contents">
