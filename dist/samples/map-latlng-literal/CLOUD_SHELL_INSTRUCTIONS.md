@@ -9,26 +9,17 @@ the `map-latlng-literal` sample using TypeScript, Babel, and Webpack.
 
 Click the **Start** button to continue.
 
-## Install the `@googlemaps/js-samples` cli tool
+## Initialize the sample application
 
 Open Cloud Shell by clicking the
 <walkthrough-cloud-shell-icon></walkthrough-cloud-shell-icon> button in the
 navigation bar in the upper-right corner of the console.
 
-The following package will be used to load the sample skeleton and can be
-installed by entering the following in the shell:
+Use the [@googlemaps/js-samples](https://www.npmjs.com/package/@googlemaps/js-samples) package to 
+extract the sample into the specified directory.
 
 ```bash
-npm i -g '@googlemaps/js-samples'
-```
-
-## Initialize the sample application
-
-After installation is complete, the following command will be used to extract
-the sample contents into the current directory.
-
-```bash
-googlemaps-js-samples init -v --no-open --no-hot map-latlng-literal ~/map-latlng-literal
+npx  @googlemaps/js-samplesinit -v --no-open --no-hot map-latlng-literal ~/map-latlng-literal
 ```
 
 The command can also be run outside of the Cloud Shell.
