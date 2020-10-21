@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cooperative Gesture Handling</title>
+    <title>No Gesture Handling</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
       defer
     ></script>
     <style type="text/css">
@@ -23,18 +23,23 @@
       }
     </style>
     <script>
+      "use strict";
+
       /**
        * This sample sets the gesture handling mode to 'cooperative',
        * which means that on a mobile device, the user must swipe with one
        * finger to scroll the page and two fingers to pan the map.
        */
       function initMap() {
-        const center = { lat: -25.363, lng: 131.044 };
-        const zoom = 4;
+        var center = {
+          lat: -25.363,
+          lng: 131.044,
+        };
+        var zoom = 4;
         new google.maps.Map(document.getElementById("map"), {
-          zoom,
-          center,
-          gestureHandling: "cooperative",
+          zoom: zoom,
+          center: center,
+          gestureHandling: "none",
         });
       }
     </script>

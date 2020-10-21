@@ -1,0 +1,8 @@
+{
+  "title": "Greedy Gesture Handling",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "interaction_greedy",
+  "name": "interaction-greedy"
+}

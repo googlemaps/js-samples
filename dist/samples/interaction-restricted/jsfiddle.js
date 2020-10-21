@@ -4,11 +4,21 @@
  * finger to scroll the page and two fingers to pan the map.
  */
 function initMap() {
-  const center = { lat: -25.363, lng: 131.044 };
+  const center = new google.maps.LatLng({ lat: -25.363, lng: 131.044 });
   const zoom = 4;
   new google.maps.Map(document.getElementById("map"), {
     zoom,
     center,
-    gestureHandling: "cooperative",
+    minZoom: zoom - 2,
+    maxZoom: zoom + 2,
+    restriction: {
+      latLngBounds: {
+        north: -20,
+        south: -30,
+        east: 140,
+        west: 120,
+      },
+      strictBounds: true,
+    },
   });
 }

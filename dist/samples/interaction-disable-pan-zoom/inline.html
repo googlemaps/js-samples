@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cooperative Gesture Handling</title>
+    <title>Disable Pan and Zoom</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
@@ -34,7 +34,8 @@
         new google.maps.Map(document.getElementById("map"), {
           zoom,
           center,
-          gestureHandling: "cooperative",
+          gestureHandling: "none",
+          zoomControl: false,
         });
       }
     </script>

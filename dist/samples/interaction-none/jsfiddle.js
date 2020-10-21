@@ -9,6 +9,6 @@ function initMap() {
   new google.maps.Map(document.getElementById("map"), {
     zoom,
     center,
-    gestureHandling: "cooperative",
+    gestureHandling: "none",
   });
 }
