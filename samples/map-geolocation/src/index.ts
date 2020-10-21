@@ -34,7 +34,7 @@ function initMap(): void {
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
 
-  locationButton.addEventListener("click", (e) => {
+  locationButton.addEventListener("click", () => {
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -57,7 +57,6 @@ function initMap(): void {
       // Browser doesn't support Geolocation
       handleLocationError(false, infoWindow, map.getCenter());
     }
-
   });
 }
 
