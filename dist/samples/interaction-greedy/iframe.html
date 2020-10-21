@@ -21,11 +21,6 @@
 <script>
   "use strict";
 
-  /**
-   * This sample sets the gesture handling mode to 'cooperative',
-   * which means that on a mobile device, the user must swipe with one
-   * finger to scroll the page and two fingers to pan the map.
-   */
   function initMap() {
     var center = {
       lat: -25.363,
@@ -35,7 +30,7 @@
     new google.maps.Map(document.getElementById("map"), {
       zoom: zoom,
       center: center,
-      gestureHandling: "cooperative",
+      gestureHandling: "greedy",
     });
   }
 </script>

@@ -1,9 +1,4 @@
 // [START maps_interaction_none]
-/**
- * This sample sets the gesture handling mode to 'cooperative',
- * which means that on a mobile device, the user must swipe with one
- * finger to scroll the page and two fingers to pan the map.
- */
 function initMap() {
   const center = { lat: -25.363, lng: 131.044 };
   const zoom = 4;
