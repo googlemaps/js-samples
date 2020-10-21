@@ -22,7 +22,7 @@
  */
 function initMap(): void {
   const center = new google.maps.LatLng({ lat: -25.363, lng: 131.044 });
-  const zoom = 6;
+  const zoom = 4;
 
   new google.maps.Map(
     document.getElementById("map")!,
@@ -35,9 +35,9 @@ function initMap(): void {
       restriction: {
         latLngBounds: {
           north: -20,
-          south: 30,
+          south: -30,
           east: 140,
-          west: 125,
+          west: 120,
         },
         strictBounds: true
       },
