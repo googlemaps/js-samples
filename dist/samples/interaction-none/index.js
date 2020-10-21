@@ -1,4 +1,4 @@
-// [START maps_interaction_cooperative]
+// [START maps_interaction_none]
 /**
  * This sample sets the gesture handling mode to 'cooperative',
  * which means that on a mobile device, the user must swipe with one
@@ -9,13 +9,13 @@ function initMap() {
   const zoom = 4;
   new google.maps.Map(
     document.getElementById("map"),
-    // [START maps_interaction_cooperative_mapoptions]
+    // [START maps_interaction_none_mapoptions]
     {
       zoom,
       center,
-      gestureHandling: "cooperative",
+      gestureHandling: "none",
     }
-    // [END maps_interaction_cooperative_mapoptions]
+    // [END maps_interaction_none_mapoptions]
   );
 }
-// [END maps_interaction_cooperative]
+// [END maps_interaction_none]
