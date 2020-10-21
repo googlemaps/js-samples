@@ -39,7 +39,7 @@ function initMap(): void {
           east: 140,
           west: 120,
         },
-        strictBounds: true
+        strictBounds: true,
       },
     }
     // [END maps_interaction_restricted_mapoptions]
