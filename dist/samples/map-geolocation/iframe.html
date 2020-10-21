@@ -17,6 +17,23 @@
     margin: 0;
     padding: 0;
   }
+
+  .custom-map-control-button {
+    appearance: button;
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    margin: 10px;
+    padding: 0 0.5em;
+    height: 40px;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+  }
+  .custom-map-control-button:hover {
+    background: #ebebeb;
+  }
 </style>
 <script>
   "use strict";
@@ -35,28 +52,34 @@
       },
       zoom: 6,
     });
-    infoWindow = new google.maps.InfoWindow(); // Try HTML5 geolocation.
-
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        function (position) {
-          var pos = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-          infoWindow.setPosition(pos);
-          infoWindow.setContent("Location found.");
-          infoWindow.open(map);
-          map.setCenter(pos);
-        },
-        function () {
-          handleLocationError(true, infoWindow, map.getCenter());
-        }
-      );
-    } else {
-      // Browser doesn't support Geolocation
-      handleLocationError(false, infoWindow, map.getCenter());
-    }
+    infoWindow = new google.maps.InfoWindow();
+    var locationButton = document.createElement("button");
+    locationButton.textContent = "Pan to Current Location";
+    locationButton.classList.add("custom-map-control-button");
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
+    locationButton.addEventListener("click", function () {
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            };
+            infoWindow.setPosition(pos);
+            infoWindow.setContent("Location found.");
+            infoWindow.open(map);
+            map.setCenter(pos);
+          },
+          function () {
+            handleLocationError(true, infoWindow, map.getCenter());
+          }
+        );
+      } else {
+        // Browser doesn't support Geolocation
+        handleLocationError(false, infoWindow, map.getCenter());
+      }
+    });
   }
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {

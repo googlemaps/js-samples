@@ -18,5 +18,8 @@
 
 /* [START maps_map_geolocation] */
 @include meta.load-css("../../../shared/scss/default.scss");
-
+@import "../../../shared/scss/mixins.scss";
+.custom-map-control-button {
+    @include map-control-button;
+  }
 /* [END maps_map_geolocation] */
