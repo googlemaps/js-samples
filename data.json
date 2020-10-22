@@ -58,6 +58,7 @@
     "Info Windows": "infowindow-simple",
     "Inset Map": "inset-map",
     "Cooperative Gesture Handling": "interaction-cooperative",
+    "Default Gesture Handling": "interaction-default",
     "Greedy Gesture Handling": "interaction-greedy",
     "No Gesture Handling": "interaction-none",
     "Interaction Restricted": "interaction-restricted",
