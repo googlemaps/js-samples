@@ -19,7 +19,7 @@ function initMap() {
       ...sharedOptions,
       mapId: "ed1309c122a3dfcb",
       useStaticMap: true,
-    } // TODO(jpoehnelt) add mapId to @types/googlemaps
+    } // TODO add mapId to @types/googlemaps when out of beta
   );
   // [END maps_vector_use_static_map_js_instantiate]
 }

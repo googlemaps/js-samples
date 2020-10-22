@@ -35,7 +35,7 @@ function initMap(): void {
 }
 
 const eqfeed_callback = function (results: any) {
-  // TODO(jpoehnelt) fix typings
+  // TODO fix @types/googlemaps
   const heatmapData: any[] = [];
 
   for (let i = 0; i < results.features.length; i++) {
