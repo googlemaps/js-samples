@@ -18,7 +18,7 @@
 
 /* [START maps_store_locator] */
 @include meta.load-css(
-  // TODO(jpoehnelt) https://github.com/sass/dart-sass/issues/1033
+  // TODO https://github.com/sass/dart-sass/issues/1033
   "../../../shared/scss/sidebar.scss",
   $with: ("sidebar-flex-basis": 5rem)
 );
