@@ -60,6 +60,7 @@ SAMPLES = [
     "infowindow-simple-max",
     "inset-map",
     "interaction-cooperative",
+    "interaction-default",
     "interaction-disable-pan-zoom",
     "interaction-greedy",
     "interaction-none",
