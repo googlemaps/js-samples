@@ -17,24 +17,5 @@
 @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
 /* [START maps_layer_kml_features] */
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-#map {
-  float: left;
-  height: 425px;
-  width: 79%;
-}
-#content-window {
-  float: left;
-  font-family: "Roboto", "sans-serif";
-  height: 100%;
-  line-height: 30px;
-  padding-left: 10px;
-  width: 19%;
-}
+@include meta.load-css("../../../shared/scss/sidebar.scss");
 /* [END maps_layer_kml_features] */

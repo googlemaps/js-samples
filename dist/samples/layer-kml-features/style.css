@@ -1,4 +1,5 @@
 /* [START maps_layer_kml_features] */
+/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -6,19 +7,25 @@ body {
   padding: 0;
 }
 
-#map {
-  float: left;
-  height: 425px;
-  width: 79%;
+#container {
+  height: 100%;
+  display: flex;
 }
 
-#content-window {
-  float: left;
-  font-family: "Roboto", "sans-serif";
+#sidebar {
+  flex-basis: 15rem;
+  flex-grow: 1;
+  padding: 1rem;
+  max-width: 30rem;
   height: 100%;
-  line-height: 30px;
-  padding-left: 10px;
-  width: 19%;
+  box-sizing: border-box;
+  display: flex;
+}
+
+#map {
+  flex-basis: 0;
+  flex-grow: 4;
+  height: 100%;
 }
 
 /* [END maps_layer_kml_features] */

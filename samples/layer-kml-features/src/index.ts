@@ -25,7 +25,8 @@ function initMap(): void {
   );
 
   const kmlLayer = new google.maps.KmlLayer({
-    url: "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
+    url:
+      "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
     suppressInfoWindows: true,
     map: map,
   });
@@ -36,8 +37,8 @@ function initMap(): void {
   });
 
   function showInContentWindow(text: string) {
-    const sidediv = document.getElementById("content-window") as HTMLElement;
-    sidediv.innerHTML = text;
+    const sidebar = document.getElementById("sidebar") as HTMLElement;
+    sidebar.innerHTML = text;
   }
 }
 // [END maps_layer_kml_features]
