@@ -4,6 +4,7 @@
   defer
 ></script>
 <style type="text/css">
+  /* Optional: Makes the sample page fill the window. */
   html,
   body {
     height: 100%;
@@ -11,19 +12,25 @@
     padding: 0;
   }
 
-  #map {
-    float: left;
-    height: 425px;
-    width: 79%;
+  #container {
+    height: 100%;
+    display: flex;
   }
 
-  #content-window {
-    float: left;
-    font-family: "Roboto", "sans-serif";
+  #sidebar {
+    flex-basis: 15rem;
+    flex-grow: 1;
+    padding: 1rem;
+    max-width: 30rem;
     height: 100%;
-    line-height: 30px;
-    padding-left: 10px;
-    width: 19%;
+    box-sizing: border-box;
+    display: flex;
+  }
+
+  #map {
+    flex-basis: 0;
+    flex-grow: 4;
+    height: 100%;
   }
 </style>
 <script>
@@ -39,7 +46,7 @@
     });
     var kmlLayer = new google.maps.KmlLayer({
       url:
-        "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
+        "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
       suppressInfoWindows: true,
       map: map,
     });
@@ -49,13 +56,15 @@
     });
 
     function showInContentWindow(text) {
-      var sidediv = document.getElementById("content-window");
-      sidediv.innerHTML = text;
+      var sidebar = document.getElementById("sidebar");
+      sidebar.innerHTML = text;
     }
   }
 </script>
 
 <div id="iframe-contents">
-  <div id="map"></div>
-  <div id="content-window"></div>
+  <div id="container">
+    <div id="map"></div>
+    <div id="sidebar"></div>
+  </div>
 </div>

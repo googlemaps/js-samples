@@ -5,7 +5,8 @@ function initMap() {
     center: { lat: 37.06, lng: -95.68 },
   });
   const kmlLayer = new google.maps.KmlLayer({
-    url: "http://googlemaps.github.io/kml-samples/kml/Placemark/placemark.kml",
+    url:
+      "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
     suppressInfoWindows: true,
     map: map,
   });
@@ -15,8 +16,8 @@ function initMap() {
   });
 
   function showInContentWindow(text) {
-    const sidediv = document.getElementById("content-window");
-    sidediv.innerHTML = text;
+    const sidebar = document.getElementById("sidebar");
+    sidebar.innerHTML = text;
   }
 }
 // [END maps_layer_kml_features]
