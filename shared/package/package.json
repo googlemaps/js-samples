@@ -16,7 +16,7 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/runtime": "^7.12.1",
     "@types/googlemaps": "^3.40.0",
-    "@types/jest": "^26.0.14",
+    "@types/jest": "^26.0.15",
     "@types/webpack-env": "^1.15.3",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^3.10.1",
