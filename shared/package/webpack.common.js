@@ -63,7 +63,7 @@ module.exports = {
     new HtmlReplaceWebpackPlugin([
       {
         pattern: "YOUR_API_KEY",
-        replacement: process.env.GOOGLE_MAPS_API_KEY,
+        replacement: `${process.env.GOOGLE_MAPS_API_KEY}&channel=cloudshell`,
       },
     ]),
     new MiniCssExtractPlugin({

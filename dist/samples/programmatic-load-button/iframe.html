@@ -44,7 +44,7 @@
   var zoom = 14;
   var url = "https://maps.googleapis.com/maps/api/staticmap";
   var loader = new google.maps.plugins.loader.Loader({
-    apiKey: "AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE",
+    apiKey: "AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&channel=iframe",
     version: "weekly",
   });
   document.addEventListener("DOMContentLoaded", function () {
@@ -57,7 +57,7 @@
       .concat(wrapper.clientWidth, "x")
       .concat(
         wrapper.clientHeight,
-        "&key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE)"
+        "&key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&channel=iframe)"
       );
     wrapper.addEventListener("click", function () {
       wrapper.remove();
