@@ -9,7 +9,7 @@
     "watch": "webpack --config ./webpack.dev.js --mode development"
   },
   "dependencies": {
-    "webpack-merge": "^5.2.0"
+    "webpack-merge": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.3",
