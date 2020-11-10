@@ -3,7 +3,6 @@
     "module": "esnext",
     "target": "esnext",
     "strict": true,
-    "types": ["mdc", "deck"],
     "noImplicitAny": false,
     "lib": ["esnext", "es6", "dom", "dom.iterable"]
   },
