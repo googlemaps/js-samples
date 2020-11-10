@@ -8,7 +8,7 @@ load("//samples:samples.bzl", "SAMPLES")
         data = [
             "selenium.test.js",
             "//:jest.config.js",
-            "//samples/{}:index.html".format(sample),
+            "//samples/{}:github.html".format(sample),
             "@npm//glob",
             "@npm//selenium-webdriver",
         ],

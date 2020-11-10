@@ -43,7 +43,8 @@ Replace `map-simple` with the path to another sample in this repository.
 ### Run
 
 1. Set the environment variable `export GOOGLE_MAPS_JS_SAMPLES_KEY=YOUR_KEY`.
-1. Start a server with all samples using `bazel run serve`.
+1. Start a server with all samples using `ibazel run serve`.
+1. Start a specific sample with `ibazel run samples/map-simple:devserver` (faster live reload)
 
 ## Inputs and outputs
 

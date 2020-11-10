@@ -1,14 +1,18 @@
 {% macro css() %}
-{% if mode == "iframe" or mode == "dev" %}
+{% if mode == "iframe" or mode == "github" %}
   <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
+{% elif mode == "dev" %}
+  <link rel="stylesheet" type="text/css" href="./style.css">
 {% else %}
   <link rel="stylesheet" type="text/css" href="./style.css" data-inline>
 {% endif %}
 {% endmacro %}  
 
 {% macro js() %}
-{% if mode == "iframe" or mode == "dev" %}
+{% if mode == "iframe" or mode == "github" %}
   <script src="./iframe.js" data-inline></script>
+{% elif mode == "dev" %}
+  <script src="./index.js"></script>
 {% else %}
   <script src="./index.js" data-inline></script>
 {% endif %}
