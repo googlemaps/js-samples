@@ -15,9 +15,7 @@
     "lib": ["dom", "dom.iterable", "ESNext"],
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "types": ["googlemaps"]
+    "resolveJsonModule": true
   },
   "include": ["src"],
   "exclude": ["node_modules", "**/*.spec.ts"]
