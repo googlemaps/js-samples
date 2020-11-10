@@ -52,7 +52,7 @@ afterAll(async () => {
 
 describe("sample %s should be correct", () => {
   const f = glob.sync(
-    path.resolve(__dirname, "..", "samples", "**/index.html")
+    path.resolve(__dirname, "..", "samples", "**/github.html")
   )[0];
 
   test("loads map without error in logs", async () => {

@@ -11,21 +11,27 @@ FILES = [
     "style.css",
     # HTML
     "jsfiddle.html",
-    "index.html",
     "sample.html",
     "inline.html",
 ]
 
 [
     [
+        [
+            diff_test(
+                name = "{}_{}_test".format(sample, file),
+                actual = "//samples/{}:{}".format(sample, file),
+                expected = "//dist:samples/{}/{}".format(sample, file),
+            )
+            for file in FILES
+        ],
         diff_test(
-            name = "{}_{}_test".format(sample, file),
-            actual = "//samples/{}:{}".format(sample, file),
-            expected = "//dist:samples/{}/{}".format(sample, file),
-        )
-        for sample in SAMPLES
+            name = "{}_{}_test".format(sample, "index.html"),
+            actual = "//samples/{}:github.html".format(sample),
+            expected = "//dist:samples/{}/index.html".format(sample),
+        ),
     ]
-    for file in FILES
+    for sample in SAMPLES
 ]
 
 [

@@ -1,6 +1,7 @@
 load("@npm//eslint:index.bzl", "eslint", "eslint_test")
-load("@npm//http-server:index.bzl", "http_server")
+load("@npm//@bazel/typescript:index.bzl", "ts_devserver")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
+load("//samples:samples.bzl", "SAMPLES")
 
 exports_files(
     [
@@ -15,14 +16,11 @@ exports_files(
     visibility = ["//:__subpackages__"],
 )
 
-http_server(
+ts_devserver(
     name = "serve",
-    args = [
-    ],
-    data = [
-        "//:index.html",
-        "//samples:outputs",
-    ],
+    deps = [],
+    static_files = [":index.html", "//samples:outputs"],
+    port = 8080,
 )
 
 # CMD = '''
@@ -109,4 +107,7 @@ pkg_tar(
         "//samples:outputs",
     ],
     strip_prefix = ".",
+    remap_paths = {
+            "samples/{}/github.html".format(name): "samples/{}/index.html".format(name) for name in SAMPLES
+        },
 )
