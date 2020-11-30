@@ -53,7 +53,7 @@
     "@bazel/buildozer": "^3.4.0",
     "@bazel/ibazel": "^0.14.0",
     "@bazel/rollup": "2.3.0",
-    "@bazel/typescript": "2.3.0",
+    "@bazel/typescript": "2.3.1",
     "@material/select": "^8.0.0",
     "@rollup/plugin-babel": "^5.0.0",
     "@types/google.visualization": "0.0.56",
