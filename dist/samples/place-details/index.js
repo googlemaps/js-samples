@@ -14,7 +14,12 @@ function initMap() {
   const infowindow = new google.maps.InfoWindow();
   const service = new google.maps.places.PlacesService(map);
   service.getDetails(request, (place, status) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
+    if (
+      status === google.maps.places.PlacesServiceStatus.OK &&
+      place &&
+      place.geometry &&
+      place.geometry.location
+    ) {
       const marker = new google.maps.Marker({
         map,
         position: place.geometry.location,

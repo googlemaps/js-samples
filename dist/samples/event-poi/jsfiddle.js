@@ -36,8 +36,11 @@ class ClickEventHandler {
       // If you call stop here when there is no placeId you will prevent some
       // other map click event handlers from receiving the event.
       event.stop();
-      this.calculateAndDisplayRoute(event.placeId);
-      this.getPlaceInformation(event.placeId);
+
+      if (event.placeId) {
+        this.calculateAndDisplayRoute(event.placeId);
+        this.getPlaceInformation(event.placeId);
+      }
     }
   }
   calculateAndDisplayRoute(placeId) {
@@ -60,7 +63,12 @@ class ClickEventHandler {
   getPlaceInformation(placeId) {
     const me = this;
     this.placesService.getDetails({ placeId: placeId }, (place, status) => {
-      if (status === "OK") {
+      if (
+        status === "OK" &&
+        place &&
+        place.geometry &&
+        place.geometry.location
+      ) {
         me.infowindow.close();
         me.infowindow.setPosition(place.geometry.location);
         me.infowindowContent.children["place-icon"].src = place.icon;

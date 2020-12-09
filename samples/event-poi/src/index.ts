@@ -29,7 +29,7 @@ function initMap(): void {
 }
 
 function isIconMouseEvent(
-  e: google.maps.MouseEvent | google.maps.IconMouseEvent
+  e: google.maps.MapMouseEvent | google.maps.IconMouseEvent
 ): e is google.maps.IconMouseEvent {
   return "placeId" in e;
 }
@@ -59,7 +59,7 @@ class ClickEventHandler {
     this.map.addListener("click", this.handleClick.bind(this));
   }
 
-  handleClick(event: google.maps.MouseEvent | google.maps.IconMouseEvent) {
+  handleClick(event: google.maps.MapMouseEvent | google.maps.IconMouseEvent) {
     console.log("You clicked on: " + event.latLng);
 
     // If the event has a placeId, use it.
@@ -71,8 +71,11 @@ class ClickEventHandler {
       // If you call stop here when there is no placeId you will prevent some
       // other map click event handlers from receiving the event.
       event.stop();
-      this.calculateAndDisplayRoute(event.placeId);
-      this.getPlaceInformation(event.placeId);
+
+      if (event.placeId) {
+        this.calculateAndDisplayRoute(event.placeId);
+        this.getPlaceInformation(event.placeId);
+      }
     }
   }
 
@@ -99,20 +102,23 @@ class ClickEventHandler {
     this.placesService.getDetails(
       { placeId: placeId },
       (
-        place: google.maps.places.PlaceResult,
+        place: google.maps.places.PlaceResult | null,
         status: google.maps.places.PlacesServiceStatus
       ) => {
-        if (status === "OK") {
+        if (
+          status === "OK" &&
+          place &&
+          place.geometry &&
+          place.geometry.location
+        ) {
           me.infowindow.close();
-          me.infowindow.setPosition(
-            (place.geometry as google.maps.places.PlaceGeometry).location
-          );
+          me.infowindow.setPosition(place.geometry.location);
           (me.infowindowContent.children[
             "place-icon"
           ] as HTMLImageElement).src = place.icon as string;
           (me.infowindowContent.children[
             "place-name"
-          ] as HTMLElement).textContent = place.name;
+          ] as HTMLElement).textContent = place.name!;
           (me.infowindowContent.children[
             "place-id"
           ] as HTMLElement).textContent = place.place_id as string;

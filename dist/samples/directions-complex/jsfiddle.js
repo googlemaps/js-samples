@@ -56,7 +56,7 @@ function calculateAndDisplayRoute(
     (result, status) => {
       // Route the directions and pass the response to a function to create
       // markers for each step.
-      if (status === "OK") {
+      if (status === "OK" && result) {
         document.getElementById("warnings-panel").innerHTML =
           "<b>" + result.routes[0].warnings + "</b>";
         directionsRenderer.setDirections(result);

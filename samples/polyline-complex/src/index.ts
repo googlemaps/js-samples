@@ -40,7 +40,7 @@ function initMap(): void {
 }
 
 // Handles click events on a map, and adds a new point to the Polyline.
-function addLatLng(event: google.maps.MouseEvent) {
+function addLatLng(event: google.maps.MapMouseEvent) {
   const path = poly.getPath();
 
   // Because path is an MVCArray, we can simply append a new coordinate

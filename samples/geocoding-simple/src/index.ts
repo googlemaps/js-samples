@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// @ts-nocheck TODO(jpoehnelt) remove when fixed
+
 // [START maps_geocoding_simple]
 function initMap(): void {
   const map = new google.maps.Map(

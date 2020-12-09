@@ -30,7 +30,7 @@ function initMap() {
       return;
     }
     geocoder.geocode({ placeId: place.place_id }, (results, status) => {
-      if (status !== "OK") {
+      if (status !== "OK" && results) {
         window.alert("Geocoder failed due to: " + status);
         return;
       }

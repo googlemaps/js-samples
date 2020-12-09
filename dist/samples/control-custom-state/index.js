@@ -43,7 +43,10 @@ class CenterControl {
     // the control to the current center of the map.
     setCenterUI.addEventListener("click", () => {
       const newCenter = this.map_.getCenter();
-      this.center_ = newCenter;
+
+      if (newCenter) {
+        this.center_ = newCenter;
+      }
     });
   }
 }

@@ -17,15 +17,17 @@ function initMap() {
 }
 
 // Checks that the PlacesServiceStatus is OK, and adds a marker
-// using the place ID and location from the PlacesService.
+// using the location from the PlacesService.
 function callback(results, status) {
-  if (status == google.maps.places.PlacesServiceStatus.OK) {
+  if (
+    status == google.maps.places.PlacesServiceStatus.OK &&
+    results &&
+    results[0].geometry &&
+    results[0].geometry.location
+  ) {
     new google.maps.Marker({
       map,
-      place: {
-        placeId: results[0].place_id,
-        location: results[0].geometry.location,
-      },
+      position: results[0].geometry.location,
     });
   }
 }

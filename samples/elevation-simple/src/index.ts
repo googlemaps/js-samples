@@ -48,7 +48,7 @@ function displayLocationElevation(
     (results, status) => {
       infowindow.setPosition(location);
 
-      if (status === "OK") {
+      if (status === "OK" && results) {
         // Retrieve the first result
         if (results[0]) {
           // Open the infowindow indicating the elevation at the clicked position.

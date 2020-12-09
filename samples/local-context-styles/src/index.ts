@@ -85,9 +85,8 @@ const styles: google.maps.MapTypeStyle[] = [
 ];
 
 function initMap() {
-  // @ts-ignore beta feature not in type declarations
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
-    element: document.querySelector("#map"),
+    element: document.getElementById("map"),
     placeTypePreferences: [
       { type: "bakery", weight: 1 },
       { type: "park", weight: 2 },
@@ -99,7 +98,7 @@ function initMap() {
     directionsOptions: { origin: center },
   });
 
-  map = localContextMapView.map;
+  map = localContextMapView.map!;
 
   // Trigger hidePlaceDetailsView() with a click event handler on the inner map.
   map.addListener("click", () => {

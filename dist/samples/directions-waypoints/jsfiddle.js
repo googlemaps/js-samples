@@ -32,7 +32,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       travelMode: google.maps.TravelMode.DRIVING,
     },
     (response, status) => {
-      if (status === "OK") {
+      if (status === "OK" && response) {
         directionsRenderer.setDirections(response);
         const route = response.routes[0];
         const summaryPanel = document.getElementById("directions-panel");

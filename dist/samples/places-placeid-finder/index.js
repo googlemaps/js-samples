@@ -28,7 +28,7 @@ function initMap() {
     infowindow.close();
     const place = autocomplete.getPlace();
 
-    if (!place.geometry) {
+    if (!place.geometry || !place.geometry.location) {
       return;
     }
 

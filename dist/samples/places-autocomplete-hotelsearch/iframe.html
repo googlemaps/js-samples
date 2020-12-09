@@ -260,7 +260,7 @@
   function onPlaceChanged() {
     var place = autocomplete.getPlace();
 
-    if (place.geometry) {
+    if (place.geometry && place.geometry.location) {
       map.panTo(place.geometry.location);
       map.setZoom(15);
       search();
@@ -275,7 +275,7 @@
       types: ["lodging"],
     };
     places.nearbySearch(search, function (results, status, pagination) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
+      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
         clearResults();
         clearMarkers(); // Create a marker for each hotel found, and
         // assign a letter of the alphabetic to each marker icon.

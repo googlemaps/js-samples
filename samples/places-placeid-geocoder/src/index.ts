@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// @ts-nocheck TODO(jpoehnelt) remove when fixed
+
 // [START maps_places_placeid_geocoder]
 // This sample requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
@@ -61,7 +63,7 @@ function initMap(): void {
       return;
     }
     geocoder.geocode({ placeId: place.place_id }, (results, status) => {
-      if (status !== "OK") {
+      if (status !== "OK" && results) {
         window.alert("Geocoder failed due to: " + status);
         return;
       }

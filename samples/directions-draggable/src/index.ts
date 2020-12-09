@@ -32,7 +32,7 @@ function initMap(): void {
   });
 
   directionsRenderer.addListener("directions_changed", () => {
-    computeTotalDistance(directionsRenderer.getDirections());
+    computeTotalDistance(directionsRenderer.getDirections()!);
   });
 
   displayRoute(
@@ -61,10 +61,10 @@ function displayRoute(
       avoidTolls: true,
     },
     (
-      result: google.maps.DirectionsResult,
+      result: google.maps.DirectionsResult | null,
       status: google.maps.DirectionsStatus
     ) => {
-      if (status === "OK") {
+      if (status === "OK" && result) {
         display.setDirections(result);
       } else {
         alert("Could not display directions due to: " + status);
@@ -77,8 +77,12 @@ function computeTotalDistance(result: google.maps.DirectionsResult) {
   let total = 0;
   const myroute = result.routes[0];
 
+  if (!myroute) {
+    return;
+  }
+
   for (let i = 0; i < myroute.legs.length; i++) {
-    total += myroute.legs[i].distance.value;
+    total += myroute.legs[i]!.distance!.value;
   }
   total = total / 1000;
   (document.getElementById("total") as HTMLElement).innerHTML = total + " km";

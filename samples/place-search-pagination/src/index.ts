@@ -47,16 +47,16 @@ function initMap(): void {
   service.nearbySearch(
     { location: pyrmont, radius: 500, type: "store" },
     (
-      results: google.maps.places.PlaceResult[],
+      results: google.maps.places.PlaceResult[] | null,
       status: google.maps.places.PlacesServiceStatus,
-      pagination: google.maps.places.PlaceSearchPagination
+      pagination: google.maps.places.PlaceSearchPagination | null
     ) => {
-      if (status !== "OK") return;
+      if (status !== "OK" || !results) return;
 
       createMarkers(results, map);
-      moreButton.disabled = !pagination.hasNextPage;
+      moreButton.disabled = !pagination || !pagination.hasNextPage;
 
-      if (pagination.hasNextPage) {
+      if (pagination && pagination.hasNextPage) {
         getNextPage = pagination.nextPage;
       }
     }
@@ -71,6 +71,8 @@ function createMarkers(
   const placesList = document.getElementById("places") as HTMLElement;
 
   for (let i = 0, place; (place = places[i]); i++) {
+    if (!place.geometry || !place.geometry.location) continue;
+
     const image = {
       url: place.icon,
       size: new google.maps.Size(71, 71),

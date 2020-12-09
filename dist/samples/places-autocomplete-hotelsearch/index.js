@@ -104,7 +104,7 @@ function initMap() {
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
-  if (place.geometry) {
+  if (place.geometry && place.geometry.location) {
     map.panTo(place.geometry.location);
     map.setZoom(15);
     search();
@@ -120,7 +120,7 @@ function search() {
     types: ["lodging"],
   };
   places.nearbySearch(search, (results, status, pagination) => {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
+    if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       clearResults();
       clearMarkers();
 

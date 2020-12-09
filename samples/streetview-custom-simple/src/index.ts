@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// @ts-nocheck TODO(jpoehnelt) remove when fixed
+
 // [START maps_streetview_custom_simple]
 function initPano() {
   // Set up Street View and initially set it visible. Register the

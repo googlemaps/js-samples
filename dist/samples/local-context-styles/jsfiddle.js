@@ -68,7 +68,7 @@ const styles = [
 
 function initMap() {
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
-    element: document.querySelector("#map"),
+    element: document.getElementById("map"),
     placeTypePreferences: [
       { type: "bakery", weight: 1 },
       { type: "park", weight: 2 },

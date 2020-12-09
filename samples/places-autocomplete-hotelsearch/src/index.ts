@@ -132,7 +132,7 @@ function initMap(): void {
 function onPlaceChanged() {
   const place = autocomplete.getPlace();
 
-  if (place.geometry) {
+  if (place.geometry && place.geometry.location) {
     map.panTo(place.geometry.location);
     map.setZoom(15);
     search();
@@ -152,11 +152,11 @@ function search() {
   places.nearbySearch(
     search,
     (
-      results: google.maps.places.PlaceResult[],
+      results: google.maps.places.PlaceResult[] | null,
       status: google.maps.places.PlacesServiceStatus,
-      pagination: google.maps.places.PlaceSearchPagination
+      pagination: google.maps.places.PlaceSearchPagination | null
     ) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
+      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
         clearResults();
         clearMarkers();
 

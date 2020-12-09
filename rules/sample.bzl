@@ -23,6 +23,7 @@ def sample(name):
             "@npm//@types/google-maps-web",
             "@npm//@types/google.visualization",
         ],
+        tags = ["ts"],
     )
 
     native.filegroup(

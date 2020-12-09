@@ -13,7 +13,7 @@ function initMap() {
   // [START maps_js_local_context_restrictions_instantiation]
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
-    placeTypePreferences: ["restaurant"],
+    placeTypePreferences: [{ type: "restaurant" }],
     maxPlaceCount: 12,
     locationRestriction: bigBounds,
     directionsOptions: { origin: center },

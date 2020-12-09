@@ -86,12 +86,12 @@ function calculateAndDisplayRoute(
       travelMode: google.maps.TravelMode.WALKING,
     },
     (
-      result: google.maps.DirectionsResult,
+      result: google.maps.DirectionsResult | null,
       status: google.maps.DirectionsStatus
     ) => {
       // Route the directions and pass the response to a function to create
       // markers for each step.
-      if (status === "OK") {
+      if (status === "OK" && result) {
         (document.getElementById("warnings-panel") as HTMLElement).innerHTML =
           "<b>" + result.routes[0].warnings + "</b>";
         directionsRenderer.setDirections(result);
@@ -104,7 +104,7 @@ function calculateAndDisplayRoute(
 }
 
 function showSteps(
-  directionResult: google.maps.DirectionsResult,
+  directionResult: google.maps.DirectionsResult | null,
   markerArray: google.maps.Marker[],
   stepDisplay: google.maps.InfoWindow,
   map: google.maps.Map
@@ -112,7 +112,7 @@ function showSteps(
   // For each step, place a marker, and add the text to the marker's infowindow.
   // Also attach the marker to an array so we can keep track of it and remove it
   // when calculating new routes.
-  const myRoute = directionResult.routes[0].legs[0];
+  const myRoute = directionResult!.routes[0]!.legs[0]!;
 
   for (let i = 0; i < myRoute.steps.length; i++) {
     const marker = (markerArray[i] =

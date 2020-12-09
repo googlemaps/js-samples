@@ -112,7 +112,7 @@ function getDistances(place) {
   const origins = [place];
   return new Promise((resolve, reject) => {
     const callback = (response, status) => {
-      if (status === google.maps.DistanceMatrixStatus.OK) {
+      if (status === google.maps.DistanceMatrixStatus.OK && response) {
         resolve(response);
       } else {
         reject(status);
@@ -138,6 +138,10 @@ function placeChanged() {
 }
 
 function update(location) {
+  if (!location) {
+    return;
+  }
+
   if (isUpdateInProgress) {
     alert("Update in progress, please try again.");
     return;

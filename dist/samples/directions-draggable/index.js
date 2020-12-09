@@ -34,7 +34,7 @@ function displayRoute(origin, destination, service, display) {
       avoidTolls: true,
     },
     (result, status) => {
-      if (status === "OK") {
+      if (status === "OK" && result) {
         display.setDirections(result);
       } else {
         alert("Could not display directions due to: " + status);
@@ -46,6 +46,10 @@ function displayRoute(origin, destination, service, display) {
 function computeTotalDistance(result) {
   let total = 0;
   const myroute = result.routes[0];
+
+  if (!myroute) {
+    return;
+  }
 
   for (let i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i].distance.value;

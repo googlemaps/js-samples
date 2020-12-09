@@ -92,7 +92,7 @@
         travelMode: google.maps.TravelMode.DRIVING,
       },
       function (response, status) {
-        if (status === "OK") {
+        if (status === "OK" && response) {
           directionsRenderer.setDirections(response);
           var route = response.routes[0];
           var summaryPanel = document.getElementById("directions-panel");

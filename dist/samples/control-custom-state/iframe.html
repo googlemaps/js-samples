@@ -101,7 +101,9 @@
     setCenterUI.addEventListener("click", function () {
       var newCenter = _this.map_.getCenter();
 
-      _this.center_ = newCenter;
+      if (newCenter) {
+        _this.center_ = newCenter;
+      }
     });
   };
 

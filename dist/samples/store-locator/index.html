@@ -241,7 +241,7 @@
         var origins = [place];
         return new Promise(function (resolve, reject) {
           var callback = function callback(response, status) {
-            if (status === google.maps.DistanceMatrixStatus.OK) {
+            if (status === google.maps.DistanceMatrixStatus.OK && response) {
               resolve(response);
             } else {
               reject(status);
@@ -270,6 +270,10 @@
       }
 
       function update(location) {
+        if (!location) {
+          return;
+        }
+
         if (isUpdateInProgress) {
           alert("Update in progress, please try again.");
           return;
