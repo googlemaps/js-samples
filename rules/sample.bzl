@@ -20,7 +20,7 @@ def sample(name):
         srcs = ["src/index.ts"],
         prodmode_target = "esnext",
         deps = [
-            "@npm//@types/googlemaps",
+            "@npm//@types/google-maps-web",
             "@npm//@types/google.visualization",
         ],
     )
