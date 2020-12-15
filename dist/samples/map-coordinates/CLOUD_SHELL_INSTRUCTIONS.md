@@ -19,7 +19,7 @@ Use the [@googlemaps/js-samples](https://www.npmjs.com/package/@googlemaps/js-sa
 extract the sample into the specified directory.
 
 ```bash
-npx  @googlemaps/js-samplesinit -v --no-open --no-hot map-coordinates ~/map-coordinates
+npx  @googlemaps/js-samples init -v --no-open --no-hot map-coordinates ~/map-coordinates
 ```
 
 The command can also be run outside of the Cloud Shell.

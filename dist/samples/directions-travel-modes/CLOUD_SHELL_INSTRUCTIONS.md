@@ -19,7 +19,7 @@ Use the [@googlemaps/js-samples](https://www.npmjs.com/package/@googlemaps/js-sa
 extract the sample into the specified directory.
 
 ```bash
-npx  @googlemaps/js-samplesinit -v --no-open --no-hot directions-travel-modes ~/directions-travel-modes
+npx  @googlemaps/js-samples init -v --no-open --no-hot directions-travel-modes ~/directions-travel-modes
 ```
 
 The command can also be run outside of the Cloud Shell.
