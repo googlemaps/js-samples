@@ -56,6 +56,7 @@ jobs:
           git config --global user.email 'googlemaps-bot@users.noreply.github.com'
           git add dist
           git commit -m "chore: update dist folder [skip ci]" || true
+          git push origin
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
         with:
