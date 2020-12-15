@@ -49,7 +49,6 @@ module.exports = {
     path: `${__dirname}/public`,
     publicPath: "/",
     filename: "index.js",
-    library: "",
     libraryTarget: "window",
   },
   plugins: [
