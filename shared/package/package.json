@@ -21,7 +21,7 @@
     "css-loader": "^5.0.1",
     "dotenv": "^8.2.0",
     "eslint": "^7.16.0",
-    "eslint-config-prettier": "^7.0.0",
+    "eslint-config-prettier": "^7.1.0",
     "eslint-plugin-prettier": "^3.3.0",
     "html-replace-webpack-plugin": "^2.6.0",
     "html-webpack-plugin": "^4.5.0",
