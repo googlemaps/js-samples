@@ -67,7 +67,7 @@ The following table identifies the inputs and outputs.
 ## Other resources
 
 - [Google Maps JavaScript API Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
-- [Google Maps JavaScript API Reference Documenation](https://developers.google.com/maps/documentation/javascript/reference/)
+- [Google Maps JavaScript API Reference Documentation](https://developers.google.com/maps/documentation/javascript/reference/)
 - [Google Maps Typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/googlemaps) - Community supported `npm i -D @types/googlemaps`
 - [Google Maps Utilitiies](https://github.com/googlemaps/v3-utility-library)
 
