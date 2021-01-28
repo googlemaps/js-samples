@@ -23,25 +23,36 @@ function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
-      center: { lat: 40.749933, lng: -73.986330 },
+      center: { lat: 40.749933, lng: -73.98633 },
       zoom: 13,
     }
   );
   const card = document.getElementById("pac-card") as HTMLElement;
   const input = document.getElementById("pac-input") as HTMLInputElement;
-  const biased = document.getElementById("use-location-bias") as HTMLInputElement;
-  const restricted = document.getElementById("use-strict-bounds") as HTMLInputElement;
+  const biased = document.getElementById(
+    "use-location-bias"
+  ) as HTMLInputElement;
+  const restricted = document.getElementById(
+    "use-strict-bounds"
+  ) as HTMLInputElement;
+  const options = {
+    componentRestrictions: { country: "us" },
+    fields: ["formatted_address", "geometry", "name"],
+    origin: map.getCenter(),
+    strictBounds: false,
+    types: ["establishment"],
+  } as google.maps.places.AutocompleteOptions;
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
-  const autocomplete = new google.maps.places.Autocomplete(input, {
-    fields: ["formatted_address", "geometry", "name"],
-  });
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
 
   // Bind the map's bounds (viewport) property to the autocomplete object,
   // so that the autocomplete requests use the current map bounds for the
   // bounds option in the request.
+  // [START maps_places_autocomplete_bind]
   autocomplete.bindTo("bounds", map);
+  // [END maps_places_autocomplete_bind]
 
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById(
@@ -76,7 +87,8 @@ function initMap(): void {
     marker.setVisible(true);
 
     infowindowContent.children["place-name"].textContent = place.name;
-    infowindowContent.children["place-address"].textContent = place.formatted_address;
+    infowindowContent.children["place-address"].textContent =
+      place.formatted_address;
     infowindow.open(map, marker);
   });
 
@@ -97,24 +109,28 @@ function initMap(): void {
 
   biased.addEventListener("click", function () {
     if (this.checked) {
-        autocomplete.bindTo("bounds", map);
+      autocomplete.bindTo("bounds", map);
     } else {
-        autocomplete.unbind("bounds");
-        autocomplete.setBounds({ east: 180, west: -180, north: 90, south: -90});
-        if (restricted.checked) {
-          restricted.checked = this.checked;
-          autocomplete.setOptions({
-            strictBounds: false,
-          });
-        }
+      // [START maps_places_autocomplete_unbind]
+      autocomplete.unbind("bounds");
+      autocomplete.setBounds({ east: 180, west: -180, north: 90, south: -90 });
+
+      // [END maps_places_autocomplete_unbind]
+      if (restricted.checked) {
+        restricted.checked = this.checked;
+        autocomplete.setOptions({
+          strictBounds: false,
+        });
+      }
     }
     input.value = "";
   });
 
   restricted.addEventListener("click", function () {
-    autocomplete.setOptions({ 
-      strictBounds: this.checked, 
+    autocomplete.setOptions({
+      strictBounds: this.checked,
     });
+
     if (this.checked) {
       biased.checked = this.checked;
       autocomplete.bindTo("bounds", map);

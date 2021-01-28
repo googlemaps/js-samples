@@ -11,14 +11,21 @@ function initMap() {
   const input = document.getElementById("pac-input");
   const biased = document.getElementById("use-location-bias");
   const restricted = document.getElementById("use-strict-bounds");
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-  const autocomplete = new google.maps.places.Autocomplete(input, {
+  const options = {
+    componentRestrictions: { country: "us" },
     fields: ["formatted_address", "geometry", "name"],
-  });
+    origin: map.getCenter(),
+    strictBounds: false,
+    types: ["establishment"],
+  };
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
   // Bind the map's bounds (viewport) property to the autocomplete object,
   // so that the autocomplete requests use the current map bounds for the
   // bounds option in the request.
+  // [START maps_places_autocomplete_bind]
   autocomplete.bindTo("bounds", map);
+  // [END maps_places_autocomplete_bind]
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById("infowindow-content");
   infowindow.setContent(infowindowContent);
@@ -70,9 +77,11 @@ function initMap() {
     if (this.checked) {
       autocomplete.bindTo("bounds", map);
     } else {
+      // [START maps_places_autocomplete_unbind]
       autocomplete.unbind("bounds");
       autocomplete.setBounds({ east: 180, west: -180, north: 90, south: -90 });
 
+      // [END maps_places_autocomplete_unbind]
       if (restricted.checked) {
         restricted.checked = this.checked;
         autocomplete.setOptions({
