@@ -32,8 +32,11 @@
           <label for="changetype-geocode">Geocodes</label>
         </div>
         <div id="strict-bounds-selector" class="pac-controls">
+          <input type="checkbox" id="use-location-bias" value="" checked />
+          <label for="use-location-bias">Bias to map viewport</label>
+
           <input type="checkbox" id="use-strict-bounds" value="" />
-          <label for="use-strict-bounds">Strict Bounds</label>
+          <label for="use-strict-bounds">Strict bounds</label>
         </div>
       </div>
       <div id="pac-container">
@@ -42,7 +45,6 @@
     </div>
     <div id="map"></div>
     <div id="infowindow-content">
-      <img src="" width="16" height="16" id="place-icon" />
       <span id="place-name" class="title"></span><br />
       <span id="place-address"></span>
     </div>

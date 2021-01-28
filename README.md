@@ -31,7 +31,7 @@ Replace `map-simple` with the path to another sample in this repository.
 
 ### Build
 
-1. Use Bazel to build `bazel build ...` or `bazel build //samples/add-map/...`
+1. Use Bazel to build `bazel build ...` or `bazel build //samples/map-simple/...`
 1. Update dist `bazel build public.tar` and `tar xf bazel-bin/public.tar -C dist`
 
 ### Test
@@ -43,8 +43,8 @@ Replace `map-simple` with the path to another sample in this repository.
 ### Run
 
 1. Set the environment variable `export GOOGLE_MAPS_JS_SAMPLES_KEY=YOUR_KEY`.
-1. Start a server with all samples using `ibazel run serve`.
-1. Start a specific sample with `ibazel run samples/map-simple:devserver` (faster live reload)
+1. Start a server with all samples using `bazel run serve` (or `ibazel` for faster live reload)
+1. Start a specific sample with `bazel run samples/map-simple:devserver` (or `ibazel` for faster live reload)
 
 ## Inputs and outputs
 
@@ -64,10 +64,10 @@ The following table identifies the inputs and outputs.
 | dist/samples/\*/sample.html   | N    | N        | HTML without CSS or JS for *HTML* tab                                                           |
 | dist/samples/\*/style.css     | N    | Y        | CSS output from SCSS for *CSS* tab                                                              |
 
-## Other Resources
+## Other resources
 
-- [Google Maps Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
-- [Google Maps Reference Documenations](https://developers.google.com/maps/documentation/javascript/reference/)
+- [Google Maps JavaScript API Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
+- [Google Maps JavaScript API Reference Documentation](https://developers.google.com/maps/documentation/javascript/reference/)
 - [Google Maps Typings](https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/googlemaps) - Community supported `npm i -D @types/googlemaps`
 - [Google Maps Utilitiies](https://github.com/googlemaps/v3-utility-library)
 
@@ -76,5 +76,5 @@ The following table identifies the inputs and outputs.
 These libraries are community supported. We're comfortable enough with the stability and features of
 the libraries that we want you to build real production applications on it.
 
-If you find a bug, or have a feature suggestion, please [log an issue][issues]. If you'd like to
-contribute, please read [How to Contribute][contrib].
+If you find a bug, or have a feature suggestion, please [log an issue](issues). If you'd like to
+contribute, please read [How to Contribute](CONTRIB.md).
