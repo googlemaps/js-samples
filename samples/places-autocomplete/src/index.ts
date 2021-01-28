@@ -23,14 +23,18 @@ function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
-      center: { lat: 40.749933, lng: -73.986330 },
+      center: { lat: 40.749933, lng: -73.98633 },
       zoom: 13,
     }
   );
   const card = document.getElementById("pac-card") as HTMLElement;
   const input = document.getElementById("pac-input") as HTMLInputElement;
-  const biased = document.getElementById("use-location-bias") as HTMLInputElement;
-  const restricted = document.getElementById("use-strict-bounds") as HTMLInputElement;
+  const biasInputElement = document.getElementById(
+    "use-location-bias"
+  ) as HTMLInputElement;
+  const strictBoundsInputElement = document.getElementById(
+    "use-strict-bounds"
+  ) as HTMLInputElement;
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 
@@ -76,7 +80,8 @@ function initMap(): void {
     marker.setVisible(true);
 
     infowindowContent.children["place-name"].textContent = place.name;
-    infowindowContent.children["place-address"].textContent = place.formatted_address;
+    infowindowContent.children["place-address"].textContent =
+      place.formatted_address;
     infowindow.open(map, marker);
   });
 
@@ -95,28 +100,28 @@ function initMap(): void {
   setupClickListener("changetype-establishment", ["establishment"]);
   setupClickListener("changetype-geocode", ["geocode"]);
 
-  biased.addEventListener("click", function () {
-    if (this.checked) {
-        autocomplete.bindTo("bounds", map);
+  biasInputElement.addEventListener("change", () => {
+    if (biasInputElement.checked) {
+      autocomplete.bindTo("bounds", map);
     } else {
-        autocomplete.unbind("bounds");
-        autocomplete.setBounds({ east: 180, west: -180, north: 90, south: -90});
-        if (restricted.checked) {
-          restricted.checked = this.checked;
-          autocomplete.setOptions({
-            strictBounds: false,
-          });
-        }
+      // User wants to turn off location bias, so three things need to happen:
+      // 1. Unbind from map
+      // 2. Reset the bounds to whole world
+      // 3. Uncheck the strict bounds checkbox UI (which also disables strict bounds)
+      autocomplete.unbind("bounds");
+      autocomplete.setBounds({ east: 180, west: -180, north: 90, south: -90 });
+      strictBoundsInputElement.checked = biasInputElement.checked;
     }
     input.value = "";
   });
 
-  restricted.addEventListener("click", function () {
-    autocomplete.setOptions({ 
-      strictBounds: this.checked, 
+  strictBoundsInputElement.addEventListener("change", () => {
+    autocomplete.setOptions({
+      strictBounds: strictBoundsInputElement.checked,
     });
-    if (this.checked) {
-      biased.checked = this.checked;
+
+    if (strictBoundsInputElement.checked) {
+      biasInputElement.checked = strictBoundsInputElement.checked;
       autocomplete.bindTo("bounds", map);
     }
     input.value = "";
