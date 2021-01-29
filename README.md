@@ -36,7 +36,7 @@ Replace `map-simple` with the path to another sample in this repository.
 
 ### Test
 
-1. Use Bazel to run tests with `bazel test ...`
+1. Use Bazel to run tests with `bazel test ...` or `bazel test //samples/map-simple/...`
 1. Run the dist diff tests `bazel test dist:diff`
 1. Run e2e tests `npx selenium-standalone install && npx selenium-standalone start` and then run `bazel test e2e:e2e`
 

@@ -28,20 +28,42 @@ function initMap(): void {
     }
   );
   const card = document.getElementById("pac-card") as HTMLElement;
-  const input = document.getElementById("pac-input") as HTMLInputElement;
-  const countries = document.getElementById("country-selector") as HTMLElement;
-
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+  // [START maps_places_autocomplete_creation]
+  const center = { lat: 50.064192, lng: -130.605469 };
+  // Create a bounding box with sides ~10km away from the center point
+  const defaultBounds = {
+    north: center.lat + 0.1,
+    south: center.lat - 0.1,
+    east: center.lng + 0.1,
+    west: center.lng - 0.1,
+  };
+  const input = document.getElementById("pac-input") as HTMLInputElement;
+  const options = {
+    bounds: defaultBounds,
+    componentRestrictions: { country: "us" },
+    fields: ["address_components", "geometry", "icon", "name"],
+    origin: center,
+    strictBounds: false,
+    types: ["establishment"],
+  };
 
-  const autocomplete = new google.maps.places.Autocomplete(input);
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
+  // [END maps_places_autocomplete_creation]
 
-  // Set initial restrict to the greater list of countries.
+  // Set initial restriction to the greater list of countries.
+  // [START maps_places_autocomplete_countries_multiple]
   autocomplete.setComponentRestrictions({
     country: ["us", "pr", "vi", "gu", "mp"],
   });
+  // [END maps_places_autocomplete_countries_multiple]
 
-  // Specify only the data fields that are needed.
-  autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
+  // [START maps_places_autocomplete_setbounds]
+  const southwest = { lat: 5.6108, lng: 136.589326 };
+  const northeast = { lat: 61.179287, lng: 2.64325 };
+  const newBounds = new google.maps.LatLngBounds(southwest, northeast);
+  autocomplete.setBounds(newBounds);
+  // [END maps_places_autocomplete_setbounds]
 
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById(

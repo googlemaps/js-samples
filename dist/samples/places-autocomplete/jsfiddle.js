@@ -10,10 +10,15 @@ function initMap() {
   const input = document.getElementById("pac-input");
   const biasInputElement = document.getElementById("use-location-bias");
   const strictBoundsInputElement = document.getElementById("use-strict-bounds");
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
-  const autocomplete = new google.maps.places.Autocomplete(input, {
+  const options = {
+    componentRestrictions: { country: "us" },
     fields: ["formatted_address", "geometry", "name"],
-  });
+    origin: map.getCenter(),
+    strictBounds: false,
+    types: ["establishment"],
+  };
+  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+  const autocomplete = new google.maps.places.Autocomplete(input, options);
   // Bind the map's bounds (viewport) property to the autocomplete object,
   // so that the autocomplete requests use the current map bounds for the
   // bounds option in the request.
