@@ -7,6 +7,9 @@
 # Cache action outputs on disk so they persist across output_base and bazel shutdown (eg. changing branches)
 build --disk_cache=.cache/bazel-disk-cache
 
+# Use remote cache
+build --remote_http_cache=https://storage.googleapis.com/geo-devrel-bazel-cache --google_default_credentials
+
 # Specifies desired output mode for running tests.
 # Valid values are
 #   'summary' to output only test status summary
@@ -60,7 +63,7 @@ build --incompatible_strict_action_env
 run --incompatible_strict_action_env
 
 build --action_env GOOGLE_MAPS_JS_SAMPLES_KEY=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE  # low quota restricted key
-run --action_env GOOGLE_MAPS_JS_SAMPLES_KEY  # User should provide own key to run
+run --action_env GOOGLE_MAPS_JS_SAMPLES_KEY=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE  # User should provide own key to run
 
 # Load any settings specific to the current user.
 # .bazelrc.user should appear in .gitignore so that settings are not shared with team members
