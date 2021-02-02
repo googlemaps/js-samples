@@ -31,20 +31,22 @@ Replace `map-simple` with the path to another sample in this repository.
 
 ### Build
 
-1. Use Bazel to build `bazel build ...` or `bazel build //samples/map-simple/...`
-1. Update dist `bazel build public.tar` and `tar xf bazel-bin/public.tar -C dist`
+1. `npm i` Install dependencies.
+1. `npm run build` Build all targets and update `dist/` folder.
 
 ### Test
 
-1. Use Bazel to run tests with `bazel test ...` or `bazel test //samples/map-simple/...`
-1. Run the dist diff tests `bazel test dist:diff`
-1. Run e2e tests `npx selenium-standalone install && npx selenium-standalone start` and then run `bazel test e2e:e2e`
+1. `npm run lint` Optionaly fix lint issues with `npm run format`
+1. `npm test` Test outputs.
 
 ### Run
 
-1. Set the environment variable `export GOOGLE_MAPS_JS_SAMPLES_KEY=YOUR_KEY`.
-1. Start a server with all samples using `bazel run serve` (or `ibazel` for faster live reload)
+1. Start a server with all samples using `npm start` or `bazel run serve` (or `ibazel` for faster live reload)
 1. Start a specific sample with `bazel run samples/map-simple:devserver` (or `ibazel` for faster live reload)
+
+### Caching
+
+It may be possible to enable remote caching with Bazel to speed builds. This will require running `gcloud auth application-default login`. This requires access to a specific GCS bucket that most developers do not have.
 
 ## Inputs and outputs
 
