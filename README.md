@@ -46,7 +46,7 @@ Replace `map-simple` with the path to another sample in this repository.
 
 ### Caching
 
-It may be possible to enable remote caching with Bazel to speed builds. This will require running `gcloud auth application-default login`. This requires access to if you believe you have access to the GCS bucket.
+It may be possible to enable remote caching with Bazel to speed builds. This will require running `gcloud auth application-default login`. This requires access to a specific GCS bucket that most developers do not have.
 
 ## Inputs and outputs
 
