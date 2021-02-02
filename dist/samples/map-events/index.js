@@ -3,6 +3,7 @@ const events = [
   "bounds_changed",
   "center_changed",
   "click",
+  "contextmenu",
   "dblclick",
   "drag",
   "dragend",

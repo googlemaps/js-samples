@@ -145,7 +145,7 @@ function initialize() {
 
   const deleteMenu = new DeleteMenu();
 
-  google.maps.event.addListener(flightPath, "rightclick", (e: any) => {
+  google.maps.event.addListener(flightPath, "contextmenu", (e: any) => {
     // Check if click was on a vertex control point
     if (e.vertex == undefined) {
       return;

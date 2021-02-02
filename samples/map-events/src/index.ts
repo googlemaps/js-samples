@@ -18,6 +18,7 @@ const events = [
   "bounds_changed",
   "center_changed",
   "click",
+  "contextmenu",
   "dblclick",
   "drag",
   "dragend",
@@ -30,7 +31,7 @@ const events = [
   "mouseover",
   "projection_changed",
   "resize",
-  "rightclick",
+  "rightclick", // use contextmenu
   "tilesloaded",
   "tilt_changed",
   "zoom_changed",
