@@ -14,7 +14,7 @@ function initMap() {
     fillOpacity: 0.6,
     strokeColor: "blue",
     strokeWeight: 1,
-    rotation: 22,
+    rotation: 340,
     scale: 2,
     anchor: new google.maps.Point(15, 30),
   };
