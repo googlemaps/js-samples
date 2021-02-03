@@ -91,7 +91,7 @@ function loadCensusData(variable: string) {
 
   // [START maps_combining_data_snippet_loadcensus]
   xhr.onload = function () {
-    const censusData = JSON.parse(xhr.responseText);
+    const censusData = JSON.parse(xhr.responseText) as any;
     censusData.shift(); // the first row contains column names
     censusData.forEach((row: string) => {
       const censusVariable = parseFloat(row[0]);
