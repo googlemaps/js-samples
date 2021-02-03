@@ -27,7 +27,7 @@ function initMap(): void {
 
 function loadGeoJsonString(geoString: string) {
   try {
-    const geojson = JSON.parse(geoString);
+    const geojson = JSON.parse(geoString) as any;
     map.data.addGeoJson(geojson);
   } catch (e) {
     alert("Not a GeoJSON file!");

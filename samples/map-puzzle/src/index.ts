@@ -120,7 +120,7 @@ class PuzzleDemo {
         xmlhttpRequest.readyState != XMLHttpRequest.DONE
       )
         return;
-      this.loadDataComplete_(JSON.parse(xmlhttpRequest.responseText));
+      this.loadDataComplete_(JSON.parse(xmlhttpRequest.responseText) as any);
     };
     xmlhttpRequest.open(
       "GET",

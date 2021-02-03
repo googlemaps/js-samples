@@ -1,5 +1,5 @@
 load("@npm//eslint:index.bzl", "eslint", "eslint_test")
-load("@npm//@bazel/typescript:index.bzl", "ts_devserver")
+load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("//samples:samples.bzl", "SAMPLES")
 
@@ -16,7 +16,7 @@ exports_files(
     visibility = ["//:__subpackages__"],
 )
 
-ts_devserver(
+concatjs_devserver(
     name = "serve",
     deps = [],
     static_files = [":index.html", "//samples:outputs"],
@@ -61,8 +61,8 @@ genrule(
         "//shared:templates",
     ],
     outs = ["index.html"],
-    cmd = "$(location @npm//nunjucks-cli/bin:nunjucks) $(location index.njk) $(location data.json) -p . && cat index.html > $@",
-    tools = ["@npm//nunjucks-cli/bin:nunjucks"],
+    cmd = "$(location //rules:nunjucks-cli) $(location index.njk) $(location data.json) -p . && cat index.html > $@",
+    tools = ["//rules:nunjucks-cli"],
 )
 
 ESLINT_DATA = [

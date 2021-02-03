@@ -4,7 +4,8 @@ load("//rules:prettier.bzl", "prettier")
 load("//rules:tags.bzl", "tags_test")
 load("//rules:js_test.bzl", "js_test")
 load("//rules:template.bzl", "template_file")
-load("@npm//@bazel/typescript:index.bzl", "ts_devserver", "ts_library")
+load("@npm//@bazel/typescript:index.bzl", "ts_library")
+load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@npm//@babel/cli:index.bzl", "babel")
 
@@ -59,7 +60,19 @@ def sample(name):
               "$(location //rules:strip_source_map_url_bin) $@; " +
               "$(location //rules:prettier) --write $@; " +
               "$(location //rules:eslint) -c $(location //:.eslintrc.json) --fix $@; ",
-        tools = ["//rules:eslint", "//rules:remove_apache_license", "//rules:strip_source_map_url_bin", "//rules:strip_region_tags_bin", "//rules:prettier"],
+        tools = [
+            "//rules:eslint",
+            "//rules:remove_apache_license",
+            "//rules:strip_source_map_url_bin",
+            "//rules:strip_region_tags_bin",
+            "//rules:prettier",
+            "@npm//eslint-config-prettier",
+            "@npm//eslint-plugin-jest",
+            "@npm//eslint-plugin-prettier",
+            "@npm//fast-diff",
+            "@npm//prettier",
+            "@npm//prettier-linter-helpers",
+        ],
         visibility = ["//visibility:public"],
     )
 
@@ -180,7 +193,11 @@ def sample(name):
 
     native.genrule(
         name = "inline_html",
-        srcs = [":_sample.html", ":index.js", ":style.css"],
+        srcs = [
+            ":_sample.html",
+            ":index.js",
+            ":style.css",
+        ],
         outs = ["inline.html"],
         cmd = "$(location //rules:inline) $(location :_sample.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
@@ -271,7 +288,7 @@ def sample(name):
               "$(location //rules:inline) $(location :_iframe.html) $@; " +
               "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
-        tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier",],
+        tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier"],
         visibility = ["//visibility:public"],
     )
 
@@ -400,7 +417,7 @@ def sample(name):
         outs = ["index.webpack.js"],
     )
 
-    ts_devserver(
+    concatjs_devserver(
         name = "devserver",
         deps = [":dev.js"],
         serving_path = "/index.js",
