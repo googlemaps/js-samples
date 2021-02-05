@@ -3,10 +3,6 @@
   <head>
     <title>Using Closures in Event Listeners</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
     <style type="text/css">
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -74,5 +70,9 @@
   </head>
   <body>
     <div id="map"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
   </body>
 </html>
