@@ -3,10 +3,7 @@
 <html>
   <head>
     <title>Add Map</title>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
+
     <!-- [START maps_add_map_resources_style] -->
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <!-- [END maps_add_map_resources_style] -->
@@ -20,6 +17,12 @@
     <!--The div element for the map -->
     <div id="map"></div>
     <!-- [END maps_add_map_div] -->
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
   </body>
 </html>
 <!-- [END maps_add_map] -->

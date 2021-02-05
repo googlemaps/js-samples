@@ -4,10 +4,6 @@
   <head>
     <title>Street View Events</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initPano&libraries=&v=weekly"
-      defer
-    ></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./index.js"></script>
   </head>
@@ -34,6 +30,12 @@
         <table id="links_table"></table>
       </table>
     </div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initPano&libraries=&v=weekly"
+      async
+    ></script>
   </body>
 </html>
 <!-- [END maps_streetview_events] -->

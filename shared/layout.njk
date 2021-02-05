@@ -27,12 +27,7 @@
     <title>{{ title }}</title>
 {% endif %}
     {% block polyfill %}<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>{% endblock %}
-    {% block external %}{% endblock %}
-    {% block api %}
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback={{ callback }}&libraries={{ libraries }}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" 
-        defer></script>
-    {% endblock %}
+    {% block external %}{% endblock %}   
     {% block resources %}
     {% if mode == "jsfiddle" %}
       <!-- jsFiddle will insert css and js -->
@@ -49,10 +44,19 @@
     {% if mode == "iframe" %}
       <div id="iframe-contents">
     {% endif %}
-      {% block html %}{% endblock %}
+
+    {% block html %}{% endblock %}
+
+    {% block api %}
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback={{ callback }}&libraries={{ libraries }}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" 
+        async></script>
+    {% endblock %}
+
     {% if mode == "iframe" %}
       </div>
-    {% else %}
+    {% else %}     
     </body>
   </html>
   <!-- [END maps_{{tag}}] -->

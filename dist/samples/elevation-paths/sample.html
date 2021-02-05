@@ -5,10 +5,7 @@
     <title>Showing Elevation Along a Path</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://www.google.com/jsapi"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
-      defer
-    ></script>
+
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./index.js"></script>
   </head>
@@ -17,6 +14,12 @@
       <div id="map" style="height: 250px"></div>
       <div id="elevation_chart"></div>
     </div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
   </body>
 </html>
 <!-- [END maps_elevation_paths] -->
