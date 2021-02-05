@@ -3,6 +3,10 @@
   <head>
     <title>Navigation Functions (Heading)</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=geometry&v=weekly"
+      defer
+    ></script>
     <!-- jsFiddle will insert css and js -->
   </head>
   <body>
@@ -12,9 +16,5 @@
       <input type="text" readonly id="destination" /><br />
       Heading: <input type="text" readonly id="heading" /> degrees
     </div>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=geometry&v=weekly"
-      async
-    ></script>
   </body>
 </html>

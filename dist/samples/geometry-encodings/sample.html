@@ -4,6 +4,10 @@
   <head>
     <title>Encoding Methods</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=geometry&v=weekly"
+      defer
+    ></script>
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./index.js"></script>
   </head>
@@ -13,10 +17,6 @@
       <div>Encoding:</div>
       <textarea id="encoded-polyline"></textarea>
     </div>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=geometry&v=weekly"
-      async
-    ></script>
   </body>
 </html>
 <!-- [END maps_geometry_encodings] -->
