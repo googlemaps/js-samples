@@ -1,8 +1,4 @@
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=localContext&v=beta"
-  defer
-></script>
 <style type="text/css">
   /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -42,4 +38,10 @@
 
 <div id="iframe-contents">
   <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=localContext&v=beta"
+    async
+  ></script>
 </div>

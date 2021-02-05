@@ -15,10 +15,7 @@
         href="https://fonts.googleapis.com/icon?family=Material+Icons"
       />
     </head>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=places,geometry&v=weekly"
-      defer
-    ></script>
+
     <style type="text/css">
       /* Optional: Makes the sample page fill the window. */
       html,
@@ -406,5 +403,11 @@
         </div>
       </div>
     </div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=places,geometry&v=weekly"
+      async
+    ></script>
   </body>
 </html>

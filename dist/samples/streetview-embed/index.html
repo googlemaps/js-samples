@@ -3,10 +3,6 @@
   <head>
     <title>Street View Containers</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initialize&libraries=&v=weekly"
-      defer
-    ></script>
     <style type="text/css">
       html,
       body {
@@ -44,5 +40,11 @@
   </head>
   <body>
     <div id="street-view"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initialize&libraries=&v=weekly"
+      async
+    ></script>
   </body>
 </html>

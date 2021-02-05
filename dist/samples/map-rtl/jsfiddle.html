@@ -3,13 +3,15 @@
   <head>
     <title>Right-to-Left Languages</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly&language=ar&region=EG"
-      defer
-    ></script>
     <!-- jsFiddle will insert css and js -->
   </head>
   <body>
     <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly&language=ar&region=EG"
+      async
+    ></script>
   </body>
 </html>
