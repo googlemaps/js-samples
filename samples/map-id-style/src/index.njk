@@ -16,7 +16,7 @@
 {% extends '../../../shared/layout.njk'%} {% block api %}
 <script
   src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=beta&map_ids=8e0a97af9386fef"
-  defer
+  async
 ></script>
 {% endblock %} {% block html %}
 <div id="map"></div>
