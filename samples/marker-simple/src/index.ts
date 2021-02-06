@@ -18,7 +18,7 @@
 function initMap(): void {
   const myLatLng = { lat: -25.363, lng: 131.044 };
 
-  const map = new google.maps.Map(
+  const myMap = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
@@ -28,7 +28,7 @@ function initMap(): void {
 
   new google.maps.Marker({
     position: myLatLng,
-    map: map,
+    map: myMap,
     title: "Hello World!",
   });
 }
