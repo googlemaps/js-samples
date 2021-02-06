@@ -28,7 +28,7 @@ function initMap(): void {
 
   new google.maps.Marker({
     position: myLatLng,
-    map,
+    map: map,
     title: "Hello World!",
   });
 }
