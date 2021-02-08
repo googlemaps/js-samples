@@ -20,8 +20,8 @@
     </style>
     <script>
       // This example uses SVG path notation to add a vector-based symbol
-      // as the icon for a marker. The resulting icon is a pushpin-shaped
-      // symbol with a blue fill and border.
+      // as the icon for a marker. The resulting icon is a marker-shaped
+      // symbol with a blue fill and no border.
       function initMap() {
         const center = new google.maps.LatLng(-33.712451, 150.311823);
         const map = new google.maps.Map(document.getElementById("map"), {
@@ -30,12 +30,11 @@
         });
         const svgMarker = {
           path:
-            "M20.5 15h-9c-1.104 0-2 0.896-2 2s0.896 2 2 2h9c1.104 0 2-0.896 2-2s-0.896-2-2-2zM13.583 8l-1.083 6h7l-1.084-6h-4.833zM16 29l1.5-9h-3l1.5 9zM13 7h6c0.828 0 1.5-0.672 1.5-1.5s-0.672-1.5-1.5-1.5h-6c-0.829 0-1.5 0.672-1.5 1.5s0.671 1.5 1.5 1.5z",
+            "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
           fillColor: "blue",
           fillOpacity: 0.6,
-          strokeColor: "blue",
-          strokeWeight: 1,
-          rotation: 340,
+          strokeWeight: 0,
+          rotation: 0,
           scale: 2,
           anchor: new google.maps.Point(15, 30),
         };
