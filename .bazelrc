@@ -7,8 +7,8 @@
 # Cache action outputs on disk so they persist across output_base and bazel shutdown (eg. changing branches)
 build --disk_cache=.cache/bazel-disk-cache
 
-# Use remote cache
-build --remote_http_cache=https://storage.googleapis.com/geo-devrel-bazel-cache --google_default_credentials
+# Use remote cache by adding the following to .bazelrc.user
+# build --remote_http_cache=https://storage.googleapis.com/geo-devrel-bazel-cache --google_default_credentials
 
 # Specifies desired output mode for running tests.
 # Valid values are
