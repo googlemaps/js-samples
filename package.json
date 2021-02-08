@@ -42,7 +42,7 @@
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/preset-env": "^7.9.6",
-    "@bazel/buildifier": "^3.4.0",
+    "@bazel/buildifier": "^4.0.0",
     "@bazel/buildozer": "^3.4.0",
     "@bazel/concatjs": "^3.1.0",
     "@bazel/ibazel": "^0.14.0",
