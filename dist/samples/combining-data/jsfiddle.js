@@ -157,7 +157,7 @@ function styleFeature(feature) {
 /**
  * Responds to the mouse-in event on a map shape (state).
  *
- * @param {? google.maps.MapMouseEvent} e
+ * @param {?google.maps.MapMouseEvent} e
  */
 function mouseInToRegion(e) {
   // set the hover state so the setStyle function can change the border
