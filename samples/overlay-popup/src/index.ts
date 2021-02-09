@@ -53,7 +53,7 @@ function initMap(): void {
 
     /** Called when the popup is added to the map. */
     onAdd() {
-      this.getPanes().floatPane.appendChild(this.containerDiv);
+      this.getPanes()!.floatPane.appendChild(this.containerDiv);
     }
 
     /** Called when the popup is removed from the map. */
@@ -67,7 +67,7 @@ function initMap(): void {
     draw() {
       const divPosition = this.getProjection().fromLatLngToDivPixel(
         this.position
-      );
+      )!;
 
       // Hide the popup when it is far out of view.
       const display =

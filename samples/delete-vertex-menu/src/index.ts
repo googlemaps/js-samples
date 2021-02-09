@@ -65,7 +65,7 @@ function initialize() {
     onAdd() {
       const deleteMenu = this;
       const map = this.getMap() as google.maps.Map;
-      this.getPanes().floatPane.appendChild(this.div_);
+      this.getPanes()!.floatPane.appendChild(this.div_);
 
       // mousedown anywhere on the map except on the menu div will close the
       // menu.
@@ -106,7 +106,7 @@ function initialize() {
         return;
       }
 
-      const point = projection.fromLatLngToDivPixel(position);
+      const point = projection.fromLatLngToDivPixel(position)!;
       this.div_.style.top = point.y + "px";
       this.div_.style.left = point.x + "px";
     }

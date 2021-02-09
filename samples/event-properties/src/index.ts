@@ -32,7 +32,7 @@ function initMap(): void {
   infowindow.open(map);
 
   map.addListener("zoom_changed", () => {
-    infowindow.setContent("Zoom: " + map.getZoom());
+    infowindow.setContent("Zoom: " + map.getZoom()!);
   });
 }
 // [END maps_event_properties]

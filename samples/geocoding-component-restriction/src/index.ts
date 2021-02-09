@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// @ts-nocheck TODO(jpoehnelt) remove when fixed
+
 // [START maps_geocoding_component_restriction]
 function initMap(): void {
   const geocoder = new google.maps.Geocoder();

@@ -5,7 +5,7 @@ function initMap() {
   });
   const geocoder = new google.maps.Geocoder();
   geocoder.geocode({ address: "Toledo" }, (results, status) => {
-    if (status === "OK") {
+    if (status === "OK" && results) {
       map.setCenter(results[0].geometry.location);
       new google.maps.Marker({
         map,

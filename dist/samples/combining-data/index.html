@@ -200,11 +200,13 @@
 
             if (censusVariable > censusMax) {
               censusMax = censusVariable;
-            } // update the existing row with the new data
+            }
 
-            map.data
-              .getFeatureById(stateId)
-              .setProperty("census_variable", censusVariable);
+            var state = map.data.getFeatureById(stateId); // update the existing row with the new data
+
+            if (state) {
+              state.setProperty("census_variable", censusVariable);
+            }
           }); // update and display the legend
 
           document.getElementById(
@@ -281,7 +283,7 @@
       /**
        * Responds to the mouse-in event on a map shape (state).
        *
-       * @param {?google.maps.MouseEvent} e
+       * @param {?google.maps.MapMouseEvent} e
        */
 
       function mouseInToRegion(e) {

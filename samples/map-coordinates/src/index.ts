@@ -27,12 +27,14 @@ function initMap(): void {
   );
 
   const coordInfoWindow = new google.maps.InfoWindow();
-  coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
+  coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()!));
   coordInfoWindow.setPosition(chicago);
   coordInfoWindow.open(map);
 
   map.addListener("zoom_changed", () => {
-    coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
+    coordInfoWindow.setContent(
+      createInfoWindowContent(chicago, map.getZoom()!)
+    );
     coordInfoWindow.open(map);
   });
 }

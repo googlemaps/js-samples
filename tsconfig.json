@@ -5,6 +5,5 @@
     "strict": true,
     "noImplicitAny": false,
     "lib": ["esnext", "es6", "dom", "dom.iterable"]
-  },
-  "include": ["src/**/*.ts"]
+  }
 }

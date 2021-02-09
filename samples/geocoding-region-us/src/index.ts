@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// @ts-nocheck TODO(jpoehnelt) remove when fixed
+
 // [START maps_js_geocoding_region_us]
 function initMap(): void {
   const map = new google.maps.Map(

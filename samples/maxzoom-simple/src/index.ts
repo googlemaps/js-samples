@@ -33,7 +33,7 @@ function initMap(): void {
   map.addListener("click", showMaxZoom);
 }
 
-function showMaxZoom(e: google.maps.MouseEvent) {
+function showMaxZoom(e: google.maps.MapMouseEvent) {
   maxZoomService.getMaxZoomAtLatLng(
     e.latLng,
     (result: google.maps.MaxZoomResult) => {

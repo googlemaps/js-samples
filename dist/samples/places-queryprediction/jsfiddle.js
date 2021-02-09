@@ -5,7 +5,7 @@
 // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
 function initService() {
   const displaySuggestions = function (predictions, status) {
-    if (status != google.maps.places.PlacesServiceStatus.OK) {
+    if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
       alert(status);
       return;
     }

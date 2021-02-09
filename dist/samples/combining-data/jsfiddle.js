@@ -80,10 +80,12 @@ function loadCensusData(variable) {
       if (censusVariable > censusMax) {
         censusMax = censusVariable;
       }
+      const state = map.data.getFeatureById(stateId);
+
       // update the existing row with the new data
-      map.data
-        .getFeatureById(stateId)
-        .setProperty("census_variable", censusVariable);
+      if (state) {
+        state.setProperty("census_variable", censusVariable);
+      }
     });
     // update and display the legend
     document.getElementById(
@@ -155,7 +157,7 @@ function styleFeature(feature) {
 /**
  * Responds to the mouse-in event on a map shape (state).
  *
- * @param {?google.maps.MouseEvent} e
+ * @param {?google.maps.MapMouseEvent} e
  */
 function mouseInToRegion(e) {
   // set the hover state so the setStyle function can change the border

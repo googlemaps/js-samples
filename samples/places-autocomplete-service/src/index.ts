@@ -120,7 +120,7 @@ const inputChangeCallback = debounce(100, () => {
 });
 
 const predictionsCallback = (
-  results: google.maps.places.AutocompletePrediction[],
+  results: google.maps.places.AutocompletePrediction[] | null,
   status: google.maps.places.PlacesServiceStatus
 ) => {
   responseElement.innerText = JSON.stringify({ results, status }, null, 2);

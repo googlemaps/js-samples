@@ -41,7 +41,11 @@ function loadGeoJsonString(geoString: string) {
 function zoom(map: google.maps.Map) {
   const bounds = new google.maps.LatLngBounds();
   map.data.forEach((feature) => {
-    processPoints(feature.getGeometry(), bounds.extend, bounds);
+    const geometry = feature.getGeometry();
+
+    if (geometry) {
+      processPoints(geometry, bounds.extend, bounds);
+    }
   });
   map.fitBounds(bounds);
 }

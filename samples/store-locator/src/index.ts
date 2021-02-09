@@ -88,7 +88,7 @@ function initMap(): void {
 
       progress.done();
 
-      update(map.getCenter());
+      update(map.getCenter()!);
     });
 
   (document.getElementById("near-me") as HTMLButtonElement).addEventListener(
@@ -107,7 +107,7 @@ function initMap(): void {
   (document.getElementById("refresh") as HTMLButtonElement).addEventListener(
     "click",
     () => {
-      update(map.getCenter());
+      update(map.getCenter()!);
     }
   );
 }
@@ -174,10 +174,10 @@ function getDistances(
 
   return new Promise((resolve, reject) => {
     const callback = (
-      response: google.maps.DistanceMatrixResponse,
+      response: google.maps.DistanceMatrixResponse | null,
       status: google.maps.DistanceMatrixStatus
     ) => {
-      if (status === google.maps.DistanceMatrixStatus.OK) {
+      if (status === google.maps.DistanceMatrixStatus.OK && response) {
         resolve(response);
       } else {
         reject(status);
@@ -205,7 +205,11 @@ function placeChanged() {
   update(location);
 }
 
-function update(location: google.maps.LatLng) {
+function update(location?: google.maps.LatLng) {
+  if (!location) {
+    return;
+  }
+
   if (isUpdateInProgress) {
     alert("Update in progress, please try again.");
     return;

@@ -39,7 +39,12 @@
         var infowindow = new google.maps.InfoWindow();
         var service = new google.maps.places.PlacesService(map);
         service.getDetails(request, function (place, status) {
-          if (status === google.maps.places.PlacesServiceStatus.OK) {
+          if (
+            status === google.maps.places.PlacesServiceStatus.OK &&
+            place &&
+            place.geometry &&
+            place.geometry.location
+          ) {
             var marker = new google.maps.Marker({
               map: map,
               position: place.geometry.location,

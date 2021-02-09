@@ -55,8 +55,8 @@ function initMap(): void {
 
 /** Show the new coordinates for the rectangle in an info window. */
 function showNewRect() {
-  const ne = rectangle.getBounds().getNorthEast();
-  const sw = rectangle.getBounds().getSouthWest();
+  const ne = rectangle.getBounds()!.getNorthEast();
+  const sw = rectangle.getBounds()!.getSouthWest();
 
   const contentString =
     "<b>Rectangle moved.</b><br>" +
