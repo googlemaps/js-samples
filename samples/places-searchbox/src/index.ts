@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+// @ts-nocheck TODO(jpoehnelt) remove when fixed
 
 // [START maps_places_searchbox]
 // This example adds a search box to a map, using the Google Place Autocomplete
@@ -63,7 +64,7 @@ function initAutocomplete() {
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
     places.forEach((place) => {
-      if (!place.geometry) {
+      if (!place.geometry || !place.geometry.location) {
         console.log("Returned place contains no geometry");
         return;
       }

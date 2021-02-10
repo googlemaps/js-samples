@@ -55,13 +55,13 @@ function initZoomControl(map: google.maps.Map) {
   (document.querySelector(
     ".zoom-control-in"
   ) as HTMLElement).onclick = function () {
-    map.setZoom(map.getZoom() + 1);
+    map.setZoom(map.getZoom()! + 1);
   };
 
   (document.querySelector(
     ".zoom-control-out"
   ) as HTMLElement).onclick = function () {
-    map.setZoom(map.getZoom() - 1);
+    map.setZoom(map.getZoom()! - 1);
   };
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
     document.querySelector(".zoom-control") as HTMLElement

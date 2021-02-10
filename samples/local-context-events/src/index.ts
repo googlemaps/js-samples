@@ -54,14 +54,16 @@ const districts = {
 };
 
 function initMap() {
-  // @ts-ignore beta feature not in type declarations
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
-    placeTypePreferences: ["restaurant", "tourist_attraction"],
+    placeTypePreferences: [
+      { type: "restaurant" },
+      { type: "tourist_attraction" },
+    ],
     maxPlaceCount: 12,
   });
 
-  map = localContextMapView.map;
+  map = localContextMapView.map!;
 
   map.setOptions({
     center: districts["a"].location,

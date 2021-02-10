@@ -103,8 +103,11 @@
                 // other map click event handlers from receiving the event.
 
                 event.stop();
-                this.calculateAndDisplayRoute(event.placeId);
-                this.getPlaceInformation(event.placeId);
+
+                if (event.placeId) {
+                  this.calculateAndDisplayRoute(event.placeId);
+                  this.getPlaceInformation(event.placeId);
+                }
               }
             },
           },
@@ -139,7 +142,12 @@
                   placeId: placeId,
                 },
                 function (place, status) {
-                  if (status === "OK") {
+                  if (
+                    status === "OK" &&
+                    place &&
+                    place.geometry &&
+                    place.geometry.location
+                  ) {
                     me.infowindow.close();
                     me.infowindow.setPosition(place.geometry.location);
                     me.infowindowContent.children["place-icon"].src =

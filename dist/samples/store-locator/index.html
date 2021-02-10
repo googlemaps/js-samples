@@ -53,6 +53,11 @@
         --mdc-theme-on-secondary: rgb(1, 87, 155);
       }
 
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+
       #sidebar {
         flex-basis: 5rem;
       }
@@ -85,11 +90,6 @@
       #card-body,
       #card-header {
         padding: 0 1rem;
-      }
-
-      .mdc-text-field--focused:not(.mdc-text-field--disabled)
-        .mdc-floating-label {
-        color: var(--mdc-theme-primary);
       }
     </style>
     <script>
@@ -241,7 +241,7 @@
         var origins = [place];
         return new Promise(function (resolve, reject) {
           var callback = function callback(response, status) {
-            if (status === google.maps.DistanceMatrixStatus.OK) {
+            if (status === google.maps.DistanceMatrixStatus.OK && response) {
               resolve(response);
             } else {
               reject(status);
@@ -270,6 +270,10 @@
       }
 
       function update(location) {
+        if (!location) {
+          return;
+        }
+
         if (isUpdateInProgress) {
           alert("Update in progress, please try again.");
           return;

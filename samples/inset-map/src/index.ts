@@ -47,10 +47,10 @@ function initMap(): void {
   }
 
   map.addListener("bounds_changed", () => {
-    overview.setCenter(map.getCenter());
+    overview.setCenter(map.getCenter()!);
     overview.setZoom(
       clamp(
-        map.getZoom() - OVERVIEW_DIFFERENCE,
+        map.getZoom()! - OVERVIEW_DIFFERENCE,
         OVERVIEW_MIN_ZOOM,
         OVERVIEW_MAX_ZOOM
       )

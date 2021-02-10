@@ -20,9 +20,10 @@ def sample(name):
         srcs = ["src/index.ts"],
         prodmode_target = "esnext",
         deps = [
-            "@npm//@types/googlemaps",
+            "@npm//@types/google-maps-web",
             "@npm//@types/google.visualization",
         ],
+        tags = ["ts"],
     )
 
     native.filegroup(
@@ -123,6 +124,12 @@ def sample(name):
             "//shared/scss:sidebar",
             "//shared/scss:material-design-theme",
             "//shared/scss:mixins",
+            "//shared/scss:floating-panel",
+            "//shared/scss:autocomplete",
+            "//shared/scss:autocomplete-directions",
+            "//shared/scss:right-panel",
+                        "//shared/scss:custom-control-state",
+
         ],
         output_name = "_style.css",
         sourcemap = False,

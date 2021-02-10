@@ -25,10 +25,10 @@ let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-di
 
 function initService() {
   const displaySuggestions = function (
-    predictions: google.maps.places.QueryAutocompletePrediction[],
+    predictions: google.maps.places.QueryAutocompletePrediction[] | null,
     status: google.maps.places.PlacesServiceStatus
   ) {
-    if (status != google.maps.places.PlacesServiceStatus.OK) {
+    if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
       alert(status);
       return;
     }

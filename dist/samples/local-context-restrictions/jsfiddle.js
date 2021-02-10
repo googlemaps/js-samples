@@ -10,7 +10,7 @@ function initMap() {
   };
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
-    placeTypePreferences: ["restaurant"],
+    placeTypePreferences: [{ type: "restaurant" }],
     maxPlaceCount: 12,
     locationRestriction: bigBounds,
     directionsOptions: { origin: center },

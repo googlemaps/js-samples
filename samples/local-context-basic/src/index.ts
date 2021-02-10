@@ -19,15 +19,17 @@ let map: google.maps.Map;
 
 function initMap() {
   // [START maps_js_local_context_basic_instantiation]
-  // @ts-ignore beta feature not in type declarations
   const localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
-    placeTypePreferences: ["restaurant", "tourist_attraction"],
+    placeTypePreferences: [
+      { type: "restaurant" },
+      { type: "tourist_attraction" },
+    ],
     maxPlaceCount: 12,
   });
   // [END maps_js_local_context_basic_instantiation]
 
-  map = localContextMapView.map;
+  map = localContextMapView.map!;
 
   // [START maps_js_local_context_basic_set_options]
   map.setOptions({

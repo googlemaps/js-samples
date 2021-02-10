@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+// @ts-nocheck TODO(jpoehnelt) remove when fixed
+
 // [START maps_streetview_custom_tiles]
 let panorama: google.maps.StreetViewPanorama;
 

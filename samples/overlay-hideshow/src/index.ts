@@ -78,7 +78,7 @@ function initMap(): void {
       this.div.appendChild(img);
 
       // Add the element to the "overlayLayer" pane.
-      const panes = this.getPanes();
+      const panes = this.getPanes()!;
       panes.overlayLayer.appendChild(this.div);
     }
     // [END maps_overlay_hideshow_onadd]
@@ -95,10 +95,10 @@ function initMap(): void {
       // We'll use these coordinates to resize the div.
       const sw = overlayProjection.fromLatLngToDivPixel(
         this.bounds.getSouthWest()
-      );
+      )!;
       const ne = overlayProjection.fromLatLngToDivPixel(
         this.bounds.getNorthEast()
-      );
+      )!;
 
       // Resize the image's div to fit the indicated dimensions.
       if (this.div) {

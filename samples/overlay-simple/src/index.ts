@@ -89,7 +89,7 @@ function initMap(): void {
       this.div_.appendChild(img);
 
       // Add the element to the "overlayLayer" pane.
-      const panes = this.getPanes();
+      const panes = this.getPanes()!;
       panes.overlayLayer.appendChild(this.div_);
     }
     // [END maps_overlay_simple_region_attachment]
@@ -106,10 +106,10 @@ function initMap(): void {
       // We'll use these coordinates to resize the div.
       const sw = overlayProjection.fromLatLngToDivPixel(
         this.bounds_.getSouthWest()
-      );
+      )!;
       const ne = overlayProjection.fromLatLngToDivPixel(
         this.bounds_.getNorthEast()
-      );
+      )!;
 
       // Resize the image's div to fit the indicated dimensions.
       if (this.div_) {

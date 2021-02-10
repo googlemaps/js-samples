@@ -61,8 +61,4 @@
   padding: 0 1rem;
 }
 
-// fix the focused primary color
-.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-  color: var(--mdc-theme-primary);
-}
 /* [END maps_store_locator] */

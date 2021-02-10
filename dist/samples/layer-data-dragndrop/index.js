@@ -25,7 +25,11 @@ function loadGeoJsonString(geoString) {
 function zoom(map) {
   const bounds = new google.maps.LatLngBounds();
   map.data.forEach((feature) => {
-    processPoints(feature.getGeometry(), bounds.extend, bounds);
+    const geometry = feature.getGeometry();
+
+    if (geometry) {
+      processPoints(geometry, bounds.extend, bounds);
+    }
   });
   map.fitBounds(bounds);
 }

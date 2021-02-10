@@ -204,7 +204,6 @@ const styles: google.maps.MapTypeStyle[] = [
 ];
 
 function initMap() {
-  // @ts-ignore beta feature not in type declarations
   localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
     // [START maps_js_local_context_home_preferences]
@@ -224,7 +223,7 @@ function initMap() {
     maxPlaceCount: 24,
   });
 
-  map = localContextMapView.map;
+  map = localContextMapView.map!;
 
   map.setOptions({
     center: { lat: 51.507307, lng: -0.08114 },
@@ -248,7 +247,7 @@ function initMap() {
   autocomplete.addListener("place_changed", () => {
     const place = autocomplete.getPlace();
 
-    if (!place.geometry) {
+    if (!place || !place.geometry) {
       // User entered the name of a Place that was not suggested and
       // pressed the Enter key, or the Place Details request failed.
       window.alert("No address available for that input.");

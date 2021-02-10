@@ -162,7 +162,11 @@
   function zoom(map) {
     var bounds = new google.maps.LatLngBounds();
     map.data.forEach(function (feature) {
-      processPoints(feature.getGeometry(), bounds.extend, bounds);
+      var geometry = feature.getGeometry();
+
+      if (geometry) {
+        processPoints(geometry, bounds.extend, bounds);
+      }
     });
     map.fitBounds(bounds);
   }

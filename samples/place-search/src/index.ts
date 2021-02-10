@@ -43,30 +43,30 @@ function initMap(): void {
   service.findPlaceFromQuery(
     request,
     (
-      results: google.maps.places.PlaceResult[],
+      results: google.maps.places.PlaceResult[] | null,
       status: google.maps.places.PlacesServiceStatus
     ) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
+      if (status === google.maps.places.PlacesServiceStatus.OK && results) {
         for (let i = 0; i < results.length; i++) {
           createMarker(results[i]);
         }
 
-        map.setCenter(
-          (results[0].geometry as google.maps.places.PlaceGeometry).location
-        );
+        map.setCenter(results[0].geometry!.location!);
       }
     }
   );
 }
 
 function createMarker(place: google.maps.places.PlaceResult) {
+  if (!place.geometry || !place.geometry.location) return;
+
   const marker = new google.maps.Marker({
     map,
-    position: (place.geometry as google.maps.places.PlaceGeometry).location,
+    position: place.geometry.location,
   });
 
   google.maps.event.addListener(marker, "click", () => {
-    infowindow.setContent(place.name);
+    infowindow.setContent(place.name || "");
     infowindow.open(map);
   });
 }

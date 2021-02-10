@@ -25,11 +25,11 @@ function initMap() {
   service.nearbySearch(
     { location: pyrmont, radius: 500, type: "store" },
     (results, status, pagination) => {
-      if (status !== "OK") return;
+      if (status !== "OK" || !results) return;
       createMarkers(results, map);
-      moreButton.disabled = !pagination.hasNextPage;
+      moreButton.disabled = !pagination || !pagination.hasNextPage;
 
-      if (pagination.hasNextPage) {
+      if (pagination && pagination.hasNextPage) {
         getNextPage = pagination.nextPage;
       }
     }
@@ -41,6 +41,7 @@ function createMarkers(places, map) {
   const placesList = document.getElementById("places");
 
   for (let i = 0, place; (place = places[i]); i++) {
+    if (!place.geometry || !place.geometry.location) continue;
     const image = {
       url: place.icon,
       size: new google.maps.Size(71, 71),

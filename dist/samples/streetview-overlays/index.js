@@ -33,7 +33,7 @@ function initMap() {
   });
   // We get the map's default panorama and set up some defaults.
   // Note that we don't yet set it visible.
-  panorama = map.getStreetView();
+  panorama = map.getStreetView(); // TODO fix type
   panorama.setPosition(astorPlace);
   panorama.setPov(
     /** @type {google.maps.StreetViewPov} */ {
