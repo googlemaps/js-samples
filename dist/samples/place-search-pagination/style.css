@@ -1,10 +1,4 @@
 /* [START maps_place_search_pagination] */
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-#map {
-  height: 100%;
-}
-
 /* Optional: Makes the sample page fill the window. */
 html,
 body {
@@ -13,51 +7,44 @@ body {
   padding: 0;
 }
 
-#right-panel {
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
+#container {
+  height: 100%;
+  display: flex;
 }
 
-#right-panel select,
-#right-panel input {
-  font-size: 15px;
+#sidebar {
+  flex-basis: 5rem;
+  flex-grow: 1;
+  padding: 1rem;
+  max-width: 30rem;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
 }
 
-#right-panel select {
-  width: 100%;
+#map {
+  flex-basis: 0;
+  flex-grow: 4;
+  height: 100%;
 }
 
-#right-panel i {
-  font-size: 12px;
-}
-
-#right-panel {
-  font-family: Arial, Helvetica, sans-serif;
-  position: absolute;
-  right: 5px;
-  top: 60%;
-  margin-top: -195px;
-  height: 330px;
-  width: 200px;
-  padding: 5px;
-  z-index: 5;
-  border: 1px solid #999;
-  background: #fff;
+#sidebar {
+  display: flex;
+  flex-direction: column;
 }
 
 h2 {
-  font-size: 22px;
+  font-size: 1.5rem;
   margin: 0 0 5px 0;
+  flex-grow: 0;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
-  height: 271px;
-  width: 200px;
   overflow-y: scroll;
+  flex-grow: 1;
 }
 
 li {
@@ -66,15 +53,33 @@ li {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-size: 1.25rem;
+  cursor: pointer;
 }
 
 li:nth-child(odd) {
   background-color: #fcfcfc;
 }
 
-#more {
+button {
   width: 100%;
-  margin: 5px 0 0 0;
+  padding: 1rem;
+  flex-grow: 0;
+  cursor: pointer;
+  background: #1a73e8;
+  font-size: 1.5rem;
+  color: white;
+  border: none;
+}
+
+button:hover {
+  color: #c5d4f0;
+}
+
+button:disabled {
+  background-color: #9fc1ee;
+  color: #c5d4f0;
+  cursor: auto;
 }
 
 /* [END maps_place_search_pagination] */
