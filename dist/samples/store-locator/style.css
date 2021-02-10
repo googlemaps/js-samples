@@ -35,6 +35,10 @@ body {
   --mdc-theme-on-secondary: rgb(1, 87, 155);
 }
 
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--mdc-theme-primary);
+}
+
 #sidebar {
   flex-basis: 5rem;
 }
@@ -67,10 +71,6 @@ body {
 #card-body,
 #card-header {
   padding: 0 1rem;
-}
-
-.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-  color: var(--mdc-theme-primary);
 }
 
 /* [END maps_store_locator] */

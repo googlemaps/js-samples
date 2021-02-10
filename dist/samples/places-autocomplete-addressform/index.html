@@ -37,6 +37,11 @@
         --mdc-theme-on-secondary: rgb(1, 87, 155);
       }
 
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+
       .addressform {
         display: flex;
         width: 300px;
@@ -106,6 +111,21 @@
         };
       }
 
+      function _toConsumableArray(arr) {
+        return (
+          _arrayWithoutHoles(arr) ||
+          _iterableToArray(arr) ||
+          _unsupportedIterableToArray(arr) ||
+          _nonIterableSpread()
+        );
+      }
+
+      function _nonIterableSpread() {
+        throw new TypeError(
+          "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+        );
+      }
+
       function _unsupportedIterableToArray(o, minLen) {
         if (!o) return;
         if (typeof o === "string") return _arrayLikeToArray(o, minLen);
@@ -117,6 +137,15 @@
           /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
         )
           return _arrayLikeToArray(o, minLen);
+      }
+
+      function _iterableToArray(iter) {
+        if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter))
+          return Array.from(iter);
+      }
+
+      function _arrayWithoutHoles(arr) {
+        if (Array.isArray(arr)) return _arrayLikeToArray(arr);
       }
 
       function _arrayLikeToArray(arr, len) {
@@ -154,14 +183,14 @@
         postal_code_suffix: "long_name",
         country: "long_name",
       };
-      var textFields = [].map.call(
-        document.querySelectorAll(".mdc-text-field"),
-        function (el) {
-          return new mdc.textField.MDCTextField(el);
-        }
-      );
 
       function initAutocomplete() {
+        _toConsumableArray(
+          document.querySelectorAll(".mdc-text-field")
+        ).forEach(function (el) {
+          return new mdc.textField.MDCTextField(el);
+        });
+
         address1Field = document.querySelector("#address1");
         address2Field = document.querySelector("#address2");
         postalField = document.querySelector("#postal_code");

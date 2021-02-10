@@ -20,6 +20,10 @@ body {
   --mdc-theme-on-secondary: rgb(1, 87, 155);
 }
 
+.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+  color: var(--mdc-theme-primary);
+}
+
 .addressform {
   display: flex;
   width: 300px;

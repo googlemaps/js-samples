@@ -25,14 +25,11 @@ const componentLength = {
   postal_code_suffix: "long_name",
   country: "long_name",
 };
-const textFields = [].map.call(
-  document.querySelectorAll(".mdc-text-field"),
-  (el) => {
-    return new mdc.textField.MDCTextField(el);
-  }
-);
 
 function initAutocomplete() {
+  [...document.querySelectorAll(".mdc-text-field")].forEach((el) => {
+    return new mdc.textField.MDCTextField(el);
+  });
   address1Field = document.querySelector("#address1");
   address2Field = document.querySelector("#address2");
   postalField = document.querySelector("#postal_code");
