@@ -12,7 +12,7 @@
     "@babel/core": "^7.12.10",
     "@babel/preset-env": "^7.12.13",
     "@babel/runtime": "^7.12.13",
-    "@types/google-maps-web": "^3.43.4",
+    "@types/google.maps": "^3.43.0",
     "@types/jest": "^26.0.20",
     "@types/webpack-env": "^1.16.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
