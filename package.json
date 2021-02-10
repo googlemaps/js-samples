@@ -50,7 +50,7 @@
     "@bazel/typescript": "3.1.0",
     "@material/select": "^10.0.0",
     "@rollup/plugin-babel": "^5.0.0",
-    "@types/google-maps-web": "^3.43.2",
+    "@types/google.maps": "^3.43.0",
     "@types/google.visualization": "0.0.59",
     "@types/jest": "^26.0.13",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
