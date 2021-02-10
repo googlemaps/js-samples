@@ -6,5 +6,6 @@
   "callback": "initMap",
   "version": "weekly",
   "tag": "place_search_pagination",
-  "name": "place-search-pagination"
+  "name": "place-search-pagination",
+  "mapIds": "8d193001f940fde3"
 }

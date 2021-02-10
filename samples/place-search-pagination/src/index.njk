@@ -14,10 +14,12 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<div id="map"></div>
-<div id="right-panel">
-  <h2>Results</h2>
-  <ul id="places"></ul>
-  <button id="more">More results</button>
+<div id="container">
+  <div id="map"></div>
+  <div id="sidebar">
+    <h2>Results</h2>
+    <ul id="places"></ul>
+    <button id="more">Load more results</button>
+  </div>
 </div>
 {% endblock %}

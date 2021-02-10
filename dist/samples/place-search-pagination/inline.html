@@ -4,12 +4,6 @@
     <title>Place Search Pagination</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-
       /* Optional: Makes the sample page fill the window. */
       html,
       body {
@@ -18,51 +12,44 @@
         padding: 0;
       }
 
-      #right-panel {
-        font-family: "Roboto", "sans-serif";
-        line-height: 30px;
-        padding-left: 10px;
+      #container {
+        height: 100%;
+        display: flex;
       }
 
-      #right-panel select,
-      #right-panel input {
-        font-size: 15px;
+      #sidebar {
+        flex-basis: 5rem;
+        flex-grow: 1;
+        padding: 1rem;
+        max-width: 30rem;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
       }
 
-      #right-panel select {
-        width: 100%;
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
       }
 
-      #right-panel i {
-        font-size: 12px;
-      }
-
-      #right-panel {
-        font-family: Arial, Helvetica, sans-serif;
-        position: absolute;
-        right: 5px;
-        top: 60%;
-        margin-top: -195px;
-        height: 330px;
-        width: 200px;
-        padding: 5px;
-        z-index: 5;
-        border: 1px solid #999;
-        background: #fff;
+      #sidebar {
+        display: flex;
+        flex-direction: column;
       }
 
       h2 {
-        font-size: 22px;
+        font-size: 1.5rem;
         margin: 0 0 5px 0;
+        flex-grow: 0;
       }
 
       ul {
         list-style-type: none;
         padding: 0;
         margin: 0;
-        height: 271px;
-        width: 200px;
         overflow-y: scroll;
+        flex-grow: 1;
       }
 
       li {
@@ -71,15 +58,33 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
+        font-size: 1.25rem;
+        cursor: pointer;
       }
 
       li:nth-child(odd) {
         background-color: #fcfcfc;
       }
 
-      #more {
+      button {
         width: 100%;
-        margin: 5px 0 0 0;
+        padding: 1rem;
+        flex-grow: 0;
+        cursor: pointer;
+        background: #1a73e8;
+        font-size: 1.5rem;
+        color: white;
+        border: none;
+      }
+
+      button:hover {
+        color: #c5d4f0;
+      }
+
+      button:disabled {
+        background-color: #9fc1ee;
+        color: #c5d4f0;
+        cursor: auto;
       }
     </style>
     <script>
@@ -92,6 +97,7 @@
         const map = new google.maps.Map(document.getElementById("map"), {
           center: pyrmont,
           zoom: 17,
+          mapId: "8d193001f940fde3",
         });
         // Create the places service.
         const service = new google.maps.places.PlacesService(map);
@@ -110,55 +116,61 @@
           { location: pyrmont, radius: 500, type: "store" },
           (results, status, pagination) => {
             if (status !== "OK" || !results) return;
-            createMarkers(results, map);
+            addPlaces(results, map);
             moreButton.disabled = !pagination || !pagination.hasNextPage;
 
             if (pagination && pagination.hasNextPage) {
-              getNextPage = pagination.nextPage;
+              getNextPage = () => {
+                // Note: nextPage will call the same handler function as the initial call
+                pagination.nextPage();
+              };
             }
           }
         );
       }
 
-      function createMarkers(places, map) {
-        const bounds = new google.maps.LatLngBounds();
+      function addPlaces(places, map) {
         const placesList = document.getElementById("places");
 
-        for (let i = 0, place; (place = places[i]); i++) {
-          if (!place.geometry || !place.geometry.location) continue;
-          const image = {
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(25, 25),
-          };
-          new google.maps.Marker({
-            map,
-            icon: image,
-            title: place.name,
-            position: place.geometry.location,
-          });
-          const li = document.createElement("li");
-          li.textContent = place.name;
-          placesList.appendChild(li);
-          bounds.extend(place.geometry.location);
+        for (const place of places) {
+          if (place.geometry && place.geometry.location) {
+            const image = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25),
+            };
+            new google.maps.Marker({
+              map,
+              icon: image,
+              title: place.name,
+              position: place.geometry.location,
+            });
+            const li = document.createElement("li");
+            li.textContent = place.name;
+            placesList.appendChild(li);
+            li.addEventListener("click", () => {
+              map.setCenter(place.geometry.location);
+            });
+          }
         }
-        map.fitBounds(bounds);
       }
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    <div id="right-panel">
-      <h2>Results</h2>
-      <ul id="places"></ul>
-      <button id="more">More results</button>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <h2>Results</h2>
+        <ul id="places"></ul>
+        <button id="more">Load more results</button>
+      </div>
     </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places&v=weekly&map_ids=8d193001f940fde3"
       async
     ></script>
   </body>
