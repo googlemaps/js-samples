@@ -13,53 +13,106 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-{% extends '../../../shared/layout.njk'%} {% block html %}
-<div id="locationField">
-  <input
-    id="autocomplete"
-    placeholder="Enter your address"
-    onFocus="geolocate()"
-    type="text"
-  />
-</div>
-
-<!-- Note: The address components in this sample are typical. You might need to adjust them for
-               the locations relevant to your app. For more information, see
-         https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+{% extends '../../../shared/layout.njk'%}
+{% block external %}
+  <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  </head>
+{% endblock %}
+{% block html %}
+<!-- Note: The address components in this sample are based on North American address format. You might need to adjust them for the locations relevant to your app. For more information, see
+https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
     -->
 
-<table id="address">
-  <tr>
-    <td class="label">Street address</td>
-    <td class="slimField">
-      <input class="field" id="street_number" disabled="true" />
-    </td>
-    <td class="wideField" colspan="2">
-      <input class="field" id="route" disabled="true" />
-    </td>
-  </tr>
-  <tr>
-    <td class="label">City</td>
-    <td class="wideField" colspan="3">
-      <input class="field" id="locality" disabled="true" />
-    </td>
-  </tr>
-  <tr>
-    <td class="label">State</td>
-    <td class="slimField">
-      <input class="field" id="administrative_area_level_1" disabled="true" />
-    </td>
-    <td class="label">Zip code</td>
-    <td class="wideField">
-      <input class="field" id="postal_code" disabled="true" />
-    </td>
-  </tr>
-  <tr>
-    <td class="label">Country</td>
-    <td class="wideField" colspan="3">
-      <input class="field" id="country" disabled="true" />
-    </td>
-  </tr>
-</table>
+<form action="" method="get">
+  <label class="mdc-text-field mdc-text-field--outlined addressform" id="address1-outer">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+          <span class="mdc-floating-label" id="address1label">Street address</span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
+    <input class="mdc-text-field__input" type="text" id="address1" 
+      name="address1" aria-labelledby="address1label" autocomplete="new-password" required>
+  </label>
+  <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform" id="address2-outer">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="address2label">Address 2</span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
+    <input class="mdc-text-field__input" type="text" id="address2" name="address2" aria-labelledby="address2label" autocomplete="new-password" disabled>
+  </label>
+  <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform" id="locality-outer">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="localitylabel">City</span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
+    <input class="mdc-text-field__input" type="text" id="locality" name="locality" aria-labelledby="localitylabel" autocomplete="new-password" required disabled>
+  </label>
+  <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled slimfield" id="administrative_area_level_1-outer">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="administrative_area_level_1label">State/Province</span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
+    <input class="mdc-text-field__input" type="text" id="administrative_area_level_1" name="administrative_area_level_1" aria-labelledby="administrative_area_level_1label" autocomplete="new-password" disabled>
+  </label>
+  <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled slimfield" id="postal_code-outer">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="postal_codelabel">Postal code</span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
+    <input class="mdc-text-field__input" type="text" id="postal_code" name="postal_code" aria-labelledby="postal_codelabel" autocomplete="new-password" disabled>
+  </label>
+  <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform" id="country-outer">
+    <span class="mdc-notched-outline">
+      <span class="mdc-notched-outline__leading"></span>
+      <span class="mdc-notched-outline__notch">
+        <span class="mdc-floating-label" id="countrylabel">Country</span>
+      </span>
+      <span class="mdc-notched-outline__trailing"></span>
+    </span>
+    <input class="mdc-text-field__input" type="text" id="country" name="country" aria-labelledby="countrylabel" autocomplete="new-password" disabled>
+  </label>
+</form>
+
+  <!-- old code
+<form action="" method="get">
+  <div class="form-example">
+    <label for="address2">Address line 2: </label>
+    <input type="text" name="address2" id="address2" autocomplete="off" disabled="true" />
+  </div>
+  <div class="form-example">
+    <label for="locality">City </label>
+    <input type="text" name="locality" id="locality" autocomplete="off" disabled="true" />
+  </div>
+  <div class="form-example">
+    <label for="administrative_area_level_1">State/Province </label>
+    <input type="text" name="administrative_area_level_1" id="administrative_area_level_1" autocomplete="off" disabled="true" />
+  </div>
+  <div class="form-example">
+    <label for="postal_code">Postal code </label>
+    <input type="text" name="postal_code" id="postal_code" autocomplete="off" disabled="true" />
+  </div>
+  <div class="form-example">
+    <label for="country">Country </label>
+    <input type="text" name="country" id="country" autocomplete="off" disabled="true" />
+  </div>
+</form>
+    -->
 
 {% endblock %}
