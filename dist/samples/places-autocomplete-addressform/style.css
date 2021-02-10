@@ -13,53 +13,24 @@ body {
   padding: 0;
 }
 
-#locationField,
-#controls {
-  position: relative;
-  width: 480px;
+:root {
+  --mdc-theme-primary: #1a73e8;
+  --mdc-theme-secondary: #rgb(225, 245, 254);
+  --mdc-theme-on-primary: #fff;
+  --mdc-theme-on-secondary: rgb(1, 87, 155);
 }
 
-#autocomplete {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 99%;
+.addressform {
+  display: flex;
+  width: 300px;
+  margin: 20px auto;
 }
 
-.label {
-  text-align: right;
-  font-weight: bold;
+.slimfield {
+  display: flex;
+  flex-direction: row;
   width: 100px;
-  color: #303030;
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
-}
-
-#address {
-  border: 1px solid #000090;
-  background-color: #f0f9ff;
-  width: 480px;
-  padding-right: 2px;
-}
-
-#address td {
-  font-size: 10pt;
-}
-
-.field {
-  width: 99%;
-}
-
-.slimField {
-  width: 80px;
-}
-
-.wideField {
-  width: 200px;
-}
-
-#locationField {
-  height: 20px;
-  margin-bottom: 2px;
+  margin: 20px auto;
 }
 
 /* [END maps_places_autocomplete_addressform] */
