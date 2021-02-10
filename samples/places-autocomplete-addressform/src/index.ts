@@ -46,15 +46,12 @@ const componentLength = {
   country: "long_name",
 };
 
-const textFields = [].map.call(
-  document.querySelectorAll(".mdc-text-field"),
-  (el) => {
+function initAutocomplete() {
+  [...document.querySelectorAll(".mdc-text-field")].forEach((el) => {
     // @ts-ignore
     return new mdc.textField.MDCTextField(el);
-  }
-);
+  });
 
-function initAutocomplete() {
   address1Field = document.querySelector("#address1") as HTMLInputElement;
   address2Field = document.querySelector("#address2") as HTMLInputElement;
   postalField = document.querySelector("#postal_code") as HTMLInputElement;
