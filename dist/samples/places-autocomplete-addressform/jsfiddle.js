@@ -25,22 +25,14 @@ const componentLength = {
   postal_code_suffix: "long_name",
   country: "long_name",
 };
-const textFields = [].map.call(
-  document.querySelectorAll(".mdc-text-field"),
-  (el) => {
-    return new mdc.textField.MDCTextField(el);
-  }
-);
 
 function initAutocomplete() {
   [...document.querySelectorAll(".mdc-text-field")].forEach((el) => {
     return new mdc.textField.MDCTextField(el);
   });
-  address1Field = document.querySelector("#address1");
+  address1Field = document.querySelector("#gmp-a1");
   address2Field = document.querySelector("#address2");
   postalField = document.querySelector("#postal_code");
-  console.log(address1Field.value + "address1");
-  console.log(address2Field.value + "address2");
   // Create the autocomplete object, restricting the search predictions to
   // geographical location types.
   autocomplete = new google.maps.places.Autocomplete(address1Field, {
@@ -48,6 +40,7 @@ function initAutocomplete() {
     fields: ["address_components", "geometry"],
     types: ["address"],
   });
+  address1Field.focus();
   // When the user selects an address from the drop-down, populate the
   // address fields in the form.
   autocomplete.addListener("place_changed", fillInAddress);
@@ -58,17 +51,6 @@ function fillInAddress() {
   const place = autocomplete.getPlace();
   let address1 = "";
   let postcode = "";
-
-  for (const component of componentFields) {
-    const classname = component + "-outer";
-    const element = document.getElementById(classname);
-    const pattern = new RegExp(
-      "(?:)" + "mdc-text-field--disabled" + "(?:)",
-      "g"
-    );
-    element.className = element.className.replace(pattern, "");
-    document.getElementById(component).disabled = false;
-  }
 
   // Get each component of the address from the place details,
   // and then fill-in the corresponding field on the form.
@@ -99,17 +81,29 @@ function fillInAddress() {
       default: {
         if (componentLength[addressType]) {
           const val = component[componentLength[addressType]];
-          // eslint-disable-next-line prettier/prettier
           document.getElementById(addressType).value = val;
         }
         break;
       }
     }
   }
-  console.log(address1);
-  console.log(postcode);
   address1Field.value = address1;
   postalField.value = postcode;
+
+  // Enable the rest of the address form fields
+  for (const component of componentFields) {
+    const classname = component + "-outer";
+    const element = document.getElementById(classname);
+    console.log(element.outerHTML);
+    const pattern = new RegExp(
+      "(?:)" + "mdc-text-field--disabled" + "(?:)",
+      "g"
+    );
+    element.className = element.className.replace(pattern, "");
+
+    document.getElementById(component).disabled = false;
+    console.log(element.outerHTML);
+  }
   // After filling the form with address components from the Autocomplete
   // prediction, set cursor focus on the second address line to encourage
   // entry of subpremise information such as apartment, unit, or floor number.

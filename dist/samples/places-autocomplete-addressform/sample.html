@@ -24,168 +24,137 @@
 https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
     -->
 
-    <form action="" method="get">
-      <label
-        class="mdc-text-field mdc-text-field--outlined addressform"
-        id="address1-outer"
-      >
-        <span class="mdc-notched-outline">
-          <span class="mdc-notched-outline__leading"></span>
-          <span class="mdc-notched-outline__notch">
-            <span class="mdc-floating-label" id="address1label"
-              >Street address</span
-            >
+    <div id="formdiv">
+      <form action="" method="get" autocomplete="off">
+        <label class="mdc-text-field mdc-text-field--outlined addressform">
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span class="mdc-floating-label" id="a1label">Deliver to</span>
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
           </span>
-          <span class="mdc-notched-outline__trailing"></span>
-        </span>
-        <input
-          class="mdc-text-field__input"
-          type="text"
-          id="address1"
-          name="address1"
-          aria-labelledby="address1label"
-          autocomplete="new-password"
-          required
-        />
-      </label>
-      <label
-        class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
-        id="address2-outer"
-      >
-        <span class="mdc-notched-outline">
-          <span class="mdc-notched-outline__leading"></span>
-          <span class="mdc-notched-outline__notch">
-            <span class="mdc-floating-label" id="address2label">Address 2</span>
+          <input
+            class="mdc-text-field__input"
+            type="text"
+            id="gmp-a1"
+            name="gmp-a1"
+            aria-labelledby="a1label"
+            required
+            autocomplete="off"
+          />
+        </label>
+        <label
+          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
+          id="address2-outer"
+        >
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span class="mdc-floating-label" id="address2label"
+                >Address 2</span
+              >
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
           </span>
-          <span class="mdc-notched-outline__trailing"></span>
-        </span>
-        <input
-          class="mdc-text-field__input"
-          type="text"
-          id="address2"
-          name="address2"
-          aria-labelledby="address2label"
-          autocomplete="new-password"
-          disabled
-        />
-      </label>
-      <label
-        class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
-        id="locality-outer"
-      >
-        <span class="mdc-notched-outline">
-          <span class="mdc-notched-outline__leading"></span>
-          <span class="mdc-notched-outline__notch">
-            <span class="mdc-floating-label" id="localitylabel">City</span>
+          <input
+            class="mdc-text-field__input"
+            type="text"
+            id="address2"
+            name="address2"
+            aria-labelledby="address2label"
+            disabled
+          />
+        </label>
+        <label
+          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
+          id="locality-outer"
+        >
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span class="mdc-floating-label" id="localitylabel">City</span>
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
           </span>
-          <span class="mdc-notched-outline__trailing"></span>
-        </span>
-        <input
-          class="mdc-text-field__input"
-          type="text"
-          id="locality"
-          name="locality"
-          aria-labelledby="localitylabel"
-          autocomplete="new-password"
-          required
-          disabled
-        />
-      </label>
-      <label
-        class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled slimfield"
-        id="administrative_area_level_1-outer"
-      >
-        <span class="mdc-notched-outline">
-          <span class="mdc-notched-outline__leading"></span>
-          <span class="mdc-notched-outline__notch">
-            <span
-              class="mdc-floating-label"
-              id="administrative_area_level_1label"
-              >State/Province</span
-            >
+          <input
+            class="mdc-text-field__input"
+            type="text"
+            id="locality"
+            name="locality"
+            aria-labelledby="localitylabel"
+            required
+            disabled
+          />
+        </label>
+        <label
+          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled slimfield-left"
+          id="administrative_area_level_1-outer"
+        >
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span
+                class="mdc-floating-label"
+                id="administrative_area_level_1label"
+                >State/Province</span
+              >
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
           </span>
-          <span class="mdc-notched-outline__trailing"></span>
-        </span>
-        <input
-          class="mdc-text-field__input"
-          type="text"
-          id="administrative_area_level_1"
-          name="administrative_area_level_1"
-          aria-labelledby="administrative_area_level_1label"
-          autocomplete="new-password"
-          disabled
-        />
-      </label>
-      <label
-        class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled slimfield"
-        id="postal_code-outer"
-      >
-        <span class="mdc-notched-outline">
-          <span class="mdc-notched-outline__leading"></span>
-          <span class="mdc-notched-outline__notch">
-            <span class="mdc-floating-label" id="postal_codelabel"
-              >Postal code</span
-            >
+          <input
+            class="mdc-text-field__input"
+            type="text"
+            id="administrative_area_level_1"
+            name="administrative_area_level_1"
+            aria-labelledby="administrative_area_level_1label"
+            disabled
+          />
+        </label>
+        <label
+          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled slimfield-right"
+          id="postal_code-outer"
+        >
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span class="mdc-floating-label" id="postal_codelabel"
+                >Postal code</span
+              >
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
           </span>
-          <span class="mdc-notched-outline__trailing"></span>
-        </span>
-        <input
-          class="mdc-text-field__input"
-          type="text"
-          id="postal_code"
-          name="postal_code"
-          aria-labelledby="postal_codelabel"
-          autocomplete="new-password"
-          disabled
-        />
-      </label>
-      <label
-        class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
-        id="country-outer"
-      >
-        <span class="mdc-notched-outline">
-          <span class="mdc-notched-outline__leading"></span>
-          <span class="mdc-notched-outline__notch">
-            <span class="mdc-floating-label" id="countrylabel">Country</span>
+          <input
+            class="mdc-text-field__input"
+            type="text"
+            id="postal_code"
+            name="postal_code"
+            aria-labelledby="postal_codelabel"
+            disabled
+          />
+        </label>
+        <label
+          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
+          id="country-outer"
+        >
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span class="mdc-floating-label" id="countrylabel">Country</span>
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
           </span>
-          <span class="mdc-notched-outline__trailing"></span>
-        </span>
-        <input
-          class="mdc-text-field__input"
-          type="text"
-          id="country"
-          name="country"
-          aria-labelledby="countrylabel"
-          autocomplete="new-password"
-          disabled
-        />
-      </label>
-    </form>
-
-    <!-- old code
-<form action="" method="get">
-  <div class="form-example">
-    <label for="address2">Address line 2: </label>
-    <input type="text" name="address2" id="address2" autocomplete="off" disabled="true" />
-  </div>
-  <div class="form-example">
-    <label for="locality">City </label>
-    <input type="text" name="locality" id="locality" autocomplete="off" disabled="true" />
-  </div>
-  <div class="form-example">
-    <label for="administrative_area_level_1">State/Province </label>
-    <input type="text" name="administrative_area_level_1" id="administrative_area_level_1" autocomplete="off" disabled="true" />
-  </div>
-  <div class="form-example">
-    <label for="postal_code">Postal code </label>
-    <input type="text" name="postal_code" id="postal_code" autocomplete="off" disabled="true" />
-  </div>
-  <div class="form-example">
-    <label for="country">Country </label>
-    <input type="text" name="country" id="country" autocomplete="off" disabled="true" />
-  </div>
-</form>
-    -->
+          <input
+            class="mdc-text-field__input"
+            type="text"
+            id="country"
+            name="country"
+            aria-labelledby="countrylabel"
+            disabled
+          />
+        </label>
+      </form>
+    </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script

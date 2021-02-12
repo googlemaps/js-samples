@@ -24,17 +24,35 @@ body {
   color: var(--mdc-theme-primary);
 }
 
+form {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
 .addressform {
-  display: flex;
-  width: 300px;
-  margin: 20px auto;
+  flex: 100%;
+  margin: 10px;
 }
 
-.slimfield {
-  display: flex;
-  flex-direction: row;
-  width: 100px;
-  margin: 20px auto;
+.slimfield-left {
+  flex: 40%;
+  margin: 10px 5px 10px 10px;
 }
 
+.slimfield-right {
+  flex: 40%;
+  margin: 10px 10px 10px 5px;
+}
+
+@media (max-width: 340px) {
+  .slimfield-left,
+  .slimfield-right {
+    flex: 100%;
+    margin: 10px;
+  }
+}
 /* [END maps_places_autocomplete_addressform] */

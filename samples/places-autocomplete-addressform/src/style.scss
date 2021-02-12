@@ -20,16 +20,34 @@
 @include meta.load-css("../../../shared/scss/default.scss");
 @include meta.load-css("../../../shared/scss/material-design-theme.scss");
 
-.addressform {
+form {
   display: flex;
-  width: 300px;
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 400px;
   margin: 20px auto;
+  padding: 20px;
 }
 
-.slimfield {
-  display: flex;
-  flex-direction: row;
-  width: 100px;
-  margin: 20px auto;
+.addressform {
+  flex: 100%;
+  margin: 10px;
+}
+
+.slimfield-left {
+  flex: 40%;
+  margin: 10px 5px 10px 10px;
+}
+
+.slimfield-right {
+  flex: 40%;
+  margin: 10px 10px 10px 5px;
+}
+
+@media (max-width: 340px) {
+  .slimfield-left, .slimfield-right {
+    flex: 100%;
+    margin: 10px;
+  }
 }
 /* [END maps_places_autocomplete_addressform] */
