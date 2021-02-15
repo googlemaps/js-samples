@@ -46,7 +46,7 @@
     "@bazel/buildozer": "^4.0.0",
     "@bazel/concatjs": "^3.1.0",
     "@bazel/ibazel": "^0.14.0",
-    "@bazel/rollup": "3.1.0",
+    "@bazel/rollup": "3.2.0",
     "@bazel/typescript": "3.1.0",
     "@material/select": "^10.0.0",
     "@rollup/plugin-babel": "^5.0.0",
