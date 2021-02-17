@@ -28,9 +28,6 @@ const componentLength = {
 };
 
 function initAutocomplete() {
-  [...document.querySelectorAll(".mdc-text-field")].forEach((el) => {
-    return new mdc.textField.MDCTextField(el);
-  });
   address1Field = document.querySelector("#gmp-a1");
   address2Field = document.querySelector("#address2");
   postalField = document.querySelector("#postal_code");
@@ -94,21 +91,12 @@ function fillInAddress() {
 
   // Enable the rest of the address form fields
   for (const component of componentFields) {
-    const classname = component + "-outer";
-    const element = document.getElementById(classname);
-    console.log(element.outerHTML);
-    const pattern = new RegExp(
-      "(?:)" + "mdc-text-field--disabled" + "(?:)",
-      "g"
-    );
-    element.className = element.className.replace(pattern, "");
-
     document.getElementById(component).disabled = false;
-    console.log(element.outerHTML);
   }
   // After filling the form with address components from the Autocomplete
   // prediction, set cursor focus on the second address line to encourage
   // entry of subpremise information such as apartment, unit, or floor number.
+  address2Field.placeholder = "Apartment, unit, or floor #";
   address2Field.focus();
 }
 // [END maps_places_autocomplete_addressform_fillform]

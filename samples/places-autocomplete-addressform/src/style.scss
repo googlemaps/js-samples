@@ -18,36 +18,71 @@
 
 /* [START maps_places_autocomplete_addressform] */
 @include meta.load-css("../../../shared/scss/default.scss");
-@include meta.load-css("../../../shared/scss/material-design-theme.scss");
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  color: rgb(104, 104, 104);
+}
 
 form {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  align-items: stretch;
+  justify-content: space-between;
   max-width: 400px;
   margin: 20px auto;
-  padding: 20px;
+  padding: 4rem 0;
 }
 
-.addressform {
-  flex: 100%;
-  margin: 10px;
+input {
+  width: 100%;
+  height: 1.2rem;
+  margin-top: 0;
+  padding: 0.5em;
+  border: 0;
+  border-bottom: 2px solid gray;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+input:focus {
+  border-bottom: 4px solid black;
+}
+
+.formlabel {
+  width: 100%;
+  padding: 0.5em;
+}
+
+.fullfield {
+  flex: 400px;
+  margin: 15px 0;
 }
 
 .slimfield-left {
-  flex: 40%;
-  margin: 10px 5px 10px 10px;
+  flex: 1 150px;
+  margin: 15px 15px 15px 0px;
 }
 
 .slimfield-right {
-  flex: 40%;
-  margin: 10px 10px 10px 5px;
+  flex: 1 150px;
+  margin: 15px 0px 15px 15px;
 }
 
-@media (max-width: 340px) {
-  .slimfield-left, .slimfield-right {
-    flex: 100%;
-    margin: 10px;
-  }
+.myButton {
+	background-color:#000;
+	border-radius:6px;
+	color:#fff;
+  margin: 10px;
+	padding:6px 24px;
+	text-decoration:none;
+}
+.myButton:hover {
+	background-color:#666;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
 }
 /* [END maps_places_autocomplete_addressform] */

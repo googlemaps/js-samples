@@ -5,16 +5,9 @@
     <title>Place Autocomplete Address Form</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link
-      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      href="https://fonts.googleapis.com/css?family=Roboto:400"
       rel="stylesheet"
     />
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
-    <head>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      />
-    </head>
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script src="./index.js"></script>
@@ -24,137 +17,71 @@
 https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
     -->
 
-    <div id="formdiv">
-      <form action="" method="get" autocomplete="off">
-        <label class="mdc-text-field mdc-text-field--outlined addressform">
-          <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-              <span class="mdc-floating-label" id="a1label">Deliver to</span>
-            </span>
-            <span class="mdc-notched-outline__trailing"></span>
-          </span>
-          <input
-            class="mdc-text-field__input"
-            type="text"
-            id="gmp-a1"
-            name="gmp-a1"
-            aria-labelledby="a1label"
-            required
-            autocomplete="off"
-          />
-        </label>
-        <label
-          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
-          id="address2-outer"
+    <form action="" method="get" autocomplete="off">
+      <label class="fullfield" for="gmp-a1">
+        <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
+        <span class="formlabel" id="a1-label">Deliver to*</span>
+        <input
+          type="text"
+          id="gmp-a1"
+          name="gmp-a1"
+          aria-labelledby="a1-label"
+          required
+          autocomplete="off"
+        />
+      </label>
+      <label class="fullfield" for="address2">
+        <span class="formlabel" id="address2-label">Address 2</span>
+        <input
+          type="text"
+          id="address2"
+          name="address2"
+          aria-labelledby="address2-label"
+        />
+      </label>
+      <label class="fullfield" for="locality">
+        <span class="formlabel" id="locality-label">City*</span>
+        <input
+          type="text"
+          id="locality"
+          name="locality"
+          aria-labelledby="locality-label"
+          required
+        />
+      </label>
+
+      <label class="slimfield-left" for="administrative_area_level_1">
+        <span class="formlabel" id="administrative_area_level_1-label"
+          >State/Province*</span
         >
-          <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-              <span class="mdc-floating-label" id="address2label"
-                >Address 2</span
-              >
-            </span>
-            <span class="mdc-notched-outline__trailing"></span>
-          </span>
-          <input
-            class="mdc-text-field__input"
-            type="text"
-            id="address2"
-            name="address2"
-            aria-labelledby="address2label"
-            disabled
-          />
-        </label>
-        <label
-          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
-          id="locality-outer"
-        >
-          <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-              <span class="mdc-floating-label" id="localitylabel">City</span>
-            </span>
-            <span class="mdc-notched-outline__trailing"></span>
-          </span>
-          <input
-            class="mdc-text-field__input"
-            type="text"
-            id="locality"
-            name="locality"
-            aria-labelledby="localitylabel"
-            required
-            disabled
-          />
-        </label>
-        <label
-          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled slimfield-left"
-          id="administrative_area_level_1-outer"
-        >
-          <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-              <span
-                class="mdc-floating-label"
-                id="administrative_area_level_1label"
-                >State/Province</span
-              >
-            </span>
-            <span class="mdc-notched-outline__trailing"></span>
-          </span>
-          <input
-            class="mdc-text-field__input"
-            type="text"
-            id="administrative_area_level_1"
-            name="administrative_area_level_1"
-            aria-labelledby="administrative_area_level_1label"
-            disabled
-          />
-        </label>
-        <label
-          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled slimfield-right"
-          id="postal_code-outer"
-        >
-          <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-              <span class="mdc-floating-label" id="postal_codelabel"
-                >Postal code</span
-              >
-            </span>
-            <span class="mdc-notched-outline__trailing"></span>
-          </span>
-          <input
-            class="mdc-text-field__input"
-            type="text"
-            id="postal_code"
-            name="postal_code"
-            aria-labelledby="postal_codelabel"
-            disabled
-          />
-        </label>
-        <label
-          class="mdc-text-field mdc-text-field--outlined mdc-text-field--disabled addressform"
-          id="country-outer"
-        >
-          <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-            <span class="mdc-notched-outline__notch">
-              <span class="mdc-floating-label" id="countrylabel">Country</span>
-            </span>
-            <span class="mdc-notched-outline__trailing"></span>
-          </span>
-          <input
-            class="mdc-text-field__input"
-            type="text"
-            id="country"
-            name="country"
-            aria-labelledby="countrylabel"
-            disabled
-          />
-        </label>
-      </form>
-    </div>
+        <input
+          type="text"
+          id="administrative_area_level_1"
+          name="administrative_area_level_1"
+          aria-labelledby="administrative_area_level_1-label"
+        />
+      </label>
+      <label class="slimfield-right" for="postal_code">
+        <span class="formlabel" id="postal_code-label">Postal code*</span>
+        <input
+          type="text"
+          id="postal_code"
+          name="postal_code"
+          aria-labelledby="postal_code-label"
+        />
+      </label>
+
+      <label class="fullfield" for="country">
+        <span class="formlabel" id="country-label">Country*</span>
+        <input
+          type="text"
+          id="country"
+          name="country"
+          aria-labelledby="country-label"
+        />
+      </label>
+      <button type="button" class="myButton">Save address</button>
+    </form>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
