@@ -51,9 +51,9 @@ function initAutocomplete() {
   address2Field = document.querySelector("#address2") as HTMLInputElement;
   postalField = document.querySelector("#postal_code") as HTMLInputElement;
   // Create the autocomplete object, restricting the search predictions to
-  // geographical location types.
+  // addresses in the US and Canada.
   autocomplete = new google.maps.places.Autocomplete(address1Field, {
-    componentRestrictions: { country: "us" },
+    componentRestrictions: { country: ["us", "ca"] },
     fields: ["address_components", "geometry"],
     types: ["address"],
   });
@@ -101,7 +101,9 @@ function fillInAddress() {
       default: {
         if (componentLength[addressType]) {
           const val = component[componentLength[addressType]];
-          (document.getElementById(addressType) as HTMLInputElement).value = val;
+          (document.getElementById(
+            addressType
+          ) as HTMLInputElement).value = val;
         }
         break;
       }

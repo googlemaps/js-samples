@@ -5,7 +5,7 @@
     <title>Place Autocomplete Address Form</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto:400"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500"
       rel="stylesheet"
     />
 
@@ -18,6 +18,7 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
     -->
 
     <form action="" method="get" autocomplete="off">
+      <span class="title">Sample address form for North America</span>
       <label class="fullfield" for="gmp-a1">
         <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
         <span class="formlabel" id="a1-label">Deliver to*</span>
@@ -31,7 +32,9 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
         />
       </label>
       <label class="fullfield" for="address2">
-        <span class="formlabel" id="address2-label">Address 2</span>
+        <span class="formlabel" id="address2-label"
+          >Apartment, suite, etc.</span
+        >
         <input
           type="text"
           id="address2"
@@ -72,7 +75,7 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
       </label>
 
       <label class="fullfield" for="country">
-        <span class="formlabel" id="country-label">Country*</span>
+        <span class="formlabel" id="country-label">Country/Region*</span>
         <input
           type="text"
           id="country"

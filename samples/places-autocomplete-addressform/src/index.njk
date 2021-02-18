@@ -15,7 +15,7 @@
 -->
 {% extends '../../../shared/layout.njk'%}
 {% block external %}
-<link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
 {% endblock %}
 {% block html %}
 <!-- Note: The address components in this sample are based on North American address format. You might need to adjust them for the locations relevant to your app. For more information, see
@@ -23,13 +23,14 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
     -->
 
 <form action="" method="get" autocomplete="off">
+  <span class="title">Sample address form for North America</span>
   <label class="fullfield" for="gmp-a1">
     <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
     <span class="formlabel" id="a1-label">Deliver to*</span>
     <input type="text" id="gmp-a1" name="gmp-a1" aria-labelledby="a1-label" required autocomplete="off">
   </label>
   <label class="fullfield" for="address2">
-    <span class="formlabel" id="address2-label">Address 2</span>
+    <span class="formlabel" id="address2-label">Apartment, suite, etc.</span>
     <input type="text" id="address2" name="address2" aria-labelledby="address2-label">
   </label>
   <label class="fullfield" for="locality">
@@ -48,7 +49,7 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
   </label>
 
   <label class="fullfield" for="country">
-    <span class="formlabel" id="country-label">Country*</span>
+    <span class="formlabel" id="country-label">Country/Region*</span>
     <input type="text" id="country" name="country" aria-labelledby="country-label">
   </label>
   <button type="button" class="myButton">Save address</button>

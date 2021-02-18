@@ -22,8 +22,6 @@ body {
 form {
   display: flex;
   flex-wrap: wrap;
-  align-items: stretch;
-  justify-content: space-between;
   max-width: 400px;
   margin: 20px auto;
   padding: 4rem 0;
@@ -42,6 +40,10 @@ input {
 
 input:focus {
   border-bottom: 4px solid black;
+}
+
+.title {
+  font-weight: 500;
 }
 
 .formlabel {
