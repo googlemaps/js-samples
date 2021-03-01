@@ -15,7 +15,7 @@
     "@types/google.maps": "^3.43.0",
     "@types/jest": "^26.0.20",
     "@types/webpack-env": "^1.16.0",
-    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/eslint-plugin": "^4.15.2",
     "@typescript-eslint/parser": "^4.14.2",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.2",
