@@ -51,7 +51,7 @@
     "@material/select": "^10.0.0",
     "@rollup/plugin-babel": "^5.0.0",
     "@types/google.maps": "^3.43.0",
-    "@types/google.visualization": "0.0.59",
+    "@types/google.visualization": "0.0.60",
     "@types/jest": "^26.0.13",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.0.0",
