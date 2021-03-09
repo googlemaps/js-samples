@@ -28,14 +28,6 @@ let address1Field: HTMLInputElement;
 let address2Field: HTMLInputElement;
 let postalField: HTMLInputElement;
 
-const componentFields = [
-  "address2",
-  "locality",
-  "administrative_area_level_1",
-  "postal_code",
-  "country",
-];
-
 const componentLength = {
   street_number: "long_name",
   route: "short_name",
@@ -75,34 +67,34 @@ function fillInAddress() {
   // and then fill-in the corresponding field on the form.
   for (const component of place.address_components as google.maps.GeocoderAddressComponent[]) {
     // @ts-ignore remove once typings fixed
-    const addressType = component.types[0];
+    const componentType = component.types[0];
 
-    switch (addressType) {
+    switch (componentType) {
       case "street_number": {
-        address1 = component[componentLength[addressType]] + " " + address1;
+        address1 = component[componentLength[componentType]] + " " + address1;
         break;
       }
 
       case "route": {
-        address1 += component[componentLength[addressType]];
+        address1 += component[componentLength[componentType]];
         break;
       }
 
       case "postal_code": {
-        postcode = component[componentLength[addressType]] + postcode;
+        postcode = component[componentLength[componentType]] + postcode;
         break;
       }
 
       case "postal_code_suffix": {
-        postcode += "-" + component[componentLength[addressType]];
+        postcode += "-" + component[componentLength[componentType]];
         break;
       }
 
       default: {
-        if (componentLength[addressType]) {
-          const val = component[componentLength[addressType]];
+        if (componentLength[componentType]) {
+          const val = component[componentLength[componentType]];
           (document.getElementById(
-            addressType
+            componentType
           ) as HTMLInputElement).value = val;
         }
         break;
@@ -113,16 +105,9 @@ function fillInAddress() {
   address1Field.value = address1;
   postalField.value = postcode;
 
-  // Enable the rest of the address form fields
-  for (const component of componentFields) {
-    // @ts-ignore
-    (document.getElementById(component) as HTMLInputElement).disabled = false;
-  }
-
   // After filling the form with address components from the Autocomplete
   // prediction, set cursor focus on the second address line to encourage
   // entry of subpremise information such as apartment, unit, or floor number.
-  address2Field.placeholder = "Apartment, unit, or floor #";
   address2Field.focus();
 }
 // [END maps_places_autocomplete_addressform_fillform]
