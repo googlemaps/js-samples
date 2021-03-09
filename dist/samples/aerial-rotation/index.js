@@ -3,8 +3,8 @@ let map;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 45.518, lng: -122.672 },
-    zoom: 18,
+    center: { lat: 40.7638, lng: 73.9806 },
+    zoom: 15,
     mapTypeId: "satellite",
     heading: 90,
     tilt: 45,
