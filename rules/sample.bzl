@@ -37,11 +37,11 @@ def sample(name):
         srcs = [":_compile_outputs", "//:.eslintrc.json"],
         outs = ["compiled.js"],
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
-              "sed -i'.bak' '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " +  # it isn't possible to have tsc preserve some comments
-              "sed -i'.bak' 's/export const/const/g' $@; " +
-              "sed -i'.bak' 's/export {.*};//g' $@; " +
-              "sed -i'.bak' '/^\\s*\\/\\/ @ts-.*/d' $@; " +
-              "sed -i'.bak' 's/\\/\\/ @ts-.*//g' $@; ",
+              "sed -i'.bak' -e '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " +  # it isn't possible to have tsc preserve some comments
+              "sed -i'.bak' -e 's/export const/const/g' $@; " +
+              "sed -i'.bak' -e 's/export {.*};//g' $@; " +
+              "sed -i'.bak' -e '/^\\s*\\/\\/ @ts-.*/d' $@; " +
+              "sed -i'.bak' -e 's/\\/\\/ @ts-.*//g' $@; ",
     )
 
     native.genrule(
@@ -49,7 +49,7 @@ def sample(name):
         srcs = [":compiled.js"],
         outs = ["dev.js"],
         cmd = "cat $(location compiled.js) > $@; " +
-              "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; ",
+              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; ",
     )
 
     native.genrule(
@@ -164,7 +164,7 @@ def sample(name):
         outs = ["jsfiddle.html"],
         cmd = "cat $(location :_jsfiddle.html) > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
@@ -217,7 +217,7 @@ def sample(name):
         srcs = [":_sample.html"],
         outs = ["sample.html"],
         cmd = "cat $(location :_sample.html) > $@; " +
-              "sed -i'.bak' 's/data-inline//g' $@; " +
+              "sed -i'.bak' -e 's/data-inline//g' $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier"],
         visibility = ["//visibility:public"],
@@ -242,7 +242,7 @@ def sample(name):
         srcs = [":_index.html", ":iframe.js", ":style.css"],
         outs = ["index.html"],
         cmd = "cp $(location :_index.html) $@; " +
-              "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; ",
+              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; ",
     )
 
     # for github pages
@@ -265,7 +265,7 @@ def sample(name):
         outs = ["github.html"],
         cmd = "$(location //rules:inline) $(location :_github.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
@@ -292,7 +292,7 @@ def sample(name):
         cmd = "$(location //rules:strip_region_tags_bin) $(location :iframe.js); " +
               "$(location //rules:strip_region_tags_bin) $(location :style.css); " +
               "$(location //rules:inline) $(location :_iframe.html) $@; " +
-              "sed -i'.bak' \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier"],
         visibility = ["//visibility:public"],
@@ -322,7 +322,7 @@ def sample(name):
         cmd = "cat $(location :src/index.ts) > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "echo '\nimport \"./style.css\"; // required for webpack' >> $@; " +
-              "sed -i'.bak' '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " +  # it isn't possible to have tsc preserve some comments
+              "sed -i'.bak' -e '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " +  # it isn't possible to have tsc preserve some comments
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
     )
