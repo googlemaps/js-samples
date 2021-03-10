@@ -15,4 +15,4 @@
 
 set -e
 
-sed -i'.bak' '/sourceMappingURL/d' "$1"
+sed -i'.bak' -e '/sourceMappingURL/d' "$1"
