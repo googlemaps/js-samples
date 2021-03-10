@@ -14,6 +14,7 @@
 # limitations under the License.
 
 set -e
+tmp=$(mktemp)
 
-sed -i'.bak' -e '/\[START [a-zA-Z_]*\]/d' "$1"
-sed -i'.bak' -e '/\[END [a-zA-Z_]*\]/d' "$1"
+sed '/\[START [a-zA-Z_]*\]/d' "$1" > $tmp && cat $tmp > $1
+sed '/\[END [a-zA-Z_]*\]/d' "$1" > $tmp && cat $tmp > $1
