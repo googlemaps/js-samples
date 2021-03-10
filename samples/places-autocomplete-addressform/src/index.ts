@@ -42,6 +42,7 @@ function initAutocomplete() {
   address1Field = document.querySelector("#shipaddress") as HTMLInputElement;
   address2Field = document.querySelector("#address2") as HTMLInputElement;
   postalField = document.querySelector("#postal_code") as HTMLInputElement;
+  
   // Create the autocomplete object, restricting the search predictions to
   // addresses in the US and Canada.
   autocomplete = new google.maps.places.Autocomplete(address1Field, {
