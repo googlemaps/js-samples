@@ -71,7 +71,7 @@ function fillInAddress() {
 
     switch (componentType) {
       case "street_number": {
-        address1 = component[componentLength[componentType]] + " " + address1;
+        address1 = `${component[componentLength[componentType]]} ${address1}`;
         break;
       }
 
