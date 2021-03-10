@@ -39,7 +39,7 @@ const componentLength = {
 };
 
 function initAutocomplete() {
-  address1Field = document.querySelector("#gmp-a1") as HTMLInputElement;
+  address1Field = document.querySelector("#shipaddress") as HTMLInputElement;
   address2Field = document.querySelector("#address2") as HTMLInputElement;
   postalField = document.querySelector("#postal_code") as HTMLInputElement;
   // Create the autocomplete object, restricting the search predictions to

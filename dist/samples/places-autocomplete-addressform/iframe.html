@@ -175,13 +175,6 @@
   var address1Field;
   var address2Field;
   var postalField;
-  var componentFields = [
-    "address2",
-    "locality",
-    "administrative_area_level_1",
-    "postal_code",
-    "country",
-  ];
   var componentLength = {
     street_number: "long_name",
     route: "short_name",
@@ -193,7 +186,7 @@
   };
 
   function initAutocomplete() {
-    address1Field = document.querySelector("#gmp-a1");
+    address1Field = document.querySelector("#shipaddress");
     address2Field = document.querySelector("#address2");
     postalField = document.querySelector("#postal_code"); // Create the autocomplete object, restricting the search predictions to
     // addresses in the US and Canada.
@@ -224,33 +217,34 @@
     try {
       for (_iterator.s(); !(_step = _iterator.n()).done; ) {
         var component = _step.value;
-        var addressType = component.types[0];
+        var componentType = component.types[0];
 
-        switch (addressType) {
+        switch (componentType) {
           case "street_number": {
-            address1 = component[componentLength[addressType]] + " " + address1;
+            address1 =
+              component[componentLength[componentType]] + " " + address1;
             break;
           }
 
           case "route": {
-            address1 += component[componentLength[addressType]];
+            address1 += component[componentLength[componentType]];
             break;
           }
 
           case "postal_code": {
-            postcode = component[componentLength[addressType]] + postcode;
+            postcode = component[componentLength[componentType]] + postcode;
             break;
           }
 
           case "postal_code_suffix": {
-            postcode += "-" + component[componentLength[addressType]];
+            postcode += "-" + component[componentLength[componentType]];
             break;
           }
 
           default: {
-            if (componentLength[addressType]) {
-              var val = component[componentLength[addressType]];
-              document.getElementById(addressType).value = val;
+            if (componentLength[componentType]) {
+              var val = component[componentLength[componentType]];
+              document.getElementById(componentType).value = val;
             }
 
             break;
@@ -264,25 +258,10 @@
     }
 
     address1Field.value = address1;
-    postalField.value = postcode; // Enable the rest of the address form fields
+    postalField.value = postcode; // After filling the form with address components from the Autocomplete
+    // prediction, set cursor focus on the second address line to encourage
+    // entry of subpremise information such as apartment, unit, or floor number.
 
-    var _iterator2 = _createForOfIteratorHelper(componentFields),
-      _step2;
-
-    try {
-      for (_iterator2.s(); !(_step2 = _iterator2.n()).done; ) {
-        var _component = _step2.value;
-        document.getElementById(_component).disabled = false;
-      } // After filling the form with address components from the Autocomplete
-      // prediction, set cursor focus on the second address line to encourage
-      // entry of subpremise information such as apartment, unit, or floor number.
-    } catch (err) {
-      _iterator2.e(err);
-    } finally {
-      _iterator2.f();
-    }
-
-    address2Field.placeholder = "Apartment, unit, or floor #";
     address2Field.focus();
   }
 </script>
@@ -293,68 +272,37 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
     -->
 
   <form action="" method="get" autocomplete="off">
-    <span class="title">Sample address form for North America</span>
-    <label class="fullfield" for="gmp-a1">
+    <span class="title">Sample address form for North America</span><br />
+    <span><em>* = required field</em></span>
+    <label class="fullfield">
       <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
-      <span class="formlabel" id="a1-label">Deliver to*</span>
-      <input
-        type="text"
-        id="gmp-a1"
-        name="gmp-a1"
-        aria-labelledby="a1-label"
-        required
-        autocomplete="off"
-      />
+      <span class="formlabel">Deliver to*</span>
+      <input id="shipaddress" name="shipaddress" required autocomplete="off" />
     </label>
-    <label class="fullfield" for="address2">
-      <span class="formlabel" id="address2-label">Apartment, suite, etc.</span>
-      <input
-        type="text"
-        id="address2"
-        name="address2"
-        aria-labelledby="address2-label"
-      />
+    <label class="fullfield">
+      <span class="formlabel">Apartment, unit, suite, or floor #</span>
+      <input id="address2" name="address2" />
     </label>
-    <label class="fullfield" for="locality">
-      <span class="formlabel" id="locality-label">City*</span>
-      <input
-        type="text"
-        id="locality"
-        name="locality"
-        aria-labelledby="locality-label"
-        required
-      />
+    <label class="fullfield">
+      <span class="formlabel">City*</span>
+      <input id="locality" name="locality" required />
     </label>
 
-    <label class="slimfield-left" for="administrative_area_level_1">
-      <span class="formlabel" id="administrative_area_level_1-label"
-        >State/Province*</span
-      >
+    <label class="slimfield-left" \>
+      <span class="formlabel">State/Province*</span>
       <input
-        type="text"
         id="administrative_area_level_1"
         name="administrative_area_level_1"
-        aria-labelledby="administrative_area_level_1-label"
       />
     </label>
     <label class="slimfield-right" for="postal_code">
-      <span class="formlabel" id="postal_code-label">Postal code*</span>
-      <input
-        type="text"
-        id="postal_code"
-        name="postal_code"
-        aria-labelledby="postal_code-label"
-      />
+      <span class="formlabel">Postal code*</span>
+      <input id="postal_code" name="postal_code" />
     </label>
 
-    <label class="fullfield" for="country">
-      <span class="formlabel" id="country-label">Country/Region*</span>
-      <input
-        type="text"
-        id="country"
-        name="country"
-        aria-labelledby="country-label"
-      />
+    <label class="fullfield">
+      <span class="formlabel">Country/Region*</span>
+      <input id="country" name="country" required />
     </label>
     <button type="button" class="myButton">Save address</button>
   </form>

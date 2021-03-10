@@ -16,70 +16,42 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
     -->
 
     <form action="" method="get" autocomplete="off">
-      <span class="title">Sample address form for North America</span>
-      <label class="fullfield" for="gmp-a1">
+      <span class="title">Sample address form for North America</span><br />
+      <span><em>* = required field</em></span>
+      <label class="fullfield">
         <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
-        <span class="formlabel" id="a1-label">Deliver to*</span>
+        <span class="formlabel">Deliver to*</span>
         <input
-          type="text"
-          id="gmp-a1"
-          name="gmp-a1"
-          aria-labelledby="a1-label"
+          id="shipaddress"
+          name="shipaddress"
           required
           autocomplete="off"
         />
       </label>
-      <label class="fullfield" for="address2">
-        <span class="formlabel" id="address2-label"
-          >Apartment, suite, etc.</span
-        >
-        <input
-          type="text"
-          id="address2"
-          name="address2"
-          aria-labelledby="address2-label"
-        />
+      <label class="fullfield">
+        <span class="formlabel">Apartment, unit, suite, or floor #</span>
+        <input id="address2" name="address2" />
       </label>
-      <label class="fullfield" for="locality">
-        <span class="formlabel" id="locality-label">City*</span>
-        <input
-          type="text"
-          id="locality"
-          name="locality"
-          aria-labelledby="locality-label"
-          required
-        />
+      <label class="fullfield">
+        <span class="formlabel">City*</span>
+        <input id="locality" name="locality" required />
       </label>
 
-      <label class="slimfield-left" for="administrative_area_level_1">
-        <span class="formlabel" id="administrative_area_level_1-label"
-          >State/Province*</span
-        >
+      <label class="slimfield-left" \>
+        <span class="formlabel">State/Province*</span>
         <input
-          type="text"
           id="administrative_area_level_1"
           name="administrative_area_level_1"
-          aria-labelledby="administrative_area_level_1-label"
         />
       </label>
       <label class="slimfield-right" for="postal_code">
-        <span class="formlabel" id="postal_code-label">Postal code*</span>
-        <input
-          type="text"
-          id="postal_code"
-          name="postal_code"
-          aria-labelledby="postal_code-label"
-        />
+        <span class="formlabel">Postal code*</span>
+        <input id="postal_code" name="postal_code" />
       </label>
 
-      <label class="fullfield" for="country">
-        <span class="formlabel" id="country-label">Country/Region*</span>
-        <input
-          type="text"
-          id="country"
-          name="country"
-          aria-labelledby="country-label"
-        />
+      <label class="fullfield">
+        <span class="formlabel">Country/Region*</span>
+        <input id="country" name="country" required />
       </label>
       <button type="button" class="myButton">Save address</button>
     </form>
