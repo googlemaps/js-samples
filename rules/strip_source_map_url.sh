@@ -14,5 +14,6 @@
 # limitations under the License.
 
 set -e
+tmp=$(mktemp)
 
-sed -i'.bak' -e '/sourceMappingURL/d' "$1"
+sed '/sourceMappingURL/d' "$1" > $tmp && cat $tmp > $1

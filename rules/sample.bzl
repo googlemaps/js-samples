@@ -37,19 +37,19 @@ def sample(name):
         srcs = [":_compile_outputs", "//:.eslintrc.json"],
         outs = ["compiled.js"],
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
-              "sed -i'.bak' -e '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " +  # it isn't possible to have tsc preserve some comments
-              "sed -i'.bak' -e 's/export const/const/g' $@; " +
-              "sed -i'.bak' -e 's/export {.*};//g' $@; " +
-              "sed -i'.bak' -e '/^\\s*\\/\\/ @ts-.*/d' $@; " +
-              "sed -i'.bak' -e 's/\\/\\/ @ts-.*//g' $@; ",
+              "tmp=$$(mktemp); " +
+              "sed '/.*PRESERVE_COMMENT_ABOVE.*/d' $@ > $$tmp && cat $$tmp > $@; " +  # it isn't possible to have tsc preserve some comments
+              "sed 's/export const/const/g' $@ > $$tmp && cat $$tmp > $@; " +
+              "sed 's/export {.*};//g' $@ > $$tmp && cat $$tmp > $@; " +
+              "sed '/^\\s*\\/\\/ @ts-.*/d' $@ > $$tmp && cat $$tmp > $@; " +
+              "sed 's/\\/\\/ @ts-.*//g' $@ > $$tmp && cat $$tmp > $@; ",
     )
 
     native.genrule(
         name = "dev_js",
         srcs = [":compiled.js"],
         outs = ["dev.js"],
-        cmd = "cat $(location compiled.js) > $@; " +
-              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; ",
+        cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location compiled.js) > $@; ",
     )
 
     native.genrule(
@@ -163,8 +163,9 @@ def sample(name):
         srcs = [":_jsfiddle.html"],
         outs = ["jsfiddle.html"],
         cmd = "cat $(location :_jsfiddle.html) > $@; " +
+              "tmp=$$(mktemp); " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@ > $$tmp && cat $$tmp > $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
@@ -217,7 +218,8 @@ def sample(name):
         srcs = [":_sample.html"],
         outs = ["sample.html"],
         cmd = "cat $(location :_sample.html) > $@; " +
-              "sed -i'.bak' -e 's/data-inline//g' $@; " +
+              "tmp=$$(mktemp); " +
+              "sed 's/data-inline//g' $@ > $$tmp && cat $$tmp > $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier"],
         visibility = ["//visibility:public"],
@@ -241,8 +243,7 @@ def sample(name):
         name = "index_html",
         srcs = [":_index.html", ":iframe.js", ":style.css"],
         outs = ["index.html"],
-        cmd = "cp $(location :_index.html) $@; " +
-              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; ",
+        cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index.html) > $@; ",
     )
 
     # for github pages
@@ -265,7 +266,8 @@ def sample(name):
         outs = ["github.html"],
         cmd = "$(location //rules:inline) $(location :_github.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+              "tmp=$$(mktemp); " +
+              "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@ > $$tmp && cat $$tmp > $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
@@ -289,10 +291,10 @@ def sample(name):
         name = "iframe_html",
         srcs = [":_iframe.html", ":iframe.js", ":style.css"],
         outs = ["iframe.html"],
-        cmd = "$(location //rules:strip_region_tags_bin) $(location :iframe.js); " +
-              "$(location //rules:strip_region_tags_bin) $(location :style.css); " +
-              "$(location //rules:inline) $(location :_iframe.html) $@; " +
-              "sed -i'.bak' -e \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@; " +
+        cmd = "$(location //rules:inline) $(location :_iframe.html) $@; " +
+              "$(location //rules:strip_region_tags_bin) $@; " +
+              "tmp=$$(mktemp); " +
+              "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@ > $$tmp && cat $$tmp > $@; " +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier"],
         visibility = ["//visibility:public"],
@@ -322,7 +324,8 @@ def sample(name):
         cmd = "cat $(location :src/index.ts) > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "echo '\nimport \"./style.css\"; // required for webpack' >> $@; " +
-              "sed -i'.bak' -e '/.*PRESERVE_COMMENT_ABOVE.*/d' $@; " +  # it isn't possible to have tsc preserve some comments
+              "tmp=$$(mktemp); " +
+              "sed '/.*PRESERVE_COMMENT_ABOVE.*/d' $@ > $$tmp && cat $$tmp > $@; " +  # it isn't possible to have tsc preserve some comments
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
     )
