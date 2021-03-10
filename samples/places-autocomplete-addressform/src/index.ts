@@ -65,7 +65,7 @@ function fillInAddress() {
 
   // Get each component of the address from the place details,
   // and then fill-in the corresponding field on the form.
-  for (const component of place.address_components as google.maps.GeocoderAddressComponent[]) {
+  for (const component of place.address_components) {
     // @ts-ignore remove once typings fixed
     const componentType = component.types[0];
 
