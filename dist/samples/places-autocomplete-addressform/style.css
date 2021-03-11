@@ -46,27 +46,27 @@ input:focus {
   font-weight: 500;
 }
 
-.formlabel {
+.form-label {
   width: 100%;
   padding: 0.5em;
 }
 
-.fullfield {
+.full-field {
   flex: 400px;
   margin: 15px 0;
 }
 
-.slimfield-left {
+.slim-field-left {
   flex: 1 150px;
   margin: 15px 15px 15px 0px;
 }
 
-.slimfield-right {
+.slim-field-right {
   flex: 1 150px;
   margin: 15px 0px 15px 15px;
 }
 
-.myButton {
+.my-button {
   background-color: #000;
   border-radius: 6px;
   color: #fff;
@@ -75,11 +75,11 @@ input:focus {
   text-decoration: none;
 }
 
-.myButton:hover {
+.my-button:hover {
   background-color: #666;
 }
 
-.myButton:active {
+.my-button:active {
   position: relative;
   top: 1px;
 }

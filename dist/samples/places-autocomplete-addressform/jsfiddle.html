@@ -18,9 +18,9 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
     <form action="" method="get" autocomplete="off">
       <span class="title">Sample address form for North America</span><br />
       <span><em>* = required field</em></span>
-      <label class="fullfield">
+      <label class="full-field">
         <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
-        <span class="formlabel">Deliver to*</span>
+        <span class="form-label">Deliver to*</span>
         <input
           id="shipaddress"
           name="shipaddress"
@@ -28,32 +28,32 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
           autocomplete="off"
         />
       </label>
-      <label class="fullfield">
-        <span class="formlabel">Apartment, unit, suite, or floor #</span>
+      <label class="full-field">
+        <span class="form-label">Apartment, unit, suite, or floor #</span>
         <input id="address2" name="address2" />
       </label>
-      <label class="fullfield">
-        <span class="formlabel">City*</span>
+      <label class="full-field">
+        <span class="form-label">City*</span>
         <input id="locality" name="locality" required />
       </label>
 
-      <label class="slimfield-left" \>
-        <span class="formlabel">State/Province*</span>
+      <label class="slim-field-left" \>
+        <span class="form-label">State/Province*</span>
         <input
           id="administrative_area_level_1"
           name="administrative_area_level_1"
         />
       </label>
-      <label class="slimfield-right" for="postal_code">
-        <span class="formlabel">Postal code*</span>
+      <label class="slim-field-right" for="postal_code">
+        <span class="form-label">Postal code*</span>
         <input id="postal_code" name="postal_code" />
       </label>
 
-      <label class="fullfield">
-        <span class="formlabel">Country/Region*</span>
+      <label class="full-field">
+        <span class="form-label">Country/Region*</span>
         <input id="country" name="country" required />
       </label>
-      <button type="button" class="myButton">Save address</button>
+      <button type="button" class="my-button">Save address</button>
     </form>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->

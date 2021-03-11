@@ -8,20 +8,13 @@
 let autocomplete;
 let address1Field;
 let address2Field;
+let stateField;
 let postalField;
-const componentLength = {
-  street_number: "long_name",
-  route: "short_name",
-  locality: "long_name",
-  administrative_area_level_1: "short_name",
-  postal_code: "long_name",
-  postal_code_suffix: "long_name",
-  country: "long_name",
-};
 
 function initAutocomplete() {
   address1Field = document.querySelector("#shipaddress");
   address2Field = document.querySelector("#address2");
+  stateField = document.querySelector("#administrative_area_level_1");
   postalField = document.querySelector("#postal_code");
   // Create the autocomplete object, restricting the search predictions to
   // addresses in the US and Canada.
@@ -41,40 +34,45 @@ function fillInAddress() {
   const place = autocomplete.getPlace();
   let address1 = "";
   let postcode = "";
+  let val = "";
 
   // Get each component of the address from the place details,
   // and then fill-in the corresponding field on the form.
+  // place.address_components are google.maps.GeocoderAddressComponent objects
+  // which are documented at http://goo.gle/3l5i5Mr
   for (const component of place.address_components) {
     const componentType = component.types[0];
 
     switch (componentType) {
       case "street_number": {
-        address1 = component[componentLength[componentType]] + " " + address1;
+        address1 = component.long_name + " " + address1;
         break;
       }
 
       case "route": {
-        address1 += component[componentLength[componentType]];
+        address1 += component.short_name;
+        break;
+      }
+
+      case "administrative_area_level_1": {
+        stateField.value = component.short_name;
         break;
       }
 
       case "postal_code": {
-        postcode = component[componentLength[componentType]] + postcode;
+        postcode = component.long_name + postcode;
         break;
       }
 
       case "postal_code_suffix": {
-        postcode += "-" + component[componentLength[componentType]];
+        postcode += "-" + component.long_name;
         break;
       }
-
-      default: {
-        if (componentLength[componentType]) {
-          const val = component[componentLength[componentType]];
-          document.getElementById(componentType).value = val;
-        }
+      case "locality":
+      case "country":
+        val = component.long_name;
+        document.getElementById(componentType).value = val;
         break;
-      }
     }
   }
   address1Field.value = address1;

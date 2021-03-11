@@ -56,27 +56,27 @@
         font-weight: 500;
       }
 
-      .formlabel {
+      .form-label {
         width: 100%;
         padding: 0.5em;
       }
 
-      .fullfield {
+      .full-field {
         flex: 400px;
         margin: 15px 0;
       }
 
-      .slimfield-left {
+      .slim-field-left {
         flex: 1 150px;
         margin: 15px 15px 15px 0px;
       }
 
-      .slimfield-right {
+      .slim-field-right {
         flex: 1 150px;
         margin: 15px 0px 15px 15px;
       }
 
-      .myButton {
+      .my-button {
         background-color: #000;
         border-radius: 6px;
         color: #fff;
@@ -85,11 +85,11 @@
         text-decoration: none;
       }
 
-      .myButton:hover {
+      .my-button:hover {
         background-color: #666;
       }
 
-      .myButton:active {
+      .my-button:active {
         position: relative;
         top: 1px;
       }
@@ -105,20 +105,13 @@
       let autocomplete;
       let address1Field;
       let address2Field;
+      let stateField;
       let postalField;
-      const componentLength = {
-        street_number: "long_name",
-        route: "short_name",
-        locality: "long_name",
-        administrative_area_level_1: "short_name",
-        postal_code: "long_name",
-        postal_code_suffix: "long_name",
-        country: "long_name",
-      };
 
       function initAutocomplete() {
         address1Field = document.querySelector("#shipaddress");
         address2Field = document.querySelector("#address2");
+        stateField = document.querySelector("#administrative_area_level_1");
         postalField = document.querySelector("#postal_code");
         // Create the autocomplete object, restricting the search predictions to
         // addresses in the US and Canada.
@@ -138,41 +131,45 @@
         const place = autocomplete.getPlace();
         let address1 = "";
         let postcode = "";
+        let val = "";
 
         // Get each component of the address from the place details,
         // and then fill-in the corresponding field on the form.
+        // place.address_components are google.maps.GeocoderAddressComponent objects
+        // which are documented at http://goo.gle/3l5i5Mr
         for (const component of place.address_components) {
           const componentType = component.types[0];
 
           switch (componentType) {
             case "street_number": {
-              address1 =
-                component[componentLength[componentType]] + " " + address1;
+              address1 = component.long_name + " " + address1;
               break;
             }
 
             case "route": {
-              address1 += component[componentLength[componentType]];
+              address1 += component.short_name;
+              break;
+            }
+
+            case "administrative_area_level_1": {
+              stateField.value = component.short_name;
               break;
             }
 
             case "postal_code": {
-              postcode = component[componentLength[componentType]] + postcode;
+              postcode = component.long_name + postcode;
               break;
             }
 
             case "postal_code_suffix": {
-              postcode += "-" + component[componentLength[componentType]];
+              postcode += "-" + component.long_name;
               break;
             }
-
-            default: {
-              if (componentLength[componentType]) {
-                const val = component[componentLength[componentType]];
-                document.getElementById(componentType).value = val;
-              }
+            case "locality":
+            case "country":
+              val = component.long_name;
+              document.getElementById(componentType).value = val;
               break;
-            }
           }
         }
         address1Field.value = address1;
@@ -192,9 +189,9 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
     <form action="" method="get" autocomplete="off">
       <span class="title">Sample address form for North America</span><br />
       <span><em>* = required field</em></span>
-      <label class="fullfield">
+      <label class="full-field">
         <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
-        <span class="formlabel">Deliver to*</span>
+        <span class="form-label">Deliver to*</span>
         <input
           id="shipaddress"
           name="shipaddress"
@@ -202,32 +199,32 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
           autocomplete="off"
         />
       </label>
-      <label class="fullfield">
-        <span class="formlabel">Apartment, unit, suite, or floor #</span>
+      <label class="full-field">
+        <span class="form-label">Apartment, unit, suite, or floor #</span>
         <input id="address2" name="address2" />
       </label>
-      <label class="fullfield">
-        <span class="formlabel">City*</span>
+      <label class="full-field">
+        <span class="form-label">City*</span>
         <input id="locality" name="locality" required />
       </label>
 
-      <label class="slimfield-left" \>
-        <span class="formlabel">State/Province*</span>
+      <label class="slim-field-left" \>
+        <span class="form-label">State/Province*</span>
         <input
           id="administrative_area_level_1"
           name="administrative_area_level_1"
         />
       </label>
-      <label class="slimfield-right" for="postal_code">
-        <span class="formlabel">Postal code*</span>
+      <label class="slim-field-right" for="postal_code">
+        <span class="form-label">Postal code*</span>
         <input id="postal_code" name="postal_code" />
       </label>
 
-      <label class="fullfield">
-        <span class="formlabel">Country/Region*</span>
+      <label class="full-field">
+        <span class="form-label">Country/Region*</span>
         <input id="country" name="country" required />
       </label>
-      <button type="button" class="myButton">Save address</button>
+      <button type="button" class="my-button">Save address</button>
     </form>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
