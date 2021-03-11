@@ -36,6 +36,7 @@ function initAutocomplete() {
     "#administrative_area_level_1"
   ) as HTMLInputElement;
   postalField = document.querySelector("#postal_code") as HTMLInputElement;
+  
   // Create the autocomplete object, restricting the search predictions to
   // addresses in the US and Canada.
   autocomplete = new google.maps.places.Autocomplete(address1Field, {
@@ -68,7 +69,7 @@ function fillInAddress() {
 
     switch (componentType) {
       case "street_number": {
-        address1 = component.long_name + " " + address1;
+        address1 = `${component.long_name} ${address1}`;
         break;
       }
 
@@ -83,12 +84,12 @@ function fillInAddress() {
       }
 
       case "postal_code": {
-        postcode = component.long_name + postcode;
+        postcode = `${component.long_name}${postcode}`
         break;
       }
 
       case "postal_code_suffix": {
-        postcode += "-" + component.long_name;
+        postcode = `${postcode}-${component.long_name}`;
         break;
       }
 

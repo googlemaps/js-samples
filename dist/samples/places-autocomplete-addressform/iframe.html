@@ -217,7 +217,7 @@
 
         switch (componentType) {
           case "street_number": {
-            address1 = component.long_name + " " + address1;
+            address1 = "".concat(component.long_name, " ").concat(address1);
             break;
           }
 
@@ -232,12 +232,12 @@
           }
 
           case "postal_code": {
-            postcode = component.long_name + postcode;
+            postcode = "".concat(component.long_name).concat(postcode);
             break;
           }
 
           case "postal_code_suffix": {
-            postcode += "-" + component.long_name;
+            postcode = "".concat(postcode, "-").concat(component.long_name);
             break;
           }
 

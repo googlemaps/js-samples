@@ -45,7 +45,7 @@ function fillInAddress() {
 
     switch (componentType) {
       case "street_number": {
-        address1 = component.long_name + " " + address1;
+        address1 = `${component.long_name} ${address1}`;
         break;
       }
 
@@ -60,12 +60,12 @@ function fillInAddress() {
       }
 
       case "postal_code": {
-        postcode = component.long_name + postcode;
+        postcode = `${component.long_name}${postcode}`;
         break;
       }
 
       case "postal_code_suffix": {
-        postcode += "-" + component.long_name;
+        postcode = `${postcode}-${component.long_name}`;
         break;
       }
       case "locality":
