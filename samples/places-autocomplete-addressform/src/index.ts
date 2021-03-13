@@ -15,27 +15,24 @@
  */
 
 // [START maps_places_autocomplete_addressform]
-// This sample uses the Places Autocomplete widget to help the user select a
-// place, then it retrieves the address components associated with that
-// place, and then it populates the form fields with those details.
-// This sample requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script
+// This sample uses the Places Autocomplete widget to:
+// 1. Help the user select a place
+// 2. Retrieve the address components associated with that place
+// 3. Populate the form fields with those address components.
+// This sample requires the Places library, Maps JavaScript API.
+// Include the libraries=places parameter when you first load the API.
+// For example: <script
 // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 let autocomplete: google.maps.places.Autocomplete;
 let address1Field: HTMLInputElement;
 let address2Field: HTMLInputElement;
-let stateField: HTMLInputElement;
 let postalField: HTMLInputElement;
 
 function initAutocomplete() {
-  address1Field = document.querySelector("#shipaddress") as HTMLInputElement;
+  address1Field = document.querySelector("#ship-address") as HTMLInputElement;
   address2Field = document.querySelector("#address2") as HTMLInputElement;
-  stateField = document.querySelector(
-    "#administrative_area_level_1"
-  ) as HTMLInputElement;
-  postalField = document.querySelector("#postal_code") as HTMLInputElement;
+  postalField = document.querySelector("#postcode") as HTMLInputElement;
 
   // Create the autocomplete object, restricting the search predictions to
   // addresses in the US and Canada.
@@ -57,7 +54,6 @@ function fillInAddress() {
   const place = autocomplete.getPlace();
   let address1 = "";
   let postcode = "";
-  let val = "";
 
   // Get each component of the address from the place details,
   // and then fill-in the corresponding field on the form.
@@ -78,11 +74,6 @@ function fillInAddress() {
         break;
       }
 
-      case "administrative_area_level_1": {
-        stateField.value = component.short_name;
-        break;
-      }
-
       case "postal_code": {
         postcode = `${component.long_name}${postcode}`;
         break;
@@ -94,11 +85,19 @@ function fillInAddress() {
       }
 
       case "locality":
+        (document.querySelector("#locality") as HTMLInputElement).value =
+          component.long_name;
+        break;
+
+      case "administrative_area_level_1": {
+        (document.querySelector("#state") as HTMLInputElement).value =
+          component.short_name;
+        break;
+      }
+
       case "country":
-        val = component.long_name;
-        (document.getElementById(
-          componentType
-        ) as HTMLInputElement).value = val;
+        (document.querySelector("#country") as HTMLInputElement).value =
+          component.long_name;
         break;
     }
   }
