@@ -15,37 +15,33 @@
  */
 
 // [START maps_places_autocomplete_addressform]
-// This sample uses the Autocomplete widget to help the user select a
-// place, then it retrieves the address components associated with that
-// place, and then it populates the form fields with those details.
-// This sample requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script
+// This sample uses the Places Autocomplete widget to:
+// 1. Help the user select a place
+// 2. Retrieve the address components associated with that place
+// 3. Populate the form fields with those address components.
+// This sample requires the Places library, Maps JavaScript API.
+// Include the libraries=places parameter when you first load the API.
+// For example: <script
 // src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
-let placeSearch: google.maps.places.PlacesService;
 let autocomplete: google.maps.places.Autocomplete;
-
-const componentForm = {
-  street_number: "short_name",
-  route: "long_name",
-  locality: "long_name",
-  administrative_area_level_1: "short_name",
-  country: "long_name",
-  postal_code: "short_name",
-};
+let address1Field: HTMLInputElement;
+let address2Field: HTMLInputElement;
+let postalField: HTMLInputElement;
 
 function initAutocomplete() {
-  // Create the autocomplete object, restricting the search predictions to
-  // geographical location types.
-  autocomplete = new google.maps.places.Autocomplete(
-    document.getElementById("autocomplete") as HTMLInputElement,
-    { types: ["geocode"] }
-  );
+  address1Field = document.querySelector("#ship-address") as HTMLInputElement;
+  address2Field = document.querySelector("#address2") as HTMLInputElement;
+  postalField = document.querySelector("#postcode") as HTMLInputElement;
 
-  // Avoid paying for data that you don't need by restricting the set of
-  // place fields that are returned to just the address components.
-  autocomplete.setFields(["address_component"]);
+  // Create the autocomplete object, restricting the search predictions to
+  // addresses in the US and Canada.
+  autocomplete = new google.maps.places.Autocomplete(address1Field, {
+    componentRestrictions: { country: ["us", "ca"] },
+    fields: ["address_components", "geometry"],
+    types: ["address"],
+  });
+  address1Field.focus();
 
   // When the user selects an address from the drop-down, populate the
   // address fields in the form.
@@ -56,44 +52,65 @@ function initAutocomplete() {
 function fillInAddress() {
   // Get the place details from the autocomplete object.
   const place = autocomplete.getPlace();
-
-  for (const component in componentForm) {
-    (document.getElementById(component) as HTMLInputElement).value = "";
-    (document.getElementById(component) as HTMLInputElement).disabled = false;
-  }
+  let address1 = "";
+  let postcode = "";
 
   // Get each component of the address from the place details,
   // and then fill-in the corresponding field on the form.
+  // place.address_components are google.maps.GeocoderAddressComponent objects
+  // which are documented at http://goo.gle/3l5i5Mr
   for (const component of place.address_components as google.maps.GeocoderAddressComponent[]) {
     // @ts-ignore remove once typings fixed
-    const addressType = component.types[0];
+    const componentType = component.types[0];
 
-    if (componentForm[addressType]) {
-      const val = component[componentForm[addressType]];
-      (document.getElementById(addressType) as HTMLInputElement).value = val;
+    switch (componentType) {
+      case "street_number": {
+        address1 = `${component.long_name} ${address1}`;
+        break;
+      }
+
+      case "route": {
+        address1 += component.short_name;
+        break;
+      }
+
+      case "postal_code": {
+        postcode = `${component.long_name}${postcode}`;
+        break;
+      }
+
+      case "postal_code_suffix": {
+        postcode = `${postcode}-${component.long_name}`;
+        break;
+      }
+
+      case "locality":
+        (document.querySelector("#locality") as HTMLInputElement).value =
+          component.long_name;
+        break;
+
+      case "administrative_area_level_1": {
+        (document.querySelector("#state") as HTMLInputElement).value =
+          component.short_name;
+        break;
+      }
+
+      case "country":
+        (document.querySelector("#country") as HTMLInputElement).value =
+          component.long_name;
+        break;
     }
   }
+
+  address1Field.value = address1;
+  postalField.value = postcode;
+
+  // After filling the form with address components from the Autocomplete
+  // prediction, set cursor focus on the second address line to encourage
+  // entry of subpremise information such as apartment, unit, or floor number.
+  address2Field.focus();
 }
 // [END maps_places_autocomplete_addressform_fillform]
 
-// [START maps_places_autocomplete_addressform_geolocation]
-// Bias the autocomplete object to the user's geographical location,
-// as supplied by the browser's 'navigator.geolocation' object.
-function geolocate() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const geolocation = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      };
-      const circle = new google.maps.Circle({
-        center: geolocation,
-        radius: position.coords.accuracy,
-      });
-      autocomplete.setBounds(circle.getBounds()!);
-    });
-  }
-}
-// [END maps_places_autocomplete_addressform_geolocation]
 // [END maps_places_autocomplete_addressform]
 export { initAutocomplete };
