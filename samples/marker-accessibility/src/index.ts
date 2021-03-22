@@ -10,14 +10,14 @@ function initMap(): void {
     }
   );
 
-// LatLng data for the markers.
-const tourStops: [number, number][] = [
-  [34.8791806, -111.8265049], // Boynton Pass
-  [34.8559195, -111.7988186], // Airport Mesa
-  [34.832149, -111.7695277], // Chapel of the Holy Cross
-  [34.823736, -111.8001857], // Red Rock Crossing
-  [34.800326, -111.7665047], // Bell Rock
-];
+  // LatLng data for the markers.
+  const tourStops: [number, number][] = [
+    [34.8791806, -111.8265049], // Boynton Pass
+    [34.8559195, -111.7988186], // Airport Mesa
+    [34.832149, -111.7695277], // Chapel of the Holy Cross
+    [34.823736, -111.8001857], // Red Rock Crossing
+    [34.800326, -111.7665047], // Bell Rock
+  ];
 
   // Set title text for the markers.
   const titleText: string[] = [
