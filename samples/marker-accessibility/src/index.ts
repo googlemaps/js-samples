@@ -42,7 +42,7 @@ const tourStops = [
 }
 
 // Adds a click listener and title text to each marker.
-function attachText(marker, titleText, labelText) {
+function attachText(marker: google.maps.Marker, titleText: string, labelText: string) {
   const infowindow = new google.maps.InfoWindow({
     content: titleText,
   });
