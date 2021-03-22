@@ -21,9 +21,9 @@ const tourStops = [
 
   // Set title text for the markers.
   const titleText = [
-    "The first marker (Boynton Pass) receives the initial focus when tab \
-      is pressed. Use arrow keys to move between markers; press tab again to \
-      cycle through the map controls.",
+    "The first marker (Boynton Pass) receives the initial focus when tab " +
+      "is pressed. Use arrow keys to move between markers; press tab again to " +
+      "cycle through the map controls.",
     "Second marker: Airport Mesa",
     "Third marker: Chapel of the Holy Cross",
     "Fourth marker: Red Rock Crossing",
