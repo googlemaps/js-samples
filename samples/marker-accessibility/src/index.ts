@@ -16,7 +16,7 @@ function initMap(): void {
     [34.8559195, -111.7988186], // Airport Mesa
     [34.832149, -111.7695277], // Chapel of the Holy Cross
     [34.823736, -111.8001857], // Red Rock Crossing
-    [34.800326, -111.7665047], // Bell Rock
+    [34.800326, -111.7665047] // Bell Rock
   ];
 
   // Set title text for the markers.
