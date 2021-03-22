@@ -1,3 +1,21 @@
+/*
+ * Copyright 2021 Google LLC. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// [START maps_marker_accessible]
+
 // The following example creates five accessible and
 // focusable markers.
 
@@ -16,7 +34,7 @@ function initMap(): void {
     [34.8559195, -111.7988186], // Airport Mesa
     [34.832149, -111.7695277], // Chapel of the Holy Cross
     [34.823736, -111.8001857], // Red Rock Crossing
-    [34.800326, -111.7665047] // Bell Rock
+    [34.800326, -111.7665047], // Bell Rock
   ];
 
   // Set title text for the markers.
@@ -59,3 +77,5 @@ function attachText(marker: google.maps.Marker, titleText: string, labelText: st
     infowindow.open(marker.get("map"), marker);
   });
 }
+// [END maps_marker_accessible]
+export { initMap };
