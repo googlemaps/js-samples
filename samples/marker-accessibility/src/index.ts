@@ -1,5 +1,5 @@
-// The following example creates five markers, and makes them
-// focusable by assigning a click listener and title text to each.
+// The following example creates five accessible and
+// focusable markers.
 
 function initMap(): void {
   const map = new google.maps.Map(
