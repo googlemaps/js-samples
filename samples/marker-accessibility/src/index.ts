@@ -43,14 +43,16 @@ const tourStops = [
 
 // Adds a click listener and title text to each marker.
 function attachText(marker: google.maps.Marker, titleText: string, labelText: string) {
-  const infowindow = new google.maps.InfoWindow({
-    content: titleText,
-  });
   // Set the marker title to provide accessible text.
   marker.setTitle(titleText);
   
   // Add a numeric label to the marker.
   marker.setLabel(labelText);
+
+  // Create an info window using the same title text.
+  const infowindow = new google.maps.InfoWindow({
+    content: titleText,
+  });
   
   // Set a click listener to make the marker accessible.
   marker.addListener("click", () => {
