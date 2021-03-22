@@ -21,13 +21,13 @@ const tourStops = [
 
   // Set title text for the markers.
   const titleText = [
-    "The first marker receives the initial focus when tab is pressed. \
-      Use arrow keys to move between markers; press tab again to \
+    "The first marker (Boynton Pass) receives the initial focus when tab \
+      is pressed. Use arrow keys to move between markers; press tab again to \
       cycle through the map controls.",
-    "Second marker.",
-    "Third marker.",
-    "Fourth marker.",
-    "Marker five, the final stop on our tour!"
+    "Second marker: Airport Mesa",
+    "Third marker: Chapel of the Holy Cross",
+    "Fourth marker: Red Rock Crossing",
+    "Marker five: Bell Rock, the final stop on our tour!"
   ];
 
   for (let i = 0; i < titleText.length; ++i) {
@@ -56,4 +56,4 @@ function attachText(marker, titleText, labelText) {
   marker.addListener("click", () => {
     infowindow.open(marker.get("map"), marker);
   });
-}a
+}
