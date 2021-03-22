@@ -11,7 +11,7 @@ function initMap(): void {
   );
 
 // LatLng data for the markers.
-const tourStops = [
+const tourStops: [number, number][] = [
   [34.8791806, -111.8265049], // Boynton Pass
   [34.8559195, -111.7988186], // Airport Mesa
   [34.832149, -111.7695277], // Chapel of the Holy Cross
@@ -20,7 +20,7 @@ const tourStops = [
 ];
 
   // Set title text for the markers.
-  const titleText = [
+  const titleText: string[] = [
     "The first marker (Boynton Pass) receives the initial focus when tab " +
       "is pressed. Use arrow keys to move between markers; press tab again to " +
       "cycle through the map controls.",
