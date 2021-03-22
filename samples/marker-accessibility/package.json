@@ -1,0 +1,8 @@
+{
+  "title": "Marker Accessibility",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "marker_accessibility",
+  "name": "marker-accessibility"
+}
