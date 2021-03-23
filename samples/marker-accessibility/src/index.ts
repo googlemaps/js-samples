@@ -52,22 +52,23 @@ function initMap(): void {
   const infowindow = new google.maps.InfoWindow();
 
   // Create the markers.
-  for (let i = 0; i < titleText.length; ++i) {
+  titleText.forEach((title, i) => {
     const pos = tourStops[i];
     const marker = new google.maps.Marker({
-      position: { lat: pos[0], lng: pos[1] },
-      map: map,
-      title: titleText[i],
+      position: { lat: pos[0], lng: pos[1],
+      },
+      map,
+      title,
       label: (i + 1).toString(),
     });
-
+    
     // Add a click listener for each marker, and set up the info window.
     marker.addListener("click", () => {
       infowindow.close();
       infowindow.setContent(marker.getTitle());
       infowindow.open(marker.getMap(), marker);
     });
-  }
+  });
 }
 
 // [END maps_marker_accessibility]

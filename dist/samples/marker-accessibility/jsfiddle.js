@@ -25,13 +25,13 @@ function initMap() {
   ];
   // Create an info window to share between markers.
   const infowindow = new google.maps.InfoWindow();
-
-  for (let i = 0; i < titleText.length; ++i) {
+  // Create the markers.
+  titleText.forEach((title, i) => {
     const pos = tourStops[i];
     const marker = new google.maps.Marker({
       position: { lat: pos[0], lng: pos[1] },
-      map: map,
-      title: titleText[i],
+      map,
+      title,
       label: (i + 1).toString(),
     });
     // Add a click listener for each marker, and set up the info window.
@@ -40,5 +40,5 @@ function initMap() {
       infowindow.setContent(marker.getTitle());
       infowindow.open(marker.getMap(), marker);
     });
-  }
+  });
 }

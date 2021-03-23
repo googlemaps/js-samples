@@ -46,9 +46,9 @@
       "Marker five: Bell Rock, the final stop on our tour!",
     ]; // Create an info window to share between markers.
 
-    var infowindow = new google.maps.InfoWindow();
+    var infowindow = new google.maps.InfoWindow(); // Create the markers.
 
-    var _loop = function _loop(i) {
+    titleText.forEach(function (title, i) {
       var pos = tourStops[i];
       var marker = new google.maps.Marker({
         position: {
@@ -56,7 +56,7 @@
           lng: pos[1],
         },
         map: map,
-        title: titleText[i],
+        title: title,
         label: (i + 1).toString(),
       }); // Add a click listener for each marker, and set up the info window.
 
@@ -65,11 +65,7 @@
         infowindow.setContent(marker.getTitle());
         infowindow.open(marker.getMap(), marker);
       });
-    };
-
-    for (var i = 0; i < titleText.length; ++i) {
-      _loop(i);
-    }
+    });
   }
 </script>
 
