@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-// [START maps_marker_accessible]
+// [START maps_marker_accessibility]
 
 // The following example creates five accessible and
 // focusable markers.
@@ -77,5 +77,5 @@ function attachText(marker: google.maps.Marker, titleText: string, labelText: st
     infowindow.open(marker.get("map"), marker);
   });
 }
-// [END maps_marker_accessible]
+// [END maps_marker_accessibility]
 export { initMap };

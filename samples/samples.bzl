@@ -107,6 +107,7 @@ SAMPLES = [
     "maptype-image-overlay",
     "maptype-overlay",
     "maptype-styled-simple",
+    "marker-accessibility",
     "marker-animations",
     "marker-animations-iteration",
     "marker-clustering",
