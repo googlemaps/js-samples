@@ -100,6 +100,19 @@
         position: relative;
         top: 1px;
       }
+
+      .clear-form-text {
+        padding: 6px 0;
+        align-self: flex-end;
+      }
+
+      .clear-form-text:link {
+        padding: 6px 0;
+        align-self: center;
+        color: #686868;
+        font-size: 14px;
+        text-decoration: none;
+      }
     </style>
     <script>
       "use strict";
@@ -316,6 +329,11 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
         <input id="country" name="country" required />
       </label>
       <button type="button" class="my-button">Save address</button>
+      <a
+        class="clear-form-text"
+        href="javascript:document.getElementById('address-form').reset();"
+        >Clear form</a
+      >
     </form>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->

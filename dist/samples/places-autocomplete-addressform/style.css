@@ -91,4 +91,17 @@ input:focus {
   top: 1px;
 }
 
+.clear-form-text {
+  padding: 6px 0;
+  align-self: flex-end;
+}
+
+.clear-form-text:link {
+  padding: 6px 0;
+  align-self: center;
+  color: #686868;
+  font-size: 14px;
+  text-decoration: none;
+}
+
 /* [END maps_places_autocomplete_addressform] */
