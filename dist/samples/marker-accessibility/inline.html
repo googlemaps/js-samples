@@ -44,31 +44,24 @@
           "Fourth marker: Red Rock Crossing",
           "Marker five: Bell Rock, the final stop on our tour!",
         ];
+        // Create an info window to share between markers.
+        const infowindow = new google.maps.InfoWindow();
 
         for (let i = 0; i < titleText.length; ++i) {
           const pos = tourStops[i];
           const marker = new google.maps.Marker({
             position: { lat: pos[0], lng: pos[1] },
             map: map,
+            title: titleText[i],
+            label: (i + 1).toString(),
           });
-          attachText(marker, titleText[i], (i + 1).toString());
+          // Add a click listener for each marker, and set up the info window.
+          marker.addListener("click", () => {
+            infowindow.close();
+            infowindow.setContent(marker.getTitle());
+            infowindow.open(marker.getMap(), marker);
+          });
         }
-      }
-
-      // Adds a click listener and title text to each marker.
-      function attachText(marker, titleText, labelText) {
-        // Set the marker title to provide accessible text.
-        marker.setTitle(titleText);
-        // Add a numeric label to the marker.
-        marker.setLabel(labelText);
-        // Create an info window using the same title text.
-        const infowindow = new google.maps.InfoWindow({
-          content: titleText,
-        });
-        // Set a click listener to make the marker accessible.
-        marker.addListener("click", () => {
-          infowindow.open(marker.get("map"), marker);
-        });
       }
     </script>
   </head>
