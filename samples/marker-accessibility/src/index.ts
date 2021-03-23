@@ -53,31 +53,23 @@ function initMap(): void {
     const marker = new google.maps.Marker({
       position: { lat: pos[0], lng: pos[1] },
       map: map,
+      title: titleText[i],
+      label: (i + 1).toString(),
     });
-    attachText(marker, titleText[i], (i + 1).toString());
+    setupMarker(marker, marker.getTitle());
   }
 }
 
 // Adds a click listener and title text to each marker.
-function attachText(
-  marker: google.maps.Marker,
-  titleText: string,
-  labelText: string
-) {
-  // Set the marker title to provide accessible text.
-  marker.setTitle(titleText);
-
-  // Add a numeric label to the marker.
-  marker.setLabel(labelText);
-
-  // Create an info window using the same title text.
+function setupMarker(marker: google.maps.Marker, title: string) {
+  // Create an info window using the marker's title text.
   const infowindow = new google.maps.InfoWindow({
-    content: titleText,
+    content: title,
   });
 
   // Set a click listener to make the marker accessible.
   marker.addListener("click", () => {
-    infowindow.open(marker.get("map"), marker);
+    infowindow.open(marker.getMap(), marker);
   });
 }
 // [END maps_marker_accessibility]
