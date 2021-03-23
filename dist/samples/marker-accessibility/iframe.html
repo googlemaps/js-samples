@@ -49,11 +49,10 @@
     var infowindow = new google.maps.InfoWindow(); // Create the markers.
 
     titleText.forEach(function (title, i) {
-      var pos = tourStops[i];
       var marker = new google.maps.Marker({
         position: {
-          lat: pos[0],
-          lng: pos[1],
+          lat: tourStops[i][0],
+          lng: tourStops[i][1],
         },
         map: map,
         title: title,

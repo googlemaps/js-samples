@@ -53,9 +53,9 @@ function initMap(): void {
 
   // Create the markers.
   titleText.forEach((title, i) => {
-    const pos = tourStops[i];
     const marker = new google.maps.Marker({
-      position: { lat: pos[0], lng: pos[1],
+      position: {
+        lat: tourStops[i][0], lng: tourStops[i][1],
       },
       map,
       title,
