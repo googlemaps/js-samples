@@ -61,7 +61,7 @@
             },
             map: map,
             title: title,
-            label: (i + 1).toString(),
+            label: "".concat(i + 1),
           }); // Add a click listener for each marker, and set up the info window.
 
           marker.addListener("click", function () {

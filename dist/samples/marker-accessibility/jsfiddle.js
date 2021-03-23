@@ -32,7 +32,7 @@ function initMap() {
       position: { lat: pos[0], lng: pos[1] },
       map,
       title,
-      label: (i + 1).toString(),
+      label: `${i + 1}`,
     });
     // Add a click listener for each marker, and set up the info window.
     marker.addListener("click", () => {
