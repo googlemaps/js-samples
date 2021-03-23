@@ -48,6 +48,9 @@ function initMap(): void {
     "Marker five: Bell Rock, the final stop on our tour!",
   ];
 
+  // Create an info window to share between markers.
+  const infowindow = new google.maps.InfoWindow();
+
   for (let i = 0; i < titleText.length; ++i) {
     const pos = tourStops[i];
     const marker = new google.maps.Marker({
@@ -56,20 +59,15 @@ function initMap(): void {
       title: titleText[i],
       label: (i + 1).toString(),
     });
-    setupMarker(marker);
+
+    // Add a click listener for each marker, and set up the info window.
+    marker.addListener("click", () => {
+      infowindow.close();
+      infowindow.setContent(marker.getTitle());
+      infowindow.open(marker.getMap(), marker);
+    });
   }
 }
 
-// Adds a click listener and title text to each marker.
-function setupMarker(marker: google.maps.Marker) {
-  // Create an info window using the marker's title text.
-  const infowindow = new google.maps.InfoWindow();
-  infowindow.setContent(marker.getTitle());
-
-  // Set a click listener to make the marker accessible.
-  marker.addListener("click", () => {
-    infowindow.open(marker.getMap(), marker);
-  });
-}
 // [END maps_marker_accessibility]
 export { initMap };
