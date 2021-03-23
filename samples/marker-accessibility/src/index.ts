@@ -51,6 +51,7 @@ function initMap(): void {
   // Create an info window to share between markers.
   const infowindow = new google.maps.InfoWindow();
 
+  // Create the markers.
   for (let i = 0; i < titleText.length; ++i) {
     const pos = tourStops[i];
     const marker = new google.maps.Marker({
