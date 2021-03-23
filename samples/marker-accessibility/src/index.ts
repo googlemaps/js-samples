@@ -56,16 +56,15 @@ function initMap(): void {
       title: titleText[i],
       label: (i + 1).toString(),
     });
-    setupMarker(marker, marker.getTitle());
+    setupMarker(marker);
   }
 }
 
 // Adds a click listener and title text to each marker.
-function setupMarker(marker: google.maps.Marker, title: string) {
+function setupMarker(marker: google.maps.Marker) {
   // Create an info window using the marker's title text.
-  const infowindow = new google.maps.InfoWindow({
-    content: title,
-  });
+  const infowindow = new google.maps.InfoWindow();
+  infowindow.setContent(marker.getTitle());
 
   // Set a click listener to make the marker accessible.
   marker.addListener("click", () => {
