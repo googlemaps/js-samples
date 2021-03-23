@@ -24,7 +24,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 12,
-      center: { lat: 34.84555, lng: -111.8035},
+      center: { lat: 34.84555, lng: -111.8035 },
     }
   );
 
@@ -45,14 +45,13 @@ function initMap(): void {
     "Second marker: Airport Mesa",
     "Third marker: Chapel of the Holy Cross",
     "Fourth marker: Red Rock Crossing",
-    "Marker five: Bell Rock, the final stop on our tour!"
+    "Marker five: Bell Rock, the final stop on our tour!",
   ];
 
   for (let i = 0; i < titleText.length; ++i) {
     const pos = tourStops[i];
     const marker = new google.maps.Marker({
-      position: { lat: pos[0], lng: pos[1],
-      },
+      position: { lat: pos[0], lng: pos[1] },
       map: map,
     });
     attachText(marker, titleText[i], (i + 1).toString());
@@ -60,10 +59,14 @@ function initMap(): void {
 }
 
 // Adds a click listener and title text to each marker.
-function attachText(marker: google.maps.Marker, titleText: string, labelText: string) {
+function attachText(
+  marker: google.maps.Marker,
+  titleText: string,
+  labelText: string
+) {
   // Set the marker title to provide accessible text.
   marker.setTitle(titleText);
-  
+
   // Add a numeric label to the marker.
   marker.setLabel(labelText);
 
@@ -71,7 +74,7 @@ function attachText(marker: google.maps.Marker, titleText: string, labelText: st
   const infowindow = new google.maps.InfoWindow({
     content: titleText,
   });
-  
+
   // Set a click listener to make the marker accessible.
   marker.addListener("click", () => {
     infowindow.open(marker.get("map"), marker);
