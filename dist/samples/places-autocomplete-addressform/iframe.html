@@ -28,6 +28,7 @@
   form {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     max-width: 400px;
     padding: 20px;
   }
@@ -45,6 +46,15 @@
 
   input:focus {
     border-bottom: 4px solid black;
+  }
+
+  input[type="reset"] {
+    width: auto;
+    height: auto;
+    border-bottom: 0;
+    background-color: transparent;
+    color: #686868;
+    font-size: 14px;
   }
 
   .title {
@@ -95,19 +105,6 @@
   .my-button:active {
     position: relative;
     top: 1px;
-  }
-
-  .clear-form-text {
-    padding: 6px 0;
-    align-self: flex-end;
-  }
-
-  .clear-form-text:link {
-    padding: 6px 0;
-    align-self: center;
-    color: #686868;
-    font-size: 14px;
-    text-decoration: none;
   }
 </style>
 <script>
@@ -322,11 +319,7 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
       <input id="country" name="country" required />
     </label>
     <button type="button" class="my-button">Save address</button>
-    <a
-      class="clear-form-text"
-      href="javascript:document.getElementById('address-form').reset();"
-      >Clear form</a
-    >
+    <input type="reset" value="Clear form" />
   </form>
 
   <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
