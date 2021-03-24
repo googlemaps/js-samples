@@ -22,9 +22,9 @@
 https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
     -->
 
-<form action="" method="get" autocomplete="off">
-  <span class="title">Sample address form for North America</span><br>
-  <span><em>* = required field</em></span>
+<form id="address-form" action="" method="get" autocomplete="off">
+  <p class="title">Sample address form for North America</p>
+  <p class="note"><em>* = required field</em></p>
   <label class="full-field">
     <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
     <span class="form-label">Deliver to*</span>
@@ -51,6 +51,10 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
     <input id="country" name="country" required>
   </label>
   <button type="button" class="my-button">Save address</button>
+
+  <!-- Reset button provided for development testing convenience.
+  Not recommended for user-facing forms due to risk of mis-click when aiming for Submit button. -->
+  <input type="reset" value="Clear form">
 </form>
 
 {% endblock %}
