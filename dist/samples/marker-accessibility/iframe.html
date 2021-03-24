@@ -26,43 +26,62 @@
         lat: 34.84555,
         lng: -111.8035,
       },
-    }); // LatLng data for the markers.
+    }); // Set LatLng and title text for the markers. The first marker (Boynton Pass)
+    // receives the initial focus when tab is pressed. Use arrow keys to
+    // move between markers; press tab again to cycle through the map controls.
 
     var tourStops = [
-      [34.8791806, -111.8265049],
-      [34.8559195, -111.7988186],
-      [34.832149, -111.7695277],
-      [34.823736, -111.8001857],
-      [34.800326, -111.7665047],
-    ]; // Set title text for the markers.
-
-    var titleText = [
-      "The first marker (Boynton Pass) receives the initial focus when tab " +
-        "is pressed. Use arrow keys to move between markers; press tab again to " +
-        "cycle through the map controls.",
-      "Second marker: Airport Mesa",
-      "Third marker: Chapel of the Holy Cross",
-      "Fourth marker: Red Rock Crossing",
-      "Marker five: Bell Rock, the final stop on our tour!",
+      [
+        {
+          lat: 34.8791806,
+          lng: -111.8265049,
+        },
+        "Boynton Pass",
+      ],
+      [
+        {
+          lat: 34.8559195,
+          lng: -111.7988186,
+        },
+        "Airport Mesa",
+      ],
+      [
+        {
+          lat: 34.832149,
+          lng: -111.7695277,
+        },
+        "Chapel of the Holy Cross",
+      ],
+      [
+        {
+          lat: 34.823736,
+          lng: -111.8001857,
+        },
+        "Red Rock Crossing",
+      ],
+      [
+        {
+          lat: 34.800326,
+          lng: -111.7665047,
+        },
+        "Bell Rock",
+      ],
     ]; // Create an info window to share between markers.
 
-    var infowindow = new google.maps.InfoWindow(); // Create the markers.
+    var infoWindow = new google.maps.InfoWindow(); // Create the markers.
 
-    titleText.forEach(function (title, i) {
+    tourStops.forEach(function (item, i) {
       var marker = new google.maps.Marker({
-        position: {
-          lat: tourStops[i][0],
-          lng: tourStops[i][1],
-        },
+        position: item[0],
         map: map,
-        title: title,
+        title: "".concat(i + 1) + ". " + item[1],
         label: "".concat(i + 1),
       }); // Add a click listener for each marker, and set up the info window.
 
       marker.addListener("click", function () {
-        infowindow.close();
-        infowindow.setContent(marker.getTitle());
-        infowindow.open(marker.getMap(), marker);
+        infoWindow.close();
+        infoWindow.setContent(marker.getTitle());
+        infoWindow.open(marker.getMap(), marker);
       });
     });
   }
