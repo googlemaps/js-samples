@@ -43,11 +43,11 @@ function initMap(): void {
   const infoWindow = new google.maps.InfoWindow();
 
   // Create the markers.
-  tourStops.forEach((item, i) => {
+  tourStops.forEach(([position, title], i) => {
     const marker = new google.maps.Marker({
-      position: item[0],
+      position,
       map,
-      title: `${i + 1}` + ". " + item[1],
+      title: `${i + 1}. ${title}`,
       label: `${i + 1}`,
     });
     
