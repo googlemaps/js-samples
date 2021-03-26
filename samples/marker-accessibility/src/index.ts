@@ -32,12 +32,12 @@ function initMap(): void {
   // receives the initial focus when tab is pressed. Use arrow keys to
   // move between markers; press tab again to cycle through the map controls.
   const tourStops: [google.maps.LatLngLiteral, string][] = [
-  	[{lat: 34.8791806, lng: -111.8265049},"Boynton Pass"],
-    [{lat: 34.8559195, lng: -111.7988186}, "Airport Mesa"],
-    [{lat: 34.832149, lng: -111.7695277}, "Chapel of the Holy Cross"],
-    [{lat:34.823736, lng: -111.8001857}, "Red Rock Crossing"],
-    [{lat: 34.800326, lng: -111.7665047}, "Bell Rock"],
-	];
+    [{ lat: 34.8791806, lng: -111.8265049 }, "Boynton Pass"],
+    [{ lat: 34.8559195, lng: -111.7988186 }, "Airport Mesa"],
+    [{ lat: 34.832149, lng: -111.7695277 }, "Chapel of the Holy Cross"],
+    [{ lat: 34.823736, lng: -111.8001857 }, "Red Rock Crossing"],
+    [{ lat: 34.800326, lng: -111.7665047 }, "Bell Rock"],
+  ];
 
   // Create an info window to share between markers.
   const infoWindow = new google.maps.InfoWindow();
@@ -50,7 +50,7 @@ function initMap(): void {
       title: `${i + 1}. ${title}`,
       label: `${i + 1}`,
     });
-    
+
     // Add a click listener for each marker, and set up the info window.
     marker.addListener("click", () => {
       infoWindow.close();
