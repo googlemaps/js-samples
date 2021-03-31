@@ -105,6 +105,7 @@
     "Image Map Types": "maptype-image",
     "Overlay Map Types": "maptype-overlay",
     "Styled Map Types": "maptype-styled-simple",
+    "Marker Accessibility": "marker-accessibility",
     "Marker Animations With setTimeout()": "marker-animations-iteration",
     "Marker Animations": "marker-animations",
     "Marker Clustering": "marker-clustering",
