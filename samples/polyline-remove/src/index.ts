@@ -53,4 +53,4 @@ function removeLine() {
   flightPath.setMap(null);
 }
 // [END maps_polyline_remove]
-export { initMap };
+export { initMap, addLine, removeLine };
