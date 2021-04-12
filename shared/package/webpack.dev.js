@@ -22,12 +22,9 @@ module.exports = merge(common, {
   watch: true,
   devtool: "inline-source-map",
   devServer: {
-    contentBase: path.resolve(__dirname, "public"),
     liveReload: true,
     host: "0.0.0.0",
     port: 8080,
     historyApiFallback: true,
-    writeToDisk: true,
-    disableHostCheck: true,
   },
 });
