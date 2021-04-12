@@ -66,4 +66,4 @@ function clearMarkers() {
   markers = [];
 }
 // [END maps_marker_animations_iteration]
-export { initMap };
+export { initMap, drop };

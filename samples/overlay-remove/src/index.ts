@@ -52,4 +52,4 @@ function removeOverlay() {
 }
 // [END maps_overlay_remove_region_removal]
 // [END maps_overlay_remove]
-export { initMap };
+export { initMap, removeOverlay, addOverlay };

@@ -39,4 +39,4 @@ function autoRotate() {
   }
 }
 // [END maps_aerial_rotation]
-export { initMap };
+export { initMap, autoRotate };
