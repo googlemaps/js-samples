@@ -9,11 +9,13 @@ load("@npm//@bazel/concatjs:index.bzl", "concatjs_devserver")
 load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@npm//@babel/cli:index.bzl", "babel")
 
-def sample(name):
+
+def sample(name, YOUR_API_KEY="GOOGLE_MAPS_JS_SAMPLES_KEY"):
     """ Generates sample outputs
 
     Args:
       name: sample directory name
+      YOUR_API_KEY: environment variable name for api key
     """
     ts_library(
         name = "_compile",
@@ -165,7 +167,7 @@ def sample(name):
         cmd = "cat $(location :_jsfiddle.html) > $@; " +
               "tmp=$$(mktemp); " +
               "$(location //rules:strip_region_tags_bin) $@; " +
-              "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@ > $$tmp && cat $$tmp > $@; " +
+              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY) +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
@@ -174,7 +176,7 @@ def sample(name):
     native.genrule(
         name = "jsfiddle_js",
         outs = [":jsfiddle.js"],
-        cmd = "sed  \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :index.js) > $@; " +
+        cmd = "sed  \"s/YOUR_API_KEY/$${}/g\" $(location :index.js) > $@; ".format(YOUR_API_KEY) +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "$(location //rules:prettier) --write $@; ",
         srcs = [
@@ -241,9 +243,9 @@ def sample(name):
 
     native.genrule(
         name = "index_html",
-        srcs = [":_index.html", ":iframe.js", ":style.css"],
+        srcs = [":_index.html"],
         outs = ["index.html"],
-        cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :_index.html) > $@; ",
+        cmd = "sed \"s/YOUR_API_KEY/$${}/g\" $(location :_index.html) > $@; ".format(YOUR_API_KEY),
     )
 
     # for github pages
@@ -267,7 +269,7 @@ def sample(name):
         cmd = "$(location //rules:inline) $(location :_github.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "tmp=$$(mktemp); " +
-              "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@ > $$tmp && cat $$tmp > $@; " +
+              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY) +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:prettier", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
@@ -294,7 +296,7 @@ def sample(name):
         cmd = "$(location //rules:inline) $(location :_iframe.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "tmp=$$(mktemp); " +
-              "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $@ > $$tmp && cat $$tmp > $@; " +
+              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY) +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier"],
         visibility = ["//visibility:public"],
@@ -304,7 +306,7 @@ def sample(name):
         name = "env",
         srcs = ["//shared:env.tpl"],
         outs = [".env"],
-        cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location //shared:env.tpl) > $@;",
+        cmd = "sed \"s/YOUR_API_KEY/$${}/g\" $(location //shared:env.tpl) > $@;".format(YOUR_API_KEY),
     )
 
     native.genrule(
