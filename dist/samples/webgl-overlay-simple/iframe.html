@@ -1,0 +1,180 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script src="https://unpkg.com/three@0.107.0/build/three.min.js"></script>
+<script src="https://unpkg.com/three@0.106.2/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://unpkg.com/zlibjs@0.3.1/bin/inflate.min.js"></script>
+
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<script>
+  "use strict";
+
+  function ownKeys(object, enumerableOnly) {
+    var keys = Object.keys(object);
+    if (Object.getOwnPropertySymbols) {
+      var symbols = Object.getOwnPropertySymbols(object);
+      if (enumerableOnly)
+        symbols = symbols.filter(function (sym) {
+          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+        });
+      keys.push.apply(keys, symbols);
+    }
+    return keys;
+  }
+
+  function _objectSpread(target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i] != null ? arguments[i] : {};
+      if (i % 2) {
+        ownKeys(Object(source), true).forEach(function (key) {
+          _defineProperty(target, key, source[key]);
+        });
+      } else if (Object.getOwnPropertyDescriptors) {
+        Object.defineProperties(
+          target,
+          Object.getOwnPropertyDescriptors(source)
+        );
+      } else {
+        ownKeys(Object(source)).forEach(function (key) {
+          Object.defineProperty(
+            target,
+            key,
+            Object.getOwnPropertyDescriptor(source, key)
+          );
+        });
+      }
+    }
+    return target;
+  }
+
+  function _defineProperty(obj, key, value) {
+    if (key in obj) {
+      Object.defineProperty(obj, key, {
+        value: value,
+        enumerable: true,
+        configurable: true,
+        writable: true,
+      });
+    } else {
+      obj[key] = value;
+    }
+    return obj;
+  }
+
+  var map;
+  var mapOptions = {
+    tilt: 0,
+    heading: 0,
+    zoom: 18,
+    center: {
+      lat: 35.6594945,
+      lng: 139.6999859,
+    },
+    mapId: "15431d2b469f209e",
+  };
+
+  function initMap() {
+    var mapDiv = document.getElementById("map");
+    map = new google.maps.Map(mapDiv, mapOptions);
+    initWebglOverlayView(map);
+  }
+
+  function initWebglOverlayView(map) {
+    var scene, renderer, camera, loader;
+    var webglOverlayView = new google.maps.WebglOverlayView();
+
+    webglOverlayView.onAdd = function () {
+      // Set up the scene.
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera();
+      var ambientLight = new THREE.AmbientLight(0xffffff, 0.75); // Soft white light.
+
+      scene.add(ambientLight);
+      var directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
+      directionalLight.position.set(0.5, -1, 0.5);
+      scene.add(directionalLight); // Load the model.
+
+      loader = new THREE.GLTFLoader();
+      var source =
+        "https://raw.githubusercontent.com/googlemaps/js-samples/master/assets/pin.gltf";
+      loader.load(source, function (gltf) {
+        gltf.scene.scale.set(10, 10, 10);
+        gltf.scene.rotation.x = Math.PI; // Rotations are in radians.
+
+        scene.add(gltf.scene);
+      });
+    };
+
+    webglOverlayView.onContextRestored = function (gl) {
+      // Create the three.js renderer, using the
+      // maps's WebGL rendering context.
+      renderer = new THREE.WebGLRenderer(
+        _objectSpread(
+          {
+            canvas: gl.canvas,
+            context: gl,
+          },
+          gl.getContextAttributes()
+        )
+      );
+      renderer.autoClear = false; // Wait to move the camera until the 3D model loads.
+
+      loader.manager.onLoad = function () {
+        renderer.setAnimationLoop(function () {
+          webglOverlayView.requestRedraw();
+          var tilt = mapOptions.tilt,
+            heading = mapOptions.heading,
+            zoom = mapOptions.zoom;
+          map.moveCamera({
+            tilt: tilt,
+            heading: heading,
+            zoom: zoom,
+          }); // Rotate the map 360 degrees.
+
+          if (mapOptions.tilt < 67.5) {
+            mapOptions.tilt += 0.5;
+          } else if (mapOptions.heading <= 360) {
+            mapOptions.heading += 0.2;
+            mapOptions.zoom -= 0.0005;
+          } else {
+            renderer.setAnimationLoop(null);
+          }
+        });
+      };
+    };
+
+    webglOverlayView.onDraw = function (gl, transformer) {
+      // Update camera matrix to ensure the model is georeferenced correctly on the map.
+      var matrix = transformer.fromLatLngAltitude(mapOptions.center, 120);
+      camera.projectionMatrix = new THREE.Matrix4().fromArray(matrix);
+      webglOverlayView.requestRedraw();
+      renderer.render(scene, camera); // Sometimes it is necessary to reset the GL state.
+
+      renderer.state.reset();
+    };
+
+    webglOverlayView.setMap(map);
+  }
+</script>
+
+<div id="iframe-contents">
+  <div id="map" class="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=beta"
+    async
+  ></script>
+</div>

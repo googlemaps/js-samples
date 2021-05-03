@@ -1,0 +1,162 @@
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .ui-button {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    height: 40px;
+    cursor: pointer;
+  }
+  .ui-button:hover {
+    background: #ebebeb;
+  }
+</style>
+<script>
+  "use strict";
+
+  function _slicedToArray(arr, i) {
+    return (
+      _arrayWithHoles(arr) ||
+      _iterableToArrayLimit(arr, i) ||
+      _unsupportedIterableToArray(arr, i) ||
+      _nonIterableRest()
+    );
+  }
+
+  function _nonIterableRest() {
+    throw new TypeError(
+      "Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
+    );
+  }
+
+  function _unsupportedIterableToArray(o, minLen) {
+    if (!o) return;
+    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+    var n = Object.prototype.toString.call(o).slice(8, -1);
+    if (n === "Object" && o.constructor) n = o.constructor.name;
+    if (n === "Map" || n === "Set") return Array.from(o);
+    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
+      return _arrayLikeToArray(o, minLen);
+  }
+
+  function _arrayLikeToArray(arr, len) {
+    if (len == null || len > arr.length) len = arr.length;
+    for (var i = 0, arr2 = new Array(len); i < len; i++) {
+      arr2[i] = arr[i];
+    }
+    return arr2;
+  }
+
+  function _iterableToArrayLimit(arr, i) {
+    if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr)))
+      return;
+    var _arr = [];
+    var _n = true;
+    var _d = false;
+    var _e = undefined;
+    try {
+      for (
+        var _i = arr[Symbol.iterator](), _s;
+        !(_n = (_s = _i.next()).done);
+        _n = true
+      ) {
+        _arr.push(_s.value);
+        if (i && _arr.length === i) break;
+      }
+    } catch (err) {
+      _d = true;
+      _e = err;
+    } finally {
+      try {
+        if (!_n && _i["return"] != null) _i["return"]();
+      } finally {
+        if (_d) throw _e;
+      }
+    }
+    return _arr;
+  }
+
+  function _arrayWithHoles(arr) {
+    if (Array.isArray(arr)) return arr;
+  }
+
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById("map"), {
+      center: {
+        lat: 37.7893719,
+        lng: -122.3942,
+      },
+      zoom: 16,
+      heading: 320,
+      tilt: 47.5,
+      mapId: "90f87356969d889c",
+    });
+    var buttons = [
+      ["Rotate Left", "rotate", 20, google.maps.ControlPosition.LEFT_CENTER],
+      ["Rotate Right", "rotate", -20, google.maps.ControlPosition.RIGHT_CENTER],
+      ["Tilt Down", "tilt", 20, google.maps.ControlPosition.TOP_CENTER],
+      ["Tilt Up", "tilt", -20, google.maps.ControlPosition.BOTTOM_CENTER],
+    ];
+    buttons.forEach(function (_ref) {
+      var _ref2 = _slicedToArray(_ref, 4),
+        text = _ref2[0],
+        mode = _ref2[1],
+        amount = _ref2[2],
+        position = _ref2[3];
+
+      var controlDiv = document.createElement("div");
+      var controlUI = document.createElement("button");
+      controlUI.classList.add("ui-button");
+      controlUI.innerText = "".concat(text);
+      controlUI.addEventListener("click", function () {
+        adjustMap(mode, amount);
+      });
+      controlDiv.appendChild(controlUI);
+      map.controls[position].push(controlDiv);
+    });
+
+    var adjustMap = function adjustMap(mode, amount) {
+      switch (mode) {
+        case "tilt":
+          map.setTilt(map.getTilt() + amount);
+          break;
+
+        case "rotate":
+          map.setHeading(map.getHeading() + amount);
+          break;
+
+        default:
+          break;
+      }
+    };
+  }
+</script>
+
+<div id="iframe-contents">
+  <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=beta"
+    async
+  ></script>
+</div>
