@@ -49,10 +49,11 @@ function initMap() {
     [-122.3381, 47.6095],
     [-122.3378, 47.6095],
   ].map(
-    ([lng, lat]) =>
+    ([lng, lat], i) =>
       new google.maps.Marker({
         position: new google.maps.LatLng({ lat, lng }),
         map,
+        zIndex: i,
         collisionBehavior: collisionBehavior,
       })
   );

@@ -204,7 +204,7 @@
           [-122.3379, 47.6093],
           [-122.3381, 47.6095],
           [-122.3378, 47.6095],
-        ].map(function (_ref) {
+        ].map(function (_ref, i) {
           var _ref2 = _slicedToArray(_ref, 2),
             lng = _ref2[0],
             lat = _ref2[1];
@@ -215,6 +215,7 @@
               lng: lng,
             }),
             map: map,
+            zIndex: i,
             collisionBehavior: collisionBehavior,
           });
         });
