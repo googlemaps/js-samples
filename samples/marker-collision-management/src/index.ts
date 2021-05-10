@@ -80,11 +80,12 @@ function initMap(): void {
     [-122.3381, 47.6095],
     [-122.3378, 47.6095],
   ].map(
-    ([lng, lat]: number[]) =>
+    ([lng, lat]: number[], i: number) =>
       // [START maps_marker_collision_management_create_marker]
       new google.maps.Marker({
         position: new google.maps.LatLng({ lat, lng }),
         map,
+        zIndex: i,
         collisionBehavior: collisionBehavior,
       } as google.maps.MarkerOptions)
     // [END maps_marker_collision_management_create_marker]
