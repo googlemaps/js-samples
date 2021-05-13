@@ -86,7 +86,10 @@ function initMap(): void {
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
       });
 
-      progress.done();
+      // initMap may be called before all JS has been parsed and executed when using the async attribute
+      window.addEventListener("load", () => {
+        progress.done();
+      });
 
       update(map.getCenter()!);
     });
@@ -132,7 +135,7 @@ function renderCards(stores: Store[]): void {
 <div id="card-body">
   </div>
 <div class="mdc-card__actions">
-  <a class="mdc-button mdc-card__action mdc-card__action--button" 
+  <a class="mdc-button mdc-card__action mdc-card__action--button"
     target="_blank" href="https://maps.google.com?q=${
       address ? address : name
     }">

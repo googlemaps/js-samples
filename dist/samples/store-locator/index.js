@@ -14,7 +14,6 @@ function initMap() {
     center: { lat: 39.79, lng: -104.98 },
     zoom: 10,
   });
-
   new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
   autocompleteInput = document.getElementById("search-input");
   autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {});
@@ -39,12 +38,14 @@ function initMap() {
           markers.push(marker);
         }
       );
-
       new MarkerClusterer(map, markers, {
         imagePath:
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
       });
-      progress.done();
+      // initMap may be called before all JS has been parsed and executed hwn using the async attribute
+      window.addEventListener("load", () => {
+        progress.done();
+      });
       update(map.getCenter());
     });
   document.getElementById("near-me").addEventListener("click", () => {
@@ -79,7 +80,7 @@ function renderCards(stores) {
 <div id="card-body">
   </div>
 <div class="mdc-card__actions">
-  <a class="mdc-button mdc-card__action mdc-card__action--button" 
+  <a class="mdc-button mdc-card__action mdc-card__action--button"
     target="_blank" href="https://maps.google.com?q=${
       address ? address : name
     }">
