@@ -5,7 +5,7 @@
 // This sample requires the Places library, Maps JavaScript API.
 // Include the libraries=places parameter when you first load the API.
 // For example: <script
-// src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=places">
+// src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places">
 let autocomplete;
 let address1Field;
 let address2Field;
