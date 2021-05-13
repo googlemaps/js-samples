@@ -15,6 +15,8 @@
  */
 // [START maps_store_locator]
 let map: google.maps.Map;
+let originalMapTypeId: google.maps.MapTypeId;
+let detailMapTypeId: google.maps.MapTypeId;
 let autocomplete: google.maps.places.Autocomplete;
 let autocompleteInput: HTMLInputElement;
 let distanceMatrixService: google.maps.DistanceMatrixService;
@@ -37,9 +39,12 @@ const stores: Store[] = [];
 // Initialize and add the map
 function initMap(): void {
   distanceMatrixService = new google.maps.DistanceMatrixService();
+  originalMapTypeId = google.maps.MapTypeId.ROADMAP;
+  detailMapTypeId = google.maps.MapTypeId.HYBRID;
 
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 39.79, lng: -104.98 },
+    mapTypeId: originalMapTypeId,
     zoom: 10,
   });
 
@@ -74,7 +79,7 @@ function initMap(): void {
           stores.push({ name, location: { lat, lng }, address: "" });
           const marker = new google.maps.Marker({ position: { lat, lng } });
           marker.addListener("click", () => {
-            update(new google.maps.LatLng({ lat, lng }));
+            seeDetail(new google.maps.LatLng({ lat, lng }));
           });
           markers.push(marker);
         }
@@ -132,7 +137,7 @@ function renderCards(stores: Store[]): void {
 <div id="card-body">
   </div>
 <div class="mdc-card__actions">
-  <a class="mdc-button mdc-card__action mdc-card__action--button" 
+  <a class="mdc-button mdc-card__action mdc-card__action--button"
     target="_blank" href="https://maps.google.com?q=${
       address ? address : name
     }">
@@ -155,10 +160,10 @@ function renderCards(stores: Store[]): void {
           cardBody.innerHTML += `<h2 class="mdc-typography--body2">${travelDistanceText}, ${travelDurationText}</h2>`;
         }
 
-        (
-          card.querySelector(".mdc-card__primary-action") as HTMLElement
-        ).addEventListener("click", () => {
-          map.panTo(location);
+        (card.querySelector(
+          ".mdc-card__primary-action"
+        ) as HTMLElement).addEventListener("click", () => {
+          seeDetail(new google.maps.LatLng(location));
         });
 
         cardsDiv.appendChild(card);
@@ -218,6 +223,8 @@ function update(location?: google.maps.LatLng) {
   autocompleteInput.disabled = true;
   isUpdateInProgress = true;
   map.setCenter(location);
+  map.setZoom(10);
+  map.setMapTypeId(originalMapTypeId);
 
   // reset values
   stores.forEach((store) => {
@@ -258,6 +265,22 @@ function update(location?: google.maps.LatLng) {
       autocompleteInput.disabled = false;
       isUpdateInProgress = false;
     });
+}
+
+function seeDetail(location: google.maps.LatLng) {
+  update(location);
+  map.setZoom(19);
+  map.setMapTypeId(detailMapTypeId);
+  map.setTilt(45);
+
+  map.addListener("zoom_changed", () => {
+    const newZoom = map.getZoom()!;
+
+    if (newZoom < 19) {
+      map.setTilt(0);
+      map.setMapTypeId(originalMapTypeId);
+    }
+  });
 }
 
 // [END maps_store_locator]
