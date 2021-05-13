@@ -154,6 +154,7 @@ SAMPLES = [
     "rectangle-simple",
     "rectangle-zoom",
     "split-map-panes",
+    "store-locator",
     "streetview-controls",
     "streetview-custom-simple",
     "streetview-custom-tiles",
