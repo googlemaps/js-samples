@@ -55,6 +55,7 @@
 
   #sidebar {
     flex-basis: 5rem;
+    flex-direction: column;
   }
 
   #search,
@@ -154,8 +155,11 @@
         new MarkerClusterer(map, markers, {
           imagePath:
             "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+        }); // initMap may be called before all JS has been parsed and executed when using the async attribute
+
+        window.addEventListener("load", function () {
+          progress.done();
         });
-        progress.done();
         update(map.getCenter());
       });
     document.getElementById("near-me").addEventListener("click", function () {
@@ -192,7 +196,7 @@
       card.innerHTML = '\n<div class="mdc-card__primary-action">\n  <div id="card-header">\n    <h2 class="mdc-typography--headline6">'
         .concat(
           name,
-          '</h2>\n  </div>\n</div>\n<div id="card-body">\n  </div>\n<div class="mdc-card__actions">\n  <a class="mdc-button mdc-card__action mdc-card__action--button" \n    target="_blank" href="https://maps.google.com?q='
+          '</h2>\n  </div>\n</div>\n<div id="card-body">\n  </div>\n<div class="mdc-card__actions">\n  <a class="mdc-button mdc-card__action mdc-card__action--button"\n    target="_blank" href="https://maps.google.com?q='
         )
         .concat(
           address ? address : name,

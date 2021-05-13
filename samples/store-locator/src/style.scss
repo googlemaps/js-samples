@@ -26,6 +26,7 @@
 
 #sidebar {
   flex-basis: 5rem; // override the default sidebar basis
+  flex-direction: column;
 }
 
 #search,
