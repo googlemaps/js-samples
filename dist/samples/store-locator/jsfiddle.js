@@ -41,7 +41,7 @@ function initMap() {
         imagePath:
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
       });
-      // initMap may be called before all JS has been parsed and executed hwn using the async attribute
+      // initMap may be called before all JS has been parsed and executed when using the async attribute
       window.addEventListener("load", () => {
         progress.done();
       });
