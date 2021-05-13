@@ -1,6 +1,6 @@
 // This example requires the Visualization library. Include the libraries=visualization
 // parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&libraries=visualization">
+// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=visualization">
 let map, heatmap;
 
 function initMap() {
