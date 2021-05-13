@@ -97,6 +97,8 @@
       "use strict";
 
       var map;
+      var originalMapTypeId;
+      var detailMapTypeId;
       var autocomplete;
       var autocompleteInput;
       var distanceMatrixService;
@@ -106,11 +108,14 @@
 
       function initMap() {
         distanceMatrixService = new google.maps.DistanceMatrixService();
+        originalMapTypeId = google.maps.MapTypeId.ROADMAP;
+        detailMapTypeId = google.maps.MapTypeId.HYBRID;
         map = new google.maps.Map(document.getElementById("map"), {
           center: {
             lat: 39.79,
             lng: -104.98,
           },
+          mapTypeId: originalMapTypeId,
           zoom: 10,
         });
         new mdc.textField.MDCTextField(
@@ -153,7 +158,7 @@
                 },
               });
               marker.addListener("click", function () {
-                update(
+                seeDetail(
                   new google.maps.LatLng({
                     lat: lat,
                     lng: lng,
@@ -231,7 +236,7 @@
           card
             .querySelector(".mdc-card__primary-action")
             .addEventListener("click", function () {
-              map.panTo(location);
+              seeDetail(new google.maps.LatLng(location));
             });
           cardsDiv.appendChild(card);
         });
@@ -282,7 +287,9 @@
 
         autocompleteInput.disabled = true;
         isUpdateInProgress = true;
-        map.setCenter(location); // reset values
+        map.setCenter(location);
+        map.setZoom(10);
+        map.setMapTypeId(originalMapTypeId); // reset values
 
         stores.forEach(function (store) {
           delete store.travelDistance;
@@ -322,6 +329,21 @@
             autocompleteInput.disabled = false;
             isUpdateInProgress = false;
           });
+      }
+
+      function seeDetail(location) {
+        update(location);
+        map.setZoom(19);
+        map.setMapTypeId(detailMapTypeId);
+        map.setTilt(45);
+        map.addListener("zoom_changed", function () {
+          var newZoom = map.getZoom();
+
+          if (newZoom < 19) {
+            map.setTilt(0);
+            map.setMapTypeId(originalMapTypeId);
+          }
+        });
       }
     </script>
   </head>
