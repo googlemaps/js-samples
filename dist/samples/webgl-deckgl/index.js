@@ -40,7 +40,6 @@ function initMap() {
   class DeckGLOverlay extends google.maps.WebglOverlayView {
     constructor(canvas, layers, props = {}) {
       super();
-      // [END maps_webgl_deckgl_handle_mouse_event]
       this.deck = null;
       this.layers_ = layers;
       this.props = props;
@@ -128,7 +127,6 @@ function initMap() {
         .project([event.latLng.lng(), event.latLng.lat()]);
       return { x: point[0], y: point[1] };
     }
-    // [START maps_webgl_deckgl_handle_mouse_event]
     /**
      * Translate and pass events from map to Deck instance.
      *

@@ -180,7 +180,6 @@ function initMap() {
       return { x: point[0], y: point[1] };
     }
 
-    // [START maps_webgl_deckgl_handle_mouse_event]
     /**
      * Translate and pass events from map to Deck instance.
      *
@@ -230,8 +229,6 @@ function initMap() {
       // @ts-ignore
       this.requestRedraw();
     }
-    // [END maps_webgl_deckgl_handle_mouse_event]
-    PRESERVE_COMMENT_ABOVE = 1; // force tsc to maintain the comment above eslint-disable-line
   }
 
   // [START maps_webgl_deckgl_layers]
