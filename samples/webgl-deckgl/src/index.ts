@@ -40,7 +40,6 @@ function initMap() {
     center: new google.maps.LatLng(lat, lng),
     heading: heading,
     tilt: tilt,
-    // @ts-ignore mapId in beta
     mapId: "b1beacae401d047c",
   });
 
@@ -64,7 +63,6 @@ function initMap() {
     mouseout: null,
   };
 
-  // @ts-ignore WebGLOverlayView not in types
   class DeckGLOverlay extends google.maps.WebglOverlayView {
     private canvas: HTMLElement;
     private deck: any;
@@ -89,7 +87,6 @@ function initMap() {
     onRemove() {}
 
     onContextRestored(gl: WebGLRenderingContext) {
-      // @ts-ignore WebglOverlayView extends OverlayView
       const map = this.getMap()!;
       this.deck = new deck.Deck({
         canvas: this.canvas,
@@ -160,7 +157,6 @@ function initMap() {
       gl.depthMask(true);
 
       // [START maps_webgl_deckgl_draw_is_requesting_frame]
-      // @ts-ignore
       this.requestRedraw();
       deck._drawLayers("google-map-repaint", {
         clearCanvas: false,
@@ -213,20 +209,17 @@ function initMap() {
         case "mousemove":
           deckEvent.type = "pointermove";
           deck._onPointerMove(deckEvent);
-          // @ts-ignore
           // google.maps.event.trigger(this.getMap()!,'resize');
           break;
         case "mouseout":
           deckEvent.type = "pointerleave";
           deck._onPointerMove(deckEvent);
-          // @ts-ignore
           // google.maps.event.trigger(this.getMap()!,'resize');
           break;
         default:
           return;
       }
 
-      // @ts-ignore
       this.requestRedraw();
     }
   }

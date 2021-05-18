@@ -26,7 +26,6 @@ function initMap(): void {
       zoom: 16,
       heading: 320,
       tilt: 47.5,
-      // @ts-ignore mapId in beta
       mapId: "90f87356969d889c",
     }
   );
