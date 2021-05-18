@@ -36,7 +36,6 @@ function initMap() {
 // [START maps_webgl_overlay_simple_on_add]
 function initWebglOverlayView(map: google.maps.Map) {
   let scene, renderer, camera, loader;
-  // @ts-ignore type only in beta
   const webglOverlayView = new google.maps.WebglOverlayView();
 
   webglOverlayView.onAdd = () => {
@@ -83,7 +82,6 @@ function initWebglOverlayView(map: google.maps.Map) {
       renderer.setAnimationLoop(() => {
         webglOverlayView.requestRedraw();
         const { tilt, heading, zoom } = mapOptions;
-        // @ts-ignore type only in beta
         map.moveCamera({ tilt, heading, zoom });
 
         // Rotate the map 360 degrees.
