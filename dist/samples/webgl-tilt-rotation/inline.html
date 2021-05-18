@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tilt and Rotation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .ui-button {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        margin: 10px;
+        padding: 0 0.5em;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
+        height: 40px;
+        cursor: pointer;
+      }
+      .ui-button:hover {
+        background: #ebebeb;
+      }
+    </style>
+    <script>
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          center: {
+            lat: 37.7893719,
+            lng: -122.3942,
+          },
+          zoom: 16,
+          heading: 320,
+          tilt: 47.5,
+          mapId: "90f87356969d889c",
+        });
+        const buttons = [
+          [
+            "Rotate Left",
+            "rotate",
+            20,
+            google.maps.ControlPosition.LEFT_CENTER,
+          ],
+          [
+            "Rotate Right",
+            "rotate",
+            -20,
+            google.maps.ControlPosition.RIGHT_CENTER,
+          ],
+          ["Tilt Down", "tilt", 20, google.maps.ControlPosition.TOP_CENTER],
+          ["Tilt Up", "tilt", -20, google.maps.ControlPosition.BOTTOM_CENTER],
+        ];
+        buttons.forEach(([text, mode, amount, position]) => {
+          const controlDiv = document.createElement("div");
+          const controlUI = document.createElement("button");
+          controlUI.classList.add("ui-button");
+          controlUI.innerText = `${text}`;
+          controlUI.addEventListener("click", () => {
+            adjustMap(mode, amount);
+          });
+          controlDiv.appendChild(controlUI);
+          map.controls[position].push(controlDiv);
+        });
+
+        const adjustMap = function (mode, amount) {
+          switch (mode) {
+            case "tilt":
+              map.setTilt(map.getTilt() + amount);
+              break;
+            case "rotate":
+              map.setHeading(map.getHeading() + amount);
+              break;
+            default:
+              break;
+          }
+        };
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=beta"
+      async
+    ></script>
+  </body>
+</html>

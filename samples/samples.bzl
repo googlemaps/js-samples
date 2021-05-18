@@ -169,4 +169,7 @@ SAMPLES = [
     "style-selector",
     "user-editable-shapes",
     "vector-use-static-map",
+    "webgl-overlay-simple",
+    "webgl-tilt-rotation",
+    "webgl-deckgl",
 ]

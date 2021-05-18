@@ -166,6 +166,9 @@
     "Styled Maps - Night Mode": "style-array",
     "Styled Map Selection": "style-selector",
     "User-Editable Shapes": "user-editable-shapes",
-    "Vector Initial Static Load": "vector-use-static-map"
+    "Vector Initial Static Load": "vector-use-static-map",
+    "WebGL Overlay": "webgl-overlay-simple",
+    "WebGL Tilt and Rotation": "webgl-tilt-rotation",
+    "WebGL DeckGL Flight Paths": "webgl-deckgl"
   }
 }

@@ -10,7 +10,8 @@
     "ActiveXObject": "readonly",
     "mdc": "readonly",
     "Split": "readonly",
-    "MarkerClusterer": "readonly"
+    "MarkerClusterer": "readonly",
+    "THREE": "readonly"
   },
   "env": {
     "browser": true,

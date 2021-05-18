@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebGL DeckGL OverlayView</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/deck.gl@^8.1.0/dist.min.js"></script>
+
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      #tooltip {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        margin: 10px;
+        padding: 0 0.5em;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
+        position: absolute;
+        height: auto;
+        padding: 0.5em;
+      }
+    </style>
+    <script>
+      "use strict";
+
+      function _typeof(obj) {
+        "@babel/helpers - typeof";
+        if (
+          typeof Symbol === "function" &&
+          typeof Symbol.iterator === "symbol"
+        ) {
+          _typeof = function _typeof(obj) {
+            return typeof obj;
+          };
+        } else {
+          _typeof = function _typeof(obj) {
+            return obj &&
+              typeof Symbol === "function" &&
+              obj.constructor === Symbol &&
+              obj !== Symbol.prototype
+              ? "symbol"
+              : typeof obj;
+          };
+        }
+        return _typeof(obj);
+      }
+
+      function _classCallCheck(instance, Constructor) {
+        if (!(instance instanceof Constructor)) {
+          throw new TypeError("Cannot call a class as a function");
+        }
+      }
+
+      function _defineProperties(target, props) {
+        for (var i = 0; i < props.length; i++) {
+          var descriptor = props[i];
+          descriptor.enumerable = descriptor.enumerable || false;
+          descriptor.configurable = true;
+          if ("value" in descriptor) descriptor.writable = true;
+          Object.defineProperty(target, descriptor.key, descriptor);
+        }
+      }
+
+      function _createClass(Constructor, protoProps, staticProps) {
+        if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+        if (staticProps) _defineProperties(Constructor, staticProps);
+        return Constructor;
+      }
+
+      function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+          throw new TypeError(
+            "Super expression must either be null or a function"
+          );
+        }
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+          constructor: { value: subClass, writable: true, configurable: true },
+        });
+        if (superClass) _setPrototypeOf(subClass, superClass);
+      }
+
+      function _setPrototypeOf(o, p) {
+        _setPrototypeOf =
+          Object.setPrototypeOf ||
+          function _setPrototypeOf(o, p) {
+            o.__proto__ = p;
+            return o;
+          };
+        return _setPrototypeOf(o, p);
+      }
+
+      function _createSuper(Derived) {
+        var hasNativeReflectConstruct = _isNativeReflectConstruct();
+        return function _createSuperInternal() {
+          var Super = _getPrototypeOf(Derived),
+            result;
+          if (hasNativeReflectConstruct) {
+            var NewTarget = _getPrototypeOf(this).constructor;
+            result = Reflect.construct(Super, arguments, NewTarget);
+          } else {
+            result = Super.apply(this, arguments);
+          }
+          return _possibleConstructorReturn(this, result);
+        };
+      }
+
+      function _possibleConstructorReturn(self, call) {
+        if (
+          call &&
+          (_typeof(call) === "object" || typeof call === "function")
+        ) {
+          return call;
+        }
+        return _assertThisInitialized(self);
+      }
+
+      function _assertThisInitialized(self) {
+        if (self === void 0) {
+          throw new ReferenceError(
+            "this hasn't been initialised - super() hasn't been called"
+          );
+        }
+        return self;
+      }
+
+      function _isNativeReflectConstruct() {
+        if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+        if (Reflect.construct.sham) return false;
+        if (typeof Proxy === "function") return true;
+        try {
+          Date.prototype.toString.call(
+            Reflect.construct(Date, [], function () {})
+          );
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      function _getPrototypeOf(o) {
+        _getPrototypeOf = Object.setPrototypeOf
+          ? Object.getPrototypeOf
+          : function _getPrototypeOf(o) {
+              return o.__proto__ || Object.getPrototypeOf(o);
+            };
+        return _getPrototypeOf(o);
+      }
+
+      var map, webGLOverlay; // source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
+
+      var AIR_PORTS =
+        "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson";
+
+      function initMap() {
+        var lat = 51.4709959;
+        var lng = -0.4531566;
+        var zoom = 2;
+        var heading = 0;
+        var tilt = 0;
+        var mapElement = document.getElementById("map");
+        map = new google.maps.Map(mapElement, {
+          zoom: zoom,
+          center: new google.maps.LatLng(lat, lng),
+          heading: heading,
+          tilt: tilt,
+          mapId: "b1beacae401d047c",
+        });
+        var tooltipElement = document.getElementById("tooltip");
+
+        function setTooltip(_ref) {
+          var x = _ref.x,
+            y = _ref.y,
+            object = _ref.object;
+
+          if (object) {
+            tooltipElement.style.display = "block";
+            tooltipElement.style.left = "".concat(x + 5, "px");
+            tooltipElement.style.top = "".concat(y + 5, "px");
+            tooltipElement.innerHTML = ""
+              .concat(object.properties.name, " - ")
+              .concat(object.properties.abbrev);
+          } else {
+            tooltipElement.style.display = "none";
+          }
+        }
+
+        var eventListeners = {
+          click: null,
+          dblclick: null,
+          mousemove: null,
+          mouseout: null,
+        };
+
+        var DeckGLOverlay = /*#__PURE__*/ (function (_google$maps$WebglOve) {
+          _inherits(DeckGLOverlay, _google$maps$WebglOve);
+
+          var _super = _createSuper(DeckGLOverlay);
+
+          function DeckGLOverlay(canvas, layers) {
+            var _this;
+
+            var props =
+              arguments.length > 2 && arguments[2] !== undefined
+                ? arguments[2]
+                : {};
+
+            _classCallCheck(this, DeckGLOverlay);
+
+            _this = _super.call(this);
+            _this.deck = null;
+            _this.layers_ = layers;
+            _this.props = props;
+            _this.canvas = canvas;
+            return _this;
+          }
+
+          _createClass(DeckGLOverlay, [
+            {
+              key: "layers",
+              set: function set(layers) {
+                this.layers_ = layers;
+                this.deck.setProps({
+                  layers: [this.layers_],
+                });
+              },
+            },
+            {
+              key: "onAdd",
+              value: function onAdd() {},
+            },
+            {
+              key: "onRemove",
+              value: function onRemove() {},
+            },
+            {
+              key: "onContextRestored",
+              value: function onContextRestored(gl) {
+                var _this2 = this;
+
+                var map = this.getMap();
+                this.deck = new deck.Deck({
+                  canvas: this.canvas,
+                  initialViewState: {
+                    longitude: lng,
+                    latitude: lat,
+                    pitch: tilt,
+                    zoom: zoom,
+                  },
+                  gl: gl,
+                  layers: this.layers_,
+                  props: this.props,
+                  controller: false,
+                  userData: {
+                    map: map,
+                  },
+                }); // Register event listeners
+
+                var _loop = function _loop(eventType) {
+                  eventListeners[eventType] = map.addListener(
+                    eventType,
+                    function (event) {
+                      return _this2.handleMouseEvent(
+                        _this2.deck,
+                        eventType,
+                        event
+                      );
+                    }
+                  );
+                };
+
+                for (var eventType in eventListeners) {
+                  _loop(eventType);
+                }
+              },
+            },
+            {
+              key: "onDraw",
+              value: function onDraw(gl, coordinateTransformer) {
+                var deck = this.deck;
+
+                if (!deck || !deck.layerManager) {
+                  return;
+                }
+
+                var camParams = coordinateTransformer.getCameraParams();
+                var width = this.canvas.clientWidth;
+                var height = this.canvas.clientHeight;
+                var left = 0;
+                var top = 0;
+                var zoom = Math.max(0, camParams.zoom - 1);
+                var pitch = camParams.tilt;
+                var bearing = camParams.heading;
+                var latitude = camParams.lat;
+                var longitude = camParams.lng;
+                this.canvas.style.left = "".concat(left, "px");
+                this.canvas.style.top = "".concat(top, "px");
+                deck.setProps({
+                  width: width,
+                  height: height,
+                  viewState: {
+                    latitude: latitude,
+                    longitude: longitude,
+                    zoom: zoom,
+                    pitch: pitch,
+                    bearing: bearing,
+                    nearZMultiplier: 0.01,
+                    farZMultiplier: 1.01,
+                    repeat: true,
+                  },
+                });
+                gl.disable(gl.SCISSOR_TEST);
+                gl.disable(gl.STENCIL_TEST);
+                gl.enable(gl.DEPTH_TEST);
+                gl.disable(gl.CULL_FACE);
+                gl.depthFunc(gl.LEQUAL);
+                gl.depthMask(true);
+                this.requestRedraw();
+
+                deck._drawLayers("google-map-repaint", {
+                  clearCanvas: false,
+                });
+              },
+            },
+            {
+              key: "onContextLost",
+              value: function onContextLost() {},
+            },
+            {
+              key: "getEventPixel",
+              value: function getEventPixel(event, deck) {
+                var point = deck
+                  .getViewports()[0]
+                  .project([event.latLng.lng(), event.latLng.lat()]);
+                return {
+                  x: point[0],
+                  y: point[1],
+                };
+              },
+              /**
+               * Translate and pass events from map to Deck instance.
+               *
+               * @param deck Deck instance to pass modified event to.
+               * @param type Event name such as `click` that triggered the event.
+               * @param event Source event that is being handled.
+               */
+            },
+            {
+              key: "handleMouseEvent",
+              value: function handleMouseEvent(deck, type, event) {
+                var deckEvent = {
+                  type: type,
+                  offsetCenter: this.getEventPixel(event, deck),
+                  srcEvent: event,
+                };
+
+                switch (type) {
+                  case "click":
+                    // Hack: because we do not listen to pointer down, perform picking now
+                    deck._lastPointerDownInfo = deck.pickObject(
+                      deckEvent.offsetCenter
+                    );
+                    deckEvent.tapCount = 1;
+
+                    deck._onEvent(deckEvent);
+
+                    break;
+
+                  case "dblclick":
+                    deckEvent.type = "click";
+                    deckEvent.tapCount = 2;
+
+                    deck._onEvent(deckEvent);
+
+                    break;
+
+                  case "mousemove":
+                    deckEvent.type = "pointermove";
+
+                    deck._onPointerMove(deckEvent); // google.maps.event.trigger(this.getMap()!,'resize');
+
+                    break;
+
+                  case "mouseout":
+                    deckEvent.type = "pointerleave";
+
+                    deck._onPointerMove(deckEvent); // google.maps.event.trigger(this.getMap()!,'resize');
+
+                    break;
+
+                  default:
+                    return;
+                }
+
+                this.requestRedraw();
+              },
+            },
+          ]);
+
+          return DeckGLOverlay;
+        })(google.maps.WebglOverlayView);
+
+        var layers = [
+          new deck.GeoJsonLayer({
+            id: "airports",
+            data: AIR_PORTS,
+            filled: true,
+            pointRadiusMinPixels: 2,
+            opacity: 1,
+            pointRadiusScale: 2000,
+            getRadius: function getRadius(f) {
+              return 11 - f.properties.scalerank;
+            },
+            getFillColor: [200, 0, 80, 180],
+            pickable: true,
+            autoHighlight: true,
+            onHover: setTooltip,
+          }),
+          new deck.ArcLayer({
+            id: "arcs",
+            data: AIR_PORTS,
+            dataTransform: function dataTransform(d) {
+              return d.features.filter(function (f) {
+                return f.properties.scalerank < 4;
+              });
+            },
+            getSourcePosition: function getSourcePosition(f) {
+              return [lng, lat];
+            },
+            getTargetPosition: function getTargetPosition(f) {
+              return f.geometry.coordinates;
+            },
+            getSourceColor: [0, 128, 200],
+            getTargetColor: [200, 0, 80],
+            getWidth: 1,
+          }),
+        ];
+        var props = {};
+        webGLOverlay = new DeckGLOverlay(mapElement, layers, props);
+        webGLOverlay.setMap(map);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="tooltip"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=beta"
+      async
+    ></script>
+  </body>
+</html>
