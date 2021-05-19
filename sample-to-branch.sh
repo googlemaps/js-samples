@@ -1,24 +1,27 @@
 #!/bin/bash
-set -ex
+set -e
 
 tar xf $1
 
 tmp=`mktemp -d`
 
-pushd $tmp
-  git init
-  git remote add origin git@github.com:googlemaps/js-samples.git
-  git fetch origin
-popd
-
-
 for sample in samples/*/; do
   name=`basename $sample`
-  branch="generated-output-${name}"
+  branch="sample-${name}"
 
   pushd $tmp
+    rm -rf .git
+    git init
+    git config user.name 'googlemaps-bot'
+    git config user.email 'googlemaps-bot@users.noreply.github.com'
+
+    if [ -n "$GITHUB_TOKEN" ]; then
+      git remote add origin "https://googlemaps-bot:$GITHUB_TOKEN@github.com/googlemaps/js-samples.git"
+    else
+      git remote add origin "git@github.com:googlemaps/js-samples.git"
+    fi
+
     git checkout -B $branch
-    git pull origin $branch || true
     git rm -rqf . || true
     git clean -fxd
   popd
@@ -32,6 +35,6 @@ for sample in samples/*/; do
   pushd $tmp
     git add -A
     git commit -am "chore: sync ${name} [skip-ci]" --no-verify || true
-    git push --set-upstream origin $branch -f
+    git push -q --set-upstream origin $branch -f
   popd
 done

@@ -69,6 +69,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
           NPM_TOKEN: ${{ secrets.NPM_WOMBAT_TOKEN }}
-      - name: Update branches
+      - name: Push samples to branches
         run: |
-
+          bazel run //:sample-to-branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
