@@ -1,1 +1,2 @@
-dist/samples/**    linguist-generated=true
+dist/samples/**    linguist-generated
+dist/samples/**    -merge
