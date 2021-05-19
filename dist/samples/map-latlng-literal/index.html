@@ -19,44 +19,48 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // In this example, we center the map, and add a marker, using a LatLng object
-      // literal instead of a google.maps.LatLng object. LatLng object literals are
-      // a convenient way to add a LatLng coordinate and, in most cases, can be used
-      // in place of a google.maps.LatLng object.
-      var map;
-
-      function initMap() {
-        var mapOptions = {
-          zoom: 8,
-          center: {
-            lat: -34.397,
-            lng: 150.644,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        };
-        map = new google.maps.Map(document.getElementById("map"), mapOptions);
-        var marker = new google.maps.Marker({
-          // The below line is equivalent to writing:
-          // position: new google.maps.LatLng(-34.397, 150.644)
-          position: {
-            lat: -34.397,
-            lng: 150.644,
-          },
-          map: map,
-        }); // You can use a LatLng literal in place of a google.maps.LatLng object when
-        // creating the Marker object. Once the Marker object is instantiated, its
-        // position will be available as a google.maps.LatLng object. In this case,
-        // we retrieve the marker's position using the
-        // google.maps.LatLng.getPosition() method.
-
-        var infowindow = new google.maps.InfoWindow({
-          content: "<p>Marker Location:" + marker.getPosition() + "</p>",
-        });
-        google.maps.event.addListener(marker, "click", function () {
-          infowindow.open(map, marker);
-        });
-      }
+          o = {};
+        let t;
+        function n() {
+          t = new google.maps.Map(document.getElementById("map"), {
+            zoom: 8,
+            center: { lat: -34.397, lng: 150.644 },
+          });
+          const e = new google.maps.Marker({
+              position: { lat: -34.397, lng: 150.644 },
+              map: t,
+            }),
+            o = new google.maps.InfoWindow({
+              content: "<p>Marker Location:" + e.getPosition() + "</p>",
+            });
+          google.maps.event.addListener(e, "click", () => {
+            o.open(t, e);
+          });
+        }
+        e.r(o), e.d(o, { initMap: () => n });
+        var r = window;
+        for (var a in o) r[a] = o[a];
+        o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

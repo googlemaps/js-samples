@@ -19,35 +19,45 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This example displays a map with the language set to Arabic and the
-      // regions set to Egypt. These settings are specified in the HTML script
-      // element when loading the Google Maps JavaScript API.
-      // Setting the language shows the map in the language of your choice.
-      // Setting the region biases the geocoding results to that region.
-      // In addition, the page's html element sets the text direction to
-      // right-to-left.
-      function initMap() {
-        var cairo = {
-          lat: 30.064742,
-          lng: 31.249509,
-        };
-        var map = new google.maps.Map(document.getElementById("map"), {
-          scaleControl: true,
-          center: cairo,
-          zoom: 10,
-        });
-        var infowindow = new google.maps.InfoWindow();
-        infowindow.setContent("<b>القاهرة</b>");
-        var marker = new google.maps.Marker({
-          map: map,
-          position: cairo,
-        });
-        marker.addListener("click", function () {
-          infowindow.open(map, marker);
-        });
-      }
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        function t() {
+          const e = { lat: 30.064742, lng: 31.249509 },
+            o = new google.maps.Map(document.getElementById("map"), {
+              scaleControl: !0,
+              center: e,
+              zoom: 10,
+            }),
+            t = new google.maps.InfoWindow();
+          t.setContent("<b>القاهرة</b>");
+          const n = new google.maps.Marker({ map: o, position: e });
+          n.addListener("click", () => {
+            t.open(o, n);
+          });
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var n = window;
+        for (var r in o) n[r] = o[r];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

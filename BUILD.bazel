@@ -11,8 +11,9 @@ exports_files(
         ".babelrc.jsfiddle.json",
         "package.json",
         "jest.config.js",
+        "rollup.config.js",
         "tsconfig.json",
-    ],
+    ] + glob(["webpack.*.js"]),
     visibility = ["//:__subpackages__"],
 )
 
@@ -80,6 +81,7 @@ ESLINT_DATA = [
 eslint_test(
     name = "eslint",
     args = [
+        "--ignore-pattern webpack.config.js",
         "samples/**/*.ts",
         "samples/**/*.js",
     ],
@@ -93,12 +95,22 @@ eslint(
     name = "eslint-fix",
     args = [
         "samples/**/*.ts",
+        "--ignore-pattern webpack.config.js",
         "--fix",
     ],
     data = ESLINT_DATA + [
         "//samples:inputs",
     ],
 )
+
+
+remap_files = [
+    ["samples/{}/github.html", "samples/{}/index.html"],
+]
+
+remap_paths = {
+    k.format(name): v.format(name) for k, v in remap_files for name in SAMPLES
+}
 
 pkg_tar(
     name = "public",
@@ -107,7 +119,12 @@ pkg_tar(
         "//samples:outputs",
     ],
     strip_prefix = ".",
-    remap_paths = {
-            "samples/{}/github.html".format(name): "samples/{}/index.html".format(name) for name in SAMPLES
-        },
+    remap_paths = remap_paths,
+)
+
+sh_binary(
+    name = "sample-to-branch",
+    args = ["$(location :public.tar)"],
+    srcs = ["sample-to-branch.sh"],
+    data = [":public.tar"]
 )

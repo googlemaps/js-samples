@@ -46,4 +46,4 @@ const eqfeed_callback = function (results: any) {
   }
 };
 // [END maps_earthquake_markers]
-export { initMap };
+export { initMap, eqfeed_callback };

@@ -119,150 +119,117 @@
   }
 </style>
 <script>
-  "use strict";
-
-  var autocompleteService;
-  var placesService;
-  var requestElement;
-  var responseElement;
-  var inputElement;
-  var biasToMapSwitchElement;
-  var autocompleteTypeElement;
-  var map;
-
-  var debounce = function debounce(delay, fn) {
-    var timeout = 0;
-
-    var debounced = function debounced() {
-      for (
-        var _len = arguments.length, args = new Array(_len), _key = 0;
-        _key < _len;
-        _key++
-      ) {
-        args[_key] = arguments[_key];
-      }
-
-      window.clearTimeout(timeout);
-      timeout = window.setTimeout(function () {
-        return fn.apply(void 0, args);
-      }, delay);
-    };
-
-    return debounced;
-  };
-
-  var initialize = function initialize() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: {
-        lat: 47.609414458375674,
-        lng: -122.33897030353548,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, n) => {
+          for (var c in n)
+            e.o(n, c) &&
+              !e.o(t, c) &&
+              Object.defineProperty(t, c, { enumerable: !0, get: n[c] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      zoom: 12,
-    });
-    autocompleteService = new google.maps.places.AutocompleteService();
-    placesService = new google.maps.places.PlacesService(map);
-    inputElement = document.getElementById("input");
-    requestElement = document.getElementById("request");
-    responseElement = document.getElementById("response");
-    biasToMapSwitchElement = document.getElementById("bias-to-map");
-    autocompleteTypeElement = document.getElementById("autocomplete-type");
-    var autocompleteTypeListElement = document.getElementById(
-      "autocomplete-type-list"
-    );
-    [
-      "",
-      "establishment",
-      "geocode",
-      "address",
-      "(cities)",
-      "(regions)",
-    ].forEach(function (type) {
-      var item = document.createElement("LI");
-      item.classList.add("mdc-list-item");
-      item.setAttribute("data-value", type);
-      var itemText = document.createElement("SPAN");
-      itemText.classList.add("mdc-list-item__text");
-      itemText.innerText = type;
-      item.appendChild(itemText);
-      autocompleteTypeListElement.appendChild(item);
-    });
-    inputElement.addEventListener("input", inputChangeCallback);
-    biasToMapSwitchElement.addEventListener("change", inputChangeCallback);
-    map.addListener("bounds_changed", function () {
-      if (biasToMapSwitchElement.checked) {
-        inputChangeCallback();
-      }
-    });
-    biasToMapSwitchElement.checked = true;
-    initializeMaterialDesignComponents();
-    inputChangeCallback();
-  };
-
-  var inputChangeCallback = debounce(100, function () {
-    var request = {
-      input: inputElement.value,
-    };
-    var bounds = map.getBounds();
-
-    if (biasToMapSwitchElement.checked && bounds) {
-      request.bounds = bounds;
-    }
-
-    var selectedAutocompleteType = document.querySelector(
-      "#autocomplete-type-list > .mdc-list-item--selected"
-    );
-
-    if (
-      selectedAutocompleteType &&
-      selectedAutocompleteType.getAttribute("data-value") !== ""
-    ) {
-      request.types = [selectedAutocompleteType.getAttribute("data-value")];
-    }
-
-    requestElement.innerText = JSON.stringify(request, null, 2);
-
-    if (!inputElement.value) {
-      return;
-    }
-
-    autocompleteService.getPlacePredictions(request, predictionsCallback);
-  });
-
-  var predictionsCallback = function predictionsCallback(results, status) {
-    responseElement.innerText = JSON.stringify(
-      {
-        results: results,
-        status: status,
+      t = {};
+    let n, c, o, l, d, a, i, r;
+    e.r(t), e.d(t, { initialize: () => s });
+    const s = () => {
+        (r = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 47.609414458375674, lng: -122.33897030353548 },
+          zoom: 12,
+        })),
+          (n = new google.maps.places.AutocompleteService()),
+          (c = new google.maps.places.PlacesService(r)),
+          (d = document.getElementById("input")),
+          (o = document.getElementById("request")),
+          (l = document.getElementById("response")),
+          (a = document.getElementById("bias-to-map")),
+          (i = document.getElementById("autocomplete-type"));
+        const e = document.getElementById("autocomplete-type-list");
+        [
+          "",
+          "establishment",
+          "geocode",
+          "address",
+          "(cities)",
+          "(regions)",
+        ].forEach((t) => {
+          const n = document.createElement("LI");
+          n.classList.add("mdc-list-item"), n.setAttribute("data-value", t);
+          const c = document.createElement("SPAN");
+          c.classList.add("mdc-list-item__text"),
+            (c.innerText = t),
+            n.appendChild(c),
+            e.appendChild(n);
+        }),
+          d.addEventListener("input", u),
+          a.addEventListener("change", u),
+          r.addListener("bounds_changed", () => {
+            a.checked && u();
+          }),
+          (a.checked = !0),
+          p(),
+          u();
       },
-      null,
-      2
-    );
-  };
-
-  var initializeMaterialDesignComponents = function initializeMaterialDesignComponents() {
-    document.querySelectorAll(".mdc-text-field").forEach(function (el) {
-      return new mdc.textField.MDCTextField(el);
-    });
-    document.querySelectorAll(".mdc-switch").forEach(function (el) {
-      return new mdc.switchControl.MDCSwitch(el);
-    });
-    document.querySelectorAll(".mdc-select").forEach(function (el) {
-      return new mdc.select.MDCSelect(el).listen(
-        "MDCSelect:change",
-        inputChangeCallback
-      );
-    });
-    var tabBar = new mdc.tabBar.MDCTabBar(
-      document.querySelector(".mdc-tab-bar")
-    );
-    var contentElements = document.querySelectorAll(".tab-content");
-    tabBar.listen("MDCTabBar:activated", function (event) {
-      document
-        .querySelector(".tab-content--active")
-        .classList.remove("tab-content--active");
-      contentElements[event.detail.index].classList.add("tab-content--active");
-    });
-  };
+      u = ((e, t) => {
+        let c = 0;
+        return (...e) => {
+          window.clearTimeout(c),
+            (c = window.setTimeout(
+              () =>
+                (() => {
+                  const e = { input: d.value },
+                    t = r.getBounds();
+                  a.checked && t && (e.bounds = t);
+                  const c = document.querySelector(
+                    "#autocomplete-type-list > .mdc-list-item--selected"
+                  );
+                  c &&
+                    "" !== c.getAttribute("data-value") &&
+                    (e.types = [c.getAttribute("data-value")]),
+                    (o.innerText = JSON.stringify(e, null, 2)),
+                    d.value && n.getPlacePredictions(e, m);
+                })(...e),
+              100
+            ));
+        };
+      })(),
+      m = (e, t) => {
+        l.innerText = JSON.stringify({ results: e, status: t }, null, 2);
+      },
+      p = () => {
+        document
+          .querySelectorAll(".mdc-text-field")
+          .forEach((e) => new mdc.textField.MDCTextField(e)),
+          document
+            .querySelectorAll(".mdc-switch")
+            .forEach((e) => new mdc.switchControl.MDCSwitch(e)),
+          document
+            .querySelectorAll(".mdc-select")
+            .forEach((e) =>
+              new mdc.select.MDCSelect(e).listen("MDCSelect:change", u)
+            );
+        const e = new mdc.tabBar.MDCTabBar(
+            document.querySelector(".mdc-tab-bar")
+          ),
+          t = document.querySelectorAll(".tab-content");
+        e.listen("MDCTabBar:activated", (e) => {
+          document
+            .querySelector(".tab-content--active")
+            .classList.remove("tab-content--active"),
+            t[e.detail.index].classList.add("tab-content--active");
+        });
+      };
+    var g = window;
+    for (var y in t) g[y] = t[y];
+    t.__esModule && Object.defineProperty(g, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">
@@ -330,7 +297,10 @@
               <span class="mdc-line-ripple"></span>
             </div>
             <div
-              class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth"
+              class="
+                mdc-select__menu
+                mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth
+              "
             >
               <ul class="mdc-list" id="autocomplete-type-list"></ul>
             </div>
@@ -353,7 +323,10 @@
                   </span>
                   <span class="mdc-tab-indicator mdc-tab-indicator--active">
                     <span
-                      class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
+                      class="
+                        mdc-tab-indicator__content
+                        mdc-tab-indicator__content--underline
+                      "
                     ></span>
                   </span>
                   <span class="mdc-tab__ripple"></span>
@@ -369,7 +342,10 @@
                   </span>
                   <span class="mdc-tab-indicator mdc-tab-indicator">
                     <span
-                      class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
+                      class="
+                        mdc-tab-indicator__content
+                        mdc-tab-indicator__content--underline
+                      "
                     ></span>
                   </span>
                   <span class="mdc-tab__ripple"></span>

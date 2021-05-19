@@ -1,0 +1,37 @@
+{
+  "name": "aerial-simple",
+  "version": "1.0.0",
+  "description": "Sample for Google Maps Platform JavaScript",
+  "keywords": [
+    "google",
+    "javascript",
+    "maps",
+    "samples"
+  ],
+  "homepage": "https://github.com/googlemaps/js-samples#readme",
+  "bugs": {
+    "url": "https://github.com/googlemaps/js-samples/issues"
+  },
+  "license": "Apache-2.0",
+  "author": "Justin Poehnelt <jpoehnelt@google.com>",
+  "scripts": {
+    "build": "webpack --config ./webpack.config.js --mode production",
+    "start": "webpack serve --config  ./webpack.config.js --mode development",
+    "dev": "webpack serve --config  ./webpack.config.js --mode development"
+  },
+  "devDependencies": {
+    "@types/google.maps": "^3.44.5",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.2.4",
+    "dotenv": "^9.0.0",
+    "html-replace-webpack-plugin": "^2.6.0",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
+    "string-replace-loader": "^3.0.1",
+    "ts-loader": "^9.1.1",
+    "typescript": "^3.9.9",
+    "webpack": "^5.36.2",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^4.0.0-beta.3"
+  }
+}

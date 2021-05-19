@@ -19,46 +19,58 @@
       }
     </style>
     <script>
-      "use strict";
-
-      var map;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 2,
-          center: new google.maps.LatLng(2.8, -187.3),
-          mapTypeId: google.maps.MapTypeId.TERRAIN,
-        }); // Create a <script> tag and set the USGS URL as the source.
-
-        var script = document.createElement("script"); // This example uses a local copy of the GeoJSON stored at
-        // http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-
-        script.src =
-          "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js";
-        document.getElementsByTagName("head")[0].appendChild(script);
-      }
-
-      var eqfeed_callback = function eqfeed_callback(results) {
-        // TODO fix @types/googlemaps
-        var heatmapData = [];
-
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1], coords[0]);
-          var magnitude = results.features[i].properties.mag;
-          var weightedLoc = {
-            location: latLng,
-            weight: Math.pow(2, magnitude),
-          };
-          heatmapData.push(weightedLoc);
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var a in o)
+                e.o(o, a) &&
+                  !e.o(t, a) &&
+                  Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          t = {};
+        let o;
+        function a() {
+          o = new google.maps.Map(document.getElementById("map"), {
+            zoom: 2,
+            center: new google.maps.LatLng(2.8, -187.3),
+            mapTypeId: google.maps.MapTypeId.TERRAIN,
+          });
+          const e = document.createElement("script");
+          (e.src =
+            "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js"),
+            document.getElementsByTagName("head")[0].appendChild(e);
         }
-
-        var heatmap = new google.maps.visualization.HeatmapLayer({
-          data: heatmapData,
-          dissipating: false,
-          map: map,
-        });
-      };
+        e.r(t), e.d(t, { initMap: () => a, eqfeed_callback: () => n });
+        const n = function (e) {
+          const t = [];
+          for (let o = 0; o < e.features.length; o++) {
+            const a = e.features[o].geometry.coordinates,
+              n = new google.maps.LatLng(a[1], a[0]),
+              r = e.features[o].properties.mag,
+              p = { location: n, weight: Math.pow(2, r) };
+            t.push(p);
+          }
+          new google.maps.visualization.HeatmapLayer({
+            data: t,
+            dissipating: !1,
+            map: o,
+          });
+        };
+        var r = window;
+        for (var p in t) r[p] = t[p];
+        t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

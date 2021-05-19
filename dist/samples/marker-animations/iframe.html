@@ -15,40 +15,48 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // The following example creates a marker in Stockholm, Sweden using a DROP
-  // animation. Clicking on the marker will toggle the animation between a BOUNCE
-  // animation and no animation.
-  var marker;
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 13,
-      center: {
-        lat: 59.325,
-        lng: 18.07,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, n) => {
+          for (var t in n)
+            e.o(n, t) &&
+              !e.o(o, t) &&
+              Object.defineProperty(o, t, { enumerable: !0, get: n[t] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-    });
-    marker = new google.maps.Marker({
-      map: map,
-      draggable: true,
-      animation: google.maps.Animation.DROP,
-      position: {
-        lat: 59.327,
-        lng: 18.067,
-      },
-    });
-    marker.addListener("click", toggleBounce);
-  }
-
-  function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-      marker.setAnimation(null);
-    } else {
-      marker.setAnimation(google.maps.Animation.BOUNCE);
+      o = {};
+    let n;
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+        zoom: 13,
+        center: { lat: 59.325, lng: 18.07 },
+      });
+      (n = new google.maps.Marker({
+        map: e,
+        draggable: !0,
+        animation: google.maps.Animation.DROP,
+        position: { lat: 59.327, lng: 18.067 },
+      })),
+        n.addListener("click", a);
     }
-  }
+    function a() {
+      null !== n.getAnimation()
+        ? n.setAnimation(null)
+        : n.setAnimation(google.maps.Animation.BOUNCE);
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var i = window;
+    for (var l in o) i[l] = o[l];
+    o.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

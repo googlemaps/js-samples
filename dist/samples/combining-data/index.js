@@ -90,12 +90,10 @@ function loadCensusData(variable) {
       }
     });
     // update and display the legend
-    document.getElementById(
-      "census-min"
-    ).textContent = censusMin.toLocaleString();
-    document.getElementById(
-      "census-max"
-    ).textContent = censusMax.toLocaleString();
+    document.getElementById("census-min").textContent =
+      censusMin.toLocaleString();
+    document.getElementById("census-max").textContent =
+      censusMax.toLocaleString();
   };
   xhr.send();
   // [END maps_combining_data_snippet_loadcensus]
@@ -173,9 +171,8 @@ function mouseInToRegion(e) {
       (censusMax - censusMin)) *
     100;
   // update the label
-  document.getElementById("data-label").textContent = e.feature.getProperty(
-    "NAME"
-  );
+  document.getElementById("data-label").textContent =
+    e.feature.getProperty("NAME");
   document.getElementById("data-value").textContent = e.feature
     .getProperty("census_variable")
     .toLocaleString();

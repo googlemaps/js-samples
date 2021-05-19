@@ -19,33 +19,50 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This example creates a rectangle based on the viewport
-      // on any 'zoom-changed' event.
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 11,
-          center: {
-            lat: 40.74852,
-            lng: -73.981687,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var r in t)
+                e.o(t, r) &&
+                  !e.o(o, r) &&
+                  Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          mapTypeId: "terrain",
-        });
-        var rectangle = new google.maps.Rectangle();
-        map.addListener("zoom_changed", function () {
-          // Get the current bounds, which reflect the bounds before the zoom.
-          rectangle.setOptions({
-            strokeColor: "#FF0000",
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
-            map: map,
-            bounds: map.getBounds(),
+          o = {};
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+              zoom: 11,
+              center: { lat: 40.74852, lng: -73.981687 },
+              mapTypeId: "terrain",
+            }),
+            o = new google.maps.Rectangle();
+          e.addListener("zoom_changed", () => {
+            o.setOptions({
+              strokeColor: "#FF0000",
+              strokeOpacity: 0.8,
+              strokeWeight: 2,
+              fillColor: "#FF0000",
+              fillOpacity: 0.35,
+              map: e,
+              bounds: e.getBounds(),
+            });
           });
-        });
-      }
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var r = window;
+        for (var n in o) r[n] = o[n];
+        o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

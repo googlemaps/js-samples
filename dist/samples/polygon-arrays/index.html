@@ -19,76 +19,68 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This example creates a simple polygon representing the Bermuda Triangle.
-      // When the user clicks on the polygon an info window opens, showing
-      // information about the polygon's coordinates.
-      var map;
-      var infoWindow;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 5,
-          center: {
-            lat: 24.886,
-            lng: -70.268,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          mapTypeId: "terrain",
-        }); // Define the LatLng coordinates for the polygon.
-
-        var triangleCoords = [
-          {
-            lat: 25.774,
-            lng: -80.19,
-          },
-          {
-            lat: 18.466,
-            lng: -66.118,
-          },
-          {
-            lat: 32.321,
-            lng: -64.757,
-          },
-        ]; // Construct the polygon.
-
-        var bermudaTriangle = new google.maps.Polygon({
-          paths: triangleCoords,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.8,
-          strokeWeight: 3,
-          fillColor: "#FF0000",
-          fillOpacity: 0.35,
-        });
-        bermudaTriangle.setMap(map); // Add a listener for the click event.
-
-        bermudaTriangle.addListener("click", showArrays);
-        infoWindow = new google.maps.InfoWindow();
-      }
-
-      function showArrays(event) {
-        // Since this polygon has only one path, we can call getPath() to return the
-        // MVCArray of LatLngs.
-        var polygon = this;
-        var vertices = polygon.getPath();
-        var contentString =
-          "<b>Bermuda Triangle polygon</b><br>" +
-          "Clicked location: <br>" +
-          event.latLng.lat() +
-          "," +
-          event.latLng.lng() +
-          "<br>"; // Iterate over the vertices.
-
-        for (var i = 0; i < vertices.getLength(); i++) {
-          var xy = vertices.getAt(i);
-          contentString +=
-            "<br>" + "Coordinate " + i + ":<br>" + xy.lat() + "," + xy.lng();
-        } // Replace the info window's content and position.
-
-        infoWindow.setContent(contentString);
-        infoWindow.setPosition(event.latLng);
-        infoWindow.open(map);
-      }
+          t = {};
+        let o, n;
+        function l() {
+          o = new google.maps.Map(document.getElementById("map"), {
+            zoom: 5,
+            center: { lat: 24.886, lng: -70.268 },
+            mapTypeId: "terrain",
+          });
+          const e = new google.maps.Polygon({
+            paths: [
+              { lat: 25.774, lng: -80.19 },
+              { lat: 18.466, lng: -66.118 },
+              { lat: 32.321, lng: -64.757 },
+            ],
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 3,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+          e.setMap(o),
+            e.addListener("click", r),
+            (n = new google.maps.InfoWindow());
+        }
+        function r(e) {
+          const t = this.getPath();
+          let l =
+            "<b>Bermuda Triangle polygon</b><br>Clicked location: <br>" +
+            e.latLng.lat() +
+            "," +
+            e.latLng.lng() +
+            "<br>";
+          for (let e = 0; e < t.getLength(); e++) {
+            const o = t.getAt(e);
+            l += "<br>Coordinate " + e + ":<br>" + o.lat() + "," + o.lng();
+          }
+          n.setContent(l), n.setPosition(e.latLng), n.open(o);
+        }
+        e.r(t), e.d(t, { initMap: () => l });
+        var a = window;
+        for (var i in t) a[i] = t[i];
+        t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

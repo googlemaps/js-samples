@@ -34,32 +34,46 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 12,
-          center: {
-            lat: 37.06,
-            lng: -95.68,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var r in t)
+                e.o(t, r) &&
+                  !e.o(o, r) &&
+                  Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        });
-        var kmlLayer = new google.maps.KmlLayer({
-          url:
-            "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
-          suppressInfoWindows: true,
-          map: map,
-        });
-        kmlLayer.addListener("click", function (kmlEvent) {
-          var text = kmlEvent.featureData.description;
-          showInContentWindow(text);
-        });
-
-        function showInContentWindow(text) {
-          var sidebar = document.getElementById("sidebar");
-          sidebar.innerHTML = text;
+          o = {};
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+            zoom: 12,
+            center: { lat: 37.06, lng: -95.68 },
+          });
+          new google.maps.KmlLayer({
+            url: "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
+            suppressInfoWindows: !0,
+            map: e,
+          }).addListener("click", (e) => {
+            var o;
+            (o = e.featureData.description),
+              (document.getElementById("sidebar").innerHTML = o);
+          });
         }
-      }
+        e.r(o), e.d(o, { initMap: () => t });
+        var r = window;
+        for (var a in o) r[a] = o[a];
+        o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

@@ -26,8 +26,7 @@ function setMarkers(map) {
   // Origins, anchor positions and coordinates of the marker increase in the X
   // direction to the right and in the Y direction down.
   const image = {
-    url:
-      "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
     // This marker is 20 pixels wide by 32 pixels high.
     size: new google.maps.Size(20, 32),
     // The origin for this image is (0, 0).

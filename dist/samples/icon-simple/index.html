@@ -19,29 +19,42 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This example adds a marker to indicate the position of Bondi Beach in Sydney,
-      // Australia.
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: {
-            lat: -33,
-            lng: 151,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var a in t)
+                e.o(t, a) &&
+                  !e.o(o, a) &&
+                  Object.defineProperty(o, a, { enumerable: !0, get: t[a] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        });
-        var image =
-          "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
-        var beachMarker = new google.maps.Marker({
-          position: {
-            lat: -33.89,
-            lng: 151.274,
-          },
-          map: map,
-          icon: image,
-        });
-      }
+          o = {};
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: { lat: -33, lng: 151 },
+          });
+          new google.maps.Marker({
+            position: { lat: -33.89, lng: 151.274 },
+            map: e,
+            icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+          });
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var a = window;
+        for (var n in o) a[n] = o[n];
+        o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

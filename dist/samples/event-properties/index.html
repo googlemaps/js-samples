@@ -19,23 +19,46 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initMap() {
-        var originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: originalMapCenter,
-        });
-        var infowindow = new google.maps.InfoWindow({
-          content: "Change the zoom level",
-          position: originalMapCenter,
-        });
-        infowindow.open(map);
-        map.addListener("zoom_changed", function () {
-          infowindow.setContent("Zoom: " + map.getZoom());
-        });
-      }
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        function t() {
+          const e = new google.maps.LatLng(-25.363882, 131.044922),
+            o = new google.maps.Map(document.getElementById("map"), {
+              zoom: 4,
+              center: e,
+            }),
+            t = new google.maps.InfoWindow({
+              content: "Change the zoom level",
+              position: e,
+            });
+          t.open(o),
+            o.addListener("zoom_changed", () => {
+              t.setContent("Zoom: " + o.getZoom());
+            });
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var n = window;
+        for (var r in o) n[r] = o[r];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

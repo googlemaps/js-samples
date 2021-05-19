@@ -20,8 +20,7 @@ function initMap() {
       ],
     },
     markerOptions: {
-      icon:
-        "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+      icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
     },
     circleOptions: {
       fillColor: "#ffff00",

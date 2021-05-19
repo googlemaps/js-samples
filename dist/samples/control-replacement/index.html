@@ -153,116 +153,108 @@
       }
     </style>
     <script>
-      "use strict";
-
-      var map;
-
-      function initMap() {
-        map = new google.maps.Map(document.querySelector("#map"), {
-          center: {
-            lat: -34.397,
-            lng: 150.644,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          zoom: 8,
-          disableDefaultUI: true,
-        });
-        initZoomControl(map);
-        initMapTypeControl(map);
-        initFullscreenControl(map);
-      }
-
-      function initZoomControl(map) {
-        document.querySelector(".zoom-control-in").onclick = function () {
-          map.setZoom(map.getZoom() + 1);
-        };
-
-        document.querySelector(".zoom-control-out").onclick = function () {
-          map.setZoom(map.getZoom() - 1);
-        };
-
-        map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
-          document.querySelector(".zoom-control")
-        );
-      }
-
-      function initMapTypeControl(map) {
-        var mapTypeControlDiv = document.querySelector(".maptype-control");
-
-        document.querySelector(".maptype-control-map").onclick = function () {
-          mapTypeControlDiv.classList.add("maptype-control-is-map");
-          mapTypeControlDiv.classList.remove("maptype-control-is-satellite");
-          map.setMapTypeId("roadmap");
-        };
-
-        document.querySelector(
-          ".maptype-control-satellite"
-        ).onclick = function () {
-          mapTypeControlDiv.classList.remove("maptype-control-is-map");
-          mapTypeControlDiv.classList.add("maptype-control-is-satellite");
-          map.setMapTypeId("hybrid");
-        };
-
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(
-          mapTypeControlDiv
-        );
-      }
-
-      function initFullscreenControl(map) {
-        var elementToSendFullscreen = map.getDiv().firstChild;
-        var fullscreenControl = document.querySelector(".fullscreen-control");
-        map.controls[google.maps.ControlPosition.RIGHT_TOP].push(
-          fullscreenControl
-        );
-
-        fullscreenControl.onclick = function () {
-          if (isFullscreen(elementToSendFullscreen)) {
-            exitFullscreen();
-          } else {
-            requestFullscreen(elementToSendFullscreen);
-          }
-        };
-
-        document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function () {
-          if (isFullscreen(elementToSendFullscreen)) {
-            fullscreenControl.classList.add("is-fullscreen");
-          } else {
-            fullscreenControl.classList.remove("is-fullscreen");
-          }
-        };
-      }
-
-      function isFullscreen(element) {
-        return (
-          (document.fullscreenElement ||
-            document.webkitFullscreenElement ||
-            document.mozFullScreenElement ||
-            document.msFullscreenElement) == element
-        );
-      }
-
-      function requestFullscreen(element) {
-        if (element.requestFullscreen) {
-          element.requestFullscreen();
-        } else if (element.webkitRequestFullScreen) {
-          element.webkitRequestFullScreen();
-        } else if (element.mozRequestFullScreen) {
-          element.mozRequestFullScreen();
-        } else if (element.msRequestFullScreen) {
-          element.msRequestFullScreen();
+          o = {};
+        let t;
+        function n() {
+          (t = new google.maps.Map(document.querySelector("#map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8,
+            disableDefaultUI: !0,
+          })),
+            (function (e) {
+              (document.querySelector(".zoom-control-in").onclick =
+                function () {
+                  e.setZoom(e.getZoom() + 1);
+                }),
+                (document.querySelector(".zoom-control-out").onclick =
+                  function () {
+                    e.setZoom(e.getZoom() - 1);
+                  }),
+                e.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+                  document.querySelector(".zoom-control")
+                );
+            })(t),
+            (function (e) {
+              const o = document.querySelector(".maptype-control");
+              (document.querySelector(".maptype-control-map").onclick =
+                function () {
+                  o.classList.add("maptype-control-is-map"),
+                    o.classList.remove("maptype-control-is-satellite"),
+                    e.setMapTypeId("roadmap");
+                }),
+                (document.querySelector(".maptype-control-satellite").onclick =
+                  function () {
+                    o.classList.remove("maptype-control-is-map"),
+                      o.classList.add("maptype-control-is-satellite"),
+                      e.setMapTypeId("hybrid");
+                  }),
+                e.controls[google.maps.ControlPosition.LEFT_TOP].push(o);
+            })(t),
+            (function (e) {
+              const o = e.getDiv().firstChild,
+                t = document.querySelector(".fullscreen-control");
+              e.controls[google.maps.ControlPosition.RIGHT_TOP].push(t),
+                (t.onclick = function () {
+                  var e;
+                  l(o)
+                    ? document.exitFullscreen
+                      ? document.exitFullscreen()
+                      : document.webkitExitFullscreen
+                      ? document.webkitExitFullscreen()
+                      : document.mozCancelFullScreen
+                      ? document.mozCancelFullScreen()
+                      : document.msExitFullscreen && document.msExitFullscreen()
+                    : (e = o).requestFullscreen
+                    ? e.requestFullscreen()
+                    : e.webkitRequestFullScreen
+                    ? e.webkitRequestFullScreen()
+                    : e.mozRequestFullScreen
+                    ? e.mozRequestFullScreen()
+                    : e.msRequestFullScreen && e.msRequestFullScreen();
+                }),
+                (document.onwebkitfullscreenchange =
+                  document.onmsfullscreenchange =
+                  document.onmozfullscreenchange =
+                  document.onfullscreenchange =
+                    function () {
+                      l(o)
+                        ? t.classList.add("is-fullscreen")
+                        : t.classList.remove("is-fullscreen");
+                    });
+            })(t);
         }
-      }
-
-      function exitFullscreen() {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
+        function l(e) {
+          return (
+            (document.fullscreenElement ||
+              document.webkitFullscreenElement ||
+              document.mozFullScreenElement ||
+              document.msFullscreenElement) == e
+          );
         }
-      }
+        e.r(o), e.d(o, { initMap: () => n });
+        var c = window;
+        for (var r in o) c[r] = o[r];
+        o.__esModule && Object.defineProperty(c, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

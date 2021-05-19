@@ -108,176 +108,71 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function _createForOfIteratorHelper(o, allowArrayLike) {
-    var it;
-    if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
-      if (
-        Array.isArray(o) ||
-        (it = _unsupportedIterableToArray(o)) ||
-        (allowArrayLike && o && typeof o.length === "number")
-      ) {
-        if (it) o = it;
-        var i = 0;
-        var F = function F() {};
-        return {
-          s: F,
-          n: function n() {
-            if (i >= o.length) return { done: true };
-            return { done: false, value: o[i++] };
-          },
-          e: function e(_e) {
-            throw _e;
-          },
-          f: F,
-        };
-      }
-      throw new TypeError(
-        "Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
-      );
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var r in t)
+            e.o(t, r) &&
+              !e.o(o, r) &&
+              Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    let t, r, a, n;
+    function c() {
+      (r = document.querySelector("#ship-address")),
+        (a = document.querySelector("#address2")),
+        (n = document.querySelector("#postcode")),
+        (t = new google.maps.places.Autocomplete(r, {
+          componentRestrictions: { country: ["us", "ca"] },
+          fields: ["address_components", "geometry"],
+          types: ["address"],
+        })),
+        r.focus(),
+        t.addListener("place_changed", s);
     }
-    var normalCompletion = true,
-      didErr = false,
-      err;
-    return {
-      s: function s() {
-        it = o[Symbol.iterator]();
-      },
-      n: function n() {
-        var step = it.next();
-        normalCompletion = step.done;
-        return step;
-      },
-      e: function e(_e2) {
-        didErr = true;
-        err = _e2;
-      },
-      f: function f() {
-        try {
-          if (!normalCompletion && it.return != null) it.return();
-        } finally {
-          if (didErr) throw err;
-        }
-      },
-    };
-  }
-
-  function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-      return _arrayLikeToArray(o, minLen);
-  }
-
-  function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for (var i = 0, arr2 = new Array(len); i < len; i++) {
-      arr2[i] = arr[i];
-    }
-    return arr2;
-  }
-
-  // This sample uses the Places Autocomplete widget to:
-  // 1. Help the user select a place
-  // 2. Retrieve the address components associated with that place
-  // 3. Populate the form fields with those address components.
-  // This sample requires the Places library, Maps JavaScript API.
-  // Include the libraries=places parameter when you first load the API.
-  // For example: <script
-  // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places">
-  var autocomplete;
-  var address1Field;
-  var address2Field;
-  var postalField;
-
-  function initAutocomplete() {
-    address1Field = document.querySelector("#ship-address");
-    address2Field = document.querySelector("#address2");
-    postalField = document.querySelector("#postcode"); // Create the autocomplete object, restricting the search predictions to
-    // addresses in the US and Canada.
-
-    autocomplete = new google.maps.places.Autocomplete(address1Field, {
-      componentRestrictions: {
-        country: ["us", "ca"],
-      },
-      fields: ["address_components", "geometry"],
-      types: ["address"],
-    });
-    address1Field.focus(); // When the user selects an address from the drop-down, populate the
-    // address fields in the form.
-
-    autocomplete.addListener("place_changed", fillInAddress);
-  }
-
-  function fillInAddress() {
-    // Get the place details from the autocomplete object.
-    var place = autocomplete.getPlace();
-    var address1 = "";
-    var postcode = ""; // Get each component of the address from the place details,
-    // and then fill-in the corresponding field on the form.
-    // place.address_components are google.maps.GeocoderAddressComponent objects
-    // which are documented at http://goo.gle/3l5i5Mr
-
-    var _iterator = _createForOfIteratorHelper(place.address_components),
-      _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-        var component = _step.value;
-        var componentType = component.types[0];
-
-        switch (componentType) {
-          case "street_number": {
-            address1 = "".concat(component.long_name, " ").concat(address1);
+    function s() {
+      const e = t.getPlace();
+      let o = "",
+        c = "";
+      for (const t of e.address_components)
+        switch (t.types[0]) {
+          case "street_number":
+            o = `${t.long_name} ${o}`;
             break;
-          }
-
-          case "route": {
-            address1 += component.short_name;
+          case "route":
+            o += t.short_name;
             break;
-          }
-
-          case "postal_code": {
-            postcode = "".concat(component.long_name).concat(postcode);
+          case "postal_code":
+            c = `${t.long_name}${c}`;
             break;
-          }
-
-          case "postal_code_suffix": {
-            postcode = "".concat(postcode, "-").concat(component.long_name);
+          case "postal_code_suffix":
+            c = `${c}-${t.long_name}`;
             break;
-          }
-
           case "locality":
-            document.querySelector("#locality").value = component.long_name;
+            document.querySelector("#locality").value = t.long_name;
             break;
-
-          case "administrative_area_level_1": {
-            document.querySelector("#state").value = component.short_name;
+          case "administrative_area_level_1":
+            document.querySelector("#state").value = t.short_name;
             break;
-          }
-
           case "country":
-            document.querySelector("#country").value = component.long_name;
-            break;
+            document.querySelector("#country").value = t.long_name;
         }
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
+      (r.value = o), (n.value = c), a.focus();
     }
-
-    address1Field.value = address1;
-    postalField.value = postcode; // After filling the form with address components from the Autocomplete
-    // prediction, set cursor focus on the second address line to encourage
-    // entry of subpremise information such as apartment, unit, or floor number.
-
-    address2Field.focus();
-  }
+    e.r(o), e.d(o, { initAutocomplete: () => c });
+    var l = window;
+    for (var u in o) l[u] = o[u];
+    o.__esModule && Object.defineProperty(l, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

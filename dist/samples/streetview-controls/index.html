@@ -19,27 +19,42 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initPano() {
-        // Note: constructed panorama objects have visible: true
-        // set by default.
-        var panorama = new google.maps.StreetViewPanorama(
-          document.getElementById("map"),
-          {
-            position: {
-              lat: 42.345573,
-              lng: -71.098326,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
             },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        function t() {
+          new google.maps.StreetViewPanorama(document.getElementById("map"), {
+            position: { lat: 42.345573, lng: -71.098326 },
             addressControlOptions: {
               position: google.maps.ControlPosition.BOTTOM_CENTER,
             },
-            linksControl: false,
-            panControl: false,
-            enableCloseButton: false,
-          }
-        );
-      }
+            linksControl: !1,
+            panControl: !1,
+            enableCloseButton: !1,
+          });
+        }
+        e.r(o), e.d(o, { initPano: () => t });
+        var n = window;
+        for (var r in o) n[r] = o[r];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

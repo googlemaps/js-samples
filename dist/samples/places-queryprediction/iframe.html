@@ -34,35 +34,43 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // This example retrieves autocomplete predictions programmatically from the
-  // autocomplete service, and displays them as an HTML list.
-  // This example requires the Places library. Include the libraries=places
-  // parameter when you first load the API. For example:
-  // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places">
-  function initService() {
-    var displaySuggestions = function displaySuggestions(predictions, status) {
-      if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
-        alert(status);
-        return;
-      }
-
-      predictions.forEach(function (prediction) {
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode(prediction.description));
-        document.getElementById("results").appendChild(li);
-      });
-    };
-
-    var service = new google.maps.places.AutocompleteService();
-    service.getQueryPredictions(
-      {
-        input: "pizza near Syd",
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var r in o)
+            e.o(o, r) &&
+              !e.o(t, r) &&
+              Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      displaySuggestions
-    );
-  }
+      t = {};
+    function o() {
+      new google.maps.places.AutocompleteService().getQueryPredictions(
+        { input: "pizza near Syd" },
+        function (e, t) {
+          t == google.maps.places.PlacesServiceStatus.OK && e
+            ? e.forEach((e) => {
+                const t = document.createElement("li");
+                t.appendChild(document.createTextNode(e.description)),
+                  document.getElementById("results").appendChild(t);
+              })
+            : alert(t);
+        }
+      );
+    }
+    e.r(t), e.d(t, { initService: () => o });
+    var r = window;
+    for (var n in t) r[n] = t[n];
+    t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

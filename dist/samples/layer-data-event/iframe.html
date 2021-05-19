@@ -25,39 +25,47 @@
   }
 </style>
 <script>
-  "use strict";
-
-  var map;
-
-  function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: {
-        lat: -28,
-        lng: 137,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var r in o)
+            e.o(o, r) &&
+              !e.o(t, r) &&
+              Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-    }); // Load GeoJSON.
-
-    map.data.loadGeoJson(
-      "https://storage.googleapis.com/maps-devrel/google.json"
-    ); // Add some style.
-
-    map.data.setStyle(function (feature) {
-      return (
-        /** @type {google.maps.Data.StyleOptions} */
-        {
-          fillColor: feature.getProperty("color"),
+      t = {};
+    let o;
+    function r() {
+      (o = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: { lat: -28, lng: 137 },
+      })),
+        o.data.loadGeoJson(
+          "https://storage.googleapis.com/maps-devrel/google.json"
+        ),
+        o.data.setStyle((e) => ({
+          fillColor: e.getProperty("color"),
           strokeWeight: 1,
-        }
-      );
-    }); // Set mouseover event for each feature.
-
-    map.data.addListener("mouseover", function (event) {
-      document.getElementById(
-        "info-box"
-      ).textContent = event.feature.getProperty("letter");
-    });
-  }
+        })),
+        o.data.addListener("mouseover", (e) => {
+          document.getElementById("info-box").textContent =
+            e.feature.getProperty("letter");
+        });
+    }
+    e.r(t), e.d(t, { initMap: () => r });
+    var a = window;
+    for (var l in t) a[l] = t[l];
+    t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

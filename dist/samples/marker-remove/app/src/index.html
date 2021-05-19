@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Removing Markers</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="./index.js"></script>
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input onclick="clearMarkers();" type="button" value="Hide Markers" />
+      <input onclick="showMarkers();" type="button" value="Show All Markers" />
+      <input onclick="deleteMarkers();" type="button" value="Delete Markers" />
+    </div>
+    <div id="map"></div>
+    <p>Click on the map to add markers.</p>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>

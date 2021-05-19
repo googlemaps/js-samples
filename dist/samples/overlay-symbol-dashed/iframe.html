@@ -15,51 +15,51 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // This example converts a polyline to a dashed line, by
-  // setting the opacity of the polyline to 0, and drawing an opaque symbol
-  // at a regular interval on the polyline.
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 6,
-      center: {
-        lat: 20.291,
-        lng: 153.027,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var a in o)
+            e.o(o, a) &&
+              !e.o(t, a) &&
+              Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      mapTypeId: "terrain",
-    }); // Define a symbol using SVG path notation, with an opacity of 1.
-
-    var lineSymbol = {
-      path: "M 0,-1 0,1",
-      strokeOpacity: 1,
-      scale: 4,
-    }; // Create the polyline, passing the symbol in the 'icons' property.
-    // Give the line an opacity of 0.
-    // Repeat the symbol at intervals of 20 pixels to create the dashed effect.
-
-    var line = new google.maps.Polyline({
-      path: [
-        {
-          lat: 22.291,
-          lng: 153.027,
-        },
-        {
-          lat: 18.291,
-          lng: 153.027,
-        },
-      ],
-      strokeOpacity: 0,
-      icons: [
-        {
-          icon: lineSymbol,
-          offset: "0",
-          repeat: "20px",
-        },
-      ],
-      map: map,
-    });
-  }
+      t = {};
+    function o() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+        zoom: 6,
+        center: { lat: 20.291, lng: 153.027 },
+        mapTypeId: "terrain",
+      });
+      new google.maps.Polyline({
+        path: [
+          { lat: 22.291, lng: 153.027 },
+          { lat: 18.291, lng: 153.027 },
+        ],
+        strokeOpacity: 0,
+        icons: [
+          {
+            icon: { path: "M 0,-1 0,1", strokeOpacity: 1, scale: 4 },
+            offset: "0",
+            repeat: "20px",
+          },
+        ],
+        map: e,
+      });
+    }
+    e.r(t), e.d(t, { initMap: () => o });
+    var a = window;
+    for (var n in t) a[n] = t[n];
+    t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

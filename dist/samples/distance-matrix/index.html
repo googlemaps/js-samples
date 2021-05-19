@@ -46,114 +46,95 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initMap() {
-        var bounds = new google.maps.LatLngBounds();
-        var markersArray = [];
-        var origin1 = {
-          lat: 55.93,
-          lng: -3.118,
-        };
-        var origin2 = "Greenwich, England";
-        var destinationA = "Stockholm, Sweden";
-        var destinationB = {
-          lat: 50.087,
-          lng: 14.421,
-        };
-        var destinationIcon =
-          "https://chart.googleapis.com/chart?" +
-          "chst=d_map_pin_letter&chld=D|FF0000|000000";
-        var originIcon =
-          "https://chart.googleapis.com/chart?" +
-          "chst=d_map_pin_letter&chld=O|FFFF00|000000";
-        var map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: 55.53,
-            lng: 9.4,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          zoom: 10,
-        });
-        var geocoder = new google.maps.Geocoder();
-        var service = new google.maps.DistanceMatrixService();
-        service.getDistanceMatrix(
-          {
-            origins: [origin1, origin2],
-            destinations: [destinationA, destinationB],
-            travelMode: google.maps.TravelMode.DRIVING,
-            unitSystem: google.maps.UnitSystem.METRIC,
-            avoidHighways: false,
-            avoidTolls: false,
-          },
-          function (response, status) {
-            if (status !== "OK") {
-              alert("Error was: " + status);
-            } else {
-              var originList = response.originAddresses;
-              var destinationList = response.destinationAddresses;
-              var outputDiv = document.getElementById("output");
-              outputDiv.innerHTML = "";
-              deleteMarkers(markersArray);
-
-              var showGeocodedAddressOnMap = function showGeocodedAddressOnMap(
-                asDestination
-              ) {
-                var icon = asDestination ? destinationIcon : originIcon;
-                return function (results, status) {
-                  if (status === "OK") {
-                    map.fitBounds(bounds.extend(results[0].geometry.location));
-                    markersArray.push(
-                      new google.maps.Marker({
-                        map: map,
-                        position: results[0].geometry.location,
-                        icon: icon,
-                      })
-                    );
-                  } else {
-                    alert("Geocode was not successful due to: " + status);
-                  }
+          t = {};
+        function o() {
+          const e = new google.maps.LatLngBounds(),
+            t = [],
+            o = new google.maps.Map(document.getElementById("map"), {
+              center: { lat: 55.53, lng: 9.4 },
+              zoom: 10,
+            }),
+            n = new google.maps.Geocoder();
+          new google.maps.DistanceMatrixService().getDistanceMatrix(
+            {
+              origins: [{ lat: 55.93, lng: -3.118 }, "Greenwich, England"],
+              destinations: ["Stockholm, Sweden", { lat: 50.087, lng: 14.421 }],
+              travelMode: google.maps.TravelMode.DRIVING,
+              unitSystem: google.maps.UnitSystem.METRIC,
+              avoidHighways: !1,
+              avoidTolls: !1,
+            },
+            (r, a) => {
+              if ("OK" !== a) alert("Error was: " + a);
+              else {
+                const a = r.originAddresses,
+                  s = r.destinationAddresses,
+                  l = document.getElementById("output");
+                (l.innerHTML = ""),
+                  (function (e) {
+                    for (let t = 0; t < e.length; t++) e[t].setMap(null);
+                    e = [];
+                  })(t);
+                const i = function (n) {
+                  const r = n
+                    ? "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000"
+                    : "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000";
+                  return function (n, a) {
+                    "OK" === a
+                      ? (o.fitBounds(e.extend(n[0].geometry.location)),
+                        t.push(
+                          new google.maps.Marker({
+                            map: o,
+                            position: n[0].geometry.location,
+                            icon: r,
+                          })
+                        ))
+                      : alert("Geocode was not successful due to: " + a);
+                  };
                 };
-              };
-
-              for (var i = 0; i < originList.length; i++) {
-                var results = response.rows[i].elements;
-                geocoder.geocode(
-                  {
-                    address: originList[i],
-                  },
-                  showGeocodedAddressOnMap(false)
-                );
-
-                for (var j = 0; j < results.length; j++) {
-                  geocoder.geocode(
-                    {
-                      address: destinationList[j],
-                    },
-                    showGeocodedAddressOnMap(true)
-                  );
-                  outputDiv.innerHTML +=
-                    originList[i] +
-                    " to " +
-                    destinationList[j] +
-                    ": " +
-                    results[j].distance.text +
-                    " in " +
-                    results[j].duration.text +
-                    "<br>";
+                for (let e = 0; e < a.length; e++) {
+                  const t = r.rows[e].elements;
+                  n.geocode({ address: a[e] }, i(!1));
+                  for (let o = 0; o < t.length; o++)
+                    n.geocode({ address: s[o] }, i(!0)),
+                      (l.innerHTML +=
+                        a[e] +
+                        " to " +
+                        s[o] +
+                        ": " +
+                        t[o].distance.text +
+                        " in " +
+                        t[o].duration.text +
+                        "<br>");
                 }
               }
             }
-          }
-        );
-      }
-
-      function deleteMarkers(markersArray) {
-        for (var i = 0; i < markersArray.length; i++) {
-          markersArray[i].setMap(null);
+          );
         }
-
-        markersArray = [];
-      }
+        e.r(t), e.d(t, { initMap: () => o });
+        var n = window;
+        for (var r in t) n[r] = t[r];
+        t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

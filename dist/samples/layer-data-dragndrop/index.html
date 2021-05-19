@@ -95,279 +95,204 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function _toConsumableArray(arr) {
-        return (
-          _arrayWithoutHoles(arr) ||
-          _iterableToArray(arr) ||
-          _unsupportedIterableToArray(arr) ||
-          _nonIterableSpread()
-        );
-      }
-
-      function _nonIterableSpread() {
-        throw new TypeError(
-          "Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
-        );
-      }
-
-      function _unsupportedIterableToArray(o, minLen) {
-        if (!o) return;
-        if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-        var n = Object.prototype.toString.call(o).slice(8, -1);
-        if (n === "Object" && o.constructor) n = o.constructor.name;
-        if (n === "Map" || n === "Set") return Array.from(o);
-        if (
-          n === "Arguments" ||
-          /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)
-        )
-          return _arrayLikeToArray(o, minLen);
-      }
-
-      function _iterableToArray(iter) {
-        if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter))
-          return Array.from(iter);
-      }
-
-      function _arrayWithoutHoles(arr) {
-        if (Array.isArray(arr)) return _arrayLikeToArray(arr);
-      }
-
-      function _arrayLikeToArray(arr, len) {
-        if (len == null || len > arr.length) len = arr.length;
-        for (var i = 0, arr2 = new Array(len); i < len; i++) {
-          arr2[i] = arr[i];
-        }
-        return arr2;
-      }
-
-      var map;
-
-      function initMap() {
-        // set up the map
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: new google.maps.LatLng(0, 0),
-          zoom: 4,
-        });
-      }
-
-      function loadGeoJsonString(geoString) {
-        try {
-          var geojson = JSON.parse(geoString);
-          map.data.addGeoJson(geojson);
-        } catch (e) {
-          alert("Not a GeoJSON file!");
-        }
-
-        zoom(map);
-      }
-      /**
-       * Update a map's viewport to fit each geometry in a dataset
-       */
-
-      function zoom(map) {
-        var bounds = new google.maps.LatLngBounds();
-        map.data.forEach(function (feature) {
-          var geometry = feature.getGeometry();
-
-          if (geometry) {
-            processPoints(geometry, bounds.extend, bounds);
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var r in o)
+                e.o(o, r) &&
+                  !e.o(t, r) &&
+                  Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          t = {};
+        let o;
+        function r(e) {
+          try {
+            const t = JSON.parse(e);
+            o.data.addGeoJson(t);
+          } catch (e) {
+            alert("Not a GeoJSON file!");
           }
-        });
-        map.fitBounds(bounds);
-      }
-      /**
-       * Process each point in a Geometry, regardless of how deep the points may lie.
-       */
-
-      function processPoints(geometry, callback, thisArg) {
-        if (geometry instanceof google.maps.LatLng) {
-          callback.call(thisArg, geometry);
-        } else if (geometry instanceof google.maps.Data.Point) {
-          callback.call(thisArg, geometry.get());
-        } else {
-          geometry.getArray().forEach(function (g) {
-            processPoints(g, callback, thisArg);
-          });
+          !(function (e) {
+            const t = new google.maps.LatLngBounds();
+            e.data.forEach((e) => {
+              const o = e.getGeometry();
+              o && n(o, t.extend, t);
+            }),
+              e.fitBounds(t);
+          })(o);
         }
-      }
-      /* DOM (drag/drop) functions */
-
-      function initEvents() {
-        _toConsumableArray(document.getElementsByClassName("file")).forEach(
-          function (fileElement) {
-            fileElement.addEventListener(
-              "dragstart",
-              function (e) {
-                e.dataTransfer.setData(
-                  "text/plain",
-                  JSON.stringify(files[Number(e.target.dataset.value)])
+        function n(e, t, o) {
+          e instanceof google.maps.LatLng
+            ? t.call(o, e)
+            : e instanceof google.maps.Data.Point
+            ? t.call(o, e.get())
+            : e.getArray().forEach((e) => {
+                n(e, t, o);
+              });
+        }
+        function a(e) {
+          return (
+            e.stopPropagation(),
+            e.preventDefault(),
+            document.getElementById("map").classList.add("over"),
+            !1
+          );
+        }
+        function i(e) {
+          document.getElementById("map").classList.remove("over");
+        }
+        function s(e) {
+          e.preventDefault(), e.stopPropagation(), i();
+          const t = e.dataTransfer.files;
+          if (t.length)
+            for (let e, o = 0; (e = t[o]); o++) {
+              const t = new FileReader();
+              (t.onload = function (e) {
+                r(t.result);
+              }),
+                (t.onerror = function (e) {
+                  console.error("reading failed");
+                }),
+                t.readAsText(e);
+            }
+          else {
+            const t = e.dataTransfer.getData("text/plain");
+            console.log(t), t && r(t);
+          }
+          return !1;
+        }
+        function d() {
+          (o = new google.maps.Map(document.getElementById("map"), {
+            center: new google.maps.LatLng(0, 0),
+            zoom: 4,
+          })),
+            (function () {
+              [...document.getElementsByClassName("file")].forEach((e) => {
+                e.addEventListener(
+                  "dragstart",
+                  (e) => {
+                    e.dataTransfer.setData(
+                      "text/plain",
+                      JSON.stringify(l[Number(e.target.dataset.value)])
+                    ),
+                      console.log(e);
+                  },
+                  !1
                 );
-                console.log(e);
-              },
-              false
-            );
-          }
-        ); // set up the drag & drop events
-
-        var mapContainer = document.getElementById("map");
-        mapContainer.addEventListener("dragenter", addClassToDropTarget, false);
-        mapContainer.addEventListener("dragover", addClassToDropTarget, false);
-        mapContainer.addEventListener("drop", handleDrop, false);
-        mapContainer.addEventListener(
-          "dragleave",
-          removeClassFromDropTarget,
-          false
-        );
-      }
-
-      function addClassToDropTarget(e) {
-        e.stopPropagation();
-        e.preventDefault();
-        document.getElementById("map").classList.add("over");
-        return false;
-      }
-
-      function removeClassFromDropTarget(e) {
-        document.getElementById("map").classList.remove("over");
-      }
-
-      function handleDrop(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        removeClassFromDropTarget(e);
-        var files = e.dataTransfer.files;
-
-        if (files.length) {
-          var _loop = function _loop(i, file) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-              loadGeoJsonString(reader.result);
-            };
-
-            reader.onerror = function (e) {
-              console.error("reading failed");
-            };
-
-            reader.readAsText(file);
-          };
-
-          // process file(s) being dropped
-          // grab the file data from each file
-          for (var i = 0, file; (file = files[i]); i++) {
-            _loop(i, file);
-          }
-        } else {
-          // process non-file (e.g. text or html) content being dropped
-          // grab the plain text version of the data
-          var plainText = e.dataTransfer.getData("text/plain");
-          console.log(plainText);
-
-          if (plainText) {
-            loadGeoJsonString(plainText);
-          }
-        } // prevent drag event from bubbling further
-
-        return false;
-      }
-
-      function initialize() {
-        initMap();
-        initEvents();
-      }
-
-      var files = [
-        {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "Feature",
-              properties: {},
-              geometry: {
-                type: "Polygon",
-                coordinates: [
-                  [
-                    [-99.49218749999999, -11.867350911459294],
-                    [24.960937499999996, -11.867350911459294],
-                    [24.960937499999996, 47.517200697839414],
-                    [-99.49218749999999, 47.517200697839414],
-                    [-99.49218749999999, -11.867350911459294],
+              });
+              const e = document.getElementById("map");
+              e.addEventListener("dragenter", a, !1),
+                e.addEventListener("dragover", a, !1),
+                e.addEventListener("drop", s, !1),
+                e.addEventListener("dragleave", i, !1);
+            })();
+        }
+        e.r(t), e.d(t, { initialize: () => d });
+        const l = [
+          {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "Polygon",
+                  coordinates: [
+                    [
+                      [-99.49218749999999, -11.867350911459294],
+                      [24.960937499999996, -11.867350911459294],
+                      [24.960937499999996, 47.517200697839414],
+                      [-99.49218749999999, 47.517200697839414],
+                      [-99.49218749999999, -11.867350911459294],
+                    ],
                   ],
-                ],
+                },
               },
-            },
-          ],
-        },
-        {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "Feature",
-              properties: {},
-              geometry: {
-                type: "Point",
-                coordinates: [81.2109375, 50.064191736659104],
+            ],
+          },
+          {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "Point",
+                  coordinates: [81.2109375, 50.064191736659104],
+                },
               },
-            },
-            {
-              type: "Feature",
-              properties: {},
-              geometry: {
-                type: "Point",
-                coordinates: [103.35937499999999, -47.98992166741417],
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "Point",
+                  coordinates: [103.35937499999999, -47.98992166741417],
+                },
               },
-            },
-            {
-              type: "Feature",
-              properties: {},
-              geometry: {
-                type: "Point",
-                coordinates: [-46.05468749999999, 64.01449619484472],
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "Point",
+                  coordinates: [-46.05468749999999, 64.01449619484472],
+                },
               },
-            },
-            {
-              type: "Feature",
-              properties: {},
-              geometry: {
-                type: "Point",
-                coordinates: [-113.203125, 37.996162679728116],
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "Point",
+                  coordinates: [-113.203125, 37.996162679728116],
+                },
               },
-            },
-            {
-              type: "Feature",
-              properties: {},
-              geometry: {
-                type: "Point",
-                coordinates: [-73.828125, -32.249974455863295],
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "Point",
+                  coordinates: [-73.828125, -32.249974455863295],
+                },
               },
-            },
-          ],
-        },
-        {
-          type: "FeatureCollection",
-          features: [
-            {
-              type: "Feature",
-              properties: {},
-              geometry: {
-                type: "LineString",
-                coordinates: [
-                  [147.65625, -5.266007882805485],
-                  [118.47656249999999, 43.83452678223682],
-                  [80.85937499999999, -30.145127183376115],
-                  [35.15625, 51.83577752045248],
-                  [-15.468749999999998, -23.563987128451217],
-                  [-29.53125, 44.33956524809713],
-                  [-73.47656249999999, -32.842673631954305],
-                  [-104.765625, 35.460669951495305],
-                ],
+            ],
+          },
+          {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                properties: {},
+                geometry: {
+                  type: "LineString",
+                  coordinates: [
+                    [147.65625, -5.266007882805485],
+                    [118.47656249999999, 43.83452678223682],
+                    [80.85937499999999, -30.145127183376115],
+                    [35.15625, 51.83577752045248],
+                    [-15.468749999999998, -23.563987128451217],
+                    [-29.53125, 44.33956524809713],
+                    [-73.47656249999999, -32.842673631954305],
+                    [-104.765625, 35.460669951495305],
+                  ],
+                },
               },
-            },
-          ],
-        },
-      ];
+            ],
+          },
+        ];
+        var p = window;
+        for (var c in t) p[c] = t[c];
+        t.__esModule && Object.defineProperty(p, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

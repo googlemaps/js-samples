@@ -85,9 +85,8 @@ function update() {
     path[0],
     path[1]
   );
-  (document.getElementById("heading") as HTMLInputElement).value = String(
-    heading
-  );
+  (document.getElementById("heading") as HTMLInputElement).value =
+    String(heading);
   (document.getElementById("origin") as HTMLInputElement).value = String(
     path[0]
   );

@@ -19,44 +19,54 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This example creates an interactive map which constructs a polyline based on
-      // user clicks. Note that the polyline only appears once its path property
-      // contains two LatLng coordinates.
-      var poly;
-      var map;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 7,
-          center: {
-            lat: 41.879,
-            lng: -87.624,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        });
-        poly = new google.maps.Polyline({
-          strokeColor: "#000000",
-          strokeOpacity: 1.0,
-          strokeWeight: 3,
-        });
-        poly.setMap(map); // Add a listener for the click event
-
-        map.addListener("click", addLatLng);
-      } // Handles click events on a map, and adds a new point to the Polyline.
-
-      function addLatLng(event) {
-        var path = poly.getPath(); // Because path is an MVCArray, we can simply append a new coordinate
-        // and it will automatically appear.
-
-        path.push(event.latLng); // Add a new marker at the new plotted point on the polyline.
-
-        new google.maps.Marker({
-          position: event.latLng,
-          title: "#" + path.getLength(),
-          map: map,
-        });
-      }
+          t = {};
+        let o, n;
+        function r() {
+          (n = new google.maps.Map(document.getElementById("map"), {
+            zoom: 7,
+            center: { lat: 41.879, lng: -87.624 },
+          })),
+            (o = new google.maps.Polyline({
+              strokeColor: "#000000",
+              strokeOpacity: 1,
+              strokeWeight: 3,
+            })),
+            o.setMap(n),
+            n.addListener("click", a);
+        }
+        function a(e) {
+          const t = o.getPath();
+          t.push(e.latLng),
+            new google.maps.Marker({
+              position: e.latLng,
+              title: "#" + t.getLength(),
+              map: n,
+            });
+        }
+        e.r(t), e.d(t, { initMap: () => r });
+        var l = window;
+        for (var i in t) l[i] = t[i];
+        t.__esModule && Object.defineProperty(l, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

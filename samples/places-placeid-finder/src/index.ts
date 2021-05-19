@@ -80,15 +80,15 @@ function initMap(): void {
 
     marker.setVisible(true);
 
-    (infowindowContent.children.namedItem(
-      "place-name"
-    ) as HTMLElement).textContent = place.name as string;
-    (infowindowContent.children.namedItem(
-      "place-id"
-    ) as HTMLElement).textContent = place.place_id as string;
-    (infowindowContent.children.namedItem(
-      "place-address"
-    ) as HTMLElement).textContent = place.formatted_address as string;
+    (
+      infowindowContent.children.namedItem("place-name") as HTMLElement
+    ).textContent = place.name as string;
+    (
+      infowindowContent.children.namedItem("place-id") as HTMLElement
+    ).textContent = place.place_id as string;
+    (
+      infowindowContent.children.namedItem("place-address") as HTMLElement
+    ).textContent = place.formatted_address as string;
     infowindow.open(map, marker);
   });
 }

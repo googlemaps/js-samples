@@ -19,482 +19,263 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function _classCallCheck(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
-          throw new TypeError("Cannot call a class as a function");
-        }
-      }
-
-      function _defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-          var descriptor = props[i];
-          descriptor.enumerable = descriptor.enumerable || false;
-          descriptor.configurable = true;
-          if ("value" in descriptor) descriptor.writable = true;
-          Object.defineProperty(target, descriptor.key, descriptor);
-        }
-      }
-
-      function _createClass(Constructor, protoProps, staticProps) {
-        if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-        if (staticProps) _defineProperties(Constructor, staticProps);
-        return Constructor;
-      }
-
-      var PuzzleDemo = /*#__PURE__*/ (function () {
-        function PuzzleDemo(map) {
-          _classCallCheck(this, PuzzleDemo);
-
-          this.polys_ = [];
-          this.difficulty_ = "Easy";
-          this.count_ = 0;
-          this.dataLoaded_ = false;
-          this.NUM_PIECES_ = 10;
-          this.countries_ = [];
-          this.timer_ = 0;
-          this.START_COLOR_ = "#3c79de";
-          this.END_COLOR_ = "#037e29";
-          this.map_ = map;
-          this.pieceDiv_ = document.createElement("div");
-          this.timeDiv_ = document.createElement("div");
-          this.createMenu_();
-          this.setDifficultyStyle_();
-          this.loadData_();
-        }
-
-        _createClass(PuzzleDemo, [
-          {
-            key: "createMenu_",
-            value: function createMenu_() {
-              var _this = this;
-
-              var menuDiv = document.createElement("div");
-              menuDiv.style.cssText =
-                "margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;" +
-                "background-color: white; font-size: 14px; font-family: Roboto;" +
-                "text-align: center; color: grey;line-height: 32px; overflow: hidden";
-              var titleDiv = document.createElement("div");
-              titleDiv.style.cssText =
-                "width: 100%; background-color: #4285f4; color: white; font-size: 20px;" +
-                "line-height: 40px;margin-bottom: 24px";
-              titleDiv.innerText = "Game Options";
-              var pieceTitleDiv = document.createElement("div");
-              pieceTitleDiv.innerText = "PIECE:";
-              pieceTitleDiv.style.fontWeight = "800";
-              var pieceDiv = this.pieceDiv_;
-              pieceDiv.innerText = "0 / " + this.NUM_PIECES_;
-              var timeTitleDiv = document.createElement("div");
-              timeTitleDiv.innerText = "TIME:";
-              timeTitleDiv.style.fontWeight = "800";
-              var timeDiv = this.timeDiv_;
-              timeDiv.innerText = "0.0 seconds";
-              var difficultyTitleDiv = document.createElement("div");
-              difficultyTitleDiv.innerText = "DIFFICULTY:";
-              difficultyTitleDiv.style.fontWeight = "800";
-              var difficultySelect = document.createElement("select");
-              ["Easy", "Moderate", "Hard", "Extreme"].forEach(function (level) {
-                var option = document.createElement("option");
-                option.value = level.toLowerCase();
-                option.innerText = level;
-                difficultySelect.appendChild(option);
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, i) => {
+              for (var s in i)
+                e.o(i, s) &&
+                  !e.o(t, s) &&
+                  Object.defineProperty(t, s, { enumerable: !0, get: i[s] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          t = {};
+        e.r(t), e.d(t, { initMap: () => s });
+        class i {
+          constructor(e) {
+            (this.polys_ = []),
+              (this.difficulty_ = "Easy"),
+              (this.count_ = 0),
+              (this.dataLoaded_ = !1),
+              (this.NUM_PIECES_ = 10),
+              (this.countries_ = []),
+              (this.timer_ = 0),
+              (this.START_COLOR_ = "#3c79de"),
+              (this.END_COLOR_ = "#037e29"),
+              (this.map_ = e),
+              (this.pieceDiv_ = document.createElement("div")),
+              (this.timeDiv_ = document.createElement("div")),
+              this.createMenu_(),
+              this.setDifficultyStyle_(),
+              this.loadData_();
+          }
+          createMenu_() {
+            const e = document.createElement("div");
+            e.style.cssText =
+              "margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;background-color: white; font-size: 14px; font-family: Roboto;text-align: center; color: grey;line-height: 32px; overflow: hidden";
+            const t = document.createElement("div");
+            (t.style.cssText =
+              "width: 100%; background-color: #4285f4; color: white; font-size: 20px;line-height: 40px;margin-bottom: 24px"),
+              (t.innerText = "Game Options");
+            const i = document.createElement("div");
+            (i.innerText = "PIECE:"), (i.style.fontWeight = "800");
+            const s = this.pieceDiv_;
+            s.innerText = "0 / " + this.NUM_PIECES_;
+            const o = document.createElement("div");
+            (o.innerText = "TIME:"), (o.style.fontWeight = "800");
+            const n = this.timeDiv_;
+            n.innerText = "0.0 seconds";
+            const r = document.createElement("div");
+            (r.innerText = "DIFFICULTY:"), (r.style.fontWeight = "800");
+            const a = document.createElement("select");
+            ["Easy", "Moderate", "Hard", "Extreme"].forEach((e) => {
+              const t = document.createElement("option");
+              (t.value = e.toLowerCase()), (t.innerText = e), a.appendChild(t);
+            }),
+              (a.style.cssText =
+                "border: 2px solid lightgrey; background-color: white; color: #4275f4;padding: 6px;"),
+              (a.onchange = () => {
+                this.setDifficulty_(a.value), this.resetGame_();
               });
-              difficultySelect.style.cssText =
-                "border: 2px solid lightgrey; background-color: white; color: #4275f4;" +
-                "padding: 6px;";
-
-              difficultySelect.onchange = function () {
-                _this.setDifficulty_(difficultySelect.value);
-
-                _this.resetGame_();
-              };
-
-              var resetDiv = document.createElement("div");
-              resetDiv.innerText = "Reset";
-              resetDiv.style.cssText =
-                "cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;" +
-                "color: #4275f4; line-height: 40px; font-weight: 800";
-              resetDiv.onclick = this.resetGame_.bind(this);
-              menuDiv.appendChild(titleDiv);
-              menuDiv.appendChild(pieceTitleDiv);
-              menuDiv.appendChild(pieceDiv);
-              menuDiv.appendChild(timeTitleDiv);
-              menuDiv.appendChild(timeDiv);
-              menuDiv.appendChild(difficultyTitleDiv);
-              menuDiv.appendChild(difficultySelect);
-              menuDiv.appendChild(resetDiv);
-              this.map_.controls[google.maps.ControlPosition.TOP_LEFT].push(
-                menuDiv
-              );
-            },
-          },
-          {
-            key: "render",
-            value: function render() {
-              if (!this.dataLoaded_) {
-                return;
-              }
-
-              this.start_();
-            },
-          },
-          {
-            key: "loadData_",
-            value: function loadData_() {
-              var _this2 = this;
-
-              var xmlhttpRequest = new XMLHttpRequest();
-
-              xmlhttpRequest.onreadystatechange = function () {
-                if (
-                  xmlhttpRequest.status != 200 ||
-                  xmlhttpRequest.readyState != XMLHttpRequest.DONE
-                )
-                  return;
-
-                _this2.loadDataComplete_(
-                  JSON.parse(xmlhttpRequest.responseText)
-                );
-              };
-
-              xmlhttpRequest.open(
+            const l = document.createElement("div");
+            (l.innerText = "Reset"),
+              (l.style.cssText =
+                "cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;color: #4275f4; line-height: 40px; font-weight: 800"),
+              (l.onclick = this.resetGame_.bind(this)),
+              e.appendChild(t),
+              e.appendChild(i),
+              e.appendChild(s),
+              e.appendChild(o),
+              e.appendChild(n),
+              e.appendChild(r),
+              e.appendChild(a),
+              e.appendChild(l),
+              this.map_.controls[google.maps.ControlPosition.TOP_LEFT].push(e);
+          }
+          render() {
+            this.dataLoaded_ && this.start_();
+          }
+          loadData_() {
+            const e = new XMLHttpRequest();
+            (e.onreadystatechange = () => {
+              200 == e.status &&
+                e.readyState == XMLHttpRequest.DONE &&
+                this.loadDataComplete_(JSON.parse(e.responseText));
+            }),
+              e.open(
                 "GET",
                 "https://storage.googleapis.com/mapsdevsite/json/puzzle.json",
-                true
-              );
-              xmlhttpRequest.send(null);
-            },
-          },
-          {
-            key: "loadDataComplete_",
-            value: function loadDataComplete_(data) {
-              this.dataLoaded_ = true;
-              this.countries_ = data;
-              this.start_();
-            },
-            /**
-             * @param {string} difficulty
-             * @private
-             */
-          },
-          {
-            key: "setDifficulty_",
-            value: function setDifficulty_(difficulty) {
-              this.difficulty_ = difficulty;
-
-              if (this.map_) {
-                this.setDifficultyStyle_();
-              }
-            },
-          },
-          {
-            key: "setDifficultyStyle_",
-            value: function setDifficultyStyle_() {
-              var styles = {
+                !0
+              ),
+              e.send(null);
+          }
+          loadDataComplete_(e) {
+            (this.dataLoaded_ = !0), (this.countries_ = e), this.start_();
+          }
+          setDifficulty_(e) {
+            (this.difficulty_ = e), this.map_ && this.setDifficultyStyle_();
+          }
+          setDifficultyStyle_() {
+            this.map_.set(
+              "styles",
+              {
                 easy: [
-                  {
-                    stylers: [
-                      {
-                        visibility: "off",
-                      },
-                    ],
-                  },
+                  { stylers: [{ visibility: "off" }] },
                   {
                     featureType: "water",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                      {
-                        color: "#d4d4d4",
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
                   },
                   {
                     featureType: "landscape",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                      {
-                        color: "#e5e3df",
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
                   },
                   {
                     featureType: "administrative.country",
                     elementType: "labels",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }],
                   },
                   {
                     featureType: "administrative.country",
                     elementType: "geometry",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                      {
-                        weight: 1.3,
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }, { weight: 1.3 }],
                   },
                 ],
                 moderate: [
-                  {
-                    stylers: [
-                      {
-                        visibility: "off",
-                      },
-                    ],
-                  },
+                  { stylers: [{ visibility: "off" }] },
                   {
                     featureType: "water",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                      {
-                        color: "#d4d4d4",
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
                   },
                   {
                     featureType: "landscape",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                      {
-                        color: "#e5e3df",
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
                   },
                   {
                     featureType: "administrative.country",
                     elementType: "labels",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }],
                   },
                 ],
                 hard: [
-                  {
-                    stylers: [
-                      {
-                        visibility: "off",
-                      },
-                    ],
-                  },
+                  { stylers: [{ visibility: "off" }] },
                   {
                     featureType: "water",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                      {
-                        color: "#d4d4d4",
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
                   },
                   {
                     featureType: "landscape",
-                    stylers: [
-                      {
-                        visibility: "on",
-                      },
-                      {
-                        color: "#e5e3df",
-                      },
-                    ],
+                    stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
                   },
                 ],
                 extreme: [
-                  {
-                    elementType: "geometry",
-                    stylers: [
-                      {
-                        visibility: "off",
-                      },
-                    ],
-                  },
+                  { elementType: "geometry", stylers: [{ visibility: "off" }] },
                 ],
-              };
-              this.map_.set("styles", styles[this.difficulty_]);
-            },
-          },
-          {
-            key: "resetGame_",
-            value: function resetGame_() {
-              this.removeCountries_();
-              this.count_ = 0;
-              this.setCount_();
-              this.startClock_();
+              }[this.difficulty_]
+            );
+          }
+          resetGame_() {
+            this.removeCountries_(),
+              (this.count_ = 0),
+              this.setCount_(),
+              this.startClock_(),
               this.addRandomCountries_();
-            },
-          },
-          {
-            key: "setCount_",
-            value: function setCount_() {
-              this.pieceDiv_.innerText = this.count_ + " / " + this.NUM_PIECES_;
-
-              if (this.count_ == this.NUM_PIECES_) {
-                this.stopClock_();
-              }
-            },
-          },
-          {
-            key: "stopClock_",
-            value: function stopClock_() {
-              window.clearInterval(this.timer_);
-            },
-          },
-          {
-            key: "startClock_",
-            value: function startClock_() {
-              this.stopClock_();
-              var timeDiv = this.timeDiv_;
-              if (timeDiv) timeDiv.textContent = "0.0 seconds";
-              var t = new Date();
-              this.timer_ = window.setInterval(function () {
-                var diff = new Date().getTime() - t.getTime();
-                if (timeDiv)
-                  timeDiv.textContent = (diff / 1000).toFixed(2) + " seconds";
-              }, 100);
-            },
-          },
-          {
-            key: "addRandomCountries_",
-            value: function addRandomCountries_() {
-              // Shuffle countries
-              this.countries_.sort(function () {
-                return Math.round(Math.random()) - 0.5;
-              });
-              var countries = this.countries_.slice(0, this.NUM_PIECES_);
-
-              for (var i = 0, country; (country = countries[i]); i++) {
-                this.addCountry_(country);
-              }
-            },
-          },
-          {
-            key: "addCountry_",
-            value: function addCountry_(country) {
-              var _this3 = this;
-
-              var options = {
+          }
+          setCount_() {
+            (this.pieceDiv_.innerText = this.count_ + " / " + this.NUM_PIECES_),
+              this.count_ == this.NUM_PIECES_ && this.stopClock_();
+          }
+          stopClock_() {
+            window.clearInterval(this.timer_);
+          }
+          startClock_() {
+            this.stopClock_();
+            const e = this.timeDiv_;
+            e && (e.textContent = "0.0 seconds");
+            const t = new Date();
+            this.timer_ = window.setInterval(() => {
+              const i = new Date().getTime() - t.getTime();
+              e && (e.textContent = (i / 1e3).toFixed(2) + " seconds");
+            }, 100);
+          }
+          addRandomCountries_() {
+            this.countries_.sort(() => Math.round(Math.random()) - 0.5);
+            const e = this.countries_.slice(0, this.NUM_PIECES_);
+            for (let t, i = 0; (t = e[i]); i++) this.addCountry_(t);
+          }
+          addCountry_(e) {
+            const t = {
                 strokeColor: this.START_COLOR_,
                 strokeOpacity: 0.8,
                 strokeWeight: 2,
                 fillColor: this.START_COLOR_,
                 fillOpacity: 0.35,
-                geodesic: true,
+                geodesic: !0,
                 map: this.map_,
-                draggable: true,
+                draggable: !0,
                 zIndex: 2,
-                paths: country.start.map(
-                  google.maps.geometry.encoding.decodePath
-                ),
-              };
-              var poly = new google.maps.Polygon(options);
-              google.maps.event.addListener(poly, "dragend", function () {
-                _this3.checkPosition_(poly, country);
-              });
-              this.polys_.push(poly);
-            },
-            /**
-             * Checks that every point in the polygon is inside the bounds.
-             */
-          },
-          {
-            key: "boundsContainsPoly_",
-            value: function boundsContainsPoly_(bounds, poly) {
-              var b = new google.maps.LatLngBounds(
-                new google.maps.LatLng(bounds[0][0], bounds[0][1]),
-                new google.maps.LatLng(bounds[1][0], bounds[1][1])
-              );
-              var paths = poly.getPaths().getArray();
-
-              for (var i = 0; i < paths.length; i++) {
-                var p = paths[i].getArray();
-
-                for (var j = 0; j < p.length; j++) {
-                  if (!b.contains(p[j])) {
-                    return false;
-                  }
-                }
-              }
-
-              return true;
-            },
-            /**
-             * Replace a poly with the correct 'end' position of the country.
-             */
-          },
-          {
-            key: "replacePiece_",
-            value: function replacePiece_(poly, country) {
-              var options = {
-                strokeColor: this.END_COLOR_,
-                fillColor: this.END_COLOR_,
-                draggable: false,
-                zIndex: 1,
-                paths: country.end.map(
-                  google.maps.geometry.encoding.decodePath
-                ),
-              };
-              poly.setOptions(options);
-              this.count_++;
-              this.setCount_();
-            },
-          },
-          {
-            key: "checkPosition_",
-            value: function checkPosition_(poly, country) {
-              if (this.boundsContainsPoly_(country.bounds, poly)) {
-                this.replacePiece_(poly, country);
-              }
-            },
-          },
-          {
-            key: "start_",
-            value: function start_() {
-              this.setDifficultyStyle_();
-              this.resetGame_();
-            },
-          },
-          {
-            key: "removeCountries_",
-            value: function removeCountries_() {
-              for (var i = 0, poly; (poly = this.polys_[i]); i++) {
-                poly.setMap(null);
-              }
-
-              this.polys_ = [];
-            },
-          },
-        ]);
-
-        return PuzzleDemo;
+                paths: e.start.map(google.maps.geometry.encoding.decodePath),
+              },
+              i = new google.maps.Polygon(t);
+            google.maps.event.addListener(i, "dragend", () => {
+              this.checkPosition_(i, e);
+            }),
+              this.polys_.push(i);
+          }
+          boundsContainsPoly_(e, t) {
+            const i = new google.maps.LatLngBounds(
+                new google.maps.LatLng(e[0][0], e[0][1]),
+                new google.maps.LatLng(e[1][0], e[1][1])
+              ),
+              s = t.getPaths().getArray();
+            for (let e = 0; e < s.length; e++) {
+              const t = s[e].getArray();
+              for (let e = 0; e < t.length; e++)
+                if (!i.contains(t[e])) return !1;
+            }
+            return !0;
+          }
+          replacePiece_(e, t) {
+            const i = {
+              strokeColor: this.END_COLOR_,
+              fillColor: this.END_COLOR_,
+              draggable: !1,
+              zIndex: 1,
+              paths: t.end.map(google.maps.geometry.encoding.decodePath),
+            };
+            e.setOptions(i), this.count_++, this.setCount_();
+          }
+          checkPosition_(e, t) {
+            this.boundsContainsPoly_(t.bounds, e) && this.replacePiece_(e, t);
+          }
+          start_() {
+            this.setDifficultyStyle_(), this.resetGame_();
+          }
+          removeCountries_() {
+            for (let e, t = 0; (e = this.polys_[t]); t++) e.setMap(null);
+            this.polys_ = [];
+          }
+        }
+        function s() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+            disableDefaultUI: !0,
+            center: { lat: 10, lng: 60 },
+            zoom: 2,
+          });
+          new i(e);
+        }
+        var o = window;
+        for (var n in t) o[n] = t[n];
+        t.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
       })();
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          disableDefaultUI: true,
-          center: {
-            lat: 10,
-            lng: 60,
-          },
-          zoom: 2,
-        });
-        new PuzzleDemo(map);
-      }
     </script>
   </head>
   <body>

@@ -41,53 +41,56 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // Initialize the map.
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 8,
-          center: {
-            lat: 40.72,
-            lng: -73.96,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        });
-        var geocoder = new google.maps.Geocoder();
-        var infowindow = new google.maps.InfoWindow();
-        document
-          .getElementById("submit")
-          .addEventListener("click", function () {
-            geocodePlaceId(geocoder, map, infowindow);
+          o = {};
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+              zoom: 8,
+              center: { lat: 40.72, lng: -73.96 },
+            }),
+            o = new google.maps.Geocoder(),
+            t = new google.maps.InfoWindow();
+          document.getElementById("submit").addEventListener("click", () => {
+            !(function (e, o, t) {
+              const n = document.getElementById("place-id").value;
+              e.geocode({ placeId: n }, (e, n) => {
+                if ("OK" === n)
+                  if (e[0]) {
+                    o.setZoom(11), o.setCenter(e[0].geometry.location);
+                    const n = new google.maps.Marker({
+                      map: o,
+                      position: e[0].geometry.location,
+                    });
+                    t.setContent(e[0].formatted_address), t.open(o, n);
+                  } else window.alert("No results found");
+                else window.alert("Geocoder failed due to: " + n);
+              });
+            })(o, e, t);
           });
-      } // This function is called when the user clicks the UI button requesting
-      // a geocode of a place ID.
-
-      function geocodePlaceId(geocoder, map, infowindow) {
-        var placeId = document.getElementById("place-id").value;
-        geocoder.geocode(
-          {
-            placeId: placeId,
-          },
-          function (results, status) {
-            if (status === "OK") {
-              if (results[0]) {
-                map.setZoom(11);
-                map.setCenter(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                  map: map,
-                  position: results[0].geometry.location,
-                });
-                infowindow.setContent(results[0].formatted_address);
-                infowindow.open(map, marker);
-              } else {
-                window.alert("No results found");
-              }
-            } else {
-              window.alert("Geocoder failed due to: " + status);
-            }
-          }
-        );
-      }
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var n = window;
+        for (var r in o) n[r] = o[r];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

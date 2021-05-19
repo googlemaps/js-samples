@@ -113,18 +113,18 @@ class ClickEventHandler {
         ) {
           me.infowindow.close();
           me.infowindow.setPosition(place.geometry.location);
-          (me.infowindowContent.children[
-            "place-icon"
-          ] as HTMLImageElement).src = place.icon as string;
-          (me.infowindowContent.children[
-            "place-name"
-          ] as HTMLElement).textContent = place.name!;
-          (me.infowindowContent.children[
-            "place-id"
-          ] as HTMLElement).textContent = place.place_id as string;
-          (me.infowindowContent.children[
-            "place-address"
-          ] as HTMLElement).textContent = place.formatted_address as string;
+          (
+            me.infowindowContent.children["place-icon"] as HTMLImageElement
+          ).src = place.icon as string;
+          (
+            me.infowindowContent.children["place-name"] as HTMLElement
+          ).textContent = place.name!;
+          (
+            me.infowindowContent.children["place-id"] as HTMLElement
+          ).textContent = place.place_id as string;
+          (
+            me.infowindowContent.children["place-address"] as HTMLElement
+          ).textContent = place.formatted_address as string;
           me.infowindow.open(me.map);
         }
       }

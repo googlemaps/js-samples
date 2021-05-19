@@ -88,8 +88,8 @@
       ];
 
       function initMap() {
-        const localContextMapView = new google.maps.localContext.LocalContextMapView(
-          {
+        const localContextMapView =
+          new google.maps.localContext.LocalContextMapView({
             element: document.getElementById("map"),
             placeTypePreferences: [
               { type: "bakery", weight: 1 },
@@ -100,8 +100,7 @@
             ],
             maxPlaceCount: 18,
             directionsOptions: { origin: center },
-          }
-        );
+          });
         map = localContextMapView.map;
         // Trigger hidePlaceDetailsView() with a click event handler on the inner map.
         map.addListener("click", () => {
@@ -118,8 +117,7 @@
         new google.maps.Marker({
           position: center,
           map: map,
-          icon:
-            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAdUlEQVR4AWMYOWAU/AfhYWMBCxA3A/FlIN4MxN7I6gjg80DcD8QC+CzIxqIxH6aOSHwfYQmmBZexuQymjgTcj8uCz1gUHybDgvO4LFiMRXE4GRb8x2UBDxCXQ8PxPdSrLNSxAD+g3ALCeNQCKoHhZcHAg1EAAM3cyWj3TGxhAAAAAElFTkSuQmCC",
+          icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAdUlEQVR4AWMYOWAU/AfhYWMBCxA3A/FlIN4MxN7I6gjg80DcD8QC+CzIxqIxH6aOSHwfYQmmBZexuQymjgTcj8uCz1gUHybDgvO4LFiMRXE4GRb8x2UBDxCXQ8PxPdSrLNSxAD+g3ALCeNQCKoHhZcHAg1EAAM3cyWj3TGxhAAAAAElFTkSuQmCC",
           zIndex: 30,
         });
       }

@@ -25,8 +25,7 @@ function initMap(): void {
   );
 
   const kmlLayer = new google.maps.KmlLayer({
-    url:
-      "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
+    url: "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
     suppressInfoWindows: true,
     map: map,
   });

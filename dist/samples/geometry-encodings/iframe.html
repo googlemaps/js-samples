@@ -43,47 +43,49 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // This example requires the Geometry library. Include the libraries=geometry
-  // parameter when you first load the API. For example:
-  // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=geometry">
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 14,
-      center: {
-        lat: 34.366,
-        lng: -89.519,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-    });
-    var poly = new google.maps.Polyline({
-      strokeColor: "#000000",
-      strokeOpacity: 1,
-      strokeWeight: 3,
-      map: map,
-    }); // Add a listener for the click event
-
-    google.maps.event.addListener(map, "click", function (event) {
-      addLatLngToPoly(event.latLng, poly);
-    });
-  }
-  /**
-   * Handles click events on a map, and adds a new point to the Polyline.
-   * Updates the encoding text area with the path's encoded values.
-   */
-
-  function addLatLngToPoly(latLng, poly) {
-    var path = poly.getPath(); // Because path is an MVCArray, we can simply append a new coordinate
-    // and it will automatically appear
-
-    path.push(latLng); // Update the text field to display the polyline encodings
-
-    var encodeString = google.maps.geometry.encoding.encodePath(path);
-
-    if (encodeString) {
-      document.getElementById("encoded-polyline").value = encodeString;
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: { lat: 34.366, lng: -89.519 },
+        }),
+        o = new google.maps.Polyline({
+          strokeColor: "#000000",
+          strokeOpacity: 1,
+          strokeWeight: 3,
+          map: e,
+        });
+      google.maps.event.addListener(e, "click", (e) => {
+        !(function (e, o) {
+          const t = o.getPath();
+          t.push(e);
+          const n = google.maps.geometry.encoding.encodePath(t);
+          n && (document.getElementById("encoded-polyline").value = n);
+        })(e.latLng, o);
+      });
     }
-  }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var r in o) n[r] = o[r];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

@@ -19,47 +19,50 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This example creates a 2-pixel-wide red polyline showing the path of
-      // the first trans-Pacific flight between Oakland, CA, and Brisbane,
-      // Australia which was made by Charles Kingsford Smith.
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 3,
-          center: {
-            lat: 0,
-            lng: -180,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var r in o)
+                e.o(o, r) &&
+                  !e.o(t, r) &&
+                  Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          mapTypeId: "terrain",
-        });
-        var flightPlanCoordinates = [
-          {
-            lat: 37.772,
-            lng: -122.214,
-          },
-          {
-            lat: 21.291,
-            lng: -157.821,
-          },
-          {
-            lat: -18.142,
-            lng: 178.431,
-          },
-          {
-            lat: -27.467,
-            lng: 153.027,
-          },
-        ];
-        var flightPath = new google.maps.Polyline({
-          path: flightPlanCoordinates,
-          geodesic: true,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        flightPath.setMap(map);
-      }
+          t = {};
+        function o() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+            zoom: 3,
+            center: { lat: 0, lng: -180 },
+            mapTypeId: "terrain",
+          });
+          new google.maps.Polyline({
+            path: [
+              { lat: 37.772, lng: -122.214 },
+              { lat: 21.291, lng: -157.821 },
+              { lat: -18.142, lng: 178.431 },
+              { lat: -27.467, lng: 153.027 },
+            ],
+            geodesic: !0,
+            strokeColor: "#FF0000",
+            strokeOpacity: 1,
+            strokeWeight: 2,
+          }).setMap(e);
+        }
+        e.r(t), e.d(t, { initMap: () => o });
+        var r = window;
+        for (var l in t) r[l] = t[l];
+        t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

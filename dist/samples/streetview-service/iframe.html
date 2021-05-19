@@ -15,79 +15,63 @@
   }
 </style>
 <script>
-  "use strict";
-
-  /*
-   * Click the map to set a new location for the Street View camera.
-   */
-  var map;
-  var panorama;
-
-  function initMap() {
-    var berkeley = {
-      lat: 37.869085,
-      lng: -122.254775,
-    };
-    var sv = new google.maps.StreetViewService();
-    panorama = new google.maps.StreetViewPanorama(
-      document.getElementById("pano")
-    ); // Set up the map.
-
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: berkeley,
-      zoom: 16,
-      streetViewControl: false,
-    }); // Set the initial Street View camera to the center of the map
-
-    sv.getPanorama(
-      {
-        location: berkeley,
-        radius: 50,
-      },
-      processSVData
-    ); // Look for a nearby Street View panorama when the map is clicked.
-    // getPanorama will return the nearest pano when the given
-    // radius is 50 meters or less.
-
-    map.addListener("click", function (event) {
-      sv.getPanorama(
-        {
-          location: event.latLng,
-          radius: 50,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
         },
-        processSVData
-      );
-    });
-  }
-
-  function processSVData(data, status) {
-    if (status === "OK") {
-      var location = data.location;
-      var marker = new google.maps.Marker({
-        position: location.latLng,
-        map: map,
-        title: location.description,
-      });
-      panorama.setPano(location.pano);
-      panorama.setPov({
-        heading: 270,
-        pitch: 0,
-      });
-      panorama.setVisible(true);
-      marker.addListener("click", function () {
-        var markerPanoID = location.pano; // Set the Pano to use the passed panoID.
-
-        panorama.setPano(markerPanoID);
-        panorama.setPov({
-          heading: 270,
-          pitch: 0,
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    let t, n;
+    function a() {
+      const e = { lat: 37.869085, lng: -122.254775 },
+        o = new google.maps.StreetViewService();
+      (n = new google.maps.StreetViewPanorama(document.getElementById("pano"))),
+        (t = new google.maps.Map(document.getElementById("map"), {
+          center: e,
+          zoom: 16,
+          streetViewControl: !1,
+        })),
+        o.getPanorama({ location: e, radius: 50 }, i),
+        t.addListener("click", (e) => {
+          o.getPanorama({ location: e.latLng, radius: 50 }, i);
         });
-        panorama.setVisible(true);
-      });
-    } else {
-      console.error("Street View data not found for this location.");
     }
-  }
+    function i(e, o) {
+      if ("OK" === o) {
+        const o = e.location,
+          a = new google.maps.Marker({
+            position: o.latLng,
+            map: t,
+            title: o.description,
+          });
+        n.setPano(o.pano),
+          n.setPov({ heading: 270, pitch: 0 }),
+          n.setVisible(!0),
+          a.addListener("click", () => {
+            const e = o.pano;
+            n.setPano(e),
+              n.setPov({ heading: 270, pitch: 0 }),
+              n.setVisible(!0);
+          });
+      } else console.error("Street View data not found for this location.");
+    }
+    e.r(o), e.d(o, { initMap: () => a });
+    var r = window;
+    for (var l in o) r[l] = o[l];
+    o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

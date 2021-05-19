@@ -38,107 +38,49 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function ownKeys(object, enumerableOnly) {
-        var keys = Object.keys(object);
-        if (Object.getOwnPropertySymbols) {
-          var symbols = Object.getOwnPropertySymbols(object);
-          if (enumerableOnly)
-            symbols = symbols.filter(function (sym) {
-              return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-            });
-          keys.push.apply(keys, symbols);
-        }
-        return keys;
-      }
-
-      function _objectSpread(target) {
-        for (var i = 1; i < arguments.length; i++) {
-          var source = arguments[i] != null ? arguments[i] : {};
-          if (i % 2) {
-            ownKeys(Object(source), true).forEach(function (key) {
-              _defineProperty(target, key, source[key]);
-            });
-          } else if (Object.getOwnPropertyDescriptors) {
-            Object.defineProperties(
-              target,
-              Object.getOwnPropertyDescriptors(source)
-            );
-          } else {
-            ownKeys(Object(source)).forEach(function (key) {
-              Object.defineProperty(
-                target,
-                key,
-                Object.getOwnPropertyDescriptor(source, key)
-              );
-            });
-          }
-        }
-        return target;
-      }
-
-      function _defineProperty(obj, key, value) {
-        if (key in obj) {
-          Object.defineProperty(obj, key, {
-            value: value,
-            enumerable: true,
-            configurable: true,
-            writable: true,
-          });
-        } else {
-          obj[key] = value;
-        }
-        return obj;
-      }
-
-      var map, overview;
-      var OVERVIEW_DIFFERENCE = 5;
-      var OVERVIEW_MIN_ZOOM = 3;
-      var OVERVIEW_MAX_ZOOM = 10;
-
-      function initMap() {
-        var mapOptions = {
-          center: {
-            lat: 50,
-            lng: 8,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          zoom: 7,
-        }; // instantiate the primary map
-
-        map = new google.maps.Map(
-          document.getElementById("map"),
-          _objectSpread({}, mapOptions)
-        ); // instantiate the overview map without controls
-
-        overview = new google.maps.Map(
-          document.getElementById("overview"),
-          _objectSpread(
-            _objectSpread({}, mapOptions),
-            {},
-            {
-              disableDefaultUI: true,
+          o = {};
+        let t, n;
+        function r() {
+          const e = { center: { lat: 50, lng: 8 }, zoom: 7 };
+          (t = new google.maps.Map(document.getElementById("map"), { ...e })),
+            (n = new google.maps.Map(document.getElementById("overview"), {
+              ...e,
+              disableDefaultUI: !0,
               gestureHandling: "none",
-              zoomControl: false,
-            }
-          )
-        );
-
-        function clamp(num, min, max) {
-          return Math.min(Math.max(num, min), max);
+              zoomControl: !1,
+            })),
+            t.addListener("bounds_changed", () => {
+              var e;
+              n.setCenter(t.getCenter()),
+                n.setZoom(
+                  ((e = t.getZoom() - 5), 3, 10, Math.min(Math.max(e, 3), 10))
+                );
+            });
         }
-
-        map.addListener("bounds_changed", function () {
-          overview.setCenter(map.getCenter());
-          overview.setZoom(
-            clamp(
-              map.getZoom() - OVERVIEW_DIFFERENCE,
-              OVERVIEW_MIN_ZOOM,
-              OVERVIEW_MAX_ZOOM
-            )
-          );
-        });
-      }
+        e.r(o), e.d(o, { initMap: () => r });
+        var a = window;
+        for (var l in o) a[l] = o[l];
+        o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

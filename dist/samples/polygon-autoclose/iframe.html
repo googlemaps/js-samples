@@ -15,48 +15,48 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // This example creates a simple polygon representing the Bermuda Triangle. Note
-  // that the code specifies only three LatLng coordinates for the polygon. The
-  // API automatically draws a stroke connecting the last LatLng back to the first
-  // LatLng.
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 5,
-      center: {
-        lat: 24.886,
-        lng: -70.268,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var l in t)
+            e.o(t, l) &&
+              !e.o(o, l) &&
+              Object.defineProperty(o, l, { enumerable: !0, get: t[l] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      mapTypeId: "terrain",
-    }); // Define the LatLng coordinates for the polygon's path. Note that there's
-    // no need to specify the final coordinates to complete the polygon, because
-    // The Google Maps JavaScript API will automatically draw the closing side.
-
-    var triangleCoords = [
-      {
-        lat: 25.774,
-        lng: -80.19,
-      },
-      {
-        lat: 18.466,
-        lng: -66.118,
-      },
-      {
-        lat: 32.321,
-        lng: -64.757,
-      },
-    ];
-    var bermudaTriangle = new google.maps.Polygon({
-      paths: triangleCoords,
-      strokeColor: "#FF0000",
-      strokeOpacity: 0.8,
-      strokeWeight: 3,
-      fillColor: "#FF0000",
-      fillOpacity: 0.35,
-    });
-    bermudaTriangle.setMap(map);
-  }
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+        zoom: 5,
+        center: { lat: 24.886, lng: -70.268 },
+        mapTypeId: "terrain",
+      });
+      new google.maps.Polygon({
+        paths: [
+          { lat: 25.774, lng: -80.19 },
+          { lat: 18.466, lng: -66.118 },
+          { lat: 32.321, lng: -64.757 },
+        ],
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+      }).setMap(e);
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var l = window;
+    for (var r in o) l[r] = o[r];
+    o.__esModule && Object.defineProperty(l, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

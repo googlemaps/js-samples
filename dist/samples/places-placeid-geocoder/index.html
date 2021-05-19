@@ -53,77 +53,71 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This sample requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script
-      // src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places">
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: -33.8688,
-            lng: 151.2195,
-          },
-          zoom: 13,
-        });
-        var input = document.getElementById("pac-input");
-        var autocomplete = new google.maps.places.Autocomplete(input);
-        autocomplete.bindTo("bounds", map); // Specify just the place data fields that you need.
-
-        autocomplete.setFields([
-          "place_id",
-          "geometry",
-          "name",
-          "formatted_address",
-        ]);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        var infowindow = new google.maps.InfoWindow();
-        var infowindowContent = document.getElementById("infowindow-content");
-        infowindow.setContent(infowindowContent);
-        var geocoder = new google.maps.Geocoder();
-        var marker = new google.maps.Marker({
-          map: map,
-        });
-        marker.addListener("click", function () {
-          infowindow.open(map, marker);
-        });
-        autocomplete.addListener("place_changed", function () {
-          infowindow.close();
-          var place = autocomplete.getPlace();
-
-          if (!place.place_id) {
-            return;
-          }
-
-          geocoder.geocode(
-            {
-              placeId: place.place_id,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
             },
-            function (results, status) {
-              if (status !== "OK" && results) {
-                window.alert("Geocoder failed due to: " + status);
-                return;
-              }
-
-              map.setZoom(11);
-              map.setCenter(results[0].geometry.location); // Set the position of the marker using the place ID and location.
-
-              marker.setPlace({
-                placeId: place.place_id,
-                location: results[0].geometry.location,
-              });
-              marker.setVisible(true);
-              infowindowContent.children["place-name"].textContent = place.name;
-              infowindowContent.children["place-id"].textContent =
-                place.place_id;
-              infowindowContent.children["place-address"].textContent =
-                results[0].formatted_address;
-              infowindow.open(map, marker);
-            }
-          );
-        });
-      }
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+              center: { lat: -33.8688, lng: 151.2195 },
+              zoom: 13,
+            }),
+            o = document.getElementById("pac-input"),
+            t = new google.maps.places.Autocomplete(o);
+          t.bindTo("bounds", e),
+            t.setFields(["place_id", "geometry", "name", "formatted_address"]),
+            e.controls[google.maps.ControlPosition.TOP_LEFT].push(o);
+          const n = new google.maps.InfoWindow(),
+            a = document.getElementById("infowindow-content");
+          n.setContent(a);
+          const d = new google.maps.Geocoder(),
+            l = new google.maps.Marker({ map: e });
+          l.addListener("click", () => {
+            n.open(e, l);
+          }),
+            t.addListener("place_changed", () => {
+              n.close();
+              const o = t.getPlace();
+              o.place_id &&
+                d.geocode({ placeId: o.place_id }, (t, d) => {
+                  "OK" !== d && t
+                    ? window.alert("Geocoder failed due to: " + d)
+                    : (e.setZoom(11),
+                      e.setCenter(t[0].geometry.location),
+                      l.setPlace({
+                        placeId: o.place_id,
+                        location: t[0].geometry.location,
+                      }),
+                      l.setVisible(!0),
+                      (a.children["place-name"].textContent = o.name),
+                      (a.children["place-id"].textContent = o.place_id),
+                      (a.children["place-address"].textContent =
+                        t[0].formatted_address),
+                      n.open(e, l));
+                });
+            });
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var n = window;
+        for (var a in o) n[a] = o[a];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

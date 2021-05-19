@@ -49,58 +49,69 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initPano() {
-        var panorama = new google.maps.StreetViewPanorama(
-          document.getElementById("pano"),
-          {
-            position: {
-              lat: 37.869,
-              lng: -122.255,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, n) => {
+              for (var o in n)
+                e.o(n, o) &&
+                  !e.o(t, o) &&
+                  Object.defineProperty(t, o, { enumerable: !0, get: n[o] });
             },
-            pov: {
-              heading: 270,
-              pitch: 0,
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
             },
-            visible: true,
-          }
-        );
-        panorama.addListener("pano_changed", function () {
-          var panoCell = document.getElementById("pano-cell");
-          panoCell.innerHTML = panorama.getPano();
-        });
-        panorama.addListener("links_changed", function () {
-          var linksTable = document.getElementById("links_table");
-
-          while (linksTable.hasChildNodes()) {
-            linksTable.removeChild(linksTable.lastChild);
-          }
-
-          var links = panorama.getLinks();
-
-          for (var i in links) {
-            var row = document.createElement("tr");
-            linksTable.appendChild(row);
-            var labelCell = document.createElement("td");
-            labelCell.innerHTML = "<b>Link: " + i + "</b>";
-            var valueCell = document.createElement("td");
-            valueCell.innerHTML = links[i].description;
-            linksTable.appendChild(labelCell);
-            linksTable.appendChild(valueCell);
-          }
-        });
-        panorama.addListener("position_changed", function () {
-          var positionCell = document.getElementById("position-cell");
-          positionCell.firstChild.nodeValue = panorama.getPosition() + "";
-        });
-        panorama.addListener("pov_changed", function () {
-          var headingCell = document.getElementById("heading-cell");
-          var pitchCell = document.getElementById("pitch-cell");
-          headingCell.firstChild.nodeValue = panorama.getPov().heading + "";
-          pitchCell.firstChild.nodeValue = panorama.getPov().pitch + "";
-        });
-      }
+          },
+          t = {};
+        function n() {
+          const e = new google.maps.StreetViewPanorama(
+            document.getElementById("pano"),
+            {
+              position: { lat: 37.869, lng: -122.255 },
+              pov: { heading: 270, pitch: 0 },
+              visible: !0,
+            }
+          );
+          e.addListener("pano_changed", () => {
+            document.getElementById("pano-cell").innerHTML = e.getPano();
+          }),
+            e.addListener("links_changed", () => {
+              const t = document.getElementById("links_table");
+              for (; t.hasChildNodes(); ) t.removeChild(t.lastChild);
+              const n = e.getLinks();
+              for (const e in n) {
+                const o = document.createElement("tr");
+                t.appendChild(o);
+                const d = document.createElement("td");
+                d.innerHTML = "<b>Link: " + e + "</b>";
+                const i = document.createElement("td");
+                (i.innerHTML = n[e].description),
+                  t.appendChild(d),
+                  t.appendChild(i);
+              }
+            }),
+            e.addListener("position_changed", () => {
+              document.getElementById("position-cell").firstChild.nodeValue =
+                e.getPosition() + "";
+            }),
+            e.addListener("pov_changed", () => {
+              const t = document.getElementById("heading-cell"),
+                n = document.getElementById("pitch-cell");
+              (t.firstChild.nodeValue = e.getPov().heading + ""),
+                (n.firstChild.nodeValue = e.getPov().pitch + "");
+            });
+        }
+        e.r(t), e.d(t, { initPano: () => n });
+        var o = window;
+        for (var d in t) o[d] = t[d];
+        t.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

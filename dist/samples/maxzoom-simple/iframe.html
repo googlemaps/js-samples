@@ -15,40 +15,49 @@
   }
 </style>
 <script>
-  "use strict";
-
-  var map;
-  var maxZoomService;
-  var infoWindow;
-
-  function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 11,
-      center: {
-        lat: 35.6894,
-        lng: 139.692,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      mapTypeId: "hybrid",
-    });
-    infoWindow = new google.maps.InfoWindow();
-    maxZoomService = new google.maps.MaxZoomService();
-    map.addListener("click", showMaxZoom);
-  }
-
-  function showMaxZoom(e) {
-    maxZoomService.getMaxZoomAtLatLng(e.latLng, function (result) {
-      if (result.status !== "OK") {
-        infoWindow.setContent("Error in MaxZoomService");
-      } else {
-        infoWindow.setContent(
-          "The maximum zoom at this location is: " + result.zoom
-        );
-      }
-
-      infoWindow.setPosition(e.latLng);
-      infoWindow.open(map);
-    });
-  }
+      o = {};
+    let t, n, a;
+    function r() {
+      (t = new google.maps.Map(document.getElementById("map"), {
+        zoom: 11,
+        center: { lat: 35.6894, lng: 139.692 },
+        mapTypeId: "hybrid",
+      })),
+        (a = new google.maps.InfoWindow()),
+        (n = new google.maps.MaxZoomService()),
+        t.addListener("click", i);
+    }
+    function i(e) {
+      n.getMaxZoomAtLatLng(e.latLng, (o) => {
+        "OK" !== o.status
+          ? a.setContent("Error in MaxZoomService")
+          : a.setContent("The maximum zoom at this location is: " + o.zoom),
+          a.setPosition(e.latLng),
+          a.open(t);
+      });
+    }
+    e.r(o), e.d(o, { initMap: () => r });
+    var l = window;
+    for (var d in o) l[d] = o[d];
+    o.__esModule && Object.defineProperty(l, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

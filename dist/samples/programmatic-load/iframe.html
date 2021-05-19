@@ -17,81 +17,42 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-      keys.push.apply(keys, symbols);
-    }
-    return keys;
-  }
-
-  function _objectSpread(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(
-          target,
-          Object.getOwnPropertyDescriptors(source)
-        );
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(
-            target,
-            key,
-            Object.getOwnPropertyDescriptor(source, key)
-          );
-        });
-      }
-    }
-    return target;
-  }
-
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true,
-      });
-    } else {
-      obj[key] = value;
-    }
-    return obj;
-  }
-
-  var map;
-  var Loader = google.maps.plugins.loader.Loader;
-  var additionalOptions = {};
-  var loader = new Loader(
-    _objectSpread(
-      {
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, r) => {
+          for (var t in r)
+            e.o(r, t) &&
+              !e.o(o, t) &&
+              Object.defineProperty(o, t, { enumerable: !0, get: r[t] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    let r;
+    e.r(o),
+      e.d(o, { map: () => r }),
+      new (0, google.maps.plugins.loader.Loader)({
         apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg",
         version: "weekly",
-      },
-      additionalOptions
-    )
-  );
-  loader.load().then(function () {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: {
-        lat: -34.397,
-        lng: 150.644,
-      },
-      zoom: 8,
-    });
-  });
+      })
+        .load()
+        .then(() => {
+          r = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8,
+          });
+        });
+    var t = window;
+    for (var a in o) t[a] = o[a];
+    o.__esModule && Object.defineProperty(t, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">
