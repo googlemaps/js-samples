@@ -64,7 +64,7 @@ function initMap() {
         layers: this.layers_,
         props: this.props,
         controller: false,
-        userData: { map: map },
+        userData: { map: map }, // Custom context available to layers
       });
 
       // Register event listeners
