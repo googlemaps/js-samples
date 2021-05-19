@@ -65,16 +65,15 @@
       };
 
       function initMap() {
-        const localContextMapView = new google.maps.localContext.LocalContextMapView(
-          {
+        const localContextMapView =
+          new google.maps.localContext.LocalContextMapView({
             element: document.getElementById("map"),
             placeTypePreferences: [
               { type: "restaurant" },
               { type: "tourist_attraction" },
             ],
             maxPlaceCount: 12,
-          }
-        );
+          });
         map = localContextMapView.map;
         map.setOptions({
           center: districts["a"].location,

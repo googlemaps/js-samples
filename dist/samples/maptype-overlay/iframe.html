@@ -15,88 +15,54 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-  }
-
-  /*
-   * This demo illustrates the coordinate system used to display map tiles in the
-   * API.
-   *
-   * Tiles in Google Maps are numbered from the same origin as that for
-   * pixels. For Google's implementation of the Mercator projection, the origin
-   * tile is always at the northwest corner of the map, with x values increasing
-   * from west to east and y values increasing from north to south.
-   *
-   * Try panning and zooming the map to see how the coordinates change.
-   */
-  var CoordMapType = /*#__PURE__*/ (function () {
-    function CoordMapType(tileSize) {
-      _classCallCheck(this, CoordMapType);
-
-      this.tileSize = tileSize;
-    }
-
-    _createClass(CoordMapType, [
-      {
-        key: "getTile",
-        value: function getTile(coord, zoom, ownerDocument) {
-          var div = ownerDocument.createElement("div");
-          div.innerHTML = String(coord);
-          div.style.width = this.tileSize.width + "px";
-          div.style.height = this.tileSize.height + "px";
-          div.style.fontSize = "10";
-          div.style.borderStyle = "solid";
-          div.style.borderWidth = "1px";
-          div.style.borderColor = "#AAAAAA";
-          return div;
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var r in o)
+            e.o(o, r) &&
+              !e.o(t, r) &&
+              Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
         },
       },
-      {
-        key: "releaseTile",
-        value: function releaseTile(tile) {},
-      },
-    ]);
-
-    return CoordMapType;
+      t = {};
+    e.r(t), e.d(t, { initMap: () => r });
+    class o {
+      constructor(e) {
+        this.tileSize = e;
+      }
+      getTile(e, t, o) {
+        const r = o.createElement("div");
+        return (
+          (r.innerHTML = String(e)),
+          (r.style.width = this.tileSize.width + "px"),
+          (r.style.height = this.tileSize.height + "px"),
+          (r.style.fontSize = "10"),
+          (r.style.borderStyle = "solid"),
+          (r.style.borderWidth = "1px"),
+          (r.style.borderColor = "#AAAAAA"),
+          r
+        );
+      }
+      releaseTile(e) {}
+    }
+    function r() {
+      new google.maps.Map(document.getElementById("map"), {
+        zoom: 10,
+        center: { lat: 41.85, lng: -87.65 },
+      }).overlayMapTypes.insertAt(0, new o(new google.maps.Size(256, 256)));
+    }
+    var i = window;
+    for (var l in t) i[l] = t[l];
+    t.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
   })();
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 10,
-      center: {
-        lat: 41.85,
-        lng: -87.65,
-      },
-    }); // Insert this overlay map type as the first overlay map type at
-    // position 0. Note that all overlay map types appear on top of
-    // their parent base map.
-
-    map.overlayMapTypes.insertAt(
-      0,
-      new CoordMapType(new google.maps.Size(256, 256))
-    );
-  }
 </script>
 
 <div id="iframe-contents">

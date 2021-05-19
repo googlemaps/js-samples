@@ -304,9 +304,8 @@ function buildIWContent(place) {
       }
       (document.getElementById("iw-rating-row") as HTMLElement).style.display =
         "";
-      (document.getElementById(
-        "iw-rating"
-      ) as HTMLElement).innerHTML = ratingHtml;
+      (document.getElementById("iw-rating") as HTMLElement).innerHTML =
+        ratingHtml;
     }
   } else {
     (document.getElementById("iw-rating-row") as HTMLElement).style.display =
@@ -325,9 +324,8 @@ function buildIWContent(place) {
     }
     (document.getElementById("iw-website-row") as HTMLElement).style.display =
       "";
-    (document.getElementById(
-      "iw-website"
-    ) as HTMLElement).textContent = website;
+    (document.getElementById("iw-website") as HTMLElement).textContent =
+      website;
   } else {
     (document.getElementById("iw-website-row") as HTMLElement).style.display =
       "none";

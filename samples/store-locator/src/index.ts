@@ -86,10 +86,7 @@ function initMap(): void {
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
       });
 
-      // initMap may be called before all JS has been parsed and executed when using the async attribute
-      window.addEventListener("load", () => {
-        progress.done();
-      });
+      progress.done();
 
       update(map.getCenter()!);
     });
@@ -135,7 +132,7 @@ function renderCards(stores: Store[]): void {
 <div id="card-body">
   </div>
 <div class="mdc-card__actions">
-  <a class="mdc-button mdc-card__action mdc-card__action--button"
+  <a class="mdc-button mdc-card__action mdc-card__action--button" 
     target="_blank" href="https://maps.google.com?q=${
       address ? address : name
     }">
@@ -158,9 +155,9 @@ function renderCards(stores: Store[]): void {
           cardBody.innerHTML += `<h2 class="mdc-typography--body2">${travelDistanceText}, ${travelDurationText}</h2>`;
         }
 
-        (card.querySelector(
-          ".mdc-card__primary-action"
-        ) as HTMLElement).addEventListener("click", () => {
+        (
+          card.querySelector(".mdc-card__primary-action") as HTMLElement
+        ).addEventListener("click", () => {
           map.panTo(location);
         });
 

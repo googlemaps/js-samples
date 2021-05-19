@@ -29,15 +29,14 @@
           west: -122.094,
           east: -122.074,
         };
-        const localContextMapView = new google.maps.localContext.LocalContextMapView(
-          {
+        const localContextMapView =
+          new google.maps.localContext.LocalContextMapView({
             element: document.getElementById("map"),
             placeTypePreferences: [{ type: "restaurant" }],
             maxPlaceCount: 12,
             locationRestriction: bigBounds,
             directionsOptions: { origin: center },
-          }
-        );
+          });
         map = localContextMapView.map;
         new google.maps.Marker({ position: center, map: map });
         map.setOptions({

@@ -19,19 +19,38 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 13,
-          center: {
-            lat: 51.501904,
-            lng: -0.115871,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var r in t)
+                e.o(t, r) &&
+                  !e.o(o, r) &&
+                  Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        });
-        var transitLayer = new google.maps.TransitLayer();
-        transitLayer.setMap(map);
-      }
+          o = {};
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: { lat: 51.501904, lng: -0.115871 },
+          });
+          new google.maps.TransitLayer().setMap(e);
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var r = window;
+        for (var n in o) r[n] = o[n];
+        o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

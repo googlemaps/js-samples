@@ -19,29 +19,43 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initialize() {
-        var fenway = {
-          lat: 42.345573,
-          lng: -71.098326,
-        };
-        var map = new google.maps.Map(document.getElementById("map"), {
-          center: fenway,
-          zoom: 14,
-        });
-        var panorama = new google.maps.StreetViewPanorama(
-          document.getElementById("pano"),
-          {
-            position: fenway,
-            pov: {
-              heading: 34,
-              pitch: 10,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
             },
-          }
-        );
-        map.setStreetView(panorama);
-      }
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        function t() {
+          const e = { lat: 42.345573, lng: -71.098326 },
+            o = new google.maps.Map(document.getElementById("map"), {
+              center: e,
+              zoom: 14,
+            }),
+            t = new google.maps.StreetViewPanorama(
+              document.getElementById("pano"),
+              { position: e, pov: { heading: 34, pitch: 10 } }
+            );
+          o.setStreetView(t);
+        }
+        e.r(o), e.d(o, { initialize: () => t });
+        var n = window;
+        for (var r in o) n[r] = o[r];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

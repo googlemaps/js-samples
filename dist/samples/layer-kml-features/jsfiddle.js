@@ -4,8 +4,7 @@ function initMap() {
     center: { lat: 37.06, lng: -95.68 },
   });
   const kmlLayer = new google.maps.KmlLayer({
-    url:
-      "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
+    url: "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
     suppressInfoWindows: true,
     map: map,
   });

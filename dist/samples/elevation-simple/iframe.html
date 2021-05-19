@@ -15,54 +15,55 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 8,
-      center: {
-        lat: 63.333,
-        lng: -150.5,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      mapTypeId: "terrain",
-    });
-    var elevator = new google.maps.ElevationService();
-    var infowindow = new google.maps.InfoWindow({});
-    infowindow.open(map); // Add a listener for the click event. Display the elevation for the LatLng of
-    // the click inside the infowindow.
-
-    map.addListener("click", function (event) {
-      displayLocationElevation(event.latLng, elevator, infowindow);
-    });
-  }
-
-  function displayLocationElevation(location, elevator, infowindow) {
-    // Initiate the location request
-    elevator.getElevationForLocations(
-      {
-        locations: [location],
-      },
-      function (results, status) {
-        infowindow.setPosition(location);
-
-        if (status === "OK" && results) {
-          // Retrieve the first result
-          if (results[0]) {
-            // Open the infowindow indicating the elevation at the clicked position.
-            infowindow.setContent(
-              "The elevation at this point <br>is " +
-                results[0].elevation +
-                " meters."
-            );
-          } else {
-            infowindow.setContent("No results found");
-          }
-        } else {
-          infowindow.setContent("Elevation service failed due to: " + status);
-        }
-      }
-    );
-  }
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          zoom: 8,
+          center: { lat: 63.333, lng: -150.5 },
+          mapTypeId: "terrain",
+        }),
+        o = new google.maps.ElevationService(),
+        t = new google.maps.InfoWindow({});
+      t.open(e),
+        e.addListener("click", (e) => {
+          !(function (e, o, t) {
+            o.getElevationForLocations({ locations: [e] }, (o, n) => {
+              t.setPosition(e),
+                "OK" === n && o
+                  ? o[0]
+                    ? t.setContent(
+                        "The elevation at this point <br>is " +
+                          o[0].elevation +
+                          " meters."
+                      )
+                    : t.setContent("No results found")
+                  : t.setContent("Elevation service failed due to: " + n);
+            });
+          })(e.latLng, o, t);
+        });
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var i in o) n[i] = o[i];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

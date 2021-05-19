@@ -3,24 +3,13 @@ package(default_visibility = ["//visibility:public"])
 exports_files([
     "env.tpl",
     "cloud_shell_instructions.tpl.md",
-])
+    "README.md",
+    "sandbox.config.json",
+    ".gitpod.yml",
+    ".gitignore",
+] + glob(["webpack.*.js"]))
 
 filegroup(
     name = "templates",
     srcs = glob(["*.njk"]),
-)
-
-filegroup(
-    name = "package",
-    srcs = glob(
-        [
-            "package/*",
-        ],
-        exclude = [
-            "package/node_modules/",
-            "package/src/index.ts",
-            "package/static/index.html",
-            "package/.env",
-        ],
-    ),
 )

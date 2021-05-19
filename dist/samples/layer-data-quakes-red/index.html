@@ -19,48 +19,59 @@
       }
     </style>
     <script>
-      "use strict";
-
-      var map;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: 20,
-            lng: -160,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var a in o)
+                e.o(o, a) &&
+                  !e.o(t, a) &&
+                  Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          zoom: 2,
-        }); // Get the earthquake data (JSONP format)
-        // This feed is a copy from the USGS feed, you can find the originals here:
-        //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-
-        var script = document.createElement("script");
-        script.setAttribute(
-          "src",
-          "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
-        );
-        document.getElementsByTagName("head")[0].appendChild(script); // Add a basic style.
-
-        map.data.setStyle(function (feature) {
-          var mag = Math.exp(parseFloat(feature.getProperty("mag"))) * 0.1;
-          return (
-            /** @type {google.maps.Data.StyleOptions} */
-            {
-              icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: mag,
-                fillColor: "#f00",
-                fillOpacity: 0.35,
-                strokeWeight: 0,
-              },
-            }
-          );
-        });
-      } // Defines the callback function referenced in the jsonp file.
-
-      function eqfeed_callback(data) {
-        map.data.addGeoJson(data);
-      }
+          t = {};
+        let o;
+        function a() {
+          o = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 20, lng: -160 },
+            zoom: 2,
+          });
+          const e = document.createElement("script");
+          e.setAttribute(
+            "src",
+            "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
+          ),
+            document.getElementsByTagName("head")[0].appendChild(e),
+            o.data.setStyle((e) => {
+              const t = 0.1 * Math.exp(parseFloat(e.getProperty("mag")));
+              return {
+                icon: {
+                  path: google.maps.SymbolPath.CIRCLE,
+                  scale: t,
+                  fillColor: "#f00",
+                  fillOpacity: 0.35,
+                  strokeWeight: 0,
+                },
+              };
+            });
+        }
+        function r(e) {
+          o.data.addGeoJson(e);
+        }
+        e.r(t), e.d(t, { initMap: () => a, eqfeed_callback: () => r });
+        var n = window;
+        for (var l in t) n[l] = t[l];
+        t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

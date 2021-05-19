@@ -57,9 +57,8 @@ function addLatLngToPoly(
   const encodeString = google.maps.geometry.encoding.encodePath(path);
 
   if (encodeString) {
-    (document.getElementById(
-      "encoded-polyline"
-    ) as HTMLInputElement).value = encodeString;
+    (document.getElementById("encoded-polyline") as HTMLInputElement).value =
+      encodeString;
   }
 }
 // [END maps_geometry_encodings]

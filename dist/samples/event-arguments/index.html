@@ -19,28 +19,42 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: {
-            lat: -25.363882,
-            lng: 131.044922,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        });
-        map.addListener("click", function (e) {
-          placeMarkerAndPanTo(e.latLng, map);
-        });
-      }
-
-      function placeMarkerAndPanTo(latLng, map) {
-        new google.maps.Marker({
-          position: latLng,
-          map: map,
-        });
-        map.panTo(latLng);
-      }
+          o = {};
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: { lat: -25.363882, lng: 131.044922 },
+          });
+          e.addListener("click", (o) => {
+            !(function (e, o) {
+              new google.maps.Marker({ position: e, map: o }), o.panTo(e);
+            })(o.latLng, e);
+          });
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var n = window;
+        for (var r in o) n[r] = o[r];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

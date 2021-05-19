@@ -49,55 +49,54 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 8,
-          center: {
-            lat: 40.731,
-            lng: -73.997,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        });
-        var geocoder = new google.maps.Geocoder();
-        var infowindow = new google.maps.InfoWindow();
-        document
-          .getElementById("submit")
-          .addEventListener("click", function () {
-            geocodeLatLng(geocoder, map, infowindow);
+          o = {};
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+              zoom: 8,
+              center: { lat: 40.731, lng: -73.997 },
+            }),
+            o = new google.maps.Geocoder(),
+            t = new google.maps.InfoWindow();
+          document.getElementById("submit").addEventListener("click", () => {
+            !(function (e, o, t) {
+              const n = document.getElementById("latlng").value.split(",", 2),
+                l = { lat: parseFloat(n[0]), lng: parseFloat(n[1]) };
+              e.geocode({ location: l }, (e, n) => {
+                if ("OK" === n)
+                  if (e[0]) {
+                    o.setZoom(11);
+                    const n = new google.maps.Marker({ position: l, map: o });
+                    t.setContent(e[0].formatted_address), t.open(o, n);
+                  } else window.alert("No results found");
+                else window.alert("Geocoder failed due to: " + n);
+              });
+            })(o, e, t);
           });
-      }
-
-      function geocodeLatLng(geocoder, map, infowindow) {
-        var input = document.getElementById("latlng").value;
-        var latlngStr = input.split(",", 2);
-        var latlng = {
-          lat: parseFloat(latlngStr[0]),
-          lng: parseFloat(latlngStr[1]),
-        };
-        geocoder.geocode(
-          {
-            location: latlng,
-          },
-          function (results, status) {
-            if (status === "OK") {
-              if (results[0]) {
-                map.setZoom(11);
-                var marker = new google.maps.Marker({
-                  position: latlng,
-                  map: map,
-                });
-                infowindow.setContent(results[0].formatted_address);
-                infowindow.open(map, marker);
-              } else {
-                window.alert("No results found");
-              }
-            } else {
-              window.alert("Geocoder failed due to: " + status);
-            }
-          }
-        );
-      }
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var n = window;
+        for (var l in o) n[l] = o[l];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

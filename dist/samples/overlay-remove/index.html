@@ -33,41 +33,59 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This example adds a UI control allowing users to remove the
-      // ground overlay from the map.
-      var historicalOverlay;
-      var map;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 13,
-          center: {
-            lat: 40.74,
-            lng: -74.18,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var r in o)
+                e.o(o, r) &&
+                  !e.o(t, r) &&
+                  Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-        });
-        var imageBounds = {
-          north: 40.773941,
-          south: 40.712216,
-          east: -74.12544,
-          west: -74.22655,
-        };
-        historicalOverlay = new google.maps.GroundOverlay(
-          "https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
-          imageBounds
-        );
-        addOverlay();
-      }
-
-      function addOverlay() {
-        historicalOverlay.setMap(map);
-      }
-
-      function removeOverlay() {
-        historicalOverlay.setMap(null);
-      }
+          t = {};
+        let o, r;
+        function n() {
+          (r = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: { lat: 40.74, lng: -74.18 },
+          })),
+            (o = new google.maps.GroundOverlay(
+              "https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+              {
+                north: 40.773941,
+                south: 40.712216,
+                east: -74.12544,
+                west: -74.22655,
+              }
+            )),
+            a();
+        }
+        function a() {
+          o.setMap(r);
+        }
+        function l() {
+          o.setMap(null);
+        }
+        e.r(t),
+          e.d(t, {
+            initMap: () => n,
+            removeOverlay: () => l,
+            addOverlay: () => a,
+          });
+        var d = window;
+        for (var i in t) d[i] = t[i];
+        t.__esModule && Object.defineProperty(d, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

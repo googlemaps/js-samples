@@ -35,63 +35,71 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: -34.397,
-            lng: 150.644,
+      (() => {
+        "use strict";
+        var o = {
+            d: (e, t) => {
+              for (var n in t)
+                o.o(t, n) &&
+                  !o.o(e, n) &&
+                  Object.defineProperty(e, n, { enumerable: !0, get: t[n] });
+            },
+            o: (o, e) => Object.prototype.hasOwnProperty.call(o, e),
+            r: (o) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(o, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(o, "__esModule", { value: !0 });
+            },
           },
-          zoom: 6,
-        });
-        infoWindow = new google.maps.InfoWindow();
-        var locationButton = document.createElement("button");
-        locationButton.textContent = "Pan to Current Location";
-        locationButton.classList.add("custom-map-control-button");
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-          locationButton
-        );
-        locationButton.addEventListener("click", function () {
-          // Try HTML5 geolocation.
-          if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-              function (position) {
-                var pos = {
-                  lat: position.coords.latitude,
-                  lng: position.coords.longitude,
-                };
-                infoWindow.setPosition(pos);
-                infoWindow.setContent("Location found.");
-                infoWindow.open(map);
-                map.setCenter(pos);
-              },
-              function () {
-                handleLocationError(true, infoWindow, map.getCenter());
-              }
-            );
-          } else {
-            // Browser doesn't support Geolocation
-            handleLocationError(false, infoWindow, map.getCenter());
-          }
-        });
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(
-          browserHasGeolocation
-            ? "Error: The Geolocation service failed."
-            : "Error: Your browser doesn't support geolocation."
-        );
-        infoWindow.open(map);
-      }
+          e = {};
+        let t, n;
+        function r() {
+          (t = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 6,
+          })),
+            (n = new google.maps.InfoWindow());
+          const o = document.createElement("button");
+          (o.textContent = "Pan to Current Location"),
+            o.classList.add("custom-map-control-button"),
+            t.controls[google.maps.ControlPosition.TOP_CENTER].push(o),
+            o.addEventListener("click", () => {
+              navigator.geolocation
+                ? navigator.geolocation.getCurrentPosition(
+                    (o) => {
+                      const e = {
+                        lat: o.coords.latitude,
+                        lng: o.coords.longitude,
+                      };
+                      n.setPosition(e),
+                        n.setContent("Location found."),
+                        n.open(t),
+                        t.setCenter(e);
+                    },
+                    () => {
+                      i(!0, n, t.getCenter());
+                    }
+                  )
+                : i(!1, n, t.getCenter());
+            });
+        }
+        function i(o, e, n) {
+          e.setPosition(n),
+            e.setContent(
+              o
+                ? "Error: The Geolocation service failed."
+                : "Error: Your browser doesn't support geolocation."
+            ),
+            e.open(t);
+        }
+        o.r(e), o.d(e, { initMap: () => r });
+        var a = window;
+        for (var l in e) a[l] = e[l];
+        e.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

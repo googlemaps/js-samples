@@ -21,94 +21,47 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function ownKeys(object, enumerableOnly) {
-    var keys = Object.keys(object);
-    if (Object.getOwnPropertySymbols) {
-      var symbols = Object.getOwnPropertySymbols(object);
-      if (enumerableOnly)
-        symbols = symbols.filter(function (sym) {
-          return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-        });
-      keys.push.apply(keys, symbols);
-    }
-    return keys;
-  }
-
-  function _objectSpread(target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
-      if (i % 2) {
-        ownKeys(Object(source), true).forEach(function (key) {
-          _defineProperty(target, key, source[key]);
-        });
-      } else if (Object.getOwnPropertyDescriptors) {
-        Object.defineProperties(
-          target,
-          Object.getOwnPropertyDescriptors(source)
-        );
-      } else {
-        ownKeys(Object(source)).forEach(function (key) {
-          Object.defineProperty(
-            target,
-            key,
-            Object.getOwnPropertyDescriptor(source, key)
-          );
-        });
-      }
-    }
-    return target;
-  }
-
-  function _defineProperty(obj, key, value) {
-    if (key in obj) {
-      Object.defineProperty(obj, key, {
-        value: value,
-        enumerable: true,
-        configurable: true,
-        writable: true,
-      });
-    } else {
-      obj[key] = value;
-    }
-    return obj;
-  }
-
-  // Initialize and add the side by side maps
-  function initMap() {
-    var sharedOptions = {
-      center: {
-        lat: 47.609414458375674,
-        lng: -122.33897030353548,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var a in o)
+            e.o(o, a) &&
+              !e.o(t, a) &&
+              Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      zoom: 17,
-      disableDefaultUI: true,
-      gestureHandling: "none",
-    };
-    new google.maps.Map(
-      document.getElementById("left"),
-      _objectSpread(
-        _objectSpread({}, sharedOptions),
-        {},
-        {
+      t = {};
+    function o() {
+      const e = {
+        center: { lat: 47.609414458375674, lng: -122.33897030353548 },
+        zoom: 17,
+        disableDefaultUI: !0,
+        gestureHandling: "none",
+      };
+      new google.maps.Map(document.getElementById("left"), {
+        ...e,
+        mapId: "ed1309c122a3dfcb",
+        useStaticMap: !1,
+      }),
+        new google.maps.Map(document.getElementById("right"), {
+          ...e,
           mapId: "ed1309c122a3dfcb",
-          useStaticMap: false,
-        }
-      )
-    );
-    new google.maps.Map(
-      document.getElementById("right"),
-      _objectSpread(
-        _objectSpread({}, sharedOptions),
-        {},
-        {
-          mapId: "ed1309c122a3dfcb",
-          useStaticMap: true,
-        }
-      ) // TODO add mapId to @types/googlemaps when out of beta
-    );
-  }
+          useStaticMap: !0,
+        });
+    }
+    e.r(t), e.d(t, { initMap: () => o });
+    var a = window;
+    for (var n in t) a[n] = t[n];
+    t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

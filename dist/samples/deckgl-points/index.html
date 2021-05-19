@@ -40,53 +40,65 @@
       }
     </style>
     <script>
-      "use strict";
-
-      /* eslint-disable no-undef */
-      // Initialize and add the map
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: 40,
-            lng: -110,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var a in o)
+                e.o(o, a) &&
+                  !e.o(t, a) &&
+                  Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          zoom: 4,
-        });
-        var deckOverlay = new deck.GoogleMapsOverlay({
-          layers: [
-            new deck.GeoJsonLayer({
-              id: "earthquakes",
-              data:
-                "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
-              filled: true,
-              pointRadiusMinPixels: 2,
-              pointRadiusMaxPixels: 200,
-              opacity: 0.4,
-              pointRadiusScale: 0.3,
-              getRadius: function getRadius(f) {
-                return Math.pow(10, f.properties.mag);
-              },
-              getFillColor: [255, 70, 30, 180],
-              autoHighlight: true,
-              transitions: {
-                getRadius: {
-                  type: "spring",
-                  stiffness: 0.1,
-                  damping: 0.15,
-                  enter: function enter(_) {
-                    return [0];
+          t = {};
+        function o() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 40, lng: -110 },
+            zoom: 4,
+          });
+          new deck.GoogleMapsOverlay({
+            layers: [
+              new deck.GeoJsonLayer({
+                id: "earthquakes",
+                data: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+                filled: !0,
+                pointRadiusMinPixels: 2,
+                pointRadiusMaxPixels: 200,
+                opacity: 0.4,
+                pointRadiusScale: 0.3,
+                getRadius: (e) => Math.pow(10, e.properties.mag),
+                getFillColor: [255, 70, 30, 180],
+                autoHighlight: !0,
+                transitions: {
+                  getRadius: {
+                    type: "spring",
+                    stiffness: 0.1,
+                    damping: 0.15,
+                    enter: (e) => [0],
+                    duration: 1e4,
                   },
-                  duration: 10000,
                 },
-              },
-              onDataLoad: function onDataLoad(_) {
-                progress.done(); // hides progress bar
-              },
-            }),
-          ],
-        });
-        deckOverlay.setMap(map);
-      }
+                onDataLoad: (e) => {
+                  progress.done();
+                },
+              }),
+            ],
+          }).setMap(e);
+        }
+        e.r(t), e.d(t, { initMap: () => o });
+        var a = window;
+        for (var n in t) a[n] = t[n];
+        t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

@@ -29,43 +29,52 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 8,
-      center: {
-        lat: -34.397,
-        lng: 150.644,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-    });
-    var geocoder = new google.maps.Geocoder();
-    document.getElementById("submit").addEventListener("click", function () {
-      geocodeAddress(geocoder, map);
-    });
-  }
-
-  function geocodeAddress(geocoder, resultsMap) {
-    var address = document.getElementById("address").value;
-    geocoder.geocode(
-      {
-        address: address,
-      },
-      function (results, status) {
-        if (status === "OK") {
-          resultsMap.setCenter(results[0].geometry.location);
-          new google.maps.Marker({
-            map: resultsMap,
-            position: results[0].geometry.location,
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          zoom: 8,
+          center: { lat: -34.397, lng: 150.644 },
+        }),
+        o = new google.maps.Geocoder();
+      document.getElementById("submit").addEventListener("click", () => {
+        !(function (e, o) {
+          const t = document.getElementById("address").value;
+          e.geocode({ address: t }, (e, t) => {
+            "OK" === t
+              ? (o.setCenter(e[0].geometry.location),
+                new google.maps.Marker({
+                  map: o,
+                  position: e[0].geometry.location,
+                }))
+              : alert(
+                  "Geocode was not successful for the following reason: " + t
+                );
           });
-        } else {
-          alert(
-            "Geocode was not successful for the following reason: " + status
-          );
-        }
-      }
-    );
-  }
+        })(o, e);
+      });
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var r in o) n[r] = o[r];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

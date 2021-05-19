@@ -29,50 +29,56 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function initMap() {
-    var directionsService = new google.maps.DirectionsService();
-    var directionsRenderer = new google.maps.DirectionsRenderer();
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 7,
-      center: {
-        lat: 41.85,
-        lng: -87.65,
-      },
-    });
-    directionsRenderer.setMap(map);
-
-    var onChangeHandler = function onChangeHandler() {
-      calculateAndDisplayRoute(directionsService, directionsRenderer);
-    };
-
-    document
-      .getElementById("start")
-      .addEventListener("change", onChangeHandler);
-    document.getElementById("end").addEventListener("change", onChangeHandler);
-  }
-
-  function calculateAndDisplayRoute(directionsService, directionsRenderer) {
-    directionsService.route(
-      {
-        origin: {
-          query: document.getElementById("start").value,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, n) => {
+          for (var o in n)
+            e.o(n, o) &&
+              !e.o(t, o) &&
+              Object.defineProperty(t, o, { enumerable: !0, get: n[o] });
         },
-        destination: {
-          query: document.getElementById("end").value,
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
         },
-        travelMode: google.maps.TravelMode.DRIVING,
       },
-      function (response, status) {
-        if (status === "OK") {
-          directionsRenderer.setDirections(response);
-        } else {
-          window.alert("Directions request failed due to " + status);
-        }
-      }
-    );
-  }
+      t = {};
+    function n() {
+      const e = new google.maps.DirectionsService(),
+        t = new google.maps.DirectionsRenderer(),
+        n = new google.maps.Map(document.getElementById("map"), {
+          zoom: 7,
+          center: { lat: 41.85, lng: -87.65 },
+        });
+      t.setMap(n);
+      const o = function () {
+        !(function (e, t) {
+          e.route(
+            {
+              origin: { query: document.getElementById("start").value },
+              destination: { query: document.getElementById("end").value },
+              travelMode: google.maps.TravelMode.DRIVING,
+            },
+            (e, n) => {
+              "OK" === n
+                ? t.setDirections(e)
+                : window.alert("Directions request failed due to " + n);
+            }
+          );
+        })(e, t);
+      };
+      document.getElementById("start").addEventListener("change", o),
+        document.getElementById("end").addEventListener("change", o);
+    }
+    e.r(t), e.d(t, { initMap: () => n });
+    var o = window;
+    for (var r in t) o[r] = t[r];
+    t.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

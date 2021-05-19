@@ -55,4 +55,4 @@ const eqfeed_callback = function (results: any) {
   });
 };
 // [END maps_earthquake_heatmap_weighted]
-export { initMap };
+export { initMap, eqfeed_callback };

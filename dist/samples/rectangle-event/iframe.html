@@ -15,62 +15,58 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // This example adds a user-editable rectangle to the map.
-  // When the user changes the bounds of the rectangle,
-  // an info window pops up displaying the new bounds.
-  var rectangle;
-  var map;
-  var infoWindow;
-
-  function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: {
-        lat: 44.5452,
-        lng: -78.5389,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      zoom: 9,
-    });
-    var bounds = {
-      north: 44.599,
-      south: 44.49,
-      east: -78.443,
-      west: -78.649,
-    }; // Define the rectangle and set its editable property to true.
-
-    rectangle = new google.maps.Rectangle({
-      bounds: bounds,
-      editable: true,
-      draggable: true,
-    });
-    rectangle.setMap(map); // Add an event listener on the rectangle.
-
-    rectangle.addListener("bounds_changed", showNewRect); // Define an info window on the map.
-
-    infoWindow = new google.maps.InfoWindow();
-  }
-  /** Show the new coordinates for the rectangle in an info window. */
-
-  function showNewRect() {
-    var ne = rectangle.getBounds().getNorthEast();
-    var sw = rectangle.getBounds().getSouthWest();
-    var contentString =
-      "<b>Rectangle moved.</b><br>" +
-      "New north-east corner: " +
-      ne.lat() +
-      ", " +
-      ne.lng() +
-      "<br>" +
-      "New south-west corner: " +
-      sw.lat() +
-      ", " +
-      sw.lng(); // Set the info window's content and position.
-
-    infoWindow.setContent(contentString);
-    infoWindow.setPosition(ne);
-    infoWindow.open(map);
-  }
+      t = {};
+    let o, n, r;
+    function a() {
+      (n = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 44.5452, lng: -78.5389 },
+        zoom: 9,
+      })),
+        (o = new google.maps.Rectangle({
+          bounds: { north: 44.599, south: 44.49, east: -78.443, west: -78.649 },
+          editable: !0,
+          draggable: !0,
+        })),
+        o.setMap(n),
+        o.addListener("bounds_changed", l),
+        (r = new google.maps.InfoWindow());
+    }
+    function l() {
+      const e = o.getBounds().getNorthEast(),
+        t = o.getBounds().getSouthWest(),
+        a =
+          "<b>Rectangle moved.</b><br>New north-east corner: " +
+          e.lat() +
+          ", " +
+          e.lng() +
+          "<br>New south-west corner: " +
+          t.lat() +
+          ", " +
+          t.lng();
+      r.setContent(a), r.setPosition(e), r.open(n);
+    }
+    e.r(t), e.d(t, { initMap: () => a });
+    var s = window;
+    for (var d in t) s[d] = t[d];
+    t.__esModule && Object.defineProperty(s, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

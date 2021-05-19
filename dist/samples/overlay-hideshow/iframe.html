@@ -31,286 +31,110 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
-    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-      _typeof = function _typeof(obj) {
-        return typeof obj;
-      };
-    } else {
-      _typeof = function _typeof(obj) {
-        return obj &&
-          typeof Symbol === "function" &&
-          obj.constructor === Symbol &&
-          obj !== Symbol.prototype
-          ? "symbol"
-          : typeof obj;
-      };
-    }
-    return _typeof(obj);
-  }
-
-  function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-      throw new TypeError("Cannot call a class as a function");
-    }
-  }
-
-  function _defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  function _createClass(Constructor, protoProps, staticProps) {
-    if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) _defineProperties(Constructor, staticProps);
-    return Constructor;
-  }
-
-  function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-      throw new TypeError("Super expression must either be null or a function");
-    }
-    subClass.prototype = Object.create(superClass && superClass.prototype, {
-      constructor: { value: subClass, writable: true, configurable: true },
-    });
-    if (superClass) _setPrototypeOf(subClass, superClass);
-  }
-
-  function _setPrototypeOf(o, p) {
-    _setPrototypeOf =
-      Object.setPrototypeOf ||
-      function _setPrototypeOf(o, p) {
-        o.__proto__ = p;
-        return o;
-      };
-    return _setPrototypeOf(o, p);
-  }
-
-  function _createSuper(Derived) {
-    var hasNativeReflectConstruct = _isNativeReflectConstruct();
-    return function _createSuperInternal() {
-      var Super = _getPrototypeOf(Derived),
-        result;
-      if (hasNativeReflectConstruct) {
-        var NewTarget = _getPrototypeOf(this).constructor;
-        result = Reflect.construct(Super, arguments, NewTarget);
-      } else {
-        result = Super.apply(this, arguments);
-      }
-      return _possibleConstructorReturn(this, result);
-    };
-  }
-
-  function _possibleConstructorReturn(self, call) {
-    if (call && (_typeof(call) === "object" || typeof call === "function")) {
-      return call;
-    }
-    return _assertThisInitialized(self);
-  }
-
-  function _assertThisInitialized(self) {
-    if (self === void 0) {
-      throw new ReferenceError(
-        "this hasn't been initialised - super() hasn't been called"
-      );
-    }
-    return self;
-  }
-
-  function _isNativeReflectConstruct() {
-    if (typeof Reflect === "undefined" || !Reflect.construct) return false;
-    if (Reflect.construct.sham) return false;
-    if (typeof Proxy === "function") return true;
-    try {
-      Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function _getPrototypeOf(o) {
-    _getPrototypeOf = Object.setPrototypeOf
-      ? Object.getPrototypeOf
-      : function _getPrototypeOf(o) {
-          return o.__proto__ || Object.getPrototypeOf(o);
-        };
-    return _getPrototypeOf(o);
-  }
-
-  // This example adds hide() and show() methods to a custom overlay's prototype.
-  // These methods toggle the visibility of the container <div>.
-  // overlay to or from the map.
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 11,
-      center: {
-        lat: 62.323907,
-        lng: -150.109291,
+  (() => {
+    "use strict";
+    var t = {
+        d: (e, i) => {
+          for (var o in i)
+            t.o(i, o) &&
+              !t.o(e, o) &&
+              Object.defineProperty(e, o, { enumerable: !0, get: i[o] });
+        },
+        o: (t, e) => Object.prototype.hasOwnProperty.call(t, e),
+        r: (t) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(t, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(t, "__esModule", { value: !0 });
+        },
       },
-      mapTypeId: "satellite",
-    });
-    var bounds = new google.maps.LatLngBounds(
-      new google.maps.LatLng(62.281819, -150.287132),
-      new google.maps.LatLng(62.400471, -150.005608)
-    ); // The photograph is courtesy of the U.S. Geological Survey.
-
-    var image = "https://developers.google.com/maps/documentation/javascript/";
-    image += "examples/full/images/talkeetna.png";
-    /**
-     * The custom USGSOverlay object contains the USGS image,
-     * the bounds of the image, and a reference to the map.
-     */
-
-    var USGSOverlay = /*#__PURE__*/ (function (_google$maps$OverlayV) {
-      _inherits(USGSOverlay, _google$maps$OverlayV);
-
-      var _super = _createSuper(USGSOverlay);
-
-      function USGSOverlay(bounds, image) {
-        var _this;
-
-        _classCallCheck(this, USGSOverlay);
-
-        _this = _super.call(this);
-        _this.bounds = bounds;
-        _this.image = image;
-        return _this;
+      e = {};
+    function i() {
+      const t = new google.maps.Map(document.getElementById("map"), {
+          zoom: 11,
+          center: { lat: 62.323907, lng: -150.109291 },
+          mapTypeId: "satellite",
+        }),
+        e = new google.maps.LatLngBounds(
+          new google.maps.LatLng(62.281819, -150.287132),
+          new google.maps.LatLng(62.400471, -150.005608)
+        );
+      let i = "https://developers.google.com/maps/documentation/javascript/";
+      i += "examples/full/images/talkeetna.png";
+      class o extends google.maps.OverlayView {
+        constructor(t, e) {
+          super(),
+            (this.PRESERVE_COMMENT_ABOVE = 1),
+            (this.bounds = t),
+            (this.image = e);
+        }
+        onAdd() {
+          (this.div = document.createElement("div")),
+            (this.div.style.borderStyle = "none"),
+            (this.div.style.borderWidth = "0px"),
+            (this.div.style.position = "absolute");
+          const t = document.createElement("img");
+          (t.src = this.image),
+            (t.style.width = "100%"),
+            (t.style.height = "100%"),
+            (t.style.position = "absolute"),
+            this.div.appendChild(t),
+            this.getPanes().overlayLayer.appendChild(this.div);
+        }
+        draw() {
+          const t = this.getProjection(),
+            e = t.fromLatLngToDivPixel(this.bounds.getSouthWest()),
+            i = t.fromLatLngToDivPixel(this.bounds.getNorthEast());
+          this.div &&
+            ((this.div.style.left = e.x + "px"),
+            (this.div.style.top = i.y + "px"),
+            (this.div.style.width = i.x - e.x + "px"),
+            (this.div.style.height = e.y - i.y + "px"));
+        }
+        onRemove() {
+          this.div &&
+            (this.div.parentNode.removeChild(this.div), delete this.div);
+        }
+        hide() {
+          this.div && (this.div.style.visibility = "hidden");
+        }
+        show() {
+          this.div && (this.div.style.visibility = "visible");
+        }
+        toggle() {
+          this.div &&
+            ("hidden" === this.div.style.visibility
+              ? this.show()
+              : this.hide());
+        }
+        toggleDOM(t) {
+          this.getMap() ? this.setMap(null) : this.setMap(t);
+        }
       }
-      /**
-       * onAdd is called when the map's panes are ready and the overlay has been
-       * added to the map.
-       */
-
-      _createClass(USGSOverlay, [
-        {
-          key: "onAdd",
-          value: function onAdd() {
-            this.div = document.createElement("div");
-            this.div.style.borderStyle = "none";
-            this.div.style.borderWidth = "0px";
-            this.div.style.position = "absolute"; // Create the img element and attach it to the div.
-
-            var img = document.createElement("img");
-            img.src = this.image;
-            img.style.width = "100%";
-            img.style.height = "100%";
-            img.style.position = "absolute";
-            this.div.appendChild(img); // Add the element to the "overlayLayer" pane.
-
-            var panes = this.getPanes();
-            panes.overlayLayer.appendChild(this.div);
-          },
-        },
-        {
-          key: "draw",
-          value: function draw() {
-            // We use the south-west and north-east
-            // coordinates of the overlay to peg it to the correct position and size.
-            // To do this, we need to retrieve the projection from the overlay.
-            var overlayProjection = this.getProjection(); // Retrieve the south-west and north-east coordinates of this overlay
-            // in LatLngs and convert them to pixel coordinates.
-            // We'll use these coordinates to resize the div.
-
-            var sw = overlayProjection.fromLatLngToDivPixel(
-              this.bounds.getSouthWest()
-            );
-            var ne = overlayProjection.fromLatLngToDivPixel(
-              this.bounds.getNorthEast()
-            ); // Resize the image's div to fit the indicated dimensions.
-
-            if (this.div) {
-              this.div.style.left = sw.x + "px";
-              this.div.style.top = ne.y + "px";
-              this.div.style.width = ne.x - sw.x + "px";
-              this.div.style.height = sw.y - ne.y + "px";
-            }
-          },
-          /**
-           * The onRemove() method will be called automatically from the API if
-           * we ever set the overlay's map property to 'null'.
-           */
-        },
-        {
-          key: "onRemove",
-          value: function onRemove() {
-            if (this.div) {
-              this.div.parentNode.removeChild(this.div);
-              delete this.div;
-            }
-          },
-          /**
-           *  Set the visibility to 'hidden' or 'visible'.
-           */
-        },
-        {
-          key: "hide",
-          value: function hide() {
-            if (this.div) {
-              this.div.style.visibility = "hidden";
-            }
-          },
-        },
-        {
-          key: "show",
-          value: function show() {
-            if (this.div) {
-              this.div.style.visibility = "visible";
-            }
-          },
-        },
-        {
-          key: "toggle",
-          value: function toggle() {
-            if (this.div) {
-              if (this.div.style.visibility === "hidden") {
-                this.show();
-              } else {
-                this.hide();
-              }
-            }
-          },
-        },
-        {
-          key: "toggleDOM",
-          value: function toggleDOM(map) {
-            if (this.getMap()) {
-              this.setMap(null);
-            } else {
-              this.setMap(map);
-            }
-          },
-        },
-      ]);
-
-      return USGSOverlay;
-    })(google.maps.OverlayView);
-
-    var overlay = new USGSOverlay(bounds, image);
-    overlay.setMap(map);
-    var toggleButton = document.createElement("button");
-    toggleButton.textContent = "Toggle";
-    toggleButton.classList.add("custom-map-control-button");
-    var toggleDOMButton = document.createElement("button");
-    toggleDOMButton.textContent = "Toggle DOM Attachment";
-    toggleDOMButton.classList.add("custom-map-control-button");
-    toggleButton.addEventListener("click", function () {
-      overlay.toggle();
-    });
-    toggleDOMButton.addEventListener("click", function () {
-      overlay.toggleDOM(map);
-    });
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleDOMButton);
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleButton);
-  }
+      const s = new o(
+        e,
+        "https://developers.google.com/maps/documentation/javascript/examples/full/images/talkeetna.png"
+      );
+      s.setMap(t);
+      const n = document.createElement("button");
+      (n.textContent = "Toggle"), n.classList.add("custom-map-control-button");
+      const l = document.createElement("button");
+      (l.textContent = "Toggle DOM Attachment"),
+        l.classList.add("custom-map-control-button"),
+        n.addEventListener("click", () => {
+          s.toggle();
+        }),
+        l.addEventListener("click", () => {
+          s.toggleDOM(t);
+        }),
+        t.controls[google.maps.ControlPosition.TOP_RIGHT].push(l),
+        t.controls[google.maps.ControlPosition.TOP_RIGHT].push(n);
+    }
+    t.r(e), t.d(e, { initMap: () => i });
+    var o = window;
+    for (var s in e) o[s] = e[s];
+    e.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

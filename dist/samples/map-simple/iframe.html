@@ -15,19 +15,36 @@
   }
 </style>
 <script>
-  "use strict";
-
-  var map;
-
-  function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: {
-        lat: -34.397,
-        lng: 150.644,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var r in t)
+            e.o(t, r) &&
+              !e.o(o, r) &&
+              Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      zoom: 8,
-    });
-  }
+      o = {};
+    let t;
+    function r() {
+      t = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+      });
+    }
+    e.r(o), e.d(o, { initMap: () => r });
+    var n = window;
+    for (var l in o) n[l] = o[l];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

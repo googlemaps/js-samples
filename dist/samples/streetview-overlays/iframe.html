@@ -33,75 +33,62 @@
   }
 </style>
 <script>
-  "use strict";
-
-  var panorama;
-
-  function initMap() {
-    var astorPlace = {
-      lat: 40.729884,
-      lng: -73.990988,
-    }; // Set up the map
-
-    var map = new google.maps.Map(document.getElementById("map"), {
-      center: astorPlace,
-      zoom: 18,
-      streetViewControl: false,
-    }); // Set up the markers on the map
-
-    var cafeMarker = new google.maps.Marker({
-      position: {
-        lat: 40.730031,
-        lng: -73.991428,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var i in o)
+            e.o(o, i) &&
+              !e.o(t, i) &&
+              Object.defineProperty(t, i, { enumerable: !0, get: o[i] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      map: map,
-      icon:
-        "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
-      title: "Cafe",
-    });
-    var bankMarker = new google.maps.Marker({
-      position: {
-        lat: 40.729681,
-        lng: -73.991138,
-      },
-      map: map,
-      icon:
-        "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
-      title: "Bank",
-    });
-    var busMarker = new google.maps.Marker({
-      position: {
-        lat: 40.729559,
-        lng: -73.990741,
-      },
-      map: map,
-      icon:
-        "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
-      title: "Bus Stop",
-    }); // We get the map's default panorama and set up some defaults.
-    // Note that we don't yet set it visible.
-
-    panorama = map.getStreetView(); // TODO fix type
-
-    panorama.setPosition(astorPlace);
-    panorama.setPov(
-      /** @type {google.maps.StreetViewPov} */
-      {
-        heading: 265,
-        pitch: 0,
-      }
-    );
-  }
-
-  function toggleStreetView() {
-    var toggle = panorama.getVisible();
-
-    if (toggle == false) {
-      panorama.setVisible(true);
-    } else {
-      panorama.setVisible(false);
+      t = {};
+    let o;
+    function i() {
+      const e = { lat: 40.729884, lng: -73.990988 },
+        t = new google.maps.Map(document.getElementById("map"), {
+          center: e,
+          zoom: 18,
+          streetViewControl: !1,
+        });
+      new google.maps.Marker({
+        position: { lat: 40.730031, lng: -73.991428 },
+        map: t,
+        icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
+        title: "Cafe",
+      }),
+        new google.maps.Marker({
+          position: { lat: 40.729681, lng: -73.991138 },
+          map: t,
+          icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
+          title: "Bank",
+        }),
+        new google.maps.Marker({
+          position: { lat: 40.729559, lng: -73.990741 },
+          map: t,
+          icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
+          title: "Bus Stop",
+        }),
+        (o = t.getStreetView()),
+        o.setPosition(e),
+        o.setPov({ heading: 265, pitch: 0 });
     }
-  }
+    function a() {
+      0 == o.getVisible() ? o.setVisible(!0) : o.setVisible(!1);
+    }
+    e.r(t), e.d(t, { initMap: () => i, toggleStreetView: () => a });
+    var n = window;
+    for (var l in t) n[l] = t[l];
+    t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

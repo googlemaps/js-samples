@@ -19,53 +19,64 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: {
-            lat: -25.363882,
-            lng: 131.044922,
-          },
-        });
-        var bounds = {
-          north: -25.363882,
-          south: -31.203405,
-          east: 131.044922,
-          west: 125.244141,
-        }; // Display the area between the location southWest and northEast.
-
-        map.fitBounds(bounds); // Add 5 markers to map at random locations.
-        // For each of these markers, give them a title with their index, and when
-        // they are clicked they should open an infowindow with text from a secret
-        // message.
-
-        var secretMessages = ["This", "is", "the", "secret", "message"];
-        var lngSpan = bounds.east - bounds.west;
-        var latSpan = bounds.north - bounds.south;
-
-        for (var i = 0; i < secretMessages.length; ++i) {
-          var marker = new google.maps.Marker({
-            position: {
-              lat: bounds.south + latSpan * Math.random(),
-              lng: bounds.west + lngSpan * Math.random(),
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
             },
-            map: map,
-          });
-          attachSecretMessage(marker, secretMessages[i]);
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          t = {};
+        function o() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+              zoom: 4,
+              center: { lat: -25.363882, lng: 131.044922 },
+            }),
+            t = {
+              north: -25.363882,
+              south: -31.203405,
+              east: 131.044922,
+              west: 125.244141,
+            };
+          e.fitBounds(t);
+          const o = ["This", "is", "the", "secret", "message"],
+            r = t.east - t.west,
+            a = t.north - t.south;
+          for (let s = 0; s < o.length; ++s)
+            n(
+              new google.maps.Marker({
+                position: {
+                  lat: t.south + a * Math.random(),
+                  lng: t.west + r * Math.random(),
+                },
+                map: e,
+              }),
+              o[s]
+            );
         }
-      } // Attaches an info window to a marker with the provided message. When the
-      // marker is clicked, the info window will open with the secret message.
-
-      function attachSecretMessage(marker, secretMessage) {
-        var infowindow = new google.maps.InfoWindow({
-          content: secretMessage,
-        });
-        marker.addListener("click", function () {
-          infowindow.open(marker.get("map"), marker);
-        });
-      }
+        function n(e, t) {
+          const o = new google.maps.InfoWindow({ content: t });
+          e.addListener("click", () => {
+            o.open(e.get("map"), e);
+          });
+        }
+        e.r(t), e.d(t, { initMap: () => o });
+        var r = window;
+        for (var a in t) r[a] = t[a];
+        t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

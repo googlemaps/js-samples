@@ -93,12 +93,12 @@ function initMap(): void {
   function handleContainerResize() {
     const width = (document.getElementById("container") as HTMLElement)
       .offsetWidth;
-    (document.getElementById(
-      "map-left"
-    ) as HTMLElement).style.width = `${width}px`;
-    (document.getElementById(
-      "map-right"
-    ) as HTMLElement).style.width = `${width}px`;
+    (
+      document.getElementById("map-left") as HTMLElement
+    ).style.width = `${width}px`;
+    (
+      document.getElementById("map-right") as HTMLElement
+    ).style.width = `${width}px`;
   }
 
   // trigger to set map container size since using absolute

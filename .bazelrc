@@ -62,6 +62,10 @@ build --nolegacy_external_runfiles
 build --incompatible_strict_action_env
 run --incompatible_strict_action_env
 
+# for sandboxes outside of google domains https://console.cloud.google.com/apis/credentials/key/6494fc42-0d1e-4bab-a236-59669ad39214?project=maps-sandbox-api-keys
+build --action_env GOOGLE_MAPS_JS_SAMPLES_SANDBOX_KEY=AIzaSyDcwGyRxRbcNGWOFQVT87A1mkxEOfm8t0w
+run --action_env GOOGLE_MAPS_JS_SAMPLES_SANDBOX_KEY=AIzaSyDcwGyRxRbcNGWOFQVT87A1mkxEOfm8t0w
+
 build --action_env GOOGLE_MAPS_JS_SAMPLES_KEY=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg  # low quota restricted key
 run --action_env GOOGLE_MAPS_JS_SAMPLES_KEY=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg  # User should provide own key to run
 

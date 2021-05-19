@@ -55,13 +55,17 @@ function initFullscreenControl(map) {
     }
   };
 
-  document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function () {
-    if (isFullscreen(elementToSendFullscreen)) {
-      fullscreenControl.classList.add("is-fullscreen");
-    } else {
-      fullscreenControl.classList.remove("is-fullscreen");
-    }
-  };
+  document.onwebkitfullscreenchange =
+    document.onmsfullscreenchange =
+    document.onmozfullscreenchange =
+    document.onfullscreenchange =
+      function () {
+        if (isFullscreen(elementToSendFullscreen)) {
+          fullscreenControl.classList.add("is-fullscreen");
+        } else {
+          fullscreenControl.classList.remove("is-fullscreen");
+        }
+      };
 }
 
 function isFullscreen(element) {

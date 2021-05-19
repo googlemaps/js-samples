@@ -1,0 +1,19 @@
+html,
+body,
+.container {
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.map {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  height: 100%;
+}

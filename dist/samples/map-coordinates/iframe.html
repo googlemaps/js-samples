@@ -15,60 +15,70 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function initMap() {
-    var chicago = new google.maps.LatLng(41.85, -87.65);
-    var map = new google.maps.Map(document.getElementById("map"), {
-      center: chicago,
-      zoom: 3,
-    });
-    var coordInfoWindow = new google.maps.InfoWindow();
-    coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
-    coordInfoWindow.setPosition(chicago);
-    coordInfoWindow.open(map);
-    map.addListener("zoom_changed", function () {
-      coordInfoWindow.setContent(
-        createInfoWindowContent(chicago, map.getZoom())
-      );
-      coordInfoWindow.open(map);
-    });
-  }
-
-  var TILE_SIZE = 256;
-
-  function createInfoWindowContent(latLng, zoom) {
-    var scale = 1 << zoom;
-    var worldCoordinate = project(latLng);
-    var pixelCoordinate = new google.maps.Point(
-      Math.floor(worldCoordinate.x * scale),
-      Math.floor(worldCoordinate.y * scale)
-    );
-    var tileCoordinate = new google.maps.Point(
-      Math.floor((worldCoordinate.x * scale) / TILE_SIZE),
-      Math.floor((worldCoordinate.y * scale) / TILE_SIZE)
-    );
-    return [
-      "Chicago, IL",
-      "LatLng: " + latLng,
-      "Zoom level: " + zoom,
-      "World Coordinate: " + worldCoordinate,
-      "Pixel Coordinate: " + pixelCoordinate,
-      "Tile Coordinate: " + tileCoordinate,
-    ].join("<br>");
-  } // The mapping between latitude, longitude and pixels is defined by the web
-  // mercator projection.
-
-  function project(latLng) {
-    var siny = Math.sin((latLng.lat() * Math.PI) / 180); // Truncating to 0.9999 effectively limits latitude to 89.189. This is
-    // about a third of a tile past the edge of the world tile.
-
-    siny = Math.min(Math.max(siny, -0.9999), 0.9999);
-    return new google.maps.Point(
-      TILE_SIZE * (0.5 + latLng.lng() / 360),
-      TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI))
-    );
-  }
+  (() => {
+    "use strict";
+    var o = {
+        d: (e, t) => {
+          for (var n in t)
+            o.o(t, n) &&
+              !o.o(e, n) &&
+              Object.defineProperty(e, n, { enumerable: !0, get: t[n] });
+        },
+        o: (o, e) => Object.prototype.hasOwnProperty.call(o, e),
+        r: (o) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(o, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(o, "__esModule", { value: !0 });
+        },
+      },
+      e = {};
+    function t() {
+      const o = new google.maps.LatLng(41.85, -87.65),
+        e = new google.maps.Map(document.getElementById("map"), {
+          center: o,
+          zoom: 3,
+        }),
+        t = new google.maps.InfoWindow();
+      t.setContent(a(o, e.getZoom())),
+        t.setPosition(o),
+        t.open(e),
+        e.addListener("zoom_changed", () => {
+          t.setContent(a(o, e.getZoom())), t.open(e);
+        });
+    }
+    o.r(e), o.d(e, { initMap: () => t });
+    const n = 256;
+    function a(o, e) {
+      const t = 1 << e,
+        a = (function (o) {
+          let e = Math.sin((o.lat() * Math.PI) / 180);
+          return (
+            (e = Math.min(Math.max(e, -0.9999), 0.9999)),
+            new google.maps.Point(
+              n * (0.5 + o.lng() / 360),
+              n * (0.5 - Math.log((1 + e) / (1 - e)) / (4 * Math.PI))
+            )
+          );
+        })(o);
+      return [
+        "Chicago, IL",
+        "LatLng: " + o,
+        "Zoom level: " + e,
+        "World Coordinate: " + a,
+        "Pixel Coordinate: " +
+          new google.maps.Point(Math.floor(a.x * t), Math.floor(a.y * t)),
+        "Tile Coordinate: " +
+          new google.maps.Point(
+            Math.floor((a.x * t) / n),
+            Math.floor((a.y * t) / n)
+          ),
+      ].join("<br>");
+    }
+    var r = window;
+    for (var l in e) r[l] = e[l];
+    e.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

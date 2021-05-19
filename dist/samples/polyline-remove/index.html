@@ -33,56 +33,58 @@
       }
     </style>
     <script>
-      "use strict";
-
-      // This example adds a UI control allowing users to remove the polyline from the
-      // map.
-      var flightPath;
-      var map;
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 3,
-          center: {
-            lat: 0,
-            lng: -180,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
           },
-          mapTypeId: "terrain",
-        });
-        var flightPathCoordinates = [
-          {
-            lat: 37.772,
-            lng: -122.214,
-          },
-          {
-            lat: 21.291,
-            lng: -157.821,
-          },
-          {
-            lat: -18.142,
-            lng: 178.431,
-          },
-          {
-            lat: -27.467,
-            lng: 153.027,
-          },
-        ];
-        flightPath = new google.maps.Polyline({
-          path: flightPathCoordinates,
-          strokeColor: "#FF0000",
-          strokeOpacity: 1.0,
-          strokeWeight: 2,
-        });
-        addLine();
-      }
-
-      function addLine() {
-        flightPath.setMap(map);
-      }
-
-      function removeLine() {
-        flightPath.setMap(null);
-      }
+          t = {};
+        let o, n;
+        function l() {
+          (n = new google.maps.Map(document.getElementById("map"), {
+            zoom: 3,
+            center: { lat: 0, lng: -180 },
+            mapTypeId: "terrain",
+          })),
+            (o = new google.maps.Polyline({
+              path: [
+                { lat: 37.772, lng: -122.214 },
+                { lat: 21.291, lng: -157.821 },
+                { lat: -18.142, lng: 178.431 },
+                { lat: -27.467, lng: 153.027 },
+              ],
+              strokeColor: "#FF0000",
+              strokeOpacity: 1,
+              strokeWeight: 2,
+            })),
+            r();
+        }
+        function r() {
+          o.setMap(n);
+        }
+        function a() {
+          o.setMap(null);
+        }
+        e.r(t),
+          e.d(t, { initMap: () => l, addLine: () => r, removeLine: () => a });
+        var i = window;
+        for (var p in t) i[p] = t[p];
+        t.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

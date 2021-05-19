@@ -70,6 +70,17 @@ nodejs_binary(
     visibility = ["//visibility:public"],
 )
 
+nodejs_binary(
+    name = "package",
+    data = [
+        "package.js",
+        "@npm//sort-package-json",
+    ],
+    entry_point = ":package.js",
+    templated_args = ["--nobazel_node_patches"],
+    visibility = ["//visibility:public"],
+)
+
 sh_binary(
     name = "remove_apache_license",
     srcs = ["remove_apache_license.sh"],

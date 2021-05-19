@@ -19,20 +19,41 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function initMap() {
-        var mapDiv = document.getElementById("map");
-        var map = new google.maps.Map(mapDiv, {
-          zoom: 8,
-          center: new google.maps.LatLng(-34.397, 150.644),
-        }); // We add a DOM event here to show an alert if the DIV containing the
-        // map is clicked.
-
-        google.maps.event.addDomListener(mapDiv, "click", function () {
-          window.alert("Map was clicked!");
-        });
-      }
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        function t() {
+          const e = document.getElementById("map");
+          new google.maps.Map(e, {
+            zoom: 8,
+            center: new google.maps.LatLng(-34.397, 150.644),
+          }),
+            google.maps.event.addDomListener(e, "click", () => {
+              window.alert("Map was clicked!");
+            });
+        }
+        e.r(o), e.d(o, { initMap: () => t });
+        var n = window;
+        for (var r in o) n[r] = o[r];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

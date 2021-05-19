@@ -15,57 +15,56 @@
   }
 </style>
 <script>
-  "use strict";
-
-  var map;
-
-  function initMap() {
-    map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: {
-        lat: -28,
-        lng: 137,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var r in o)
+            e.o(o, r) &&
+              !e.o(t, r) &&
+              Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-    }); // Load GeoJSON.
-
-    map.data.loadGeoJson(
-      "https://storage.googleapis.com/mapsdevsite/json/google.json"
-    ); // Color each letter gray. Change the color when the isColorful property
-    // is set to true.
-
-    map.data.setStyle(function (feature) {
-      var color = "gray";
-
-      if (feature.getProperty("isColorful")) {
-        color = feature.getProperty("color");
-      }
-
-      return (
-        /** @type {!google.maps.Data.StyleOptions} */
-        {
-          fillColor: color,
-          strokeColor: color,
-          strokeWeight: 2,
-        }
-      );
-    }); // When the user clicks, set 'isColorful', changing the color of the letters.
-
-    map.data.addListener("click", function (event) {
-      event.feature.setProperty("isColorful", true);
-    }); // When the user hovers, tempt them to click by outlining the letters.
-    // Call revertStyle() to remove all overrides. This will use the style rules
-    // defined in the function passed to setStyle()
-
-    map.data.addListener("mouseover", function (event) {
-      map.data.revertStyle();
-      map.data.overrideStyle(event.feature, {
-        strokeWeight: 8,
-      });
-    });
-    map.data.addListener("mouseout", function (event) {
-      map.data.revertStyle();
-    });
-  }
+      t = {};
+    let o;
+    function r() {
+      (o = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: { lat: -28, lng: 137 },
+      })),
+        o.data.loadGeoJson(
+          "https://storage.googleapis.com/mapsdevsite/json/google.json"
+        ),
+        o.data.setStyle((e) => {
+          let t = "gray";
+          return (
+            e.getProperty("isColorful") && (t = e.getProperty("color")),
+            { fillColor: t, strokeColor: t, strokeWeight: 2 }
+          );
+        }),
+        o.data.addListener("click", (e) => {
+          e.feature.setProperty("isColorful", !0);
+        }),
+        o.data.addListener("mouseover", (e) => {
+          o.data.revertStyle(),
+            o.data.overrideStyle(e.feature, { strokeWeight: 8 });
+        }),
+        o.data.addListener("mouseout", (e) => {
+          o.data.revertStyle();
+        });
+    }
+    e.r(t), e.d(t, { initMap: () => r });
+    var a = window;
+    for (var l in t) a[l] = t[l];
+    t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

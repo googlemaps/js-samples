@@ -8,26 +8,37 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // Initialize and add the map
-  function initMap() {
-    // The location of Uluru
-    var uluru = {
-      lat: -25.344,
-      lng: 131.036,
-    }; // The map, centered at Uluru
-
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: uluru,
-    }); // The marker, positioned at Uluru
-
-    var marker = new google.maps.Marker({
-      position: uluru,
-      map: map,
-    });
-  }
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var r in t)
+            e.o(t, r) &&
+              !e.o(o, r) &&
+              Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    function t() {
+      const e = { lat: -25.344, lng: 131.036 },
+        o = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: e,
+        });
+      new google.maps.Marker({ position: e, map: o });
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var r = window;
+    for (var n in o) r[n] = o[n];
+    o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

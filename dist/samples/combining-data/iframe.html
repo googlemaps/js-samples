@@ -90,224 +90,135 @@
   }
 </style>
 <script>
-  "use strict";
-
-  var mapStyle = [
-    {
-      stylers: [
-        {
-          visibility: "off",
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var a in o)
+            e.o(o, a) &&
+              !e.o(t, a) &&
+              Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
         },
-      ],
-    },
-    {
-      featureType: "landscape",
-      elementType: "geometry",
-      stylers: [
-        {
-          visibility: "on",
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
         },
-        {
-          color: "#fcfcfc",
-        },
-      ],
-    },
-    {
-      featureType: "water",
-      elementType: "geometry",
-      stylers: [
-        {
-          visibility: "on",
-        },
-        {
-          color: "#bfd4ff",
-        },
-      ],
-    },
-  ];
-  var map;
-  var censusMin = Number.MAX_VALUE,
-    censusMax = -Number.MAX_VALUE;
-
-  function initMap() {
-    // load the map
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: {
-        lat: 40,
-        lng: -100,
       },
-      zoom: 4,
-      styles: mapStyle,
-    }); // set up the style rules and events for google.maps.Data
-
-    map.data.setStyle(styleFeature);
-    map.data.addListener("mouseover", mouseInToRegion);
-    map.data.addListener("mouseout", mouseOutOfRegion); // wire up the button
-
-    var selectBox = document.getElementById("census-variable");
-    google.maps.event.addDomListener(selectBox, "change", function () {
-      clearCensusData();
-      loadCensusData(selectBox.options[selectBox.selectedIndex].value);
-    }); // state polygons only need to be loaded once, do them now
-
-    loadMapShapes();
-  }
-  /** Loads the state boundary polygons from a GeoJSON source. */
-
-  function loadMapShapes() {
-    // load US state outline polygons from a GeoJson file
-    map.data.loadGeoJson(
-      "https://storage.googleapis.com/mapsdevsite/json/states.js",
+      t = {};
+    e.r(t), e.d(t, { initMap: () => s });
+    const o = [
+      { stylers: [{ visibility: "off" }] },
       {
-        idPropertyName: "STATE",
-      }
-    ); // wait for the request to complete by listening for the first feature to be
-    // added
-
-    google.maps.event.addListenerOnce(map.data, "addfeature", function () {
-      google.maps.event.trigger(
-        document.getElementById("census-variable"),
-        "change"
+        featureType: "landscape",
+        elementType: "geometry",
+        stylers: [{ visibility: "on" }, { color: "#fcfcfc" }],
+      },
+      {
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [{ visibility: "on" }, { color: "#bfd4ff" }],
+      },
+    ];
+    let a,
+      n = Number.MAX_VALUE,
+      r = -Number.MAX_VALUE;
+    function s() {
+      (a = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 40, lng: -100 },
+        zoom: 4,
+        styles: o,
+      })),
+        a.data.setStyle(l),
+        a.data.addListener("mouseover", d),
+        a.data.addListener("mouseout", c);
+      const e = document.getElementById("census-variable");
+      google.maps.event.addDomListener(e, "change", () => {
+        (n = Number.MAX_VALUE),
+          (r = -Number.MAX_VALUE),
+          a.data.forEach((e) => {
+            e.setProperty("census_variable", void 0);
+          }),
+          (document.getElementById("data-box").style.display = "none"),
+          (document.getElementById("data-caret").style.display = "none"),
+          (function (e) {
+            const t = new XMLHttpRequest();
+            t.open("GET", e + ".json"),
+              (t.onload = function () {
+                const e = JSON.parse(t.responseText);
+                e.shift(),
+                  e.forEach((e) => {
+                    const t = parseFloat(e[0]),
+                      o = e[1];
+                    t < n && (n = t), t > r && (r = t);
+                    const s = a.data.getFeatureById(o);
+                    s && s.setProperty("census_variable", t);
+                  }),
+                  (document.getElementById("census-min").textContent =
+                    n.toLocaleString()),
+                  (document.getElementById("census-max").textContent =
+                    r.toLocaleString());
+              }),
+              t.send();
+          })(e.options[e.selectedIndex].value);
+      }),
+        a.data.loadGeoJson(
+          "https://storage.googleapis.com/mapsdevsite/json/states.js",
+          { idPropertyName: "STATE" }
+        ),
+        google.maps.event.addListenerOnce(a.data, "addfeature", () => {
+          google.maps.event.trigger(
+            document.getElementById("census-variable"),
+            "change"
+          );
+        });
+    }
+    function l(e) {
+      const t = [5, 69, 54],
+        o = [151, 83, 34],
+        a = (e.getProperty("census_variable") - n) / (r - n),
+        s = [];
+      for (let e = 0; e < 3; e++) s.push((o[e] - t[e]) * a + t[e]);
+      let l = !0;
+      (null == e.getProperty("census_variable") ||
+        isNaN(e.getProperty("census_variable"))) &&
+        (l = !1);
+      let d = 0.5,
+        c = 1;
+      return (
+        "hover" === e.getProperty("state") && (d = c = 2),
+        {
+          strokeWeight: d,
+          strokeColor: "#fff",
+          zIndex: c,
+          fillColor: "hsl(" + s[0] + "," + s[1] + "%," + s[2] + "%)",
+          fillOpacity: 0.75,
+          visible: l,
+        }
       );
-    });
-  }
-  /**
-   * Loads the census data from a simulated API call to the US Census API.
-   *
-   * @param {string} variable
-   */
-
-  function loadCensusData(variable) {
-    // load the requested variable from the census API (using local copies)
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", variable + ".json");
-
-    xhr.onload = function () {
-      var censusData = JSON.parse(xhr.responseText);
-      censusData.shift(); // the first row contains column names
-
-      censusData.forEach(function (row) {
-        var censusVariable = parseFloat(row[0]);
-        var stateId = row[1]; // keep track of min and max values
-
-        if (censusVariable < censusMin) {
-          censusMin = censusVariable;
-        }
-
-        if (censusVariable > censusMax) {
-          censusMax = censusVariable;
-        }
-
-        var state = map.data.getFeatureById(stateId); // update the existing row with the new data
-
-        if (state) {
-          state.setProperty("census_variable", censusVariable);
-        }
-      }); // update and display the legend
-
-      document.getElementById(
-        "census-min"
-      ).textContent = censusMin.toLocaleString();
-      document.getElementById(
-        "census-max"
-      ).textContent = censusMax.toLocaleString();
-    };
-
-    xhr.send();
-  }
-  /** Removes census data from each shape on the map and resets the UI. */
-
-  function clearCensusData() {
-    censusMin = Number.MAX_VALUE;
-    censusMax = -Number.MAX_VALUE;
-    map.data.forEach(function (row) {
-      row.setProperty("census_variable", undefined);
-    });
-    document.getElementById("data-box").style.display = "none";
-    document.getElementById("data-caret").style.display = "none";
-  }
-  /**
-   * Applies a gradient style based on the 'census_variable' column.
-   * This is the callback passed to data.setStyle() and is called for each row in
-   * the data set.  Check out the docs for Data.StylingFunction.
-   *
-   * @param {google.maps.Data.Feature} feature
-   */
-
-  function styleFeature(feature) {
-    var low = [5, 69, 54]; // color of smallest datum
-
-    var high = [151, 83, 34]; // color of largest datum
-    // delta represents where the value sits between the min and max
-
-    var delta =
-      (feature.getProperty("census_variable") - censusMin) /
-      (censusMax - censusMin);
-    var color = [];
-
-    for (var i = 0; i < 3; i++) {
-      // calculate an integer color based on the delta
-      color.push((high[i] - low[i]) * delta + low[i]);
-    } // determine whether to show this shape or not
-
-    var showRow = true;
-
-    if (
-      feature.getProperty("census_variable") == null ||
-      isNaN(feature.getProperty("census_variable"))
-    ) {
-      showRow = false;
     }
-
-    var outlineWeight = 0.5,
-      zIndex = 1;
-
-    if (feature.getProperty("state") === "hover") {
-      outlineWeight = zIndex = 2;
+    function d(e) {
+      e.feature.setProperty("state", "hover");
+      const t =
+        ((e.feature.getProperty("census_variable") - n) / (r - n)) * 100;
+      (document.getElementById("data-label").textContent =
+        e.feature.getProperty("NAME")),
+        (document.getElementById("data-value").textContent = e.feature
+          .getProperty("census_variable")
+          .toLocaleString()),
+        (document.getElementById("data-box").style.display = "block"),
+        (document.getElementById("data-caret").style.display = "block"),
+        (document.getElementById("data-caret").style.paddingLeft = t + "%");
     }
-
-    return {
-      strokeWeight: outlineWeight,
-      strokeColor: "#fff",
-      zIndex: zIndex,
-      fillColor: "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)",
-      fillOpacity: 0.75,
-      visible: showRow,
-    };
-  }
-  /**
-   * Responds to the mouse-in event on a map shape (state).
-   *
-   * @param {?google.maps.MapMouseEvent} e
-   */
-
-  function mouseInToRegion(e) {
-    // set the hover state so the setStyle function can change the border
-    e.feature.setProperty("state", "hover");
-    var percent =
-      ((e.feature.getProperty("census_variable") - censusMin) /
-        (censusMax - censusMin)) *
-      100; // update the label
-
-    document.getElementById("data-label").textContent = e.feature.getProperty(
-      "NAME"
-    );
-    document.getElementById("data-value").textContent = e.feature
-      .getProperty("census_variable")
-      .toLocaleString();
-    document.getElementById("data-box").style.display = "block";
-    document.getElementById("data-caret").style.display = "block";
-    document.getElementById("data-caret").style.paddingLeft = percent + "%";
-  }
-  /**
-   * Responds to the mouse-out event on a map shape (state).
-   *
-   */
-
-  function mouseOutOfRegion(e) {
-    // reset the hover state, returning the border to normal
-    e.feature.setProperty("state", "normal");
-  }
+    function c(e) {
+      e.feature.setProperty("state", "normal");
+    }
+    var i = window;
+    for (var u in t) i[u] = t[u];
+    t.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

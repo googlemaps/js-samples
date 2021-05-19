@@ -56,4 +56,4 @@ function eqfeed_callback(results: any) {
   map.data.addGeoJson(results);
 }
 // [END maps_earthquake_circles]
-export { initMap };
+export { initMap, eqfeed_callback };

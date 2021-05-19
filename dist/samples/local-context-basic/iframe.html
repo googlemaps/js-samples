@@ -15,32 +15,42 @@
   }
 </style>
 <script>
-  "use strict";
-
-  var map;
-
-  function initMap() {
-    var localContextMapView = new google.maps.localContext.LocalContextMapView({
-      element: document.getElementById("map"),
-      placeTypePreferences: [
-        {
-          type: "restaurant",
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
         },
-        {
-          type: "tourist_attraction",
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
         },
-      ],
-      maxPlaceCount: 12,
-    });
-    map = localContextMapView.map;
-    map.setOptions({
-      center: {
-        lat: 51.507307,
-        lng: -0.08114,
       },
-      zoom: 14,
-    });
-  }
+      t = {};
+    let o;
+    function n() {
+      const e = new google.maps.localContext.LocalContextMapView({
+        element: document.getElementById("map"),
+        placeTypePreferences: [
+          { type: "restaurant" },
+          { type: "tourist_attraction" },
+        ],
+        maxPlaceCount: 12,
+      });
+      (o = e.map),
+        o.setOptions({ center: { lat: 51.507307, lng: -0.08114 }, zoom: 14 });
+    }
+    e.r(t), e.d(t, { initMap: () => n });
+    var r = window;
+    for (var a in t) r[a] = t[a];
+    t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

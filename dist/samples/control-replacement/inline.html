@@ -188,13 +188,12 @@
           map.setMapTypeId("roadmap");
         };
 
-        document.querySelector(
-          ".maptype-control-satellite"
-        ).onclick = function () {
-          mapTypeControlDiv.classList.remove("maptype-control-is-map");
-          mapTypeControlDiv.classList.add("maptype-control-is-satellite");
-          map.setMapTypeId("hybrid");
-        };
+        document.querySelector(".maptype-control-satellite").onclick =
+          function () {
+            mapTypeControlDiv.classList.remove("maptype-control-is-map");
+            mapTypeControlDiv.classList.add("maptype-control-is-satellite");
+            map.setMapTypeId("hybrid");
+          };
         map.controls[google.maps.ControlPosition.LEFT_TOP].push(
           mapTypeControlDiv
         );
@@ -215,13 +214,17 @@
           }
         };
 
-        document.onwebkitfullscreenchange = document.onmsfullscreenchange = document.onmozfullscreenchange = document.onfullscreenchange = function () {
-          if (isFullscreen(elementToSendFullscreen)) {
-            fullscreenControl.classList.add("is-fullscreen");
-          } else {
-            fullscreenControl.classList.remove("is-fullscreen");
-          }
-        };
+        document.onwebkitfullscreenchange =
+          document.onmsfullscreenchange =
+          document.onmozfullscreenchange =
+          document.onfullscreenchange =
+            function () {
+              if (isFullscreen(elementToSendFullscreen)) {
+                fullscreenControl.classList.add("is-fullscreen");
+              } else {
+                fullscreenControl.classList.remove("is-fullscreen");
+              }
+            };
       }
 
       function isFullscreen(element) {

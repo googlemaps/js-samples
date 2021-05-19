@@ -45,74 +45,72 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: {
-        lat: -24.345,
-        lng: 134.46,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-    });
-    var directionsService = new google.maps.DirectionsService();
-    var directionsRenderer = new google.maps.DirectionsRenderer({
-      draggable: true,
-      map: map,
-      panel: document.getElementById("right-panel"),
-    });
-    directionsRenderer.addListener("directions_changed", function () {
-      computeTotalDistance(directionsRenderer.getDirections());
-    });
-    displayRoute(
-      "Perth, WA",
-      "Sydney, NSW",
-      directionsService,
-      directionsRenderer
-    );
-  }
-
-  function displayRoute(origin, destination, service, display) {
-    service.route(
-      {
-        origin: origin,
-        destination: destination,
-        waypoints: [
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: { lat: -24.345, lng: 134.46 },
+        }),
+        o = new google.maps.DirectionsService(),
+        t = new google.maps.DirectionsRenderer({
+          draggable: !0,
+          map: e,
+          panel: document.getElementById("right-panel"),
+        });
+      var n;
+      t.addListener("directions_changed", () => {
+        !(function (e) {
+          let o = 0;
+          const t = e.routes[0];
+          if (t) {
+            for (let e = 0; e < t.legs.length; e++)
+              o += t.legs[e].distance.value;
+            (o /= 1e3),
+              (document.getElementById("total").innerHTML = o + " km");
+          }
+        })(t.getDirections());
+      }),
+        (n = t),
+        o.route(
           {
-            location: "Adelaide, SA",
+            origin: "Perth, WA",
+            destination: "Sydney, NSW",
+            waypoints: [
+              { location: "Adelaide, SA" },
+              { location: "Broken Hill, NSW" },
+            ],
+            travelMode: google.maps.TravelMode.DRIVING,
+            avoidTolls: !0,
           },
-          {
-            location: "Broken Hill, NSW",
-          },
-        ],
-        travelMode: google.maps.TravelMode.DRIVING,
-        avoidTolls: true,
-      },
-      function (result, status) {
-        if (status === "OK" && result) {
-          display.setDirections(result);
-        } else {
-          alert("Could not display directions due to: " + status);
-        }
-      }
-    );
-  }
-
-  function computeTotalDistance(result) {
-    var total = 0;
-    var myroute = result.routes[0];
-
-    if (!myroute) {
-      return;
+          (e, o) => {
+            "OK" === o && e
+              ? n.setDirections(e)
+              : alert("Could not display directions due to: " + o);
+          }
+        );
     }
-
-    for (var i = 0; i < myroute.legs.length; i++) {
-      total += myroute.legs[i].distance.value;
-    }
-
-    total = total / 1000;
-    document.getElementById("total").innerHTML = total + " km";
-  }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var r in o) n[r] = o[r];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

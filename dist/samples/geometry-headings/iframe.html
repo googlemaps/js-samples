@@ -29,76 +29,75 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // This example requires the Geometry library. Include the libraries=geometry
-  // parameter when you first load the API. For example:
-  // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=geometry">
-  var marker1, marker2;
-  var poly, geodesicPoly;
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: {
-        lat: 34,
-        lng: -40.605,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-    });
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-      document.getElementById("info")
-    );
-    marker1 = new google.maps.Marker({
-      map: map,
-      draggable: true,
-      position: {
-        lat: 40.714,
-        lng: -74.006,
-      },
-    });
-    marker2 = new google.maps.Marker({
-      map: map,
-      draggable: true,
-      position: {
-        lat: 48.857,
-        lng: 2.352,
-      },
-    });
-    var bounds = new google.maps.LatLngBounds(
-      marker1.getPosition(),
-      marker2.getPosition()
-    );
-    map.fitBounds(bounds);
-    google.maps.event.addListener(marker1, "position_changed", update);
-    google.maps.event.addListener(marker2, "position_changed", update);
-    poly = new google.maps.Polyline({
-      strokeColor: "#FF0000",
-      strokeOpacity: 1.0,
-      strokeWeight: 3,
-      map: map,
-    });
-    geodesicPoly = new google.maps.Polyline({
-      strokeColor: "#CC0099",
-      strokeOpacity: 1.0,
-      strokeWeight: 3,
-      geodesic: true,
-      map: map,
-    });
-    update();
-  }
-
-  function update() {
-    var path = [marker1.getPosition(), marker2.getPosition()];
-    poly.setPath(path);
-    geodesicPoly.setPath(path);
-    var heading = google.maps.geometry.spherical.computeHeading(
-      path[0],
-      path[1]
-    );
-    document.getElementById("heading").value = String(heading);
-    document.getElementById("origin").value = String(path[0]);
-    document.getElementById("destination").value = String(path[1]);
-  }
+      o = {};
+    let t, n, a, g;
+    function i() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: { lat: 34, lng: -40.605 },
+      });
+      e.controls[google.maps.ControlPosition.TOP_CENTER].push(
+        document.getElementById("info")
+      ),
+        (t = new google.maps.Marker({
+          map: e,
+          draggable: !0,
+          position: { lat: 40.714, lng: -74.006 },
+        })),
+        (n = new google.maps.Marker({
+          map: e,
+          draggable: !0,
+          position: { lat: 48.857, lng: 2.352 },
+        }));
+      const o = new google.maps.LatLngBounds(t.getPosition(), n.getPosition());
+      e.fitBounds(o),
+        google.maps.event.addListener(t, "position_changed", l),
+        google.maps.event.addListener(n, "position_changed", l),
+        (a = new google.maps.Polyline({
+          strokeColor: "#FF0000",
+          strokeOpacity: 1,
+          strokeWeight: 3,
+          map: e,
+        })),
+        (g = new google.maps.Polyline({
+          strokeColor: "#CC0099",
+          strokeOpacity: 1,
+          strokeWeight: 3,
+          geodesic: !0,
+          map: e,
+        })),
+        l();
+    }
+    function l() {
+      const e = [t.getPosition(), n.getPosition()];
+      a.setPath(e), g.setPath(e);
+      const o = google.maps.geometry.spherical.computeHeading(e[0], e[1]);
+      (document.getElementById("heading").value = String(o)),
+        (document.getElementById("origin").value = String(e[0])),
+        (document.getElementById("destination").value = String(e[1]));
+    }
+    e.r(o), e.d(o, { initMap: () => i });
+    var r = window;
+    for (var s in o) r[s] = o[s];
+    o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

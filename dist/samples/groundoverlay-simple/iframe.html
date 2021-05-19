@@ -15,32 +15,41 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // This example uses a GroundOverlay to place an image on the map
-  // showing an antique map of Newark, NJ.
-  var historicalOverlay;
-
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 13,
-      center: {
-        lat: 40.74,
-        lng: -74.18,
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var r in o)
+            e.o(o, r) &&
+              !e.o(t, r) &&
+              Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-    });
-    var imageBounds = {
-      north: 40.773941,
-      south: 40.712216,
-      east: -74.12544,
-      west: -74.22655,
-    };
-    historicalOverlay = new google.maps.GroundOverlay(
-      "https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
-      imageBounds
-    );
-    historicalOverlay.setMap(map);
-  }
+      t = {};
+    let o;
+    function r() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+        zoom: 13,
+        center: { lat: 40.74, lng: -74.18 },
+      });
+      (o = new google.maps.GroundOverlay(
+        "https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+        { north: 40.773941, south: 40.712216, east: -74.12544, west: -74.22655 }
+      )),
+        o.setMap(e);
+    }
+    e.r(t), e.d(t, { initMap: () => r });
+    var n = window;
+    for (var a in t) n[a] = t[a];
+    t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

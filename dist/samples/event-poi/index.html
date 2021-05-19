@@ -31,142 +31,96 @@
       }
     </style>
     <script>
-      "use strict";
-
-      function _classCallCheck(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
-          throw new TypeError("Cannot call a class as a function");
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, n) => {
+              for (var t in n)
+                e.o(n, t) &&
+                  !e.o(o, t) &&
+                  Object.defineProperty(o, t, { enumerable: !0, get: n[t] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        function n() {
+          const e = { lat: -33.871, lng: 151.197 },
+            o = new google.maps.Map(document.getElementById("map"), {
+              zoom: 18,
+              center: e,
+            });
+          new t(o, e);
         }
-      }
-
-      function _defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-          var descriptor = props[i];
-          descriptor.enumerable = descriptor.enumerable || false;
-          descriptor.configurable = true;
-          if ("value" in descriptor) descriptor.writable = true;
-          Object.defineProperty(target, descriptor.key, descriptor);
-        }
-      }
-
-      function _createClass(Constructor, protoProps, staticProps) {
-        if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-        if (staticProps) _defineProperties(Constructor, staticProps);
-        return Constructor;
-      }
-
-      function initMap() {
-        var origin = {
-          lat: -33.871,
-          lng: 151.197,
-        };
-        var map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 18,
-          center: origin,
-        });
-        new ClickEventHandler(map, origin);
-      }
-
-      function isIconMouseEvent(e) {
-        return "placeId" in e;
-      }
-
-      var ClickEventHandler = /*#__PURE__*/ (function () {
-        function ClickEventHandler(map, origin) {
-          _classCallCheck(this, ClickEventHandler);
-
-          this.origin = origin;
-          this.map = map;
-          this.directionsService = new google.maps.DirectionsService();
-          this.directionsRenderer = new google.maps.DirectionsRenderer();
-          this.directionsRenderer.setMap(map);
-          this.placesService = new google.maps.places.PlacesService(map);
-          this.infowindow = new google.maps.InfoWindow();
-          this.infowindowContent = document.getElementById(
-            "infowindow-content"
-          );
-          this.infowindow.setContent(this.infowindowContent); // Listen for clicks on the map.
-
-          this.map.addListener("click", this.handleClick.bind(this));
-        }
-
-        _createClass(ClickEventHandler, [
-          {
-            key: "handleClick",
-            value: function handleClick(event) {
-              console.log("You clicked on: " + event.latLng); // If the event has a placeId, use it.
-
-              if (isIconMouseEvent(event)) {
-                console.log("You clicked on place:" + event.placeId); // Calling e.stop() on the event prevents the default info window from
-                // showing.
-                // If you call stop here when there is no placeId you will prevent some
-                // other map click event handlers from receiving the event.
-
-                event.stop();
-
-                if (event.placeId) {
-                  this.calculateAndDisplayRoute(event.placeId);
-                  this.getPlaceInformation(event.placeId);
-                }
+        e.r(o), e.d(o, { initMap: () => n });
+        class t {
+          constructor(e, o) {
+            (this.origin = o),
+              (this.map = e),
+              (this.directionsService = new google.maps.DirectionsService()),
+              (this.directionsRenderer = new google.maps.DirectionsRenderer()),
+              this.directionsRenderer.setMap(e),
+              (this.placesService = new google.maps.places.PlacesService(e)),
+              (this.infowindow = new google.maps.InfoWindow()),
+              (this.infowindowContent =
+                document.getElementById("infowindow-content")),
+              this.infowindow.setContent(this.infowindowContent),
+              this.map.addListener("click", this.handleClick.bind(this));
+          }
+          handleClick(e) {
+            console.log("You clicked on: " + e.latLng),
+              "placeId" in e &&
+                (console.log("You clicked on place:" + e.placeId),
+                e.stop(),
+                e.placeId &&
+                  (this.calculateAndDisplayRoute(e.placeId),
+                  this.getPlaceInformation(e.placeId)));
+          }
+          calculateAndDisplayRoute(e) {
+            const o = this;
+            this.directionsService.route(
+              {
+                origin: this.origin,
+                destination: { placeId: e },
+                travelMode: google.maps.TravelMode.WALKING,
+              },
+              (e, n) => {
+                "OK" === n
+                  ? o.directionsRenderer.setDirections(e)
+                  : window.alert("Directions request failed due to " + n);
               }
-            },
-          },
-          {
-            key: "calculateAndDisplayRoute",
-            value: function calculateAndDisplayRoute(placeId) {
-              var me = this;
-              this.directionsService.route(
-                {
-                  origin: this.origin,
-                  destination: {
-                    placeId: placeId,
-                  },
-                  travelMode: google.maps.TravelMode.WALKING,
-                },
-                function (response, status) {
-                  if (status === "OK") {
-                    me.directionsRenderer.setDirections(response);
-                  } else {
-                    window.alert("Directions request failed due to " + status);
-                  }
-                }
-              );
-            },
-          },
-          {
-            key: "getPlaceInformation",
-            value: function getPlaceInformation(placeId) {
-              var me = this;
-              this.placesService.getDetails(
-                {
-                  placeId: placeId,
-                },
-                function (place, status) {
-                  if (
-                    status === "OK" &&
-                    place &&
-                    place.geometry &&
-                    place.geometry.location
-                  ) {
-                    me.infowindow.close();
-                    me.infowindow.setPosition(place.geometry.location);
-                    me.infowindowContent.children["place-icon"].src =
-                      place.icon;
-                    me.infowindowContent.children["place-name"].textContent =
-                      place.name;
-                    me.infowindowContent.children["place-id"].textContent =
-                      place.place_id;
-                    me.infowindowContent.children["place-address"].textContent =
-                      place.formatted_address;
-                    me.infowindow.open(me.map);
-                  }
-                }
-              );
-            },
-          },
-        ]);
-
-        return ClickEventHandler;
+            );
+          }
+          getPlaceInformation(e) {
+            const o = this;
+            this.placesService.getDetails({ placeId: e }, (e, n) => {
+              "OK" === n &&
+                e &&
+                e.geometry &&
+                e.geometry.location &&
+                (o.infowindow.close(),
+                o.infowindow.setPosition(e.geometry.location),
+                (o.infowindowContent.children["place-icon"].src = e.icon),
+                (o.infowindowContent.children["place-name"].textContent =
+                  e.name),
+                (o.infowindowContent.children["place-id"].textContent =
+                  e.place_id),
+                (o.infowindowContent.children["place-address"].textContent =
+                  e.formatted_address),
+                o.infowindow.open(o.map));
+            });
+          }
+        }
+        var i = window;
+        for (var c in o) i[c] = o[c];
+        o.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
       })();
     </script>
   </head>

@@ -60,7 +60,6 @@
 
       #sidebar {
         flex-basis: 5rem;
-        flex-direction: column;
       }
 
       #search,
@@ -94,238 +93,184 @@
       }
     </style>
     <script>
-      "use strict";
-
-      var map;
-      var autocomplete;
-      var autocompleteInput;
-      var distanceMatrixService;
-      var progress;
-      var isUpdateInProgress = false;
-      var stores = []; // Initialize and add the map
-
-      function initMap() {
-        distanceMatrixService = new google.maps.DistanceMatrixService();
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: {
-            lat: 39.79,
-            lng: -104.98,
-          },
-          zoom: 10,
-        });
-        new mdc.textField.MDCTextField(
-          document.querySelector(".mdc-text-field")
-        );
-        autocompleteInput = document.getElementById("search-input");
-        autocomplete = new google.maps.places.Autocomplete(
-          autocompleteInput,
-          {}
-        );
-        autocomplete.addListener("place_changed", placeChanged);
-        autocomplete.bindTo("bounds", map); // bias to map viewport
-
-        fetch(
-          "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
-        )
-          .then(function (response) {
-            return response.json();
-          })
-          .then(function (data) {
-            var features = data.features;
-            var markers = [];
-            features.forEach(function (_ref) {
-              var name = _ref.attributes.NAME,
-                _ref$geometry = _ref.geometry,
-                lng = _ref$geometry.x,
-                lat = _ref$geometry.y;
-              stores.push({
-                name: name,
-                location: {
-                  lat: lat,
-                  lng: lng,
-                },
-                address: "",
-              });
-              var marker = new google.maps.Marker({
-                position: {
-                  lat: lat,
-                  lng: lng,
-                },
-              });
-              marker.addListener("click", function () {
-                update(
-                  new google.maps.LatLng({
-                    lat: lat,
-                    lng: lng,
-                  })
-                );
-              });
-              markers.push(marker);
-            });
-            new MarkerClusterer(map, markers, {
-              imagePath:
-                "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-            }); // initMap may be called before all JS has been parsed and executed when using the async attribute
-
-            window.addEventListener("load", function () {
-              progress.done();
-            });
-            update(map.getCenter());
-          });
-        document
-          .getElementById("near-me")
-          .addEventListener("click", function () {
-            if (navigator.geolocation) {
-              navigator.geolocation.getCurrentPosition(function (_ref2) {
-                var _ref2$coords = _ref2.coords,
-                  lat = _ref2$coords.latitude,
-                  lng = _ref2$coords.longitude;
-                update(
-                  new google.maps.LatLng({
-                    lat: lat,
-                    lng: lng,
-                  })
-                );
-              });
-            }
-          });
-        document
-          .getElementById("refresh")
-          .addEventListener("click", function () {
-            update(map.getCenter());
-          });
-      }
-
-      function renderCards(stores) {
-        var cardsDiv = document.getElementById("cards");
-        cardsDiv.innerHTML = "";
-        stores.slice(0, 25).forEach(function (_ref3) {
-          var name = _ref3.name,
-            location = _ref3.location,
-            address = _ref3.address,
-            travelDistanceText = _ref3.travelDistanceText,
-            travelDurationText = _ref3.travelDurationText;
-          var card = document.createElement("div");
-          card.classList.add("mdc-card", "mdc-card--outlined");
-          card.innerHTML = '\n<div class="mdc-card__primary-action">\n  <div id="card-header">\n    <h2 class="mdc-typography--headline6">'
-            .concat(
-              name,
-              '</h2>\n  </div>\n</div>\n<div id="card-body">\n  </div>\n<div class="mdc-card__actions">\n  <a class="mdc-button mdc-card__action mdc-card__action--button"\n    target="_blank" href="https://maps.google.com?q='
-            )
-            .concat(
-              address ? address : name,
-              '">\n    <div class="mdc-button__ripple"></div>\n    <span class="mdc-button__label">Directions</span>\n  </a>\n  <button class="mdc-button mdc-card__action mdc-card__action--button">\n    <div class="mdc-button__ripple"></div>\n    <span class="mdc-button__label">More Information</span>\n  </button>\n</div>'
-            );
-          var cardBody = card.querySelector("#card-body");
-
-          if (address) {
-            cardBody.innerHTML = '<h2 class="mdc-typography--body1">'.concat(
-              address,
-              "</h2>"
-            );
-          }
-
-          if (travelDistanceText) {
-            cardBody.innerHTML += '<h2 class="mdc-typography--body2">'
-              .concat(travelDistanceText, ", ")
-              .concat(travelDurationText, "</h2>");
-          }
-
-          card
-            .querySelector(".mdc-card__primary-action")
-            .addEventListener("click", function () {
-              map.panTo(location);
-            });
-          cardsDiv.appendChild(card);
-        });
-        cardsDiv.scrollTo(0, 0);
-      }
-
-      function getDistances(place) {
-        var origins = [place];
-        return new Promise(function (resolve, reject) {
-          var callback = function callback(response, status) {
-            if (status === google.maps.DistanceMatrixStatus.OK && response) {
-              resolve(response);
-            } else {
-              reject(status);
-            }
-          };
-
-          distanceMatrixService.getDistanceMatrix(
-            {
-              origins: origins,
-              destinations: stores.slice(0, 25).map(function (store) {
-                return store.location;
-              }),
-              travelMode: google.maps.TravelMode.DRIVING,
-              unitSystem: google.maps.UnitSystem.IMPERIAL,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, n) => {
+              for (var a in n)
+                e.o(n, a) &&
+                  !e.o(t, a) &&
+                  Object.defineProperty(t, a, { enumerable: !0, get: n[a] });
             },
-            callback
-          );
-        });
-      }
-
-      function placeChanged() {
-        autocompleteInput.disabled = true;
-        var placeResult = autocomplete.getPlace();
-        var location = placeResult.geometry.location;
-        update(location);
-      }
-
-      function update(location) {
-        if (!location) {
-          return;
-        }
-
-        if (isUpdateInProgress) {
-          alert("Update in progress, please try again.");
-          return;
-        }
-
-        autocompleteInput.disabled = true;
-        isUpdateInProgress = true;
-        map.setCenter(location); // reset values
-
-        stores.forEach(function (store) {
-          delete store.travelDistance;
-          delete store.travelDistanceText;
-          delete store.travelDuration;
-          delete store.travelDurationText;
-        }); // sort by distance
-
-        stores.sort(function (a, b) {
-          return (
-            google.maps.geometry.spherical.computeDistanceBetween(
-              new google.maps.LatLng(a.location),
-              location
-            ) -
-            google.maps.geometry.spherical.computeDistanceBetween(
-              new google.maps.LatLng(b.location),
-              location
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          t = {};
+        let n, a, o, r;
+        e.r(t), e.d(t, { initMap: () => i });
+        let s = !1;
+        const c = [];
+        function i() {
+          (r = new google.maps.DistanceMatrixService()),
+            (n = new google.maps.Map(document.getElementById("map"), {
+              center: { lat: 39.79, lng: -104.98 },
+              zoom: 10,
+            })),
+            new mdc.textField.MDCTextField(
+              document.querySelector(".mdc-text-field")
+            ),
+            (o = document.getElementById("search-input")),
+            (a = new google.maps.places.Autocomplete(o, {})),
+            a.addListener("place_changed", l),
+            a.bindTo("bounds", n),
+            fetch(
+              "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
             )
-          );
-        });
-        getDistances(location)
-          .then(function (response) {
-            for (var i = 0; i < response.rows[0].elements.length; i++) {
-              stores[i].address = response.destinationAddresses[i];
-              stores[i].travelDistance =
-                response.rows[0].elements[i].distance.value;
-              stores[i].travelDistanceText =
-                response.rows[0].elements[i].distance.text;
-              stores[i].travelDuration =
-                response.rows[0].elements[i].duration.value;
-              stores[i].travelDurationText =
-                response.rows[0].elements[i].duration.text;
-            }
-          })
-          .finally(function () {
-            renderCards(stores);
-            autocompleteInput.disabled = false;
-            isUpdateInProgress = false;
-          });
-      }
+              .then((e) => e.json())
+              .then((e) => {
+                const t = e.features,
+                  a = [];
+                t.forEach(
+                  ({ attributes: { NAME: e }, geometry: { x: t, y: n } }) => {
+                    c.push({
+                      name: e,
+                      location: { lat: n, lng: t },
+                      address: "",
+                    });
+                    const o = new google.maps.Marker({
+                      position: { lat: n, lng: t },
+                    });
+                    o.addListener("click", () => {
+                      d(new google.maps.LatLng({ lat: n, lng: t }));
+                    }),
+                      a.push(o);
+                  }
+                ),
+                  new MarkerClusterer(n, a, {
+                    imagePath:
+                      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+                  }),
+                  (void 0).done(),
+                  d(n.getCenter());
+              }),
+            document.getElementById("near-me").addEventListener("click", () => {
+              navigator.geolocation &&
+                navigator.geolocation.getCurrentPosition(
+                  ({ coords: { latitude: e, longitude: t } }) => {
+                    d(new google.maps.LatLng({ lat: e, lng: t }));
+                  }
+                );
+            }),
+            document.getElementById("refresh").addEventListener("click", () => {
+              d(n.getCenter());
+            });
+        }
+        function l() {
+          (o.disabled = !0), d(a.getPlace().geometry.location);
+        }
+        function d(e) {
+          e &&
+            (s
+              ? alert("Update in progress, please try again.")
+              : ((o.disabled = !0),
+                (s = !0),
+                n.setCenter(e),
+                c.forEach((e) => {
+                  delete e.travelDistance,
+                    delete e.travelDistanceText,
+                    delete e.travelDuration,
+                    delete e.travelDurationText;
+                }),
+                c.sort(
+                  (t, n) =>
+                    google.maps.geometry.spherical.computeDistanceBetween(
+                      new google.maps.LatLng(t.location),
+                      e
+                    ) -
+                    google.maps.geometry.spherical.computeDistanceBetween(
+                      new google.maps.LatLng(n.location),
+                      e
+                    )
+                ),
+                (function (e) {
+                  const t = [e];
+                  return new Promise((e, n) => {
+                    r.getDistanceMatrix(
+                      {
+                        origins: t,
+                        destinations: c.slice(0, 25).map((e) => e.location),
+                        travelMode: google.maps.TravelMode.DRIVING,
+                        unitSystem: google.maps.UnitSystem.IMPERIAL,
+                      },
+                      (t, a) => {
+                        a === google.maps.DistanceMatrixStatus.OK && t
+                          ? e(t)
+                          : n(a);
+                      }
+                    );
+                  });
+                })(e)
+                  .then((e) => {
+                    for (let t = 0; t < e.rows[0].elements.length; t++)
+                      (c[t].address = e.destinationAddresses[t]),
+                        (c[t].travelDistance =
+                          e.rows[0].elements[t].distance.value),
+                        (c[t].travelDistanceText =
+                          e.rows[0].elements[t].distance.text),
+                        (c[t].travelDuration =
+                          e.rows[0].elements[t].duration.value),
+                        (c[t].travelDurationText =
+                          e.rows[0].elements[t].duration.text);
+                  })
+                  .finally(() => {
+                    !(function (e) {
+                      const t = document.getElementById("cards");
+                      (t.innerHTML = ""),
+                        e
+                          .slice(0, 25)
+                          .forEach(
+                            ({
+                              name: e,
+                              location: a,
+                              address: o,
+                              travelDistanceText: r,
+                              travelDurationText: s,
+                            }) => {
+                              const c = document.createElement("div");
+                              c.classList.add("mdc-card", "mdc-card--outlined"),
+                                (c.innerHTML = `\n<div class="mdc-card__primary-action">\n  <div id="card-header">\n    <h2 class="mdc-typography--headline6">${e}</h2>\n  </div>\n</div>\n<div id="card-body">\n  </div>\n<div class="mdc-card__actions">\n  <a class="mdc-button mdc-card__action mdc-card__action--button" \n    target="_blank" href="https://maps.google.com?q=${
+                                  o || e
+                                }">\n    <div class="mdc-button__ripple"></div>\n    <span class="mdc-button__label">Directions</span>\n  </a>\n  <button class="mdc-button mdc-card__action mdc-card__action--button">\n    <div class="mdc-button__ripple"></div>\n    <span class="mdc-button__label">More Information</span>\n  </button>\n</div>`);
+                              const i = c.querySelector("#card-body");
+                              o &&
+                                (i.innerHTML = `<h2 class="mdc-typography--body1">${o}</h2>`),
+                                r &&
+                                  (i.innerHTML += `<h2 class="mdc-typography--body2">${r}, ${s}</h2>`),
+                                c
+                                  .querySelector(".mdc-card__primary-action")
+                                  .addEventListener("click", () => {
+                                    n.panTo(a);
+                                  }),
+                                t.appendChild(c);
+                            }
+                          ),
+                        t.scrollTo(0, 0);
+                    })(c),
+                      (o.disabled = !1),
+                      (s = !1);
+                  })));
+        }
+        var m = window;
+        for (var g in t) m[g] = t[g];
+        t.__esModule && Object.defineProperty(m, "__esModule", { value: !0 });
+      })();
     </script>
   </head>
   <body>

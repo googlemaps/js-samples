@@ -84,169 +84,81 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function _createForOfIteratorHelper(o, allowArrayLike) {
-    var it;
-    if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
-      if (
-        Array.isArray(o) ||
-        (it = _unsupportedIterableToArray(o)) ||
-        (allowArrayLike && o && typeof o.length === "number")
-      ) {
-        if (it) o = it;
-        var i = 0;
-        var F = function F() {};
-        return {
-          s: F,
-          n: function n() {
-            if (i >= o.length) return { done: true };
-            return { done: false, value: o[i++] };
-          },
-          e: function e(_e) {
-            throw _e;
-          },
-          f: F,
-        };
-      }
-      throw new TypeError(
-        "Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."
-      );
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    function t() {
+      const e = { lat: -33.866, lng: 151.196 },
+        o = new google.maps.Map(document.getElementById("map"), {
+          center: e,
+          zoom: 17,
+          mapId: "8d193001f940fde3",
+        }),
+        t = new google.maps.places.PlacesService(o);
+      let n;
+      const a = document.getElementById("more");
+      (a.onclick = function () {
+        (a.disabled = !0), n && n();
+      }),
+        t.nearbySearch(
+          { location: e, radius: 500, type: "store" },
+          (e, t, i) => {
+            "OK" === t &&
+              e &&
+              ((function (e, o) {
+                const t = document.getElementById("places");
+                for (const n of e)
+                  if (n.geometry && n.geometry.location) {
+                    const e = {
+                      url: n.icon,
+                      size: new google.maps.Size(71, 71),
+                      origin: new google.maps.Point(0, 0),
+                      anchor: new google.maps.Point(17, 34),
+                      scaledSize: new google.maps.Size(25, 25),
+                    };
+                    new google.maps.Marker({
+                      map: o,
+                      icon: e,
+                      title: n.name,
+                      position: n.geometry.location,
+                    });
+                    const a = document.createElement("li");
+                    (a.textContent = n.name),
+                      t.appendChild(a),
+                      a.addEventListener("click", () => {
+                        o.setCenter(n.geometry.location);
+                      });
+                  }
+              })(e, o),
+              (a.disabled = !i || !i.hasNextPage),
+              i &&
+                i.hasNextPage &&
+                (n = () => {
+                  i.nextPage();
+                }));
+          }
+        );
     }
-    var normalCompletion = true,
-      didErr = false,
-      err;
-    return {
-      s: function s() {
-        it = o[Symbol.iterator]();
-      },
-      n: function n() {
-        var step = it.next();
-        normalCompletion = step.done;
-        return step;
-      },
-      e: function e(_e2) {
-        didErr = true;
-        err = _e2;
-      },
-      f: function f() {
-        try {
-          if (!normalCompletion && it.return != null) it.return();
-        } finally {
-          if (didErr) throw err;
-        }
-      },
-    };
-  }
-
-  function _unsupportedIterableToArray(o, minLen) {
-    if (!o) return;
-    if (typeof o === "string") return _arrayLikeToArray(o, minLen);
-    var n = Object.prototype.toString.call(o).slice(8, -1);
-    if (n === "Object" && o.constructor) n = o.constructor.name;
-    if (n === "Map" || n === "Set") return Array.from(o);
-    if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-      return _arrayLikeToArray(o, minLen);
-  }
-
-  function _arrayLikeToArray(arr, len) {
-    if (len == null || len > arr.length) len = arr.length;
-    for (var i = 0, arr2 = new Array(len); i < len; i++) {
-      arr2[i] = arr[i];
-    }
-    return arr2;
-  }
-
-  // This example requires the Places library. Include the libraries=places
-  // parameter when you first load the API. For example:
-  // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places">
-  function initMap() {
-    // Create the map.
-    var pyrmont = {
-      lat: -33.866,
-      lng: 151.196,
-    };
-    var map = new google.maps.Map(document.getElementById("map"), {
-      center: pyrmont,
-      zoom: 17,
-      mapId: "8d193001f940fde3",
-    }); // Create the places service.
-
-    var service = new google.maps.places.PlacesService(map);
-    var getNextPage;
-    var moreButton = document.getElementById("more");
-
-    moreButton.onclick = function () {
-      moreButton.disabled = true;
-
-      if (getNextPage) {
-        getNextPage();
-      }
-    }; // Perform a nearby search.
-
-    service.nearbySearch(
-      {
-        location: pyrmont,
-        radius: 500,
-        type: "store",
-      },
-      function (results, status, pagination) {
-        if (status !== "OK" || !results) return;
-        addPlaces(results, map);
-        moreButton.disabled = !pagination || !pagination.hasNextPage;
-
-        if (pagination && pagination.hasNextPage) {
-          getNextPage = function getNextPage() {
-            // Note: nextPage will call the same handler function as the initial call
-            pagination.nextPage();
-          };
-        }
-      }
-    );
-  }
-
-  function addPlaces(places, map) {
-    var placesList = document.getElementById("places");
-
-    var _iterator = _createForOfIteratorHelper(places),
-      _step;
-
-    try {
-      var _loop = function _loop() {
-        var place = _step.value;
-
-        if (place.geometry && place.geometry.location) {
-          var image = {
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(25, 25),
-          };
-          new google.maps.Marker({
-            map: map,
-            icon: image,
-            title: place.name,
-            position: place.geometry.location,
-          });
-          var li = document.createElement("li");
-          li.textContent = place.name;
-          placesList.appendChild(li);
-          li.addEventListener("click", function () {
-            map.setCenter(place.geometry.location);
-          });
-        }
-      };
-
-      for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-        _loop();
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-  }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var a in o) n[a] = o[a];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

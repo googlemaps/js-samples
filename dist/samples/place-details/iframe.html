@@ -15,52 +15,67 @@
   }
 </style>
 <script>
-  "use strict";
-
-  // This example requires the Places library. Include the libraries=places
-  // parameter when you first load the API. For example:
-  // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&libraries=places">
-  function initMap() {
-    var map = new google.maps.Map(document.getElementById("map"), {
-      center: {
-        lat: -33.866,
-        lng: 151.196,
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var a in t)
+            e.o(t, a) &&
+              !e.o(o, a) &&
+              Object.defineProperty(o, a, { enumerable: !0, get: t[a] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
       },
-      zoom: 15,
-    });
-    var request = {
-      placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
-      fields: ["name", "formatted_address", "place_id", "geometry"],
-    };
-    var infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
-    service.getDetails(request, function (place, status) {
-      if (
-        status === google.maps.places.PlacesServiceStatus.OK &&
-        place &&
-        place.geometry &&
-        place.geometry.location
-      ) {
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location,
-        });
-        google.maps.event.addListener(marker, "click", function () {
-          infowindow.setContent(
-            "<div><strong>" +
-              place.name +
-              "</strong><br>" +
-              "Place ID: " +
-              place.place_id +
-              "<br>" +
-              place.formatted_address +
-              "</div>"
-          );
-          infowindow.open(map, this);
-        });
-      }
-    });
-  }
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -33.866, lng: 151.196 },
+          zoom: 15,
+        }),
+        o = new google.maps.InfoWindow();
+      new google.maps.places.PlacesService(e).getDetails(
+        {
+          placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
+          fields: ["name", "formatted_address", "place_id", "geometry"],
+        },
+        (t, a) => {
+          if (
+            a === google.maps.places.PlacesServiceStatus.OK &&
+            t &&
+            t.geometry &&
+            t.geometry.location
+          ) {
+            const a = new google.maps.Marker({
+              map: e,
+              position: t.geometry.location,
+            });
+            google.maps.event.addListener(a, "click", function () {
+              o.setContent(
+                "<div><strong>" +
+                  t.name +
+                  "</strong><br>Place ID: " +
+                  t.place_id +
+                  "<br>" +
+                  t.formatted_address +
+                  "</div>"
+              ),
+                o.open(e, this);
+            });
+          }
+        }
+      );
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var a = window;
+    for (var n in o) a[n] = o[n];
+    o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">

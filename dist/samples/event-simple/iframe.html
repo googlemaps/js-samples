@@ -15,34 +15,49 @@
   }
 </style>
 <script>
-  "use strict";
-
-  function initMap() {
-    var myLatlng = {
-      lat: -25.363,
-      lng: 131.044,
-    };
-    var map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
-      center: myLatlng,
-    });
-    var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: "Click to zoom",
-    });
-    map.addListener("center_changed", function () {
-      // 3 seconds after the center of the map has changed, pan back to the
-      // marker.
-      window.setTimeout(function () {
-        map.panTo(marker.getPosition());
-      }, 3000);
-    });
-    marker.addListener("click", function () {
-      map.setZoom(8);
-      map.setCenter(marker.getPosition());
-    });
-  }
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    function t() {
+      const e = { lat: -25.363, lng: 131.044 },
+        o = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: e,
+        }),
+        t = new google.maps.Marker({
+          position: e,
+          map: o,
+          title: "Click to zoom",
+        });
+      o.addListener("center_changed", () => {
+        window.setTimeout(() => {
+          o.panTo(t.getPosition());
+        }, 3e3);
+      }),
+        t.addListener("click", () => {
+          o.setZoom(8), o.setCenter(t.getPosition());
+        });
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var r in o) n[r] = o[r];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
 <div id="iframe-contents">
