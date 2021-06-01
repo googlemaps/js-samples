@@ -15,7 +15,7 @@
  */
 
 // [START maps_programmatic_load]
-import { Loader } from '@googlemaps/js-api-loader';
+import { Loader } from "@googlemaps/js-api-loader";
 
 let map: google.maps.Map;
 
