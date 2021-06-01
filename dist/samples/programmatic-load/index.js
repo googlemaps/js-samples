@@ -1,6 +1,6 @@
 // [START maps_programmatic_load]
+import { Loader } from "@googlemaps/js-api-loader";
 let map;
-const Loader = google.maps.plugins.loader.Loader;
 const additionalOptions = {};
 // [START maps_programmatic_load_promise]
 const loader = new Loader({

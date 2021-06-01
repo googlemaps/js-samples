@@ -16,6 +16,8 @@
 /* eslint-disable no-undef, @typescript-eslint/no-unused-vars, no-unused-vars */
 import "./style.css";
 
+import { Loader } from "@googlemaps/js-api-loader";
+
 let map: google.maps.Map;
 
 const center = { lat: 41.90476224706472, lng: 12.49822074385094 };
@@ -23,7 +25,7 @@ const zoom = 14;
 const url = "https://maps.googleapis.com/maps/api/staticmap";
 
 // @ts-ignore google.maps.plugins
-const loader = new google.maps.plugins.loader.Loader({
+const loader = new Loader({
   apiKey: "YOUR_API_KEY",
   version: "weekly",
 });

@@ -1,5 +1,14 @@
 // [START maps_webgl_overlay_simple]
 // [START maps_webgl_overlay_simple_init_map]
+import {
+  AmbientLight,
+  DirectionalLight,
+  Matrix4,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 let map;
 const mapOptions = {
   tilt: 0,
@@ -23,15 +32,15 @@ function initWebglOverlayView(map) {
 
   webglOverlayView.onAdd = () => {
     // Set up the scene.
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera();
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.75); // Soft white light.
+    scene = new Scene();
+    camera = new PerspectiveCamera();
+    const ambientLight = new AmbientLight(0xffffff, 0.75); // Soft white light.
     scene.add(ambientLight);
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
+    const directionalLight = new DirectionalLight(0xffffff, 0.25);
     directionalLight.position.set(0.5, -1, 0.5);
     scene.add(directionalLight);
     // Load the model.
-    loader = new THREE.GLTFLoader();
+    loader = new GLTFLoader();
     const source =
       "https://raw.githubusercontent.com/googlemaps/js-samples/master/assets/pin.gltf";
     loader.load(source, (gltf) => {
@@ -44,9 +53,9 @@ function initWebglOverlayView(map) {
   // [END maps_webgl_overlay_simple_on_add]
   // [START maps_webgl_overlay_simple_on_context_restored]
   webglOverlayView.onContextRestored = (gl) => {
-    // Create the three.js renderer, using the
+    // Create the js renderer, using the
     // maps's WebGL rendering context.
-    renderer = new THREE.WebGLRenderer({
+    renderer = new WebGLRenderer({
       canvas: gl.canvas,
       context: gl,
       ...gl.getContextAttributes(),
@@ -78,11 +87,11 @@ function initWebglOverlayView(map) {
   webglOverlayView.onDraw = (gl, transformer) => {
     // Update camera matrix to ensure the model is georeferenced correctly on the map.
     const matrix = transformer.fromLatLngAltitude(mapOptions.center, 120);
-    camera.projectionMatrix = new THREE.Matrix4().fromArray(matrix);
+    camera.projectionMatrix = new Matrix4().fromArray(matrix);
     webglOverlayView.requestRedraw();
     renderer.render(scene, camera);
     // Sometimes it is necessary to reset the GL state.
-    renderer.state.reset();
+    renderer.resetState();
   };
   // [END maps_webgl_overlay_simple_on_draw]
   // [START maps_webgl_overlay_simple_add_to_map]

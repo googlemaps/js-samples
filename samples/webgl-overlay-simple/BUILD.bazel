@@ -15,4 +15,5 @@ load("//rules:sample.bzl", "sample")
 
 sample(
     name = "webgl-overlay-simple",
+    dependencies = ["three"],
 )

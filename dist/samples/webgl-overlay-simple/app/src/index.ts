@@ -16,6 +16,17 @@
 /* eslint-disable no-undef, @typescript-eslint/no-unused-vars, no-unused-vars */
 import "./style.css";
 
+import {
+  AmbientLight,
+  DirectionalLight,
+  Matrix4,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from "three";
+
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
 let map;
 
 const mapOptions = {
@@ -38,21 +49,20 @@ function initWebglOverlayView(map: google.maps.Map) {
 
   webglOverlayView.onAdd = () => {
     // Set up the scene.
-    // @ts-ignore THREE.js loaded from CDN
-    scene = new THREE.Scene();
-    // @ts-ignore THREE.js loaded from CDN
-    camera = new THREE.PerspectiveCamera();
-    // @ts-ignore THREE.js loaded from CDN
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.75); // Soft white light.
+
+    scene = new Scene();
+
+    camera = new PerspectiveCamera();
+
+    const ambientLight = new AmbientLight(0xffffff, 0.75); // Soft white light.
     scene.add(ambientLight);
-    // @ts-ignore THREE.js loaded from CDN
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
+
+    const directionalLight = new DirectionalLight(0xffffff, 0.25);
     directionalLight.position.set(0.5, -1, 0.5);
     scene.add(directionalLight);
 
     // Load the model.
-    // @ts-ignore THREE.js loaded from CDN
-    loader = new THREE.GLTFLoader();
+    loader = new GLTFLoader();
     const source =
       "https://raw.githubusercontent.com/googlemaps/js-samples/master/assets/pin.gltf";
     loader.load(source, (gltf) => {
@@ -63,10 +73,9 @@ function initWebglOverlayView(map: google.maps.Map) {
   };
 
   webglOverlayView.onContextRestored = (gl: WebGLRenderingContext) => {
-    // Create the three.js renderer, using the
+    // Create the js renderer, using the
     // maps's WebGL rendering context.
-    // @ts-ignore THREE.js loaded from CDN
-    renderer = new THREE.WebGLRenderer({
+    renderer = new WebGLRenderer({
       canvas: gl.canvas,
       context: gl,
       ...gl.getContextAttributes(),
@@ -96,14 +105,13 @@ function initWebglOverlayView(map: google.maps.Map) {
   webglOverlayView.onDraw = (gl: WebGLRenderingContext, transformer: any) => {
     // Update camera matrix to ensure the model is georeferenced correctly on the map.
     const matrix = transformer.fromLatLngAltitude(mapOptions.center, 120);
-    // @ts-ignore THREE.js loaded from CDN
-    camera.projectionMatrix = new THREE.Matrix4().fromArray(matrix);
+    camera.projectionMatrix = new Matrix4().fromArray(matrix);
 
     webglOverlayView.requestRedraw();
     renderer.render(scene, camera);
 
     // Sometimes it is necessary to reset the GL state.
-    renderer.state.reset();
+    renderer.resetState();
   };
   webglOverlayView.setMap(map);
 }
