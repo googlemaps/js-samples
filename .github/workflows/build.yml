@@ -37,13 +37,14 @@ jobs:
         run: |
           BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
           echo "${BAZEL_CACHE_SERVICE_ACCOUNT}" > "${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}"
-          echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc 
+          echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc
           echo "build --remote_http_cache=https://storage.googleapis.com/${BAZEL_CACHE_BUCKET}" >> .bazelrc
         env:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build --profile /tmp/bazel-profile-build.gz --jobs 8 //:public.tar
       - run: bazel build //samples/add-map:index.webpack.js
+      - run: bazel build //samples/programmatic-load-button:index.webpack.js
       - run: bazel test --jobs 8 ...
       - name: Upload Bazel profiles
         uses: actions/upload-artifact@v2
