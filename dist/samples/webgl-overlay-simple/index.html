@@ -40,7 +40,7 @@
             },
           },
           t = {};
-        e.r(t), e.d(t, { initMap: () => Vl });
+        e.r(t), e.d(t, { initMap: () => Wl });
         const n = 100,
           i = 1e3,
           r = 1001,
@@ -24714,68 +24714,144 @@
           const s = e.clone();
           return s.setIndex(r), s;
         }
-        let Gl;
-        const kl = {
+        class Gl {
+          constructor({
+            anchor: e = { lat: 0, lng: 0, altitude: 0 },
+            rotation: t = new Float32Array([0, 0, 0]),
+            scale: n = new Float32Array([1, 1, 1]),
+            scene: i = new kr(),
+            map: r,
+          }) {
+            (this.overlay = new google.maps.WebglOverlayView()),
+              (this.renderer = null),
+              (this.camera = null),
+              (this.anchor = e),
+              (this.rotation = t),
+              (this.scale = n),
+              (this.scene = i),
+              (this.scene.rotation.x = Math.PI / 2),
+              (this.overlay.onAdd = this.onAdd.bind(this)),
+              (this.overlay.onRemove = this.onRemove.bind(this)),
+              (this.overlay.onContextLost = this.onContextLost.bind(this)),
+              (this.overlay.onContextRestored =
+                this.onContextRestored.bind(this)),
+              (this.overlay.onDraw = this.onDraw.bind(this)),
+              (this.camera = new gn()),
+              r && this.setMap(r);
+          }
+          onAdd() {}
+          onRemove() {}
+          getMap() {
+            return this.overlay.getMap();
+          }
+          requestRedraw() {
+            this.overlay.requestRedraw();
+          }
+          setMap(e) {
+            this.overlay.setMap(e);
+          }
+          addListener(e, t) {
+            return this.overlay.addListener(e, t);
+          }
+          bindTo(e, t, n, i) {
+            this.overlay.bindTo(e, t, n, i);
+          }
+          get(e) {
+            return this.overlay.get(e);
+          }
+          notify(e) {
+            this.overlay.notify(e);
+          }
+          set(e, t) {
+            this.overlay.set(e, t);
+          }
+          setValues(e) {
+            this.overlay.setValues(e);
+          }
+          unbind(e) {
+            this.overlay.unbind(e);
+          }
+          unbindAll() {
+            this.overlay.unbindAll();
+          }
+          onContextRestored(e) {
+            (this.renderer = new Br(
+              Object.assign(
+                { canvas: e.canvas, context: e },
+                e.getContextAttributes()
+              )
+            )),
+              (this.renderer.autoClear = !1),
+              (this.renderer.autoClearDepth = !1),
+              (this.renderer.shadowMap.enabled = !0),
+              (this.renderer.shadowMap.type = 2),
+              (this.renderer.outputEncoding = A);
+            const { width: t, height: n, clientWidth: i } = e.canvas;
+            this.renderer.setPixelRatio(t / i), this.renderer.setSize(t, n, !1);
+          }
+          onContextLost() {}
+          onDraw(e, t) {
+            const { lat: n, lng: i, altitude: r } = this.anchor;
+            this.camera.projectionMatrix.fromArray(
+              t.fromLatLngAltitude(
+                { lat: n, lng: i },
+                r,
+                this.rotation,
+                this.scale
+              )
+            ),
+              e.disable(e.SCISSOR_TEST),
+              this.requestRedraw(),
+              this.renderer.render(this.scene, this.camera),
+              this.renderer.resetState();
+          }
+        }
+        let kl;
+        Math.PI;
+        const Vl = {
           tilt: 0,
           heading: 0,
           zoom: 18,
           center: { lat: 35.6594945, lng: 139.6999859 },
           mapId: "15431d2b469f209e",
         };
-        function Vl() {
+        function Wl() {
           const e = document.getElementById("map");
-          (Gl = new google.maps.Map(e, kl)),
-            (function (e) {
-              let t, n, i, r;
-              const s = new google.maps.WebglOverlayView();
-              (s.onAdd = () => {
-                (t = new kr()), (i = new gn());
-                const e = new To(16777215, 0.75);
-                t.add(e);
-                const n = new So(16777215, 0.25);
-                n.position.set(0.5, -1, 0.5), t.add(n), (r = new sl());
-                r.load(
-                  "https://raw.githubusercontent.com/googlemaps/js-samples/master/assets/pin.gltf",
-                  (e) => {
-                    e.scene.scale.set(10, 10, 10),
-                      (e.scene.rotation.x = Math.PI),
-                      t.add(e.scene);
+          kl = new google.maps.Map(e, Vl);
+          const t = new kr(),
+            n = new To(16777215, 0.75);
+          t.add(n);
+          const i = new So(16777215, 0.25);
+          i.position.set(0, 10, 50),
+            t.add(i),
+            new sl().load(
+              "https://raw.githubusercontent.com/googlemaps/js-samples/master/assets/pin.gltf",
+              (e) => {
+                e.scene.scale.set(10, 10, 10),
+                  (e.scene.rotation.x = Math.PI / 2),
+                  t.add(e.scene);
+                let { tilt: n, heading: i, zoom: r } = Vl;
+                const s = () => {
+                  if (n < 67.5) n += 0.5;
+                  else {
+                    if (!(i <= 360)) return;
+                    (i += 0.2), (r -= 5e-4);
                   }
-                );
-              }),
-                (s.onContextRestored = (t) => {
-                  (n = new Br({
-                    canvas: t.canvas,
-                    context: t,
-                    ...t.getContextAttributes(),
-                  })),
-                    (n.autoClear = !1),
-                    (r.manager.onLoad = () => {
-                      n.setAnimationLoop(() => {
-                        s.requestRedraw();
-                        const { tilt: t, heading: i, zoom: r } = kl;
-                        e.moveCamera({ tilt: t, heading: i, zoom: r }),
-                          kl.tilt < 67.5
-                            ? (kl.tilt += 0.5)
-                            : kl.heading <= 360
-                            ? ((kl.heading += 0.2), (kl.zoom -= 5e-4))
-                            : n.setAnimationLoop(null);
-                      });
-                    });
-                }),
-                (s.onDraw = (e, r) => {
-                  const a = r.fromLatLngAltitude(kl.center, 120);
-                  (i.projectionMatrix = new Ie().fromArray(a)),
-                    s.requestRedraw(),
-                    n.render(t, i),
-                    n.resetState();
-                }),
-                s.setMap(e);
-            })(Gl);
+                  kl.moveCamera({ tilt: n, heading: i, zoom: r }),
+                    requestAnimationFrame(s);
+                };
+                requestAnimationFrame(s);
+              }
+            ),
+            new Gl({
+              map: kl,
+              scene: t,
+              anchor: { ...Vl.center, altitude: 100 },
+            });
         }
-        var Wl = window;
-        for (var jl in t) Wl[jl] = t[jl];
-        t.__esModule && Object.defineProperty(Wl, "__esModule", { value: !0 });
+        var jl = window;
+        for (var ql in t) jl[ql] = t[ql];
+        t.__esModule && Object.defineProperty(jl, "__esModule", { value: !0 });
       })();
     </script>
   </head>
