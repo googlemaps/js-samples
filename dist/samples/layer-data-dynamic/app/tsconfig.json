@@ -4,6 +4,7 @@
     "target": "esnext",
     "strict": true,
     "noImplicitAny": false,
-    "lib": ["esnext", "es6", "dom", "dom.iterable"]
+    "lib": ["esnext", "es6", "dom", "dom.iterable"],
+    "moduleResolution": "Node"
   }
 }

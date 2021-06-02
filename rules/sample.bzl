@@ -29,6 +29,7 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
         "@npm//webpack-cli",
         # loaders
         "@npm//babel-loader",
+        "@npm//@babel/preset-env",
         "@npm//ts-loader",
         "@npm//css-loader",
         "@npm//string-replace-loader",
@@ -71,13 +72,6 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
               "sed 's/export {.*};//g' $@ > $$tmp && cat $$tmp > $@; " +
               "sed '/^\\s*\\/\\/ @ts-.*/d' $@ > $$tmp && cat $$tmp > $@; " +
               "sed 's/\\/\\/ @ts-.*//g' $@ > $$tmp && cat $$tmp > $@; ",
-    )
-
-    native.genrule(
-        name = "dev_js",
-        srcs = [":compiled.js"],
-        outs = ["dev.js"],
-        cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location compiled.js) > $@; ",
     )
 
     native.genrule(
@@ -515,7 +509,7 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
 
     concatjs_devserver(
         name = "devserver",
-        deps = [":dev.js"],
+        deps = [":iframe.js"],
         serving_path = "/index.js",
         static_files = [":index.html", ":style.css"],
         port = 8080,

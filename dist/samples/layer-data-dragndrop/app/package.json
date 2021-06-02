@@ -20,6 +20,7 @@
     "dev": "webpack serve --config  ./webpack.config.js --mode development"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.14.2",
     "@types/google.maps": "^3.44.6",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.2.4",

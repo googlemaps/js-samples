@@ -6,13 +6,13 @@ exports_files(glob(["**/*"]))
 FILES = [
     # JS
     "index.js",
-    "jsfiddle.js",
+    # "jsfiddle.js",
     # CSS
     "style.css",
     # HTML
-    "jsfiddle.html",
+    # "jsfiddle.html",
     "sample.html",
-    "inline.html",
+    # "inline.html",
 ]
 
 [

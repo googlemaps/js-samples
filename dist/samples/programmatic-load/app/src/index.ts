@@ -16,10 +16,9 @@
 /* eslint-disable no-undef, @typescript-eslint/no-unused-vars, no-unused-vars */
 import "./style.css";
 
-let map: google.maps.Map;
+import { Loader } from "@googlemaps/js-api-loader";
 
-// @ts-ignore google.maps.plugins
-const Loader = google.maps.plugins.loader.Loader;
+let map: google.maps.Map;
 
 const additionalOptions = {};
 const loader = new Loader({
