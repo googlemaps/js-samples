@@ -43,6 +43,15 @@ jobs:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build --profile /tmp/bazel-profile-build.gz --jobs 8 //:public.tar
+      - name: Update dist
+        run: |
+          npm run build
+          git config --global user.name 'googlemaps-bot'
+          git config --global user.email 'googlemaps-bot@users.noreply.github.com'
+          git add dist
+          git commit -m "chore: update dist folder [skip ci]" || true
+          git status
+          # git push
       - run: bazel build //samples/add-map:index.webpack.js
       - run: bazel build //samples/programmatic-load-button:index.webpack.js
       - run: bazel test --jobs 8 ...
