@@ -24,7 +24,7 @@ function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
-      zoom: 4,
+      zoom: 6,
       center: uluru,
     }
   );
