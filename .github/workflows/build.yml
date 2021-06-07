@@ -23,6 +23,8 @@ jobs:
       GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
       - uses: actions/cache@v1
         id: cache
         with:
@@ -51,13 +53,10 @@ jobs:
           git config --global user.email 'googlemaps-bot@google.com'
           git add dist
           git commit -m "chore: update dist folder" || true
-          git push origin || echo "::set-output name=dirty::true"
+          git push origin
       - run: bazel build //samples/add-map:index.webpack.js
-        if: "!steps.update.outputs.dirty"
       - run: bazel build //samples/programmatic-load-button:index.webpack.js
-        if: "!steps.update.outputs.dirty"
       - run: bazel test --jobs 8 ...
-        if: "!steps.update.outputs.dirty"
       - name: Upload Bazel profiles
         uses: actions/upload-artifact@v2
         with:
