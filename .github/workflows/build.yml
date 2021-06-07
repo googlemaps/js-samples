@@ -48,7 +48,7 @@ jobs:
         run: |
           npm run build
           git config --global user.name 'googlemaps-bot'
-          git config --global user.email 'googlemaps-bot@users.noreply.github.com'
+          git config --global user.email 'googlemaps-bot@google.com'
           git add dist
           git commit -m "chore: update dist folder" || true
           git push origin || echo "::set-output name=dirty::true"
