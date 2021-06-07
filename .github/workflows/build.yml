@@ -24,7 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # required otherwise GitHub blocks infinite loops in pushes originating in an action
       - uses: actions/cache@v1
         id: cache
         with:
