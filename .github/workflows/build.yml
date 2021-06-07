@@ -44,17 +44,20 @@ jobs:
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
       - run: bazel build --profile /tmp/bazel-profile-build.gz --jobs 8 //:public.tar
       - name: Update dist
+        id: update
         run: |
           npm run build
           git config --global user.name 'googlemaps-bot'
           git config --global user.email 'googlemaps-bot@users.noreply.github.com'
           git add dist
-          git commit -m "chore: update dist folder [skip ci]" || true
-          git status
-          git push origin
+          git commit -m "chore: update dist folder" || true
+          git push origin || echo "::set-output name=dirty::true"
       - run: bazel build //samples/add-map:index.webpack.js
+        if: !steps.update.outputs.dirty
       - run: bazel build //samples/programmatic-load-button:index.webpack.js
+        if: !steps.update.outputs.dirty
       - run: bazel test --jobs 8 ...
+        if: !steps.update.outputs.dirty
       - name: Upload Bazel profiles
         uses: actions/upload-artifact@v2
         with:
