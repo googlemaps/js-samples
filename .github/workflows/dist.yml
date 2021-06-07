@@ -1,0 +1,62 @@
+# Copyright 2020 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Update dist
+on:
+  push:
+    branches:
+      - '**'        # matches every branch
+      - '!master'   # excludes master
+      - '!main'   # excludes master
+jobs:
+  update:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+      - uses: actions/cache@v1
+        id: cache
+        with:
+          path: .cache
+          key: default-${{ hashFiles('WORKSPACE') }}
+          restore-keys: |
+            default-
+      - name: Setup Bazel
+        uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
+      - run: bazel version
+      - name: Setup Bazel Cache
+        run: |
+          BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
+          echo "${BAZEL_CACHE_SERVICE_ACCOUNT}" > "${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}"
+          echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc
+          echo "build --remote_http_cache=https://storage.googleapis.com/${BAZEL_CACHE_BUCKET}" >> .bazelrc
+        env:
+          BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
+          BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
+      - run: bazel build --jobs 8 //:public.tar
+      - run: bazel test ...
+      - name: Update dist
+        run: |
+          rm -rf dist/samples && mkdir -p dist/samples
+          tar -xf bazel-bin/public.tar -C dist
+          git config --global user.name 'googlemaps-bot'
+          git config --global user.email 'googlemaps-bot@users.noreply.github.com'
+          git add dist
+          git commit -m "chore: update dist folder [skip ci]" || true
+          git status
+          # git push origin
