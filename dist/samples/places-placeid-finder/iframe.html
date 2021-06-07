@@ -75,14 +75,14 @@
         t = document.getElementById("pac-input"),
         o = new google.maps.places.Autocomplete(t);
       o.bindTo("bounds", e),
-        o.setFields(["place_id", "geometry", "name"]),
+        o.setFields(["place_id", "geometry", "formatted_address", "name"]),
         e.controls[google.maps.ControlPosition.TOP_LEFT].push(t);
       const n = new google.maps.InfoWindow(),
         a = document.getElementById("infowindow-content");
       n.setContent(a);
-      const l = new google.maps.Marker({ map: e });
-      l.addListener("click", () => {
-        n.open(e, l);
+      const d = new google.maps.Marker({ map: e });
+      d.addListener("click", () => {
+        n.open(e, d);
       }),
         o.addListener("place_changed", () => {
           n.close();
@@ -92,13 +92,13 @@
             (t.geometry.viewport
               ? e.fitBounds(t.geometry.viewport)
               : (e.setCenter(t.geometry.location), e.setZoom(17)),
-            l.setPlace({ placeId: t.place_id, location: t.geometry.location }),
-            l.setVisible(!0),
+            d.setPlace({ placeId: t.place_id, location: t.geometry.location }),
+            d.setVisible(!0),
             (a.children.namedItem("place-name").textContent = t.name),
             (a.children.namedItem("place-id").textContent = t.place_id),
             (a.children.namedItem("place-address").textContent =
               t.formatted_address),
-            n.open(e, l));
+            n.open(e, d));
         });
     }
     e.r(t), e.d(t, { initMap: () => o });

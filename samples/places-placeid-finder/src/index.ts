@@ -39,7 +39,7 @@ function initMap(): void {
   autocomplete.bindTo("bounds", map);
 
   // Specify just the place data fields that you need.
-  autocomplete.setFields(["place_id", "geometry", "name"]);
+  autocomplete.setFields(["place_id", "geometry", "formatted_address", "name"]);
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
