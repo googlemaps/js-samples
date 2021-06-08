@@ -2,6 +2,7 @@
 ![Release](https://github.com/googlemaps/js-samples/workflows/Release/badge.svg)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/js-samples)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
+[![Discord](https://img.shields.io/discord/676948200904589322?color=6A7EC2&logo=discord&logoColor=ffffff)](https://discord.gg/jRteCzP)
 
 # js-samples
 
