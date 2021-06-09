@@ -1,9 +1,10 @@
 {
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {
-    "ecmaVersion": "2018",
-    "sourceType": "module"
+    "sourceType": "module",
+    "requireConfigFile": false
   },
+  "parser": "@babel/eslint-parser",
   "globals": {
     "google": "writable",
     "deck": "readonly",
