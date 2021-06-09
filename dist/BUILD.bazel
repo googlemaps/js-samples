@@ -24,12 +24,7 @@ FILES = [
                 expected = "//dist:samples/{}/{}".format(sample, file),
             )
             for file in FILES
-        ],
-        diff_test(
-            name = "{}_{}_test".format(sample, "index.html"),
-            actual = "//samples/{}:github.html".format(sample),
-            expected = "//dist:samples/{}/index.html".format(sample),
-        ),
+        ]
     ]
     for sample in SAMPLES
 ]
