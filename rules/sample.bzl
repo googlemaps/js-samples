@@ -1,7 +1,6 @@
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary")
 load("//rules:nunjucks.bzl", "nunjucks")
 load("//rules:prettier.bzl", "prettier")
-load("//rules:tags.bzl", "tags_test")
 load("//rules:js_test.bzl", "js_test")
 load("//rules:package.bzl", "package")
 load("//rules:template.bzl", "template_file")
@@ -482,11 +481,6 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
         srcs = ["src/index.ts", "src/style.scss", "src/index.njk"],
         visibility = ["//visibility:public"],
     )
-
-    tags_test(name = "test_tags_js", file = ":index.js")
-    tags_test(name = "test_tags_ts", file = ":src/index.ts")
-    tags_test(name = "test_tags_css", file = ":style.css")
-    tags_test(name = "test_tags_html", file = ":sample.html")
 
     js_test(name = "test_index_js", file = ":index.js")
     js_test(name = "test_app_ts", file = ":app_ts")
