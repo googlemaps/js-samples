@@ -25,6 +25,9 @@ function initMap() {
   // The custom USGSOverlay object contains the USGS image,
   // the bounds of the image, and a reference to the map.
   class USGSOverlay extends google.maps.OverlayView {
+    bounds_;
+    image_;
+    div_;
     constructor(bounds, image) {
       super();
       // Initialize all properties.

@@ -19,10 +19,10 @@
     "use strict";
     var e = {
         d: (t, i) => {
-          for (var s in i)
-            e.o(i, s) &&
-              !e.o(t, s) &&
-              Object.defineProperty(t, s, { enumerable: !0, get: i[s] });
+          for (var o in i)
+            e.o(i, o) &&
+              !e.o(t, o) &&
+              Object.defineProperty(t, o, { enumerable: !0, get: i[o] });
         },
         o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
         r: (e) => {
@@ -33,19 +33,22 @@
         },
       },
       t = {};
-    e.r(t), e.d(t, { initMap: () => s });
+    e.r(t), e.d(t, { initMap: () => o });
     class i {
+      map_;
+      polys_ = [];
+      difficulty_ = "Easy";
+      count_ = 0;
+      pieceDiv_;
+      timeDiv_;
+      dataLoaded_ = !1;
+      NUM_PIECES_ = 10;
+      countries_ = [];
+      timer_ = 0;
+      START_COLOR_ = "#3c79de";
+      END_COLOR_ = "#037e29";
       constructor(e) {
-        (this.polys_ = []),
-          (this.difficulty_ = "Easy"),
-          (this.count_ = 0),
-          (this.dataLoaded_ = !1),
-          (this.NUM_PIECES_ = 10),
-          (this.countries_ = []),
-          (this.timer_ = 0),
-          (this.START_COLOR_ = "#3c79de"),
-          (this.END_COLOR_ = "#037e29"),
-          (this.map_ = e),
+        (this.map_ = e),
           (this.pieceDiv_ = document.createElement("div")),
           (this.timeDiv_ = document.createElement("div")),
           this.createMenu_(),
@@ -62,10 +65,10 @@
           (t.innerText = "Game Options");
         const i = document.createElement("div");
         (i.innerText = "PIECE:"), (i.style.fontWeight = "800");
-        const s = this.pieceDiv_;
-        s.innerText = "0 / " + this.NUM_PIECES_;
-        const o = document.createElement("div");
-        (o.innerText = "TIME:"), (o.style.fontWeight = "800");
+        const o = this.pieceDiv_;
+        o.innerText = "0 / " + this.NUM_PIECES_;
+        const s = document.createElement("div");
+        (s.innerText = "TIME:"), (s.style.fontWeight = "800");
         const n = this.timeDiv_;
         n.innerText = "0.0 seconds";
         const r = document.createElement("div");
@@ -87,8 +90,8 @@
           (l.onclick = this.resetGame_.bind(this)),
           e.appendChild(t),
           e.appendChild(i),
-          e.appendChild(s),
           e.appendChild(o),
+          e.appendChild(s),
           e.appendChild(n),
           e.appendChild(r),
           e.appendChild(a),
@@ -229,9 +232,9 @@
             new google.maps.LatLng(e[0][0], e[0][1]),
             new google.maps.LatLng(e[1][0], e[1][1])
           ),
-          s = t.getPaths().getArray();
-        for (let e = 0; e < s.length; e++) {
-          const t = s[e].getArray();
+          o = t.getPaths().getArray();
+        for (let e = 0; e < o.length; e++) {
+          const t = o[e].getArray();
           for (let e = 0; e < t.length; e++) if (!i.contains(t[e])) return !1;
         }
         return !0;
@@ -257,7 +260,7 @@
         this.polys_ = [];
       }
     }
-    function s() {
+    function o() {
       const e = new google.maps.Map(document.getElementById("map"), {
         disableDefaultUI: !0,
         center: { lat: 10, lng: 60 },
@@ -265,9 +268,9 @@
       });
       new i(e);
     }
-    var o = window;
-    for (var n in t) o[n] = t[n];
-    t.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
+    var s = window;
+    for (var n in t) s[n] = t[n];
+    t.__esModule && Object.defineProperty(s, "__esModule", { value: !0 });
   })();
 </script>
 

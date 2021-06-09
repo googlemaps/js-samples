@@ -84,6 +84,12 @@
     }
     e.r(t), e.d(t, { initMap: () => o });
     class i {
+      map;
+      originPlaceId;
+      destinationPlaceId;
+      travelMode;
+      directionsService;
+      directionsRenderer;
       constructor(e) {
         (this.map = e),
           (this.originPlaceId = ""),

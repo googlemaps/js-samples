@@ -35,6 +35,8 @@ nodejs_binary(
 nodejs_binary(
     name = "eslint",
     data = [
+        "@npm//@babel/core",
+        "@npm//@babel/eslint-parser",
         "@npm//eslint",
         "@npm//eslint-config-prettier",
         "@npm//eslint-plugin-jest",
@@ -46,6 +48,7 @@ nodejs_binary(
     ],
     entry_point = "@npm//:node_modules/eslint/bin/eslint.js",
     visibility = ["//visibility:public"],
+    templated_args = ["--bazel_patch_module_resolver"],
 )
 
 nodejs_binary(

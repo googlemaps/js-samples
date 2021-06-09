@@ -50,9 +50,11 @@
               new google.maps.LatLng(62.400471, -150.005608)
             );
           class i extends google.maps.OverlayView {
+            bounds_;
+            image_;
+            div_;
             constructor(e, t) {
               super(),
-                (this.PRESERVE_COMMENT_ABOVE = 1),
                 (this.bounds_ = e),
                 (this.image_ = t),
                 (this.div_ = null);
@@ -85,6 +87,7 @@
                 (this.div_.parentNode.removeChild(this.div_),
                 (this.div_ = null));
             }
+            PRESERVE_COMMENT_ABOVE = 1;
           }
           new i(
             t,

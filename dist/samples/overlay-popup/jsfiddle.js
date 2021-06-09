@@ -11,6 +11,8 @@ function initMap() {
    * A customized popup on the map.
    */
   class Popup extends google.maps.OverlayView {
+    position;
+    containerDiv;
     constructor(position, content) {
       super();
       this.position = position;
