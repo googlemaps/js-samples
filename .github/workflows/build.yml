@@ -13,25 +13,18 @@
 # limitations under the License.
 
 name: Build
-
 on:
   - push
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GOOGLE_MAPS_JS_SAMPLES_KEY: "${{ secrets.GOOGLE_MAPS_JS_SAMPLES_KEY }}"
     steps:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # required otherwise GitHub blocks infinite loops in pushes originating in an action
-      - uses: actions/cache@v1
-        id: cache
-        with:
-          path: .cache
-          key: default-${{ hashFiles('WORKSPACE') }}
-          restore-keys: |
-            default-
+        if: github.actor != 'dependabot[bot]'
+      - uses: actions/checkout@v2
+        if: github.actor == 'dependabot[bot]'
       - name: Setup Bazel
         uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
       - run: bazel version
@@ -44,7 +37,7 @@ jobs:
         env:
           BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
           BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-        if: github.actor!= 'dependabot[bot]'
+        if: github.actor != 'dependabot[bot]'
       - run: bazel build --profile /tmp/bazel-profile-build.gz --jobs 8 //:public.tar
       - name: Update dist
         id: update
