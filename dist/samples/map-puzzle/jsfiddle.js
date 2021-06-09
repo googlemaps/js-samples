@@ -1,14 +1,17 @@
 class PuzzleDemo {
+  map_;
+  polys_ = [];
+  difficulty_ = "Easy";
+  count_ = 0;
+  pieceDiv_;
+  timeDiv_;
+  dataLoaded_ = false;
+  NUM_PIECES_ = 10;
+  countries_ = [];
+  timer_ = 0;
+  START_COLOR_ = "#3c79de";
+  END_COLOR_ = "#037e29";
   constructor(map) {
-    this.polys_ = [];
-    this.difficulty_ = "Easy";
-    this.count_ = 0;
-    this.dataLoaded_ = false;
-    this.NUM_PIECES_ = 10;
-    this.countries_ = [];
-    this.timer_ = 0;
-    this.START_COLOR_ = "#3c79de";
-    this.END_COLOR_ = "#037e29";
     this.map_ = map;
     this.pieceDiv_ = document.createElement("div");
     this.timeDiv_ = document.createElement("div");

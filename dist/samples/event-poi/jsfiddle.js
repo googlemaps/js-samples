@@ -12,6 +12,13 @@ function isIconMouseEvent(e) {
 }
 
 class ClickEventHandler {
+  origin;
+  map;
+  directionsService;
+  directionsRenderer;
+  placesService;
+  infowindow;
+  infowindowContent;
   constructor(map, origin) {
     this.origin = origin;
     this.map = map;

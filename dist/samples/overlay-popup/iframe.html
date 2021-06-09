@@ -71,10 +71,10 @@
     "use strict";
     var e = {
         d: (t, n) => {
-          for (var o in n)
-            e.o(n, o) &&
-              !e.o(t, o) &&
-              Object.defineProperty(t, o, { enumerable: !0, get: n[o] });
+          for (var i in n)
+            e.o(n, i) &&
+              !e.o(t, i) &&
+              Object.defineProperty(t, i, { enumerable: !0, get: n[i] });
         },
         o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
         r: (e) => {
@@ -85,21 +85,23 @@
         },
       },
       t = {};
-    let n, o;
-    function i() {
+    let n, i;
+    function o() {
       n = new google.maps.Map(document.getElementById("map"), {
         center: { lat: -33.9, lng: 151.1 },
         zoom: 10,
       });
       class e extends google.maps.OverlayView {
+        position;
+        containerDiv;
         constructor(t, n) {
           super(), (this.position = t), n.classList.add("popup-bubble");
-          const o = document.createElement("div");
-          o.classList.add("popup-bubble-anchor"),
-            o.appendChild(n),
+          const i = document.createElement("div");
+          i.classList.add("popup-bubble-anchor"),
+            i.appendChild(n),
             (this.containerDiv = document.createElement("div")),
             this.containerDiv.classList.add("popup-container"),
-            this.containerDiv.appendChild(o),
+            this.containerDiv.appendChild(i),
             e.preventMapHitsAndGesturesFrom(this.containerDiv);
         }
         onAdd() {
@@ -119,13 +121,13 @@
               (this.containerDiv.style.display = t);
         }
       }
-      (o = new e(
+      (i = new e(
         new google.maps.LatLng(-33.866, 151.196),
         document.getElementById("content")
       )),
-        o.setMap(n);
+        i.setMap(n);
     }
-    e.r(t), e.d(t, { initMap: () => i });
+    e.r(t), e.d(t, { initMap: () => o });
     var a = window;
     for (var s in t) a[s] = t[s];
     t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });

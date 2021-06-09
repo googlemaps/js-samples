@@ -6,6 +6,8 @@ const chicago = { lat: 41.85, lng: -87.65 };
  * Chicago.
  */
 class CenterControl {
+  map_;
+  center_;
   constructor(controlDiv, map, center) {
     this.map_ = map;
     // Set the center property upon construction

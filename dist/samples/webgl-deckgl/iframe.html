@@ -67,6 +67,10 @@
       const r = document.getElementById("tooltip"),
         i = { click: null, dblclick: null, mousemove: null, mouseout: null };
       class l extends google.maps.WebglOverlayView {
+        canvas;
+        deck;
+        layers_;
+        props;
         constructor(e, t, o = {}) {
           super(),
             (this.deck = null),

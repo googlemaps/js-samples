@@ -20,6 +20,9 @@ function initMap() {
    * the bounds of the image, and a reference to the map.
    */
   class USGSOverlay extends google.maps.OverlayView {
+    bounds;
+    image;
+    div;
     constructor(bounds, image) {
       super();
       this.bounds = bounds;

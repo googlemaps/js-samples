@@ -27,10 +27,11 @@
        * Try panning and zooming the map to see how the coordinates change.
        */
       class CoordMapType {
+        tileSize;
+        maxZoom = 19;
+        name = "Tile #s";
+        alt = "Tile Coordinate Map Type";
         constructor(tileSize) {
-          this.maxZoom = 19;
-          this.name = "Tile #s";
-          this.alt = "Tile Coordinate Map Type";
           this.tileSize = tileSize;
         }
         getTile(coord, zoom, ownerDocument) {

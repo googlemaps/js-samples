@@ -22,9 +22,11 @@ function initMap() {
    * the bounds of the image, and a reference to the map.
    */
   class USGSOverlay extends google.maps.OverlayView {
+    bounds;
+    image;
+    div;
     constructor(bounds, image) {
       super();
-      // [END maps_overlay_hideshow_hideshowtoggle]
       this.bounds = bounds;
       this.image = image;
     }
@@ -118,6 +120,7 @@ function initMap() {
         this.setMap(map);
       }
     }
+    // [END maps_overlay_hideshow_hideshowtoggle]
   }
   // [START maps_overlay_hideshow_init]
   const overlay = new USGSOverlay(bounds, image);

@@ -26,10 +26,12 @@ function initMap() {
   // The custom USGSOverlay object contains the USGS image,
   // the bounds of the image, and a reference to the map.
   class USGSOverlay extends google.maps.OverlayView {
+    bounds_;
+    image_;
+    div_;
     // [START maps_overlay_simple_region_constructor]
     constructor(bounds, image) {
       super();
-      // [END maps_overlay_simple_region_removal]
       // Initialize all properties.
       this.bounds_ = bounds;
       this.image_ = image;
@@ -97,6 +99,7 @@ function initMap() {
         this.div_ = null;
       }
     }
+    // [END maps_overlay_simple_region_removal]
   }
   const overlay = new USGSOverlay(bounds, srcImage);
   overlay.setMap(map);

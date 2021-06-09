@@ -24,6 +24,8 @@ function initialize() {
    * A menu that lets a user delete a selected vertex of a path.
    */
   class DeleteMenu extends google.maps.OverlayView {
+    div_;
+    divListener_;
     constructor() {
       super();
       this.div_ = document.createElement("div");

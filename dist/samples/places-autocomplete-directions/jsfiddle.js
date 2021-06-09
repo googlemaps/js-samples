@@ -12,6 +12,12 @@ function initMap() {
 }
 
 class AutocompleteDirectionsHandler {
+  map;
+  originPlaceId;
+  destinationPlaceId;
+  travelMode;
+  directionsService;
+  directionsRenderer;
   constructor(map) {
     this.map = map;
     this.originPlaceId = "";

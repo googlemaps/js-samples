@@ -10,6 +10,7 @@
  * Try panning and zooming the map to see how the coordinates change.
  */
 class CoordMapType {
+  tileSize;
   constructor(tileSize) {
     this.tileSize = tileSize;
   }

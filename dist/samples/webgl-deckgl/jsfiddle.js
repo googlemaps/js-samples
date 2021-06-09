@@ -37,6 +37,10 @@ function initMap() {
   };
 
   class DeckGLOverlay extends google.maps.WebglOverlayView {
+    canvas;
+    deck;
+    layers_;
+    props;
     constructor(canvas, layers, props = {}) {
       super();
       this.deck = null;

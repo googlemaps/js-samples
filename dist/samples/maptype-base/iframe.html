@@ -35,11 +35,12 @@
       t = {};
     e.r(t), e.d(t, { initMap: () => r });
     class o {
+      tileSize;
+      maxZoom = 19;
+      name = "Tile #s";
+      alt = "Tile Coordinate Map Type";
       constructor(e) {
-        (this.maxZoom = 19),
-          (this.name = "Tile #s"),
-          (this.alt = "Tile Coordinate Map Type"),
-          (this.tileSize = e);
+        this.tileSize = e;
       }
       getTile(e, t, o) {
         const r = o.createElement("div");
@@ -75,7 +76,7 @@
         e.mapTypes.set("coordinate", new o(new google.maps.Size(256, 256)));
     }
     var i = window;
-    for (var n in t) i[n] = t[n];
+    for (var l in t) i[l] = t[l];
     t.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
   })();
 </script>

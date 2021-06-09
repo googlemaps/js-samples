@@ -69,11 +69,11 @@
             "https://developers.google.com/maps/documentation/javascript/";
           i += "examples/full/images/talkeetna.png";
           class o extends google.maps.OverlayView {
+            bounds;
+            image;
+            div;
             constructor(t, e) {
-              super(),
-                (this.PRESERVE_COMMENT_ABOVE = 1),
-                (this.bounds = t),
-                (this.image = e);
+              super(), (this.bounds = t), (this.image = e);
             }
             onAdd() {
               (this.div = document.createElement("div")),
@@ -117,6 +117,7 @@
             toggleDOM(t) {
               this.getMap() ? this.setMap(null) : this.setMap(t);
             }
+            PRESERVE_COMMENT_ABOVE = 1;
           }
           const s = new o(
             e,
