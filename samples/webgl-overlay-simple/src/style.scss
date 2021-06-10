@@ -19,4 +19,7 @@
  /* [START maps_webgl_overlay_simple] */
  @include meta.load-css("../../../shared/scss/default.scss");
  
+ #map {
+     pointer-events: none;
+ }
  /* [END maps_webgl_overlay_simple] */
