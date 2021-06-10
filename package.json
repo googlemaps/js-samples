@@ -49,6 +49,8 @@
     "@bazel/ibazel": "^0.15.10",
     "@bazel/rollup": "3.5.1",
     "@bazel/typescript": "3.5.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@googlemaps/js-api-loader": "^1.11.4",
     "@googlemaps/three": "0.0.0",
     "@material/select": "^11.0.0",
