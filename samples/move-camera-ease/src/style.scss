@@ -16,7 +16,7 @@
 
  @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
- /* [START maps_webgl_overlay_simple] */
+ /* [START maps_move_camera_ease] */
  @include meta.load-css("../../../shared/scss/default.scss");
  
- /* [END maps_webgl_overlay_simple] */
+ /* [END maps_move_camera_ease] */
