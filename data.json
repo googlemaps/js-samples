@@ -116,6 +116,7 @@
     "Custom Symbols (Marker)": "marker-symbol-custom",
     "Predefined Symbols (Marker)": "marker-symbol-predefined",
     "Maximum Zoom Imagery Service": "maxzoom-simple",
+    "Move Camera Ease": "move-camera-ease",
     "Using MySQL and PHP with Google Maps": "mysql-to-maps",
     "Showing/Hiding Overlays": "overlay-hideshow",
     "Custom Popups": "overlay-popup",
