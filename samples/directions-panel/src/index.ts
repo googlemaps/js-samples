@@ -23,7 +23,7 @@ function initMap(): void {
     {
       zoom: 7,
       center: { lat: 41.85, lng: -87.65 },
-      disableDefaultUi: true,
+      disableDefaultUI: true,
     }
   );
   directionsRenderer.setMap(map);
