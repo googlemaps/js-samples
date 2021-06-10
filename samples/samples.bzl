@@ -119,7 +119,6 @@ SAMPLES = [
     "marker-symbol-predefined",
     "maxzoom-simple",
     "move-camera-ease",
-    "mysql-to-maps",
     "overlay-hideshow",
     "overlay-popup",
     "overlay-remove",
