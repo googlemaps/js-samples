@@ -638,13 +638,13 @@
         tilt: 0,
         heading: 0,
         zoom: 3,
-        center: { lat: 29.9773, lng: 31.1325 },
+        center: { lat: 35.6594945, lng: 139.6999859 },
       },
       c = { ...d, mapId: "15431d2b469f209e" };
     function f() {
       (l = new google.maps.Map(document.getElementById("map"), c)),
         new h(d)
-          .to({ tilt: 65, heading: -90, zoom: 18 }, 15e3)
+          .to({ tilt: 65, heading: 90, zoom: 18 }, 15e3)
           .easing(n.Quadratic.Out)
           .onUpdate(() => {
             l.moveCamera(d);

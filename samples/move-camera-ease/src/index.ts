@@ -23,7 +23,7 @@ const cameraOptions: google.maps.CameraOptions = {
   tilt: 0,
   heading: 0,
   zoom: 3,
-  center: { lat: 29.9773, lng: 31.1325 },
+  center: { lat: 35.6594945, lng: 139.6999859 },
 };
 
 const mapOptions = {
@@ -39,7 +39,7 @@ function initMap(): void {
 
   // install Tweenjs with npm i @tweenjs/tween.js
   new Tween(cameraOptions) // Create a new tween that modifies 'cameraOptions'.
-    .to({ tilt: 65, heading: -90, zoom: 18 }, 15000) // Move to destination in 15 second.
+    .to({ tilt: 65, heading: 90, zoom: 18 }, 15000) // Move to destination in 15 second.
     .easing(Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
     .onUpdate(() => {
       map.moveCamera(cameraOptions);
