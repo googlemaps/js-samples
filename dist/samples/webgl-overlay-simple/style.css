@@ -13,4 +13,8 @@ body {
   padding: 0;
 }
 
+#map {
+  pointer-events: none;
+}
+
 /* [END maps_webgl_overlay_simple] */

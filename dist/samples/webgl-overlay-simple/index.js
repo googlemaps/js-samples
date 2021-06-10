@@ -9,6 +9,10 @@ const mapOptions = {
   zoom: 18,
   center: { lat: 35.6594945, lng: 139.6999859 },
   mapId: "15431d2b469f209e",
+  // disable interactions due to animation loop and moveCamera
+  disableDefaultUI: true,
+  gestureHandling: "none",
+  keyboardShortcuts: false,
 };
 
 function initMap() {
