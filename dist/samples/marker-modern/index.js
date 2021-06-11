@@ -2,14 +2,14 @@
 import { faBus } from "@fortawesome/free-solid-svg-icons";
 
 function initMap() {
-  const center = { lat: 0, lng: 0 };
+  const center = { lat: 36.6163, lng: -100.605 };
   const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 9,
+    zoom: 15,
     center,
   });
   // use a FontAwesome svg
   new google.maps.Marker({
-    position: { lat: 0, lng: 0 },
+    position: { lat: 36.6163, lng: -100.61 },
     map,
     icon: {
       path: faBus.icon[4],
@@ -27,7 +27,7 @@ function initMap() {
   });
   // use a Material Icon as font
   new google.maps.Marker({
-    position: { lat: 0.2, lng: 0 },
+    position: { lat: 36.6163, lng: -100.6 },
     map,
     label: {
       text: "\ue530",
