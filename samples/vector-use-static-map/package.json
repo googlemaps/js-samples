@@ -1,8 +1,0 @@
-{
-  "name": "vector-use-static-map",
-  "title": "Vector Initial Static Map",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "vector_use_static_map"
-}
