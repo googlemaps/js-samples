@@ -4,6 +4,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 7,
     center: { lat: 41.85, lng: -87.65 },
+    disableDefaultUI: true,
   });
   directionsRenderer.setMap(map);
   directionsRenderer.setPanel(document.getElementById("right-panel"));

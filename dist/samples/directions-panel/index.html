@@ -111,12 +111,13 @@
             o = new google.maps.Map(document.getElementById("map"), {
               zoom: 7,
               center: { lat: 41.85, lng: -87.65 },
+              disableDefaultUI: !0,
             });
           e.setMap(o), e.setPanel(document.getElementById("right-panel"));
           const n = document.getElementById("floating-panel");
           (n.style.display = "block"),
             o.controls[google.maps.ControlPosition.TOP_CENTER].push(n);
-          const r = function () {
+          const l = function () {
             !(function (e, t) {
               const o = document.getElementById("start").value,
                 n = document.getElementById("end").value;
@@ -134,12 +135,12 @@
               );
             })(t, e);
           };
-          document.getElementById("start").addEventListener("change", r),
-            document.getElementById("end").addEventListener("change", r);
+          document.getElementById("start").addEventListener("change", l),
+            document.getElementById("end").addEventListener("change", l);
         }
         e.r(t), e.d(t, { initMap: () => o });
         var n = window;
-        for (var r in t) n[r] = t[r];
+        for (var l in t) n[l] = t[l];
         t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
       })();
     </script>
