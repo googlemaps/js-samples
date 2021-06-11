@@ -1,8 +1,0 @@
-{
-  "title": "Map Events Explorer",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "map_events",
-  "name": "map-events"
-}
