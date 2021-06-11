@@ -56,7 +56,10 @@
       document.getElementById("submit").addEventListener("click", () => {
         !(function (e, o) {
           e.geocode(
-            { componentRestrictions: { country: "AU", postalCode: "2000" } },
+            {
+              address: "483 George St.",
+              componentRestrictions: { country: "AU", postalCode: "2000" },
+            },
             (e, t) => {
               "OK" === t
                 ? (o.setCenter(e[0].geometry.location),
@@ -81,7 +84,8 @@
 
 <div id="iframe-contents">
   <div id="floating-panel">
-    <pre>componentRestrictions: {country: "AU", postalCode: "2000"}</pre>
+    <code>componentRestrictions: {country: "AU", postalCode: "2000"}</code
+    ><br />
     <button id="submit">Geocode</button>
   </div>
   <div id="map"></div>

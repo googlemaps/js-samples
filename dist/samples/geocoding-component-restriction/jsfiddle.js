@@ -12,6 +12,7 @@ function initMap() {
 function geocodeAddress(geocoder, map) {
   geocoder.geocode(
     {
+      address: "483 George St.",
       componentRestrictions: {
         country: "AU",
         postalCode: "2000",
