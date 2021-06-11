@@ -112,6 +112,7 @@ SAMPLES = [
     "marker-animations-iteration",
     "marker-clustering",
     "marker-collision-management",
+    "marker-modern",
     "marker-labels",
     "marker-remove",
     "marker-simple",

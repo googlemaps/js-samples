@@ -1,0 +1,8 @@
+{
+  "title": "Markers with SVG and Fonts",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "marker_modern",
+  "name": "marker-modern"
+}
