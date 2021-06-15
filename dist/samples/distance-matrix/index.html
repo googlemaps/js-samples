@@ -4,25 +4,7 @@
     <title>Distance Matrix Service</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
-      #right-panel {
-        font-family: "Roboto", "sans-serif";
-        line-height: 30px;
-        padding-left: 10px;
-      }
-
-      #right-panel select,
-      #right-panel input {
-        font-size: 15px;
-      }
-
-      #right-panel select {
-        width: 100%;
-      }
-
-      #right-panel i {
-        font-size: 12px;
-      }
-
+      /* Optional: Makes the sample page fill the window. */
       html,
       body {
         height: 100%;
@@ -30,32 +12,43 @@
         padding: 0;
       }
 
-      #map {
+      #container {
         height: 100%;
-        width: 50%;
+        display: flex;
       }
 
-      #right-panel {
-        float: right;
-        width: 48%;
-        padding-left: 2%;
+      #sidebar {
+        flex-basis: 15rem;
+        flex-grow: 1;
+        padding: 1rem;
+        max-width: 30rem;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        overflow: scroll;
       }
 
-      #output {
-        font-size: 11px;
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+
+      #sidebar {
+        flex-direction: column;
       }
     </style>
     <script>
       (() => {
         "use strict";
         var e = {
-            d: (t, o) => {
-              for (var n in o)
-                e.o(o, n) &&
-                  !e.o(t, n) &&
-                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
             },
-            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
             r: (e) => {
               "undefined" != typeof Symbol &&
                 Symbol.toStringTag &&
@@ -65,94 +58,80 @@
                 Object.defineProperty(e, "__esModule", { value: !0 });
             },
           },
-          t = {};
-        function o() {
+          o = {};
+        function t() {
           const e = new google.maps.LatLngBounds(),
-            t = [],
-            o = new google.maps.Map(document.getElementById("map"), {
+            o = [],
+            t = new google.maps.Map(document.getElementById("map"), {
               center: { lat: 55.53, lng: 9.4 },
               zoom: 10,
             }),
-            n = new google.maps.Geocoder();
-          new google.maps.DistanceMatrixService().getDistanceMatrix(
-            {
+            n = new google.maps.Geocoder(),
+            l = new google.maps.DistanceMatrixService(),
+            r = {
               origins: [{ lat: 55.93, lng: -3.118 }, "Greenwich, England"],
               destinations: ["Stockholm, Sweden", { lat: 50.087, lng: 14.421 }],
               travelMode: google.maps.TravelMode.DRIVING,
               unitSystem: google.maps.UnitSystem.METRIC,
               avoidHighways: !1,
               avoidTolls: !1,
-            },
-            (r, a) => {
-              if ("OK" !== a) alert("Error was: " + a);
-              else {
-                const a = r.originAddresses,
-                  s = r.destinationAddresses,
-                  l = document.getElementById("output");
-                (l.innerHTML = ""),
-                  (function (e) {
-                    for (let t = 0; t < e.length; t++) e[t].setMap(null);
-                    e = [];
-                  })(t);
-                const i = function (n) {
-                  const r = n
-                    ? "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=D|FF0000|000000"
-                    : "https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld=O|FFFF00|000000";
-                  return function (n, a) {
-                    "OK" === a
-                      ? (o.fitBounds(e.extend(n[0].geometry.location)),
-                        t.push(
-                          new google.maps.Marker({
-                            map: o,
-                            position: n[0].geometry.location,
-                            icon: r,
-                          })
-                        ))
-                      : alert("Geocode was not successful due to: " + a);
-                  };
+            };
+          (document.getElementById("request").innerText = JSON.stringify(
+            r,
+            null,
+            2
+          )),
+            l.getDistanceMatrix(r).then((l) => {
+              document.getElementById("response").innerText = JSON.stringify(
+                l,
+                null,
+                2
+              );
+              const r = l.originAddresses,
+                s = l.destinationAddresses;
+              !(function (e) {
+                for (let o = 0; o < e.length; o++) e[o].setMap(null);
+                e = [];
+              })(o);
+              const a = function (n) {
+                return function (l, r) {
+                  "OK" === r
+                    ? (t.fitBounds(e.extend(l[0].geometry.location)),
+                      o.push(
+                        new google.maps.Marker({
+                          map: t,
+                          position: l[0].geometry.location,
+                          label: n ? "D" : "O",
+                        })
+                      ))
+                    : alert("Geocode was not successful due to: " + r);
                 };
-                for (let e = 0; e < a.length; e++) {
-                  const t = r.rows[e].elements;
-                  n.geocode({ address: a[e] }, i(!1));
-                  for (let o = 0; o < t.length; o++)
-                    n.geocode({ address: s[o] }, i(!0)),
-                      (l.innerHTML +=
-                        a[e] +
-                        " to " +
-                        s[o] +
-                        ": " +
-                        t[o].distance.text +
-                        " in " +
-                        t[o].duration.text +
-                        "<br>");
-                }
+              };
+              for (let e = 0; e < r.length; e++) {
+                const o = l.rows[e].elements;
+                n.geocode({ address: r[e] }, a(!1));
+                for (let e = 0; e < o.length; e++)
+                  n.geocode({ address: s[e] }, a(!0));
               }
-            }
-          );
+            });
         }
-        e.r(t), e.d(t, { initMap: () => o });
+        e.r(o), e.d(o, { initMap: () => t });
         var n = window;
-        for (var r in t) n[r] = t[r];
-        t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+        for (var l in o) n[l] = o[l];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
       })();
     </script>
   </head>
   <body>
-    <div id="right-panel">
-      <div id="inputs">
-        <pre>
-var origin1 = {lat: 55.930, lng: -3.118};
-var origin2 = 'Greenwich, England';
-var destinationA = 'Stockholm, Sweden';
-var destinationB = {lat: 50.087, lng: 14.421};
-        </pre>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <h3 style="flex-grow: 0">Request</h3>
+        <pre style="flex-grow: 1" id="request"></pre>
+        <h3 style="flex-grow: 0">Response</h3>
+        <pre style="flex-grow: 1" id="response"></pre>
       </div>
-      <div>
-        <strong>Results</strong>
-      </div>
-      <div id="output"></div>
     </div>
-    <div id="map"></div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
