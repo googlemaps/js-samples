@@ -8,21 +8,15 @@
     <script src="./index.js"></script>
   </head>
   <body>
-    <div id="right-panel">
-      <div id="inputs">
-        <pre>
-var origin1 = {lat: 55.930, lng: -3.118};
-var origin2 = 'Greenwich, England';
-var destinationA = 'Stockholm, Sweden';
-var destinationB = {lat: 50.087, lng: 14.421};
-        </pre>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <h3 style="flex-grow: 0">Request</h3>
+        <pre style="flex-grow: 1" id="request"></pre>
+        <h3 style="flex-grow: 0">Response</h3>
+        <pre style="flex-grow: 1" id="response"></pre>
       </div>
-      <div>
-        <strong>Results</strong>
-      </div>
-      <div id="output"></div>
     </div>
-    <div id="map"></div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
