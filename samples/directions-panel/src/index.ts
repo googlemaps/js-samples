@@ -28,11 +28,10 @@ function initMap(): void {
   );
   directionsRenderer.setMap(map);
   directionsRenderer.setPanel(
-    document.getElementById("right-panel") as HTMLElement
+    document.getElementById("sidebar") as HTMLElement
   );
 
   const control = document.getElementById("floating-panel") as HTMLElement;
-  control.style.display = "block";
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
   const onChangeHandler = function () {
