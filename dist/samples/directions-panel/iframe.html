@@ -21,13 +21,27 @@
     height: 100%;
     box-sizing: border-box;
     display: flex;
-    overflow: scroll;
+    overflow: auto;
   }
 
   #map {
     flex-basis: 0;
     flex-grow: 4;
     height: 100%;
+  }
+
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
   }
 
   #floating-panel {
@@ -39,13 +53,11 @@
     padding: 0 0.5em;
     font: 400 18px Roboto, Arial, sans-serif;
     overflow: hidden;
-    height: 40px;
-    cursor: pointer;
     padding: 5px;
     font-size: 14px;
-  }
-  #floating-panel:hover {
-    background: #ebebeb;
+    text-align: center;
+    line-height: 30px;
+    height: auto;
   }
 
   #map {
@@ -55,7 +67,9 @@
   #sidebar {
     flex: 0 1 auto;
     padding: 0;
-    width: auto;
+  }
+  #sidebar > div {
+    padding: 0.5rem;
   }
 </style>
 <script>
