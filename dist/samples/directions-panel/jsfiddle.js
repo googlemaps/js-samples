@@ -7,9 +7,8 @@ function initMap() {
     disableDefaultUI: true,
   });
   directionsRenderer.setMap(map);
-  directionsRenderer.setPanel(document.getElementById("right-panel"));
+  directionsRenderer.setPanel(document.getElementById("sidebar"));
   const control = document.getElementById("floating-panel");
-  control.style.display = "block";
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
   const onChangeHandler = function () {

@@ -4,18 +4,34 @@
     <title>Displaying Text Directions With setPanel()</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-
       /* Optional: Makes the sample page fill the window. */
       html,
       body {
         height: 100%;
         margin: 0;
         padding: 0;
+      }
+
+      #container {
+        height: 100%;
+        display: flex;
+      }
+
+      #sidebar {
+        flex-basis: 15rem;
+        flex-grow: 1;
+        padding: 1rem;
+        max-width: 30rem;
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        overflow: auto;
+      }
+
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
       }
 
       #floating-panel {
@@ -32,56 +48,32 @@
         padding-left: 10px;
       }
 
-      #right-panel {
-        font-family: "Roboto", "sans-serif";
+      #floating-panel {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        margin: 10px;
+        padding: 0 0.5em;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
+        padding: 5px;
+        font-size: 14px;
+        text-align: center;
         line-height: 30px;
-        padding-left: 10px;
-      }
-
-      #right-panel select,
-      #right-panel input {
-        font-size: 15px;
-      }
-
-      #right-panel select {
-        width: 100%;
-      }
-
-      #right-panel i {
-        font-size: 12px;
-      }
-
-      #right-panel {
-        height: 100%;
-        float: right;
-        width: 390px;
-        overflow: auto;
+        height: auto;
       }
 
       #map {
-        margin-right: 400px;
+        flex: auto;
       }
 
-      #floating-panel {
-        background: #fff;
-        padding: 5px;
-        font-size: 14px;
-        font-family: Arial;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
-        display: none;
+      #sidebar {
+        flex: 0 1 auto;
+        padding: 0;
       }
-
-      @media print {
-        #map {
-          height: 500px;
-          margin: 0;
-        }
-
-        #right-panel {
-          float: none;
-          width: auto;
-        }
+      #sidebar > div {
+        padding: 0.5rem;
       }
     </style>
     <script>
@@ -94,9 +86,8 @@
           disableDefaultUI: true,
         });
         directionsRenderer.setMap(map);
-        directionsRenderer.setPanel(document.getElementById("right-panel"));
+        directionsRenderer.setPanel(document.getElementById("sidebar"));
         const control = document.getElementById("floating-panel");
-        control.style.display = "block";
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
         const onChangeHandler = function () {
@@ -164,8 +155,45 @@
         <option value="los angeles, ca">Los Angeles</option>
       </select>
     </div>
-    <div id="right-panel"></div>
-    <div id="map"></div>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar"></div>
+    </div>
+    <div style="display: none">
+      <div id="floating-panel">
+        <strong>Start:</strong>
+        <select id="start">
+          <option value="chicago, il">Chicago</option>
+          <option value="st louis, mo">St Louis</option>
+          <option value="joplin, mo">Joplin, MO</option>
+          <option value="oklahoma city, ok">Oklahoma City</option>
+          <option value="amarillo, tx">Amarillo</option>
+          <option value="gallup, nm">Gallup, NM</option>
+          <option value="flagstaff, az">Flagstaff, AZ</option>
+          <option value="winona, az">Winona</option>
+          <option value="kingman, az">Kingman</option>
+          <option value="barstow, ca">Barstow</option>
+          <option value="san bernardino, ca">San Bernardino</option>
+          <option value="los angeles, ca">Los Angeles</option>
+        </select>
+        <br />
+        <strong>End:</strong>
+        <select id="end">
+          <option value="chicago, il">Chicago</option>
+          <option value="st louis, mo">St Louis</option>
+          <option value="joplin, mo">Joplin, MO</option>
+          <option value="oklahoma city, ok">Oklahoma City</option>
+          <option value="amarillo, tx">Amarillo</option>
+          <option value="gallup, nm">Gallup, NM</option>
+          <option value="flagstaff, az">Flagstaff, AZ</option>
+          <option value="winona, az">Winona</option>
+          <option value="kingman, az">Kingman</option>
+          <option value="barstow, ca">Barstow</option>
+          <option value="san bernardino, ca">San Bernardino</option>
+          <option value="los angeles, ca">Los Angeles</option>
+        </select>
+      </div>
+    </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
