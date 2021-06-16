@@ -18,12 +18,16 @@
 
 /* [START maps_directions_panel] */
 @include meta.load-css("../../../shared/scss/sidebar.scss");
+@include meta.load-css("../../../shared/scss/floating-panel.scss");
 @import "../../../shared/scss/mixins.scss";
 
 #floating-panel {
-  @include map-control-button;
+  @include map-control;
   padding: 5px;
   font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  height: auto;
 }
 
 #map {
@@ -33,6 +37,10 @@
 #sidebar {
   flex: 0 1 auto;
   padding: 0;
-  width: auto;
+
+  // add padding to Directions renderer output
+  > div {
+    padding: 0.5rem;
+  }
 }
 /* [END maps_directions_panel] */
