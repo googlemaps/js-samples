@@ -65,7 +65,7 @@ function initMap(): void {
   marker.addListener("click", () => {
     infoWindow.open({
     	anchor: marker,
-  		map: map,
+  		map,
     	shouldFocus: false,
     });
   });
