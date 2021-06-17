@@ -16,9 +16,6 @@
     "type": "git",
     "url": "git+https://github.com/googlemaps/js-samples.git"
   },
-  "bin": {
-    "googlemaps-js-samples": "cli/index.js"
-  },
   "files": [],
   "license": "Apache-2.0",
   "scripts": {
@@ -30,14 +27,6 @@
     "start": "bazel run :serve",
     "test": "bazel test //...",
     "test:e2e": "bazel test //e2e:e2e"
-  },
-  "dependencies": {
-    "node-fetch": "^2.6.1",
-    "npm": "^7.15.1",
-    "open": "^8.2.0",
-    "tar": "^6.1.0",
-    "tmp": "^0.2.1",
-    "yargs": "^17.0.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.14.3",
@@ -98,10 +87,8 @@
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^4.0.0-beta.3",
-    "webpack-merge": "^5.7.3"
+    "webpack-merge": "^5.7.3",
+    "yargs": "^17.0.1"
   },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://wombat-dressing-room.appspot.com"
-  }
+  "private": true
 }
