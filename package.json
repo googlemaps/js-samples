@@ -58,7 +58,7 @@
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@tweenjs/tween.js": "^18.6.4",
-    "@types/google.maps": "^3.44.6",
+    "@types/google.maps": "^3.45.3",
     "@types/google.visualization": "0.0.66",
     "@types/jest": "^26.0.23",
     "@types/three": "^0.129.0",
