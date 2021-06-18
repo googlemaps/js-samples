@@ -39,7 +39,11 @@ function initMap() {
     title: "Uluru (Ayers Rock)",
   });
   marker.addListener("click", () => {
-    infowindow.open(map, marker);
+    infowindow.open({
+      anchor: marker,
+      map,
+      shouldFocus: false,
+    });
   });
 }
 // [END maps_infowindow_simple_max]

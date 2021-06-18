@@ -50,12 +50,12 @@
           title: "Uluru (Ayers Rock)",
         });
       r.addListener("click", () => {
-        a.open(t, r);
+        a.open({ anchor: r, map: t, shouldFocus: !1 });
       });
     }
     e.r(t), e.d(t, { initMap: () => a });
     var r = window;
-    for (var i in t) r[i] = t[i];
+    for (var o in t) r[o] = t[o];
     t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
   })();
 </script>
