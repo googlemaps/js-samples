@@ -45,16 +45,26 @@ const getPackageFromTag = async (sample, tag, verbose) => {
   return tempFile.name;
 };
 
-const main = async argv => {
+const main = async (argv) => {
   const {
     sample,
-    tag,
+    tag = "v2.20.8",
     destination,
     verbose,
     hot: shouldRun,
-    open: shouldOpen
+    open: shouldOpen,
   } = argv;
   let file;
+
+  console.warn(`
+Usage of this binary is no longer necessary. Use the following git commands:
+
+git clone -b sample-${sample} git@github.com:googlemaps/js-samples.git ${sample}
+cd ${sample}
+npm i
+npm start
+
+`)
 
   if (tag) {
     file = await getPackageFromTag(sample, tag, verbose);
@@ -75,7 +85,7 @@ const main = async argv => {
   await tar.x({
     file,
     C: destination,
-    strict: true
+    strict: true,
   });
 
   process.chdir(destination);
@@ -107,13 +117,13 @@ yargs
   .command(
     "init <sample> [destination]",
     "initialize a sample skeleton",
-    yargs => {
+    (yargs) => {
       yargs.positional("sample", {
-        describe: "The sample identifier"
+        describe: "The sample identifier",
       });
       yargs.positional("destination", {
         describe: "The destination folder for the sample",
-        default: "."
+        default: ".",
       });
     },
     main
@@ -121,22 +131,22 @@ yargs
   .option("verbose", {
     alias: "v",
     type: "boolean",
-    description: "Run with verbose logging"
+    description: "Run with verbose logging",
   })
   .option("hot", {
     type: "boolean",
     alias: "h",
     description: "Immediately install and run application",
-    default: true
+    default: true,
   })
   .option("open", {
     type: "boolean",
     alias: "o",
     description: "Open application in browser",
-    default: true
+    default: true,
   })
   .option("tag", {
     alias: "t",
     describe: "The target release of git@github.com:googlemaps/js-samples.git",
-    default: "latest"
+    default: "latest",
   }).argv;
