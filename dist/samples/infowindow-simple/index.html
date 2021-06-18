@@ -55,7 +55,7 @@
               title: "Uluru (Ayers Rock)",
             });
           r.addListener("click", () => {
-            a.open(t, r);
+            a.open({ anchor: r, map: t, shouldFocus: !1 });
           });
         }
         e.r(t), e.d(t, { initMap: () => a });
