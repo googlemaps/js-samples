@@ -1,14 +1,11 @@
- 
+
 branches:
   - master
 plugins:
   - "@semantic-release/commit-analyzer"
   - "@semantic-release/release-notes-generator"
   - "@semantic-release/git"
-  - 
-    - "@semantic-release/github"
-    - assets:
-      - path: "dist/samples/*/*-package.tgz"
+  - "@semantic-release/github"
   - "@semantic-release/npm"
 options:
   debug: true

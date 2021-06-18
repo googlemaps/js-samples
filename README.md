@@ -12,22 +12,6 @@ Samples for the Google Maps JavaScript API.
 
 The samples can be demoed on the [GitHub demo page](https://googlemaps.github.io/js-samples/dist/) or at the [official documentation site](https://developers.google.com/maps/documentation/javascript/examples).
 
-## Initialize an app from a sample
-```
-# install the package
-npm i -g @googlemaps/js-samples
-
-# extract a sample to a destination folder
-googlemaps-js-samples init map-simple destFolder
-
-# run the sample
-cd destFolder
-npm i
-npm run dev
-```
-
-Replace `map-simple` with the path to another sample in this repository.
-
 ## Development
 
 ### Build
@@ -59,7 +43,7 @@ The following table identifies the inputs and outputs.
 | samples/\*/src/index.njk      | Y    | N        | HTML template for sample                                                                        |
 | samples/\*/src/style.scss     | Y    | N        | SCSS style for sample                                                                           |
 | shared/layout.njk             | Y    | N        | Shared HTML template to extend                                                                  |
-| shared/scss/\*                | Y    | N        | Shared SCSS styles                                                                              |                                                                         | 
+| shared/scss/\*                | Y    | N        | Shared SCSS styles                                                                              |                                                                         |
 | dist/samples/\*/index.html    | N    | N        | Inline HTML, CSS, JS with development key and transpiled for >1%, ie11                          |
 | dist/samples/\*/iframe.html   | N    | N        | Inline HTML, CSS, JS for iframe without html, head, body tags transpiled for ie11 and >1%, ie11 |
 | dist/samples/\*/inline.html   | N    | N        | Inline HTML, CSS, JS for *All* tab transpiled for >3%                                           |

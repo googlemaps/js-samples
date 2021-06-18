@@ -415,13 +415,6 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
         extension = "tgz",
         mode = "0755",
         remap_paths = {"/app": ""},
-        #     "/app/src/index.ts": "src/index.ts",
-        #     "/app/src/index.html": "src/index.html",
-        #     "/app/src/style.css": "src/style.css",
-        #     "/app/.env": ".env",
-        #     "/app/package.json": "package.json",
-        #     "/app"
-        # }
     )
     ###### END APP ######
 
@@ -470,7 +463,6 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
             ":html",
             ":js",
             ":package",
-            "{}-package.tgz".format(name),
             ":CLOUD_SHELL_INSTRUCTIONS.md",
         ],
         visibility = ["//visibility:public"],
