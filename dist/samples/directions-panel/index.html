@@ -77,134 +77,62 @@
       }
     </style>
     <script>
-      /******/ (() => {
-        // webpackBootstrap
-        /******/ "use strict";
-        /******/ // The require scope
-        /******/ var __webpack_require__ = {};
-        /******/
-        /************************************************************************/
-        /******/ /* webpack/runtime/define property getters */
-        /******/ (() => {
-          /******/ // define getter functions for harmony exports
-          /******/ __webpack_require__.d = (exports, definition) => {
-            /******/ for (var key in definition) {
-              /******/ if (
-                __webpack_require__.o(definition, key) &&
-                !__webpack_require__.o(exports, key)
-              ) {
-                /******/ Object.defineProperty(exports, key, {
-                  enumerable: true,
-                  get: definition[key],
-                });
-                /******/
-              }
-              /******/
-            }
-            /******/
-          };
-          /******/
-        })();
-        /******/
-        /******/ /* webpack/runtime/hasOwnProperty shorthand */
-        /******/ (() => {
-          /******/ __webpack_require__.o = (obj, prop) =>
-            Object.prototype.hasOwnProperty.call(obj, prop);
-          /******/
-        })();
-        /******/
-        /******/ /* webpack/runtime/make namespace object */
-        /******/ (() => {
-          /******/ // define __esModule on exports
-          /******/ __webpack_require__.r = (exports) => {
-            /******/ if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
-              /******/ Object.defineProperty(exports, Symbol.toStringTag, {
-                value: "Module",
-              });
-              /******/
-            }
-            /******/ Object.defineProperty(exports, "__esModule", {
-              value: true,
-            });
-            /******/
-          };
-          /******/
-        })();
-        /******/
-        /************************************************************************/
-        var __webpack_exports__ = {};
-        __webpack_require__.r(__webpack_exports__);
-        /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-          /* harmony export */ initMap: () => /* binding */ initMap,
-          /* harmony export */
-        });
-        /*
-         * Copyright 2019 Google LLC. All Rights Reserved.
-         *
-         * Licensed under the Apache License, Version 2.0 (the "License");
-         * you may not use this file except in compliance with the License.
-         * You may obtain a copy of the License at
-         *
-         *     http://www.apache.org/licenses/LICENSE-2.0
-         *
-         * Unless required by applicable law or agreed to in writing, software
-         * distributed under the License is distributed on an "AS IS" BASIS,
-         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-         * See the License for the specific language governing permissions and
-         * limitations under the License.
-         */
-        function initMap() {
-          const directionsRenderer = new google.maps.DirectionsRenderer();
-          const directionsService = new google.maps.DirectionsService();
-          const map = new google.maps.Map(document.getElementById("map"), {
-            zoom: 7,
-            center: { lat: 41.85, lng: -87.65 },
-            disableDefaultUI: true,
-          });
-          directionsRenderer.setMap(map);
-          directionsRenderer.setPanel(document.getElementById("sidebar"));
-          const control = document.getElementById("floating-panel");
-          map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
-          const onChangeHandler = function () {
-            calculateAndDisplayRoute(directionsService, directionsRenderer);
-          };
-          document
-            .getElementById("start")
-            .addEventListener("change", onChangeHandler);
-          document
-            .getElementById("end")
-            .addEventListener("change", onChangeHandler);
-        }
-        function calculateAndDisplayRoute(
-          directionsService,
-          directionsRenderer
-        ) {
-          const start = document.getElementById("start").value;
-          const end = document.getElementById("end").value;
-          directionsService.route(
-            {
-              origin: start,
-              destination: end,
-              travelMode: google.maps.TravelMode.DRIVING,
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
             },
-            (response, status) => {
-              if (status === "OK") {
-                directionsRenderer.setDirections(response);
-              } else {
-                window.alert("Directions request failed due to " + status);
-              }
-            }
-          );
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          t = {};
+        function o() {
+          const e = new google.maps.DirectionsRenderer(),
+            t = new google.maps.DirectionsService(),
+            o = new google.maps.Map(document.getElementById("map"), {
+              zoom: 7,
+              center: { lat: 41.85, lng: -87.65 },
+              disableDefaultUI: !0,
+            });
+          e.setMap(o), e.setPanel(document.getElementById("sidebar"));
+          const n = document.getElementById("floating-panel");
+          o.controls[google.maps.ControlPosition.TOP_CENTER].push(n);
+          const r = function () {
+            !(function (e, t) {
+              const o = document.getElementById("start").value,
+                n = document.getElementById("end").value;
+              e.route(
+                {
+                  origin: o,
+                  destination: n,
+                  travelMode: google.maps.TravelMode.DRIVING,
+                },
+                (e, o) => {
+                  "OK" === o
+                    ? t.setDirections(e)
+                    : window.alert("Directions request failed due to " + o);
+                }
+              );
+            })(t, e);
+          };
+          document.getElementById("start").addEventListener("change", r),
+            document.getElementById("end").addEventListener("change", r);
         }
-
-        var __webpack_export_target__ = window;
-        for (var i in __webpack_exports__)
-          __webpack_export_target__[i] = __webpack_exports__[i];
-        if (__webpack_exports__.__esModule)
-          Object.defineProperty(__webpack_export_target__, "__esModule", {
-            value: true,
-          });
-        /******/
+        e.r(t), e.d(t, { initMap: () => o });
+        var n = window;
+        for (var r in t) n[r] = t[r];
+        t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
       })();
     </script>
   </head>

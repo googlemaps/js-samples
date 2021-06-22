@@ -19,115 +19,49 @@
       }
     </style>
     <script>
-      /******/ (() => {
-        // webpackBootstrap
-        /******/ "use strict";
-        /******/ // The require scope
-        /******/ var __webpack_require__ = {};
-        /******/
-        /************************************************************************/
-        /******/ /* webpack/runtime/define property getters */
-        /******/ (() => {
-          /******/ // define getter functions for harmony exports
-          /******/ __webpack_require__.d = (exports, definition) => {
-            /******/ for (var key in definition) {
-              /******/ if (
-                __webpack_require__.o(definition, key) &&
-                !__webpack_require__.o(exports, key)
-              ) {
-                /******/ Object.defineProperty(exports, key, {
-                  enumerable: true,
-                  get: definition[key],
-                });
-                /******/
-              }
-              /******/
-            }
-            /******/
-          };
-          /******/
-        })();
-        /******/
-        /******/ /* webpack/runtime/hasOwnProperty shorthand */
-        /******/ (() => {
-          /******/ __webpack_require__.o = (obj, prop) =>
-            Object.prototype.hasOwnProperty.call(obj, prop);
-          /******/
-        })();
-        /******/
-        /******/ /* webpack/runtime/make namespace object */
-        /******/ (() => {
-          /******/ // define __esModule on exports
-          /******/ __webpack_require__.r = (exports) => {
-            /******/ if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
-              /******/ Object.defineProperty(exports, Symbol.toStringTag, {
-                value: "Module",
-              });
-              /******/
-            }
-            /******/ Object.defineProperty(exports, "__esModule", {
-              value: true,
-            });
-            /******/
-          };
-          /******/
-        })();
-        /******/
-        /************************************************************************/
-        var __webpack_exports__ = {};
-        __webpack_require__.r(__webpack_exports__);
-        /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-          /* harmony export */ initMap: () => /* binding */ initMap,
-          /* harmony export */
-        });
-        /*
-         * Copyright 2019 Google LLC. All Rights Reserved.
-         *
-         * Licensed under the Apache License, Version 2.0 (the "License");
-         * you may not use this file except in compliance with the License.
-         * You may obtain a copy of the License at
-         *
-         *     http://www.apache.org/licenses/LICENSE-2.0
-         *
-         * Unless required by applicable law or agreed to in writing, software
-         * distributed under the License is distributed on an "AS IS" BASIS,
-         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-         * See the License for the specific language governing permissions and
-         * limitations under the License.
-         */
-        // The following example creates a marker in Stockholm, Sweden using a DROP
-        // animation. Clicking on the marker will toggle the animation between a BOUNCE
-        // animation and no animation.
-        let marker;
-        function initMap() {
-          const map = new google.maps.Map(document.getElementById("map"), {
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, n) => {
+              for (var t in n)
+                e.o(n, t) &&
+                  !e.o(o, t) &&
+                  Object.defineProperty(o, t, { enumerable: !0, get: n[t] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        let n;
+        function t() {
+          const e = new google.maps.Map(document.getElementById("map"), {
             zoom: 13,
             center: { lat: 59.325, lng: 18.07 },
           });
-          marker = new google.maps.Marker({
-            map,
-            draggable: true,
+          (n = new google.maps.Marker({
+            map: e,
+            draggable: !0,
             animation: google.maps.Animation.DROP,
             position: { lat: 59.327, lng: 18.067 },
-          });
-          marker.addListener("click", toggleBounce);
+          })),
+            n.addListener("click", a);
         }
-        function toggleBounce() {
-          if (marker.getAnimation() !== null) {
-            marker.setAnimation(null);
-          } else {
-            marker.setAnimation(google.maps.Animation.BOUNCE);
-          }
+        function a() {
+          null !== n.getAnimation()
+            ? n.setAnimation(null)
+            : n.setAnimation(google.maps.Animation.BOUNCE);
         }
-
-        var __webpack_export_target__ = window;
-        for (var i in __webpack_exports__)
-          __webpack_export_target__[i] = __webpack_exports__[i];
-        if (__webpack_exports__.__esModule)
-          Object.defineProperty(__webpack_export_target__, "__esModule", {
-            value: true,
-          });
-        /******/
+        e.r(o), e.d(o, { initMap: () => t });
+        var i = window;
+        for (var l in o) i[l] = o[l];
+        o.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
       })();
     </script>
   </head>

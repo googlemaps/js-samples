@@ -39,170 +39,86 @@
       }
     </style>
     <script>
-      /******/ (() => {
-        // webpackBootstrap
-        /******/ "use strict";
-        /******/ // The require scope
-        /******/ var __webpack_require__ = {};
-        /******/
-        /************************************************************************/
-        /******/ /* webpack/runtime/define property getters */
-        /******/ (() => {
-          /******/ // define getter functions for harmony exports
-          /******/ __webpack_require__.d = (exports, definition) => {
-            /******/ for (var key in definition) {
-              /******/ if (
-                __webpack_require__.o(definition, key) &&
-                !__webpack_require__.o(exports, key)
-              ) {
-                /******/ Object.defineProperty(exports, key, {
-                  enumerable: true,
-                  get: definition[key],
-                });
-                /******/
-              }
-              /******/
-            }
-            /******/
-          };
-          /******/
-        })();
-        /******/
-        /******/ /* webpack/runtime/hasOwnProperty shorthand */
-        /******/ (() => {
-          /******/ __webpack_require__.o = (obj, prop) =>
-            Object.prototype.hasOwnProperty.call(obj, prop);
-          /******/
-        })();
-        /******/
-        /******/ /* webpack/runtime/make namespace object */
-        /******/ (() => {
-          /******/ // define __esModule on exports
-          /******/ __webpack_require__.r = (exports) => {
-            /******/ if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
-              /******/ Object.defineProperty(exports, Symbol.toStringTag, {
-                value: "Module",
-              });
-              /******/
-            }
-            /******/ Object.defineProperty(exports, "__esModule", {
-              value: true,
-            });
-            /******/
-          };
-          /******/
-        })();
-        /******/
-        /************************************************************************/
-        var __webpack_exports__ = {};
-        __webpack_require__.r(__webpack_exports__);
-        /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-          /* harmony export */ initMap: () => /* binding */ initMap,
-          /* harmony export */
-        });
-        /*
-         * Copyright 2019 Google LLC. All Rights Reserved.
-         *
-         * Licensed under the Apache License, Version 2.0 (the "License");
-         * you may not use this file except in compliance with the License.
-         * You may obtain a copy of the License at
-         *
-         *     http://www.apache.org/licenses/LICENSE-2.0
-         *
-         * Unless required by applicable law or agreed to in writing, software
-         * distributed under the License is distributed on an "AS IS" BASIS,
-         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-         * See the License for the specific language governing permissions and
-         * limitations under the License.
-         */
-        // @ts-nocheck TODO(jpoehnelt) remove when fixed
-        function initMap() {
-          const bounds = new google.maps.LatLngBounds();
-          const markersArray = [];
-          const map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 55.53, lng: 9.4 },
-            zoom: 10,
-          });
-          // initialize services
-          const geocoder = new google.maps.Geocoder();
-          const service = new google.maps.DistanceMatrixService();
-          // build request
-          const origin1 = { lat: 55.93, lng: -3.118 };
-          const origin2 = "Greenwich, England";
-          const destinationA = "Stockholm, Sweden";
-          const destinationB = { lat: 50.087, lng: 14.421 };
-          const request = {
-            origins: [origin1, origin2],
-            destinations: [destinationA, destinationB],
-            travelMode: google.maps.TravelMode.DRIVING,
-            unitSystem: google.maps.UnitSystem.METRIC,
-            avoidHighways: false,
-            avoidTolls: false,
-          };
-          // put request on page
-          document.getElementById("request").innerText = JSON.stringify(
-            request,
+      (() => {
+        "use strict";
+        var e = {
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            },
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          o = {};
+        function t() {
+          const e = new google.maps.LatLngBounds(),
+            o = [],
+            t = new google.maps.Map(document.getElementById("map"), {
+              center: { lat: 55.53, lng: 9.4 },
+              zoom: 10,
+            }),
+            n = new google.maps.Geocoder(),
+            l = new google.maps.DistanceMatrixService(),
+            r = {
+              origins: [{ lat: 55.93, lng: -3.118 }, "Greenwich, England"],
+              destinations: ["Stockholm, Sweden", { lat: 50.087, lng: 14.421 }],
+              travelMode: google.maps.TravelMode.DRIVING,
+              unitSystem: google.maps.UnitSystem.METRIC,
+              avoidHighways: !1,
+              avoidTolls: !1,
+            };
+          (document.getElementById("request").innerText = JSON.stringify(
+            r,
             null,
             2
-          );
-          // get distance matrix response
-          service.getDistanceMatrix(request).then((response) => {
-            // put response
-            document.getElementById("response").innerText = JSON.stringify(
-              response,
-              null,
-              2
-            );
-            // show on map
-            const originList = response.originAddresses;
-            const destinationList = response.destinationAddresses;
-            deleteMarkers(markersArray);
-            const showGeocodedAddressOnMap = function (asDestination) {
-              return function (results, status) {
-                if (status === "OK") {
-                  map.fitBounds(bounds.extend(results[0].geometry.location));
-                  markersArray.push(
-                    new google.maps.Marker({
-                      map,
-                      position: results[0].geometry.location,
-                      label: asDestination ? "D" : "O",
-                    })
-                  );
-                } else {
-                  alert("Geocode was not successful due to: " + status);
-                }
-              };
-            };
-            for (let i = 0; i < originList.length; i++) {
-              const results = response.rows[i].elements;
-              geocoder.geocode(
-                { address: originList[i] },
-                showGeocodedAddressOnMap(false)
+          )),
+            l.getDistanceMatrix(r).then((l) => {
+              document.getElementById("response").innerText = JSON.stringify(
+                l,
+                null,
+                2
               );
-              for (let j = 0; j < results.length; j++) {
-                geocoder.geocode(
-                  { address: destinationList[j] },
-                  showGeocodedAddressOnMap(true)
-                );
+              const r = l.originAddresses,
+                s = l.destinationAddresses;
+              !(function (e) {
+                for (let o = 0; o < e.length; o++) e[o].setMap(null);
+                e = [];
+              })(o);
+              const a = function (n) {
+                return function (l, r) {
+                  "OK" === r
+                    ? (t.fitBounds(e.extend(l[0].geometry.location)),
+                      o.push(
+                        new google.maps.Marker({
+                          map: t,
+                          position: l[0].geometry.location,
+                          label: n ? "D" : "O",
+                        })
+                      ))
+                    : alert("Geocode was not successful due to: " + r);
+                };
+              };
+              for (let e = 0; e < r.length; e++) {
+                const o = l.rows[e].elements;
+                n.geocode({ address: r[e] }, a(!1));
+                for (let e = 0; e < o.length; e++)
+                  n.geocode({ address: s[e] }, a(!0));
               }
-            }
-          });
+            });
         }
-        function deleteMarkers(markersArray) {
-          for (let i = 0; i < markersArray.length; i++) {
-            markersArray[i].setMap(null);
-          }
-          markersArray = [];
-        }
-
-        var __webpack_export_target__ = window;
-        for (var i in __webpack_exports__)
-          __webpack_export_target__[i] = __webpack_exports__[i];
-        if (__webpack_exports__.__esModule)
-          Object.defineProperty(__webpack_export_target__, "__esModule", {
-            value: true,
-          });
-        /******/
+        e.r(o), e.d(o, { initMap: () => t });
+        var n = window;
+        for (var l in o) n[l] = o[l];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
       })();
     </script>
   </head>
