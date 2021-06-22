@@ -1,95 +1,54 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
+  
+
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  #floating-panel {
-    position: absolute;
-    top: 10px;
-    left: 25%;
-    z-index: 5;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #999;
-    text-align: center;
-    font-family: "Roboto", "sans-serif";
-    line-height: 30px;
-    padding-left: 10px;
-  }
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (t, o) => {
-          for (var n in o)
-            e.o(o, n) &&
-              !e.o(t, n) &&
-              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
-        },
-        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      t = {};
-    let o, n;
-    function l() {
-      (n = new google.maps.Map(document.getElementById("map"), {
-        zoom: 3,
-        center: { lat: 0, lng: -180 },
-        mapTypeId: "terrain",
-      })),
-        (o = new google.maps.Polyline({
-          path: [
-            { lat: 37.772, lng: -122.214 },
-            { lat: 21.291, lng: -157.821 },
-            { lat: -18.142, lng: 178.431 },
-            { lat: -27.467, lng: 153.027 },
-          ],
-          strokeColor: "#FF0000",
-          strokeOpacity: 1,
-          strokeWeight: 2,
-        })),
-        r();
-    }
-    function r() {
-      o.setMap(n);
-    }
-    function a() {
-      o.setMap(null);
-    }
-    e.r(t), e.d(t, { initMap: () => l, addLine: () => r, removeLine: () => a });
-    var i = window;
-    for (var p in t) i[p] = t[p];
-    t.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(t,o)=>{for(var n in o)e.o(o,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:o[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};let o,n;function l(){n=new google.maps.Map(document.getElementById("map"),{zoom:3,center:{lat:0,lng:-180},mapTypeId:"terrain"}),o=new google.maps.Polyline({path:[{lat:37.772,lng:-122.214},{lat:21.291,lng:-157.821},{lat:-18.142,lng:178.431},{lat:-27.467,lng:153.027}],strokeColor:"#FF0000",strokeOpacity:1,strokeWeight:2}),r()}function r(){o.setMap(n)}function a(){o.setMap(null)}e.r(t),e.d(t,{initMap:()=>l,addLine:()=>r,removeLine:()=>a});var i=window;for(var p in t)i[p]=t[p];t.__esModule&&Object.defineProperty(i,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="floating-panel">
-    <input onclick="removeLine();" type="button" value="Remove line" />
-    <input onclick="addLine();" type="button" value="Restore line" />
-  </div>
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
+<div id="floating-panel">
+  <input onclick="removeLine();" type="button" value="Remove line" />
+  <input onclick="addLine();" type="button" value="Restore line" />
 </div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

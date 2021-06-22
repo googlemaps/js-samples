@@ -1,85 +1,36 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+  
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (t, o) => {
-          for (var a in o)
-            e.o(o, a) &&
-              !e.o(t, a) &&
-              Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
-        },
-        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      t = {};
-    let o;
-    function a() {
-      o = new google.maps.Map(document.getElementById("map"), {
-        zoom: 2,
-        center: { lat: -33.865427, lng: 151.196123 },
-        mapTypeId: "terrain",
-        zoomControl: !1,
-        scaleControl: !1,
-        streetViewControl: !1,
-        gestureHandling: "cooperative",
-      });
-      const e = document.createElement("script");
-      (e.src =
-        "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js"),
-        document.getElementsByTagName("head")[0].appendChild(e),
-        o.data.setStyle((e) => {
-          return {
-            icon:
-              ((t = e.getProperty("mag")),
-              {
-                path: google.maps.SymbolPath.CIRCLE,
-                fillColor: "red",
-                fillOpacity: 0.2,
-                scale: Math.pow(2, t) / 2,
-                strokeColor: "white",
-                strokeWeight: 0.5,
-              }),
-          };
-          var t;
-        });
-    }
-    function r(e) {
-      o.data.addGeoJson(e);
-    }
-    e.r(t), e.d(t, { initMap: () => a, eqfeed_callback: () => r });
-    var l = window;
-    for (var n in t) l[n] = t[n];
-    t.__esModule && Object.defineProperty(l, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(t,o)=>{for(var a in o)e.o(o,a)&&!e.o(t,a)&&Object.defineProperty(t,a,{enumerable:!0,get:o[a]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};let o;function a(){o=new google.maps.Map(document.getElementById("map"),{zoom:2,center:{lat:-33.865427,lng:151.196123},mapTypeId:"terrain",zoomControl:!1,scaleControl:!1,streetViewControl:!1,gestureHandling:"cooperative"});const e=document.createElement("script");e.src="https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js",document.getElementsByTagName("head")[0].appendChild(e),o.data.setStyle((e=>{return{icon:(t=e.getProperty("mag"),{path:google.maps.SymbolPath.CIRCLE,fillColor:"red",fillOpacity:.2,scale:Math.pow(2,t)/2,strokeColor:"white",strokeWeight:.5})};var t}))}function r(e){o.data.addGeoJson(e)}e.r(t),e.d(t,{initMap:()=>a,eqfeed_callback:()=>r});var l=window;for(var n in t)l[n]=t[n];t.__esModule&&Object.defineProperty(l,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

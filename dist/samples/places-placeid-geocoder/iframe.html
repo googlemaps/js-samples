@@ -1,138 +1,83 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
+  
+
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  .controls {
-    background-color: #fff;
-    border-radius: 2px;
-    border: 1px solid transparent;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    box-sizing: border-box;
-    font-family: Roboto;
-    font-size: 15px;
-    font-weight: 300;
-    height: 29px;
-    margin-left: 17px;
-    margin-top: 10px;
-    outline: none;
-    padding: 0 11px 0 13px;
-    text-overflow: ellipsis;
-    width: 400px;
-  }
+.controls {
+  background-color: #fff;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  height: 29px;
+  margin-left: 17px;
+  margin-top: 10px;
+  outline: none;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 400px;
+}
 
-  .controls:focus {
-    border-color: #4d90fe;
-  }
+.controls:focus {
+  border-color: #4d90fe;
+}
 
-  .title {
-    font-weight: bold;
-  }
+.title {
+  font-weight: bold;
+}
 
-  #infowindow-content {
-    display: none;
-  }
+#infowindow-content {
+  display: none;
+}
 
-  #map #infowindow-content {
-    display: inline;
-  }
+#map #infowindow-content {
+  display: inline;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var n in t)
-            e.o(t, n) &&
-              !e.o(o, n) &&
-              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    function t() {
-      const e = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: -33.8688, lng: 151.2195 },
-          zoom: 13,
-        }),
-        o = document.getElementById("pac-input"),
-        t = new google.maps.places.Autocomplete(o);
-      t.bindTo("bounds", e),
-        t.setFields(["place_id", "geometry", "name", "formatted_address"]),
-        e.controls[google.maps.ControlPosition.TOP_LEFT].push(o);
-      const n = new google.maps.InfoWindow(),
-        a = document.getElementById("infowindow-content");
-      n.setContent(a);
-      const d = new google.maps.Geocoder(),
-        l = new google.maps.Marker({ map: e });
-      l.addListener("click", () => {
-        n.open(e, l);
-      }),
-        t.addListener("place_changed", () => {
-          n.close();
-          const o = t.getPlace();
-          o.place_id &&
-            d.geocode({ placeId: o.place_id }, (t, d) => {
-              "OK" !== d && t
-                ? window.alert("Geocoder failed due to: " + d)
-                : (e.setZoom(11),
-                  e.setCenter(t[0].geometry.location),
-                  l.setPlace({
-                    placeId: o.place_id,
-                    location: t[0].geometry.location,
-                  }),
-                  l.setVisible(!0),
-                  (a.children["place-name"].textContent = o.name),
-                  (a.children["place-id"].textContent = o.place_id),
-                  (a.children["place-address"].textContent =
-                    t[0].formatted_address),
-                  n.open(e, l));
-            });
-        });
-    }
-    e.r(o), e.d(o, { initMap: () => t });
-    var n = window;
-    for (var a in o) n[a] = o[a];
-    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function t(){const e=new google.maps.Map(document.getElementById("map"),{center:{lat:-33.8688,lng:151.2195},zoom:13}),o=document.getElementById("pac-input"),t=new google.maps.places.Autocomplete(o);t.bindTo("bounds",e),t.setFields(["place_id","geometry","name","formatted_address"]),e.controls[google.maps.ControlPosition.TOP_LEFT].push(o);const n=new google.maps.InfoWindow,a=document.getElementById("infowindow-content");n.setContent(a);const d=new google.maps.Geocoder,l=new google.maps.Marker({map:e});l.addListener("click",(()=>{n.open(e,l)})),t.addListener("place_changed",(()=>{n.close();const o=t.getPlace();o.place_id&&d.geocode({placeId:o.place_id},((t,d)=>{"OK"!==d&&t?window.alert("Geocoder failed due to: "+d):(e.setZoom(11),e.setCenter(t[0].geometry.location),l.setPlace({placeId:o.place_id,location:t[0].geometry.location}),l.setVisible(!0),a.children["place-name"].textContent=o.name,a.children["place-id"].textContent=o.place_id,a.children["place-address"].textContent=t[0].formatted_address,n.open(e,l))}))}))}e.r(o),e.d(o,{initMap:()=>t});var n=window;for(var a in o)n[a]=o[a];o.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div style="display: none">
-    <input
-      id="pac-input"
-      class="controls"
-      type="text"
-      placeholder="Enter a location"
-    />
-  </div>
-  <div id="map"></div>
-  <div id="infowindow-content">
-    <span id="place-name" class="title"></span><br />
-    <strong>Place ID</strong>: <span id="place-id"></span><br />
-    <span id="place-address"></span>
-  </div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
-    async
-  ></script>
+<div style="display: none">
+  <input
+    id="pac-input"
+    class="controls"
+    type="text"
+    placeholder="Enter a location"
+  />
 </div>
+<div id="map"></div>
+<div id="infowindow-content">
+  <span id="place-name" class="title"></span><br />
+  <strong>Place ID</strong>: <span id="place-id"></span><br />
+  <span id="place-address"></span>
+</div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly" 
+        async></script>
+
+      </div>

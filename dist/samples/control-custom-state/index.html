@@ -45,76 +45,158 @@
       }
     </style>
     <script>
-      (() => {
-        "use strict";
-        var e = {
-            d: (t, n) => {
-              for (var o in n)
-                e.o(n, o) &&
-                  !e.o(t, o) &&
-                  Object.defineProperty(t, o, { enumerable: !0, get: n[o] });
-            },
-            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
-            r: (e) => {
-              "undefined" != typeof Symbol &&
-                Symbol.toStringTag &&
-                Object.defineProperty(e, Symbol.toStringTag, {
-                  value: "Module",
-                }),
-                Object.defineProperty(e, "__esModule", { value: !0 });
-            },
-          },
-          t = {};
-        let n;
-        e.r(t), e.d(t, { initMap: () => i });
-        const o = { lat: 41.85, lng: -87.65 };
-        class r {
+      /******/ (() => {
+        // webpackBootstrap
+        /******/ "use strict";
+        /******/ // The require scope
+        /******/ var __webpack_require__ = {};
+        /******/
+        /************************************************************************/
+        /******/ /* webpack/runtime/define property getters */
+        /******/ (() => {
+          /******/ // define getter functions for harmony exports
+          /******/ __webpack_require__.d = (exports, definition) => {
+            /******/ for (var key in definition) {
+              /******/ if (
+                __webpack_require__.o(definition, key) &&
+                !__webpack_require__.o(exports, key)
+              ) {
+                /******/ Object.defineProperty(exports, key, {
+                  enumerable: true,
+                  get: definition[key],
+                });
+                /******/
+              }
+              /******/
+            }
+            /******/
+          };
+          /******/
+        })();
+        /******/
+        /******/ /* webpack/runtime/hasOwnProperty shorthand */
+        /******/ (() => {
+          /******/ __webpack_require__.o = (obj, prop) =>
+            Object.prototype.hasOwnProperty.call(obj, prop);
+          /******/
+        })();
+        /******/
+        /******/ /* webpack/runtime/make namespace object */
+        /******/ (() => {
+          /******/ // define __esModule on exports
+          /******/ __webpack_require__.r = (exports) => {
+            /******/ if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
+              /******/ Object.defineProperty(exports, Symbol.toStringTag, {
+                value: "Module",
+              });
+              /******/
+            }
+            /******/ Object.defineProperty(exports, "__esModule", {
+              value: true,
+            });
+            /******/
+          };
+          /******/
+        })();
+        /******/
+        /************************************************************************/
+        var __webpack_exports__ = {};
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+          /* harmony export */ initMap: () => /* binding */ initMap,
+          /* harmony export */
+        });
+        /*
+         * Copyright 2019 Google LLC. All Rights Reserved.
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *     http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+        let map;
+        const chicago = { lat: 41.85, lng: -87.65 };
+        /**
+         * The CenterControl adds a control to the map that recenters the map on
+         * Chicago.
+         */
+        class CenterControl {
           map_;
           center_;
-          constructor(e, t, n) {
-            (this.map_ = t),
-              (this.center_ = new google.maps.LatLng(n)),
-              (e.style.clear = "both");
-            const o = document.createElement("div");
-            (o.id = "goCenterUI"),
-              (o.title = "Click to recenter the map"),
-              e.appendChild(o);
-            const r = document.createElement("div");
-            (r.id = "goCenterText"),
-              (r.innerHTML = "Center Map"),
-              o.appendChild(r);
-            const i = document.createElement("div");
-            (i.id = "setCenterUI"),
-              (i.title = "Click to change the center of the map"),
-              e.appendChild(i);
-            const c = document.createElement("div");
-            (c.id = "setCenterText"),
-              (c.innerHTML = "Set Center"),
-              i.appendChild(c),
-              o.addEventListener("click", () => {
-                const e = this.center_;
-                this.map_.setCenter(e);
-              }),
-              i.addEventListener("click", () => {
-                const e = this.map_.getCenter();
-                e && (this.center_ = e);
-              });
+          constructor(controlDiv, map, center) {
+            this.map_ = map;
+            // Set the center property upon construction
+            this.center_ = new google.maps.LatLng(center);
+            controlDiv.style.clear = "both";
+            // Set CSS for the control border
+            const goCenterUI = document.createElement("div");
+            goCenterUI.id = "goCenterUI";
+            goCenterUI.title = "Click to recenter the map";
+            controlDiv.appendChild(goCenterUI);
+            // Set CSS for the control interior
+            const goCenterText = document.createElement("div");
+            goCenterText.id = "goCenterText";
+            goCenterText.innerHTML = "Center Map";
+            goCenterUI.appendChild(goCenterText);
+            // Set CSS for the setCenter control border
+            const setCenterUI = document.createElement("div");
+            setCenterUI.id = "setCenterUI";
+            setCenterUI.title = "Click to change the center of the map";
+            controlDiv.appendChild(setCenterUI);
+            // Set CSS for the control interior
+            const setCenterText = document.createElement("div");
+            setCenterText.id = "setCenterText";
+            setCenterText.innerHTML = "Set Center";
+            setCenterUI.appendChild(setCenterText);
+            // Set up the click event listener for 'Center Map': Set the center of
+            // the map
+            // to the current center of the control.
+            goCenterUI.addEventListener("click", () => {
+              const currentCenter = this.center_;
+              this.map_.setCenter(currentCenter);
+            });
+            // Set up the click event listener for 'Set Center': Set the center of
+            // the control to the current center of the map.
+            setCenterUI.addEventListener("click", () => {
+              const newCenter = this.map_.getCenter();
+              if (newCenter) {
+                this.center_ = newCenter;
+              }
+            });
           }
         }
-        function i() {
-          n = new google.maps.Map(document.getElementById("map"), {
+        function initMap() {
+          map = new google.maps.Map(document.getElementById("map"), {
             zoom: 12,
-            center: o,
+            center: chicago,
           });
-          const e = document.createElement("div");
-          new r(e, n, o),
-            (e.index = 1),
-            (e.style.paddingTop = "10px"),
-            n.controls[google.maps.ControlPosition.TOP_CENTER].push(e);
+          // Create the DIV to hold the control and call the CenterControl()
+          // constructor passing in this DIV.
+          const centerControlDiv = document.createElement("div");
+          const control = new CenterControl(centerControlDiv, map, chicago);
+          // @ts-ignore
+          centerControlDiv.index = 1;
+          centerControlDiv.style.paddingTop = "10px";
+          map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+            centerControlDiv
+          );
         }
-        var c = window;
-        for (var d in t) c[d] = t[d];
-        t.__esModule && Object.defineProperty(c, "__esModule", { value: !0 });
+
+        var __webpack_export_target__ = window;
+        for (var i in __webpack_exports__)
+          __webpack_export_target__[i] = __webpack_exports__[i];
+        if (__webpack_exports__.__esModule)
+          Object.defineProperty(__webpack_export_target__, "__esModule", {
+            value: true,
+          });
+        /******/
       })();
     </script>
   </head>

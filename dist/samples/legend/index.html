@@ -35,40 +35,105 @@
       }
     </style>
     <script>
-      (() => {
-        "use strict";
-        var o = {
-            d: (n, e) => {
-              for (var t in e)
-                o.o(e, t) &&
-                  !o.o(n, t) &&
-                  Object.defineProperty(n, t, { enumerable: !0, get: e[t] });
-            },
-            o: (o, n) => Object.prototype.hasOwnProperty.call(o, n),
-            r: (o) => {
-              "undefined" != typeof Symbol &&
-                Symbol.toStringTag &&
-                Object.defineProperty(o, Symbol.toStringTag, {
-                  value: "Module",
-                }),
-                Object.defineProperty(o, "__esModule", { value: !0 });
-            },
-          },
-          n = {};
-        let e;
-        function t() {
-          e = new google.maps.Map(document.getElementById("map"), {
+      /******/ (() => {
+        // webpackBootstrap
+        /******/ "use strict";
+        /******/ // The require scope
+        /******/ var __webpack_require__ = {};
+        /******/
+        /************************************************************************/
+        /******/ /* webpack/runtime/define property getters */
+        /******/ (() => {
+          /******/ // define getter functions for harmony exports
+          /******/ __webpack_require__.d = (exports, definition) => {
+            /******/ for (var key in definition) {
+              /******/ if (
+                __webpack_require__.o(definition, key) &&
+                !__webpack_require__.o(exports, key)
+              ) {
+                /******/ Object.defineProperty(exports, key, {
+                  enumerable: true,
+                  get: definition[key],
+                });
+                /******/
+              }
+              /******/
+            }
+            /******/
+          };
+          /******/
+        })();
+        /******/
+        /******/ /* webpack/runtime/hasOwnProperty shorthand */
+        /******/ (() => {
+          /******/ __webpack_require__.o = (obj, prop) =>
+            Object.prototype.hasOwnProperty.call(obj, prop);
+          /******/
+        })();
+        /******/
+        /******/ /* webpack/runtime/make namespace object */
+        /******/ (() => {
+          /******/ // define __esModule on exports
+          /******/ __webpack_require__.r = (exports) => {
+            /******/ if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
+              /******/ Object.defineProperty(exports, Symbol.toStringTag, {
+                value: "Module",
+              });
+              /******/
+            }
+            /******/ Object.defineProperty(exports, "__esModule", {
+              value: true,
+            });
+            /******/
+          };
+          /******/
+        })();
+        /******/
+        /************************************************************************/
+        var __webpack_exports__ = {};
+        __webpack_require__.r(__webpack_exports__);
+        /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+          /* harmony export */ initMap: () => /* binding */ initMap,
+          /* harmony export */
+        });
+        /*
+         * Copyright 2019 Google LLC. All Rights Reserved.
+         *
+         * Licensed under the Apache License, Version 2.0 (the "License");
+         * you may not use this file except in compliance with the License.
+         * You may obtain a copy of the License at
+         *
+         *     http://www.apache.org/licenses/LICENSE-2.0
+         *
+         * Unless required by applicable law or agreed to in writing, software
+         * distributed under the License is distributed on an "AS IS" BASIS,
+         * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+         * See the License for the specific language governing permissions and
+         * limitations under the License.
+         */
+        let map;
+        function initMap() {
+          map = new google.maps.Map(document.getElementById("map"), {
             zoom: 16,
             center: new google.maps.LatLng(-33.91722, 151.23064),
             mapTypeId: "roadmap",
           });
-          const o = "https://maps.google.com/mapfiles/kml/shapes/",
-            n = {
-              parking: { name: "Parking", icon: o + "parking_lot_maps.png" },
-              library: { name: "Library", icon: o + "library_maps.png" },
-              info: { name: "Info", icon: o + "info-i_maps.png" },
-            };
-          [
+          const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
+          const icons = {
+            parking: {
+              name: "Parking",
+              icon: iconBase + "parking_lot_maps.png",
+            },
+            library: {
+              name: "Library",
+              icon: iconBase + "library_maps.png",
+            },
+            info: {
+              name: "Info",
+              icon: iconBase + "info-i_maps.png",
+            },
+          };
+          const features = [
             {
               position: new google.maps.LatLng(-33.91721, 151.2263),
               type: "info",
@@ -169,27 +234,34 @@
               ),
               type: "library",
             },
-          ].forEach((o) => {
+          ];
+          features.forEach((feature) => {
             new google.maps.Marker({
-              position: o.position,
-              icon: n[o.type].icon,
-              map: e,
+              position: feature.position,
+              icon: icons[feature.type].icon,
+              map: map,
             });
           });
-          const t = document.getElementById("legend");
-          for (const o in n) {
-            const e = n[o],
-              p = e.name,
-              i = e.icon,
-              a = document.createElement("div");
-            (a.innerHTML = '<img src="' + i + '"> ' + p), t.appendChild(a);
+          const legend = document.getElementById("legend");
+          for (const key in icons) {
+            const type = icons[key];
+            const name = type.name;
+            const icon = type.icon;
+            const div = document.createElement("div");
+            div.innerHTML = '<img src="' + icon + '"> ' + name;
+            legend.appendChild(div);
           }
-          e.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(t);
+          map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
         }
-        o.r(n), o.d(n, { initMap: () => t });
-        var p = window;
-        for (var i in n) p[i] = n[i];
-        n.__esModule && Object.defineProperty(p, "__esModule", { value: !0 });
+
+        var __webpack_export_target__ = window;
+        for (var i in __webpack_exports__)
+          __webpack_export_target__[i] = __webpack_exports__[i];
+        if (__webpack_exports__.__esModule)
+          Object.defineProperty(__webpack_export_target__, "__esModule", {
+            value: true,
+          });
+        /******/
       })();
     </script>
   </head>

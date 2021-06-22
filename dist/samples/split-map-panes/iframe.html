@@ -1,147 +1,71 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
+  
 
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>  <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
+   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  #container,
-  #left,
-  #right,
-  .map,
-  .gutter {
-    height: 100%;
-  }
+#container,
+#left,
+#right,
+.map,
+.gutter {
+  height: 100%;
+}
 
-  #left,
-  #right,
-  .gutter {
-    float: left;
-    position: relative;
-    overflow: hidden;
-  }
+#left,
+#right,
+.gutter {
+  float: left;
+  position: relative;
+  overflow: hidden;
+}
 
-  #map-left {
-    position: absolute;
-    left: 0;
-    top: 0;
-  }
+#map-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
 
-  #map-right {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
+#map-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
 
-  .gutter {
-    background-color: #eee;
-    background-repeat: no-repeat;
-    background-position: 50%;
-  }
+.gutter {
+  background-color: #eee;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
 
-  .gutter.gutter-horizontal {
-    cursor: col-resize;
-    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
-  }
+.gutter.gutter-horizontal {
+  cursor: col-resize;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==");
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var o = {
-        d: (e, t) => {
-          for (var n in t)
-            o.o(t, n) &&
-              !o.o(e, n) &&
-              Object.defineProperty(e, n, { enumerable: !0, get: t[n] });
-        },
-        o: (o, e) => Object.prototype.hasOwnProperty.call(o, e),
-        r: (o) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(o, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(o, "__esModule", { value: !0 });
-        },
-      },
-      e = {};
-    let t, n;
-    function i() {
-      const o = {
-        center: { lat: 44.5250489, lng: -110.83819 },
-        zoom: 18,
-        scaleControl: !1,
-        streetViewControl: !1,
-      };
-      function e() {
-        const o = document.getElementById("container").offsetWidth;
-        (document.getElementById("map-left").style.width = `${o}px`),
-          (document.getElementById("map-right").style.width = `${o}px`);
-      }
-      (t = new google.maps.Map(document.getElementById("map-left"), {
-        ...o,
-        mapTypeId: "satellite",
-        tilt: 0,
-        fullscreenControlOptions: {
-          position: google.maps.ControlPosition.LEFT_BOTTOM,
-        },
-        mapTypeControlOptions: {
-          position: google.maps.ControlPosition.LEFT_TOP,
-        },
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.LEFT_BOTTOM,
-        },
-      })),
-        (n = new google.maps.Map(document.getElementById("map-right"), {
-          ...o,
-          fullscreenControlOptions: {
-            position: google.maps.ControlPosition.RIGHT_BOTTOM,
-          },
-          mapTypeControlOptions: {
-            position: google.maps.ControlPosition.RIGHT_TOP,
-          },
-          zoomControlOptions: {
-            position: google.maps.ControlPosition.RIGHT_BOTTOM,
-          },
-        })),
-        (function (...o) {
-          let e, t;
-          o.forEach((n) => {
-            n.addListener("bounds_changed", () => {
-              const i = n.getCenter(),
-                l = n.getZoom();
-              var r;
-              (i === e && l === t) ||
-                ((e = i),
-                (t = l),
-                (r = n),
-                o.forEach((o) => {
-                  o !== r && (o.setCenter(e), o.setZoom(t));
-                }));
-            });
-          });
-        })(t, n),
-        e(),
-        window.addEventListener("resize", e),
-        Split(["#left", "#right"], { sizes: [50, 50] });
-    }
-    o.r(e), o.d(e, { initMap: () => i });
-    var l = window;
-    for (var r in e) l[r] = e[r];
-    e.__esModule && Object.defineProperty(l, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var o={d:(e,t)=>{for(var n in t)o.o(t,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},o:(o,e)=>Object.prototype.hasOwnProperty.call(o,e),r:o=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(o,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(o,"__esModule",{value:!0})}},e={};let t,n;function i(){const o={center:{lat:44.5250489,lng:-110.83819},zoom:18,scaleControl:!1,streetViewControl:!1};function e(){const o=document.getElementById("container").offsetWidth;document.getElementById("map-left").style.width=`${o}px`,document.getElementById("map-right").style.width=`${o}px`}t=new google.maps.Map(document.getElementById("map-left"),{...o,mapTypeId:"satellite",tilt:0,fullscreenControlOptions:{position:google.maps.ControlPosition.LEFT_BOTTOM},mapTypeControlOptions:{position:google.maps.ControlPosition.LEFT_TOP},zoomControlOptions:{position:google.maps.ControlPosition.LEFT_BOTTOM}}),n=new google.maps.Map(document.getElementById("map-right"),{...o,fullscreenControlOptions:{position:google.maps.ControlPosition.RIGHT_BOTTOM},mapTypeControlOptions:{position:google.maps.ControlPosition.RIGHT_TOP},zoomControlOptions:{position:google.maps.ControlPosition.RIGHT_BOTTOM}}),function(...o){let e,t;o.forEach((n=>{n.addListener("bounds_changed",(()=>{const i=n.getCenter(),l=n.getZoom();var r;i===e&&l===t||(e=i,t=l,r=n,o.forEach((o=>{o!==r&&(o.setCenter(e),o.setZoom(t))})))}))}))}(t,n),e(),window.addEventListener("resize",e),Split(["#left","#right"],{sizes:[50,50]})}o.r(e),o.d(e,{initMap:()=>i});var l=window;for(var r in e)l[r]=e[r];e.__esModule&&Object.defineProperty(l,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
+      <div id="iframe-contents">
+
   <div id="container">
     <div id="left">
       <div id="map-left" class="map"></div>
@@ -151,9 +75,9 @@
     </div>
   </div>
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

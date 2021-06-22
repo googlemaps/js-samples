@@ -1,127 +1,69 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  #right-panel {
-    font-family: "Roboto", "sans-serif";
-    line-height: 30px;
-    padding-left: 10px;
-  }
+  
 
-  #right-panel select,
-  #right-panel input {
-    font-size: 15px;
-  }
+  
 
-  #right-panel select {
-    width: 100%;
-  }
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+#right-panel {
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
 
-  #right-panel i {
-    font-size: 12px;
-  }
+#right-panel select,
+#right-panel input {
+  font-size: 15px;
+}
 
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+#right-panel select {
+  width: 100%;
+}
 
-  #map {
-    height: 100%;
-    float: left;
-    width: 63%;
-    height: 100%;
-  }
+#right-panel i {
+  font-size: 12px;
+}
 
-  #right-panel {
-    float: right;
-    width: 34%;
-    height: 100%;
-  }
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  .panel {
-    height: 100%;
-    overflow: auto;
-  }
+#map {
+  height: 100%;
+  float: left;
+  width: 63%;
+  height: 100%;
+}
+
+#right-panel {
+  float: right;
+  width: 34%;
+  height: 100%;
+}
+
+.panel {
+  height: 100%;
+  overflow: auto;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var n in t)
-            e.o(t, n) &&
-              !e.o(o, n) &&
-              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    function t() {
-      const e = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: { lat: -24.345, lng: 134.46 },
-        }),
-        o = new google.maps.DirectionsService(),
-        t = new google.maps.DirectionsRenderer({
-          draggable: !0,
-          map: e,
-          panel: document.getElementById("right-panel"),
-        });
-      var n;
-      t.addListener("directions_changed", () => {
-        !(function (e) {
-          let o = 0;
-          const t = e.routes[0];
-          if (t) {
-            for (let e = 0; e < t.legs.length; e++)
-              o += t.legs[e].distance.value;
-            (o /= 1e3),
-              (document.getElementById("total").innerHTML = o + " km");
-          }
-        })(t.getDirections());
-      }),
-        (n = t),
-        o.route(
-          {
-            origin: "Perth, WA",
-            destination: "Sydney, NSW",
-            waypoints: [
-              { location: "Adelaide, SA" },
-              { location: "Broken Hill, NSW" },
-            ],
-            travelMode: google.maps.TravelMode.DRIVING,
-            avoidTolls: !0,
-          },
-          (e, o) => {
-            "OK" === o && e
-              ? n.setDirections(e)
-              : alert("Could not display directions due to: " + o);
-          }
-        );
-    }
-    e.r(o), e.d(o, { initMap: () => t });
-    var n = window;
-    for (var r in o) n[r] = o[r];
-    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function t(){const e=new google.maps.Map(document.getElementById("map"),{zoom:4,center:{lat:-24.345,lng:134.46}}),o=new google.maps.DirectionsService,t=new google.maps.DirectionsRenderer({draggable:!0,map:e,panel:document.getElementById("right-panel")});var n;t.addListener("directions_changed",(()=>{!function(e){let o=0;const t=e.routes[0];if(t){for(let e=0;e<t.legs.length;e++)o+=t.legs[e].distance.value;o/=1e3,document.getElementById("total").innerHTML=o+" km"}}(t.getDirections())})),n=t,o.route({origin:"Perth, WA",destination:"Sydney, NSW",waypoints:[{location:"Adelaide, SA"},{location:"Broken Hill, NSW"}],travelMode:google.maps.TravelMode.DRIVING,avoidTolls:!0},((e,o)=>{"OK"===o&&e?n.setDirections(e):alert("Could not display directions due to: "+o)}))}e.r(o),e.d(o,{initMap:()=>t});var n=window;for(var r in o)n[r]=o[r];o.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
-  <div id="right-panel">
-    <p>Total Distance: <span id="total"></span></p>
-  </div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
+<div id="map"></div>
+<div id="right-panel">
+  <p>Total Distance: <span id="total"></span></p>
 </div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

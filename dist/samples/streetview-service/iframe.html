@@ -1,86 +1,37 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+  
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var n in t)
-            e.o(t, n) &&
-              !e.o(o, n) &&
-              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    let t, n;
-    function a() {
-      const e = { lat: 37.869085, lng: -122.254775 },
-        o = new google.maps.StreetViewService();
-      (n = new google.maps.StreetViewPanorama(document.getElementById("pano"))),
-        (t = new google.maps.Map(document.getElementById("map"), {
-          center: e,
-          zoom: 16,
-          streetViewControl: !1,
-        })),
-        o.getPanorama({ location: e, radius: 50 }, i),
-        t.addListener("click", (e) => {
-          o.getPanorama({ location: e.latLng, radius: 50 }, i);
-        });
-    }
-    function i(e, o) {
-      if ("OK" === o) {
-        const o = e.location,
-          a = new google.maps.Marker({
-            position: o.latLng,
-            map: t,
-            title: o.description,
-          });
-        n.setPano(o.pano),
-          n.setPov({ heading: 270, pitch: 0 }),
-          n.setVisible(!0),
-          a.addListener("click", () => {
-            const e = o.pano;
-            n.setPano(e),
-              n.setPov({ heading: 270, pitch: 0 }),
-              n.setVisible(!0);
-          });
-      } else console.error("Street View data not found for this location.");
-    }
-    e.r(o), e.d(o, { initMap: () => a });
-    var r = window;
-    for (var l in o) r[l] = o[l];
-    o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};let t,n;function a(){const e={lat:37.869085,lng:-122.254775},o=new google.maps.StreetViewService;n=new google.maps.StreetViewPanorama(document.getElementById("pano")),t=new google.maps.Map(document.getElementById("map"),{center:e,zoom:16,streetViewControl:!1}),o.getPanorama({location:e,radius:50},i),t.addListener("click",(e=>{o.getPanorama({location:e.latLng,radius:50},i)}))}function i(e,o){if("OK"===o){const o=e.location,a=new google.maps.Marker({position:o.latLng,map:t,title:o.description});n.setPano(o.pano),n.setPov({heading:270,pitch:0}),n.setVisible(!0),a.addListener("click",(()=>{const e=o.pano;n.setPano(e),n.setPov({heading:270,pitch:0}),n.setVisible(!0)}))}else console.error("Street View data not found for this location.")}e.r(o),e.d(o,{initMap:()=>a});var r=window;for(var l in o)r[l]=o[l];o.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map" style="width: 45%; height: 100%; float: left"></div>
-  <div id="pano" style="width: 45%; height: 100%; float: left"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map" style="width: 45%; height: 100%;float:left"></div>
+<div id="pano" style="width: 45%; height: 100%;float:left"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

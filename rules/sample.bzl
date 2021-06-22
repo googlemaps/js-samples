@@ -290,9 +290,8 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
         cmd = "$(location //rules:inline) $(location :_iframe.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "tmp=$$(mktemp); " +
-              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY) +
-              "$(location //rules:prettier) --write $@; ",
-        tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier"],
+              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY),
+        tools = ["//rules:inline", "//rules:strip_region_tags_bin"],
         visibility = ["//visibility:public"],
     )
     ###### END IFRAME ######

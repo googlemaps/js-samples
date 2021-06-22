@@ -1,104 +1,52 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
+  
+
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  .custom-map-control-button {
-    background-color: #fff;
-    border: 0;
-    border-radius: 2px;
-    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-    margin: 10px;
-    padding: 0 0.5em;
-    font: 400 18px Roboto, Arial, sans-serif;
-    overflow: hidden;
-    height: 40px;
-    cursor: pointer;
-  }
-  .custom-map-control-button:hover {
-    background: #ebebeb;
-  }
+.custom-map-control-button {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  height: 40px;
+  cursor: pointer;
+}
+.custom-map-control-button:hover {
+  background: #ebebeb;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var o = {
-        d: (e, t) => {
-          for (var n in t)
-            o.o(t, n) &&
-              !o.o(e, n) &&
-              Object.defineProperty(e, n, { enumerable: !0, get: t[n] });
-        },
-        o: (o, e) => Object.prototype.hasOwnProperty.call(o, e),
-        r: (o) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(o, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(o, "__esModule", { value: !0 });
-        },
-      },
-      e = {};
-    let t, n;
-    function r() {
-      (t = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 6,
-      })),
-        (n = new google.maps.InfoWindow());
-      const o = document.createElement("button");
-      (o.textContent = "Pan to Current Location"),
-        o.classList.add("custom-map-control-button"),
-        t.controls[google.maps.ControlPosition.TOP_CENTER].push(o),
-        o.addEventListener("click", () => {
-          navigator.geolocation
-            ? navigator.geolocation.getCurrentPosition(
-                (o) => {
-                  const e = { lat: o.coords.latitude, lng: o.coords.longitude };
-                  n.setPosition(e),
-                    n.setContent("Location found."),
-                    n.open(t),
-                    t.setCenter(e);
-                },
-                () => {
-                  i(!0, n, t.getCenter());
-                }
-              )
-            : i(!1, n, t.getCenter());
-        });
-    }
-    function i(o, e, n) {
-      e.setPosition(n),
-        e.setContent(
-          o
-            ? "Error: The Geolocation service failed."
-            : "Error: Your browser doesn't support geolocation."
-        ),
-        e.open(t);
-    }
-    o.r(e), o.d(e, { initMap: () => r });
-    var a = window;
-    for (var l in e) a[l] = e[l];
-    e.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var o={d:(e,t)=>{for(var n in t)o.o(t,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},o:(o,e)=>Object.prototype.hasOwnProperty.call(o,e),r:o=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(o,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(o,"__esModule",{value:!0})}},e={};let t,n;function r(){t=new google.maps.Map(document.getElementById("map"),{center:{lat:-34.397,lng:150.644},zoom:6}),n=new google.maps.InfoWindow;const o=document.createElement("button");o.textContent="Pan to Current Location",o.classList.add("custom-map-control-button"),t.controls[google.maps.ControlPosition.TOP_CENTER].push(o),o.addEventListener("click",(()=>{navigator.geolocation?navigator.geolocation.getCurrentPosition((o=>{const e={lat:o.coords.latitude,lng:o.coords.longitude};n.setPosition(e),n.setContent("Location found."),n.open(t),t.setCenter(e)}),(()=>{i(!0,n,t.getCenter())})):i(!1,n,t.getCenter())}))}function i(o,e,n){e.setPosition(n),e.setContent(o?"Error: The Geolocation service failed.":"Error: Your browser doesn't support geolocation."),e.open(t)}o.r(e),o.d(e,{initMap:()=>r});var a=window;for(var l in e)a[l]=e[l];e.__esModule&&Object.defineProperty(a,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

@@ -1,93 +1,40 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://www.google.com/jsapi"></script>
+  
 
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><script src="https://www.google.com/jsapi"></script>
+   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var n in t)
-            e.o(t, n) &&
-              !e.o(o, n) &&
-              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    function t() {
-      const e = [
-          { lat: 36.579, lng: -118.292 },
-          { lat: 36.606, lng: -118.0638 },
-          { lat: 36.433, lng: -117.951 },
-          { lat: 36.588, lng: -116.943 },
-          { lat: 36.34, lng: -117.468 },
-          { lat: 36.24, lng: -116.832 },
-        ],
-        o = new google.maps.Map(document.getElementById("map"), {
-          zoom: 8,
-          center: e[1],
-          mapTypeId: "terrain",
-        });
-      !(function (e, o, t) {
-        new google.maps.Polyline({
-          path: e,
-          strokeColor: "#0000CC",
-          strokeOpacity: 0.4,
-          map: t,
-        }),
-          o.getElevationAlongPath({ path: e, samples: 256 }, n);
-      })(e, new google.maps.ElevationService(), o);
-    }
-    function n(e, o) {
-      const t = document.getElementById("elevation_chart");
-      if ("OK" !== o)
-        return void (t.innerHTML =
-          "Cannot show elevation: request failed because " + o);
-      const n = new google.visualization.ColumnChart(t),
-        a = new google.visualization.DataTable();
-      a.addColumn("string", "Sample"), a.addColumn("number", "Elevation");
-      for (let o = 0; o < e.length; o++) a.addRow(["", e[o].elevation]);
-      n.draw(a, { height: 150, legend: "none", titleY: "Elevation (m)" });
-    }
-    e.r(o),
-      e.d(o, { initMap: () => t }),
-      google.load("visualization", "1", { packages: ["columnchart"] });
-    var a = window;
-    for (var l in o) a[l] = o[l];
-    o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function t(){const e=[{lat:36.579,lng:-118.292},{lat:36.606,lng:-118.0638},{lat:36.433,lng:-117.951},{lat:36.588,lng:-116.943},{lat:36.34,lng:-117.468},{lat:36.24,lng:-116.832}],o=new google.maps.Map(document.getElementById("map"),{zoom:8,center:e[1],mapTypeId:"terrain"});!function(e,o,t){new google.maps.Polyline({path:e,strokeColor:"#0000CC",strokeOpacity:.4,map:t}),o.getElevationAlongPath({path:e,samples:256},n)}(e,new google.maps.ElevationService,o)}function n(e,o){const t=document.getElementById("elevation_chart");if("OK"!==o)return void(t.innerHTML="Cannot show elevation: request failed because "+o);const n=new google.visualization.ColumnChart(t),a=new google.visualization.DataTable;a.addColumn("string","Sample"),a.addColumn("number","Elevation");for(let o=0;o<e.length;o++)a.addRow(["",e[o].elevation]);n.draw(a,{height:150,legend:"none",titleY:"Elevation (m)"})}e.r(o),e.d(o,{initMap:()=>t}),google.load("visualization","1",{packages:["columnchart"]});var a=window;for(var l in o)a[l]=o[l];o.__esModule&&Object.defineProperty(a,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div>
-    <div id="map" style="height: 250px"></div>
-    <div id="elevation_chart"></div>
-  </div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
+<div>
+  <div id="map" style="height:250px;"></div>
+  <div id="elevation_chart"></div>
 </div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

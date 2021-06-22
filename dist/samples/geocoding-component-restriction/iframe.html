@@ -1,98 +1,54 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
+  
+
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  #floating-panel {
-    position: absolute;
-    top: 10px;
-    left: 25%;
-    z-index: 5;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #999;
-    text-align: center;
-    font-family: "Roboto", "sans-serif";
-    line-height: 30px;
-    padding-left: 10px;
-  }
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var n in t)
-            e.o(t, n) &&
-              !e.o(o, n) &&
-              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    function t() {
-      const e = new google.maps.Geocoder(),
-        o = new google.maps.Map(document.getElementById("map"), {
-          zoom: 8,
-          center: { lat: -33.865, lng: 151.209 },
-        });
-      document.getElementById("submit").addEventListener("click", () => {
-        !(function (e, o) {
-          e.geocode(
-            {
-              address: "483 George St.",
-              componentRestrictions: { country: "AU", postalCode: "2000" },
-            },
-            (e, t) => {
-              "OK" === t
-                ? (o.setCenter(e[0].geometry.location),
-                  new google.maps.Marker({
-                    map: o,
-                    position: e[0].geometry.location,
-                  }))
-                : window.alert(
-                    "Geocode was not successful for the following reason: " + t
-                  );
-            }
-          );
-        })(e, o);
-      });
-    }
-    e.r(o), e.d(o, { initMap: () => t });
-    var n = window;
-    for (var r in o) n[r] = o[r];
-    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function t(){const e=new google.maps.Geocoder,o=new google.maps.Map(document.getElementById("map"),{zoom:8,center:{lat:-33.865,lng:151.209}});document.getElementById("submit").addEventListener("click",(()=>{!function(e,o){e.geocode({address:"483 George St.",componentRestrictions:{country:"AU",postalCode:"2000"}},((e,t)=>{"OK"===t?(o.setCenter(e[0].geometry.location),new google.maps.Marker({map:o,position:e[0].geometry.location})):window.alert("Geocode was not successful for the following reason: "+t)}))}(e,o)}))}e.r(o),e.d(o,{initMap:()=>t});var n=window;for(var r in o)n[r]=o[r];o.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="floating-panel">
-    <code>componentRestrictions: {country: "AU", postalCode: "2000"}</code
-    ><br />
-    <button id="submit">Geocode</button>
-  </div>
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
+<div id="floating-panel">
+  <code>componentRestrictions: {country: "AU", postalCode: "2000"}</code><br/>
+  <button id="submit">Geocode</button>
 </div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>
