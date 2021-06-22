@@ -1,92 +1,36 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+  
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var o = {
-        d: (e, t) => {
-          for (var n in t)
-            o.o(t, n) &&
-              !o.o(e, n) &&
-              Object.defineProperty(e, n, { enumerable: !0, get: t[n] });
-        },
-        o: (o, e) => Object.prototype.hasOwnProperty.call(o, e),
-        r: (o) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(o, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(o, "__esModule", { value: !0 });
-        },
-      },
-      e = {};
-    function t() {
-      const o = new google.maps.LatLng(41.85, -87.65),
-        e = new google.maps.Map(document.getElementById("map"), {
-          center: o,
-          zoom: 3,
-        }),
-        t = new google.maps.InfoWindow();
-      t.setContent(a(o, e.getZoom())),
-        t.setPosition(o),
-        t.open(e),
-        e.addListener("zoom_changed", () => {
-          t.setContent(a(o, e.getZoom())), t.open(e);
-        });
-    }
-    o.r(e), o.d(e, { initMap: () => t });
-    const n = 256;
-    function a(o, e) {
-      const t = 1 << e,
-        a = (function (o) {
-          let e = Math.sin((o.lat() * Math.PI) / 180);
-          return (
-            (e = Math.min(Math.max(e, -0.9999), 0.9999)),
-            new google.maps.Point(
-              n * (0.5 + o.lng() / 360),
-              n * (0.5 - Math.log((1 + e) / (1 - e)) / (4 * Math.PI))
-            )
-          );
-        })(o);
-      return [
-        "Chicago, IL",
-        "LatLng: " + o,
-        "Zoom level: " + e,
-        "World Coordinate: " + a,
-        "Pixel Coordinate: " +
-          new google.maps.Point(Math.floor(a.x * t), Math.floor(a.y * t)),
-        "Tile Coordinate: " +
-          new google.maps.Point(
-            Math.floor((a.x * t) / n),
-            Math.floor((a.y * t) / n)
-          ),
-      ].join("<br>");
-    }
-    var r = window;
-    for (var l in e) r[l] = e[l];
-    e.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var o={d:(e,t)=>{for(var n in t)o.o(t,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},o:(o,e)=>Object.prototype.hasOwnProperty.call(o,e),r:o=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(o,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(o,"__esModule",{value:!0})}},e={};function t(){const o=new google.maps.LatLng(41.85,-87.65),e=new google.maps.Map(document.getElementById("map"),{center:o,zoom:3}),t=new google.maps.InfoWindow;t.setContent(a(o,e.getZoom())),t.setPosition(o),t.open(e),e.addListener("zoom_changed",(()=>{t.setContent(a(o,e.getZoom())),t.open(e)}))}o.r(e),o.d(e,{initMap:()=>t});const n=256;function a(o,e){const t=1<<e,a=function(o){let e=Math.sin(o.lat()*Math.PI/180);return e=Math.min(Math.max(e,-.9999),.9999),new google.maps.Point(n*(.5+o.lng()/360),n*(.5-Math.log((1+e)/(1-e))/(4*Math.PI)))}(o);return["Chicago, IL","LatLng: "+o,"Zoom level: "+e,"World Coordinate: "+a,"Pixel Coordinate: "+new google.maps.Point(Math.floor(a.x*t),Math.floor(a.y*t)),"Tile Coordinate: "+new google.maps.Point(Math.floor(a.x*t/n),Math.floor(a.y*t/n))].join("<br>")}var r=window;for(var l in e)r[l]=e[l];e.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

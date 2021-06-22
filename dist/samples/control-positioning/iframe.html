@@ -1,72 +1,36 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+  
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var o = {
-        d: (e, t) => {
-          for (var n in t)
-            o.o(t, n) &&
-              !o.o(e, n) &&
-              Object.defineProperty(e, n, { enumerable: !0, get: t[n] });
-        },
-        o: (o, e) => Object.prototype.hasOwnProperty.call(o, e),
-        r: (o) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(o, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(o, "__esModule", { value: !0 });
-        },
-      },
-      e = {};
-    function t() {
-      new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
-        center: { lat: -28.643387, lng: 153.612224 },
-        mapTypeControl: !0,
-        mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-          position: google.maps.ControlPosition.TOP_CENTER,
-        },
-        zoomControl: !0,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.LEFT_CENTER,
-        },
-        scaleControl: !0,
-        streetViewControl: !0,
-        streetViewControlOptions: {
-          position: google.maps.ControlPosition.LEFT_TOP,
-        },
-        fullscreenControl: !0,
-      });
-    }
-    o.r(e), o.d(e, { initMap: () => t });
-    var n = window;
-    for (var r in e) n[r] = e[r];
-    e.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var o={d:(e,t)=>{for(var n in t)o.o(t,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},o:(o,e)=>Object.prototype.hasOwnProperty.call(o,e),r:o=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(o,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(o,"__esModule",{value:!0})}},e={};function t(){new google.maps.Map(document.getElementById("map"),{zoom:12,center:{lat:-28.643387,lng:153.612224},mapTypeControl:!0,mapTypeControlOptions:{style:google.maps.MapTypeControlStyle.HORIZONTAL_BAR,position:google.maps.ControlPosition.TOP_CENTER},zoomControl:!0,zoomControlOptions:{position:google.maps.ControlPosition.LEFT_CENTER},scaleControl:!0,streetViewControl:!0,streetViewControlOptions:{position:google.maps.ControlPosition.LEFT_TOP},fullscreenControl:!0})}o.r(e),o.d(e,{initMap:()=>t});var n=window;for(var r in e)n[r]=e[r];e.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

@@ -1,54 +1,32 @@
-<style type="text/css">
-  /* Set the size of the div element that contains the map */
-  #map {
-    height: 400px;
-    /* The height is 400 pixels */
-    width: 100%;
-    /* The width is the width of the web page */
-  }
+  
+
+  
+
+   
+          <style type="text/css">
+/* Set the size of the div element that contains the map */
+#map {
+  height: 400px;
+  /* The height is 400 pixels */
+  width: 100%;
+  /* The width is the width of the web page */
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var r in t)
-            e.o(t, r) &&
-              !e.o(o, r) &&
-              Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    function t() {
-      const e = { lat: -25.344, lng: 131.036 },
-        o = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: e,
-        });
-      new google.maps.Marker({ position: e, map: o });
-    }
-    e.r(o), e.d(o, { initMap: () => t });
-    var r = window;
-    for (var n in o) r[n] = o[n];
-    o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var r in t)e.o(t,r)&&!e.o(o,r)&&Object.defineProperty(o,r,{enumerable:!0,get:t[r]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function t(){const e={lat:-25.344,lng:131.036},o=new google.maps.Map(document.getElementById("map"),{zoom:4,center:e});new google.maps.Marker({position:e,map:o})}e.r(o),e.d(o,{initMap:()=>t});var r=window;for(var n in o)r[n]=o[n];o.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
+      <div id="iframe-contents">
+
   <h3>My Google Maps Demo</h3>
   <!--The div element for the map -->
   <div id="map"></div>
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

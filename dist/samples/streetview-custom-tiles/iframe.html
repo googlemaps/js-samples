@@ -1,108 +1,33 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
 
-  #street-view {
-    height: 100%;
-  }
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#street-view {
+  height: 100%;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var n in t)
-            e.o(t, n) &&
-              !e.o(o, n) &&
-              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    let t, n;
-    function i() {
-      new google.maps.StreetViewService().getPanorama(
-        { location: { lat: -33.867386, lng: 151.195767 } },
-        (e, o) => {
-          o === google.maps.StreetViewStatus.OK &&
-            e &&
-            ((n = e),
-            (t = new google.maps.StreetViewPanorama(
-              document.getElementById("street-view"),
-              { pano: n.location.pano }
-            )),
-            t.registerPanoProvider((e) =>
-              "reception" === e
-                ? {
-                    location: {
-                      pano: "reception",
-                      description: "Google Sydney - Reception",
-                      latLng: new google.maps.LatLng(-33.86684, 151.19583),
-                    },
-                    links: [
-                      {
-                        heading: 195,
-                        description: "Exit",
-                        pano: n.location.pano,
-                      },
-                    ],
-                    copyright: "Imagery (c) 2010 Google",
-                    tiles: {
-                      tileSize: new google.maps.Size(1024, 512),
-                      worldSize: new google.maps.Size(2048, 1024),
-                      centerHeading: 105,
-                      getTileUrl: function (e, o, t, n) {
-                        return (
-                          "https://developers.google.com/maps/documentation/javascript/examples/full/images/panoReception1024-" +
-                          o +
-                          "-" +
-                          t +
-                          "-" +
-                          n +
-                          ".jpg"
-                        );
-                      },
-                    },
-                  }
-                : null
-            ),
-            t.addListener("links_changed", () => {
-              t.getPano() === n.location.pano &&
-                t
-                  .getLinks()
-                  .push({
-                    description: "Google Sydney",
-                    heading: 25,
-                    pano: "reception",
-                  });
-            }));
-        }
-      );
-    }
-    e.r(o), e.d(o, { initMap: () => i });
-    var a = window;
-    for (var r in o) a[r] = o[r];
-    o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};let t,n;function i(){(new google.maps.StreetViewService).getPanorama({location:{lat:-33.867386,lng:151.195767}},((e,o)=>{o===google.maps.StreetViewStatus.OK&&e&&(n=e,t=new google.maps.StreetViewPanorama(document.getElementById("street-view"),{pano:n.location.pano}),t.registerPanoProvider((e=>"reception"===e?{location:{pano:"reception",description:"Google Sydney - Reception",latLng:new google.maps.LatLng(-33.86684,151.19583)},links:[{heading:195,description:"Exit",pano:n.location.pano}],copyright:"Imagery (c) 2010 Google",tiles:{tileSize:new google.maps.Size(1024,512),worldSize:new google.maps.Size(2048,1024),centerHeading:105,getTileUrl:function(e,o,t,n){return"https://developers.google.com/maps/documentation/javascript/examples/full/images/panoReception1024-"+o+"-"+t+"-"+n+".jpg"}}}:null)),t.addListener("links_changed",(()=>{t.getPano()===n.location.pano&&t.getLinks().push({description:"Google Sydney",heading:25,pano:"reception"})})))}))}e.r(o),e.d(o,{initMap:()=>i});var a=window;for(var r in o)a[r]=o[r];o.__esModule&&Object.defineProperty(a,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="street-view"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+<div id="street-view"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

@@ -1,78 +1,36 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+  
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (l, t) => {
-          for (var a in t)
-            e.o(t, a) &&
-              !e.o(l, a) &&
-              Object.defineProperty(l, a, { enumerable: !0, get: t[a] });
-        },
-        o: (e, l) => Object.prototype.hasOwnProperty.call(e, l),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      l = {};
-    function t() {
-      new google.maps.Map(document.getElementById("map"), {
-        zoom: 6,
-        center: { lat: -33.872, lng: 151.252 },
-      }).data.add({
-        geometry: new google.maps.Data.Polygon([
-          [
-            { lat: -32.364, lng: 153.207 },
-            { lat: -35.364, lng: 153.207 },
-            { lat: -35.364, lng: 158.207 },
-            { lat: -32.364, lng: 158.207 },
-          ],
-          [
-            { lat: -33.364, lng: 154.207 },
-            { lat: -34.364, lng: 154.207 },
-            { lat: -34.364, lng: 155.207 },
-            { lat: -33.364, lng: 155.207 },
-          ],
-          [
-            { lat: -33.364, lng: 156.207 },
-            { lat: -34.364, lng: 156.207 },
-            { lat: -34.364, lng: 157.207 },
-            { lat: -33.364, lng: 157.207 },
-          ],
-        ]),
-      });
-    }
-    e.r(l), e.d(l, { initMap: () => t });
-    var a = window;
-    for (var n in l) a[n] = l[n];
-    l.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(l,t)=>{for(var a in t)e.o(t,a)&&!e.o(l,a)&&Object.defineProperty(l,a,{enumerable:!0,get:t[a]})},o:(e,l)=>Object.prototype.hasOwnProperty.call(e,l),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},l={};function t(){new google.maps.Map(document.getElementById("map"),{zoom:6,center:{lat:-33.872,lng:151.252}}).data.add({geometry:new google.maps.Data.Polygon([[{lat:-32.364,lng:153.207},{lat:-35.364,lng:153.207},{lat:-35.364,lng:158.207},{lat:-32.364,lng:158.207}],[{lat:-33.364,lng:154.207},{lat:-34.364,lng:154.207},{lat:-34.364,lng:155.207},{lat:-33.364,lng:155.207}],[{lat:-33.364,lng:156.207},{lat:-34.364,lng:156.207},{lat:-34.364,lng:157.207},{lat:-33.364,lng:157.207}]])})}e.r(l),e.d(l,{initMap:()=>t});var a=window;for(var n in l)a[n]=l[n];l.__esModule&&Object.defineProperty(a,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

@@ -1,104 +1,57 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
+  
+
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  #floating-panel {
-    position: absolute;
-    top: 10px;
-    left: 25%;
-    z-index: 5;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #999;
-    text-align: center;
-    font-family: "Roboto", "sans-serif";
-    line-height: 30px;
-    padding-left: 10px;
-  }
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
 
-  #floating-panel {
-    margin-left: -52px;
-  }
+#floating-panel {
+  margin-left: -52px;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var n in t)
-            e.o(t, n) &&
-              !e.o(o, n) &&
-              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    e.r(o), e.d(o, { initMap: () => a, drop: () => r });
-    const t = [
-      { lat: 52.511, lng: 13.447 },
-      { lat: 52.549, lng: 13.422 },
-      { lat: 52.497, lng: 13.396 },
-      { lat: 52.517, lng: 13.394 },
-    ];
-    let n,
-      l = [];
-    function a() {
-      n = new google.maps.Map(document.getElementById("map"), {
-        zoom: 12,
-        center: { lat: 52.52, lng: 13.41 },
-      });
-    }
-    function r() {
-      !(function () {
-        for (let e = 0; e < l.length; e++) l[e].setMap(null);
-        l = [];
-      })();
-      for (let e = 0; e < t.length; e++) i(t[e], 200 * e);
-    }
-    function i(e, o) {
-      window.setTimeout(() => {
-        l.push(
-          new google.maps.Marker({
-            position: e,
-            map: n,
-            animation: google.maps.Animation.DROP,
-          })
-        );
-      }, o);
-    }
-    var g = window;
-    for (var p in o) g[p] = o[p];
-    o.__esModule && Object.defineProperty(g, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};e.r(o),e.d(o,{initMap:()=>a,drop:()=>r});const t=[{lat:52.511,lng:13.447},{lat:52.549,lng:13.422},{lat:52.497,lng:13.396},{lat:52.517,lng:13.394}];let n,l=[];function a(){n=new google.maps.Map(document.getElementById("map"),{zoom:12,center:{lat:52.52,lng:13.41}})}function r(){!function(){for(let e=0;e<l.length;e++)l[e].setMap(null);l=[]}();for(let e=0;e<t.length;e++)i(t[e],200*e)}function i(e,o){window.setTimeout((()=>{l.push(new google.maps.Marker({position:e,map:n,animation:google.maps.Animation.DROP}))}),o)}var g=window;for(var p in o)g[p]=o[p];o.__esModule&&Object.defineProperty(g,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="floating-panel">
-    <button id="drop" onclick="drop()">Drop Markers</button>
-  </div>
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
+<div id="floating-panel">
+  <button id="drop" onclick="drop()">Drop Markers</button>
 </div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

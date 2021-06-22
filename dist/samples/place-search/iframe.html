@@ -1,83 +1,36 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+  
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, t) => {
-          for (var n in t)
-            e.o(t, n) &&
-              !e.o(o, n) &&
-              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    let t, n, r;
-    function a() {
-      const e = new google.maps.LatLng(-33.867, 151.195);
-      (r = new google.maps.InfoWindow()),
-        (t = new google.maps.Map(document.getElementById("map"), {
-          center: e,
-          zoom: 15,
-        })),
-        (n = new google.maps.places.PlacesService(t)),
-        n.findPlaceFromQuery(
-          {
-            query: "Museum of Contemporary Art Australia",
-            fields: ["name", "geometry"],
-          },
-          (e, o) => {
-            if (o === google.maps.places.PlacesServiceStatus.OK && e) {
-              for (let o = 0; o < e.length; o++) l(e[o]);
-              t.setCenter(e[0].geometry.location);
-            }
-          }
-        );
-    }
-    function l(e) {
-      if (!e.geometry || !e.geometry.location) return;
-      const o = new google.maps.Marker({
-        map: t,
-        position: e.geometry.location,
-      });
-      google.maps.event.addListener(o, "click", () => {
-        r.setContent(e.name || ""), r.open(t);
-      });
-    }
-    e.r(o), e.d(o, { initMap: () => a });
-    var i = window;
-    for (var g in o) i[g] = o[g];
-    o.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};let t,n,r;function a(){const e=new google.maps.LatLng(-33.867,151.195);r=new google.maps.InfoWindow,t=new google.maps.Map(document.getElementById("map"),{center:e,zoom:15}),n=new google.maps.places.PlacesService(t),n.findPlaceFromQuery({query:"Museum of Contemporary Art Australia",fields:["name","geometry"]},((e,o)=>{if(o===google.maps.places.PlacesServiceStatus.OK&&e){for(let o=0;o<e.length;o++)l(e[o]);t.setCenter(e[0].geometry.location)}}))}function l(e){if(!e.geometry||!e.geometry.location)return;const o=new google.maps.Marker({map:t,position:e.geometry.location});google.maps.event.addListener(o,"click",(()=>{r.setContent(e.name||""),r.open(t)}))}e.r(o),e.d(o,{initMap:()=>a});var i=window;for(var g in o)i[g]=o[g];o.__esModule&&Object.defineProperty(i,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly" 
+        async></script>
+
+      </div>

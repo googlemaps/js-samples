@@ -1,165 +1,43 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
+  
+
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+#map {
+  height: 100%;
+}
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  #coords {
-    background-color: black;
-    color: white;
-    padding: 5px;
-  }
+#coords {
+  background-color: black;
+  color: white;
+  padding: 5px;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (t, o) => {
-          for (var n in o)
-            e.o(o, n) &&
-              !e.o(t, n) &&
-              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
-        },
-        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      t = {};
-    function o() {
-      const e = new google.maps.Map(document.getElementById("map"), {
-        zoom: 0,
-        center: { lat: 0, lng: 0 },
-        mapTypeControl: !1,
-      });
-      (n = new google.maps.ImageMapType({
-        getTileUrl: function (e, t) {
-          const o = 1 << t,
-            n = ((e.x % o) + o) % o,
-            a = e.y;
-          return a < 0 || a >= o
-            ? ""
-            : "https://developers.google.com/maps/documentation/javascript/examples/full/images/gall-peters_" +
-                t +
-                "_" +
-                n +
-                "_" +
-                a +
-                ".png";
-        },
-        tileSize: new google.maps.Size(800, 512),
-        minZoom: 0,
-        maxZoom: 1,
-        name: "Gall-Peters",
-      })),
-        (n.projection = {
-          fromLatLngToPoint: function (e) {
-            const t = (e.lat() * Math.PI) / 180;
-            return new google.maps.Point(
-              800 * (0.5 + e.lng() / 360),
-              512 * (0.5 - 0.5 * Math.sin(t))
-            );
-          },
-          fromPointToLatLng: function (e, t) {
-            const o = e.x / 800,
-              n = Math.max(0, Math.min(1, e.y / 512));
-            return new google.maps.LatLng(
-              (180 * Math.asin(1 - 2 * n)) / Math.PI,
-              360 * o - 180,
-              t
-            );
-          },
-        }),
-        e.mapTypes.set("gallPeters", n),
-        e.setMapTypeId("gallPeters");
-      const t = document.getElementById("coords");
-      e.controls[google.maps.ControlPosition.TOP_CENTER].push(t),
-        e.addListener("mousemove", (e) => {
-          t.textContent =
-            "lat: " +
-            Math.round(e.latLng.lat()) +
-            ", lng: " +
-            Math.round(e.latLng.lng());
-        }),
-        e.data.setStyle((e) => ({
-          title: e.getProperty("name"),
-          optimized: !1,
-        })),
-        e.data.addGeoJson(a);
-    }
-    let n;
-    e.r(t), e.d(t, { initMap: () => o });
-    const a = {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [-87.65, 41.85] },
-          properties: { name: "Chicago" },
-        },
-        {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [-149.9, 61.218] },
-          properties: { name: "Anchorage" },
-        },
-        {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [-99.127, 19.427] },
-          properties: { name: "Mexico City" },
-        },
-        {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [-0.126, 51.5] },
-          properties: { name: "London" },
-        },
-        {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [28.045, -26.201] },
-          properties: { name: "Johannesburg" },
-        },
-        {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [15.322, -4.325] },
-          properties: { name: "Kinshasa" },
-        },
-        {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [151.207, -33.867] },
-          properties: { name: "Sydney" },
-        },
-        {
-          type: "Feature",
-          geometry: { type: "Point", coordinates: [0, 0] },
-          properties: { name: "0°N 0°E" },
-        },
-      ],
-    };
-    var r = window;
-    for (var p in t) r[p] = t[p];
-    t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(t,o)=>{for(var n in o)e.o(o,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:o[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};function o(){const e=new google.maps.Map(document.getElementById("map"),{zoom:0,center:{lat:0,lng:0},mapTypeControl:!1});n=new google.maps.ImageMapType({getTileUrl:function(e,t){const o=1<<t,n=(e.x%o+o)%o,a=e.y;return a<0||a>=o?"":"https://developers.google.com/maps/documentation/javascript/examples/full/images/gall-peters_"+t+"_"+n+"_"+a+".png"},tileSize:new google.maps.Size(800,512),minZoom:0,maxZoom:1,name:"Gall-Peters"}),n.projection={fromLatLngToPoint:function(e){const t=e.lat()*Math.PI/180;return new google.maps.Point(800*(.5+e.lng()/360),512*(.5-.5*Math.sin(t)))},fromPointToLatLng:function(e,t){const o=e.x/800,n=Math.max(0,Math.min(1,e.y/512));return new google.maps.LatLng(180*Math.asin(1-2*n)/Math.PI,360*o-180,t)}},e.mapTypes.set("gallPeters",n),e.setMapTypeId("gallPeters");const t=document.getElementById("coords");e.controls[google.maps.ControlPosition.TOP_CENTER].push(t),e.addListener("mousemove",(e=>{t.textContent="lat: "+Math.round(e.latLng.lat())+", lng: "+Math.round(e.latLng.lng())})),e.data.setStyle((e=>({title:e.getProperty("name"),optimized:!1}))),e.data.addGeoJson(a)}let n;e.r(t),e.d(t,{initMap:()=>o});const a={type:"FeatureCollection",features:[{type:"Feature",geometry:{type:"Point",coordinates:[-87.65,41.85]},properties:{name:"Chicago"}},{type:"Feature",geometry:{type:"Point",coordinates:[-149.9,61.218]},properties:{name:"Anchorage"}},{type:"Feature",geometry:{type:"Point",coordinates:[-99.127,19.427]},properties:{name:"Mexico City"}},{type:"Feature",geometry:{type:"Point",coordinates:[-.126,51.5]},properties:{name:"London"}},{type:"Feature",geometry:{type:"Point",coordinates:[28.045,-26.201]},properties:{name:"Johannesburg"}},{type:"Feature",geometry:{type:"Point",coordinates:[15.322,-4.325]},properties:{name:"Kinshasa"}},{type:"Feature",geometry:{type:"Point",coordinates:[151.207,-33.867]},properties:{name:"Sydney"}},{type:"Feature",geometry:{type:"Point",coordinates:[0,0]},properties:{name:"0°N 0°E"}}]};var r=window;for(var p in t)r[p]=t[p];t.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
-  <div id="coords"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map"></div>
+<div id="coords"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>

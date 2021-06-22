@@ -1,82 +1,36 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-  #map {
-    height: 100%;
-  }
+  
 
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+#map {
+  height: 100%;
+}
+
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (o, a) => {
-          for (var r in a)
-            e.o(a, r) &&
-              !e.o(o, r) &&
-              Object.defineProperty(o, r, { enumerable: !0, get: a[r] });
-        },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      o = {};
-    function a() {
-      const e = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
-      });
-      new google.maps.drawing.DrawingManager({
-        drawingMode: google.maps.drawing.OverlayType.MARKER,
-        drawingControl: !0,
-        drawingControlOptions: {
-          position: google.maps.ControlPosition.TOP_CENTER,
-          drawingModes: [
-            google.maps.drawing.OverlayType.MARKER,
-            google.maps.drawing.OverlayType.CIRCLE,
-            google.maps.drawing.OverlayType.POLYGON,
-            google.maps.drawing.OverlayType.POLYLINE,
-            google.maps.drawing.OverlayType.RECTANGLE,
-          ],
-        },
-        markerOptions: {
-          icon: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-        },
-        circleOptions: {
-          fillColor: "#ffff00",
-          fillOpacity: 1,
-          strokeWeight: 5,
-          clickable: !1,
-          editable: !0,
-          zIndex: 1,
-        },
-      }).setMap(e);
-    }
-    e.r(o), e.d(o, { initMap: () => a });
-    var r = window;
-    for (var l in o) r[l] = o[l];
-    o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(o,a)=>{for(var r in a)e.o(a,r)&&!e.o(o,r)&&Object.defineProperty(o,r,{enumerable:!0,get:a[r]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function a(){const e=new google.maps.Map(document.getElementById("map"),{center:{lat:-34.397,lng:150.644},zoom:8});new google.maps.drawing.DrawingManager({drawingMode:google.maps.drawing.OverlayType.MARKER,drawingControl:!0,drawingControlOptions:{position:google.maps.ControlPosition.TOP_CENTER,drawingModes:[google.maps.drawing.OverlayType.MARKER,google.maps.drawing.OverlayType.CIRCLE,google.maps.drawing.OverlayType.POLYGON,google.maps.drawing.OverlayType.POLYLINE,google.maps.drawing.OverlayType.RECTANGLE]},markerOptions:{icon:"https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"},circleOptions:{fillColor:"#ffff00",fillOpacity:1,strokeWeight:5,clickable:!1,editable:!0,zIndex:1}}).setMap(e)}e.r(o),e.d(o,{initMap:()=>a});var r=window;for(var l in o)r[l]=o[l];o.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
-  <div id="map"></div>
+      <div id="iframe-contents">
 
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=drawing&v=weekly"
-    async
-  ></script>
-</div>
+<div id="map"></div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=drawing&v=weekly" 
+        async></script>
+
+      </div>

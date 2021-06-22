@@ -1,136 +1,127 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<style type="text/css">
-  /* Optional: Makes the sample page fill the window. */
-  html,
-  body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-  }
+  
 
-  #container {
-    height: 100%;
-    display: flex;
-  }
+  
 
-  #sidebar {
-    flex-basis: 15rem;
-    flex-grow: 1;
-    padding: 1rem;
-    max-width: 30rem;
-    height: 100%;
-    box-sizing: border-box;
-    display: flex;
-    overflow: auto;
-  }
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
+  <style type="text/css">
+/* Optional: Makes the sample page fill the window. */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 
-  #map {
-    flex-basis: 0;
-    flex-grow: 4;
-    height: 100%;
-  }
+#container {
+  height: 100%;
+  display: flex;
+}
 
-  #floating-panel {
-    position: absolute;
-    top: 10px;
-    left: 25%;
-    z-index: 5;
-    background-color: #fff;
-    padding: 5px;
-    border: 1px solid #999;
-    text-align: center;
-    font-family: "Roboto", "sans-serif";
-    line-height: 30px;
-    padding-left: 10px;
-  }
+#sidebar {
+  flex-basis: 15rem;
+  flex-grow: 1;
+  padding: 1rem;
+  max-width: 30rem;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  overflow: auto;
+}
 
-  #floating-panel {
-    background-color: #fff;
-    border: 0;
-    border-radius: 2px;
-    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
-    margin: 10px;
-    padding: 0 0.5em;
-    font: 400 18px Roboto, Arial, sans-serif;
-    overflow: hidden;
-    padding: 5px;
-    font-size: 14px;
-    text-align: center;
-    line-height: 30px;
-    height: auto;
-  }
+#map {
+  flex-basis: 0;
+  flex-grow: 4;
+  height: 100%;
+}
 
-  #map {
-    flex: auto;
-  }
+#floating-panel {
+  position: absolute;
+  top: 10px;
+  left: 25%;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+  text-align: center;
+  font-family: "Roboto", "sans-serif";
+  line-height: 30px;
+  padding-left: 10px;
+}
 
-  #sidebar {
-    flex: 0 1 auto;
-    padding: 0;
-  }
-  #sidebar > div {
-    padding: 0.5rem;
-  }
+#floating-panel {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  height: auto;
+}
+
+#map {
+  flex: auto;
+}
+
+#sidebar {
+  flex: 0 1 auto;
+  padding: 0;
+}
+#sidebar > div {
+  padding: 0.5rem;
+}
+
+
 </style>
-<script>
-  (() => {
-    "use strict";
-    var e = {
-        d: (t, o) => {
-          for (var n in o)
-            e.o(o, n) &&
-              !e.o(t, n) &&
-              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
-        },
-        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
-        r: (e) => {
-          "undefined" != typeof Symbol &&
-            Symbol.toStringTag &&
-            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
-            Object.defineProperty(e, "__esModule", { value: !0 });
-        },
-      },
-      t = {};
-    function o() {
-      const e = new google.maps.DirectionsRenderer(),
-        t = new google.maps.DirectionsService(),
-        o = new google.maps.Map(document.getElementById("map"), {
-          zoom: 7,
-          center: { lat: 41.85, lng: -87.65 },
-          disableDefaultUI: !0,
-        });
-      e.setMap(o), e.setPanel(document.getElementById("sidebar"));
-      const n = document.getElementById("floating-panel");
-      o.controls[google.maps.ControlPosition.TOP_CENTER].push(n);
-      const r = function () {
-        !(function (e, t) {
-          const o = document.getElementById("start").value,
-            n = document.getElementById("end").value;
-          e.route(
-            {
-              origin: o,
-              destination: n,
-              travelMode: google.maps.TravelMode.DRIVING,
-            },
-            (e, o) => {
-              "OK" === o
-                ? t.setDirections(e)
-                : window.alert("Directions request failed due to " + o);
-            }
-          );
-        })(t, e);
-      };
-      document.getElementById("start").addEventListener("change", r),
-        document.getElementById("end").addEventListener("change", r);
-    }
-    e.r(t), e.d(t, { initMap: () => o });
-    var n = window;
-    for (var r in t) n[r] = t[r];
-    t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
-  })();
+  <script>
+(()=>{"use strict";var e={d:(t,o)=>{for(var n in o)e.o(o,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:o[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};function o(){const e=new google.maps.DirectionsRenderer,t=new google.maps.DirectionsService,o=new google.maps.Map(document.getElementById("map"),{zoom:7,center:{lat:41.85,lng:-87.65},disableDefaultUI:!0});e.setMap(o),e.setPanel(document.getElementById("sidebar"));const n=document.getElementById("floating-panel");o.controls[google.maps.ControlPosition.TOP_CENTER].push(n);const r=function(){!function(e,t){const o=document.getElementById("start").value,n=document.getElementById("end").value;e.route({origin:o,destination:n,travelMode:google.maps.TravelMode.DRIVING},((e,o)=>{"OK"===o?t.setDirections(e):window.alert("Directions request failed due to "+o)}))}(t,e)};document.getElementById("start").addEventListener("change",r),document.getElementById("end").addEventListener("change",r)}e.r(t),e.d(t,{initMap:()=>o});var n=window;for(var r in t)n[r]=t[r];t.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
 </script>
 
-<div id="iframe-contents">
+      <div id="iframe-contents">
+
+<div id="floating-panel">
+  <strong>Start:</strong>
+  <select id="start">
+    <option value="chicago, il">Chicago</option>
+    <option value="st louis, mo">St Louis</option>
+    <option value="joplin, mo">Joplin, MO</option>
+    <option value="oklahoma city, ok">Oklahoma City</option>
+    <option value="amarillo, tx">Amarillo</option>
+    <option value="gallup, nm">Gallup, NM</option>
+    <option value="flagstaff, az">Flagstaff, AZ</option>
+    <option value="winona, az">Winona</option>
+    <option value="kingman, az">Kingman</option>
+    <option value="barstow, ca">Barstow</option>
+    <option value="san bernardino, ca">San Bernardino</option>
+    <option value="los angeles, ca">Los Angeles</option>
+  </select>
+  <br />
+  <strong>End:</strong>
+  <select id="end">
+    <option value="chicago, il">Chicago</option>
+    <option value="st louis, mo">St Louis</option>
+    <option value="joplin, mo">Joplin, MO</option>
+    <option value="oklahoma city, ok">Oklahoma City</option>
+    <option value="amarillo, tx">Amarillo</option>
+    <option value="gallup, nm">Gallup, NM</option>
+    <option value="flagstaff, az">Flagstaff, AZ</option>
+    <option value="winona, az">Winona</option>
+    <option value="kingman, az">Kingman</option>
+    <option value="barstow, ca">Barstow</option>
+    <option value="san bernardino, ca">San Bernardino</option>
+    <option value="los angeles, ca">Los Angeles</option>
+  </select>
+</div>
+<div id="container">
+  <div id="map"></div>
+  <div id="sidebar"></div>
+</div>
+<div style="display:none;">
   <div id="floating-panel">
     <strong>Start:</strong>
     <select id="start">
@@ -164,49 +155,11 @@
       <option value="los angeles, ca">Los Angeles</option>
     </select>
   </div>
-  <div id="container">
-    <div id="map"></div>
-    <div id="sidebar"></div>
-  </div>
-  <div style="display: none">
-    <div id="floating-panel">
-      <strong>Start:</strong>
-      <select id="start">
-        <option value="chicago, il">Chicago</option>
-        <option value="st louis, mo">St Louis</option>
-        <option value="joplin, mo">Joplin, MO</option>
-        <option value="oklahoma city, ok">Oklahoma City</option>
-        <option value="amarillo, tx">Amarillo</option>
-        <option value="gallup, nm">Gallup, NM</option>
-        <option value="flagstaff, az">Flagstaff, AZ</option>
-        <option value="winona, az">Winona</option>
-        <option value="kingman, az">Kingman</option>
-        <option value="barstow, ca">Barstow</option>
-        <option value="san bernardino, ca">San Bernardino</option>
-        <option value="los angeles, ca">Los Angeles</option>
-      </select>
-      <br />
-      <strong>End:</strong>
-      <select id="end">
-        <option value="chicago, il">Chicago</option>
-        <option value="st louis, mo">St Louis</option>
-        <option value="joplin, mo">Joplin, MO</option>
-        <option value="oklahoma city, ok">Oklahoma City</option>
-        <option value="amarillo, tx">Amarillo</option>
-        <option value="gallup, nm">Gallup, NM</option>
-        <option value="flagstaff, az">Flagstaff, AZ</option>
-        <option value="winona, az">Winona</option>
-        <option value="kingman, az">Kingman</option>
-        <option value="barstow, ca">Barstow</option>
-        <option value="san bernardino, ca">San Bernardino</option>
-        <option value="los angeles, ca">Los Angeles</option>
-      </select>
-    </div>
-  </div>
-
-  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-  <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
-    async
-  ></script>
 </div>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
+        async></script>
+
+      </div>
