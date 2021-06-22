@@ -37,12 +37,10 @@ module.exports = (env) => {
           test: /\.js$/i,
           exclude: /node_modules/,
           use: {
-            loader: 'babel-loader',
+            loader: "babel-loader",
             options: {
-              presets: [
-                ['@babel/preset-env', { targets: "defaults" }]
-              ]
-            }
+              presets: [["@babel/preset-env", { targets: "defaults" }]],
+            },
           },
         },
         {
@@ -90,6 +88,10 @@ module.exports = (env) => {
       host: "0.0.0.0",
       firewall: false,
       hot: false,
+    },
+    externals: {
+      // use cdn version of ThreeJS to avoid tree shaking complexity
+      three: "THREE",
     },
   };
 };
