@@ -1,56 +1,107 @@
-  
-
-  
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
-  <style type="text/css">
-/* Always set the map height explicitly to define the size of the div
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-#map {
-  height: 100%;
-}
+  #map {
+    height: 100%;
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-#floating-panel {
-  position: absolute;
-  top: 10px;
-  left: 25%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
-}
-
-
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(t,o)=>{for(var n in o)e.o(o,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:o[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};let o;e.r(t),e.d(t,{initMap:()=>r,clearMarkers:()=>i,showMarkers:()=>c,deleteMarkers:()=>d});let n=[];function r(){const e={lat:37.769,lng:-122.446};o=new google.maps.Map(document.getElementById("map"),{zoom:12,center:e,mapTypeId:"terrain"}),o.addListener("click",(e=>{a(e.latLng)})),a(e)}function a(e){const t=new google.maps.Marker({position:e,map:o});n.push(t)}function l(e){for(let t=0;t<n.length;t++)n[t].setMap(e)}function i(){l(null)}function c(){l(o)}function d(){i(),n=[]}var p=window;for(var u in t)p[u]=t[u];t.__esModule&&Object.defineProperty(p,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    let o;
+    e.r(t),
+      e.d(t, {
+        initMap: () => r,
+        clearMarkers: () => i,
+        showMarkers: () => c,
+        deleteMarkers: () => d,
+      });
+    let n = [];
+    function r() {
+      const e = { lat: 37.769, lng: -122.446 };
+      (o = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: e,
+        mapTypeId: "terrain",
+      })),
+        o.addListener("click", (e) => {
+          a(e.latLng);
+        }),
+        a(e);
+    }
+    function a(e) {
+      const t = new google.maps.Marker({ position: e, map: o });
+      n.push(t);
+    }
+    function l(e) {
+      for (let t = 0; t < n.length; t++) n[t].setMap(e);
+    }
+    function i() {
+      l(null);
+    }
+    function c() {
+      l(o);
+    }
+    function d() {
+      i(), (n = []);
+    }
+    var p = window;
+    for (var u in t) p[u] = t[u];
+    t.__esModule && Object.defineProperty(p, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
+<div id="iframe-contents">
+  <div id="floating-panel">
+    <input onclick="clearMarkers();" type="button" value="Hide Markers" />
+    <input onclick="showMarkers();" type="button" value="Show All Markers" />
+    <input onclick="deleteMarkers();" type="button" value="Delete Markers" />
+  </div>
+  <div id="map"></div>
+  <p>Click on the map to add markers.</p>
 
-<div id="floating-panel">
-  <input onclick="clearMarkers();" type="button" value="Hide Markers" />
-  <input onclick="showMarkers();" type="button" value="Show All Markers" />
-  <input onclick="deleteMarkers();" type="button" value="Delete Markers" />
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
+    async
+  ></script>
 </div>
-<div id="map"></div>
-<p>Click on the map to add markers.</p>
-
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
-        async></script>
-
-      </div>

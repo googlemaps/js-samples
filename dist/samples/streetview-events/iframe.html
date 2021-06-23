@@ -1,87 +1,140 @@
-  
-
-  
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
-  <style type="text/css">
-/* Always set the map height explicitly to define the size of the div
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-#map {
-  height: 100%;
-}
+  #map {
+    height: 100%;
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-#floating-panel {
-  position: absolute;
-  top: 10px;
-  left: 25%;
-  z-index: 5;
-  background-color: #fff;
-  padding: 5px;
-  border: 1px solid #999;
-  text-align: center;
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
-}
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
+  }
 
-#pano {
-  width: 50%;
-  height: 100%;
-  float: left;
-}
+  #pano {
+    width: 50%;
+    height: 100%;
+    float: left;
+  }
 
-#floating-panel {
-  width: 45%;
-  height: 100%;
-  float: right;
-  text-align: left;
-  overflow: auto;
-  position: static;
-  border: 0px solid #999;
-}
-
-
+  #floating-panel {
+    width: 45%;
+    height: 100%;
+    float: right;
+    text-align: left;
+    overflow: auto;
+    position: static;
+    border: 0px solid #999;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(t,n)=>{for(var o in n)e.o(n,o)&&!e.o(t,o)&&Object.defineProperty(t,o,{enumerable:!0,get:n[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};function n(){const e=new google.maps.StreetViewPanorama(document.getElementById("pano"),{position:{lat:37.869,lng:-122.255},pov:{heading:270,pitch:0},visible:!0});e.addListener("pano_changed",(()=>{document.getElementById("pano-cell").innerHTML=e.getPano()})),e.addListener("links_changed",(()=>{const t=document.getElementById("links_table");for(;t.hasChildNodes();)t.removeChild(t.lastChild);const n=e.getLinks();for(const e in n){const o=document.createElement("tr");t.appendChild(o);const d=document.createElement("td");d.innerHTML="<b>Link: "+e+"</b>";const i=document.createElement("td");i.innerHTML=n[e].description,t.appendChild(d),t.appendChild(i)}})),e.addListener("position_changed",(()=>{document.getElementById("position-cell").firstChild.nodeValue=e.getPosition()+""})),e.addListener("pov_changed",(()=>{const t=document.getElementById("heading-cell"),n=document.getElementById("pitch-cell");t.firstChild.nodeValue=e.getPov().heading+"",n.firstChild.nodeValue=e.getPov().pitch+""}))}e.r(t),e.d(t,{initPano:()=>n});var o=window;for(var d in t)o[d]=t[d];t.__esModule&&Object.defineProperty(o,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, n) => {
+          for (var o in n)
+            e.o(n, o) &&
+              !e.o(t, o) &&
+              Object.defineProperty(t, o, { enumerable: !0, get: n[o] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    function n() {
+      const e = new google.maps.StreetViewPanorama(
+        document.getElementById("pano"),
+        {
+          position: { lat: 37.869, lng: -122.255 },
+          pov: { heading: 270, pitch: 0 },
+          visible: !0,
+        }
+      );
+      e.addListener("pano_changed", () => {
+        document.getElementById("pano-cell").innerHTML = e.getPano();
+      }),
+        e.addListener("links_changed", () => {
+          const t = document.getElementById("links_table");
+          for (; t.hasChildNodes(); ) t.removeChild(t.lastChild);
+          const n = e.getLinks();
+          for (const e in n) {
+            const o = document.createElement("tr");
+            t.appendChild(o);
+            const d = document.createElement("td");
+            d.innerHTML = "<b>Link: " + e + "</b>";
+            const i = document.createElement("td");
+            (i.innerHTML = n[e].description),
+              t.appendChild(d),
+              t.appendChild(i);
+          }
+        }),
+        e.addListener("position_changed", () => {
+          document.getElementById("position-cell").firstChild.nodeValue =
+            e.getPosition() + "";
+        }),
+        e.addListener("pov_changed", () => {
+          const t = document.getElementById("heading-cell"),
+            n = document.getElementById("pitch-cell");
+          (t.firstChild.nodeValue = e.getPov().heading + ""),
+            (n.firstChild.nodeValue = e.getPov().pitch + "");
+        });
+    }
+    e.r(t), e.d(t, { initPano: () => n });
+    var o = window;
+    for (var d in t) o[d] = t[d];
+    t.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
+<div id="iframe-contents">
+  <div id="pano"></div>
+  <div id="floating-panel">
+    <table>
+      <tr>
+        <td><b>Position</b></td>
+        <td id="position-cell">&nbsp;</td>
+      </tr>
+      <tr>
+        <td><b>POV Heading</b></td>
+        <td id="heading-cell">270</td>
+      </tr>
+      <tr>
+        <td><b>POV Pitch</b></td>
+        <td id="pitch-cell">0.0</td>
+      </tr>
+      <tr>
+        <td><b>Pano ID</b></td>
+        <td id="pano-cell">&nbsp;</td>
+      </tr>
+      <table id="links_table"></table>
+    </table>
+  </div>
 
-<div id="pano"></div>
-<div id="floating-panel">
-  <table>
-    <tr>
-      <td><b>Position</b></td>
-      <td id="position-cell">&nbsp;</td>
-    </tr>
-    <tr>
-      <td><b>POV Heading</b></td>
-      <td id="heading-cell">270</td>
-    </tr>
-    <tr>
-      <td><b>POV Pitch</b></td>
-      <td id="pitch-cell">0.0</td>
-    </tr>
-    <tr>
-      <td><b>Pano ID</b></td>
-      <td id="pano-cell">&nbsp;</td>
-    </tr>
-    <table id="links_table"></table>
-  </table>
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initPano&libraries=&v=weekly"
+    async
+  ></script>
 </div>
-
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initPano&libraries=&v=weekly" 
-        async></script>
-
-      </div>

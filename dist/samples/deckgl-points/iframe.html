@@ -1,78 +1,132 @@
-  
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- Use Material Design Progress indicator -->
+<link
+  href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+  rel="stylesheet"
+/>
+<script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+<!-- Load deck.gl -->
+<script src="https://unpkg.com/deck.gl@^7.0.0/dist.min.js"></script>
 
-  
+<style type="text/css">
+  :root {
+    --mdc-theme-primary: #1a73e8;
+    --mdc-theme-secondary: #rgb(225, 245, 254);
+    --mdc-theme-on-primary: #fff;
+    --mdc-theme-on-secondary: rgb(1, 87, 155);
+  }
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>  <!-- Use Material Design Progress indicator -->
-  <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css" rel="stylesheet">
-  <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
-  <!-- Load deck.gl -->
-  <script src="https://unpkg.com/deck.gl@^7.0.0/dist.min.js"></script>
-   
-  <style type="text/css">
-:root {
-  --mdc-theme-primary: #1a73e8;
-  --mdc-theme-secondary: #rgb(225, 245, 254);
-  --mdc-theme-on-primary: #fff;
-  --mdc-theme-on-secondary: rgb(1, 87, 155);
-}
+  .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: var(--mdc-theme-primary);
+  }
 
-.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-  color: var(--mdc-theme-primary);
-}
-
-/* Always set the map height explicitly to define the size of the div
+  /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-#map {
-  height: 100%;
-}
+  #map {
+    height: 100%;
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(t,o)=>{for(var a in o)e.o(o,a)&&!e.o(t,a)&&Object.defineProperty(t,a,{enumerable:!0,get:o[a]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};function o(){const e=new google.maps.Map(document.getElementById("map"),{center:{lat:40,lng:-110},zoom:4});new deck.GoogleMapsOverlay({layers:[new deck.GeoJsonLayer({id:"earthquakes",data:"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",filled:!0,pointRadiusMinPixels:2,pointRadiusMaxPixels:200,opacity:.4,pointRadiusScale:.3,getRadius:e=>Math.pow(10,e.properties.mag),getFillColor:[255,70,30,180],autoHighlight:!0,transitions:{getRadius:{type:"spring",stiffness:.1,damping:.15,enter:e=>[0],duration:1e4}},onDataLoad:e=>{progress.done()}})]}).setMap(e)}e.r(t),e.d(t,{initMap:()=>o});var a=window;for(var n in t)a[n]=t[n];t.__esModule&&Object.defineProperty(a,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var a in o)
+            e.o(o, a) &&
+              !e.o(t, a) &&
+              Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    function o() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 40, lng: -110 },
+        zoom: 4,
+      });
+      new deck.GoogleMapsOverlay({
+        layers: [
+          new deck.GeoJsonLayer({
+            id: "earthquakes",
+            data: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+            filled: !0,
+            pointRadiusMinPixels: 2,
+            pointRadiusMaxPixels: 200,
+            opacity: 0.4,
+            pointRadiusScale: 0.3,
+            getRadius: (e) => Math.pow(10, e.properties.mag),
+            getFillColor: [255, 70, 30, 180],
+            autoHighlight: !0,
+            transitions: {
+              getRadius: {
+                type: "spring",
+                stiffness: 0.1,
+                damping: 0.15,
+                enter: (e) => [0],
+                duration: 1e4,
+              },
+            },
+            onDataLoad: (e) => {
+              progress.done();
+            },
+          }),
+        ],
+      }).setMap(e);
+    }
+    e.r(t), e.d(t, { initMap: () => o });
+    var a = window;
+    for (var n in t) a[n] = t[n];
+    t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
-
-<div role="progressbar" class="mdc-linear-progress" aria-label="Data Progress Bar">
+<div id="iframe-contents">
+  <div
+    role="progressbar"
+    class="mdc-linear-progress"
+    aria-label="Data Progress Bar"
+  >
     <div class="mdc-linear-progress__buffer">
-        <div class="mdc-linear-progress__buffer-bar"></div>
-        <div class="mdc-linear-progress__buffer-dots"></div>
+      <div class="mdc-linear-progress__buffer-bar"></div>
+      <div class="mdc-linear-progress__buffer-dots"></div>
     </div>
     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
-        <span class="mdc-linear-progress__bar-inner"></span>
+      <span class="mdc-linear-progress__bar-inner"></span>
     </div>
     <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
-        <span class="mdc-linear-progress__bar-inner"></span>
+      <span class="mdc-linear-progress__bar-inner"></span>
     </div>
-</div>
-<script>
-    var progress,
-        progressDiv;
+  </div>
+  <script>
+    var progress, progressDiv;
     progressDiv = document.querySelector(".mdc-linear-progress");
-    progress = new mdc
-        .linearProgress
-        .MDCLinearProgress(progressDiv);
+    progress = new mdc.linearProgress.MDCLinearProgress(progressDiv);
     progress.open();
     progress.determinate = false;
     progress.done = function () {
-        progress.close();
-        progressDiv.remove();
-    }
-</script>
+      progress.close();
+      progressDiv.remove();
+    };
+  </script>
   <div id="map"></div>
 
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
-        async></script>
-
-      </div>
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
+    async
+  ></script>
+</div>
