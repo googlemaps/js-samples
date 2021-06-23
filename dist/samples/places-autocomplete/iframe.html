@@ -1,138 +1,215 @@
-  
-
-  
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
-  <style type="text/css">
-/* Always set the map height explicitly to define the size of the div
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-#map {
-  height: 100%;
-}
+  #map {
+    height: 100%;
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-#description {
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-}
+  #description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+  }
 
-#infowindow-content .title {
-  font-weight: bold;
-}
+  #infowindow-content .title {
+    font-weight: bold;
+  }
 
-#infowindow-content {
-  display: none;
-}
+  #infowindow-content {
+    display: none;
+  }
 
-#map #infowindow-content {
-  display: inline;
-}
+  #map #infowindow-content {
+    display: inline;
+  }
 
-.pac-card {
-  margin: 10px 10px 0 0;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  font-family: Roboto;
-}
+  .pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+  }
 
-#pac-container {
-  padding-bottom: 12px;
-  margin-right: 12px;
-}
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
 
-.pac-controls {
-  display: inline-block;
-  padding: 5px 11px;
-}
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
 
-.pac-controls label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
 
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 400px;
-}
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
 
-#pac-input:focus {
-  border-color: #4d90fe;
-}
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
 
-#title {
-  color: #fff;
-  background-color: #4d90fe;
-  font-size: 25px;
-  font-weight: 500;
-  padding: 6px 12px;
-}
-
-
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(t,o)=>{for(var n in o)e.o(o,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:o[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};function o(){const e=new google.maps.Map(document.getElementById("map"),{center:{lat:40.749933,lng:-73.98633},zoom:13}),t=document.getElementById("pac-card"),o=document.getElementById("pac-input"),n=document.getElementById("use-location-bias"),s=document.getElementById("use-strict-bounds"),d={componentRestrictions:{country:"us"},fields:["formatted_address","geometry","name"],origin:e.getCenter(),strictBounds:!1,types:["establishment"]};e.controls[google.maps.ControlPosition.TOP_RIGHT].push(t);const a=new google.maps.places.Autocomplete(o,d);a.bindTo("bounds",e);const c=new google.maps.InfoWindow,i=document.getElementById("infowindow-content");c.setContent(i);const r=new google.maps.Marker({map:e,anchorPoint:new google.maps.Point(0,-29)});function l(e,t){document.getElementById(e).addEventListener("click",(()=>{a.setTypes(t),o.value=""}))}a.addListener("place_changed",(()=>{c.close(),r.setVisible(!1);const t=a.getPlace();t.geometry&&t.geometry.location?(t.geometry.viewport?e.fitBounds(t.geometry.viewport):(e.setCenter(t.geometry.location),e.setZoom(17)),r.setPosition(t.geometry.location),r.setVisible(!0),i.children["place-name"].textContent=t.name,i.children["place-address"].textContent=t.formatted_address,c.open(e,r)):window.alert("No details available for input: '"+t.name+"'")})),l("changetype-all",[]),l("changetype-address",["address"]),l("changetype-establishment",["establishment"]),l("changetype-geocode",["geocode"]),n.addEventListener("change",(()=>{n.checked?a.bindTo("bounds",e):(a.unbind("bounds"),a.setBounds({east:180,west:-180,north:90,south:-90}),s.checked=n.checked),o.value=""})),s.addEventListener("change",(()=>{a.setOptions({strictBounds:s.checked}),s.checked&&(n.checked=s.checked,a.bindTo("bounds",e)),o.value=""}))}e.r(t),e.d(t,{initMap:()=>o});var n=window;for(var s in t)n[s]=t[s];t.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    function o() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 40.749933, lng: -73.98633 },
+          zoom: 13,
+        }),
+        t = document.getElementById("pac-card"),
+        o = document.getElementById("pac-input"),
+        n = document.getElementById("use-location-bias"),
+        s = document.getElementById("use-strict-bounds"),
+        d = {
+          componentRestrictions: { country: "us" },
+          fields: ["formatted_address", "geometry", "name"],
+          origin: e.getCenter(),
+          strictBounds: !1,
+          types: ["establishment"],
+        };
+      e.controls[google.maps.ControlPosition.TOP_RIGHT].push(t);
+      const a = new google.maps.places.Autocomplete(o, d);
+      a.bindTo("bounds", e);
+      const c = new google.maps.InfoWindow(),
+        i = document.getElementById("infowindow-content");
+      c.setContent(i);
+      const r = new google.maps.Marker({
+        map: e,
+        anchorPoint: new google.maps.Point(0, -29),
+      });
+      function l(e, t) {
+        document.getElementById(e).addEventListener("click", () => {
+          a.setTypes(t), (o.value = "");
+        });
+      }
+      a.addListener("place_changed", () => {
+        c.close(), r.setVisible(!1);
+        const t = a.getPlace();
+        t.geometry && t.geometry.location
+          ? (t.geometry.viewport
+              ? e.fitBounds(t.geometry.viewport)
+              : (e.setCenter(t.geometry.location), e.setZoom(17)),
+            r.setPosition(t.geometry.location),
+            r.setVisible(!0),
+            (i.children["place-name"].textContent = t.name),
+            (i.children["place-address"].textContent = t.formatted_address),
+            c.open(e, r))
+          : window.alert("No details available for input: '" + t.name + "'");
+      }),
+        l("changetype-all", []),
+        l("changetype-address", ["address"]),
+        l("changetype-establishment", ["establishment"]),
+        l("changetype-geocode", ["geocode"]),
+        n.addEventListener("change", () => {
+          n.checked
+            ? a.bindTo("bounds", e)
+            : (a.unbind("bounds"),
+              a.setBounds({ east: 180, west: -180, north: 90, south: -90 }),
+              (s.checked = n.checked)),
+            (o.value = "");
+        }),
+        s.addEventListener("change", () => {
+          a.setOptions({ strictBounds: s.checked }),
+            s.checked && ((n.checked = s.checked), a.bindTo("bounds", e)),
+            (o.value = "");
+        });
+    }
+    e.r(t), e.d(t, { initMap: () => o });
+    var n = window;
+    for (var s in t) n[s] = t[s];
+    t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
+<div id="iframe-contents">
+  <div class="pac-card" id="pac-card">
+    <div>
+      <div id="title">Autocomplete search</div>
+      <div id="type-selector" class="pac-controls">
+        <input type="radio" name="type" id="changetype-all" checked="checked" />
+        <label for="changetype-all">All</label>
 
-<div class="pac-card" id="pac-card">
-  <div>
-    <div id="title">
-      Autocomplete search
-    </div>
-    <div id="type-selector" class="pac-controls">
-      <input type="radio" name="type" id="changetype-all" checked="checked" />
-      <label for="changetype-all">All</label>
+        <input type="radio" name="type" id="changetype-establishment" />
+        <label for="changetype-establishment">Establishments</label>
 
-      <input type="radio" name="type" id="changetype-establishment" />
-      <label for="changetype-establishment">Establishments</label>
+        <input type="radio" name="type" id="changetype-address" />
+        <label for="changetype-address">Addresses</label>
 
-      <input type="radio" name="type" id="changetype-address" />
-      <label for="changetype-address">Addresses</label>
-
-      <input type="radio" name="type" id="changetype-geocode" />
-      <label for="changetype-geocode">Geocodes</label>
-    </div><br>
-    <div id="strict-bounds-selector" class="pac-controls">
-      <input type="checkbox" id="use-location-bias" value="" checked />
-      <label for="use-location-bias">Bias to map viewport</label>
-
-      <input type="checkbox" id="use-strict-bounds" value="" />
-      <label for="use-strict-bounds">Strict bounds</label>
-    </div>
-  </div>
-  <div id="pac-container">
-    <input id="pac-input" type="text" placeholder="Enter a location" />
-  </div>
-</div>
-<div id="map"></div>
-<div id="infowindow-content">
-  <span id="place-name" class="title"></span><br />
-  <span id="place-address"></span>
-</div>
-
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly" 
-        async></script>
-
+        <input type="radio" name="type" id="changetype-geocode" />
+        <label for="changetype-geocode">Geocodes</label>
       </div>
+      <br />
+      <div id="strict-bounds-selector" class="pac-controls">
+        <input type="checkbox" id="use-location-bias" value="" checked />
+        <label for="use-location-bias">Bias to map viewport</label>
+
+        <input type="checkbox" id="use-strict-bounds" value="" />
+        <label for="use-strict-bounds">Strict bounds</label>
+      </div>
+    </div>
+    <div id="pac-container">
+      <input id="pac-input" type="text" placeholder="Enter a location" />
+    </div>
+  </div>
+  <div id="map"></div>
+  <div id="infowindow-content">
+    <span id="place-name" class="title"></span><br />
+    <span id="place-address"></span>
+  </div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+    async
+  ></script>
+</div>

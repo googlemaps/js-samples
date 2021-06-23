@@ -1,36 +1,89 @@
-  
-
-  
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
-  <style type="text/css">
-/* Always set the map height explicitly to define the size of the div
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-#map {
-  height: 100%;
-}
+  #map {
+    height: 100%;
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function t(){const e=new google.maps.Map(document.getElementById("map"),{center:{lat:0,lng:0},zoom:1,streetViewControl:!1,mapTypeControlOptions:{mapTypeIds:["moon"]}}),o=new google.maps.ImageMapType({getTileUrl:function(e,o){const t=function(e,o){const t=e.y;let n=e.x;const r=1<<o;return t<0||t>=r?null:((n<0||n>=r)&&(n=(n%r+r)%r),{x:n,y:t})}(e,o);if(!t)return"";const n=Math.pow(2,o);return"https://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/"+o+"/"+t.x+"/"+(n-t.y-1)+".jpg"},tileSize:new google.maps.Size(256,256),maxZoom:9,minZoom:0,radius:1738e3,name:"Moon"});e.mapTypes.set("moon",o),e.setMapTypeId("moon")}e.r(o),e.d(o,{initMap:()=>t});var n=window;for(var r in o)n[r]=o[r];o.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 0, lng: 0 },
+          zoom: 1,
+          streetViewControl: !1,
+          mapTypeControlOptions: { mapTypeIds: ["moon"] },
+        }),
+        o = new google.maps.ImageMapType({
+          getTileUrl: function (e, o) {
+            const t = (function (e, o) {
+              const t = e.y;
+              let n = e.x;
+              const r = 1 << o;
+              return t < 0 || t >= r
+                ? null
+                : ((n < 0 || n >= r) && (n = ((n % r) + r) % r),
+                  { x: n, y: t });
+            })(e, o);
+            if (!t) return "";
+            const n = Math.pow(2, o);
+            return (
+              "https://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/" +
+              o +
+              "/" +
+              t.x +
+              "/" +
+              (n - t.y - 1) +
+              ".jpg"
+            );
+          },
+          tileSize: new google.maps.Size(256, 256),
+          maxZoom: 9,
+          minZoom: 0,
+          radius: 1738e3,
+          name: "Moon",
+        });
+      e.mapTypes.set("moon", o), e.setMapTypeId("moon");
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var r in o) n[r] = o[r];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
+<div id="iframe-contents">
+  <div id="map"></div>
 
-<div id="map"></div>
-
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
-        async></script>
-
-      </div>
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
+    async
+  ></script>
+</div>

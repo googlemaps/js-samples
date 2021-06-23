@@ -1,133 +1,218 @@
-  
-
-  
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
-  <style type="text/css">
-/* Always set the map height explicitly to define the size of the div
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-#map {
-  height: 100%;
-}
+  #map {
+    height: 100%;
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-#description {
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-}
+  #description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+  }
 
-#infowindow-content .title {
-  font-weight: bold;
-}
+  #infowindow-content .title {
+    font-weight: bold;
+  }
 
-#infowindow-content {
-  display: none;
-}
+  #infowindow-content {
+    display: none;
+  }
 
-#map #infowindow-content {
-  display: inline;
-}
+  #map #infowindow-content {
+    display: inline;
+  }
 
-.pac-card {
-  margin: 10px 10px 0 0;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  background-color: #fff;
-  font-family: Roboto;
-}
+  .pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+  }
 
-#pac-container {
-  padding-bottom: 12px;
-  margin-right: 12px;
-}
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
 
-.pac-controls {
-  display: inline-block;
-  padding: 5px 11px;
-}
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
 
-.pac-controls label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
 
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 400px;
-}
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
 
-#pac-input:focus {
-  border-color: #4d90fe;
-}
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
 
-#title {
-  color: #fff;
-  background-color: #4d90fe;
-  font-size: 25px;
-  font-weight: 500;
-  padding: 6px 12px;
-}
-
-
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function t(){const e=new google.maps.Map(document.getElementById("map"),{center:{lat:50.064192,lng:-130.605469},zoom:3}),o=document.getElementById("pac-card");e.controls[google.maps.ControlPosition.TOP_RIGHT].push(o);const t={lat:50.064192,lng:-130.605469},n={north:t.lat+.1,south:t.lat-.1,east:t.lng+.1,west:t.lng-.1},s=document.getElementById("pac-input"),a={bounds:n,componentRestrictions:{country:"us"},fields:["address_components","geometry","icon","name"],origin:t,strictBounds:!1,types:["establishment"]},r=new google.maps.places.Autocomplete(s,a);r.setComponentRestrictions({country:["us","pr","vi","gu","mp"]});const c=new google.maps.LatLngBounds({lat:5.6108,lng:136.589326},{lat:61.179287,lng:2.64325});r.setBounds(c);const i=new google.maps.InfoWindow,l=document.getElementById("infowindow-content");i.setContent(l);const d=new google.maps.Marker({map:e,anchorPoint:new google.maps.Point(0,-29)});function m(e,o){document.getElementById(e).addEventListener("click",(()=>{r.setComponentRestrictions({country:o})}))}r.addListener("place_changed",(()=>{i.close(),d.setVisible(!1);const o=r.getPlace();if(!o.geometry||!o.geometry.location)return void window.alert("No details available for input: '"+o.name+"'");o.geometry.viewport?e.fitBounds(o.geometry.viewport):(e.setCenter(o.geometry.location),e.setZoom(17)),d.setPosition(o.geometry.location),d.setVisible(!0);let t="";o.address_components&&(t=[o.address_components[0]&&o.address_components[0].short_name||"",o.address_components[1]&&o.address_components[1].short_name||"",o.address_components[2]&&o.address_components[2].short_name||""].join(" ")),l.children["place-icon"].src=o.icon,l.children["place-name"].textContent=o.name,l.children["place-address"].textContent=t,i.open(e,d)})),m("changecountry-usa","us"),m("changecountry-usa-and-uot",["us","pr","vi","gu","mp"])}e.r(o),e.d(o,{initMap:()=>t});var n=window;for(var s in o)n[s]=o[s];o.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 50.064192, lng: -130.605469 },
+          zoom: 3,
+        }),
+        o = document.getElementById("pac-card");
+      e.controls[google.maps.ControlPosition.TOP_RIGHT].push(o);
+      const t = { lat: 50.064192, lng: -130.605469 },
+        n = {
+          north: t.lat + 0.1,
+          south: t.lat - 0.1,
+          east: t.lng + 0.1,
+          west: t.lng - 0.1,
+        },
+        s = document.getElementById("pac-input"),
+        a = {
+          bounds: n,
+          componentRestrictions: { country: "us" },
+          fields: ["address_components", "geometry", "icon", "name"],
+          origin: t,
+          strictBounds: !1,
+          types: ["establishment"],
+        },
+        r = new google.maps.places.Autocomplete(s, a);
+      r.setComponentRestrictions({ country: ["us", "pr", "vi", "gu", "mp"] });
+      const c = new google.maps.LatLngBounds(
+        { lat: 5.6108, lng: 136.589326 },
+        { lat: 61.179287, lng: 2.64325 }
+      );
+      r.setBounds(c);
+      const i = new google.maps.InfoWindow(),
+        l = document.getElementById("infowindow-content");
+      i.setContent(l);
+      const d = new google.maps.Marker({
+        map: e,
+        anchorPoint: new google.maps.Point(0, -29),
+      });
+      function m(e, o) {
+        document.getElementById(e).addEventListener("click", () => {
+          r.setComponentRestrictions({ country: o });
+        });
+      }
+      r.addListener("place_changed", () => {
+        i.close(), d.setVisible(!1);
+        const o = r.getPlace();
+        if (!o.geometry || !o.geometry.location)
+          return void window.alert(
+            "No details available for input: '" + o.name + "'"
+          );
+        o.geometry.viewport
+          ? e.fitBounds(o.geometry.viewport)
+          : (e.setCenter(o.geometry.location), e.setZoom(17)),
+          d.setPosition(o.geometry.location),
+          d.setVisible(!0);
+        let t = "";
+        o.address_components &&
+          (t = [
+            (o.address_components[0] && o.address_components[0].short_name) ||
+              "",
+            (o.address_components[1] && o.address_components[1].short_name) ||
+              "",
+            (o.address_components[2] && o.address_components[2].short_name) ||
+              "",
+          ].join(" ")),
+          (l.children["place-icon"].src = o.icon),
+          (l.children["place-name"].textContent = o.name),
+          (l.children["place-address"].textContent = t),
+          i.open(e, d);
+      }),
+        m("changecountry-usa", "us"),
+        m("changecountry-usa-and-uot", ["us", "pr", "vi", "gu", "mp"]);
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var s in o) n[s] = o[s];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
+<div id="iframe-contents">
+  <div class="pac-card" id="pac-card">
+    <div>
+      <div id="title">Countries</div>
+      <div id="country-selector" class="pac-controls">
+        <input type="radio" name="type" id="changecountry-usa" />
+        <label for="changecountry-usa">USA</label>
 
-<div class="pac-card" id="pac-card">
-  <div>
-    <div id="title">
-      Countries
-    </div>
-    <div id="country-selector" class="pac-controls">
-      <input type="radio" name="type" id="changecountry-usa" />
-      <label for="changecountry-usa">USA</label>
-
-      <input
-        type="radio"
-        name="type"
-        id="changecountry-usa-and-uot"
-        checked="checked"
-      />
-      <label for="changecountry-usa-and-uot"
-        >USA and unincorporated organized territories</label
-      >
-    </div>
-  </div>
-  <div id="pac-container">
-    <input id="pac-input" type="text" placeholder="Enter a location" />
-  </div>
-</div>
-<div id="map"></div>
-<div id="infowindow-content">
-  <img src="" width="16" height="16" id="place-icon" />
-  <span id="place-name" class="title"></span><br />
-  <span id="place-address"></span>
-</div>
-
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly" 
-        async></script>
-
+        <input
+          type="radio"
+          name="type"
+          id="changecountry-usa-and-uot"
+          checked="checked"
+        />
+        <label for="changecountry-usa-and-uot"
+          >USA and unincorporated organized territories</label
+        >
       </div>
+    </div>
+    <div id="pac-container">
+      <input id="pac-input" type="text" placeholder="Enter a location" />
+    </div>
+  </div>
+  <div id="map"></div>
+  <div id="infowindow-content">
+    <img src="" width="16" height="16" id="place-icon" />
+    <span id="place-name" class="title"></span><br />
+    <span id="place-address"></span>
+  </div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+    async
+  ></script>
+</div>

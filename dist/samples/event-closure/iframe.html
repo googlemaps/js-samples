@@ -1,36 +1,84 @@
-  
-
-  
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
-  <style type="text/css">
-/* Always set the map height explicitly to define the size of the div
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-#map {
-  height: 100%;
-}
+  #map {
+    height: 100%;
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(t,o)=>{for(var n in o)e.o(o,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:o[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};function o(){const e=new google.maps.Map(document.getElementById("map"),{zoom:4,center:{lat:-25.363882,lng:131.044922}}),t={north:-25.363882,south:-31.203405,east:131.044922,west:125.244141};e.fitBounds(t);const o=["This","is","the","secret","message"],r=t.east-t.west,a=t.north-t.south;for(let s=0;s<o.length;++s)n(new google.maps.Marker({position:{lat:t.south+a*Math.random(),lng:t.west+r*Math.random()},map:e}),o[s])}function n(e,t){const o=new google.maps.InfoWindow({content:t});e.addListener("click",(()=>{o.open(e.get("map"),e)}))}e.r(t),e.d(t,{initMap:()=>o});var r=window;for(var a in t)r[a]=t[a];t.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    function o() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: { lat: -25.363882, lng: 131.044922 },
+        }),
+        t = {
+          north: -25.363882,
+          south: -31.203405,
+          east: 131.044922,
+          west: 125.244141,
+        };
+      e.fitBounds(t);
+      const o = ["This", "is", "the", "secret", "message"],
+        r = t.east - t.west,
+        a = t.north - t.south;
+      for (let s = 0; s < o.length; ++s)
+        n(
+          new google.maps.Marker({
+            position: {
+              lat: t.south + a * Math.random(),
+              lng: t.west + r * Math.random(),
+            },
+            map: e,
+          }),
+          o[s]
+        );
+    }
+    function n(e, t) {
+      const o = new google.maps.InfoWindow({ content: t });
+      e.addListener("click", () => {
+        o.open(e.get("map"), e);
+      });
+    }
+    e.r(t), e.d(t, { initMap: () => o });
+    var r = window;
+    for (var a in t) r[a] = t[a];
+    t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
+<div id="iframe-contents">
+  <div id="map"></div>
 
-<div id="map"></div>
-
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly" 
-        async></script>
-
-      </div>
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=&v=weekly"
+    async
+  ></script>
+</div>

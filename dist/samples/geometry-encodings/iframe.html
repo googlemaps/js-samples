@@ -1,68 +1,103 @@
-  
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  #right-panel {
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
+  }
 
-  
+  #right-panel select,
+  #right-panel input {
+    font-size: 15px;
+  }
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
-  <style type="text/css">
-#right-panel {
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
-}
+  #right-panel select {
+    width: 100%;
+  }
 
-#right-panel select,
-#right-panel input {
-  font-size: 15px;
-}
+  #right-panel i {
+    font-size: 12px;
+  }
 
-#right-panel select {
-  width: 100%;
-}
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-#right-panel i {
-  font-size: 12px;
-}
+  #map {
+    height: 100%;
+    width: 50%;
+    float: left;
+  }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+  #right-panel {
+    width: 46%;
+    float: left;
+  }
 
-#map {
-  height: 100%;
-  width: 50%;
-  float: left;
-}
-
-#right-panel {
-  width: 46%;
-  float: left;
-}
-
-#encoded-polyline {
-  height: 100px;
-  width: 100%;
-}
-
-
+  #encoded-polyline {
+    height: 100px;
+    width: 100%;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(o,t)=>{for(var n in t)e.o(t,n)&&!e.o(o,n)&&Object.defineProperty(o,n,{enumerable:!0,get:t[n]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},o={};function t(){const e=new google.maps.Map(document.getElementById("map"),{zoom:14,center:{lat:34.366,lng:-89.519}}),o=new google.maps.Polyline({strokeColor:"#000000",strokeOpacity:1,strokeWeight:3,map:e});google.maps.event.addListener(e,"click",(e=>{!function(e,o){const t=o.getPath();t.push(e);const n=google.maps.geometry.encoding.encodePath(t);n&&(document.getElementById("encoded-polyline").value=n)}(e.latLng,o)}))}e.r(o),e.d(o,{initMap:()=>t});var n=window;for(var r in o)n[r]=o[r];o.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          zoom: 14,
+          center: { lat: 34.366, lng: -89.519 },
+        }),
+        o = new google.maps.Polyline({
+          strokeColor: "#000000",
+          strokeOpacity: 1,
+          strokeWeight: 3,
+          map: e,
+        });
+      google.maps.event.addListener(e, "click", (e) => {
+        !(function (e, o) {
+          const t = o.getPath();
+          t.push(e);
+          const n = google.maps.geometry.encoding.encodePath(t);
+          n && (document.getElementById("encoded-polyline").value = n);
+        })(e.latLng, o);
+      });
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var r in o) n[r] = o[r];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
+<div id="iframe-contents">
+  <div id="map"></div>
+  <div id="right-panel">
+    <div>Encoding:</div>
+    <textarea id="encoded-polyline"></textarea>
+  </div>
 
-<div id="map"></div>
-<div id="right-panel">
-  <div>Encoding:</div>
-  <textarea id="encoded-polyline"></textarea>
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=geometry&v=weekly"
+    async
+  ></script>
 </div>
-
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=geometry&v=weekly" 
-        async></script>
-
-      </div>

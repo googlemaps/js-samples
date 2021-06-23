@@ -1,127 +1,238 @@
-  
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link
+  href="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.css"
+  rel="stylesheet"
+/>
+<script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
 
-  
+<style type="text/css">
+  :root {
+    --mdc-theme-primary: #1a73e8;
+    --mdc-theme-secondary: #rgb(225, 245, 254);
+    --mdc-theme-on-primary: #fff;
+    --mdc-theme-on-secondary: rgb(1, 87, 155);
+  }
 
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>  <link href="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.css" rel="stylesheet">
-  <script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.min.js"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-   
-  <style type="text/css">
-:root {
-  --mdc-theme-primary: #1a73e8;
-  --mdc-theme-secondary: #rgb(225, 245, 254);
-  --mdc-theme-on-primary: #fff;
-  --mdc-theme-on-secondary: rgb(1, 87, 155);
-}
+  .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: var(--mdc-theme-primary);
+  }
 
-.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-  color: var(--mdc-theme-primary);
-}
+  .mdc-select--focused .mdc-select__dropdown-icon {
+    background: url(data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.54%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E)
+      no-repeat center;
+  }
 
-.mdc-select--focused .mdc-select__dropdown-icon {
-  background: url(data:image/svg+xml,%3Csvg%20width%3D%2210px%22%20height%3D%225px%22%20viewBox%3D%227%2010%2010%205%22%20version%3D%221.1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%3E%0A%20%20%20%20%3Cpolygon%20id%3D%22Shape%22%20stroke%3D%22none%22%20fill%3D%22%23000%22%20fill-rule%3D%22evenodd%22%20opacity%3D%220.54%22%20points%3D%227%2010%2012%2015%2017%2010%22%3E%3C%2Fpolygon%3E%0A%3C%2Fsvg%3E)
-    no-repeat center;
-}
+  .mdc-select:not(.mdc-select--disabled).mdc-select--focused
+    .mdc-floating-label {
+    color: var(--mdc-theme-primary);
+  }
 
-.mdc-select:not(.mdc-select--disabled).mdc-select--focused .mdc-floating-label {
-  color: var(--mdc-theme-primary);
-}
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
+  #container {
+    height: 100%;
+  }
 
-#container {
-  height: 100%;
-}
+  #service {
+    margin-top: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    overflow: initial;
+  }
+  #service #inputs {
+    margin-right: 1em;
+    flex-basis: 0;
+    flex-grow: 1;
+  }
+  #service #inputs .row {
+    display: flex;
+    margin-bottom: 1em;
+    width: 100%;
+  }
+  #service #inputs .row label,
+  #service #inputs .row .mdc-select {
+    flex-grow: 1;
+  }
+  #service #inputs .row .mdc-text-field {
+    width: 100%;
+  }
+  #service #results {
+    flex-basis: 0;
+    flex-grow: 3;
+    overflow: hidden;
+  }
+  #service #results .tab-content {
+    display: none;
+    height: 300px;
+    overflow: auto;
+  }
+  #service #results .tab-content--active {
+    display: block;
+  }
 
-#service {
-  margin-top: 1rem;
-  box-sizing: border-box;
-  display: flex;
-  overflow: initial;
-}
-#service #inputs {
-  margin-right: 1em;
-  flex-basis: 0;
-  flex-grow: 1;
-}
-#service #inputs .row {
-  display: flex;
-  margin-bottom: 1em;
-  width: 100%;
-}
-#service #inputs .row label,
-#service #inputs .row .mdc-select {
-  flex-grow: 1;
-}
-#service #inputs .row .mdc-text-field {
-  width: 100%;
-}
-#service #results {
-  flex-basis: 0;
-  flex-grow: 3;
-  overflow: hidden;
-}
-#service #results .tab-content {
-  display: none;
-  height: 300px;
-  overflow: auto;
-}
-#service #results .tab-content--active {
-  display: block;
-}
+  #map {
+    height: 200px;
+  }
 
-#map {
-  height: 200px;
-}
+  pre {
+    background: whitesmoke;
+    border: #f0f0f0 1px solid;
+    border-radius: 2px;
+    page-break-inside: avoid;
+    font-family: monospace;
+    overflow: auto;
+    padding: 0.5em;
+    word-wrap: break-word;
+    color: rgba(0, 0, 0, 0.6);
+  }
 
-pre {
-  background: whitesmoke;
-  border: #f0f0f0 1px solid;
-  border-radius: 2px;
-  page-break-inside: avoid;
-  font-family: monospace;
-  overflow: auto;
-  padding: 0.5em;
-  word-wrap: break-word;
-  color: rgba(0, 0, 0, 0.6);
-}
+  .mdc-select__anchor,
+  .mdc-select__menu {
+    width: 100%;
+  }
 
-.mdc-select__anchor,
-.mdc-select__menu {
-  width: 100%;
-}
+  .mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
+    color: var(--mdc-theme-primary);
+  }
 
-.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label {
-  color: var(--mdc-theme-primary);
-}
+  .mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+    background-color: var(--mdc-theme-primary);
+    border-color: var(--mdc-theme-primary);
+  }
 
-.mdc-switch.mdc-switch--checked .mdc-switch__thumb {
-  background-color: var(--mdc-theme-primary);
-  border-color: var(--mdc-theme-primary);
-}
+  .mdc-switch.mdc-switch--checked .mdc-switch__track {
+    background-color: var(--mdc-theme-primary);
+  }
 
-.mdc-switch.mdc-switch--checked .mdc-switch__track {
-  background-color: var(--mdc-theme-primary);
-}
-
-.mdc-switch__thumb-underlay::before,
-.mdc-switch__thumb-underlay::after {
-  background-color: var(--mdc-theme-primary);
-}
-
-
+  .mdc-switch__thumb-underlay::before,
+  .mdc-switch__thumb-underlay::after {
+    background-color: var(--mdc-theme-primary);
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(t,n)=>{for(var c in n)e.o(n,c)&&!e.o(t,c)&&Object.defineProperty(t,c,{enumerable:!0,get:n[c]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};let n,c,o,l,d,a,i,r;e.r(t),e.d(t,{initialize:()=>s});const s=()=>{r=new google.maps.Map(document.getElementById("map"),{center:{lat:47.609414458375674,lng:-122.33897030353548},zoom:12}),n=new google.maps.places.AutocompleteService,c=new google.maps.places.PlacesService(r),d=document.getElementById("input"),o=document.getElementById("request"),l=document.getElementById("response"),a=document.getElementById("bias-to-map"),i=document.getElementById("autocomplete-type");const e=document.getElementById("autocomplete-type-list");["","establishment","geocode","address","(cities)","(regions)"].forEach((t=>{const n=document.createElement("LI");n.classList.add("mdc-list-item"),n.setAttribute("data-value",t);const c=document.createElement("SPAN");c.classList.add("mdc-list-item__text"),c.innerText=t,n.appendChild(c),e.appendChild(n)})),d.addEventListener("input",u),a.addEventListener("change",u),r.addListener("bounds_changed",(()=>{a.checked&&u()})),a.checked=!0,p(),u()},u=((e,t)=>{let c=0;return(...e)=>{window.clearTimeout(c),c=window.setTimeout((()=>(()=>{const e={input:d.value},t=r.getBounds();a.checked&&t&&(e.bounds=t);const c=document.querySelector("#autocomplete-type-list > .mdc-list-item--selected");c&&""!==c.getAttribute("data-value")&&(e.types=[c.getAttribute("data-value")]),o.innerText=JSON.stringify(e,null,2),d.value&&n.getPlacePredictions(e,m)})(...e)),100)}})(),m=(e,t)=>{l.innerText=JSON.stringify({results:e,status:t},null,2)},p=()=>{document.querySelectorAll(".mdc-text-field").forEach((e=>new mdc.textField.MDCTextField(e))),document.querySelectorAll(".mdc-switch").forEach((e=>new mdc.switchControl.MDCSwitch(e))),document.querySelectorAll(".mdc-select").forEach((e=>new mdc.select.MDCSelect(e).listen("MDCSelect:change",u)));const e=new mdc.tabBar.MDCTabBar(document.querySelector(".mdc-tab-bar")),t=document.querySelectorAll(".tab-content");e.listen("MDCTabBar:activated",(e=>{document.querySelector(".tab-content--active").classList.remove("tab-content--active"),t[e.detail.index].classList.add("tab-content--active")}))};var g=window;for(var y in t)g[y]=t[y];t.__esModule&&Object.defineProperty(g,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, n) => {
+          for (var c in n)
+            e.o(n, c) &&
+              !e.o(t, c) &&
+              Object.defineProperty(t, c, { enumerable: !0, get: n[c] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    let n, c, o, l, d, a, i, r;
+    e.r(t), e.d(t, { initialize: () => s });
+    const s = () => {
+        (r = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 47.609414458375674, lng: -122.33897030353548 },
+          zoom: 12,
+        })),
+          (n = new google.maps.places.AutocompleteService()),
+          (c = new google.maps.places.PlacesService(r)),
+          (d = document.getElementById("input")),
+          (o = document.getElementById("request")),
+          (l = document.getElementById("response")),
+          (a = document.getElementById("bias-to-map")),
+          (i = document.getElementById("autocomplete-type"));
+        const e = document.getElementById("autocomplete-type-list");
+        [
+          "",
+          "establishment",
+          "geocode",
+          "address",
+          "(cities)",
+          "(regions)",
+        ].forEach((t) => {
+          const n = document.createElement("LI");
+          n.classList.add("mdc-list-item"), n.setAttribute("data-value", t);
+          const c = document.createElement("SPAN");
+          c.classList.add("mdc-list-item__text"),
+            (c.innerText = t),
+            n.appendChild(c),
+            e.appendChild(n);
+        }),
+          d.addEventListener("input", u),
+          a.addEventListener("change", u),
+          r.addListener("bounds_changed", () => {
+            a.checked && u();
+          }),
+          (a.checked = !0),
+          p(),
+          u();
+      },
+      u = ((e, t) => {
+        let c = 0;
+        return (...e) => {
+          window.clearTimeout(c),
+            (c = window.setTimeout(
+              () =>
+                (() => {
+                  const e = { input: d.value },
+                    t = r.getBounds();
+                  a.checked && t && (e.bounds = t);
+                  const c = document.querySelector(
+                    "#autocomplete-type-list > .mdc-list-item--selected"
+                  );
+                  c &&
+                    "" !== c.getAttribute("data-value") &&
+                    (e.types = [c.getAttribute("data-value")]),
+                    (o.innerText = JSON.stringify(e, null, 2)),
+                    d.value && n.getPlacePredictions(e, m);
+                })(...e),
+              100
+            ));
+        };
+      })(),
+      m = (e, t) => {
+        l.innerText = JSON.stringify({ results: e, status: t }, null, 2);
+      },
+      p = () => {
+        document
+          .querySelectorAll(".mdc-text-field")
+          .forEach((e) => new mdc.textField.MDCTextField(e)),
+          document
+            .querySelectorAll(".mdc-switch")
+            .forEach((e) => new mdc.switchControl.MDCSwitch(e)),
+          document
+            .querySelectorAll(".mdc-select")
+            .forEach((e) =>
+              new mdc.select.MDCSelect(e).listen("MDCSelect:change", u)
+            );
+        const e = new mdc.tabBar.MDCTabBar(
+            document.querySelector(".mdc-tab-bar")
+          ),
+          t = document.querySelectorAll(".tab-content");
+        e.listen("MDCTabBar:activated", (e) => {
+          document
+            .querySelector(".tab-content--active")
+            .classList.remove("tab-content--active"),
+            t[e.detail.index].classList.add("tab-content--active");
+        });
+      };
+    var g = window;
+    for (var y in t) g[y] = t[y];
+    t.__esModule && Object.defineProperty(g, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
-
+<div id="iframe-contents">
   <div id="container" class="mdc-typography">
     <div id="map"></div>
     <div id="service">
@@ -129,8 +240,16 @@ pre {
         <div class="row">
           <label class="mdc-text-field mdc-text-field--filled">
             <span class="mdc-text-field__ripple"></span>
-            <input class="mdc-text-field__input" type="text" id="input" autocomplete="off" aria-labelledby="input-label">
-            <span class="mdc-floating-label" id="input-label">Autocomplete Input</span>
+            <input
+              class="mdc-text-field__input"
+              type="text"
+              id="input"
+              autocomplete="off"
+              aria-labelledby="input-label"
+            />
+            <span class="mdc-floating-label" id="input-label"
+              >Autocomplete Input</span
+            >
             <span class="mdc-line-ripple"></span>
           </label>
         </div>
@@ -140,7 +259,13 @@ pre {
             <div class="mdc-switch__track"></div>
             <div class="mdc-switch__thumb-underlay">
               <div class="mdc-switch__thumb"></div>
-              <input type="checkbox" id="bias-to-map" class="mdc-switch__native-control" role="switch" aria-checked="false">
+              <input
+                type="checkbox"
+                id="bias-to-map"
+                class="mdc-switch__native-control"
+                role="switch"
+                aria-checked="false"
+              />
             </div>
           </div>
         </div>
@@ -150,23 +275,33 @@ pre {
               <span class="mdc-select__ripple"></span>
               <span class="mdc-select__selected-text"></span>
               <span class="mdc-select__dropdown-icon">
-                <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5">
-                  <polygon 
-                    class="mdc-select__dropdown-icon-inactive"
-            stroke="none"
-            fill-rule="evenodd"
-            points="7 10 12 15 17 10"></polygon>
+                <svg
+                  class="mdc-select__dropdown-icon-graphic"
+                  viewBox="7 10 10 5"
+                >
                   <polygon
-            class="mdc-select__dropdown-icon-active"
-            stroke="none"
-            fill-rule="evenodd"
-            points="7 15 12 10 17 15"></polygon>
+                    class="mdc-select__dropdown-icon-inactive"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 10 12 15 17 10"
+                  ></polygon>
+                  <polygon
+                    class="mdc-select__dropdown-icon-active"
+                    stroke="none"
+                    fill-rule="evenodd"
+                    points="7 15 12 10 17 15"
+                  ></polygon>
                 </svg>
               </span>
               <span class="mdc-floating-label">Autocomplete Type</span>
               <span class="mdc-line-ripple"></span>
             </div>
-            <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+            <div
+              class="
+                mdc-select__menu
+                mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth
+              "
+            >
               <ul class="mdc-list" id="autocomplete-type-list"></ul>
             </div>
           </div>
@@ -177,21 +312,41 @@ pre {
           <div class="mdc-tab-scroller">
             <div class="mdc-tab-scroller__scroll-area">
               <div class="mdc-tab-scroller__scroll-content">
-                <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                <button
+                  class="mdc-tab mdc-tab--active"
+                  role="tab"
+                  aria-selected="true"
+                  tabindex="0"
+                >
                   <span class="mdc-tab__content">
                     <span class="mdc-tab__text-label">Request</span>
                   </span>
                   <span class="mdc-tab-indicator mdc-tab-indicator--active">
-                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                    <span
+                      class="
+                        mdc-tab-indicator__content
+                        mdc-tab-indicator__content--underline
+                      "
+                    ></span>
                   </span>
                   <span class="mdc-tab__ripple"></span>
                 </button>
-                <button class="mdc-tab mdc-tab" role="tab" aria-selected="true" tabindex="0">
+                <button
+                  class="mdc-tab mdc-tab"
+                  role="tab"
+                  aria-selected="true"
+                  tabindex="0"
+                >
                   <span class="mdc-tab__content">
                     <span class="mdc-tab__text-label">Response</span>
                   </span>
                   <span class="mdc-tab-indicator mdc-tab-indicator">
-                    <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                    <span
+                      class="
+                        mdc-tab-indicator__content
+                        mdc-tab-indicator__content--underline
+                      "
+                    ></span>
                   </span>
                   <span class="mdc-tab__ripple"></span>
                 </button>
@@ -209,8 +364,8 @@ pre {
     </div>
   </div>
 
-  <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&libraries=places&v=weekly" 
-    defer></script>
-
-      </div>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&libraries=places&v=weekly"
+    defer
+  ></script>
+</div>

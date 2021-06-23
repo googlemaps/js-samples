@@ -1,36 +1,285 @@
-  
-
-  
-
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>   
-  <style type="text/css">
-/* Always set the map height explicitly to define the size of the div
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-#map {
-  height: 100%;
-}
+  #map {
+    height: 100%;
+  }
 
-/* Optional: Makes the sample page fill the window. */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
 </style>
-  <script>
-(()=>{"use strict";var e={d:(t,i)=>{for(var o in i)e.o(i,o)&&!e.o(t,o)&&Object.defineProperty(t,o,{enumerable:!0,get:i[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},t={};e.r(t),e.d(t,{initMap:()=>o});class i{map_;polys_=[];difficulty_="Easy";count_=0;pieceDiv_;timeDiv_;dataLoaded_=!1;NUM_PIECES_=10;countries_=[];timer_=0;START_COLOR_="#3c79de";END_COLOR_="#037e29";constructor(e){this.map_=e,this.pieceDiv_=document.createElement("div"),this.timeDiv_=document.createElement("div"),this.createMenu_(),this.setDifficultyStyle_(),this.loadData_()}createMenu_(){const e=document.createElement("div");e.style.cssText="margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;background-color: white; font-size: 14px; font-family: Roboto;text-align: center; color: grey;line-height: 32px; overflow: hidden";const t=document.createElement("div");t.style.cssText="width: 100%; background-color: #4285f4; color: white; font-size: 20px;line-height: 40px;margin-bottom: 24px",t.innerText="Game Options";const i=document.createElement("div");i.innerText="PIECE:",i.style.fontWeight="800";const o=this.pieceDiv_;o.innerText="0 / "+this.NUM_PIECES_;const s=document.createElement("div");s.innerText="TIME:",s.style.fontWeight="800";const n=this.timeDiv_;n.innerText="0.0 seconds";const r=document.createElement("div");r.innerText="DIFFICULTY:",r.style.fontWeight="800";const a=document.createElement("select");["Easy","Moderate","Hard","Extreme"].forEach((e=>{const t=document.createElement("option");t.value=e.toLowerCase(),t.innerText=e,a.appendChild(t)})),a.style.cssText="border: 2px solid lightgrey; background-color: white; color: #4275f4;padding: 6px;",a.onchange=()=>{this.setDifficulty_(a.value),this.resetGame_()};const l=document.createElement("div");l.innerText="Reset",l.style.cssText="cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;color: #4275f4; line-height: 40px; font-weight: 800",l.onclick=this.resetGame_.bind(this),e.appendChild(t),e.appendChild(i),e.appendChild(o),e.appendChild(s),e.appendChild(n),e.appendChild(r),e.appendChild(a),e.appendChild(l),this.map_.controls[google.maps.ControlPosition.TOP_LEFT].push(e)}render(){this.dataLoaded_&&this.start_()}loadData_(){const e=new XMLHttpRequest;e.onreadystatechange=()=>{200==e.status&&e.readyState==XMLHttpRequest.DONE&&this.loadDataComplete_(JSON.parse(e.responseText))},e.open("GET","https://storage.googleapis.com/mapsdevsite/json/puzzle.json",!0),e.send(null)}loadDataComplete_(e){this.dataLoaded_=!0,this.countries_=e,this.start_()}setDifficulty_(e){this.difficulty_=e,this.map_&&this.setDifficultyStyle_()}setDifficultyStyle_(){this.map_.set("styles",{easy:[{stylers:[{visibility:"off"}]},{featureType:"water",stylers:[{visibility:"on"},{color:"#d4d4d4"}]},{featureType:"landscape",stylers:[{visibility:"on"},{color:"#e5e3df"}]},{featureType:"administrative.country",elementType:"labels",stylers:[{visibility:"on"}]},{featureType:"administrative.country",elementType:"geometry",stylers:[{visibility:"on"},{weight:1.3}]}],moderate:[{stylers:[{visibility:"off"}]},{featureType:"water",stylers:[{visibility:"on"},{color:"#d4d4d4"}]},{featureType:"landscape",stylers:[{visibility:"on"},{color:"#e5e3df"}]},{featureType:"administrative.country",elementType:"labels",stylers:[{visibility:"on"}]}],hard:[{stylers:[{visibility:"off"}]},{featureType:"water",stylers:[{visibility:"on"},{color:"#d4d4d4"}]},{featureType:"landscape",stylers:[{visibility:"on"},{color:"#e5e3df"}]}],extreme:[{elementType:"geometry",stylers:[{visibility:"off"}]}]}[this.difficulty_])}resetGame_(){this.removeCountries_(),this.count_=0,this.setCount_(),this.startClock_(),this.addRandomCountries_()}setCount_(){this.pieceDiv_.innerText=this.count_+" / "+this.NUM_PIECES_,this.count_==this.NUM_PIECES_&&this.stopClock_()}stopClock_(){window.clearInterval(this.timer_)}startClock_(){this.stopClock_();const e=this.timeDiv_;e&&(e.textContent="0.0 seconds");const t=new Date;this.timer_=window.setInterval((()=>{const i=(new Date).getTime()-t.getTime();e&&(e.textContent=(i/1e3).toFixed(2)+" seconds")}),100)}addRandomCountries_(){this.countries_.sort((()=>Math.round(Math.random())-.5));const e=this.countries_.slice(0,this.NUM_PIECES_);for(let t,i=0;t=e[i];i++)this.addCountry_(t)}addCountry_(e){const t={strokeColor:this.START_COLOR_,strokeOpacity:.8,strokeWeight:2,fillColor:this.START_COLOR_,fillOpacity:.35,geodesic:!0,map:this.map_,draggable:!0,zIndex:2,paths:e.start.map(google.maps.geometry.encoding.decodePath)},i=new google.maps.Polygon(t);google.maps.event.addListener(i,"dragend",(()=>{this.checkPosition_(i,e)})),this.polys_.push(i)}boundsContainsPoly_(e,t){const i=new google.maps.LatLngBounds(new google.maps.LatLng(e[0][0],e[0][1]),new google.maps.LatLng(e[1][0],e[1][1])),o=t.getPaths().getArray();for(let e=0;e<o.length;e++){const t=o[e].getArray();for(let e=0;e<t.length;e++)if(!i.contains(t[e]))return!1}return!0}replacePiece_(e,t){const i={strokeColor:this.END_COLOR_,fillColor:this.END_COLOR_,draggable:!1,zIndex:1,paths:t.end.map(google.maps.geometry.encoding.decodePath)};e.setOptions(i),this.count_++,this.setCount_()}checkPosition_(e,t){this.boundsContainsPoly_(t.bounds,e)&&this.replacePiece_(e,t)}start_(){this.setDifficultyStyle_(),this.resetGame_()}removeCountries_(){for(let e,t=0;e=this.polys_[t];t++)e.setMap(null);this.polys_=[]}}function o(){const e=new google.maps.Map(document.getElementById("map"),{disableDefaultUI:!0,center:{lat:10,lng:60},zoom:2});new i(e)}var s=window;for(var n in t)s[n]=t[n];t.__esModule&&Object.defineProperty(s,"__esModule",{value:!0})})();
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, i) => {
+          for (var o in i)
+            e.o(i, o) &&
+              !e.o(t, o) &&
+              Object.defineProperty(t, o, { enumerable: !0, get: i[o] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    e.r(t), e.d(t, { initMap: () => o });
+    class i {
+      map_;
+      polys_ = [];
+      difficulty_ = "Easy";
+      count_ = 0;
+      pieceDiv_;
+      timeDiv_;
+      dataLoaded_ = !1;
+      NUM_PIECES_ = 10;
+      countries_ = [];
+      timer_ = 0;
+      START_COLOR_ = "#3c79de";
+      END_COLOR_ = "#037e29";
+      constructor(e) {
+        (this.map_ = e),
+          (this.pieceDiv_ = document.createElement("div")),
+          (this.timeDiv_ = document.createElement("div")),
+          this.createMenu_(),
+          this.setDifficultyStyle_(),
+          this.loadData_();
+      }
+      createMenu_() {
+        const e = document.createElement("div");
+        e.style.cssText =
+          "margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;background-color: white; font-size: 14px; font-family: Roboto;text-align: center; color: grey;line-height: 32px; overflow: hidden";
+        const t = document.createElement("div");
+        (t.style.cssText =
+          "width: 100%; background-color: #4285f4; color: white; font-size: 20px;line-height: 40px;margin-bottom: 24px"),
+          (t.innerText = "Game Options");
+        const i = document.createElement("div");
+        (i.innerText = "PIECE:"), (i.style.fontWeight = "800");
+        const o = this.pieceDiv_;
+        o.innerText = "0 / " + this.NUM_PIECES_;
+        const s = document.createElement("div");
+        (s.innerText = "TIME:"), (s.style.fontWeight = "800");
+        const n = this.timeDiv_;
+        n.innerText = "0.0 seconds";
+        const r = document.createElement("div");
+        (r.innerText = "DIFFICULTY:"), (r.style.fontWeight = "800");
+        const a = document.createElement("select");
+        ["Easy", "Moderate", "Hard", "Extreme"].forEach((e) => {
+          const t = document.createElement("option");
+          (t.value = e.toLowerCase()), (t.innerText = e), a.appendChild(t);
+        }),
+          (a.style.cssText =
+            "border: 2px solid lightgrey; background-color: white; color: #4275f4;padding: 6px;"),
+          (a.onchange = () => {
+            this.setDifficulty_(a.value), this.resetGame_();
+          });
+        const l = document.createElement("div");
+        (l.innerText = "Reset"),
+          (l.style.cssText =
+            "cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;color: #4275f4; line-height: 40px; font-weight: 800"),
+          (l.onclick = this.resetGame_.bind(this)),
+          e.appendChild(t),
+          e.appendChild(i),
+          e.appendChild(o),
+          e.appendChild(s),
+          e.appendChild(n),
+          e.appendChild(r),
+          e.appendChild(a),
+          e.appendChild(l),
+          this.map_.controls[google.maps.ControlPosition.TOP_LEFT].push(e);
+      }
+      render() {
+        this.dataLoaded_ && this.start_();
+      }
+      loadData_() {
+        const e = new XMLHttpRequest();
+        (e.onreadystatechange = () => {
+          200 == e.status &&
+            e.readyState == XMLHttpRequest.DONE &&
+            this.loadDataComplete_(JSON.parse(e.responseText));
+        }),
+          e.open(
+            "GET",
+            "https://storage.googleapis.com/mapsdevsite/json/puzzle.json",
+            !0
+          ),
+          e.send(null);
+      }
+      loadDataComplete_(e) {
+        (this.dataLoaded_ = !0), (this.countries_ = e), this.start_();
+      }
+      setDifficulty_(e) {
+        (this.difficulty_ = e), this.map_ && this.setDifficultyStyle_();
+      }
+      setDifficultyStyle_() {
+        this.map_.set(
+          "styles",
+          {
+            easy: [
+              { stylers: [{ visibility: "off" }] },
+              {
+                featureType: "water",
+                stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
+              },
+              {
+                featureType: "landscape",
+                stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
+              },
+              {
+                featureType: "administrative.country",
+                elementType: "labels",
+                stylers: [{ visibility: "on" }],
+              },
+              {
+                featureType: "administrative.country",
+                elementType: "geometry",
+                stylers: [{ visibility: "on" }, { weight: 1.3 }],
+              },
+            ],
+            moderate: [
+              { stylers: [{ visibility: "off" }] },
+              {
+                featureType: "water",
+                stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
+              },
+              {
+                featureType: "landscape",
+                stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
+              },
+              {
+                featureType: "administrative.country",
+                elementType: "labels",
+                stylers: [{ visibility: "on" }],
+              },
+            ],
+            hard: [
+              { stylers: [{ visibility: "off" }] },
+              {
+                featureType: "water",
+                stylers: [{ visibility: "on" }, { color: "#d4d4d4" }],
+              },
+              {
+                featureType: "landscape",
+                stylers: [{ visibility: "on" }, { color: "#e5e3df" }],
+              },
+            ],
+            extreme: [
+              { elementType: "geometry", stylers: [{ visibility: "off" }] },
+            ],
+          }[this.difficulty_]
+        );
+      }
+      resetGame_() {
+        this.removeCountries_(),
+          (this.count_ = 0),
+          this.setCount_(),
+          this.startClock_(),
+          this.addRandomCountries_();
+      }
+      setCount_() {
+        (this.pieceDiv_.innerText = this.count_ + " / " + this.NUM_PIECES_),
+          this.count_ == this.NUM_PIECES_ && this.stopClock_();
+      }
+      stopClock_() {
+        window.clearInterval(this.timer_);
+      }
+      startClock_() {
+        this.stopClock_();
+        const e = this.timeDiv_;
+        e && (e.textContent = "0.0 seconds");
+        const t = new Date();
+        this.timer_ = window.setInterval(() => {
+          const i = new Date().getTime() - t.getTime();
+          e && (e.textContent = (i / 1e3).toFixed(2) + " seconds");
+        }, 100);
+      }
+      addRandomCountries_() {
+        this.countries_.sort(() => Math.round(Math.random()) - 0.5);
+        const e = this.countries_.slice(0, this.NUM_PIECES_);
+        for (let t, i = 0; (t = e[i]); i++) this.addCountry_(t);
+      }
+      addCountry_(e) {
+        const t = {
+            strokeColor: this.START_COLOR_,
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: this.START_COLOR_,
+            fillOpacity: 0.35,
+            geodesic: !0,
+            map: this.map_,
+            draggable: !0,
+            zIndex: 2,
+            paths: e.start.map(google.maps.geometry.encoding.decodePath),
+          },
+          i = new google.maps.Polygon(t);
+        google.maps.event.addListener(i, "dragend", () => {
+          this.checkPosition_(i, e);
+        }),
+          this.polys_.push(i);
+      }
+      boundsContainsPoly_(e, t) {
+        const i = new google.maps.LatLngBounds(
+            new google.maps.LatLng(e[0][0], e[0][1]),
+            new google.maps.LatLng(e[1][0], e[1][1])
+          ),
+          o = t.getPaths().getArray();
+        for (let e = 0; e < o.length; e++) {
+          const t = o[e].getArray();
+          for (let e = 0; e < t.length; e++) if (!i.contains(t[e])) return !1;
+        }
+        return !0;
+      }
+      replacePiece_(e, t) {
+        const i = {
+          strokeColor: this.END_COLOR_,
+          fillColor: this.END_COLOR_,
+          draggable: !1,
+          zIndex: 1,
+          paths: t.end.map(google.maps.geometry.encoding.decodePath),
+        };
+        e.setOptions(i), this.count_++, this.setCount_();
+      }
+      checkPosition_(e, t) {
+        this.boundsContainsPoly_(t.bounds, e) && this.replacePiece_(e, t);
+      }
+      start_() {
+        this.setDifficultyStyle_(), this.resetGame_();
+      }
+      removeCountries_() {
+        for (let e, t = 0; (e = this.polys_[t]); t++) e.setMap(null);
+        this.polys_ = [];
+      }
+    }
+    function o() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+        disableDefaultUI: !0,
+        center: { lat: 10, lng: 60 },
+        zoom: 2,
+      });
+      new i(e);
+    }
+    var s = window;
+    for (var n in t) s[n] = t[n];
+    t.__esModule && Object.defineProperty(s, "__esModule", { value: !0 });
+  })();
 </script>
 
-      <div id="iframe-contents">
+<div id="iframe-contents">
+  <div id="map"></div>
 
-<div id="map"></div>
-
-      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-      <script 
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=geometry&v=weekly" 
-        async></script>
-
-      </div>
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=geometry&v=weekly"
+    async
+  ></script>
+</div>
