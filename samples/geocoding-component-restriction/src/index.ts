@@ -44,7 +44,7 @@ function geocodeAddress(geocoder: google.maps.Geocoder, map: google.maps.Map) {
         postalCode: "2000",
       },
     })
-    .then(({results}) => {
+    .then(({ results }) => {
       map.setCenter(results[0].geometry.location);
       new google.maps.Marker({
         map,

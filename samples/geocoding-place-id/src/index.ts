@@ -48,7 +48,7 @@ function geocodePlaceId(
     .value;
   geocoder
     .geocode({ placeId: placeId })
-    .then(({results}) => {
+    .then(({ results }) => {
       if (results[0]) {
         map.setZoom(11);
         map.setCenter(results[0].geometry.location);
