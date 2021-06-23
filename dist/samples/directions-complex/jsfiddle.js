@@ -47,25 +47,23 @@ function calculateAndDisplayRoute(
   }
   // Retrieve the start and end locations and create a DirectionsRequest using
   // WALKING directions.
-  directionsService.route(
-    {
+  directionsService
+    .route({
       origin: document.getElementById("start").value,
       destination: document.getElementById("end").value,
       travelMode: google.maps.TravelMode.WALKING,
-    },
-    (result, status) => {
+    })
+    .then((result) => {
       // Route the directions and pass the response to a function to create
       // markers for each step.
-      if (status === "OK" && result) {
-        document.getElementById("warnings-panel").innerHTML =
-          "<b>" + result.routes[0].warnings + "</b>";
-        directionsRenderer.setDirections(result);
-        showSteps(result, markerArray, stepDisplay, map);
-      } else {
-        window.alert("Directions request failed due to " + status);
-      }
-    }
-  );
+      document.getElementById("warnings-panel").innerHTML =
+        "<b>" + result.routes[0].warnings + "</b>";
+      directionsRenderer.setDirections(result);
+      showSteps(result, markerArray, stepDisplay, map);
+    })
+    .catch((e) => {
+      window.alert("Directions request failed due to " + e);
+    });
 }
 
 function showSteps(directionResult, markerArray, stepDisplay, map) {

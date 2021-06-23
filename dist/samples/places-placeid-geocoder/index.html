@@ -95,10 +95,10 @@
               n.close();
               const o = t.getPlace();
               o.place_id &&
-                d.geocode({ placeId: o.place_id }, (t, d) => {
-                  "OK" !== d && t
-                    ? window.alert("Geocoder failed due to: " + d)
-                    : (e.setZoom(11),
+                d
+                  .geocode({ placeId: o.place_id })
+                  .then(({ results: t }) => {
+                    e.setZoom(11),
                       e.setCenter(t[0].geometry.location),
                       l.setPlace({
                         placeId: o.place_id,
@@ -109,8 +109,9 @@
                       (a.children["place-id"].textContent = o.place_id),
                       (a.children["place-address"].textContent =
                         t[0].formatted_address),
-                      n.open(e, l));
-                });
+                      n.open(e, l);
+                  })
+                  .catch((e) => window.alert("Geocoder failed due to: " + e));
             });
         }
         e.r(o), e.d(o, { initMap: () => t });

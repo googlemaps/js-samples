@@ -15,8 +15,9 @@ function initMap() {
 // a geocode of a place ID.
 function geocodePlaceId(geocoder, map, infowindow) {
   const placeId = document.getElementById("place-id").value;
-  geocoder.geocode({ placeId: placeId }, (results, status) => {
-    if (status === "OK") {
+  geocoder
+    .geocode({ placeId: placeId })
+    .then(({ results }) => {
       if (results[0]) {
         map.setZoom(11);
         map.setCenter(results[0].geometry.location);
@@ -29,8 +30,6 @@ function geocodePlaceId(geocoder, map, infowindow) {
       } else {
         window.alert("No results found");
       }
-    } else {
-      window.alert("Geocoder failed due to: " + status);
-    }
-  });
+    })
+    .catch((e) => window.alert("Geocoder failed due to: " + e));
 }

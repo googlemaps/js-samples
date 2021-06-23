@@ -79,32 +79,27 @@ function calculateAndDisplayRoute(
 
   // Retrieve the start and end locations and create a DirectionsRequest using
   // WALKING directions.
-  directionsService.route(
-    {
+  directionsService
+    .route({
       origin: (document.getElementById("start") as HTMLInputElement).value,
       destination: (document.getElementById("end") as HTMLInputElement).value,
       travelMode: google.maps.TravelMode.WALKING,
-    },
-    (
-      result: google.maps.DirectionsResult | null,
-      status: google.maps.DirectionsStatus
-    ) => {
+    })
+    .then((result: google.maps.DirectionsResult) => {
       // Route the directions and pass the response to a function to create
       // markers for each step.
-      if (status === "OK" && result) {
-        (document.getElementById("warnings-panel") as HTMLElement).innerHTML =
-          "<b>" + result.routes[0].warnings + "</b>";
-        directionsRenderer.setDirections(result);
-        showSteps(result, markerArray, stepDisplay, map);
-      } else {
-        window.alert("Directions request failed due to " + status);
-      }
-    }
-  );
+      (document.getElementById("warnings-panel") as HTMLElement).innerHTML =
+        "<b>" + result.routes[0].warnings + "</b>";
+      directionsRenderer.setDirections(result);
+      showSteps(result, markerArray, stepDisplay, map);
+    })
+    .catch((e) => {
+      window.alert("Directions request failed due to " + e);
+    });
 }
 
 function showSteps(
-  directionResult: google.maps.DirectionsResult | null,
+  directionResult: google.maps.DirectionsResult,
   markerArray: google.maps.Marker[],
   stepDisplay: google.maps.InfoWindow,
   map: google.maps.Map

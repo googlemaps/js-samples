@@ -36,13 +36,13 @@
       (() => {
         "use strict";
         var e = {
-            d: (o, t) => {
-              for (var n in t)
-                e.o(t, n) &&
-                  !e.o(o, n) &&
-                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
             },
-            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
             r: (e) => {
               "undefined" != typeof Symbol &&
                 Symbol.toStringTag &&
@@ -52,39 +52,38 @@
                 Object.defineProperty(e, "__esModule", { value: !0 });
             },
           },
-          o = {};
-        function t() {
+          t = {};
+        function o() {
           const e = new google.maps.DirectionsRenderer(),
-            o = new google.maps.DirectionsService(),
-            t = new google.maps.Map(document.getElementById("map"), {
+            t = new google.maps.DirectionsService(),
+            o = new google.maps.Map(document.getElementById("map"), {
               zoom: 14,
               center: { lat: 37.77, lng: -122.447 },
             });
-          e.setMap(t),
-            n(o, e),
+          e.setMap(o),
+            n(t, e),
             document.getElementById("mode").addEventListener("change", () => {
-              n(o, e);
+              n(t, e);
             });
         }
-        function n(e, o) {
-          const t = document.getElementById("mode").value;
-          e.route(
-            {
-              origin: { lat: 37.77, lng: -122.447 },
-              destination: { lat: 37.768, lng: -122.511 },
-              travelMode: google.maps.TravelMode[t],
-            },
-            (e, t) => {
-              "OK" == t
-                ? o.setDirections(e)
-                : window.alert("Directions request failed due to " + t);
-            }
-          );
+        function n(e, t) {
+          const o = document.getElementById("mode").value;
+          e.route({
+            origin: { lat: 37.77, lng: -122.447 },
+            destination: { lat: 37.768, lng: -122.511 },
+            travelMode: google.maps.TravelMode[o],
+          })
+            .then((e) => {
+              t.setDirections(e);
+            })
+            .catch((e) =>
+              window.alert("Directions request failed due to " + status)
+            );
         }
-        e.r(o), e.d(o, { initMap: () => t });
+        e.r(t), e.d(t, { initMap: () => o });
         var r = window;
-        for (var a in o) r[a] = o[a];
-        o.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
+        for (var a in t) r[a] = t[a];
+        t.__esModule && Object.defineProperty(r, "__esModule", { value: !0 });
       })();
     </script>
   </head>

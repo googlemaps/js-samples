@@ -31,10 +31,10 @@
     "use strict";
     var e = {
         d: (o, n) => {
-          for (var i in n)
-            e.o(n, i) &&
-              !e.o(o, i) &&
-              Object.defineProperty(o, i, { enumerable: !0, get: n[i] });
+          for (var t in n)
+            e.o(n, t) &&
+              !e.o(o, t) &&
+              Object.defineProperty(o, t, { enumerable: !0, get: n[t] });
         },
         o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
         r: (e) => {
@@ -51,10 +51,10 @@
           zoom: 18,
           center: e,
         });
-      new i(o, e);
+      new t(o, e);
     }
     e.r(o), e.d(o, { initMap: () => n });
-    class i {
+    class t {
       origin;
       map;
       directionsService;
@@ -86,18 +86,18 @@
       }
       calculateAndDisplayRoute(e) {
         const o = this;
-        this.directionsService.route(
-          {
+        this.directionsService
+          .route({
             origin: this.origin,
             destination: { placeId: e },
             travelMode: google.maps.TravelMode.WALKING,
-          },
-          (e, n) => {
-            "OK" === n
-              ? o.directionsRenderer.setDirections(e)
-              : window.alert("Directions request failed due to " + n);
-          }
-        );
+          })
+          .then((e) => {
+            o.directionsRenderer.setDirections(e);
+          })
+          .catch((e) =>
+            window.alert("Directions request failed due to " + status)
+          );
       }
       getPlaceInformation(e) {
         const o = this;
@@ -117,9 +117,9 @@
         });
       }
     }
-    var t = window;
-    for (var c in o) t[c] = o[c];
-    o.__esModule && Object.defineProperty(t, "__esModule", { value: !0 });
+    var i = window;
+    for (var c in o) i[c] = o[c];
+    o.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
   })();
 </script>
 

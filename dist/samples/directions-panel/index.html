@@ -80,11 +80,11 @@
       (() => {
         "use strict";
         var e = {
-            d: (t, o) => {
-              for (var n in o)
-                e.o(o, n) &&
-                  !e.o(t, n) &&
-                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+            d: (t, n) => {
+              for (var o in n)
+                e.o(n, o) &&
+                  !e.o(t, o) &&
+                  Object.defineProperty(t, o, { enumerable: !0, get: n[o] });
             },
             o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
             r: (e) => {
@@ -97,42 +97,41 @@
             },
           },
           t = {};
-        function o() {
+        function n() {
           const e = new google.maps.DirectionsRenderer(),
             t = new google.maps.DirectionsService(),
-            o = new google.maps.Map(document.getElementById("map"), {
+            n = new google.maps.Map(document.getElementById("map"), {
               zoom: 7,
               center: { lat: 41.85, lng: -87.65 },
               disableDefaultUI: !0,
             });
-          e.setMap(o), e.setPanel(document.getElementById("sidebar"));
-          const n = document.getElementById("floating-panel");
-          o.controls[google.maps.ControlPosition.TOP_CENTER].push(n);
+          e.setMap(n), e.setPanel(document.getElementById("sidebar"));
+          const o = document.getElementById("floating-panel");
+          n.controls[google.maps.ControlPosition.TOP_CENTER].push(o);
           const r = function () {
             !(function (e, t) {
-              const o = document.getElementById("start").value,
-                n = document.getElementById("end").value;
-              e.route(
-                {
-                  origin: o,
-                  destination: n,
-                  travelMode: google.maps.TravelMode.DRIVING,
-                },
-                (e, o) => {
-                  "OK" === o
-                    ? t.setDirections(e)
-                    : window.alert("Directions request failed due to " + o);
-                }
-              );
+              const n = document.getElementById("start").value,
+                o = document.getElementById("end").value;
+              e.route({
+                origin: n,
+                destination: o,
+                travelMode: google.maps.TravelMode.DRIVING,
+              })
+                .then((e) => {
+                  t.setDirections(e);
+                })
+                .catch((e) =>
+                  window.alert("Directions request failed due to " + status)
+                );
             })(t, e);
           };
           document.getElementById("start").addEventListener("change", r),
             document.getElementById("end").addEventListener("change", r);
         }
-        e.r(t), e.d(t, { initMap: () => o });
-        var n = window;
-        for (var r in t) n[r] = t[r];
-        t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+        e.r(t), e.d(t, { initMap: () => n });
+        var o = window;
+        for (var r in t) o[r] = t[r];
+        t.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
       })();
     </script>
   </head>

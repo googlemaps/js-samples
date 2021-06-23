@@ -52,13 +52,13 @@
       (() => {
         "use strict";
         var e = {
-            d: (o, t) => {
-              for (var n in t)
-                e.o(t, n) &&
-                  !e.o(o, n) &&
-                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
             },
-            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
             r: (e) => {
               "undefined" != typeof Symbol &&
                 Symbol.toStringTag &&
@@ -68,34 +68,34 @@
                 Object.defineProperty(e, "__esModule", { value: !0 });
             },
           },
-          o = {};
-        function t() {
+          t = {};
+        function o() {
           const e = new google.maps.Map(document.getElementById("map"), {
               zoom: 4,
               center: { lat: -24.345, lng: 134.46 },
             }),
-            o = new google.maps.DirectionsService(),
-            t = new google.maps.DirectionsRenderer({
+            t = new google.maps.DirectionsService(),
+            o = new google.maps.DirectionsRenderer({
               draggable: !0,
               map: e,
               panel: document.getElementById("right-panel"),
             });
           var n;
-          t.addListener("directions_changed", () => {
+          o.addListener("directions_changed", () => {
             !(function (e) {
-              let o = 0;
-              const t = e.routes[0];
-              if (t) {
-                for (let e = 0; e < t.legs.length; e++)
-                  o += t.legs[e].distance.value;
-                (o /= 1e3),
-                  (document.getElementById("total").innerHTML = o + " km");
+              let t = 0;
+              const o = e.routes[0];
+              if (o) {
+                for (let e = 0; e < o.legs.length; e++)
+                  t += o.legs[e].distance.value;
+                (t /= 1e3),
+                  (document.getElementById("total").innerHTML = t + " km");
               }
-            })(t.getDirections());
+            })(o.getDirections());
           }),
-            (n = t),
-            o.route(
-              {
+            (n = o),
+            t
+              .route({
                 origin: "Perth, WA",
                 destination: "Sydney, NSW",
                 waypoints: [
@@ -104,18 +104,18 @@
                 ],
                 travelMode: google.maps.TravelMode.DRIVING,
                 avoidTolls: !0,
-              },
-              (e, o) => {
-                "OK" === o && e
-                  ? n.setDirections(e)
-                  : alert("Could not display directions due to: " + o);
-              }
-            );
+              })
+              .then((e) => {
+                n.setDirections(e);
+              })
+              .catch((e) => {
+                alert("Could not display directions due to: " + e);
+              });
         }
-        e.r(o), e.d(o, { initMap: () => t });
+        e.r(t), e.d(t, { initMap: () => o });
         var n = window;
-        for (var r in o) n[r] = o[r];
-        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+        for (var r in t) n[r] = t[r];
+        t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
       })();
     </script>
   </head>

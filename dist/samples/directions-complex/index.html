@@ -77,29 +77,28 @@
         }
         function o(e, t, n, o, s) {
           for (let e = 0; e < n.length; e++) n[e].setMap(null);
-          t.route(
-            {
-              origin: document.getElementById("start").value,
-              destination: document.getElementById("end").value,
-              travelMode: google.maps.TravelMode.WALKING,
-            },
-            (t, a) => {
-              "OK" === a && t
-                ? ((document.getElementById("warnings-panel").innerHTML =
-                    "<b>" + t.routes[0].warnings + "</b>"),
-                  e.setDirections(t),
-                  (function (e, t, n, o) {
-                    const s = e.routes[0].legs[0];
-                    for (let e = 0; e < s.steps.length; e++) {
-                      const a = (t[e] = t[e] || new google.maps.Marker());
-                      a.setMap(o),
-                        a.setPosition(s.steps[e].start_location),
-                        r(n, a, s.steps[e].instructions, o);
-                    }
-                  })(t, n, o, s))
-                : window.alert("Directions request failed due to " + a);
-            }
-          );
+          t.route({
+            origin: document.getElementById("start").value,
+            destination: document.getElementById("end").value,
+            travelMode: google.maps.TravelMode.WALKING,
+          })
+            .then((t) => {
+              (document.getElementById("warnings-panel").innerHTML =
+                "<b>" + t.routes[0].warnings + "</b>"),
+                e.setDirections(t),
+                (function (e, t, n, o) {
+                  const s = e.routes[0].legs[0];
+                  for (let e = 0; e < s.steps.length; e++) {
+                    const a = (t[e] = t[e] || new google.maps.Marker());
+                    a.setMap(o),
+                      a.setPosition(s.steps[e].start_location),
+                      r(n, a, s.steps[e].instructions, o);
+                  }
+                })(t, n, o, s);
+            })
+            .catch((e) => {
+              window.alert("Directions request failed due to " + e);
+            });
         }
         function r(e, t, n, o) {
           google.maps.event.addListener(t, "click", () => {

@@ -22,8 +22,8 @@ function initMap() {
 }
 
 function displayRoute(origin, destination, service, display) {
-  service.route(
-    {
+  service
+    .route({
       origin: origin,
       destination: destination,
       waypoints: [
@@ -32,15 +32,13 @@ function displayRoute(origin, destination, service, display) {
       ],
       travelMode: google.maps.TravelMode.DRIVING,
       avoidTolls: true,
-    },
-    (result, status) => {
-      if (status === "OK" && result) {
-        display.setDirections(result);
-      } else {
-        alert("Could not display directions due to: " + status);
-      }
-    }
-  );
+    })
+    .then((result) => {
+      display.setDirections(result);
+    })
+    .catch((e) => {
+      alert("Could not display directions due to: " + e);
+    });
 }
 
 function computeTotalDistance(result) {

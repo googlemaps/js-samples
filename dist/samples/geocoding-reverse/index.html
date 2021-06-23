@@ -80,15 +80,15 @@
             !(function (e, o, t) {
               const n = document.getElementById("latlng").value.split(",", 2),
                 l = { lat: parseFloat(n[0]), lng: parseFloat(n[1]) };
-              e.geocode({ location: l }, (e, n) => {
-                if ("OK" === n)
-                  if (e[0]) {
+              e.geocode({ location: l })
+                .then((e) => {
+                  if (e.results[0]) {
                     o.setZoom(11);
                     const n = new google.maps.Marker({ position: l, map: o });
-                    t.setContent(e[0].formatted_address), t.open(o, n);
+                    t.setContent(e.results[0].formatted_address), t.open(o, n);
                   } else window.alert("No results found");
-                else window.alert("Geocoder failed due to: " + n);
-              });
+                })
+                .catch((e) => window.alert("Geocoder failed due to: " + e));
             })(o, e, t);
           });
         }

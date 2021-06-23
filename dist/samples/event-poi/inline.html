@@ -86,20 +86,18 @@
         }
         calculateAndDisplayRoute(placeId) {
           const me = this;
-          this.directionsService.route(
-            {
+          this.directionsService
+            .route({
               origin: this.origin,
               destination: { placeId: placeId },
               travelMode: google.maps.TravelMode.WALKING,
-            },
-            (response, status) => {
-              if (status === "OK") {
-                me.directionsRenderer.setDirections(response);
-              } else {
-                window.alert("Directions request failed due to " + status);
-              }
-            }
-          );
+            })
+            .then((response) => {
+              me.directionsRenderer.setDirections(response);
+            })
+            .catch((e) =>
+              window.alert("Directions request failed due to " + status)
+            );
         }
         getPlaceInformation(placeId) {
           const me = this;

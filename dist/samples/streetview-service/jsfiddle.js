@@ -17,40 +17,40 @@ function initMap() {
     streetViewControl: false,
   });
   // Set the initial Street View camera to the center of the map
-  sv.getPanorama({ location: berkeley, radius: 50 }, processSVData);
+  sv.getPanorama({ location: berkeley, radius: 50 }).then(processSVData);
   // Look for a nearby Street View panorama when the map is clicked.
   // getPanorama will return the nearest pano when the given
   // radius is 50 meters or less.
   map.addListener("click", (event) => {
-    sv.getPanorama({ location: event.latLng, radius: 50 }, processSVData);
+    sv.getPanorama({ location: event.latLng, radius: 50 })
+      .then(processSVData)
+      .catch((e) =>
+        console.error("Street View data not found for this location.")
+      );
   });
 }
 
-function processSVData(data, status) {
-  if (status === "OK") {
-    const location = data.location;
-    const marker = new google.maps.Marker({
-      position: location.latLng,
-      map,
-      title: location.description,
-    });
-    panorama.setPano(location.pano);
+function processSVData({ data }) {
+  const location = data.location;
+  const marker = new google.maps.Marker({
+    position: location.latLng,
+    map,
+    title: location.description,
+  });
+  panorama.setPano(location.pano);
+  panorama.setPov({
+    heading: 270,
+    pitch: 0,
+  });
+  panorama.setVisible(true);
+  marker.addListener("click", () => {
+    const markerPanoID = location.pano;
+    // Set the Pano to use the passed panoID.
+    panorama.setPano(markerPanoID);
     panorama.setPov({
       heading: 270,
       pitch: 0,
     });
     panorama.setVisible(true);
-    marker.addListener("click", () => {
-      const markerPanoID = location.pano;
-      // Set the Pano to use the passed panoID.
-      panorama.setPano(markerPanoID);
-      panorama.setPov({
-        heading: 270,
-        pitch: 0,
-      });
-      panorama.setVisible(true);
-    });
-  } else {
-    console.error("Street View data not found for this location.");
-  }
+  });
 }

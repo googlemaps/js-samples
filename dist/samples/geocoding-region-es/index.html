@@ -43,17 +43,17 @@
           const e = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
           });
-          new google.maps.Geocoder().geocode({ address: "Toledo" }, (o, t) => {
-            "OK" === t && o
-              ? (e.setCenter(o[0].geometry.location),
-                new google.maps.Marker({
-                  map: e,
-                  position: o[0].geometry.location,
-                }))
-              : window.alert(
-                  "Geocode was not successful for the following reason: " + t
-                );
-          });
+          new google.maps.Geocoder()
+            .geocode({ address: "Toledo" })
+            .then((o) => {
+              const t = o.results[0].geometry.location;
+              e.setCenter(t), new google.maps.Marker({ map: e, position: t });
+            })
+            .catch((e) =>
+              window.alert(
+                "Geocode was not successful for the following reason: " + e
+              )
+            );
         }
         e.r(o), e.d(o, { initMap: () => t });
         var r = window;

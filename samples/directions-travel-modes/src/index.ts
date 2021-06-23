@@ -42,24 +42,20 @@ function calculateAndDisplayRoute(
 ) {
   const selectedMode = (document.getElementById("mode") as HTMLInputElement)
     .value;
-  directionsService.route(
-    {
+
+  directionsService
+    .route({
       origin: { lat: 37.77, lng: -122.447 }, // Haight.
       destination: { lat: 37.768, lng: -122.511 }, // Ocean Beach.
       // Note that Javascript allows us to access the constant
       // using square brackets and a string value as its
       // "property."
-      // @ts-ignore
       travelMode: google.maps.TravelMode[selectedMode],
-    },
-    (response, status) => {
-      if (status == "OK") {
-        directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
-      }
-    }
-  );
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
 }
 // [END maps_directions_travel_modes]
 export { initMap };

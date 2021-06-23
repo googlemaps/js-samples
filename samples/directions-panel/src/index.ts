@@ -53,20 +53,17 @@ function calculateAndDisplayRoute(
 ) {
   const start = (document.getElementById("start") as HTMLInputElement).value;
   const end = (document.getElementById("end") as HTMLInputElement).value;
-  directionsService.route(
-    {
+
+  directionsService
+    .route({
       origin: start,
       destination: end,
       travelMode: google.maps.TravelMode.DRIVING,
-    },
-    (response, status) => {
-      if (status === "OK") {
-        directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
-      }
-    }
-  );
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
 }
 // [END maps_directions_panel]
 export { initMap };
