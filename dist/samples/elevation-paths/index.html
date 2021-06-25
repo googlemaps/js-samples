@@ -24,13 +24,13 @@
       (() => {
         "use strict";
         var e = {
-            d: (o, t) => {
-              for (var n in t)
-                e.o(t, n) &&
-                  !e.o(o, n) &&
-                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
             },
-            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
             r: (e) => {
               "undefined" != typeof Symbol &&
                 Symbol.toStringTag &&
@@ -40,8 +40,8 @@
                 Object.defineProperty(e, "__esModule", { value: !0 });
             },
           },
-          o = {};
-        function t() {
+          t = {};
+        function o() {
           const e = [
               { lat: 36.579, lng: -118.292 },
               { lat: 36.606, lng: -118.0638 },
@@ -50,38 +50,41 @@
               { lat: 36.34, lng: -117.468 },
               { lat: 36.24, lng: -116.832 },
             ],
-            o = new google.maps.Map(document.getElementById("map"), {
+            t = new google.maps.Map(document.getElementById("map"), {
               zoom: 8,
               center: e[1],
               mapTypeId: "terrain",
             });
-          !(function (e, o, t) {
+          !(function (e, t, o) {
             new google.maps.Polyline({
               path: e,
               strokeColor: "#0000CC",
               strokeOpacity: 0.4,
-              map: t,
+              map: o,
             }),
-              o.getElevationAlongPath({ path: e, samples: 256 }, n);
-          })(e, new google.maps.ElevationService(), o);
+              t
+                .getElevationAlongPath({ path: e, samples: 256 })
+                .then(n)
+                .catch((e) => {
+                  document.getElementById("elevation_chart").innerHTML =
+                    "Cannot show elevation: request failed because " + e;
+                });
+          })(e, new google.maps.ElevationService(), t);
         }
-        function n(e, o) {
-          const t = document.getElementById("elevation_chart");
-          if ("OK" !== o)
-            return void (t.innerHTML =
-              "Cannot show elevation: request failed because " + o);
-          const n = new google.visualization.ColumnChart(t),
-            a = new google.visualization.DataTable();
-          a.addColumn("string", "Sample"), a.addColumn("number", "Elevation");
-          for (let o = 0; o < e.length; o++) a.addRow(["", e[o].elevation]);
-          n.draw(a, { height: 150, legend: "none", titleY: "Elevation (m)" });
+        function n(e) {
+          const t = document.getElementById("elevation_chart"),
+            o = new google.visualization.ColumnChart(t),
+            n = new google.visualization.DataTable();
+          n.addColumn("string", "Sample"), n.addColumn("number", "Elevation");
+          for (let t = 0; t < e.length; t++) n.addRow(["", e[t].elevation]);
+          o.draw(n, { height: 150, legend: "none", titleY: "Elevation (m)" });
         }
-        e.r(o),
-          e.d(o, { initMap: () => t }),
+        e.r(t),
+          e.d(t, { initMap: () => o }),
           google.load("visualization", "1", { packages: ["columnchart"] });
         var a = window;
-        for (var l in o) a[l] = o[l];
-        o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+        for (var l in t) a[l] = t[l];
+        t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
       })();
     </script>
   </head>

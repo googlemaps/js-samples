@@ -19,11 +19,11 @@
       (() => {
         "use strict";
         var e = {
-            d: (o, t) => {
-              for (var n in t)
-                e.o(t, n) &&
-                  !e.o(o, n) &&
-                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+            d: (o, n) => {
+              for (var t in n)
+                e.o(n, t) &&
+                  !e.o(o, t) &&
+                  Object.defineProperty(o, t, { enumerable: !0, get: n[t] });
             },
             o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
             r: (e) => {
@@ -36,19 +36,17 @@
             },
           },
           o = {};
-        let t, n;
-        function i() {
-          new google.maps.StreetViewService().getPanorama(
-            { location: { lat: -33.867386, lng: 151.195767 } },
-            (e, o) => {
-              o === google.maps.StreetViewStatus.OK &&
-                e &&
-                ((n = e),
-                (t = new google.maps.StreetViewPanorama(
+        let n, t;
+        function a() {
+          new google.maps.StreetViewService()
+            .getPanorama({ location: { lat: -33.867386, lng: 151.195767 } })
+            .then(({ data: e }) => {
+              (t = e),
+                (n = new google.maps.StreetViewPanorama(
                   document.getElementById("street-view"),
-                  { pano: n.location.pano }
+                  { pano: t.location.pano }
                 )),
-                t.registerPanoProvider((e) =>
+                n.registerPanoProvider((e) =>
                   "reception" === e
                     ? {
                         location: {
@@ -60,7 +58,7 @@
                           {
                             heading: 195,
                             description: "Exit",
-                            pano: n.location.pano,
+                            pano: t.location.pano,
                           },
                         ],
                         copyright: "Imagery (c) 2010 Google",
@@ -68,14 +66,14 @@
                           tileSize: new google.maps.Size(1024, 512),
                           worldSize: new google.maps.Size(2048, 1024),
                           centerHeading: 105,
-                          getTileUrl: function (e, o, t, n) {
+                          getTileUrl: function (e, o, n, t) {
                             return (
                               "https://developers.google.com/maps/documentation/javascript/examples/full/images/panoReception1024-" +
                               o +
                               "-" +
-                              t +
-                              "-" +
                               n +
+                              "-" +
+                              t +
                               ".jpg"
                             );
                           },
@@ -83,23 +81,22 @@
                       }
                     : null
                 ),
-                t.addListener("links_changed", () => {
-                  t.getPano() === n.location.pano &&
-                    t
+                n.addListener("links_changed", () => {
+                  n.getPano() === t.location.pano &&
+                    n
                       .getLinks()
                       .push({
                         description: "Google Sydney",
                         heading: 25,
                         pano: "reception",
                       });
-                }));
-            }
-          );
+                });
+            });
         }
-        e.r(o), e.d(o, { initMap: () => i });
-        var a = window;
-        for (var r in o) a[r] = o[r];
-        o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+        e.r(o), e.d(o, { initMap: () => a });
+        var i = window;
+        for (var r in o) i[r] = o[r];
+        o.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
       })();
     </script>
   </head>

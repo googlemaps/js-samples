@@ -93,25 +93,23 @@
                 for (let o = 0; o < e.length; o++) e[o].setMap(null);
                 e = [];
               })(o);
-              const a = function (n) {
-                return function (l, r) {
-                  "OK" === r
-                    ? (t.fitBounds(e.extend(l[0].geometry.location)),
-                      o.push(
-                        new google.maps.Marker({
-                          map: t,
-                          position: l[0].geometry.location,
-                          label: n ? "D" : "O",
-                        })
-                      ))
-                    : alert("Geocode was not successful due to: " + r);
+              const a =
+                (n) =>
+                ({ results: l }) => {
+                  t.fitBounds(e.extend(l[0].geometry.location)),
+                    o.push(
+                      new google.maps.Marker({
+                        map: t,
+                        position: l[0].geometry.location,
+                        label: n ? "D" : "O",
+                      })
+                    );
                 };
-              };
               for (let e = 0; e < r.length; e++) {
                 const o = l.rows[e].elements;
-                n.geocode({ address: r[e] }, a(!1));
+                n.geocode({ address: r[e] }).then(a(!1));
                 for (let e = 0; e < o.length; e++)
-                  n.geocode({ address: s[e] }, a(!0));
+                  n.geocode({ address: s[e] }).then(a(!0));
               }
             });
         }

@@ -97,19 +97,12 @@ function initPanorama() {
 function initMap(): void {
   // Use the Street View service to find a pano ID on Pirrama Rd, outside the
   // Google office.
-  const streetviewService = new google.maps.StreetViewService();
-  streetviewService.getPanorama(
-    { location: { lat: -33.867386, lng: 151.195767 } },
-    (
-      result: google.maps.StreetViewPanoramaData | null,
-      status: google.maps.StreetViewStatus
-    ) => {
-      if (status === google.maps.StreetViewStatus.OK && result) {
-        outsideGoogle = result;
-        initPanorama();
-      }
-    }
-  );
+  new google.maps.StreetViewService()
+    .getPanorama({ location: { lat: -33.867386, lng: 151.195767 } })
+    .then(({ data }: google.maps.StreetViewResponse) => {
+      outsideGoogle = data;
+      initPanorama();
+    });
 }
 // [END maps_streetview_custom_tiles]
 export { initMap };

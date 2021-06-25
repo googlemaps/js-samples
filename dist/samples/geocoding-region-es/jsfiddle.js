@@ -3,17 +3,17 @@ function initMap() {
     zoom: 8,
   });
   const geocoder = new google.maps.Geocoder();
-  geocoder.geocode({ address: "Toledo" }, (results, status) => {
-    if (status === "OK" && results) {
-      map.setCenter(results[0].geometry.location);
+  geocoder
+    .geocode({ address: "Toledo" })
+    .then((response) => {
+      const position = response.results[0].geometry.location;
+      map.setCenter(position);
       new google.maps.Marker({
         map,
-        position: results[0].geometry.location,
+        position,
       });
-    } else {
-      window.alert(
-        "Geocode was not successful for the following reason: " + status
-      );
-    }
-  });
+    })
+    .catch((e) =>
+      window.alert("Geocode was not successful for the following reason: " + e)
+    );
 }

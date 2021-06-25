@@ -91,31 +91,29 @@
                 for (let e = 0; e < o.length; e++)
                   o.options[e].selected &&
                     n.push({ location: o[e].value, stopover: !0 });
-                e.route(
-                  {
-                    origin: document.getElementById("start").value,
-                    destination: document.getElementById("end").value,
-                    waypoints: n,
-                    optimizeWaypoints: !0,
-                    travelMode: google.maps.TravelMode.DRIVING,
-                  },
-                  (e, n) => {
-                    if ("OK" === n && e) {
-                      t.setDirections(e);
-                      const n = e.routes[0],
-                        o = document.getElementById("directions-panel");
-                      o.innerHTML = "";
-                      for (let e = 0; e < n.legs.length; e++) {
-                        const t = e + 1;
-                        (o.innerHTML += "<b>Route Segment: " + t + "</b><br>"),
-                          (o.innerHTML += n.legs[e].start_address + " to "),
-                          (o.innerHTML += n.legs[e].end_address + "<br>"),
-                          (o.innerHTML += n.legs[e].distance.text + "<br><br>");
-                      }
-                    } else
-                      window.alert("Directions request failed due to " + n);
-                  }
-                );
+                e.route({
+                  origin: document.getElementById("start").value,
+                  destination: document.getElementById("end").value,
+                  waypoints: n,
+                  optimizeWaypoints: !0,
+                  travelMode: google.maps.TravelMode.DRIVING,
+                })
+                  .then((e) => {
+                    t.setDirections(e);
+                    const n = e.routes[0],
+                      o = document.getElementById("directions-panel");
+                    o.innerHTML = "";
+                    for (let e = 0; e < n.legs.length; e++) {
+                      const t = e + 1;
+                      (o.innerHTML += "<b>Route Segment: " + t + "</b><br>"),
+                        (o.innerHTML += n.legs[e].start_address + " to "),
+                        (o.innerHTML += n.legs[e].end_address + "<br>"),
+                        (o.innerHTML += n.legs[e].distance.text + "<br><br>");
+                    }
+                  })
+                  .catch((e) =>
+                    window.alert("Directions request failed due to " + status)
+                  );
               })(e, t);
             });
         }

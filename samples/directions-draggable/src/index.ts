@@ -49,8 +49,8 @@ function displayRoute(
   service: google.maps.DirectionsService,
   display: google.maps.DirectionsRenderer
 ) {
-  service.route(
-    {
+  service
+    .route({
       origin: origin,
       destination: destination,
       waypoints: [
@@ -59,18 +59,13 @@ function displayRoute(
       ],
       travelMode: google.maps.TravelMode.DRIVING,
       avoidTolls: true,
-    },
-    (
-      result: google.maps.DirectionsResult | null,
-      status: google.maps.DirectionsStatus
-    ) => {
-      if (status === "OK" && result) {
-        display.setDirections(result);
-      } else {
-        alert("Could not display directions due to: " + status);
-      }
-    }
-  );
+    })
+    .then((result: google.maps.DirectionsResult) => {
+      display.setDirections(result);
+    })
+    .catch((e) => {
+      alert("Could not display directions due to: " + e);
+    });
 }
 
 function computeTotalDistance(result: google.maps.DirectionsResult) {

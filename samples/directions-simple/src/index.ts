@@ -44,8 +44,8 @@ function calculateAndDisplayRoute(
   directionsService: google.maps.DirectionsService,
   directionsRenderer: google.maps.DirectionsRenderer
 ) {
-  directionsService.route(
-    {
+  directionsService
+    .route({
       origin: {
         query: (document.getElementById("start") as HTMLInputElement).value,
       },
@@ -53,15 +53,11 @@ function calculateAndDisplayRoute(
         query: (document.getElementById("end") as HTMLInputElement).value,
       },
       travelMode: google.maps.TravelMode.DRIVING,
-    },
-    (response, status) => {
-      if (status === "OK") {
-        directionsRenderer.setDirections(response);
-      } else {
-        window.alert("Directions request failed due to " + status);
-      }
-    }
-  );
+    })
+    .then((response) => {
+      directionsRenderer.setDirections(response);
+    })
+    .catch((e) => window.alert("Directions request failed due to " + status));
 }
 // [END maps_directions_simple]
 export { initMap };

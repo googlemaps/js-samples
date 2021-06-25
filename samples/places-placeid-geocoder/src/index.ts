@@ -62,31 +62,29 @@ function initMap(): void {
     if (!place.place_id) {
       return;
     }
-    geocoder.geocode({ placeId: place.place_id }, (results, status) => {
-      if (status !== "OK" && results) {
-        window.alert("Geocoder failed due to: " + status);
-        return;
-      }
+    geocoder
+      .geocode({ placeId: place.place_id })
+      .then(({ results }) => {
+        map.setZoom(11);
+        map.setCenter(results[0].geometry.location);
 
-      map.setZoom(11);
-      map.setCenter(results[0].geometry.location);
+        // Set the position of the marker using the place ID and location.
+        // @ts-ignore TODO(jpoehnelt) This should be in @typings/googlemaps.
+        marker.setPlace({
+          placeId: place.place_id,
+          location: results[0].geometry.location,
+        });
 
-      // Set the position of the marker using the place ID and location.
-      // @ts-ignore TODO(jpoehnelt) This should be in @typings/googlemaps.
-      marker.setPlace({
-        placeId: place.place_id,
-        location: results[0].geometry.location,
-      });
+        marker.setVisible(true);
 
-      marker.setVisible(true);
+        infowindowContent.children["place-name"].textContent = place.name;
+        infowindowContent.children["place-id"].textContent = place.place_id;
+        infowindowContent.children["place-address"].textContent =
+          results[0].formatted_address;
 
-      infowindowContent.children["place-name"].textContent = place.name;
-      infowindowContent.children["place-id"].textContent = place.place_id;
-      infowindowContent.children["place-address"].textContent =
-        results[0].formatted_address;
-
-      infowindow.open(map, marker);
-    });
+        infowindow.open(map, marker);
+      })
+      .catch((e) => window.alert("Geocoder failed due to: " + e));
   });
 }
 // [END maps_places_placeid_geocoder]

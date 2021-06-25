@@ -57,18 +57,17 @@
       t.setMap(n);
       const o = function () {
         !(function (e, t) {
-          e.route(
-            {
-              origin: { query: document.getElementById("start").value },
-              destination: { query: document.getElementById("end").value },
-              travelMode: google.maps.TravelMode.DRIVING,
-            },
-            (e, n) => {
-              "OK" === n
-                ? t.setDirections(e)
-                : window.alert("Directions request failed due to " + n);
-            }
-          );
+          e.route({
+            origin: { query: document.getElementById("start").value },
+            destination: { query: document.getElementById("end").value },
+            travelMode: google.maps.TravelMode.DRIVING,
+          })
+            .then((e) => {
+              t.setDirections(e);
+            })
+            .catch((e) =>
+              window.alert("Directions request failed due to " + status)
+            );
         })(e, t);
       };
       document.getElementById("start").addEventListener("change", o),

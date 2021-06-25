@@ -12,16 +12,17 @@ function initMap() {
 
 function geocodeAddress(geocoder, resultsMap) {
   const address = document.getElementById("address").value;
-  geocoder.geocode({ address: address }, (results, status) => {
-    if (status === "OK") {
+  geocoder
+    .geocode({ address: address })
+    .then(({ results }) => {
       resultsMap.setCenter(results[0].geometry.location);
       new google.maps.Marker({
         map: resultsMap,
         position: results[0].geometry.location,
       });
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }
-  });
+    })
+    .catch((e) =>
+      alert("Geocode was not successful for the following reason: " + e)
+    );
 }
 // [END maps_geocoding_simple]

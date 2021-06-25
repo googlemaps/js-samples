@@ -10,26 +10,22 @@ function initMap() {
 }
 
 function geocodeAddress(geocoder, map) {
-  geocoder.geocode(
-    {
+  geocoder
+    .geocode({
       address: "483 George St.",
       componentRestrictions: {
         country: "AU",
         postalCode: "2000",
       },
-    },
-    (results, status) => {
-      if (status === "OK") {
-        map.setCenter(results[0].geometry.location);
-        new google.maps.Marker({
-          map,
-          position: results[0].geometry.location,
-        });
-      } else {
-        window.alert(
-          "Geocode was not successful for the following reason: " + status
-        );
-      }
-    }
-  );
+    })
+    .then(({ results }) => {
+      map.setCenter(results[0].geometry.location);
+      new google.maps.Marker({
+        map,
+        position: results[0].geometry.location,
+      });
+    })
+    .catch((e) =>
+      window.alert("Geocode was not successful for the following reason: " + e)
+    );
 }

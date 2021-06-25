@@ -56,17 +56,17 @@
       document.getElementById("submit").addEventListener("click", () => {
         !(function (e, o) {
           const t = document.getElementById("address").value;
-          e.geocode({ address: t }, (e, t) => {
-            "OK" === t
-              ? (o.setCenter(e[0].geometry.location),
+          e.geocode({ address: t })
+            .then(({ results: e }) => {
+              o.setCenter(e[0].geometry.location),
                 new google.maps.Marker({
                   map: o,
                   position: e[0].geometry.location,
-                }))
-              : alert(
-                  "Geocode was not successful for the following reason: " + t
-                );
-          });
+                });
+            })
+            .catch((e) =>
+              alert("Geocode was not successful for the following reason: " + e)
+            );
         })(o, e);
       });
     }

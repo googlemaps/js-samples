@@ -64,38 +64,31 @@ function initMap(): void {
 
     deleteMarkers(markersArray);
 
-    const showGeocodedAddressOnMap = function (asDestination: boolean) {
-      return function (
-        results: google.maps.GeocoderResult[],
-        status: google.maps.GeocoderStatus
-      ) {
-        if (status === "OK") {
-          map.fitBounds(bounds.extend(results[0].geometry.location));
-          markersArray.push(
-            new google.maps.Marker({
-              map,
-              position: results[0].geometry.location,
-              label: asDestination ? "D" : "O",
-            })
-          );
-        } else {
-          alert("Geocode was not successful due to: " + status);
-        }
+    const showGeocodedAddressOnMap = (asDestination: boolean) => {
+      const handler = ({ results }: google.maps.GeocoderResponse) => {
+        map.fitBounds(bounds.extend(results[0].geometry.location));
+        markersArray.push(
+          new google.maps.Marker({
+            map,
+            position: results[0].geometry.location,
+            label: asDestination ? "D" : "O",
+          })
+        );
       };
+
+      return handler;
     };
 
     for (let i = 0; i < originList.length; i++) {
       const results = response.rows[i].elements;
-      geocoder.geocode(
-        { address: originList[i] },
-        showGeocodedAddressOnMap(false)
-      );
+      geocoder
+        .geocode({ address: originList[i] })
+        .then(showGeocodedAddressOnMap(false));
 
       for (let j = 0; j < results.length; j++) {
-        geocoder.geocode(
-          { address: destinationList[j] },
-          showGeocodedAddressOnMap(true)
-        );
+        geocoder
+          .geocode({ address: destinationList[j] })
+          .then(showGeocodedAddressOnMap(true));
       }
     }
   });

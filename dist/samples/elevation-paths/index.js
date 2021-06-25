@@ -35,26 +35,23 @@ function displayPathElevation(path, elevator, map) {
   // Create a PathElevationRequest object using this array.
   // Ask for 256 samples along that path.
   // Initiate the path request.
-  elevator.getElevationAlongPath(
-    {
+  elevator
+    .getElevationAlongPath({
       path: path,
       samples: 256,
-    },
-    plotElevation
-  );
+    })
+    .then(plotElevation)
+    .catch((e) => {
+      const chartDiv = document.getElementById("elevation_chart");
+      // Show the error code inside the chartDiv.
+      chartDiv.innerHTML = "Cannot show elevation: request failed because " + e;
+    });
 }
 
 // Takes an array of ElevationResult objects, draws the path on the map
 // and plots the elevation profile on a Visualization API ColumnChart.
-function plotElevation(elevations, status) {
+function plotElevation(elevations) {
   const chartDiv = document.getElementById("elevation_chart");
-
-  if (status !== "OK") {
-    // Show the error code inside the chartDiv.
-    chartDiv.innerHTML =
-      "Cannot show elevation: request failed because " + status;
-    return;
-  }
   // Create a new chart in the elevation_chart DIV.
   const chart = new google.visualization.ColumnChart(chartDiv);
   // Extract the data from which to populate the chart.
