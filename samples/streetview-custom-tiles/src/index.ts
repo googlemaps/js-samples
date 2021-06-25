@@ -99,8 +99,8 @@ function initMap(): void {
   // Google office.
   new google.maps.StreetViewService()
     .getPanorama({ location: { lat: -33.867386, lng: 151.195767 } })
-    .then((result: google.maps.StreetViewPanoramaData) => {
-      outsideGoogle = result;
+    .then(({data}: google.maps.StreetViewResponse) => {
+      outsideGoogle = data;
       initPanorama();
     });
 }

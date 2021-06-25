@@ -67,8 +67,8 @@ function initMap() {
   // Google office.
   new google.maps.StreetViewService()
     .getPanorama({ location: { lat: -33.867386, lng: 151.195767 } })
-    .then((result) => {
-      outsideGoogle = result;
+    .then(({ data }) => {
+      outsideGoogle = data;
       initPanorama();
     });
 }

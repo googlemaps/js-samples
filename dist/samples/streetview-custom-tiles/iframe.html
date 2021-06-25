@@ -31,10 +31,10 @@
       },
       o = {};
     let n, t;
-    function i() {
+    function a() {
       new google.maps.StreetViewService()
         .getPanorama({ location: { lat: -33.867386, lng: 151.195767 } })
-        .then((e) => {
+        .then(({ data: e }) => {
           (t = e),
             (n = new google.maps.StreetViewPanorama(
               document.getElementById("street-view"),
@@ -87,10 +87,10 @@
             });
         });
     }
-    e.r(o), e.d(o, { initMap: () => i });
-    var a = window;
-    for (var r in o) a[r] = o[r];
-    o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+    e.r(o), e.d(o, { initMap: () => a });
+    var i = window;
+    for (var r in o) i[r] = o[r];
+    o.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
   })();
 </script>
 
