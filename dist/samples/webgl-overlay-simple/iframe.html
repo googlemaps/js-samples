@@ -2169,7 +2169,9 @@
         const { width: t, height: n, clientWidth: r } = e.canvas;
         this.renderer.setPixelRatio(t / r), this.renderer.setSize(t, n, !1);
       }
-      onContextLost() {}
+      onContextLost() {
+        this.renderer && (this.renderer.dispose(), (this.renderer = null));
+      }
       onDraw(e, t) {
         const { lat: s, lng: n, altitude: r } = this.anchor;
         this.camera.projectionMatrix.fromArray(
