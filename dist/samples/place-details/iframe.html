@@ -18,13 +18,13 @@
   (() => {
     "use strict";
     var e = {
-        d: (o, t) => {
-          for (var a in t)
-            e.o(t, a) &&
-              !e.o(o, a) &&
-              Object.defineProperty(o, a, { enumerable: !0, get: t[a] });
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
         },
-        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
         r: (e) => {
           "undefined" != typeof Symbol &&
             Symbol.toStringTag &&
@@ -32,49 +32,49 @@
             Object.defineProperty(e, "__esModule", { value: !0 });
         },
       },
-      o = {};
-    function t() {
+      t = {};
+    function o() {
       const e = new google.maps.Map(document.getElementById("map"), {
           center: { lat: -33.866, lng: 151.196 },
           zoom: 15,
         }),
-        o = new google.maps.InfoWindow();
+        t = new google.maps.InfoWindow();
       new google.maps.places.PlacesService(e).getDetails(
         {
           placeId: "ChIJN1t_tDeuEmsRUsoyG83frY4",
           fields: ["name", "formatted_address", "place_id", "geometry"],
         },
-        (t, a) => {
+        (o, n) => {
           if (
-            a === google.maps.places.PlacesServiceStatus.OK &&
-            t &&
-            t.geometry &&
-            t.geometry.location
+            n === google.maps.places.PlacesServiceStatus.OK &&
+            o &&
+            o.geometry &&
+            o.geometry.location
           ) {
-            const a = new google.maps.Marker({
+            const n = new google.maps.Marker({
               map: e,
-              position: t.geometry.location,
+              position: o.geometry.location,
             });
-            google.maps.event.addListener(a, "click", function () {
-              o.setContent(
-                "<div><strong>" +
-                  t.name +
-                  "</strong><br>Place ID: " +
-                  t.place_id +
-                  "<br>" +
-                  t.formatted_address +
-                  "</div>"
-              ),
-                o.open(e, this);
+            google.maps.event.addListener(n, "click", () => {
+              const a = document.createElement("div"),
+                r = document.createElement("h2");
+              (r.textContent = o.name), a.appendChild(r);
+              const l = document.createElement("p");
+              (l.textContent = o.place_id), a.appendChild(l);
+              const d = document.createElement("p");
+              (d.textContent = o.formatted_address),
+                a.appendChild(d),
+                t.setContent(a),
+                t.open(e, n);
             });
           }
         }
       );
     }
-    e.r(o), e.d(o, { initMap: () => t });
-    var a = window;
-    for (var n in o) a[n] = o[n];
-    o.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+    e.r(t), e.d(t, { initMap: () => o });
+    var n = window;
+    for (var a in t) n[a] = t[a];
+    t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
   })();
 </script>
 

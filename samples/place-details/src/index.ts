@@ -47,19 +47,23 @@ function initMap(): void {
         map,
         position: place.geometry.location,
       });
-      google.maps.event.addListener(marker, "click", function () {
-        infowindow.setContent(
-          "<div><strong>" +
-            place.name +
-            "</strong><br>" +
-            "Place ID: " +
-            place.place_id +
-            "<br>" +
-            place.formatted_address +
-            "</div>"
-        );
-        // @ts-ignore
-        infowindow.open(map, this);
+      google.maps.event.addListener(marker, "click", () => {
+        const content = document.createElement("div");
+
+        const nameElement = document.createElement("h2");
+        nameElement.textContent = place.name!;
+        content.appendChild(nameElement);
+
+        const placeIdElement = document.createElement("p");
+        placeIdElement.textContent = place.place_id!;
+        content.appendChild(placeIdElement);
+
+        const placeAddressElement = document.createElement("p");
+        placeAddressElement.textContent = place.formatted_address!;
+        content.appendChild(placeAddressElement);
+
+        infowindow.setContent(content);
+        infowindow.open(map, marker);
       });
     }
   });
