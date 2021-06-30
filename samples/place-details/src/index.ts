@@ -47,7 +47,7 @@ function initMap(): void {
         map,
         position: place.geometry.location,
       });
-      google.maps.event.addListener(marker, "click",  () => {
+      google.maps.event.addListener(marker, "click", () => {
         const content = document.createElement("div");
 
         const nameElement = document.createElement("h2");
