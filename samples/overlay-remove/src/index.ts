@@ -35,7 +35,7 @@ function initMap(): void {
   };
 
   historicalOverlay = new google.maps.GroundOverlay(
-    "https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+    "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
     imageBounds
   );
 
