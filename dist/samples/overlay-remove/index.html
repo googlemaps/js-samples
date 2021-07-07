@@ -36,13 +36,13 @@
       (() => {
         "use strict";
         var e = {
-            d: (t, o) => {
-              for (var r in o)
-                e.o(o, r) &&
-                  !e.o(t, r) &&
-                  Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+            d: (o, t) => {
+              for (var r in t)
+                e.o(t, r) &&
+                  !e.o(o, r) &&
+                  Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
             },
-            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
             r: (e) => {
               "undefined" != typeof Symbol &&
                 Symbol.toStringTag &&
@@ -52,15 +52,15 @@
                 Object.defineProperty(e, "__esModule", { value: !0 });
             },
           },
-          t = {};
-        let o, r;
+          o = {};
+        let t, r;
         function n() {
           (r = new google.maps.Map(document.getElementById("map"), {
             zoom: 13,
             center: { lat: 40.74, lng: -74.18 },
           })),
-            (o = new google.maps.GroundOverlay(
-              "https://www.lib.utexas.edu/maps/historical/newark_nj_1922.jpg",
+            (t = new google.maps.GroundOverlay(
+              "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
               {
                 north: 40.773941,
                 south: 40.712216,
@@ -71,20 +71,20 @@
             a();
         }
         function a() {
-          o.setMap(r);
+          t.setMap(r);
         }
         function l() {
-          o.setMap(null);
+          t.setMap(null);
         }
-        e.r(t),
-          e.d(t, {
+        e.r(o),
+          e.d(o, {
             initMap: () => n,
             removeOverlay: () => l,
             addOverlay: () => a,
           });
         var d = window;
-        for (var i in t) d[i] = t[i];
-        t.__esModule && Object.defineProperty(d, "__esModule", { value: !0 });
+        for (var p in o) d[p] = o[p];
+        o.__esModule && Object.defineProperty(d, "__esModule", { value: !0 });
       })();
     </script>
   </head>
