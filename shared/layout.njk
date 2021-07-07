@@ -18,6 +18,16 @@
 {% endif %}
 {% endmacro %}  
 
+{% macro channel() -%}
+  {%- if mode == "iframe" -%}
+    &channel=1
+  {%- elif mode == "jsfiddle" -%}
+    &channel=2
+  {%- elif mode == "dev" -%}
+    &channel=3
+  {%- endif %}
+{% endmacro %}  
+
 {% if mode == "iframe" %}
 {% else %}
   <!-- [START maps_{{tag}}] -->
@@ -50,7 +60,7 @@
     {% block api %}
       <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
       <script 
-        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback={{ callback }}&libraries={{ libraries }}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}{% if mapIds %}&map_ids={{ mapIds }}{% endif %}" 
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback={{ callback }}&libraries={{ libraries }}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}{% if mapIds %}&map_ids={{ mapIds }}{% endif %}{{ channel() }}" 
         async></script>
     {% endblock %}
 
