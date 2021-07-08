@@ -8,10 +8,14 @@ function initMap() {
   const directionsRenderer = new google.maps.DirectionsRenderer({
     draggable: true,
     map,
-    panel: document.getElementById("right-panel"),
+    panel: document.getElementById("panel"),
   });
   directionsRenderer.addListener("directions_changed", () => {
-    computeTotalDistance(directionsRenderer.getDirections());
+    const directions = directionsRenderer.getDirections();
+
+    if (directions) {
+      computeTotalDistance(directions);
+    }
   });
   displayRoute(
     "Perth, WA",

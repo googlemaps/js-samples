@@ -17,34 +17,9 @@
 @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
 /* [START maps_directions_waypoints] */
-@include meta.load-css("../../../shared/scss/right-panel.scss");
+@include meta.load-css("../../../shared/scss/sidebar.scss");
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-#map {
-  height: 100%;
-  float: left;
-  width: 70%;
-  height: 100%;
-}
-#right-panel {
-  margin: 20px;
-  border-width: 2px;
-  width: 20%;
-  height: 400px;
-  float: left;
-  text-align: left;
-  padding-top: 0;
-}
 #directions-panel {
   margin-top: 10px;
-  background-color: #ffee77;
-  padding: 10px;
-  overflow: scroll;
-  height: 174px;
 }
 /* [END maps_directions_waypoints] */

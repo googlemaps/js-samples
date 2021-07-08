@@ -17,27 +17,5 @@
 @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
 /* [START maps_directions_draggable] */
-@include meta.load-css("../../../shared/scss/right-panel.scss");
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-#map {
-  height: 100%;
-  float: left;
-  width: 63%;
-  height: 100%;
-}
-#right-panel {
-  float: right;
-  width: 34%;
-  height: 100%;
-}
-.panel {
-  height: 100%;
-  overflow: auto;
-}
+@include meta.load-css("../../../shared/scss/sidebar.scss");
 /* [END maps_directions_draggable] */

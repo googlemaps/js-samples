@@ -28,11 +28,15 @@ function initMap(): void {
   const directionsRenderer = new google.maps.DirectionsRenderer({
     draggable: true,
     map,
-    panel: document.getElementById("right-panel") as HTMLElement,
+    panel: document.getElementById("panel") as HTMLElement,
   });
 
   directionsRenderer.addListener("directions_changed", () => {
-    computeTotalDistance(directionsRenderer.getDirections()!);
+    const directions = directionsRenderer.getDirections();
+
+    if (directions) {
+      computeTotalDistance(directions);
+    }
   });
 
   displayRoute(
