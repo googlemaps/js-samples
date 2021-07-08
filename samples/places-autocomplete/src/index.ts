@@ -38,10 +38,9 @@ function initMap(): void {
   const options = {
     componentRestrictions: { country: "us" },
     fields: ["formatted_address", "geometry", "name"],
-    origin: map.getCenter(),
     strictBounds: false,
     types: ["establishment"],
-  } as google.maps.places.AutocompleteOptions;
+  };
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
 

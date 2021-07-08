@@ -23,7 +23,6 @@ function initMap() {
     bounds: defaultBounds,
     componentRestrictions: { country: "us" },
     fields: ["address_components", "geometry", "icon", "name"],
-    origin: center,
     strictBounds: false,
     types: ["establishment"],
   };
