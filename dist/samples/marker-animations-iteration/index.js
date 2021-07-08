@@ -16,6 +16,7 @@ function initMap() {
     zoom: 12,
     center: { lat: 52.52, lng: 13.41 },
   });
+  document.getElementById("drop").addEventListener("click", drop);
 }
 
 function drop() {

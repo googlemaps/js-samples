@@ -30,6 +30,10 @@ function initMap(): void {
     }
   );
 
+  document
+    .getElementById("toggle")!
+    .addEventListener("click", toggleStreetView);
+
   // Set up the markers on the map
   const cafeMarker = new google.maps.Marker({
     position: { lat: 40.730031, lng: -73.991428 },
@@ -64,7 +68,7 @@ function initMap(): void {
   );
 }
 
-function toggleStreetView() {
+function toggleStreetView(): void {
   const toggle = panorama.getVisible();
 
   if (toggle == false) {
@@ -74,4 +78,4 @@ function toggleStreetView() {
   }
 }
 // [END maps_streetview_overlays]
-export { initMap, toggleStreetView };
+export { initMap };

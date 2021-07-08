@@ -31,19 +31,30 @@ function initMap(): void {
   });
 
   // This event listener will call addMarker() when the map is clicked.
-  map.addListener("click", (event) => {
-    addMarker(event.latLng);
+  map.addListener("click", (event: google.maps.MapMouseEvent) => {
+    addMarker(event.latLng!);
   });
+
+  // add event listeners for the buttons
+  document
+    .getElementById("show-markers")!
+    .addEventListener("click", showMarkers);
+  document
+    .getElementById("hide-markers")!
+    .addEventListener("click", hideMarkers);
+  document
+    .getElementById("delete-markers")!
+    .addEventListener("click", deleteMarkers);
 
   // Adds a marker at the center of the map.
   addMarker(haightAshbury);
 }
 
 // Adds a marker to the map and push to the array.
-function addMarker(location) {
+function addMarker(position: google.maps.LatLng | google.maps.LatLngLiteral) {
   const marker = new google.maps.Marker({
-    position: location,
-    map: map,
+    position,
+    map,
   });
   markers.push(marker);
 }
@@ -56,19 +67,19 @@ function setMapOnAll(map: google.maps.Map | null) {
 }
 
 // Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
+function hideMarkers(): void {
   setMapOnAll(null);
 }
 
 // Shows any markers currently in the array.
-function showMarkers() {
+function showMarkers(): void {
   setMapOnAll(map);
 }
 
 // Deletes all markers in the array by removing references to them.
-function deleteMarkers() {
-  clearMarkers();
+function deleteMarkers(): void {
+  hideMarkers();
   markers = [];
 }
 // [END maps_marker_remove]
-export { initMap, clearMarkers, showMarkers, deleteMarkers };
+export { initMap };

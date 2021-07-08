@@ -34,9 +34,11 @@ function initMap(): void {
     zoom: 12,
     center: { lat: 52.52, lng: 13.41 },
   });
+
+  document.getElementById("drop")!.addEventListener("click", drop);
 }
 
-function drop() {
+function drop(): void {
   clearMarkers();
 
   for (let i = 0; i < neighborhoods.length; i++) {
@@ -47,7 +49,7 @@ function drop() {
 function addMarkerWithTimeout(
   position: google.maps.LatLngLiteral,
   timeout: number
-) {
+): void {
   window.setTimeout(() => {
     markers.push(
       new google.maps.Marker({
@@ -59,7 +61,7 @@ function addMarkerWithTimeout(
   }, timeout);
 }
 
-function clearMarkers() {
+function clearMarkers(): void {
   for (let i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }

@@ -25,14 +25,17 @@ function initMap(): void {
     heading: 90,
     tilt: 45,
   });
+
+  // add listener to button
+  document.getElementById("rotate")!.addEventListener("click", autoRotate);
 }
 
-function rotate90() {
+function rotate90(): void {
   const heading = map.getHeading() || 0;
   map.setHeading(heading + 90);
 }
 
-function autoRotate() {
+function autoRotate(): void {
   // Determine if we're showing aerial imagery.
   if (map.getTilt() !== 0) {
     window.setInterval(rotate90, 3000);

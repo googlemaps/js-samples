@@ -8,6 +8,8 @@ function initMap() {
     heading: 90,
     tilt: 45,
   });
+  // add listener to button
+  document.getElementById("rotate").addEventListener("click", autoRotate);
 }
 
 function rotate90() {

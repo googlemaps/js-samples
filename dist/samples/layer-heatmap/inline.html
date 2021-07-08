@@ -58,6 +58,18 @@
           data: getPoints(),
           map: map,
         });
+        document
+          .getElementById("toggle-heatmap")
+          .addEventListener("click", toggleHeatmap);
+        document
+          .getElementById("change-gradient")
+          .addEventListener("click", changeGradient);
+        document
+          .getElementById("change-opacity")
+          .addEventListener("click", changeOpacity);
+        document
+          .getElementById("change-radius")
+          .addEventListener("click", changeRadius);
       }
 
       function toggleHeatmap() {
@@ -601,10 +613,10 @@
   </head>
   <body>
     <div id="floating-panel">
-      <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-      <button onclick="changeGradient()">Change gradient</button>
-      <button onclick="changeRadius()">Change radius</button>
-      <button onclick="changeOpacity()">Change opacity</button>
+      <button id="toggle-heatmap">Toggle Heatmap</button>
+      <button id="change-gradient">Change gradient</button>
+      <button id="change-radius">Change radius</button>
+      <button id="change-opacity">Change opacity</button>
     </div>
     <div id="map"></div>
 

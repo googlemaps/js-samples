@@ -42,14 +42,19 @@ function initMap(): void {
     strokeWeight: 2,
   });
 
+  // add event listener for click event
+  document.getElementById("add-line")!.addEventListener("click", addLine);
+  document.getElementById("remove-line")!.addEventListener("click", removeLine);
+
+  // initialize with line
   addLine();
 }
 
-function addLine() {
+function addLine(): void {
   flightPath.setMap(map);
 }
 
-function removeLine() {
+function removeLine(): void {
   flightPath.setMap(null);
 }
 // [END maps_polyline_remove]

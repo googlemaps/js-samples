@@ -56,6 +56,12 @@
           strokeOpacity: 1.0,
           strokeWeight: 2,
         });
+        // add event listener for click event
+        document.getElementById("add-line").addEventListener("click", addLine);
+        document
+          .getElementById("remove-line")
+          .addEventListener("click", removeLine);
+        // initialize with line
         addLine();
       }
 
@@ -70,8 +76,8 @@
   </head>
   <body>
     <div id="floating-panel">
-      <input onclick="removeLine();" type="button" value="Remove line" />
-      <input onclick="addLine();" type="button" value="Restore line" />
+      <input id="remove-line" type="button" value="Remove line" />
+      <input id="add-line" type="button" value="Restore line" />
     </div>
     <div id="map"></div>
 

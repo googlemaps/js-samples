@@ -15,15 +15,25 @@ function initMap() {
   map.addListener("click", (event) => {
     addMarker(event.latLng);
   });
+  // add event listeners for the buttons
+  document
+    .getElementById("show-markers")
+    .addEventListener("click", showMarkers);
+  document
+    .getElementById("hide-markers")
+    .addEventListener("click", hideMarkers);
+  document
+    .getElementById("delete-markers")
+    .addEventListener("click", deleteMarkers);
   // Adds a marker at the center of the map.
   addMarker(haightAshbury);
 }
 
 // Adds a marker to the map and push to the array.
-function addMarker(location) {
+function addMarker(position) {
   const marker = new google.maps.Marker({
-    position: location,
-    map: map,
+    position,
+    map,
   });
   markers.push(marker);
 }
@@ -36,7 +46,7 @@ function setMapOnAll(map) {
 }
 
 // Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
+function hideMarkers() {
   setMapOnAll(null);
 }
 
@@ -47,6 +57,6 @@ function showMarkers() {
 
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
-  clearMarkers();
+  hideMarkers();
   markers = [];
 }

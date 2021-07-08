@@ -19,10 +19,14 @@ function initMap() {
     "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
     imageBounds
   );
-  addOverlay();
+  // add event listener for click event
+  document.getElementById("restore").addEventListener("click", restoreOverlay);
+  document.getElementById("remove").addEventListener("click", removeOverlay);
+  // restore overlay to map
+  restoreOverlay();
 }
 
-function addOverlay() {
+function restoreOverlay() {
   historicalOverlay.setMap(map);
 }
 
