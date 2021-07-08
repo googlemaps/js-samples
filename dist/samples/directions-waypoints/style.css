@@ -1,23 +1,5 @@
 /* [START maps_directions_waypoints] */
-#right-panel {
-  font-family: "Roboto", "sans-serif";
-  line-height: 30px;
-  padding-left: 10px;
-}
-
-#right-panel select,
-#right-panel input {
-  font-size: 15px;
-}
-
-#right-panel select {
-  width: 100%;
-}
-
-#right-panel i {
-  font-size: 12px;
-}
-
+/* Optional: Makes the sample page fill the window. */
 html,
 body {
   height: 100%;
@@ -25,29 +7,29 @@ body {
   padding: 0;
 }
 
-#map {
+#container {
   height: 100%;
-  float: left;
-  width: 70%;
-  height: 100%;
+  display: flex;
 }
 
-#right-panel {
-  margin: 20px;
-  border-width: 2px;
-  width: 20%;
-  height: 400px;
-  float: left;
-  text-align: left;
-  padding-top: 0;
+#sidebar {
+  flex-basis: 15rem;
+  flex-grow: 1;
+  padding: 1rem;
+  max-width: 30rem;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+#map {
+  flex-basis: 0;
+  flex-grow: 4;
+  height: 100%;
 }
 
 #directions-panel {
   margin-top: 10px;
-  background-color: #ffee77;
-  padding: 10px;
-  overflow: scroll;
-  height: 174px;
 }
 
 /* [END maps_directions_waypoints] */

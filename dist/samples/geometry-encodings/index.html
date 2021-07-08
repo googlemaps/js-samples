@@ -4,25 +4,7 @@
     <title>Encoding Methods</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
-      #right-panel {
-        font-family: "Roboto", "sans-serif";
-        line-height: 30px;
-        padding-left: 10px;
-      }
-
-      #right-panel select,
-      #right-panel input {
-        font-size: 15px;
-      }
-
-      #right-panel select {
-        width: 100%;
-      }
-
-      #right-panel i {
-        font-size: 12px;
-      }
-
+      /* Optional: Makes the sample page fill the window. */
       html,
       body {
         height: 100%;
@@ -30,15 +12,25 @@
         padding: 0;
       }
 
-      #map {
+      #container {
         height: 100%;
-        width: 50%;
-        float: left;
+        display: flex;
       }
 
-      #right-panel {
-        width: 46%;
-        float: left;
+      #sidebar {
+        flex-basis: 15rem;
+        flex-grow: 1;
+        padding: 1rem;
+        max-width: 30rem;
+        height: 100%;
+        box-sizing: border-box;
+        overflow: auto;
+      }
+
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
       }
 
       #encoded-polyline {
@@ -95,10 +87,12 @@
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    <div id="right-panel">
-      <div>Encoding:</div>
-      <textarea id="encoded-polyline"></textarea>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <div>Encoding:</div>
+        <textarea id="encoded-polyline"></textarea>
+      </div>
     </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->

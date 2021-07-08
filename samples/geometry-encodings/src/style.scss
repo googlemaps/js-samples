@@ -17,23 +17,8 @@
 @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
 /* [START maps_geometry_encodings] */
-@include meta.load-css("../../../shared/scss/right-panel.scss");
+@include meta.load-css("../../../shared/scss/sidebar.scss");
 
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-#map {
-  height: 100%;
-  width: 50%;
-  float: left;
-}
-#right-panel {
-  width: 46%;
-  float: left;
-}
 #encoded-polyline {
   height: 100px;
   width: 100%;

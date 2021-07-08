@@ -14,9 +14,11 @@
   limitations under the License.
 -->
 {% extends '../../../shared/layout.njk'%} {% block html %}
-<div id="map"></div>
-<div id="right-panel">
-  <div>Encoding:</div>
-  <textarea id="encoded-polyline"></textarea>
+<div id="container">
+  <div id="map"></div>
+  <div id="sidebar">
+    <div>Encoding:</div>
+    <textarea id="encoded-polyline"></textarea>
+  </div>
 </div>
 {% endblock %}

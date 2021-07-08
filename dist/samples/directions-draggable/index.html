@@ -4,25 +4,7 @@
     <title>Draggable Directions</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <style type="text/css">
-      #right-panel {
-        font-family: "Roboto", "sans-serif";
-        line-height: 30px;
-        padding-left: 10px;
-      }
-
-      #right-panel select,
-      #right-panel input {
-        font-size: 15px;
-      }
-
-      #right-panel select {
-        width: 100%;
-      }
-
-      #right-panel i {
-        font-size: 12px;
-      }
-
+      /* Optional: Makes the sample page fill the window. */
       html,
       body {
         height: 100%;
@@ -30,35 +12,38 @@
         padding: 0;
       }
 
-      #map {
+      #container {
         height: 100%;
-        float: left;
-        width: 63%;
-        height: 100%;
+        display: flex;
       }
 
-      #right-panel {
-        float: right;
-        width: 34%;
+      #sidebar {
+        flex-basis: 15rem;
+        flex-grow: 1;
+        padding: 1rem;
+        max-width: 30rem;
         height: 100%;
-      }
-
-      .panel {
-        height: 100%;
+        box-sizing: border-box;
         overflow: auto;
+      }
+
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
       }
     </style>
     <script>
       (() => {
         "use strict";
         var e = {
-            d: (t, o) => {
-              for (var n in o)
-                e.o(o, n) &&
-                  !e.o(t, n) &&
-                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+            d: (o, t) => {
+              for (var n in t)
+                e.o(t, n) &&
+                  !e.o(o, n) &&
+                  Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
             },
-            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
             r: (e) => {
               "undefined" != typeof Symbol &&
                 Symbol.toStringTag &&
@@ -68,33 +53,35 @@
                 Object.defineProperty(e, "__esModule", { value: !0 });
             },
           },
-          t = {};
-        function o() {
+          o = {};
+        function t() {
           const e = new google.maps.Map(document.getElementById("map"), {
               zoom: 4,
               center: { lat: -24.345, lng: 134.46 },
             }),
-            t = new google.maps.DirectionsService(),
-            o = new google.maps.DirectionsRenderer({
+            o = new google.maps.DirectionsService(),
+            t = new google.maps.DirectionsRenderer({
               draggable: !0,
               map: e,
-              panel: document.getElementById("right-panel"),
+              panel: document.getElementById("panel"),
             });
           var n;
-          o.addListener("directions_changed", () => {
-            !(function (e) {
-              let t = 0;
-              const o = e.routes[0];
-              if (o) {
-                for (let e = 0; e < o.legs.length; e++)
-                  t += o.legs[e].distance.value;
-                (t /= 1e3),
-                  (document.getElementById("total").innerHTML = t + " km");
-              }
-            })(o.getDirections());
+          t.addListener("directions_changed", () => {
+            const e = t.getDirections();
+            e &&
+              (function (e) {
+                let o = 0;
+                const t = e.routes[0];
+                if (t) {
+                  for (let e = 0; e < t.legs.length; e++)
+                    o += t.legs[e].distance.value;
+                  (o /= 1e3),
+                    (document.getElementById("total").innerHTML = o + " km");
+                }
+              })(e);
           }),
-            (n = o),
-            t
+            (n = t),
+            o
               .route({
                 origin: "Perth, WA",
                 destination: "Sydney, NSW",
@@ -112,17 +99,20 @@
                 alert("Could not display directions due to: " + e);
               });
         }
-        e.r(t), e.d(t, { initMap: () => o });
+        e.r(o), e.d(o, { initMap: () => t });
         var n = window;
-        for (var r in t) n[r] = t[r];
-        t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+        for (var r in o) n[r] = o[r];
+        o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
       })();
     </script>
   </head>
   <body>
-    <div id="map"></div>
-    <div id="right-panel">
-      <p>Total Distance: <span id="total"></span></p>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <p>Total Distance: <span id="total"></span></p>
+        <div id="panel"></div>
+      </div>
     </div>
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
