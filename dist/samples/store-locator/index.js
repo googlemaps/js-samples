@@ -1,5 +1,7 @@
 // [START maps_store_locator]
 let map;
+let originalMapTypeId;
+let detailMapTypeId;
 let autocomplete;
 let autocompleteInput;
 let distanceMatrixService;
@@ -10,8 +12,11 @@ const stores = [];
 // Initialize and add the map
 function initMap() {
   distanceMatrixService = new google.maps.DistanceMatrixService();
+  originalMapTypeId = google.maps.MapTypeId.ROADMAP;
+  detailMapTypeId = google.maps.MapTypeId.HYBRID;
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 39.79, lng: -104.98 },
+    mapTypeId: originalMapTypeId,
     zoom: 10,
   });
   new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
@@ -33,7 +38,10 @@ function initMap() {
           stores.push({ name, location: { lat, lng }, address: "" });
           const marker = new google.maps.Marker({ position: { lat, lng } });
           marker.addListener("click", () => {
+            // Update the list of nearby locations in the sidebar
             update(new google.maps.LatLng({ lat, lng }));
+            // Update the camera of the map
+            seeDetail(new google.maps.LatLng({ lat, lng }));
           });
           markers.push(marker);
         }
@@ -42,14 +50,21 @@ function initMap() {
         imagePath:
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
       });
-      progress.done();
+      // initMap may be called before all JS has been parsed and executed when using the async attribute
+      window.addEventListener("load", () => {
+        progress.done();
+      });
       update(map.getCenter());
+      map.setZoom(13);
+      map.setMapTypeId(originalMapTypeId);
     });
   document.getElementById("near-me").addEventListener("click", () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         ({ coords: { latitude: lat, longitude: lng } }) => {
           update(new google.maps.LatLng({ lat, lng }));
+          map.setZoom(10);
+          map.setMapTypeId(originalMapTypeId);
         }
       );
     }
@@ -77,7 +92,7 @@ function renderCards(stores) {
 <div id="card-body">
   </div>
 <div class="mdc-card__actions">
-  <a class="mdc-button mdc-card__action mdc-card__action--button" 
+  <a class="mdc-button mdc-card__action mdc-card__action--button"
     target="_blank" href="https://maps.google.com?q=${
       address ? address : name
     }">
@@ -101,7 +116,7 @@ function renderCards(stores) {
         card
           .querySelector(".mdc-card__primary-action")
           .addEventListener("click", () => {
-            map.panTo(location);
+            seeDetail(new google.maps.LatLng(location));
           });
         cardsDiv.appendChild(card);
       }
@@ -136,6 +151,8 @@ function placeChanged() {
   const placeResult = autocomplete.getPlace();
   const location = placeResult.geometry.location;
   update(location);
+  map.setZoom(10);
+  map.setMapTypeId(originalMapTypeId);
 }
 
 function update(location) {
@@ -188,4 +205,21 @@ function update(location) {
       isUpdateInProgress = false;
     });
 }
+
+// [START maps_store_locator_45]
+function seeDetail(location) {
+  map.setCenter(location);
+  map.setZoom(19);
+  map.setMapTypeId(detailMapTypeId);
+  map.setTilt(45);
+  google.maps.event.addListenerOnce(map, "zoom_changed", () => {
+    const newZoom = map.getZoom();
+
+    if (newZoom < 19) {
+      map.setTilt(0);
+      map.setMapTypeId(originalMapTypeId);
+    }
+  });
+}
+// [END maps_store_locator_45]
 // [END maps_store_locator]

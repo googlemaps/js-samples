@@ -1,0 +1,538 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Googleplex"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.084123,
+          37.422015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google NY"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.004698,
+          40.741961
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Ann Arbor"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.748548,
+          42.281289
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Atlanta"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.387388,
+          33.781486
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Boulder"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -105.276948,
+          40.018512
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Cambridge"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.083144,
+          42.362195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Chicago"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.628746,
+          41.889245
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Dallas"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.816136,
+          32.925488
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Detroit"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -83.243009,
+          42.47672
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Irvine"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.860273,
+          33.659878
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Phoenix"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -111.92628,
+          33.411409
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Pittsburgh"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.946209,
+          40.44454
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Santa Monica"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.49484,
+          34.019339
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Kirkland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.195868,
+          47.678292
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Seattle"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.352909,
+          47.6501
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Denver"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.89989,
+          39.627502
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Dublin"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.25,
+          53.330001
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Melbourne"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.957087,
+          -37.818429
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Sydney"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.203856,
+          -33.872002
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Brazil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -46.691208,
+          -23.570123
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Canada"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.379311,
+          43.64642
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Denmark"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.569998,
+          55.679999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Finland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.934201,
+          60.173175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google France"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.332899,
+          48.869199
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Germany"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.985265,
+          53.554051
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Bangalore"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.599986,
+          12.97034
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google New-Delhi"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.105141,
+          28.449676
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Hyderabad "
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.77903,
+          17.627331
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Mumbai"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.826437,
+          18.940854
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Italy"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.195978,
+          45.46381
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Japan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.759997,
+          35.704704
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Korea"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.989997,
+          37.56
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Mexico"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.569998,
+          19.199999
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Netherlands"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.87754,
+          52.330522
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Norway"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.399998,
+          63.439998
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Spain"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.692995,
+          40.450316
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Sweden"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.074912,
+          59.339492
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Switzerland"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.532018,
+          47.367479
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Turkey"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.011706,
+          41.078017
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google London"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.146699,
+          51.494799
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Google Manchester"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -2.243613,
+          53.477344
+        ]
+      }
+    }
+  ]
+}

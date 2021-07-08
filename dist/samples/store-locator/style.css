@@ -20,6 +20,7 @@ body {
   height: 100%;
   box-sizing: border-box;
   display: flex;
+  overflow: auto;
 }
 
 #map {
@@ -41,6 +42,7 @@ body {
 
 #sidebar {
   flex-basis: 5rem;
+  flex-direction: column;
 }
 
 #search,
