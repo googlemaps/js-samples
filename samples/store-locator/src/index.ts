@@ -48,15 +48,6 @@ function initMap(): void {
     zoom: 10,
   });
 
-  map.addListener("zoom_changed", () => {
-    const newZoom = map.getZoom()!;
-
-    if (newZoom < 19) {
-      map.setTilt(0);
-      map.setMapTypeId(originalMapTypeId);
-    }
-  });
-
   // @ts-ignore
   new mdc.textField.MDCTextField(
     document.querySelector(".mdc-text-field") as HTMLInputElement
@@ -88,6 +79,10 @@ function initMap(): void {
           stores.push({ name, location: { lat, lng }, address: "" });
           const marker = new google.maps.Marker({ position: { lat, lng } });
           marker.addListener("click", () => {
+            // Update the list of nearby locations in the sidebar
+            update(new google.maps.LatLng({ lat, lng }));
+
+            // Update the camera of the map
             seeDetail(new google.maps.LatLng({ lat, lng }));
           });
           markers.push(marker);
@@ -106,6 +101,8 @@ function initMap(): void {
       });
 
       update(map.getCenter()!);
+      map.setZoom(13);
+      map.setMapTypeId(originalMapTypeId);
     });
 
   (document.getElementById("near-me") as HTMLButtonElement).addEventListener(
@@ -115,6 +112,8 @@ function initMap(): void {
         navigator.geolocation.getCurrentPosition(
           ({ coords: { latitude: lat, longitude: lng } }) => {
             update(new google.maps.LatLng({ lat, lng }));
+            map.setZoom(10);
+            map.setMapTypeId(originalMapTypeId);
           }
         );
       }
@@ -175,8 +174,6 @@ function renderCards(stores: Store[]): void {
         (
           card.querySelector(".mdc-card__primary-action") as HTMLElement
         ).addEventListener("click", () => {
-          console.log("blah");
-          console.log(location);
           seeDetail(new google.maps.LatLng(location));
         });
 
@@ -222,6 +219,8 @@ function placeChanged() {
     .location;
 
   update(location);
+  map.setZoom(10);
+  map.setMapTypeId(originalMapTypeId);
 }
 
 function update(location?: google.maps.LatLng) {
@@ -237,8 +236,6 @@ function update(location?: google.maps.LatLng) {
   autocompleteInput.disabled = true;
   isUpdateInProgress = true;
   map.setCenter(location);
-  map.setZoom(10);
-  map.setMapTypeId(originalMapTypeId);
 
   // reset values
   stores.forEach((store) => {
@@ -281,12 +278,23 @@ function update(location?: google.maps.LatLng) {
     });
 }
 
+// [START maps_store_locator_45]
 function seeDetail(location: google.maps.LatLng) {
-  update(location);
+  map.setCenter(location);
   map.setZoom(19);
   map.setMapTypeId(detailMapTypeId);
   map.setTilt(45);
+
+  google.maps.event.addListenerOnce(map, "zoom_changed", () => {
+    const newZoom = map.getZoom()!;
+
+    if (newZoom < 19) {
+      map.setTilt(0);
+      map.setMapTypeId(originalMapTypeId);
+    }
+  });
 }
+// [END maps_store_locator_45]
 
 // [END maps_store_locator]
 export { initMap };
