@@ -48,7 +48,7 @@ jobs:
           git add dist
           git commit -m "chore: update dist folder" || true
           git push origin
-        if: github.actor!= 'dependabot[bot]'
+        if: github.actor!= 'dependabot[bot]' && !startsWith(github.ref, 'refs/tags/')
       - run: bazel build //samples/add-map:index.webpack.js
       - run: bazel build //samples/programmatic-load-button:index.webpack.js
       - run: bazel test --jobs 8 ...
