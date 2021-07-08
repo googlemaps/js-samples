@@ -19,8 +19,12 @@ function initMap() {
     imageBounds
   );
   // add event listener for click event
-  document.getElementById("restore").addEventListener("click", restoreOverlay);
-  document.getElementById("remove").addEventListener("click", removeOverlay);
+  document
+    .getElementById("restore-overlay")
+    .addEventListener("click", restoreOverlay);
+  document
+    .getElementById("remove-overlay")
+    .addEventListener("click", removeOverlay);
   // restore overlay to map
   restoreOverlay();
 }
