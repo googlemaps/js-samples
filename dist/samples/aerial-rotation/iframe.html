@@ -49,13 +49,14 @@
       t = {};
     let o;
     function n() {
-      o = new google.maps.Map(document.getElementById("map"), {
+      (o = new google.maps.Map(document.getElementById("map"), {
         center: { lat: 40.76, lng: -73.983 },
         zoom: 15,
         mapTypeId: "satellite",
         heading: 90,
         tilt: 45,
-      });
+      })),
+        document.getElementById("rotate").addEventListener("click", r);
     }
     function a() {
       const e = o.getHeading() || 0;
@@ -73,7 +74,7 @@
 
 <div id="iframe-contents">
   <div id="floating-panel">
-    <input type="button" value="Auto Rotate" onclick="autoRotate();" />
+    <input type="button" value="Auto Rotate" id="rotate" />
   </div>
   <div id="map"></div>
 

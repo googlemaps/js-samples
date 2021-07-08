@@ -568,7 +568,11 @@
             new google.maps.LatLng(37.751266, -122.403355),
           ],
           map: a,
-        }));
+        })),
+        document.getElementById("toggle-heatmap").addEventListener("click", L),
+        document.getElementById("change-gradient").addEventListener("click", t),
+        document.getElementById("change-opacity").addEventListener("click", p),
+        document.getElementById("change-radius").addEventListener("click", l);
     }
     function L() {
       n.setMap(n.getMap() ? null : a);
@@ -602,26 +606,19 @@
     function p() {
       n.set("opacity", n.get("opacity") ? null : 0.2);
     }
-    g.r(e),
-      g.d(e, {
-        initMap: () => o,
-        changeGradient: () => t,
-        changeOpacity: () => p,
-        changeRadius: () => l,
-        toggleHeatmap: () => L,
-      });
-    var s = window;
-    for (var m in e) s[m] = e[m];
-    e.__esModule && Object.defineProperty(s, "__esModule", { value: !0 });
+    g.r(e), g.d(e, { initMap: () => o });
+    var m = window;
+    for (var s in e) m[s] = e[s];
+    e.__esModule && Object.defineProperty(m, "__esModule", { value: !0 });
   })();
 </script>
 
 <div id="iframe-contents">
   <div id="floating-panel">
-    <button onclick="toggleHeatmap()">Toggle Heatmap</button>
-    <button onclick="changeGradient()">Change gradient</button>
-    <button onclick="changeRadius()">Change radius</button>
-    <button onclick="changeOpacity()">Change opacity</button>
+    <button id="toggle-heatmap">Toggle Heatmap</button>
+    <button id="change-gradient">Change gradient</button>
+    <button id="change-radius">Change radius</button>
+    <button id="change-opacity">Change opacity</button>
   </div>
   <div id="map"></div>
 

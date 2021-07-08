@@ -43,6 +43,8 @@
           heading: 90,
           tilt: 45,
         });
+        // add listener to button
+        document.getElementById("rotate").addEventListener("click", autoRotate);
       }
 
       function rotate90() {
@@ -60,7 +62,7 @@
   </head>
   <body>
     <div id="floating-panel">
-      <input type="button" value="Auto Rotate" onclick="autoRotate();" />
+      <input type="button" value="Auto Rotate" id="rotate" />
     </div>
     <div id="map"></div>
 

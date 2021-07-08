@@ -47,6 +47,9 @@
           zoom: 18,
           streetViewControl: false,
         });
+        document
+          .getElementById("toggle")
+          .addEventListener("click", toggleStreetView);
         // Set up the markers on the map
         const cafeMarker = new google.maps.Marker({
           position: { lat: 40.730031, lng: -73.991428 },
@@ -91,11 +94,7 @@
   </head>
   <body>
     <div id="floating-panel">
-      <input
-        type="button"
-        value="Toggle Street View"
-        onclick="toggleStreetView();"
-      />
+      <input type="button" value="Toggle Street View" id="toggle" />
     </div>
     <div id="map"></div>
 

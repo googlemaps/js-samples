@@ -36,13 +36,13 @@
       (() => {
         "use strict";
         var e = {
-            d: (o, t) => {
-              for (var r in t)
-                e.o(t, r) &&
-                  !e.o(o, r) &&
-                  Object.defineProperty(o, r, { enumerable: !0, get: t[r] });
+            d: (t, o) => {
+              for (var n in o)
+                e.o(o, n) &&
+                  !e.o(t, n) &&
+                  Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
             },
-            o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
             r: (e) => {
               "undefined" != typeof Symbol &&
                 Symbol.toStringTag &&
@@ -52,14 +52,14 @@
                 Object.defineProperty(e, "__esModule", { value: !0 });
             },
           },
-          o = {};
-        let t, r;
-        function n() {
-          (r = new google.maps.Map(document.getElementById("map"), {
+          t = {};
+        let o, n;
+        function r() {
+          (n = new google.maps.Map(document.getElementById("map"), {
             zoom: 13,
             center: { lat: 40.74, lng: -74.18 },
           })),
-            (t = new google.maps.GroundOverlay(
+            (o = new google.maps.GroundOverlay(
               "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
               {
                 north: 40.773941,
@@ -68,30 +68,31 @@
                 west: -74.22655,
               }
             )),
-            a();
-        }
-        function a() {
-          t.setMap(r);
+            document
+              .getElementById("restore-overlay")
+              .addEventListener("click", l),
+            document
+              .getElementById("remove-overlay")
+              .addEventListener("click", a),
+            l();
         }
         function l() {
-          t.setMap(null);
+          o.setMap(n);
         }
-        e.r(o),
-          e.d(o, {
-            initMap: () => n,
-            removeOverlay: () => l,
-            addOverlay: () => a,
-          });
+        function a() {
+          o.setMap(null);
+        }
+        e.r(t), e.d(t, { initMap: () => r });
         var d = window;
-        for (var p in o) d[p] = o[p];
-        o.__esModule && Object.defineProperty(d, "__esModule", { value: !0 });
+        for (var i in t) d[i] = t[i];
+        t.__esModule && Object.defineProperty(d, "__esModule", { value: !0 });
       })();
     </script>
   </head>
   <body>
     <div id="floating-panel">
-      <input onclick="removeOverlay();" type="button" value="Remove overlay" />
-      <input onclick="addOverlay();" type="button" value="Restore overlay" />
+      <input id="remove-overlay" type="button" value="Remove overlay" />
+      <input id="restore-overlay" type="button" value="Restore overlay" />
     </div>
     <div id="map"></div>
 

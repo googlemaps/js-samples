@@ -32,13 +32,26 @@ function initMap(): void {
     data: getPoints(),
     map: map,
   });
+
+  document
+    .getElementById("toggle-heatmap")!
+    .addEventListener("click", toggleHeatmap);
+  document
+    .getElementById("change-gradient")!
+    .addEventListener("click", changeGradient);
+  document
+    .getElementById("change-opacity")!
+    .addEventListener("click", changeOpacity);
+  document
+    .getElementById("change-radius")!
+    .addEventListener("click", changeRadius);
 }
 
-function toggleHeatmap() {
+function toggleHeatmap(): void {
   heatmap.setMap(heatmap.getMap() ? null : map);
 }
 
-function changeGradient() {
+function changeGradient(): void {
   const gradient = [
     "rgba(0, 255, 255, 0)",
     "rgba(0, 255, 255, 1)",
@@ -58,11 +71,11 @@ function changeGradient() {
   heatmap.set("gradient", heatmap.get("gradient") ? null : gradient);
 }
 
-function changeRadius() {
+function changeRadius(): void {
   heatmap.set("radius", heatmap.get("radius") ? null : 20);
 }
 
-function changeOpacity() {
+function changeOpacity(): void {
   heatmap.set("opacity", heatmap.get("opacity") ? null : 0.2);
 }
 
@@ -572,4 +585,4 @@ function getPoints() {
   ];
 }
 // [END maps_layer_heatmap]
-export { initMap, changeGradient, changeOpacity, changeRadius, toggleHeatmap };
+export { initMap };

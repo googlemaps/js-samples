@@ -9,6 +9,7 @@ function initMap() {
     zoom: 18,
     streetViewControl: false,
   });
+  document.getElementById("toggle").addEventListener("click", toggleStreetView);
   // Set up the markers on the map
   const cafeMarker = new google.maps.Marker({
     position: { lat: 40.730031, lng: -73.991428 },

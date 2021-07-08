@@ -21,6 +21,10 @@ function initMap() {
     strokeOpacity: 1.0,
     strokeWeight: 2,
   });
+  // add event listener for click event
+  document.getElementById("add-line").addEventListener("click", addLine);
+  document.getElementById("remove-line").addEventListener("click", removeLine);
+  // initialize with line
   addLine();
 }
 

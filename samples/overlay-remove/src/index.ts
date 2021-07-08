@@ -39,10 +39,19 @@ function initMap(): void {
     imageBounds
   );
 
-  addOverlay();
+  // add event listener for click event
+  document
+    .getElementById("restore-overlay")!
+    .addEventListener("click", restoreOverlay);
+  document
+    .getElementById("remove-overlay")!
+    .addEventListener("click", removeOverlay);
+
+  // restore overlay to map
+  restoreOverlay();
 }
 
-function addOverlay() {
+function restoreOverlay() {
   historicalOverlay.setMap(map);
 }
 
@@ -52,4 +61,4 @@ function removeOverlay() {
 }
 // [END maps_overlay_remove_region_removal]
 // [END maps_overlay_remove]
-export { initMap, removeOverlay, addOverlay };
+export { initMap };

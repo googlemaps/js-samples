@@ -14,6 +14,18 @@ function initMap() {
     data: getPoints(),
     map: map,
   });
+  document
+    .getElementById("toggle-heatmap")
+    .addEventListener("click", toggleHeatmap);
+  document
+    .getElementById("change-gradient")
+    .addEventListener("click", changeGradient);
+  document
+    .getElementById("change-opacity")
+    .addEventListener("click", changeOpacity);
+  document
+    .getElementById("change-radius")
+    .addEventListener("click", changeRadius);
 }
 
 function toggleHeatmap() {
