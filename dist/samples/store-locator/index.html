@@ -128,9 +128,6 @@
               mapTypeId: a,
               zoom: 10,
             })),
-            n.addListener("zoom_changed", () => {
-              n.getZoom() < 19 && (n.setTilt(0), n.setMapTypeId(a));
-            }),
             new mdc.textField.MDCTextField(
               document.querySelector(".mdc-text-field")
             ),
@@ -144,7 +141,7 @@
               .then((e) => e.json())
               .then((e) => {
                 const t = e.features,
-                  a = [];
+                  o = [];
                 t.forEach(
                   ({ attributes: { NAME: e }, geometry: { x: t, y: n } }) => {
                     c.push({
@@ -152,29 +149,34 @@
                       location: { lat: n, lng: t },
                       address: "",
                     });
-                    const o = new google.maps.Marker({
+                    const a = new google.maps.Marker({
                       position: { lat: n, lng: t },
                     });
-                    o.addListener("click", () => {
-                      p(new google.maps.LatLng({ lat: n, lng: t }));
+                    a.addListener("click", () => {
+                      g(new google.maps.LatLng({ lat: n, lng: t })),
+                        p(new google.maps.LatLng({ lat: n, lng: t }));
                     }),
-                      a.push(o);
+                      o.push(a);
                   }
                 ),
-                  new MarkerClusterer(n, a, {
+                  new MarkerClusterer(n, o, {
                     imagePath:
                       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
                   }),
                   window.addEventListener("load", () => {
                     (void 0).done();
                   }),
-                  g(n.getCenter());
+                  g(n.getCenter()),
+                  n.setZoom(13),
+                  n.setMapTypeId(a);
               }),
             document.getElementById("near-me").addEventListener("click", () => {
               navigator.geolocation &&
                 navigator.geolocation.getCurrentPosition(
                   ({ coords: { latitude: e, longitude: t } }) => {
-                    g(new google.maps.LatLng({ lat: e, lng: t }));
+                    g(new google.maps.LatLng({ lat: e, lng: t })),
+                      n.setZoom(10),
+                      n.setMapTypeId(a);
                   }
                 );
             }),
@@ -183,7 +185,10 @@
             });
         }
         function m() {
-          (s.disabled = !0), g(r.getPlace().geometry.location);
+          (s.disabled = !0),
+            g(r.getPlace().geometry.location),
+            n.setZoom(10),
+            n.setMapTypeId(a);
         }
         function g(e) {
           e &&
@@ -192,8 +197,6 @@
               : ((s.disabled = !0),
                 (l = !0),
                 n.setCenter(e),
-                n.setZoom(10),
-                n.setMapTypeId(a),
                 c.forEach((e) => {
                   delete e.travelDistance,
                     delete e.travelDistanceText,
@@ -268,9 +271,7 @@
                                 s
                                   .querySelector(".mdc-card__primary-action")
                                   .addEventListener("click", () => {
-                                    console.log("blah"),
-                                      console.log(n),
-                                      p(new google.maps.LatLng(n));
+                                    p(new google.maps.LatLng(n));
                                   }),
                                 t.appendChild(s);
                             }
@@ -282,10 +283,16 @@
                   })));
         }
         function p(e) {
-          g(e), n.setZoom(19), n.setMapTypeId(o), n.setTilt(45);
+          n.setCenter(e),
+            n.setZoom(19),
+            n.setMapTypeId(o),
+            n.setTilt(45),
+            google.maps.event.addListenerOnce(n, "zoom_changed", () => {
+              n.getZoom() < 19 && (n.setTilt(0), n.setMapTypeId(a));
+            });
         }
         var u = window;
-        for (var v in t) u[v] = t[v];
+        for (var y in t) u[y] = t[y];
         t.__esModule && Object.defineProperty(u, "__esModule", { value: !0 });
       })();
     </script>

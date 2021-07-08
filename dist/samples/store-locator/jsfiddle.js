@@ -18,14 +18,6 @@ function initMap() {
     mapTypeId: originalMapTypeId,
     zoom: 10,
   });
-  map.addListener("zoom_changed", () => {
-    const newZoom = map.getZoom();
-
-    if (newZoom < 19) {
-      map.setTilt(0);
-      map.setMapTypeId(originalMapTypeId);
-    }
-  });
   new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
   autocompleteInput = document.getElementById("search-input");
   autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {});
@@ -45,6 +37,9 @@ function initMap() {
           stores.push({ name, location: { lat, lng }, address: "" });
           const marker = new google.maps.Marker({ position: { lat, lng } });
           marker.addListener("click", () => {
+            // Update the list of nearby locations in the sidebar
+            update(new google.maps.LatLng({ lat, lng }));
+            // Update the camera of the map
             seeDetail(new google.maps.LatLng({ lat, lng }));
           });
           markers.push(marker);
@@ -59,12 +54,16 @@ function initMap() {
         progress.done();
       });
       update(map.getCenter());
+      map.setZoom(13);
+      map.setMapTypeId(originalMapTypeId);
     });
   document.getElementById("near-me").addEventListener("click", () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         ({ coords: { latitude: lat, longitude: lng } }) => {
           update(new google.maps.LatLng({ lat, lng }));
+          map.setZoom(10);
+          map.setMapTypeId(originalMapTypeId);
         }
       );
     }
@@ -116,8 +115,6 @@ function renderCards(stores) {
         card
           .querySelector(".mdc-card__primary-action")
           .addEventListener("click", () => {
-            console.log("blah");
-            console.log(location);
             seeDetail(new google.maps.LatLng(location));
           });
         cardsDiv.appendChild(card);
@@ -153,6 +150,8 @@ function placeChanged() {
   const placeResult = autocomplete.getPlace();
   const location = placeResult.geometry.location;
   update(location);
+  map.setZoom(10);
+  map.setMapTypeId(originalMapTypeId);
 }
 
 function update(location) {
@@ -167,8 +166,6 @@ function update(location) {
   autocompleteInput.disabled = true;
   isUpdateInProgress = true;
   map.setCenter(location);
-  map.setZoom(10);
-  map.setMapTypeId(originalMapTypeId);
   // reset values
   stores.forEach((store) => {
     delete store.travelDistance;
@@ -208,9 +205,19 @@ function update(location) {
     });
 }
 
+// [START maps_store_locator_45]
 function seeDetail(location) {
-  update(location);
+  map.setCenter(location);
   map.setZoom(19);
   map.setMapTypeId(detailMapTypeId);
   map.setTilt(45);
+  google.maps.event.addListenerOnce(map, "zoom_changed", () => {
+    const newZoom = map.getZoom();
+
+    if (newZoom < 19) {
+      map.setTilt(0);
+      map.setMapTypeId(originalMapTypeId);
+    }
+  });
 }
+// [END maps_store_locator_45]
