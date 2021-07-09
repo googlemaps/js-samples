@@ -108,43 +108,41 @@
         }),
         o = document.getElementById("pac-card");
       e.controls[google.maps.ControlPosition.TOP_RIGHT].push(o);
-      const t = { lat: 50.064192, lng: -130.605469 },
-        n = {
-          north: t.lat + 0.1,
-          south: t.lat - 0.1,
-          east: t.lng + 0.1,
-          west: t.lng - 0.1,
+      const t = {
+          north: 50.164192,
+          south: 49.964192,
+          east: -130.505469,
+          west: -130.705469,
         },
-        s = document.getElementById("pac-input"),
-        a = {
-          bounds: n,
+        n = document.getElementById("pac-input"),
+        s = {
+          bounds: t,
           componentRestrictions: { country: "us" },
           fields: ["address_components", "geometry", "icon", "name"],
-          origin: t,
           strictBounds: !1,
           types: ["establishment"],
         },
-        r = new google.maps.places.Autocomplete(s, a);
+        r = new google.maps.places.Autocomplete(n, s);
       r.setComponentRestrictions({ country: ["us", "pr", "vi", "gu", "mp"] });
-      const c = new google.maps.LatLngBounds(
+      const a = new google.maps.LatLngBounds(
         { lat: 5.6108, lng: 136.589326 },
         { lat: 61.179287, lng: 2.64325 }
       );
-      r.setBounds(c);
-      const i = new google.maps.InfoWindow(),
-        l = document.getElementById("infowindow-content");
-      i.setContent(l);
-      const d = new google.maps.Marker({
+      r.setBounds(a);
+      const c = new google.maps.InfoWindow(),
+        d = document.getElementById("infowindow-content");
+      c.setContent(d);
+      const i = new google.maps.Marker({
         map: e,
         anchorPoint: new google.maps.Point(0, -29),
       });
-      function m(e, o) {
+      function l(e, o) {
         document.getElementById(e).addEventListener("click", () => {
           r.setComponentRestrictions({ country: o });
         });
       }
       r.addListener("place_changed", () => {
-        i.close(), d.setVisible(!1);
+        c.close(), i.setVisible(!1);
         const o = r.getPlace();
         if (!o.geometry || !o.geometry.location)
           return void window.alert(
@@ -153,8 +151,8 @@
         o.geometry.viewport
           ? e.fitBounds(o.geometry.viewport)
           : (e.setCenter(o.geometry.location), e.setZoom(17)),
-          d.setPosition(o.geometry.location),
-          d.setVisible(!0);
+          i.setPosition(o.geometry.location),
+          i.setVisible(!0);
         let t = "";
         o.address_components &&
           (t = [
@@ -165,13 +163,13 @@
             (o.address_components[2] && o.address_components[2].short_name) ||
               "",
           ].join(" ")),
-          (l.children["place-icon"].src = o.icon),
-          (l.children["place-name"].textContent = o.name),
-          (l.children["place-address"].textContent = t),
-          i.open(e, d);
+          (d.children["place-icon"].src = o.icon),
+          (d.children["place-name"].textContent = o.name),
+          (d.children["place-address"].textContent = t),
+          c.open(e, i);
       }),
-        m("changecountry-usa", "us"),
-        m("changecountry-usa-and-uot", ["us", "pr", "vi", "gu", "mp"]);
+        l("changecountry-usa", "us"),
+        l("changecountry-usa-and-uot", ["us", "pr", "vi", "gu", "mp"]);
     }
     e.r(o), e.d(o, { initMap: () => t });
     var n = window;

@@ -13,7 +13,6 @@ function initMap() {
   const options = {
     componentRestrictions: { country: "us" },
     fields: ["formatted_address", "geometry", "name"],
-    origin: map.getCenter(),
     strictBounds: false,
     types: ["establishment"],
   };

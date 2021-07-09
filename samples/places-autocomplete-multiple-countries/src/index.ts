@@ -43,7 +43,6 @@ function initMap(): void {
     bounds: defaultBounds,
     componentRestrictions: { country: "us" },
     fields: ["address_components", "geometry", "icon", "name"],
-    origin: center,
     strictBounds: false,
     types: ["establishment"],
   };
@@ -121,7 +120,7 @@ function initMap(): void {
 
   // Sets a listener on a given radio button. The radio buttons specify
   // the countries used to restrict the autocomplete search.
-  function setupClickListener(id, countries) {
+  function setupClickListener(id: string, countries: string[] | string) {
     const radioButton = document.getElementById(id) as HTMLElement;
     radioButton.addEventListener("click", () => {
       autocomplete.setComponentRestrictions({ country: countries });

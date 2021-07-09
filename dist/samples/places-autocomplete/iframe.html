@@ -109,58 +109,56 @@
         t = document.getElementById("pac-card"),
         o = document.getElementById("pac-input"),
         n = document.getElementById("use-location-bias"),
-        s = document.getElementById("use-strict-bounds"),
-        d = {
-          componentRestrictions: { country: "us" },
-          fields: ["formatted_address", "geometry", "name"],
-          origin: e.getCenter(),
-          strictBounds: !1,
-          types: ["establishment"],
-        };
+        s = document.getElementById("use-strict-bounds");
       e.controls[google.maps.ControlPosition.TOP_RIGHT].push(t);
-      const a = new google.maps.places.Autocomplete(o, d);
-      a.bindTo("bounds", e);
-      const c = new google.maps.InfoWindow(),
-        i = document.getElementById("infowindow-content");
-      c.setContent(i);
-      const r = new google.maps.Marker({
+      const d = new google.maps.places.Autocomplete(o, {
+        componentRestrictions: { country: "us" },
+        fields: ["formatted_address", "geometry", "name"],
+        strictBounds: !1,
+        types: ["establishment"],
+      });
+      d.bindTo("bounds", e);
+      const a = new google.maps.InfoWindow(),
+        c = document.getElementById("infowindow-content");
+      a.setContent(c);
+      const i = new google.maps.Marker({
         map: e,
         anchorPoint: new google.maps.Point(0, -29),
       });
-      function l(e, t) {
+      function r(e, t) {
         document.getElementById(e).addEventListener("click", () => {
-          a.setTypes(t), (o.value = "");
+          d.setTypes(t), (o.value = "");
         });
       }
-      a.addListener("place_changed", () => {
-        c.close(), r.setVisible(!1);
-        const t = a.getPlace();
+      d.addListener("place_changed", () => {
+        a.close(), i.setVisible(!1);
+        const t = d.getPlace();
         t.geometry && t.geometry.location
           ? (t.geometry.viewport
               ? e.fitBounds(t.geometry.viewport)
               : (e.setCenter(t.geometry.location), e.setZoom(17)),
-            r.setPosition(t.geometry.location),
-            r.setVisible(!0),
-            (i.children["place-name"].textContent = t.name),
-            (i.children["place-address"].textContent = t.formatted_address),
-            c.open(e, r))
+            i.setPosition(t.geometry.location),
+            i.setVisible(!0),
+            (c.children["place-name"].textContent = t.name),
+            (c.children["place-address"].textContent = t.formatted_address),
+            a.open(e, i))
           : window.alert("No details available for input: '" + t.name + "'");
       }),
-        l("changetype-all", []),
-        l("changetype-address", ["address"]),
-        l("changetype-establishment", ["establishment"]),
-        l("changetype-geocode", ["geocode"]),
+        r("changetype-all", []),
+        r("changetype-address", ["address"]),
+        r("changetype-establishment", ["establishment"]),
+        r("changetype-geocode", ["geocode"]),
         n.addEventListener("change", () => {
           n.checked
-            ? a.bindTo("bounds", e)
-            : (a.unbind("bounds"),
-              a.setBounds({ east: 180, west: -180, north: 90, south: -90 }),
+            ? d.bindTo("bounds", e)
+            : (d.unbind("bounds"),
+              d.setBounds({ east: 180, west: -180, north: 90, south: -90 }),
               (s.checked = n.checked)),
             (o.value = "");
         }),
         s.addEventListener("change", () => {
-          a.setOptions({ strictBounds: s.checked }),
-            s.checked && ((n.checked = s.checked), a.bindTo("bounds", e)),
+          d.setOptions({ strictBounds: s.checked }),
+            s.checked && ((n.checked = s.checked), d.bindTo("bounds", e)),
             (o.value = "");
         });
     }
