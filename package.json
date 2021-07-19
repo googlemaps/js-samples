@@ -50,7 +50,7 @@
     "@types/google.maps": "^3.45.3",
     "@types/google.visualization": "0.0.67",
     "@types/jest": "^26.0.23",
-    "@types/three": "^0.129.0",
+    "@types/three": "^0.130.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "babel-loader": "^8.2.2",
