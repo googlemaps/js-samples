@@ -45,7 +45,7 @@
         e.addListener("click", (e) => {
           !(function (e, t, o) {
             t.getElevationForLocations({ locations: [e] })
-              .then((t) => {
+              .then(({ results: t }) => {
                 o.setPosition(e),
                   t[0]
                     ? o.setContent(

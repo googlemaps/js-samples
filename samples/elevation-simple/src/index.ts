@@ -45,7 +45,7 @@ function displayLocationElevation(
     .getElevationForLocations({
       locations: [location],
     })
-    .then((results) => {
+    .then(({ results }) => {
       infowindow.setPosition(location);
 
       // Retrieve the first result
