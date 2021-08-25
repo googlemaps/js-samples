@@ -81,7 +81,7 @@ function displayPathElevation(
 
 // Takes an array of ElevationResult objects, draws the path on the map
 // and plots the elevation profile on a Visualization API ColumnChart.
-function plotElevation(elevations) {
+function plotElevation({ results }: google.maps.PathElevationResponse) {
   const chartDiv = document.getElementById("elevation_chart") as HTMLElement;
 
   // Create a new chart in the elevation_chart DIV.
@@ -95,8 +95,8 @@ function plotElevation(elevations) {
   data.addColumn("string", "Sample");
   data.addColumn("number", "Elevation");
 
-  for (let i = 0; i < elevations.length; i++) {
-    data.addRow(["", elevations[i].elevation]);
+  for (let i = 0; i < results.length; i++) {
+    data.addRow(["", results[i].elevation]);
   }
 
   // Draw the chart using the data within its DIV.
