@@ -36,7 +36,6 @@ function initMap(): void {
     "use-strict-bounds"
   ) as HTMLInputElement;
   const options = {
-    componentRestrictions: { country: "us" },
     fields: ["formatted_address", "geometry", "name"],
     strictBounds: false,
     types: ["establishment"],

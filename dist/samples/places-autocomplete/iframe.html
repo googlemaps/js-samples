@@ -109,15 +109,14 @@
         t = document.getElementById("pac-card"),
         o = document.getElementById("pac-input"),
         n = document.getElementById("use-location-bias"),
-        s = document.getElementById("use-strict-bounds");
+        d = document.getElementById("use-strict-bounds");
       e.controls[google.maps.ControlPosition.TOP_RIGHT].push(t);
-      const d = new google.maps.places.Autocomplete(o, {
-        componentRestrictions: { country: "us" },
+      const s = new google.maps.places.Autocomplete(o, {
         fields: ["formatted_address", "geometry", "name"],
         strictBounds: !1,
         types: ["establishment"],
       });
-      d.bindTo("bounds", e);
+      s.bindTo("bounds", e);
       const a = new google.maps.InfoWindow(),
         c = document.getElementById("infowindow-content");
       a.setContent(c);
@@ -125,14 +124,14 @@
         map: e,
         anchorPoint: new google.maps.Point(0, -29),
       });
-      function r(e, t) {
+      function l(e, t) {
         document.getElementById(e).addEventListener("click", () => {
-          d.setTypes(t), (o.value = "");
+          s.setTypes(t), (o.value = "");
         });
       }
-      d.addListener("place_changed", () => {
+      s.addListener("place_changed", () => {
         a.close(), i.setVisible(!1);
-        const t = d.getPlace();
+        const t = s.getPlace();
         t.geometry && t.geometry.location
           ? (t.geometry.viewport
               ? e.fitBounds(t.geometry.viewport)
@@ -144,27 +143,27 @@
             a.open(e, i))
           : window.alert("No details available for input: '" + t.name + "'");
       }),
-        r("changetype-all", []),
-        r("changetype-address", ["address"]),
-        r("changetype-establishment", ["establishment"]),
-        r("changetype-geocode", ["geocode"]),
+        l("changetype-all", []),
+        l("changetype-address", ["address"]),
+        l("changetype-establishment", ["establishment"]),
+        l("changetype-geocode", ["geocode"]),
         n.addEventListener("change", () => {
           n.checked
-            ? d.bindTo("bounds", e)
-            : (d.unbind("bounds"),
-              d.setBounds({ east: 180, west: -180, north: 90, south: -90 }),
-              (s.checked = n.checked)),
+            ? s.bindTo("bounds", e)
+            : (s.unbind("bounds"),
+              s.setBounds({ east: 180, west: -180, north: 90, south: -90 }),
+              (d.checked = n.checked)),
             (o.value = "");
         }),
-        s.addEventListener("change", () => {
-          d.setOptions({ strictBounds: s.checked }),
-            s.checked && ((n.checked = s.checked), d.bindTo("bounds", e)),
+        d.addEventListener("change", () => {
+          s.setOptions({ strictBounds: d.checked }),
+            d.checked && ((n.checked = d.checked), s.bindTo("bounds", e)),
             (o.value = "");
         });
     }
     e.r(t), e.d(t, { initMap: () => o });
     var n = window;
-    for (var s in t) n[s] = t[s];
+    for (var d in t) n[d] = t[d];
     t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
   })();
 </script>
