@@ -11,11 +11,39 @@ $height: 40px;
   overflow: hidden;
 }
 
-@mixin map-control-button {
-  @include map-control();
+@mixin button {
   height: 40px;
   cursor: pointer;
   &:hover {
     background: rgb(235, 235, 235);
   }
+}
+
+@mixin button-tiered {
+  @include button();
+
+  &.button-primary {
+    background-color: #1a73e8;
+    color: white;
+    &:hover {
+      background-color: #1765cc;
+    }
+  }
+  &.button-secondary {
+    background-color: white;
+    color: #1a73e8;
+    &:hover {
+      background-color: #d2e3fc;
+    }
+  }
+}
+
+@mixin map-control-button {
+  @include map-control();
+  @include button();
+}
+
+@mixin map-control-button-tiered {
+  @include map-control();
+  @include button-tiered();
 }
