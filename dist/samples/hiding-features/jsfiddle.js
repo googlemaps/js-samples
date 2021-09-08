@@ -6,8 +6,10 @@ function initMap() {
     zoom: 13,
     mapTypeControl: false,
   });
+
   // Add controls to the map, allowing users to hide/show features.
   const styleControl = document.getElementById("style-selector-control");
+
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
   // Apply new JSON when the user chooses to hide/show features.
   document.getElementById("hide-poi").addEventListener("click", () => {
@@ -17,6 +19,7 @@ function initMap() {
     map.setOptions({ styles: styles["default"] });
   });
 }
+
 const styles = {
   default: [],
   hide: [

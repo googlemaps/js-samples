@@ -88,6 +88,7 @@ function initMap() {
 
     onContextRestored(gl: WebGLRenderingContext) {
       const map = this.getMap()!;
+
       this.deck = new deck.Deck({
         canvas: this.canvas,
         initialViewState: {

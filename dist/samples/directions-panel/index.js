@@ -7,14 +7,18 @@ function initMap() {
     center: { lat: 41.85, lng: -87.65 },
     disableDefaultUI: true,
   });
+
   directionsRenderer.setMap(map);
   directionsRenderer.setPanel(document.getElementById("sidebar"));
+
   const control = document.getElementById("floating-panel");
+
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
   const onChangeHandler = function () {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
+
   document.getElementById("start").addEventListener("change", onChangeHandler);
   document.getElementById("end").addEventListener("change", onChangeHandler);
 }
@@ -22,6 +26,7 @@ function initMap() {
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   const start = document.getElementById("start").value;
   const end = document.getElementById("end").value;
+
   directionsService
     .route({
       origin: start,

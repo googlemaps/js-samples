@@ -6,6 +6,7 @@ function initMap() {
     zoom: 14,
     center: { lat: 37.77, lng: -122.447 },
   });
+
   directionsRenderer.setMap(map);
   calculateAndDisplayRoute(directionsService, directionsRenderer);
   document.getElementById("mode").addEventListener("change", () => {
@@ -15,6 +16,7 @@ function initMap() {
 
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
   const selectedMode = document.getElementById("mode").value;
+
   directionsService
     .route({
       origin: { lat: 37.77, lng: -122.447 },

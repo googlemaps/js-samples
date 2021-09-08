@@ -8,6 +8,7 @@ const loader = new Loader({
   version: "weekly",
   ...additionalOptions,
 });
+
 loader.load().then(() => {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },

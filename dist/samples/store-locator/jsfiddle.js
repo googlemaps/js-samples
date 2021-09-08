@@ -18,6 +18,7 @@ function initMap() {
     mapTypeId: originalMapTypeId,
     zoom: 10,
   });
+
   new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
   autocompleteInput = document.getElementById("search-input");
   autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {});
@@ -32,10 +33,13 @@ function initMap() {
     .then((data) => {
       const features = data.features;
       const markers = [];
+
       features.forEach(
         ({ attributes: { NAME: name }, geometry: { x: lng, y: lat } }) => {
           stores.push({ name, location: { lat, lng }, address: "" });
+
           const marker = new google.maps.Marker({ position: { lat, lng } });
+
           marker.addListener("click", () => {
             // Update the list of nearby locations in the sidebar
             update(new google.maps.LatLng({ lat, lng }));
@@ -45,6 +49,7 @@ function initMap() {
           markers.push(marker);
         }
       );
+
       new MarkerClusterer(map, markers, {
         imagePath:
           "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
@@ -75,12 +80,14 @@ function initMap() {
 
 function renderCards(stores) {
   const cardsDiv = document.getElementById("cards");
+
   cardsDiv.innerHTML = "";
   stores
     .slice(0, 25)
     .forEach(
       ({ name, location, address, travelDistanceText, travelDurationText }) => {
         const card = document.createElement("div");
+
         card.classList.add("mdc-card", "mdc-card--outlined");
         card.innerHTML = `
 <div class="mdc-card__primary-action">
@@ -103,6 +110,7 @@ function renderCards(stores) {
     <span class="mdc-button__label">More Information</span>
   </button>
 </div>`;
+
         const cardBody = card.querySelector("#card-body");
 
         if (address) {
@@ -112,6 +120,7 @@ function renderCards(stores) {
         if (travelDistanceText) {
           cardBody.innerHTML += `<h2 class="mdc-typography--body2">${travelDistanceText}, ${travelDurationText}</h2>`;
         }
+
         card
           .querySelector(".mdc-card__primary-action")
           .addEventListener("click", () => {
@@ -133,6 +142,7 @@ function getDistances(place) {
         reject(status);
       }
     };
+
     distanceMatrixService.getDistanceMatrix(
       {
         origins,
@@ -147,8 +157,10 @@ function getDistances(place) {
 
 function placeChanged() {
   autocompleteInput.disabled = true;
+
   const placeResult = autocomplete.getPlace();
   const location = placeResult.geometry.location;
+
   update(location);
   map.setZoom(10);
   map.setMapTypeId(originalMapTypeId);
@@ -163,6 +175,7 @@ function update(location) {
     alert("Update in progress, please try again.");
     return;
   }
+
   autocompleteInput.disabled = true;
   isUpdateInProgress = true;
   map.setCenter(location);

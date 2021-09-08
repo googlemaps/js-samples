@@ -8,6 +8,7 @@ function initMap() {
     center: { lat: -33.8688, lng: 151.2195 },
     zoom: 13,
   });
+
   new AutocompleteDirectionsHandler(map);
 }
 
@@ -26,15 +27,19 @@ class AutocompleteDirectionsHandler {
     this.directionsService = new google.maps.DirectionsService();
     this.directionsRenderer = new google.maps.DirectionsRenderer();
     this.directionsRenderer.setMap(map);
+
     const originInput = document.getElementById("origin-input");
     const destinationInput = document.getElementById("destination-input");
     const modeSelector = document.getElementById("mode-selector");
     const originAutocomplete = new google.maps.places.Autocomplete(originInput);
+
     // Specify just the place data fields that you need.
     originAutocomplete.setFields(["place_id"]);
+
     const destinationAutocomplete = new google.maps.places.Autocomplete(
       destinationInput
     );
+
     // Specify just the place data fields that you need.
     destinationAutocomplete.setFields(["place_id"]);
     this.setupClickListener(
@@ -61,6 +66,7 @@ class AutocompleteDirectionsHandler {
   // Autocomplete.
   setupClickListener(id, mode) {
     const radioButton = document.getElementById(id);
+
     radioButton.addEventListener("click", () => {
       this.travelMode = mode;
       this.route();
@@ -81,6 +87,7 @@ class AutocompleteDirectionsHandler {
       } else {
         this.destinationPlaceId = place.place_id;
       }
+
       this.route();
     });
   }
@@ -88,7 +95,9 @@ class AutocompleteDirectionsHandler {
     if (!this.originPlaceId || !this.destinationPlaceId) {
       return;
     }
+
     const me = this;
+
     this.directionsService.route(
       {
         origin: { placeId: this.originPlaceId },

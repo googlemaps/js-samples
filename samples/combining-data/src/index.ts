@@ -52,6 +52,7 @@ function initMap(): void {
   const selectBox = document.getElementById(
     "census-variable"
   ) as HTMLSelectElement;
+
   google.maps.event.addDomListener(selectBox, "change", () => {
     clearCensusData();
     loadCensusData(selectBox.options[selectBox.selectedIndex].value);
@@ -87,11 +88,13 @@ function loadMapShapes() {
 function loadCensusData(variable: string) {
   // load the requested variable from the census API (using local copies)
   const xhr = new XMLHttpRequest();
+
   xhr.open("GET", variable + ".json");
 
   // [START maps_combining_data_snippet_loadcensus]
   xhr.onload = function () {
     const censusData = JSON.parse(xhr.responseText) as any;
+
     censusData.shift(); // the first row contains column names
     censusData.forEach((row: string) => {
       const censusVariable = parseFloat(row[0]);
@@ -120,6 +123,7 @@ function loadCensusData(variable: string) {
     (document.getElementById("census-max") as HTMLElement).textContent =
       censusMax.toLocaleString();
   };
+
   xhr.send();
   // [END maps_combining_data_snippet_loadcensus]
 }

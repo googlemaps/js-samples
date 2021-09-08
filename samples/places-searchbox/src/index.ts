@@ -37,6 +37,7 @@ function initAutocomplete() {
   // Create the search box and link it to the UI element.
   const input = document.getElementById("pac-input") as HTMLInputElement;
   const searchBox = new google.maps.places.SearchBox(input);
+
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
   // Bias the SearchBox results towards current map's viewport.
@@ -45,6 +46,7 @@ function initAutocomplete() {
   });
 
   let markers: google.maps.Marker[] = [];
+
   // [START maps_places_searchbox_getplaces]
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
@@ -63,11 +65,13 @@ function initAutocomplete() {
 
     // For each place, get the icon, name and location.
     const bounds = new google.maps.LatLngBounds();
+
     places.forEach((place) => {
       if (!place.geometry || !place.geometry.location) {
         console.log("Returned place contains no geometry");
         return;
       }
+
       const icon = {
         url: place.icon as string,
         size: new google.maps.Size(71, 71),

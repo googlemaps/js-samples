@@ -56,7 +56,9 @@ function initMap(): void {
   const infowindowContent = document.getElementById(
     "infowindow-content"
   ) as HTMLElement;
+
   infowindow.setContent(infowindowContent);
+
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(0, -29),
@@ -65,6 +67,7 @@ function initMap(): void {
   autocomplete.addListener("place_changed", () => {
     infowindow.close();
     marker.setVisible(false);
+
     const place = autocomplete.getPlace();
 
     if (!place.geometry || !place.geometry.location) {
@@ -81,6 +84,7 @@ function initMap(): void {
       map.setCenter(place.geometry.location);
       map.setZoom(17);
     }
+
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
 
@@ -94,6 +98,7 @@ function initMap(): void {
   // Autocomplete.
   function setupClickListener(id, types) {
     const radioButton = document.getElementById(id) as HTMLInputElement;
+
     radioButton.addEventListener("click", () => {
       autocomplete.setTypes(types);
       input.value = "";
@@ -119,6 +124,7 @@ function initMap(): void {
       // [END maps_places_autocomplete_unbind]
       strictBoundsInputElement.checked = biasInputElement.checked;
     }
+
     input.value = "";
   });
 
@@ -131,6 +137,7 @@ function initMap(): void {
       biasInputElement.checked = strictBoundsInputElement.checked;
       autocomplete.bindTo("bounds", map);
     }
+
     input.value = "";
   });
 }

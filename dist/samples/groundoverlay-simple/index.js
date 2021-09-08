@@ -14,6 +14,7 @@ function initMap() {
     east: -74.12544,
     west: -74.22655,
   };
+
   historicalOverlay = new google.maps.GroundOverlay(
     "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
     imageBounds

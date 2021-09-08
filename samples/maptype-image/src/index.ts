@@ -35,6 +35,7 @@ function initMap(): void {
       if (!normalizedCoord) {
         return "";
       }
+
       const bound = Math.pow(2, zoom);
       return (
         "https://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw" +

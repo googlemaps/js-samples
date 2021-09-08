@@ -28,8 +28,10 @@ function initMap() {
   map.data.setStyle(styleFeature);
   map.data.addListener("mouseover", mouseInToRegion);
   map.data.addListener("mouseout", mouseOutOfRegion);
+
   // wire up the button
   const selectBox = document.getElementById("census-variable");
+
   google.maps.event.addDomListener(selectBox, "change", () => {
     clearCensusData();
     loadCensusData(selectBox.options[selectBox.selectedIndex].value);
@@ -63,10 +65,11 @@ function loadMapShapes() {
 function loadCensusData(variable) {
   // load the requested variable from the census API (using local copies)
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", variable + ".json");
 
+  xhr.open("GET", variable + ".json");
   xhr.onload = function () {
     const censusData = JSON.parse(xhr.responseText);
+
     censusData.shift(); // the first row contains column names
     censusData.forEach((row) => {
       const censusVariable = parseFloat(row[0]);
@@ -80,6 +83,7 @@ function loadCensusData(variable) {
       if (censusVariable > censusMax) {
         censusMax = censusVariable;
       }
+
       const state = map.data.getFeatureById(stateId);
 
       // update the existing row with the new data
@@ -93,6 +97,7 @@ function loadCensusData(variable) {
     document.getElementById("census-max").textContent =
       censusMax.toLocaleString();
   };
+
   xhr.send();
 }
 
@@ -127,6 +132,7 @@ function styleFeature(feature) {
     // calculate an integer color based on the delta
     color.push((high[i] - low[i]) * delta + low[i]);
   }
+
   // determine whether to show this shape or not
   let showRow = true;
 
@@ -136,6 +142,7 @@ function styleFeature(feature) {
   ) {
     showRow = false;
   }
+
   let outlineWeight = 0.5,
     zIndex = 1;
 
@@ -160,10 +167,12 @@ function styleFeature(feature) {
 function mouseInToRegion(e) {
   // set the hover state so the setStyle function can change the border
   e.feature.setProperty("state", "hover");
+
   const percent =
     ((e.feature.getProperty("census_variable") - censusMin) /
       (censusMax - censusMin)) *
     100;
+
   // update the label
   document.getElementById("data-label").textContent =
     e.feature.getProperty("NAME");

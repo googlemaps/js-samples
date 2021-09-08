@@ -27,6 +27,7 @@ function initMap() {
     { lat: -34.364, lng: 157.207 },
     { lat: -33.364, lng: 157.207 },
   ];
+
   map.data.add({
     geometry: new google.maps.Data.Polygon([
       outerCoords,

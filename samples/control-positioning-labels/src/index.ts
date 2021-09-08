@@ -26,12 +26,14 @@
 function MakeControl(controlDiv: HTMLElement, label: string) {
   // Set up the control border.
   const controlUI = document.createElement("div");
+
   controlUI.title = label;
   controlUI.className = "controlUI";
   controlDiv.appendChild(controlUI);
 
   // Set up the inner control.
   const controlText = document.createElement("div");
+
   controlText.innerHTML = label;
   controlText.className = "controlText";
   controlUI.appendChild(controlText);
@@ -64,6 +66,7 @@ function initialize() {
   for (let i = 0; i < controlText.length; i++) {
     const divLabel = controlText[i][0] as string;
     const divName = document.createElement("div");
+
     MakeControl(divName, divLabel);
     // @ts-ignore
     map.controls[controlText[i][1]].push(divName);

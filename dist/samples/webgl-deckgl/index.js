@@ -11,6 +11,7 @@ function initMap() {
   const heading = 0;
   const tilt = 0;
   const mapElement = document.getElementById("map");
+
   map = new google.maps.Map(mapElement, {
     zoom: zoom,
     center: new google.maps.LatLng(lat, lng),
@@ -18,6 +19,7 @@ function initMap() {
     tilt: tilt,
     mapId: "b1beacae401d047c",
   });
+
   const tooltipElement = document.getElementById("tooltip");
 
   function setTooltip({ x, y, object }) {
@@ -30,6 +32,7 @@ function initMap() {
       tooltipElement.style.display = "none";
     }
   }
+
   const eventListeners = {
     click: null,
     dblclick: null,
@@ -57,6 +60,7 @@ function initMap() {
     onRemove() {}
     onContextRestored(gl) {
       const map = this.getMap();
+
       this.deck = new deck.Deck({
         canvas: this.canvas,
         initialViewState: {
@@ -85,6 +89,7 @@ function initMap() {
       if (!deck || !deck.layerManager) {
         return;
       }
+
       const camParams = coordinateTransformer.getCameraParams();
       const width = this.canvas.clientWidth;
       const height = this.canvas.clientHeight;
@@ -95,6 +100,7 @@ function initMap() {
       const bearing = camParams.heading;
       const latitude = camParams.lat;
       const longitude = camParams.lng;
+
       this.canvas.style.left = `${left}px`;
       this.canvas.style.top = `${top}px`;
       deck.setProps({
@@ -170,9 +176,11 @@ function initMap() {
         default:
           return;
       }
+
       this.requestRedraw();
     }
   }
+
   // [START maps_webgl_deckgl_layers]
   const layers = [
     new deck.GeoJsonLayer({
@@ -202,6 +210,7 @@ function initMap() {
   ];
   // [END maps_webgl_deckgl_layers]
   const props = {};
+
   webGLOverlay = new DeckGLOverlay(mapElement, layers, props);
   webGLOverlay.setMap(map);
 }

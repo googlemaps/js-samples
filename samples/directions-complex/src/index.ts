@@ -55,6 +55,7 @@ function initMap(): void {
       map
     );
   };
+
   (document.getElementById("start") as HTMLElement).addEventListener(
     "change",
     onChangeHandler
@@ -112,6 +113,7 @@ function showSteps(
   for (let i = 0; i < myRoute.steps.length; i++) {
     const marker = (markerArray[i] =
       markerArray[i] || new google.maps.Marker());
+
     marker.setMap(map);
     marker.setPosition(myRoute.steps[i].start_location);
     attachInstructionText(

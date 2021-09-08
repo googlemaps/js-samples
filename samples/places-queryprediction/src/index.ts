@@ -32,12 +32,14 @@ function initService(): void {
 
     predictions.forEach((prediction) => {
       const li = document.createElement("li");
+
       li.appendChild(document.createTextNode(prediction.description));
       (document.getElementById("results") as HTMLUListElement).appendChild(li);
     });
   };
 
   const service = new google.maps.places.AutocompleteService();
+
   service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
 }
 // [END maps_places_queryprediction]

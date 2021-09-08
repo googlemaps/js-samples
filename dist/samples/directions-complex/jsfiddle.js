@@ -11,6 +11,7 @@ function initMap() {
   const directionsRenderer = new google.maps.DirectionsRenderer({ map: map });
   // Instantiate an info window to hold step text.
   const stepDisplay = new google.maps.InfoWindow();
+
   // Display the route between the initial start and end selections.
   calculateAndDisplayRoute(
     directionsRenderer,
@@ -30,6 +31,7 @@ function initMap() {
       map
     );
   };
+
   document.getElementById("start").addEventListener("change", onChangeHandler);
   document.getElementById("end").addEventListener("change", onChangeHandler);
 }
@@ -45,6 +47,7 @@ function calculateAndDisplayRoute(
   for (let i = 0; i < markerArray.length; i++) {
     markerArray[i].setMap(null);
   }
+
   // Retrieve the start and end locations and create a DirectionsRequest using
   // WALKING directions.
   directionsService
@@ -75,6 +78,7 @@ function showSteps(directionResult, markerArray, stepDisplay, map) {
   for (let i = 0; i < myRoute.steps.length; i++) {
     const marker = (markerArray[i] =
       markerArray[i] || new google.maps.Marker());
+
     marker.setMap(map);
     marker.setPosition(myRoute.steps[i].start_location);
     attachInstructionText(

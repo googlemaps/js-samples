@@ -6,6 +6,7 @@ function initMap() {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     zoom: 16,
   });
+
   const iconBase =
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/";
   const icons = {

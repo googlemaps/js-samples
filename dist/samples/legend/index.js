@@ -7,6 +7,7 @@ function initMap() {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     mapTypeId: "roadmap",
   });
+
   const iconBase = "https://maps.google.com/mapfiles/kml/shapes/";
   const icons = {
     parking: {
@@ -100,6 +101,7 @@ function initMap() {
       type: "library",
     },
   ];
+
   features.forEach((feature) => {
     new google.maps.Marker({
       position: feature.position,
@@ -107,6 +109,7 @@ function initMap() {
       map: map,
     });
   });
+
   const legend = document.getElementById("legend");
 
   for (const key in icons) {
@@ -114,9 +117,11 @@ function initMap() {
     const name = type.name;
     const icon = type.icon;
     const div = document.createElement("div");
+
     div.innerHTML = '<img src="' + icon + '"> ' + name;
     legend.appendChild(div);
   }
+
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }
 // [END maps_legend]

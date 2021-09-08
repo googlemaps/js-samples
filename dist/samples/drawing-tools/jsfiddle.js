@@ -31,5 +31,6 @@ function initMap() {
       zIndex: 1,
     },
   });
+
   drawingManager.setMap(map);
 }

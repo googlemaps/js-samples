@@ -37,6 +37,7 @@
           zoom: 18,
           center: origin,
         });
+
         new ClickEventHandler(map, origin);
       }
 
@@ -68,7 +69,6 @@
         }
         handleClick(event) {
           console.log("You clicked on: " + event.latLng);
-
           // If the event has a placeId, use it.
           if (isIconMouseEvent(event)) {
             console.log("You clicked on place:" + event.placeId);
@@ -77,7 +77,6 @@
             // If you call stop here when there is no placeId you will prevent some
             // other map click event handlers from receiving the event.
             event.stop();
-
             if (event.placeId) {
               this.calculateAndDisplayRoute(event.placeId);
               this.getPlaceInformation(event.placeId);
@@ -86,6 +85,7 @@
         }
         calculateAndDisplayRoute(placeId) {
           const me = this;
+
           this.directionsService
             .route({
               origin: this.origin,
@@ -101,6 +101,7 @@
         }
         getPlaceInformation(placeId) {
           const me = this;
+
           this.placesService.getDetails(
             { placeId: placeId },
             (place, status) => {

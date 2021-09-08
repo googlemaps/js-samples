@@ -32,6 +32,7 @@ function initMap() {
       zIndex: 1,
     },
   });
+
   drawingManager.setMap(map);
 }
 // [END maps_drawing_tools]

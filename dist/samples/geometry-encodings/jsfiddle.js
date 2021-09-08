@@ -12,6 +12,7 @@ function initMap() {
     strokeWeight: 3,
     map: map,
   });
+
   // Add a listener for the click event
   google.maps.event.addListener(map, "click", (event) => {
     addLatLngToPoly(event.latLng, poly);
@@ -24,9 +25,11 @@ function initMap() {
  */
 function addLatLngToPoly(latLng, poly) {
   const path = poly.getPath();
+
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear
   path.push(latLng);
+
   // Update the text field to display the polyline encodings
   const encodeString = google.maps.geometry.encoding.encodePath(path);
 

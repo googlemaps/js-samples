@@ -38,6 +38,7 @@ function initMap(): void {
 
   // The photograph is courtesy of the U.S. Geological Survey.
   let image = "https://developers.google.com/maps/documentation/javascript/";
+
   image += "examples/full/images/talkeetna.png";
 
   // [START maps_overlay_hideshow_subclass]
@@ -71,6 +72,7 @@ function initMap(): void {
 
       // Create the img element and attach it to the div.
       const img = document.createElement("img");
+
       img.src = this.image;
       img.style.width = "100%";
       img.style.height = "100%";
@@ -79,6 +81,7 @@ function initMap(): void {
 
       // Add the element to the "overlayLayer" pane.
       const panes = this.getPanes()!;
+
       panes.overlayLayer.appendChild(this.div);
     }
     // [END maps_overlay_hideshow_onadd]
@@ -162,15 +165,18 @@ function initMap(): void {
 
   // [START maps_overlay_hideshow_init]
   const overlay: USGSOverlay = new USGSOverlay(bounds, image);
+
   overlay.setMap(map);
   // [END maps_overlay_hideshow_init]
 
   // [START maps_overlay_hideshow_controls]
   const toggleButton = document.createElement("button");
+
   toggleButton.textContent = "Toggle";
   toggleButton.classList.add("custom-map-control-button");
 
   const toggleDOMButton = document.createElement("button");
+
   toggleDOMButton.textContent = "Toggle DOM Attachment";
   toggleDOMButton.classList.add("custom-map-control-button");
 

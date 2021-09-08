@@ -10,6 +10,7 @@ function initMap() {
     content: "Click the map to get Lat/Lng!",
     position: myLatlng,
   });
+
   infoWindow.open(map);
   // [START maps_event_click_latlng_listener]
   // Configure the click listener.

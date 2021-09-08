@@ -12,10 +12,12 @@ function initMap() {
 function loadGeoJsonString(geoString) {
   try {
     const geojson = JSON.parse(geoString);
+
     map.data.addGeoJson(geojson);
   } catch (e) {
     alert("Not a GeoJSON file!");
   }
+
   zoom(map);
 }
 
@@ -24,6 +26,7 @@ function loadGeoJsonString(geoString) {
  */
 function zoom(map) {
   const bounds = new google.maps.LatLngBounds();
+
   map.data.forEach((feature) => {
     const geometry = feature.getGeometry();
 
@@ -64,8 +67,10 @@ function initEvents() {
       false
     );
   });
+
   // set up the drag & drop events
   const mapContainer = document.getElementById("map");
+
   mapContainer.addEventListener("dragenter", addClassToDropTarget, false);
   mapContainer.addEventListener("dragover", addClassToDropTarget, false);
   mapContainer.addEventListener("drop", handleDrop, false);
@@ -87,6 +92,7 @@ function handleDrop(e) {
   e.preventDefault();
   e.stopPropagation();
   removeClassFromDropTarget(e);
+
   const files = e.dataTransfer.files;
 
   if (files.length) {
@@ -102,14 +108,15 @@ function handleDrop(e) {
       reader.onerror = function (e) {
         console.error("reading failed");
       };
+
       reader.readAsText(file);
     }
   } else {
     // process non-file (e.g. text or html) content being dropped
     // grab the plain text version of the data
     const plainText = e.dataTransfer.getData("text/plain");
-    console.log(plainText);
 
+    console.log(plainText);
     if (plainText) {
       loadGeoJsonString(plainText);
     }
@@ -122,6 +129,7 @@ function initialize() {
   initMap();
   initEvents();
 }
+
 const files = [
   {
     type: "FeatureCollection",

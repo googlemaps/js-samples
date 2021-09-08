@@ -16,6 +16,7 @@ class CoordMapType {
   }
   getTile(coord, zoom, ownerDocument) {
     const div = ownerDocument.createElement("div");
+
     div.innerHTML = String(coord);
     div.style.width = this.tileSize.width + "px";
     div.style.height = this.tileSize.height + "px";
@@ -40,8 +41,10 @@ function initMap() {
       style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
     },
   });
+
   map.addListener("maptypeid_changed", () => {
     const showStreetViewControl = map.getMapTypeId() !== "coordinate";
+
     map.setOptions({
       streetViewControl: showStreetViewControl,
     });

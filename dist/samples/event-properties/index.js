@@ -9,6 +9,7 @@ function initMap() {
     content: "Change the zoom level",
     position: originalMapCenter,
   });
+
   infowindow.open(map);
   map.addListener("zoom_changed", () => {
     infowindow.setContent("Zoom: " + map.getZoom());

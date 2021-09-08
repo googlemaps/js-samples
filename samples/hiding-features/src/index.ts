@@ -28,6 +28,7 @@ function initMap(): void {
   const styleControl = document.getElementById(
     "style-selector-control"
   ) as HTMLElement;
+
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
 
   // Apply new JSON when the user chooses to hide/show features.

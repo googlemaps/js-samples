@@ -61,6 +61,7 @@ function initZoomControl(map: google.maps.Map) {
     function () {
       map.setZoom(map.getZoom()! - 1);
     };
+
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
     document.querySelector(".zoom-control") as HTMLElement
   );
@@ -94,6 +95,7 @@ function initFullscreenControl(map: google.maps.Map) {
   const fullscreenControl = document.querySelector(
     ".fullscreen-control"
   ) as HTMLElement;
+
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
 
   fullscreenControl.onclick = function () {

@@ -10,6 +10,7 @@ function initMap() {
     map,
     panel: document.getElementById("panel"),
   });
+
   directionsRenderer.addListener("directions_changed", () => {
     const directions = directionsRenderer.getDirections();
 
@@ -56,6 +57,7 @@ function computeTotalDistance(result) {
   for (let i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i].distance.value;
   }
+
   total = total / 1000;
   document.getElementById("total").innerHTML = total + " km";
 }

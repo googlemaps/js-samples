@@ -92,6 +92,7 @@ function plotElevation({ results }: google.maps.PathElevationResponse) {
   // column here does double duty as distance along the
   // X axis.
   const data = new google.visualization.DataTable();
+
   data.addColumn("string", "Sample");
   data.addColumn("number", "Elevation");
 

@@ -8,13 +8,16 @@ function initMap() {
     suppressInfoWindows: true,
     map: map,
   });
+
   kmlLayer.addListener("click", (kmlEvent) => {
     const text = kmlEvent.featureData.description;
+
     showInContentWindow(text);
   });
 
   function showInContentWindow(text) {
     const sidebar = document.getElementById("sidebar");
+
     sidebar.innerHTML = text;
   }
 }

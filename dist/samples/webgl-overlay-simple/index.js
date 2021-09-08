@@ -17,21 +17,29 @@ const mapOptions = {
 
 function initMap() {
   const mapDiv = document.getElementById("map");
+
   map = new google.maps.Map(mapDiv, mapOptions);
+
   const scene = new Scene();
   const ambientLight = new AmbientLight(0xffffff, 0.75);
+
   scene.add(ambientLight);
+
   const directionalLight = new DirectionalLight(0xffffff, 0.25);
+
   directionalLight.position.set(0, 10, 50);
   scene.add(directionalLight);
+
   // Load the model.
   const loader = new GLTFLoader();
   const url =
     "https://raw.githubusercontent.com/googlemaps/js-samples/master/assets/pin.gltf";
+
   loader.load(url, (gltf) => {
     gltf.scene.scale.set(10, 10, 10);
     gltf.scene.rotation.x = Math.PI / 2;
     scene.add(gltf.scene);
+
     let { tilt, heading, zoom } = mapOptions;
 
     const animate = () => {
@@ -44,9 +52,11 @@ function initMap() {
         // exit animation loop
         return;
       }
+
       map.moveCamera({ tilt, heading, zoom });
       requestAnimationFrame(animate);
     };
+
     requestAnimationFrame(animate);
   });
   new ThreeJSOverlayView({

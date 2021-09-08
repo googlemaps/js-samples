@@ -26,17 +26,20 @@ function initMap(): void {
       disableDefaultUI: true,
     }
   );
+
   directionsRenderer.setMap(map);
   directionsRenderer.setPanel(
     document.getElementById("sidebar") as HTMLElement
   );
 
   const control = document.getElementById("floating-panel") as HTMLElement;
+
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
 
   const onChangeHandler = function () {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
+
   (document.getElementById("start") as HTMLElement).addEventListener(
     "change",
     onChangeHandler

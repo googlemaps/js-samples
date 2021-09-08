@@ -134,6 +134,7 @@ function initMap(): void {
     const name = type.name;
     const icon = type.icon;
     const div = document.createElement("div");
+
     div.innerHTML = '<img src="' + icon + '"> ' + name;
     legend.appendChild(div);
   }

@@ -9,6 +9,7 @@ function initMap() {
     map,
     title: "Click to zoom",
   });
+
   map.addListener("center_changed", () => {
     // 3 seconds after the center of the map has changed, pan back to the
     // marker.

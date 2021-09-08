@@ -28,7 +28,9 @@ function initMap(): void {
     }
   );
   const card = document.getElementById("pac-card") as HTMLElement;
+
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
   // [START maps_places_autocomplete_creation]
   const center = { lat: 50.064192, lng: -130.605469 };
   // Create a bounding box with sides ~10km away from the center point
@@ -61,6 +63,7 @@ function initMap(): void {
   const southwest = { lat: 5.6108, lng: 136.589326 };
   const northeast = { lat: 61.179287, lng: 2.64325 };
   const newBounds = new google.maps.LatLngBounds(southwest, northeast);
+
   autocomplete.setBounds(newBounds);
   // [END maps_places_autocomplete_setbounds]
 
@@ -68,7 +71,9 @@ function initMap(): void {
   const infowindowContent = document.getElementById(
     "infowindow-content"
   ) as HTMLElement;
+
   infowindow.setContent(infowindowContent);
+
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(0, -29),
@@ -77,6 +82,7 @@ function initMap(): void {
   autocomplete.addListener("place_changed", () => {
     infowindow.close();
     marker.setVisible(false);
+
     const place = autocomplete.getPlace();
 
     if (!place.geometry || !place.geometry.location) {
@@ -93,6 +99,7 @@ function initMap(): void {
       map.setCenter(place.geometry.location);
       map.setZoom(17); // Why 17? Because it looks good.
     }
+
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
 
@@ -122,6 +129,7 @@ function initMap(): void {
   // the countries used to restrict the autocomplete search.
   function setupClickListener(id: string, countries: string[] | string) {
     const radioButton = document.getElementById(id) as HTMLElement;
+
     radioButton.addEventListener("click", () => {
       autocomplete.setComponentRestrictions({ country: countries });
     });

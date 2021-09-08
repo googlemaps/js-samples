@@ -21,6 +21,7 @@ function initMap() {
     strokeOpacity: 1.0,
     strokeWeight: 2,
   });
+
   flightPath.setMap(map);
 }
 // [END maps_polyline_simple]

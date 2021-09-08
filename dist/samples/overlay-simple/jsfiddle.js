@@ -47,15 +47,19 @@ function initMap() {
       this.div_.style.borderStyle = "none";
       this.div_.style.borderWidth = "0px";
       this.div_.style.position = "absolute";
+
       // Create the img element and attach it to the div.
       const img = document.createElement("img");
+
       img.src = this.image_;
       img.style.width = "100%";
       img.style.height = "100%";
       img.style.position = "absolute";
       this.div_.appendChild(img);
+
       // Add the element to the "overlayLayer" pane.
       const panes = this.getPanes();
+
       panes.overlayLayer.appendChild(this.div_);
     }
     draw() {
@@ -92,6 +96,8 @@ function initMap() {
       }
     }
   }
+
   const overlay = new USGSOverlay(bounds, srcImage);
+
   overlay.setMap(map);
 }

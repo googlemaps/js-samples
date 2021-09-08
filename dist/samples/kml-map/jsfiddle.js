@@ -13,15 +13,18 @@ function initMap() {
     zoom: 2,
     mapTypeId: "terrain",
   });
+
   const kmlLayer = new google.maps.KmlLayer({
     suppressInfoWindows: true,
     preserveViewport: false,
     map,
     url,
   });
+
   kmlLayer.addListener("click", (event) => {
     const content = event.featureData.infoWindowHtml;
     const testimonial = document.getElementById("capture");
+
     testimonial.innerHTML = content;
   });
 }

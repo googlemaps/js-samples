@@ -6,6 +6,7 @@ function initMap() {
     zoom: 3,
   });
   const coordInfoWindow = new google.maps.InfoWindow();
+
   coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()));
   coordInfoWindow.setPosition(chicago);
   coordInfoWindow.open(map);
@@ -14,6 +15,7 @@ function initMap() {
     coordInfoWindow.open(map);
   });
 }
+
 const TILE_SIZE = 256;
 
 function createInfoWindowContent(latLng, zoom) {
@@ -41,6 +43,7 @@ function createInfoWindowContent(latLng, zoom) {
 // mercator projection.
 function project(latLng) {
   let siny = Math.sin((latLng.lat() * Math.PI) / 180);
+
   // Truncating to 0.9999 effectively limits latitude to 89.189. This is
   // about a third of a tile past the edge of the world tile.
   siny = Math.min(Math.max(siny, -0.9999), 0.9999);

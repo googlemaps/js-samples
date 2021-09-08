@@ -28,6 +28,7 @@ function initMap() {
     requestAnimationFrame(animate);
     update(time);
   }
+
   requestAnimationFrame(animate);
 }
 // [END maps_move_camera_ease]

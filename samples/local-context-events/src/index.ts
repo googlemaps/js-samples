@@ -79,6 +79,7 @@ function initMap() {
       map: map,
       zIndex: 30,
     });
+
     // [START maps_js_local_context_events_marker_click]
     marker.addListener("click", () => {
       // Close any open details or existing InfoWindows
@@ -125,6 +126,7 @@ function createInfoWindow(district, marker) {
   const contentDiv = document.createElement("div");
   const nameDiv = document.createElement("div");
   const descriptionDiv = document.createTextNode(district.description);
+
   contentDiv.classList.add("infowindow-content");
   nameDiv.classList.add("title");
   nameDiv.textContent = district.name;

@@ -36,6 +36,7 @@ function initMap(): void {
 
   // Show the lat and lng under the mouse cursor.
   const coordsDiv = document.getElementById("coords") as HTMLElement;
+
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
   map.addListener("mousemove", (event: google.maps.MapMouseEvent) => {
     coordsDiv.textContent =

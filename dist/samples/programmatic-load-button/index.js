@@ -8,8 +8,10 @@ const loader = new Loader({
   apiKey: "YOUR_API_KEY",
   version: "weekly",
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   const wrapper = document.getElementById("wrapper");
+
   wrapper.style.backgroundImage = `url(${url}?center=${center.lat},${center.lng}&zoom=${zoom}&scale=2&size=${wrapper.clientWidth}x${wrapper.clientHeight}&key=YOUR_API_KEY)`;
   wrapper.addEventListener("click", () => {
     wrapper.remove();

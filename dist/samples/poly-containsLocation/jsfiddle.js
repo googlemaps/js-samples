@@ -12,6 +12,7 @@ function initMap() {
     { lat: 32.321, lng: -64.757 },
   ];
   const bermudaTriangle = new google.maps.Polygon({ paths: triangleCoords });
+
   google.maps.event.addListener(map, "click", (e) => {
     const resultColor = google.maps.geometry.poly.containsLocation(
       e.latLng,
@@ -26,6 +27,7 @@ function initMap() {
       ? // A triangle.
         "m 0 -1 l 1 2 -2 0 z"
       : google.maps.SymbolPath.CIRCLE;
+
     new google.maps.Marker({
       position: e.latLng,
       map,

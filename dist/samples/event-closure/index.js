@@ -10,8 +10,10 @@ function initMap() {
     east: 131.044922,
     west: 125.244141,
   };
+
   // Display the area between the location southWest and northEast.
   map.fitBounds(bounds);
+
   // Add 5 markers to map at random locations.
   // For each of these markers, give them a title with their index, and when
   // they are clicked they should open an infowindow with text from a secret
@@ -28,6 +30,7 @@ function initMap() {
       },
       map: map,
     });
+
     attachSecretMessage(marker, secretMessages[i]);
   }
 }
@@ -38,6 +41,7 @@ function attachSecretMessage(marker, secretMessage) {
   const infowindow = new google.maps.InfoWindow({
     content: secretMessage,
   });
+
   marker.addListener("click", () => {
     infowindow.open(marker.get("map"), marker);
   });

@@ -21,31 +21,47 @@ class PuzzleDemo {
   }
   createMenu_() {
     const menuDiv = document.createElement("div");
+
     menuDiv.style.cssText =
       "margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;" +
       "background-color: white; font-size: 14px; font-family: Roboto;" +
       "text-align: center; color: grey;line-height: 32px; overflow: hidden";
+
     const titleDiv = document.createElement("div");
+
     titleDiv.style.cssText =
       "width: 100%; background-color: #4285f4; color: white; font-size: 20px;" +
       "line-height: 40px;margin-bottom: 24px";
     titleDiv.innerText = "Game Options";
+
     const pieceTitleDiv = document.createElement("div");
+
     pieceTitleDiv.innerText = "PIECE:";
     pieceTitleDiv.style.fontWeight = "800";
+
     const pieceDiv = this.pieceDiv_;
+
     pieceDiv.innerText = "0 / " + this.NUM_PIECES_;
+
     const timeTitleDiv = document.createElement("div");
+
     timeTitleDiv.innerText = "TIME:";
     timeTitleDiv.style.fontWeight = "800";
+
     const timeDiv = this.timeDiv_;
+
     timeDiv.innerText = "0.0 seconds";
+
     const difficultyTitleDiv = document.createElement("div");
+
     difficultyTitleDiv.innerText = "DIFFICULTY:";
     difficultyTitleDiv.style.fontWeight = "800";
+
     const difficultySelect = document.createElement("select");
+
     ["Easy", "Moderate", "Hard", "Extreme"].forEach((level) => {
       const option = document.createElement("option");
+
       option.value = level.toLowerCase();
       option.innerText = level;
       difficultySelect.appendChild(option);
@@ -53,12 +69,13 @@ class PuzzleDemo {
     difficultySelect.style.cssText =
       "border: 2px solid lightgrey; background-color: white; color: #4275f4;" +
       "padding: 6px;";
-
     difficultySelect.onchange = () => {
       this.setDifficulty_(difficultySelect.value);
       this.resetGame_();
     };
+
     const resetDiv = document.createElement("div");
+
     resetDiv.innerText = "Reset";
     resetDiv.style.cssText =
       "cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;" +
@@ -78,6 +95,7 @@ class PuzzleDemo {
     if (!this.dataLoaded_) {
       return;
     }
+
     this.start_();
   }
   loadData_() {
@@ -89,8 +107,10 @@ class PuzzleDemo {
         xmlhttpRequest.readyState != XMLHttpRequest.DONE
       )
         return;
+
       this.loadDataComplete_(JSON.parse(xmlhttpRequest.responseText));
     };
+
     xmlhttpRequest.open(
       "GET",
       "https://storage.googleapis.com/mapsdevsite/json/puzzle.json",
@@ -109,7 +129,6 @@ class PuzzleDemo {
    */
   setDifficulty_(difficulty) {
     this.difficulty_ = difficulty;
-
     if (this.map_) {
       this.setDifficultyStyle_();
     }
@@ -177,6 +196,7 @@ class PuzzleDemo {
         },
       ],
     };
+
     this.map_.set("styles", styles[this.difficulty_]);
   }
   resetGame_() {
@@ -188,7 +208,6 @@ class PuzzleDemo {
   }
   setCount_() {
     this.pieceDiv_.innerText = this.count_ + " / " + this.NUM_PIECES_;
-
     if (this.count_ == this.NUM_PIECES_) {
       this.stopClock_();
     }
@@ -198,10 +217,13 @@ class PuzzleDemo {
   }
   startClock_() {
     this.stopClock_();
+
     const timeDiv = this.timeDiv_;
 
     if (timeDiv) timeDiv.textContent = "0.0 seconds";
+
     const t = new Date();
+
     this.timer_ = window.setInterval(() => {
       const diff = new Date().getTime() - t.getTime();
 
@@ -213,6 +235,7 @@ class PuzzleDemo {
     this.countries_.sort(() => {
       return Math.round(Math.random()) - 0.5;
     });
+
     const countries = this.countries_.slice(0, this.NUM_PIECES_);
 
     for (let i = 0, country; (country = countries[i]); i++) {
@@ -233,6 +256,7 @@ class PuzzleDemo {
       paths: country.start.map(google.maps.geometry.encoding.decodePath),
     };
     const poly = new google.maps.Polygon(options);
+
     google.maps.event.addListener(poly, "dragend", () => {
       this.checkPosition_(poly, country);
     });
@@ -270,6 +294,7 @@ class PuzzleDemo {
       zIndex: 1,
       paths: country.end.map(google.maps.geometry.encoding.decodePath),
     };
+
     poly.setOptions(options);
     this.count_++;
     this.setCount_();
@@ -287,6 +312,7 @@ class PuzzleDemo {
     for (let i = 0, poly; (poly = this.polys_[i]); i++) {
       poly.setMap(null);
     }
+
     this.polys_ = [];
   }
 }
@@ -297,5 +323,6 @@ function initMap() {
     center: { lat: 10, lng: 60 },
     zoom: 2,
   });
+
   new PuzzleDemo(map);
 }

@@ -46,6 +46,7 @@ function initMap() {
     },
     tileSize: new google.maps.Size(256, 256),
   });
+
   map.overlayMapTypes.push(imageMapType);
 }
 // [END maps_maptype_image_overlay]

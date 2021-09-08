@@ -9,6 +9,7 @@ function initMap() {
     ],
     maxPlaceCount: 12,
   });
+
   map = localContextMapView.map;
   map.setOptions({
     center: { lat: 51.507307, lng: -0.08114 },

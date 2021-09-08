@@ -36,14 +36,17 @@ const mapOptions = {
 
 function initMap(): void {
   const mapDiv = document.getElementById("map") as HTMLElement;
+
   map = new google.maps.Map(mapDiv, mapOptions);
 
   const scene = new Scene();
 
   const ambientLight = new AmbientLight(0xffffff, 0.75);
+
   scene.add(ambientLight);
 
   const directionalLight = new DirectionalLight(0xffffff, 0.25);
+
   directionalLight.position.set(0, 10, 50);
   scene.add(directionalLight);
 
@@ -69,6 +72,7 @@ function initMap(): void {
         // exit animation loop
         return;
       }
+
       map.moveCamera({ tilt, heading, zoom });
 
       requestAnimationFrame(animate);

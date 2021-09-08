@@ -18,6 +18,7 @@ function initMap() {
   ];
   // Create an info window to share between markers.
   const infoWindow = new google.maps.InfoWindow();
+
   // Create the markers.
   tourStops.forEach(([position, title], i) => {
     const marker = new google.maps.Marker({
@@ -27,6 +28,7 @@ function initMap() {
       label: `${i + 1}`,
       optimized: false,
     });
+
     // Add a click listener for each marker, and set up the info window.
     marker.addListener("click", () => {
       infoWindow.close();

@@ -10,12 +10,14 @@ function initMap() {
     center: { lat: 44.5452, lng: -78.5389 },
     zoom: 9,
   });
+
   const bounds = {
     north: 44.599,
     south: 44.49,
     east: -78.443,
     west: -78.649,
   };
+
   // Define the rectangle and set its editable property to true.
   rectangle = new google.maps.Rectangle({
     bounds: bounds,
@@ -44,6 +46,7 @@ function showNewRect() {
     sw.lat() +
     ", " +
     sw.lng();
+
   // Set the info window's content and position.
   infoWindow.setContent(contentString);
   infoWindow.setPosition(ne);

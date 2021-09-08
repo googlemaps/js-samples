@@ -25,6 +25,7 @@ function initMap() {
     fillColor: "#FF0000",
     fillOpacity: 0.35,
   });
+
   bermudaTriangle.setMap(map);
 }
 // [END maps_polygon_autoclose]

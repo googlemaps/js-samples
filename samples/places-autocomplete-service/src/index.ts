@@ -59,13 +59,16 @@ const initialize = (): void => {
   const autocompleteTypeListElement = document.getElementById(
     "autocomplete-type-list"
   ) as HTMLUListElement;
+
   ["", "establishment", "geocode", "address", "(cities)", "(regions)"].forEach(
     (type) => {
       const item = document.createElement("LI");
+
       item.classList.add("mdc-list-item");
       item.setAttribute("data-value", type);
 
       const itemText = document.createElement("SPAN") as HTMLSpanElement;
+
       itemText.classList.add("mdc-list-item__text");
       itemText.innerText = type;
 

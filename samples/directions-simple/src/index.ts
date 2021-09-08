@@ -25,11 +25,13 @@ function initMap(): void {
       center: { lat: 41.85, lng: -87.65 },
     }
   );
+
   directionsRenderer.setMap(map);
 
   const onChangeHandler = function () {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
   };
+
   (document.getElementById("start") as HTMLElement).addEventListener(
     "change",
     onChangeHandler

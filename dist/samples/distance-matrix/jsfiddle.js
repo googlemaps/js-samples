@@ -21,6 +21,7 @@ function initMap() {
     avoidHighways: false,
     avoidTolls: false,
   };
+
   // put request on page
   document.getElementById("request").innerText = JSON.stringify(
     request,
@@ -35,9 +36,11 @@ function initMap() {
       null,
       2
     );
+
     // show on map
     const originList = response.originAddresses;
     const destinationList = response.destinationAddresses;
+
     deleteMarkers(markersArray);
 
     const showGeocodedAddressOnMap = (asDestination) => {
@@ -56,6 +59,7 @@ function initMap() {
 
     for (let i = 0; i < originList.length; i++) {
       const results = response.rows[i].elements;
+
       geocoder
         .geocode({ address: originList[i] })
         .then(showGeocodedAddressOnMap(false));
@@ -73,5 +77,6 @@ function deleteMarkers(markersArray) {
   for (let i = 0; i < markersArray.length; i++) {
     markersArray[i].setMap(null);
   }
+
   markersArray = [];
 }

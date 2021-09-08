@@ -8,7 +8,9 @@ function initMap() {
     zoom: 3,
   });
   const card = document.getElementById("pac-card");
+
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
   // [START maps_places_autocomplete_creation]
   const center = { lat: 50.064192, lng: -130.605469 };
   // Create a bounding box with sides ~10km away from the center point
@@ -27,29 +29,37 @@ function initMap() {
     types: ["establishment"],
   };
   const autocomplete = new google.maps.places.Autocomplete(input, options);
+
   // [END maps_places_autocomplete_creation]
   // Set initial restriction to the greater list of countries.
   // [START maps_places_autocomplete_countries_multiple]
   autocomplete.setComponentRestrictions({
     country: ["us", "pr", "vi", "gu", "mp"],
   });
+
   // [END maps_places_autocomplete_countries_multiple]
   // [START maps_places_autocomplete_setbounds]
   const southwest = { lat: 5.6108, lng: 136.589326 };
   const northeast = { lat: 61.179287, lng: 2.64325 };
   const newBounds = new google.maps.LatLngBounds(southwest, northeast);
+
   autocomplete.setBounds(newBounds);
+
   // [END maps_places_autocomplete_setbounds]
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById("infowindow-content");
+
   infowindow.setContent(infowindowContent);
+
   const marker = new google.maps.Marker({
     map,
     anchorPoint: new google.maps.Point(0, -29),
   });
+
   autocomplete.addListener("place_changed", () => {
     infowindow.close();
     marker.setVisible(false);
+
     const place = autocomplete.getPlace();
 
     if (!place.geometry || !place.geometry.location) {
@@ -66,8 +76,10 @@ function initMap() {
       map.setCenter(place.geometry.location);
       map.setZoom(17); // Why 17? Because it looks good.
     }
+
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
+
     let address = "";
 
     if (place.address_components) {
@@ -83,6 +95,7 @@ function initMap() {
           "",
       ].join(" ");
     }
+
     infowindowContent.children["place-icon"].src = place.icon;
     infowindowContent.children["place-name"].textContent = place.name;
     infowindowContent.children["place-address"].textContent = address;
@@ -93,10 +106,12 @@ function initMap() {
   // the countries used to restrict the autocomplete search.
   function setupClickListener(id, countries) {
     const radioButton = document.getElementById(id);
+
     radioButton.addEventListener("click", () => {
       autocomplete.setComponentRestrictions({ country: countries });
     });
   }
+
   setupClickListener("changecountry-usa", "us");
   setupClickListener("changecountry-usa-and-uot", [
     "us",

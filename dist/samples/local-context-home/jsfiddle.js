@@ -208,6 +208,7 @@ function initMap() {
     zoom: 14,
     styles,
   });
+
   // Build and add the Autocomplete search bar
   const input = document.getElementById("input");
   const options = {
@@ -217,6 +218,7 @@ function initMap() {
     },
   };
   const autocomplete = new google.maps.places.Autocomplete(input, options);
+
   autocomplete.setFields(["address_components", "geometry", "name"]);
   autocomplete.addListener("place_changed", () => {
     const place = autocomplete.getPlace();
@@ -227,6 +229,7 @@ function initMap() {
       window.alert("No address available for that input.");
       return;
     }
+
     // Recenter the map to the selected address
     map.setOptions({
       center: place.geometry.location,

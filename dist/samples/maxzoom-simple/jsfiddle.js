@@ -22,6 +22,7 @@ function showMaxZoom(e) {
         "The maximum zoom at this location is: " + result.zoom
       );
     }
+
     infoWindow.setPosition(e.latLng);
     infoWindow.open(map);
   });

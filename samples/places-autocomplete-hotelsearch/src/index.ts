@@ -167,6 +167,7 @@ function search() {
             "A".charCodeAt(0) + (i % 26)
           );
           const markerIcon = MARKER_PATH + markerLetter + ".png";
+
           // Use marker animation to drop the icons incrementally on the map.
           markers[i] = new google.maps.Marker({
             position: (results[i].geometry as google.maps.places.PlaceGeometry)
@@ -193,6 +194,7 @@ function clearMarkers() {
       markers[i].setMap(null);
     }
   }
+
   markers = [];
 }
 
@@ -211,6 +213,7 @@ function setAutocompleteCountry() {
     map.setCenter(countries[country].center);
     map.setZoom(countries[country].zoom);
   }
+
   clearResults();
   clearMarkers();
 }
@@ -227,6 +230,7 @@ function addResult(result, i) {
   const markerIcon = MARKER_PATH + markerLetter + ".png";
 
   const tr = document.createElement("tr");
+
   tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
 
   tr.onclick = function () {
@@ -236,10 +240,13 @@ function addResult(result, i) {
   const iconTd = document.createElement("td");
   const nameTd = document.createElement("td");
   const icon = document.createElement("img");
+
   icon.src = markerIcon;
   icon.setAttribute("class", "placeIcon");
   icon.setAttribute("className", "placeIcon");
+
   const name = document.createTextNode(result.name);
+
   iconTd.appendChild(icon);
   nameTd.appendChild(name);
   tr.appendChild(iconTd);
@@ -260,12 +267,14 @@ function clearResults() {
 function showInfoWindow() {
   // @ts-ignore
   const marker = this;
+
   places.getDetails(
     { placeId: marker.placeResult.place_id },
     (place, status) => {
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
         return;
       }
+
       infoWindow.open(map, marker);
       buildIWContent(place);
     }
@@ -302,6 +311,7 @@ function buildIWContent(place) {
       } else {
         ratingHtml += "&#10029;";
       }
+
       (document.getElementById("iw-rating-row") as HTMLElement).style.display =
         "";
       (document.getElementById("iw-rating") as HTMLElement).innerHTML =
@@ -322,6 +332,7 @@ function buildIWContent(place) {
       website = "http://" + place.website + "/";
       fullUrl = website;
     }
+
     (document.getElementById("iw-website-row") as HTMLElement).style.display =
       "";
     (document.getElementById("iw-website") as HTMLElement).textContent =

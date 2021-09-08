@@ -9,12 +9,16 @@ function initService() {
       alert(status);
       return;
     }
+
     predictions.forEach((prediction) => {
       const li = document.createElement("li");
+
       li.appendChild(document.createTextNode(prediction.description));
       document.getElementById("results").appendChild(li);
     });
   };
+
   const service = new google.maps.places.AutocompleteService();
+
   service.getQueryPredictions({ input: "pizza near Syd" }, displaySuggestions);
 }

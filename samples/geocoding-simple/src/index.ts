@@ -41,6 +41,7 @@ function geocodeAddress(
 ) {
   const address = (document.getElementById("address") as HTMLInputElement)
     .value;
+
   geocoder
     .geocode({ address: address })
     .then(({ results }) => {

@@ -4,6 +4,7 @@ function initMap() {
     zoom: 8,
     center: { lat: -33.865, lng: 151.209 },
   });
+
   document.getElementById("submit").addEventListener("click", () => {
     geocodeAddress(geocoder, map);
   });
