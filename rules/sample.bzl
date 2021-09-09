@@ -61,23 +61,16 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
     )
 
     native.genrule(
-        name = "compiled_js",
+        name = "sample_js",
         srcs = [":_compile_outputs", "//:.eslintrc.json"],
-        outs = ["compiled.js"],
+        outs = ["index.js"],
         cmd = "cat $(RULEDIR)/src/index.mjs > $@; " +
               "tmp=$$(mktemp); " +
               "sed '/.*PRESERVE_COMMENT_ABOVE.*/d' $@ > $$tmp && cat $$tmp > $@; " +  # it isn't possible to have tsc preserve some comments
               "sed 's/export const/const/g' $@ > $$tmp && cat $$tmp > $@; " +
               "sed 's/export {.*};//g' $@ > $$tmp && cat $$tmp > $@; " +
               "sed '/^\\s*\\/\\/ @ts-.*/d' $@ > $$tmp && cat $$tmp > $@; " +
-              "sed 's/\\/\\/ @ts-.*//g' $@ > $$tmp && cat $$tmp > $@; ",
-    )
-
-    native.genrule(
-        name = "sample_js",
-        srcs = [":compiled.js", "//:.eslintrc.json"],
-        outs = ["index.js"],
-        cmd = "cat $(location :compiled.js) > $@; " +
+              "sed 's/\\/\\/ @ts-.*//g' $@ > $$tmp && cat $$tmp > $@; " +
               "$(location //rules:remove_apache_license) $@; " +
               "$(location //rules:strip_source_map_url_bin) $@; " +
               "$(location //rules:prettier) --write $@; " +
