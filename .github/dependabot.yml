@@ -20,3 +20,4 @@ updates:
       interval: "daily"
     ignore:
       - dependency-name: "three"
+      - dependency-name: "@types/three"
