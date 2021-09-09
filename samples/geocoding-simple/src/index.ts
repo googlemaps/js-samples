@@ -51,8 +51,6 @@ function initMap(): void {
   response = document.createElement("pre");
   response.id = "response";
   response.innerText = "";
-  // specific class for embedding in the docs
-  response.classList.add("devsite-click-to-copy");
 
   responseDiv = document.createElement("div");
   responseDiv.id = "response-container";

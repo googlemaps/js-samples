@@ -72,7 +72,7 @@
         padding: 0 0.5em;
         font: 400 18px Roboto, Arial, sans-serif;
         overflow: hidden;
-        overflow: scroll;
+        overflow: auto;
         max-height: 50%;
         max-width: 90%;
         background-color: rgba(255, 255, 255, 0.95);
@@ -125,8 +125,6 @@
         response = document.createElement("pre");
         response.id = "response";
         response.innerText = "";
-        // specific class for embedding in the docs
-        response.classList.add("devsite-click-to-copy");
         responseDiv = document.createElement("div");
         responseDiv.id = "response-container";
         responseDiv.appendChild(response);
