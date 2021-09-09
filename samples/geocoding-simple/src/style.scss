@@ -34,7 +34,7 @@ input[type="button"] {
 
 #response-container {
   @include map-control;
-  overflow: scroll;
+  overflow: auto;
   max-height: 50%;
   max-width: 90%;
   background-color: rgba(255, 255, 255, 0.95);
