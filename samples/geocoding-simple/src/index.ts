@@ -61,7 +61,7 @@ function initMap(): void {
   instructionsElement.id = "instructions";
 
   instructionsElement.innerHTML =
-    "<strong>Instructions</strong>: Enter an address in the input to geocode or click on the map for a reverse geocode.";
+    "<strong>Instructions</strong>: Enter an address in the textbox to geocode or click on the map to reverse geocode.";
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(inputText);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(submitButton);
