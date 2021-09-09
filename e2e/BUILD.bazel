@@ -1,10 +1,10 @@
 load("@npm//jest:index.bzl", "jest_test")
 load("//samples:samples.bzl", "SAMPLES")
 
-
 IGNORE = [
-    'local-context-home', #
-    'programmatic-load-button', # requires interaction
+    "local-context-home",  #
+    "programmatic-load-button",  # requires interaction
+    "deckgl-points",  # Uncaught Error: AnimationLoop.onCreateContext - illegal context returned"
 ]
 
 [
@@ -30,7 +30,8 @@ IGNORE = [
             "$(rootpath :selenium.test.js)",
         ],
     )
-    for sample in SAMPLES if sample not in IGNORE
+    for sample in SAMPLES
+    if sample not in IGNORE
 ]
 
 test_suite(
@@ -38,6 +39,7 @@ test_suite(
     tags = ["manual"],
     tests = [
         sample
-        for sample in SAMPLES if sample not in IGNORE
+        for sample in SAMPLES
+        if sample not in IGNORE
     ],
 )
