@@ -15,8 +15,8 @@ function initMap() {
       label: labels[i % labels.length],
     });
   });
-  // Add a marker clusterer to manage the markers.
 
+  // Add a marker clusterer to manage the markers.
   new MarkerClusterer(map, markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
