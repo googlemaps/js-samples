@@ -5,7 +5,6 @@ let map;
 // Initialize and add the map
 function initMap() {
   let markers = [];
-
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
 
   map = new google.maps.Map(document.getElementById("map"), {
@@ -15,8 +14,8 @@ function initMap() {
   });
 
   const menuList = document.querySelector(".mdc-list");
-  // Add the behaviors to the select options
 
+  // Add the behaviors to the select options
   for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {
     const item = document.createElement("LI");
 
