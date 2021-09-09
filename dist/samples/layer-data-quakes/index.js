@@ -8,10 +8,12 @@ function initMap() {
     styles: mapStyle,
   });
   map.data.setStyle(styleFeature);
+
   // Get the earthquake data (JSONP format)
   // This feed is a copy from the USGS feed, you can find the originals here:
   //   http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
   const script = document.createElement("script");
+
   script.setAttribute(
     "src",
     "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
@@ -56,6 +58,7 @@ function interpolateHsl(lowHsl, highHsl, fraction) {
   }
   return "hsl(" + color[0] + "," + color[1] + "%," + color[2] + "%)";
 }
+
 const mapStyle = [
   {
     featureType: "all",

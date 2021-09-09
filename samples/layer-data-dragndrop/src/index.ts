@@ -28,10 +28,12 @@ function initMap(): void {
 function loadGeoJsonString(geoString: string) {
   try {
     const geojson = JSON.parse(geoString) as any;
+
     map.data.addGeoJson(geojson);
   } catch (e) {
     alert("Not a GeoJSON file!");
   }
+
   zoom(map);
 }
 
@@ -40,6 +42,7 @@ function loadGeoJsonString(geoString: string) {
  */
 function zoom(map: google.maps.Map) {
   const bounds = new google.maps.LatLngBounds();
+
   map.data.forEach((feature) => {
     const geometry = feature.getGeometry();
 
@@ -111,6 +114,7 @@ function handleDrop(e: DragEvent) {
   e.preventDefault();
   e.stopPropagation();
   removeClassFromDropTarget(e);
+
   const files = (e.dataTransfer as DataTransfer).files;
 
   if (files.length) {
@@ -126,12 +130,14 @@ function handleDrop(e: DragEvent) {
       reader.onerror = function (e) {
         console.error("reading failed");
       };
+
       reader.readAsText(file);
     }
   } else {
     // process non-file (e.g. text or html) content being dropped
     // grab the plain text version of the data
     const plainText = (e.dataTransfer as DataTransfer).getData("text/plain");
+
     console.log(plainText);
 
     if (plainText) {

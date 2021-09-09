@@ -26,6 +26,7 @@ function initMap(): void {
       gestureHandling: "greedy",
     }
   );
+
   // [END maps_controls_basic_map_script_snippet]
   new google.maps.Marker({
     position: locationRio,

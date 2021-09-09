@@ -39,10 +39,12 @@ function initMap(): void {
   // @ts-ignore Beta functionality
   for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {
     const item = document.createElement("LI");
+
     item.classList.add("mdc-list-item");
     item.setAttribute("data-value", key);
 
     const itemText = document.createElement("SPAN") as HTMLSpanElement;
+
     itemText.classList.add("mdc-list-item__text");
     itemText.innerText = value as string;
 

@@ -13,19 +13,25 @@ function initMap() {
   });
   const input = document.getElementById("pac-input");
   const autocomplete = new google.maps.places.Autocomplete(input);
+
   autocomplete.bindTo("bounds", map);
   // Specify just the place data fields that you need.
   autocomplete.setFields(["place_id", "geometry", "formatted_address", "name"]);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById("infowindow-content");
+
   infowindow.setContent(infowindowContent);
+
   const marker = new google.maps.Marker({ map: map });
+
   marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
   autocomplete.addListener("place_changed", () => {
     infowindow.close();
+
     const place = autocomplete.getPlace();
 
     if (!place.geometry || !place.geometry.location) {
@@ -38,6 +44,7 @@ function initMap() {
       map.setCenter(place.geometry.location);
       map.setZoom(17);
     }
+
     // Set the position of the marker using the place ID and location.
     marker.setPlace({
       placeId: place.place_id,

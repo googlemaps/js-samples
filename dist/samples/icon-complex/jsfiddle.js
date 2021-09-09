@@ -6,8 +6,10 @@ function initMap() {
     zoom: 10,
     center: { lat: -33.9, lng: 151.2 },
   });
+
   setMarkers(map);
 }
+
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
 const beaches = [
@@ -43,6 +45,7 @@ function setMarkers(map) {
 
   for (let i = 0; i < beaches.length; i++) {
     const beach = beaches[i];
+
     new google.maps.Marker({
       position: { lat: beach[1], lng: beach[2] },
       map,

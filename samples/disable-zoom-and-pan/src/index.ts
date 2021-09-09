@@ -27,6 +27,7 @@ function initMap(): void {
       zoomControl: false,
     }
   );
+
   // [END maps_disable_zoom_and_pan_script_snippet]
   new google.maps.Marker({
     position: locationRio,

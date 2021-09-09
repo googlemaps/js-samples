@@ -7,7 +7,6 @@ function initMap() {
     center: { lat: -33.9, lng: 151.1 },
     zoom: 10,
   });
-
   /**
    * A customized popup on the map.
    */
@@ -18,8 +17,10 @@ function initMap() {
       super();
       this.position = position;
       content.classList.add("popup-bubble");
+
       // This zero-height div is positioned at the bottom of the bubble.
       const bubbleAnchor = document.createElement("div");
+
       bubbleAnchor.classList.add("popup-bubble-anchor");
       bubbleAnchor.appendChild(content);
       // This zero-height div is positioned at the bottom of the tip.
@@ -60,6 +61,7 @@ function initMap() {
       }
     }
   }
+
   popup = new Popup(
     new google.maps.LatLng(-33.866, 151.196),
     document.getElementById("content")

@@ -8,11 +8,14 @@ function initMap() {
     center: { lat: 0, lng: 0 },
     mapTypeControl: false,
   });
+
   initGallPeters();
   map.mapTypes.set("gallPeters", gallPetersMapType);
   map.setMapTypeId("gallPeters");
+
   // Show the lat and lng under the mouse cursor.
   const coordsDiv = document.getElementById("coords");
+
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(coordsDiv);
   map.addListener("mousemove", (event) => {
     coordsDiv.textContent =
@@ -31,11 +34,13 @@ function initMap() {
   });
   map.data.addGeoJson(cities);
 }
+
 let gallPetersMapType;
 
 function initGallPeters() {
   const GALL_PETERS_RANGE_X = 800;
   const GALL_PETERS_RANGE_Y = 512;
+
   // Fetch Gall-Peters tiles stored locally on our server.
   gallPetersMapType = new google.maps.ImageMapType({
     getTileUrl: function (coord, zoom) {
@@ -82,6 +87,7 @@ function initGallPeters() {
     },
   };
 }
+
 // GeoJSON, describing the locations and names of some cities.
 const cities = {
   type: "FeatureCollection",

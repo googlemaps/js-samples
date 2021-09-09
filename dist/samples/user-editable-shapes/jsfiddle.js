@@ -15,5 +15,6 @@ function initMap() {
     bounds: bounds,
     editable: true,
   });
+
   rectangle.setMap(map);
 }

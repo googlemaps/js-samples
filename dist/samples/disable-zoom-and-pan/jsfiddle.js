@@ -6,6 +6,7 @@ function initMap() {
     gestureHandling: "none",
     zoomControl: false,
   });
+
   new google.maps.Marker({
     position: locationRio,
     map,

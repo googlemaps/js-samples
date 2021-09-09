@@ -51,6 +51,7 @@ function initMap(): void {
     fillColor: "#FFC107",
     fillOpacity: 0.35,
   });
+
   bermudaTriangle.setMap(map);
 }
 // [END maps_polygon_hole]

@@ -27,6 +27,7 @@ function initMap(): void {
   );
 
   const coordInfoWindow = new google.maps.InfoWindow();
+
   coordInfoWindow.setContent(createInfoWindowContent(chicago, map.getZoom()!));
   coordInfoWindow.setPosition(chicago);
   coordInfoWindow.open(map);

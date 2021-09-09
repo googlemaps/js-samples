@@ -211,6 +211,7 @@ function initMap() {
     zoom: 14,
     styles,
   });
+
   // [START maps_js_local_context_home_autocomplete]
   // Build and add the Autocomplete search bar
   const input = document.getElementById("input");
@@ -221,6 +222,7 @@ function initMap() {
     },
   };
   const autocomplete = new google.maps.places.Autocomplete(input, options);
+
   autocomplete.setFields(["address_components", "geometry", "name"]);
   // [END maps_js_local_context_home_autocomplete]
   autocomplete.addListener("place_changed", () => {
@@ -232,6 +234,7 @@ function initMap() {
       window.alert("No address available for that input.");
       return;
     }
+
     // Recenter the map to the selected address
     map.setOptions({
       center: place.geometry.location,

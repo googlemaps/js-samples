@@ -14,5 +14,6 @@ function initialize() {
       },
     }
   );
+
   map.setStreetView(panorama);
 }

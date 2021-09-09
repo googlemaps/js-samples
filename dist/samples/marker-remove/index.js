@@ -7,6 +7,7 @@ let markers = [];
 
 function initMap() {
   const haightAshbury = { lat: 37.769, lng: -122.446 };
+
   map = new google.maps.Map(document.getElementById("map"), {
     zoom: 12,
     center: haightAshbury,
@@ -36,6 +37,7 @@ function addMarker(position) {
     position,
     map,
   });
+
   markers.push(marker);
 }
 

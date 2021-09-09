@@ -4,6 +4,7 @@ function initMap() {
     zoom: 18,
     center: origin,
   });
+
   new ClickEventHandler(map, origin);
 }
 
@@ -34,7 +35,6 @@ class ClickEventHandler {
   }
   handleClick(event) {
     console.log("You clicked on: " + event.latLng);
-
     // If the event has a placeId, use it.
     if (isIconMouseEvent(event)) {
       console.log("You clicked on place:" + event.placeId);
@@ -43,7 +43,6 @@ class ClickEventHandler {
       // If you call stop here when there is no placeId you will prevent some
       // other map click event handlers from receiving the event.
       event.stop();
-
       if (event.placeId) {
         this.calculateAndDisplayRoute(event.placeId);
         this.getPlaceInformation(event.placeId);
@@ -52,6 +51,7 @@ class ClickEventHandler {
   }
   calculateAndDisplayRoute(placeId) {
     const me = this;
+
     this.directionsService
       .route({
         origin: this.origin,
@@ -65,6 +65,7 @@ class ClickEventHandler {
   }
   getPlaceInformation(placeId) {
     const me = this;
+
     this.placesService.getDetails({ placeId: placeId }, (place, status) => {
       if (
         status === "OK" &&

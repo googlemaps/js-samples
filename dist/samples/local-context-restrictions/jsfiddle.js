@@ -15,6 +15,7 @@ function initMap() {
     locationRestriction: bigBounds,
     directionsOptions: { origin: center },
   });
+
   map = localContextMapView.map;
   new google.maps.Marker({ position: center, map: map });
   map.setOptions({

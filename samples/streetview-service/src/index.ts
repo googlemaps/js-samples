@@ -71,6 +71,7 @@ function processSVData({ data }: google.maps.StreetViewResponse) {
 
   marker.addListener("click", () => {
     const markerPanoID = location.pano;
+
     // Set the Pano to use the passed panoID.
     panorama.setPano(markerPanoID as string);
     panorama.setPov({

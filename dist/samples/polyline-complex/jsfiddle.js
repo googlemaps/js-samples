@@ -22,6 +22,7 @@ function initMap() {
 // Handles click events on a map, and adds a new point to the Polyline.
 function addLatLng(event) {
   const path = poly.getPath();
+
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear.
   path.push(event.latLng);

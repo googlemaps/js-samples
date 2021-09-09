@@ -33,5 +33,6 @@ function initMap() {
       }),
     ],
   });
+
   deckOverlay.setMap(map);
 }

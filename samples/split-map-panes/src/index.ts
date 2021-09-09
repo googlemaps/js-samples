@@ -69,6 +69,7 @@ function initMap(): void {
         if (m === changedMap) {
           return;
         }
+
         m.setCenter(center);
         m.setZoom(zoom);
       });
@@ -93,6 +94,7 @@ function initMap(): void {
   function handleContainerResize() {
     const width = (document.getElementById("container") as HTMLElement)
       .offsetWidth;
+
     (
       document.getElementById("map-left") as HTMLElement
     ).style.width = `${width}px`;

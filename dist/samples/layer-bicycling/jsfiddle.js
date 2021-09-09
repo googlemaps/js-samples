@@ -4,5 +4,6 @@ function initMap() {
     center: { lat: 42.3726399, lng: -71.1096528 },
   });
   const bikeLayer = new google.maps.BicyclingLayer();
+
   bikeLayer.setMap(map);
 }

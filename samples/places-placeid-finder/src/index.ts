@@ -36,6 +36,7 @@ function initMap(): void {
   const input = document.getElementById("pac-input") as HTMLInputElement;
 
   const autocomplete = new google.maps.places.Autocomplete(input);
+
   autocomplete.bindTo("bounds", map);
 
   // Specify just the place data fields that you need.
@@ -47,6 +48,7 @@ function initMap(): void {
   const infowindowContent = document.getElementById(
     "infowindow-content"
   ) as HTMLElement;
+
   infowindow.setContent(infowindowContent);
 
   const marker = new google.maps.Marker({ map: map });

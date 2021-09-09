@@ -4,5 +4,6 @@ function initMap() {
     center: { lat: 34.04924594193164, lng: -118.24104309082031 },
   });
   const trafficLayer = new google.maps.TrafficLayer();
+
   trafficLayer.setMap(map);
 }

@@ -11,6 +11,7 @@ function initMap() {
     ],
     maxPlaceCount: 12,
   });
+
   // [END maps_js_local_context_basic_instantiation]
   map = localContextMapView.map;
   // [START maps_js_local_context_basic_set_options]

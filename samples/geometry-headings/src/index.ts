@@ -51,6 +51,7 @@ function initMap(): void {
     marker1.getPosition() as google.maps.LatLng,
     marker2.getPosition() as google.maps.LatLng
   );
+
   map.fitBounds(bounds);
 
   google.maps.event.addListener(marker1, "position_changed", update);
@@ -79,12 +80,15 @@ function update() {
     marker1.getPosition() as google.maps.LatLng,
     marker2.getPosition() as google.maps.LatLng,
   ];
+
   poly.setPath(path);
   geodesicPoly.setPath(path);
+
   const heading = google.maps.geometry.spherical.computeHeading(
     path[0],
     path[1]
   );
+
   (document.getElementById("heading") as HTMLInputElement).value =
     String(heading);
   (document.getElementById("origin") as HTMLInputElement).value = String(

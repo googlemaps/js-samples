@@ -10,7 +10,9 @@ function initMap() {
     zoom: 6,
   });
   infoWindow = new google.maps.InfoWindow();
+
   const locationButton = document.createElement("button");
+
   locationButton.textContent = "Pan to Current Location";
   locationButton.classList.add("custom-map-control-button");
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(locationButton);
@@ -23,6 +25,7 @@ function initMap() {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           };
+
           infoWindow.setPosition(pos);
           infoWindow.setContent("Location found.");
           infoWindow.open(map);

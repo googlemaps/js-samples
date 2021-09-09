@@ -25,6 +25,7 @@ function initMap(): void {
       center: { lat: 37.77, lng: -122.447 },
     }
   );
+
   directionsRenderer.setMap(map);
 
   calculateAndDisplayRoute(directionsService, directionsRenderer);

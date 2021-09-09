@@ -19,6 +19,7 @@ function initZoomControl(map) {
   document.querySelector(".zoom-control-out").onclick = function () {
     map.setZoom(map.getZoom() - 1);
   };
+
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
     document.querySelector(".zoom-control")
   );
@@ -38,14 +39,15 @@ function initMapTypeControl(map) {
     mapTypeControlDiv.classList.add("maptype-control-is-satellite");
     map.setMapTypeId("hybrid");
   };
+
   map.controls[google.maps.ControlPosition.LEFT_TOP].push(mapTypeControlDiv);
 }
 
 function initFullscreenControl(map) {
   const elementToSendFullscreen = map.getDiv().firstChild;
   const fullscreenControl = document.querySelector(".fullscreen-control");
-  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
 
+  map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);
   fullscreenControl.onclick = function () {
     if (isFullscreen(elementToSendFullscreen)) {
       exitFullscreen();

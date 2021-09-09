@@ -6,6 +6,7 @@ function initMap() {
     zoom: 6,
     center: { lat: 41.85, lng: -87.65 },
   });
+
   directionsRenderer.setMap(map);
   document.getElementById("submit").addEventListener("click", () => {
     calculateAndDisplayRoute(directionsService, directionsRenderer);
@@ -24,6 +25,7 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
       });
     }
   }
+
   directionsService
     .route({
       origin: document.getElementById("start").value,
@@ -34,13 +36,16 @@ function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     })
     .then((response) => {
       directionsRenderer.setDirections(response);
+
       const route = response.routes[0];
       const summaryPanel = document.getElementById("directions-panel");
+
       summaryPanel.innerHTML = "";
 
       // For each route, display summary information.
       for (let i = 0; i < route.legs.length; i++) {
         const routeSegment = i + 1;
+
         summaryPanel.innerHTML +=
           "<b>Route Segment: " + routeSegment + "</b><br>";
         summaryPanel.innerHTML += route.legs[i].start_address + " to ";

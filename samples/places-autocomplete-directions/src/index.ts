@@ -61,12 +61,14 @@ class AutocompleteDirectionsHandler {
     ) as HTMLSelectElement;
 
     const originAutocomplete = new google.maps.places.Autocomplete(originInput);
+
     // Specify just the place data fields that you need.
     originAutocomplete.setFields(["place_id"]);
 
     const destinationAutocomplete = new google.maps.places.Autocomplete(
       destinationInput
     );
+
     // Specify just the place data fields that you need.
     destinationAutocomplete.setFields(["place_id"]);
 
@@ -123,6 +125,7 @@ class AutocompleteDirectionsHandler {
       } else {
         this.destinationPlaceId = place.place_id;
       }
+
       this.route();
     });
   }
@@ -131,6 +134,7 @@ class AutocompleteDirectionsHandler {
     if (!this.originPlaceId || !this.destinationPlaceId) {
       return;
     }
+
     const me = this;
 
     this.directionsService.route(

@@ -25,10 +25,12 @@ function initMap(): void {
     }
   );
   const geocoder = new google.maps.Geocoder();
+
   geocoder
     .geocode({ address: "Toledo" })
     .then((response) => {
       const position = response.results[0].geometry.location;
+
       map.setCenter(position);
       new google.maps.Marker({
         map,

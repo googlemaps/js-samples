@@ -30,6 +30,7 @@ function initPano() {
 
   panorama.addListener("pano_changed", () => {
     const panoCell = document.getElementById("pano-cell") as HTMLElement;
+
     panoCell.innerHTML = panorama.getPano();
   });
 
@@ -39,14 +40,20 @@ function initPano() {
     while (linksTable.hasChildNodes()) {
       linksTable.removeChild(linksTable.lastChild as ChildNode);
     }
+
     const links = panorama.getLinks();
 
     for (const i in links) {
       const row = document.createElement("tr");
+
       linksTable.appendChild(row);
+
       const labelCell = document.createElement("td");
+
       labelCell.innerHTML = "<b>Link: " + i + "</b>";
+
       const valueCell = document.createElement("td");
+
       valueCell.innerHTML = links[i].description as string;
       linksTable.appendChild(labelCell);
       linksTable.appendChild(valueCell);
@@ -57,6 +64,7 @@ function initPano() {
     const positionCell = document.getElementById(
       "position-cell"
     ) as HTMLElement;
+
     (positionCell.firstChild as HTMLElement).nodeValue =
       panorama.getPosition() + "";
   });
@@ -64,6 +72,7 @@ function initPano() {
   panorama.addListener("pov_changed", () => {
     const headingCell = document.getElementById("heading-cell") as HTMLElement;
     const pitchCell = document.getElementById("pitch-cell") as HTMLElement;
+
     (headingCell.firstChild as HTMLElement).nodeValue =
       panorama.getPov().heading + "";
     (pitchCell.firstChild as HTMLElement).nodeValue =

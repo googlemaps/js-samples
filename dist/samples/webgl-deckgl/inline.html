@@ -47,6 +47,7 @@
         const heading = 0;
         const tilt = 0;
         const mapElement = document.getElementById("map");
+
         map = new google.maps.Map(mapElement, {
           zoom: zoom,
           center: new google.maps.LatLng(lat, lng),
@@ -54,6 +55,7 @@
           tilt: tilt,
           mapId: "b1beacae401d047c",
         });
+
         const tooltipElement = document.getElementById("tooltip");
 
         function setTooltip({ x, y, object }) {
@@ -66,6 +68,7 @@
             tooltipElement.style.display = "none";
           }
         }
+
         const eventListeners = {
           click: null,
           dblclick: null,
@@ -93,6 +96,7 @@
           onRemove() {}
           onContextRestored(gl) {
             const map = this.getMap();
+
             this.deck = new deck.Deck({
               canvas: this.canvas,
               initialViewState: {
@@ -121,6 +125,7 @@
             if (!deck || !deck.layerManager) {
               return;
             }
+
             const camParams = coordinateTransformer.getCameraParams();
             const width = this.canvas.clientWidth;
             const height = this.canvas.clientHeight;
@@ -131,6 +136,7 @@
             const bearing = camParams.heading;
             const latitude = camParams.lat;
             const longitude = camParams.lng;
+
             this.canvas.style.left = `${left}px`;
             this.canvas.style.top = `${top}px`;
             deck.setProps({
@@ -206,9 +212,11 @@
               default:
                 return;
             }
+
             this.requestRedraw();
           }
         }
+
         const layers = [
           new deck.GeoJsonLayer({
             id: "airports",
@@ -236,6 +244,7 @@
           }),
         ];
         const props = {};
+
         webGLOverlay = new DeckGLOverlay(mapElement, layers, props);
         webGLOverlay.setMap(map);
       }

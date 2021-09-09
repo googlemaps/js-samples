@@ -25,6 +25,7 @@ function initMap(): void {
       center: origin,
     }
   );
+
   new ClickEventHandler(map, origin);
 }
 
@@ -81,6 +82,7 @@ class ClickEventHandler {
 
   calculateAndDisplayRoute(placeId: string) {
     const me = this;
+
     this.directionsService
       .route({
         origin: this.origin,
@@ -95,6 +97,7 @@ class ClickEventHandler {
 
   getPlaceInformation(placeId: string) {
     const me = this;
+
     this.placesService.getDetails(
       { placeId: placeId },
       (

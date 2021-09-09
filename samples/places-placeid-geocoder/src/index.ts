@@ -46,22 +46,26 @@ function initMap(): void {
   const infowindowContent = document.getElementById(
     "infowindow-content"
   ) as HTMLElement;
+
   infowindow.setContent(infowindowContent);
 
   const geocoder = new google.maps.Geocoder();
 
   const marker = new google.maps.Marker({ map: map });
+
   marker.addListener("click", () => {
     infowindow.open(map, marker);
   });
 
   autocomplete.addListener("place_changed", () => {
     infowindow.close();
+
     const place = autocomplete.getPlace();
 
     if (!place.place_id) {
       return;
     }
+
     geocoder
       .geocode({ placeId: place.place_id })
       .then(({ results }) => {

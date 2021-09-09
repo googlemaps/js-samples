@@ -20,6 +20,7 @@ function initMap() {
   });
   // Create an ElevationService.
   const elevator = new google.maps.ElevationService();
+
   // Draw the path, using the Visualization API and the Elevation service.
   displayPathElevation(path, elevator, map);
 }
@@ -43,6 +44,7 @@ function displayPathElevation(path, elevator, map) {
     .then(plotElevation)
     .catch((e) => {
       const chartDiv = document.getElementById("elevation_chart");
+
       // Show the error code inside the chartDiv.
       chartDiv.innerHTML = "Cannot show elevation: request failed because " + e;
     });
@@ -59,12 +61,14 @@ function plotElevation({ results }) {
   // column here does double duty as distance along the
   // X axis.
   const data = new google.visualization.DataTable();
+
   data.addColumn("string", "Sample");
   data.addColumn("number", "Elevation");
 
   for (let i = 0; i < results.length; i++) {
     data.addRow(["", results[i].elevation]);
   }
+
   // Draw the chart using the data within its DIV.
   chart.draw(data, {
     height: 150,

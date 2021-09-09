@@ -91,6 +91,7 @@ function addPlaces(
       });
 
       const li = document.createElement("li");
+
       li.textContent = place.name!;
       placesList.appendChild(li);
 

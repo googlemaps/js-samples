@@ -39,6 +39,7 @@ function initMap(): void {
 
       // This zero-height div is positioned at the bottom of the bubble.
       const bubbleAnchor = document.createElement("div");
+
       bubbleAnchor.classList.add("popup-bubble-anchor");
       bubbleAnchor.appendChild(content);
 

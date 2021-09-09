@@ -3,10 +3,12 @@ function initMap() {
     zoom: 8,
   });
   const geocoder = new google.maps.Geocoder();
+
   geocoder
     .geocode({ address: "Toledo" })
     .then((response) => {
       const position = response.results[0].geometry.location;
+
       map.setCenter(position);
       new google.maps.Marker({
         map,

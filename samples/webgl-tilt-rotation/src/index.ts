@@ -40,6 +40,7 @@ function initMap(): void {
   buttons.forEach(([text, mode, amount, position]) => {
     const controlDiv = document.createElement("div");
     const controlUI = document.createElement("button");
+
     controlUI.classList.add("ui-button");
     controlUI.innerText = `${text}`;
     controlUI.addEventListener("click", () => {

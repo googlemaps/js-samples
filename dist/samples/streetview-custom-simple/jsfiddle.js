@@ -6,6 +6,7 @@ function initPano() {
     document.getElementById("map"),
     { pano: "reception", visible: true }
   );
+
   panorama.registerPanoProvider(getCustomPanorama);
 }
 

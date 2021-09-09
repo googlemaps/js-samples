@@ -77,7 +77,9 @@ function initMap(): void {
       features.forEach(
         ({ attributes: { NAME: name }, geometry: { x: lng, y: lat } }) => {
           stores.push({ name, location: { lat, lng }, address: "" });
+
           const marker = new google.maps.Marker({ position: { lat, lng } });
+
           marker.addListener("click", () => {
             // Update the list of nearby locations in the sidebar
             update(new google.maps.LatLng({ lat, lng }));
@@ -130,6 +132,7 @@ function initMap(): void {
 
 function renderCards(stores: Store[]): void {
   const cardsDiv = document.getElementById("cards") as HTMLElement;
+
   cardsDiv.innerHTML = "";
 
   stores
@@ -137,6 +140,7 @@ function renderCards(stores: Store[]): void {
     .forEach(
       ({ name, location, address, travelDistanceText, travelDurationText }) => {
         const card = document.createElement("div");
+
         card.classList.add("mdc-card", "mdc-card--outlined");
 
         card.innerHTML = `
@@ -214,6 +218,7 @@ function getDistances(
 
 function placeChanged() {
   autocompleteInput.disabled = true;
+
   const placeResult = autocomplete.getPlace();
   const location = (placeResult.geometry as google.maps.places.PlaceGeometry)
     .location;

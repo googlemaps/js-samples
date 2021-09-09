@@ -7,6 +7,7 @@ function initMap() {
     center: locationRio,
     gestureHandling: "cooperative",
   });
+
   // [END maps_conserve_map_script_snippet]
   new google.maps.Marker({
     position: locationRio,

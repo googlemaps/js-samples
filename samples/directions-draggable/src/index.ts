@@ -83,6 +83,7 @@ function computeTotalDistance(result: google.maps.DirectionsResult) {
   for (let i = 0; i < myroute.legs.length; i++) {
     total += myroute.legs[i]!.distance!.value;
   }
+
   total = total / 1000;
   (document.getElementById("total") as HTMLElement).innerHTML = total + " km";
 }

@@ -8,6 +8,7 @@ function initMap() {
     scaleControl: false,
     streetViewControl: false,
   };
+
   // instantiate the map on the left with control positioning
   mapLeft = new google.maps.Map(document.getElementById("map-left"), {
     ...mapOptions,
@@ -46,10 +47,12 @@ function initMap() {
         if (m === changedMap) {
           return;
         }
+
         m.setCenter(center);
         m.setZoom(zoom);
       });
     }
+
     maps.forEach((m) => {
       m.addListener("bounds_changed", () => {
         const changedCenter = m.getCenter();
@@ -63,13 +66,16 @@ function initMap() {
       });
     });
   }
+
   sync(mapLeft, mapRight);
 
   function handleContainerResize() {
     const width = document.getElementById("container").offsetWidth;
+
     document.getElementById("map-left").style.width = `${width}px`;
     document.getElementById("map-right").style.width = `${width}px`;
   }
+
   // trigger to set map container size since using absolute
   handleContainerResize();
   // add event listener

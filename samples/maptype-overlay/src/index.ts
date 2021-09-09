@@ -39,6 +39,7 @@ class CoordMapType {
     ownerDocument: Document
   ): HTMLElement {
     const div = ownerDocument.createElement("div");
+
     div.innerHTML = String(coord);
     div.style.width = this.tileSize.width + "px";
     div.style.height = this.tileSize.height + "px";

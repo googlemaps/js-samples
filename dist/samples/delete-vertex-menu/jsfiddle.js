@@ -31,7 +31,9 @@ function initialize() {
       this.div_ = document.createElement("div");
       this.div_.className = "delete-menu";
       this.div_.innerHTML = "Delete";
+
       const menu = this;
+
       google.maps.event.addDomListener(this.div_, "click", () => {
         menu.removeVertex();
       });
@@ -39,6 +41,7 @@ function initialize() {
     onAdd() {
       const deleteMenu = this;
       const map = this.getMap();
+
       this.getPanes().floatPane.appendChild(this.div_);
       // mousedown anywhere on the map except on the menu div will close the
       // menu.
@@ -57,6 +60,7 @@ function initialize() {
       if (this.divListener_) {
         google.maps.event.removeListener(this.divListener_);
       }
+
       this.div_.parentNode.removeChild(this.div_);
       // clean up
       this.set("position", null);
@@ -73,7 +77,9 @@ function initialize() {
       if (!position || !projection) {
         return;
       }
+
       const point = projection.fromLatLngToDivPixel(position);
+
       this.div_.style.top = point.y + "px";
       this.div_.style.left = point.x + "px";
     }
@@ -98,16 +104,20 @@ function initialize() {
         this.close();
         return;
       }
+
       path.removeAt(vertex);
       this.close();
     }
   }
+
   const deleteMenu = new DeleteMenu();
+
   google.maps.event.addListener(flightPath, "contextmenu", (e) => {
     // Check if click was on a vertex control point
     if (e.vertex == undefined) {
       return;
     }
+
     deleteMenu.open(map, flightPath.getPath(), e.vertex);
   });
 }

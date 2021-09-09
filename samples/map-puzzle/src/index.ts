@@ -48,33 +48,47 @@ class PuzzleDemo {
 
   private createMenu_() {
     const menuDiv = document.createElement("div");
+
     menuDiv.style.cssText =
       "margin: 40px 10px; border-radius: 8px; height: 320px; width: 180px;" +
       "background-color: white; font-size: 14px; font-family: Roboto;" +
       "text-align: center; color: grey;line-height: 32px; overflow: hidden";
+
     const titleDiv = document.createElement("div");
+
     titleDiv.style.cssText =
       "width: 100%; background-color: #4285f4; color: white; font-size: 20px;" +
       "line-height: 40px;margin-bottom: 24px";
     titleDiv.innerText = "Game Options";
+
     const pieceTitleDiv = document.createElement("div");
+
     pieceTitleDiv.innerText = "PIECE:";
     pieceTitleDiv.style.fontWeight = "800";
 
     const pieceDiv = this.pieceDiv_;
+
     pieceDiv.innerText = "0 / " + this.NUM_PIECES_;
+
     const timeTitleDiv = document.createElement("div");
+
     timeTitleDiv.innerText = "TIME:";
     timeTitleDiv.style.fontWeight = "800";
 
     const timeDiv = this.timeDiv_;
+
     timeDiv.innerText = "0.0 seconds";
+
     const difficultyTitleDiv = document.createElement("div");
+
     difficultyTitleDiv.innerText = "DIFFICULTY:";
     difficultyTitleDiv.style.fontWeight = "800";
+
     const difficultySelect = document.createElement("select");
+
     ["Easy", "Moderate", "Hard", "Extreme"].forEach((level) => {
       const option = document.createElement("option");
+
       option.value = level.toLowerCase();
       option.innerText = level;
       difficultySelect.appendChild(option);
@@ -87,7 +101,9 @@ class PuzzleDemo {
       this.setDifficulty_(difficultySelect.value);
       this.resetGame_();
     };
+
     const resetDiv = document.createElement("div");
+
     resetDiv.innerText = "Reset";
     resetDiv.style.cssText =
       "cursor: pointer; border-top: 1px solid lightgrey; margin-top: 18px;" +
@@ -108,6 +124,7 @@ class PuzzleDemo {
     if (!this.dataLoaded_) {
       return;
     }
+
     this.start_();
   }
 
@@ -120,8 +137,10 @@ class PuzzleDemo {
         xmlhttpRequest.readyState != XMLHttpRequest.DONE
       )
         return;
+
       this.loadDataComplete_(JSON.parse(xmlhttpRequest.responseText) as any);
     };
+
     xmlhttpRequest.open(
       "GET",
       "https://storage.googleapis.com/mapsdevsite/json/puzzle.json",
@@ -242,6 +261,7 @@ class PuzzleDemo {
     const timeDiv = this.timeDiv_;
 
     if (timeDiv) timeDiv.textContent = "0.0 seconds";
+
     const t = new Date();
 
     this.timer_ = window.setInterval(() => {
@@ -279,6 +299,7 @@ class PuzzleDemo {
     };
 
     const poly = new google.maps.Polygon(options);
+
     google.maps.event.addListener(poly, "dragend", () => {
       this.checkPosition_(poly, country);
     });

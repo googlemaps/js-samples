@@ -46,6 +46,7 @@ function initMap(): void {
     fillColor: "#FF0000",
     fillOpacity: 0.35,
   });
+
   bermudaTriangle.setMap(map);
 
   // Add a listener for the click event.
@@ -72,6 +73,7 @@ function showArrays(event: any) {
   // Iterate over the vertices.
   for (let i = 0; i < vertices.getLength(); i++) {
     const xy = vertices.getAt(i);
+
     contentString +=
       "<br>" + "Coordinate " + i + ":<br>" + xy.lat() + "," + xy.lng();
   }

@@ -118,6 +118,7 @@ function search() {
     bounds: map.getBounds(),
     types: ["lodging"],
   };
+
   places.nearbySearch(search, (results, status, pagination) => {
     if (status === google.maps.places.PlacesServiceStatus.OK && results) {
       clearResults();
@@ -128,6 +129,7 @@ function search() {
       for (let i = 0; i < results.length; i++) {
         const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
         const markerIcon = MARKER_PATH + markerLetter + ".png";
+
         // Use marker animation to drop the icons incrementally on the map.
         markers[i] = new google.maps.Marker({
           position: results[i].geometry.location,
@@ -151,6 +153,7 @@ function clearMarkers() {
       markers[i].setMap(null);
     }
   }
+
   markers = [];
 }
 
@@ -168,6 +171,7 @@ function setAutocompleteCountry() {
     map.setCenter(countries[country].center);
     map.setZoom(countries[country].zoom);
   }
+
   clearResults();
   clearMarkers();
 }
@@ -183,18 +187,22 @@ function addResult(result, i) {
   const markerLetter = String.fromCharCode("A".charCodeAt(0) + (i % 26));
   const markerIcon = MARKER_PATH + markerLetter + ".png";
   const tr = document.createElement("tr");
-  tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
 
+  tr.style.backgroundColor = i % 2 === 0 ? "#F0F0F0" : "#FFFFFF";
   tr.onclick = function () {
     google.maps.event.trigger(markers[i], "click");
   };
+
   const iconTd = document.createElement("td");
   const nameTd = document.createElement("td");
   const icon = document.createElement("img");
+
   icon.src = markerIcon;
   icon.setAttribute("class", "placeIcon");
   icon.setAttribute("className", "placeIcon");
+
   const name = document.createTextNode(result.name);
+
   iconTd.appendChild(icon);
   nameTd.appendChild(name);
   tr.appendChild(iconTd);
@@ -214,12 +222,14 @@ function clearResults() {
 // anchored on the marker for the hotel that the user selected.
 function showInfoWindow() {
   const marker = this;
+
   places.getDetails(
     { placeId: marker.placeResult.place_id },
     (place, status) => {
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
         return;
       }
+
       infoWindow.open(map, marker);
       buildIWContent(place);
     }
@@ -233,7 +243,6 @@ function buildIWContent(place) {
   document.getElementById("iw-url").innerHTML =
     '<b><a href="' + place.url + '">' + place.name + "</a></b>";
   document.getElementById("iw-address").textContent = place.vicinity;
-
   if (place.formatted_phone_number) {
     document.getElementById("iw-phone-row").style.display = "";
     document.getElementById("iw-phone").textContent =
@@ -254,6 +263,7 @@ function buildIWContent(place) {
       } else {
         ratingHtml += "&#10029;";
       }
+
       document.getElementById("iw-rating-row").style.display = "";
       document.getElementById("iw-rating").innerHTML = ratingHtml;
     }
@@ -271,6 +281,7 @@ function buildIWContent(place) {
       website = "http://" + place.website + "/";
       fullUrl = website;
     }
+
     document.getElementById("iw-website-row").style.display = "";
     document.getElementById("iw-website").textContent = website;
   } else {

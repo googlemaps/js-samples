@@ -30,12 +30,14 @@ function initMap(): void {
   const styleControl = document.getElementById(
     "style-selector-control"
   ) as HTMLElement;
+
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
 
   // Set the map's style to the initial value of the selector.
   const styleSelector = document.getElementById(
     "style-selector"
   ) as HTMLSelectElement;
+
   map.setOptions({ styles: styles[styleSelector.value] });
 
   // Apply new JSON when the user selects a different style.

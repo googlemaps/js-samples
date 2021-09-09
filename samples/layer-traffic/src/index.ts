@@ -25,6 +25,7 @@ function initMap(): void {
   );
 
   const trafficLayer = new google.maps.TrafficLayer();
+
   trafficLayer.setMap(map);
 }
 // [END maps_layer_traffic]

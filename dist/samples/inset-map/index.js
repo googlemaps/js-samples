@@ -9,6 +9,7 @@ function initMap() {
     center: { lat: 50, lng: 8 },
     zoom: 7,
   };
+
   // instantiate the primary map
   map = new google.maps.Map(document.getElementById("map"), {
     ...mapOptions,
@@ -24,6 +25,7 @@ function initMap() {
   function clamp(num, min, max) {
     return Math.min(Math.max(num, min), max);
   }
+
   map.addListener("bounds_changed", () => {
     overview.setCenter(map.getCenter());
     overview.setZoom(

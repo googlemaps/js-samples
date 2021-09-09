@@ -5,6 +5,7 @@ function initMap() {
     center: locationRio,
     gestureHandling: "greedy",
   });
+
   new google.maps.Marker({
     position: locationRio,
     map,

@@ -4,5 +4,6 @@ function initMap() {
     zoom: 15,
     mapTypeId: "satellite",
   });
+
   map.setTilt(45);
 }

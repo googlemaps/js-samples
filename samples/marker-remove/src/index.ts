@@ -56,6 +56,7 @@ function addMarker(position: google.maps.LatLng | google.maps.LatLngLiteral) {
     position,
     map,
   });
+
   markers.push(marker);
 }
 

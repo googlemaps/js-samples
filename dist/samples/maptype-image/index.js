@@ -15,6 +15,7 @@ function initMap() {
       if (!normalizedCoord) {
         return "";
       }
+
       const bound = Math.pow(2, zoom);
       return (
         "https://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw" +
@@ -33,6 +34,7 @@ function initMap() {
     radius: 1738000,
     name: "Moon",
   });
+
   map.mapTypes.set("moon", moonMapType);
   map.setMapTypeId("moon");
 }

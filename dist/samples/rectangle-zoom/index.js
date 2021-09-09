@@ -8,6 +8,7 @@ function initMap() {
     mapTypeId: "terrain",
   });
   const rectangle = new google.maps.Rectangle();
+
   map.addListener("zoom_changed", () => {
     // Get the current bounds, which reflect the bounds before the zoom.
     rectangle.setOptions({

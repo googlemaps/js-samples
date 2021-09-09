@@ -34,6 +34,7 @@ function initMap() {
       }),
     ],
   });
+
   deckOverlay.setMap(map);
 }
 // [END maps_deckgl_points]

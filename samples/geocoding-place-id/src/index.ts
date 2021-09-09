@@ -46,16 +46,19 @@ function geocodePlaceId(
 ) {
   const placeId = (document.getElementById("place-id") as HTMLInputElement)
     .value;
+
   geocoder
     .geocode({ placeId: placeId })
     .then(({ results }) => {
       if (results[0]) {
         map.setZoom(11);
         map.setCenter(results[0].geometry.location);
+
         const marker = new google.maps.Marker({
           map,
           position: results[0].geometry.location,
         });
+
         infowindow.setContent(results[0].formatted_address);
         infowindow.open(map, marker);
       } else {

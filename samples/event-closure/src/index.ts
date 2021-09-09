@@ -50,6 +50,7 @@ function initMap(): void {
       },
       map: map,
     });
+
     attachSecretMessage(marker, secretMessages[i]);
   }
 }

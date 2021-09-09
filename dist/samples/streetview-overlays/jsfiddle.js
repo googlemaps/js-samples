@@ -8,7 +8,9 @@ function initMap() {
     zoom: 18,
     streetViewControl: false,
   });
+
   document.getElementById("toggle").addEventListener("click", toggleStreetView);
+
   // Set up the markers on the map
   const cafeMarker = new google.maps.Marker({
     position: { lat: 40.730031, lng: -73.991428 },
@@ -28,6 +30,7 @@ function initMap() {
     icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
     title: "Bus Stop",
   });
+
   // We get the map's default panorama and set up some defaults.
   // Note that we don't yet set it visible.
   panorama = map.getStreetView(); // TODO fix type

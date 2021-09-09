@@ -14,6 +14,7 @@ function initMap() {
 
 function rotate90() {
   const heading = map.getHeading() || 0;
+
   map.setHeading(heading + 90);
 }
 

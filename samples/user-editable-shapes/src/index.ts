@@ -38,6 +38,7 @@ function initMap(): void {
     bounds: bounds,
     editable: true,
   });
+
   // [END maps_user_editable_shapes_rectangle]
   rectangle.setMap(map);
 }

@@ -28,6 +28,7 @@ const chicago = { lat: 41.85, lng: -87.65 };
 function CenterControl(controlDiv: Element, map: google.maps.Map) {
   // Set CSS for the control border.
   const controlUI = document.createElement("div");
+
   controlUI.style.backgroundColor = "#fff";
   controlUI.style.border = "2px solid #fff";
   controlUI.style.borderRadius = "3px";
@@ -41,6 +42,7 @@ function CenterControl(controlDiv: Element, map: google.maps.Map) {
 
   // Set CSS for the control interior.
   const controlText = document.createElement("div");
+
   controlText.style.color = "rgb(25,25,25)";
   controlText.style.fontFamily = "Roboto,Arial,sans-serif";
   controlText.style.fontSize = "16px";
@@ -65,6 +67,7 @@ function initMap(): void {
   // Create the DIV to hold the control and call the CenterControl()
   // constructor passing in this DIV.
   const centerControlDiv = document.createElement("div");
+
   CenterControl(centerControlDiv, map);
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);

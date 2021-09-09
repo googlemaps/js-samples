@@ -9,6 +9,7 @@ function initMap() {
     content: "Click the map to get Lat/Lng!",
     position: myLatlng,
   });
+
   infoWindow.open(map);
   // Configure the click listener.
   map.addListener("click", (mapsMouseEvent) => {

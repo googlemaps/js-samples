@@ -6,27 +6,34 @@ let map;
 function initMap() {
   let markers = [];
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
+
   map = new google.maps.Map(document.getElementById("map"), {
     mapId: "3a3b33f0edd6ed2a",
     center: { lat: 47.609414458375674, lng: -122.33897030353548 },
     zoom: 17,
   });
+
   const menuList = document.querySelector(".mdc-list");
 
   // Add the behaviors to the select options
   for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {
     const item = document.createElement("LI");
+
     item.classList.add("mdc-list-item");
     item.setAttribute("data-value", key);
+
     const itemText = document.createElement("SPAN");
+
     itemText.classList.add("mdc-list-item__text");
     itemText.innerText = value;
     item.appendChild(itemText);
     menuList.appendChild(item);
   }
+
   const select = new mdc.select.MDCSelect(
     document.querySelector(".mdc-select")
   );
+
   select.listen("MDCSelect:change", () => {
     collisionBehavior = select.value;
     markers.forEach((marker) => {

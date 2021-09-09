@@ -43,6 +43,7 @@ function initMap() {
     ],
     maxPlaceCount: 12,
   });
+
   map = localContextMapView.map;
   map.setOptions({
     center: districts["a"].location,
@@ -58,13 +59,14 @@ function initMap() {
       map: map,
       zIndex: 30,
     });
+
     marker.addListener("click", () => {
       // Close any open details or existing InfoWindows
       localContextMapView.hidePlaceDetailsView();
-
       if (infoWindow) {
         infoWindow.close();
       }
+
       // Create and open a new InfoWindow
       createInfoWindow(district, marker);
       // Define origin as the selected marker position
@@ -73,6 +75,7 @@ function initMap() {
       };
     });
   }
+
   // Set the LocalContextMapView event handlers.
   localContextMapView.addListener("placedetailsviewshowstart", () => {
     if (infoWindow) {
@@ -94,6 +97,7 @@ function createInfoWindow(district, marker) {
   const contentDiv = document.createElement("div");
   const nameDiv = document.createElement("div");
   const descriptionDiv = document.createTextNode(district.description);
+
   contentDiv.classList.add("infowindow-content");
   nameDiv.classList.add("title");
   nameDiv.textContent = district.name;

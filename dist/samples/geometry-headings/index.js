@@ -10,6 +10,7 @@ function initMap() {
     zoom: 4,
     center: { lat: 34, lng: -40.605 },
   });
+
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(
     document.getElementById("info")
   );
@@ -23,10 +24,12 @@ function initMap() {
     draggable: true,
     position: { lat: 48.857, lng: 2.352 },
   });
+
   const bounds = new google.maps.LatLngBounds(
     marker1.getPosition(),
     marker2.getPosition()
   );
+
   map.fitBounds(bounds);
   google.maps.event.addListener(marker1, "position_changed", update);
   google.maps.event.addListener(marker2, "position_changed", update);
@@ -48,12 +51,15 @@ function initMap() {
 
 function update() {
   const path = [marker1.getPosition(), marker2.getPosition()];
+
   poly.setPath(path);
   geodesicPoly.setPath(path);
+
   const heading = google.maps.geometry.spherical.computeHeading(
     path[0],
     path[1]
   );
+
   document.getElementById("heading").value = String(heading);
   document.getElementById("origin").value = String(path[0]);
   document.getElementById("destination").value = String(path[1]);

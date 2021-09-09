@@ -17,6 +17,7 @@ function initMap() {
     scale: 2,
     anchor: new google.maps.Point(15, 30),
   };
+
   new google.maps.Marker({
     position: map.getCenter(),
     icon: svgMarker,

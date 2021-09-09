@@ -80,14 +80,17 @@ function initMap() {
     maxPlaceCount: 18,
     directionsOptions: { origin: center },
   });
+
   map = localContextMapView.map;
   // Trigger hidePlaceDetailsView() with a click event handler on the inner map.
   map.addListener("click", () => {
     localContextMapView.hidePlaceDetailsView();
   });
+
   // [START maps_js_local_context_styles_merge]
   // Merge map styles.
   const mergedStyles = map.get("styles").concat(styles);
+
   map.setOptions({
     center: center,
     zoom: 14,

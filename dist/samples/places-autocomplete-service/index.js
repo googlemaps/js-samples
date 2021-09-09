@@ -30,15 +30,20 @@ const initialize = () => {
   responseElement = document.getElementById("response");
   biasToMapSwitchElement = document.getElementById("bias-to-map");
   autocompleteTypeElement = document.getElementById("autocomplete-type");
+
   const autocompleteTypeListElement = document.getElementById(
     "autocomplete-type-list"
   );
+
   ["", "establishment", "geocode", "address", "(cities)", "(regions)"].forEach(
     (type) => {
       const item = document.createElement("LI");
+
       item.classList.add("mdc-list-item");
       item.setAttribute("data-value", type);
+
       const itemText = document.createElement("SPAN");
+
       itemText.classList.add("mdc-list-item__text");
       itemText.innerText = type;
       item.appendChild(itemText);
@@ -56,6 +61,7 @@ const initialize = () => {
   initializeMaterialDesignComponents();
   inputChangeCallback();
 };
+
 const inputChangeCallback = debounce(100, () => {
   const request = {
     input: inputElement.value,
@@ -65,6 +71,7 @@ const inputChangeCallback = debounce(100, () => {
   if (biasToMapSwitchElement.checked && bounds) {
     request.bounds = bounds;
   }
+
   const selectedAutocompleteType = document.querySelector(
     "#autocomplete-type-list > .mdc-list-item--selected"
   );
@@ -75,11 +82,12 @@ const inputChangeCallback = debounce(100, () => {
   ) {
     request.types = [selectedAutocompleteType.getAttribute("data-value")];
   }
-  requestElement.innerText = JSON.stringify(request, null, 2);
 
+  requestElement.innerText = JSON.stringify(request, null, 2);
   if (!inputElement.value) {
     return;
   }
+
   autocompleteService.getPlacePredictions(request, predictionsCallback);
 });
 
@@ -102,10 +110,12 @@ const initializeMaterialDesignComponents = () => {
         inputChangeCallback
       )
     );
+
   const tabBar = new mdc.tabBar.MDCTabBar(
     document.querySelector(".mdc-tab-bar")
   );
   const contentElements = document.querySelectorAll(".tab-content");
+
   tabBar.listen("MDCTabBar:activated", (event) => {
     document
       .querySelector(".tab-content--active")

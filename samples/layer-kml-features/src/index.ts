@@ -32,11 +32,13 @@ function initMap(): void {
 
   kmlLayer.addListener("click", (kmlEvent) => {
     const text = kmlEvent.featureData.description;
+
     showInContentWindow(text);
   });
 
   function showInContentWindow(text: string) {
     const sidebar = document.getElementById("sidebar") as HTMLElement;
+
     sidebar.innerHTML = text;
   }
 }

@@ -82,6 +82,7 @@ function initMap(): void {
 
       // Create the img element and attach it to the div.
       const img = document.createElement("img");
+
       img.src = this.image_;
       img.style.width = "100%";
       img.style.height = "100%";
@@ -90,6 +91,7 @@ function initMap(): void {
 
       // Add the element to the "overlayLayer" pane.
       const panes = this.getPanes()!;
+
       panes.overlayLayer.appendChild(this.div_);
     }
     // [END maps_overlay_simple_region_attachment]
@@ -137,6 +139,7 @@ function initMap(): void {
   }
 
   const overlay = new USGSOverlay(bounds, srcImage);
+
   overlay.setMap(map);
 }
 // [END maps_overlay_simple]

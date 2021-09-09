@@ -7,6 +7,7 @@ function initMap() {
     zoom: 15,
     center,
   });
+
   // use a FontAwesome svg
   new google.maps.Marker({
     position: { lat: 36.6163, lng: -100.61 },

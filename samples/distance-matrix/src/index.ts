@@ -81,6 +81,7 @@ function initMap(): void {
 
     for (let i = 0; i < originList.length; i++) {
       const results = response.rows[i].elements;
+
       geocoder
         .geocode({ address: originList[i] })
         .then(showGeocodedAddressOnMap(false));
@@ -98,6 +99,7 @@ function deleteMarkers(markersArray: google.maps.Marker[]) {
   for (let i = 0; i < markersArray.length; i++) {
     markersArray[i].setMap(null);
   }
+
   markersArray = [];
 }
 // [END maps_distance_matrix]

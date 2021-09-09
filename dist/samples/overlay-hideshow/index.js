@@ -14,8 +14,8 @@ function initMap() {
   );
   // The photograph is courtesy of the U.S. Geological Survey.
   let image = "https://developers.google.com/maps/documentation/javascript/";
-  image += "examples/full/images/talkeetna.png";
 
+  image += "examples/full/images/talkeetna.png";
   // [START maps_overlay_hideshow_subclass]
   /**
    * The custom USGSOverlay object contains the USGS image,
@@ -41,15 +41,19 @@ function initMap() {
       this.div.style.borderStyle = "none";
       this.div.style.borderWidth = "0px";
       this.div.style.position = "absolute";
+
       // Create the img element and attach it to the div.
       const img = document.createElement("img");
+
       img.src = this.image;
       img.style.width = "100%";
       img.style.height = "100%";
       img.style.position = "absolute";
       this.div.appendChild(img);
+
       // Add the element to the "overlayLayer" pane.
       const panes = this.getPanes();
+
       panes.overlayLayer.appendChild(this.div);
     }
     // [END maps_overlay_hideshow_onadd]
@@ -122,15 +126,21 @@ function initMap() {
     }
     // [END maps_overlay_hideshow_hideshowtoggle]
   }
+
   // [START maps_overlay_hideshow_init]
   const overlay = new USGSOverlay(bounds, image);
+
   overlay.setMap(map);
+
   // [END maps_overlay_hideshow_init]
   // [START maps_overlay_hideshow_controls]
   const toggleButton = document.createElement("button");
+
   toggleButton.textContent = "Toggle";
   toggleButton.classList.add("custom-map-control-button");
+
   const toggleDOMButton = document.createElement("button");
+
   toggleDOMButton.textContent = "Toggle DOM Attachment";
   toggleDOMButton.classList.add("custom-map-control-button");
   toggleButton.addEventListener("click", () => {
