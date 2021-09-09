@@ -56,7 +56,7 @@
     "babel-loader": "^8.2.2",
     "bindings": "^1.5.0",
     "core-js": "^3.13.1",
-    "css-loader": "^5.2.6",
+    "css-loader": "^6.2.0",
     "dotenv": "^10.0.0",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
