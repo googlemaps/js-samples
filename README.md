@@ -10,7 +10,7 @@
 
 Samples for the Google Maps JavaScript API.
 
-The samples can be demoed on the [GitHub demo page](https://googlemaps.github.io/js-samples/dist/) or at the [official documentation site](https://developers.google.com/maps/documentation/javascript/examples).
+The samples can be demoed at the [official documentation site](https://developers.google.com/maps/documentation/javascript/examples).
 
 ## Development
 
