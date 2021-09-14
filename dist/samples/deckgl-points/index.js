@@ -6,6 +6,7 @@ function initMap() {
     center: { lat: 40, lng: -110 },
     zoom: 4,
   });
+
   const deckOverlay = new deck.GoogleMapsOverlay({
     layers: [
       new deck.GeoJsonLayer({
