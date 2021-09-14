@@ -4,6 +4,5 @@
   "libraries": [],
   "version": "beta",
   "tag": "webgl_deckgl",
-  "name": "webgl-deckgl",
-  "map_ids": ["b1beacae401d047c"]
+  "name": "webgl-deckgl"
 }
