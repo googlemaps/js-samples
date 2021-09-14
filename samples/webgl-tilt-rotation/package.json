@@ -4,6 +4,5 @@
   "libraries": [],
   "version": "beta",
   "tag": "webgl_tilt_rotation",
-  "name": "webgl-tilt-rotation",
-  "map_ids": ["90f87356969d889c"]
+  "name": "webgl-tilt-rotation"
 }

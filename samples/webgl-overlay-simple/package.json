@@ -4,6 +4,5 @@
   "libraries": [],
   "version": "beta",
   "tag": "webgl_overlay_simple",
-  "name": "webgl-overlay-simple",
-  "map_ids": ["15431d2b469f209e"]
+  "name": "webgl-overlay-simple"
 }
