@@ -158,7 +158,7 @@
           loadPromise() {
             return new Promise((e, t) => {
               this.loadCallback((i) => {
-                i ? t(i) : e(window.google);
+                i ? t(i.error) : e(window.google);
               });
             });
           }
