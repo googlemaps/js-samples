@@ -5,6 +5,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 40.749933, lng: -73.98633 },
     zoom: 13,
+    mapTypeControl: false,
   });
   const card = document.getElementById("pac-card");
   const input = document.getElementById("pac-input");
@@ -16,7 +17,7 @@ function initMap() {
     types: ["establishment"],
   };
 
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
 
   const autocomplete = new google.maps.places.Autocomplete(input, options);
 
@@ -79,6 +80,8 @@ function initMap() {
   setupClickListener("changetype-address", ["address"]);
   setupClickListener("changetype-establishment", ["establishment"]);
   setupClickListener("changetype-geocode", ["geocode"]);
+  setupClickListener("changetype-cities", ["(cities)"]);
+  setupClickListener("changetype-regions", ["(regions)"]);
   biasInputElement.addEventListener("change", () => {
     if (biasInputElement.checked) {
       autocomplete.bindTo("bounds", map);

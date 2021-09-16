@@ -37,14 +37,16 @@
       }
 
       .pac-card {
-        margin: 10px 10px 0 0;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        margin: 10px;
+        padding: 0 0.5em;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
         font-family: Roboto;
+        padding: 0;
       }
 
       #pac-container {
@@ -94,6 +96,7 @@
         const map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 40.749933, lng: -73.98633 },
           zoom: 13,
+          mapTypeControl: false,
         });
         const card = document.getElementById("pac-card");
         const input = document.getElementById("pac-input");
@@ -106,7 +109,7 @@
           types: ["establishment"],
         };
 
-        map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
 
         const autocomplete = new google.maps.places.Autocomplete(
           input,
@@ -174,6 +177,8 @@
         setupClickListener("changetype-address", ["address"]);
         setupClickListener("changetype-establishment", ["establishment"]);
         setupClickListener("changetype-geocode", ["geocode"]);
+        setupClickListener("changetype-cities", ["(cities)"]);
+        setupClickListener("changetype-regions", ["(regions)"]);
         biasInputElement.addEventListener("change", () => {
           if (biasInputElement.checked) {
             autocomplete.bindTo("bounds", map);
@@ -222,13 +227,19 @@
           <label for="changetype-all">All</label>
 
           <input type="radio" name="type" id="changetype-establishment" />
-          <label for="changetype-establishment">Establishments</label>
+          <label for="changetype-establishment">establishment</label>
 
           <input type="radio" name="type" id="changetype-address" />
-          <label for="changetype-address">Addresses</label>
+          <label for="changetype-address">address</label>
 
           <input type="radio" name="type" id="changetype-geocode" />
-          <label for="changetype-geocode">Geocodes</label>
+          <label for="changetype-geocode">geocode</label>
+
+          <input type="radio" name="type" id="changetype-cities" />
+          <label for="changetype-cities">(cities)</label>
+
+          <input type="radio" name="type" id="changetype-regions" />
+          <label for="changetype-regions">(regions)</label>
         </div>
         <br />
         <div id="strict-bounds-selector" class="pac-controls">

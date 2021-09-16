@@ -25,6 +25,7 @@ function initMap(): void {
     {
       center: { lat: 40.749933, lng: -73.98633 },
       zoom: 13,
+      mapTypeControl: false,
     }
   );
   const card = document.getElementById("pac-card") as HTMLElement;
@@ -41,7 +42,7 @@ function initMap(): void {
     types: ["establishment"],
   };
 
-  map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
 
   const autocomplete = new google.maps.places.Autocomplete(input, options);
 
@@ -109,6 +110,8 @@ function initMap(): void {
   setupClickListener("changetype-address", ["address"]);
   setupClickListener("changetype-establishment", ["establishment"]);
   setupClickListener("changetype-geocode", ["geocode"]);
+  setupClickListener("changetype-cities", ["(cities)"]);
+  setupClickListener("changetype-regions", ["(regions)"]);
 
   biasInputElement.addEventListener("change", () => {
     if (biasInputElement.checked) {
