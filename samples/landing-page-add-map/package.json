@@ -1,8 +1,0 @@
-{
-  "title": "Simple Map (Landing Page)",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "landing_page_add_map",
-  "name": "landing-page-add-map"
-}
