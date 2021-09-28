@@ -1,8 +1,0 @@
-{
-  "title": "Visualize Data (Landing Page)",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "landing_page_visualize_data",
-  "name": "landing-page-visualize-data"
-}
