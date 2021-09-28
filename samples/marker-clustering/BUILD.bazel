@@ -13,4 +13,4 @@
  # limitations under the License.
 load("//rules:sample.bzl", "sample")
 
-sample(name = "marker-clustering")
+sample(name = "marker-clustering", dependencies = ["@googlemaps/markerclusterer"],)
