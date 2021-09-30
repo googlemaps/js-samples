@@ -26,6 +26,7 @@
 #sidebar {
   display: flex;
   flex-direction: column;
+  font-family: "Roboto";
 }
 
 h2 {
@@ -46,7 +47,6 @@ li {
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  font-size: 1.25rem;
   cursor: pointer;
 }
 li:nth-child(odd) {
