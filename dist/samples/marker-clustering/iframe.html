@@ -1055,8 +1055,8 @@
         }
       } {
         constructor(t) {
-          var { maxZoom: e } = t,
-            r = (function (t, e) {
+          var { maxZoom: e, radius: r = 60 } = t,
+            s = (function (t, e) {
               var r = {};
               for (var s in t)
                 Object.prototype.hasOwnProperty.call(t, s) &&
@@ -1073,10 +1073,10 @@
                     (r[s[i]] = t[s[i]]);
               }
               return r;
-            })(t, ["maxZoom"]);
+            })(t, ["maxZoom", "radius"]);
           super({ maxZoom: e }),
             (this.superCluster = new f(
-              Object.assign({ maxZoom: this.maxZoom, radius: 60 }, r)
+              Object.assign({ maxZoom: this.maxZoom, radius: r }, s)
             ));
         }
         calculate(t) {
@@ -1195,7 +1195,8 @@
             t && this.setMap(t);
         }
         addMarker(t, e) {
-          this.markers.push(t), e || this.render();
+          this.markers.includes(t) ||
+            (this.markers.push(t), e || this.render());
         }
         addMarkers(t, e) {
           t.forEach((t) => {
