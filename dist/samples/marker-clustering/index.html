@@ -548,14 +548,14 @@
                     p = !0;
                     for (var A = 0; A < e; A++) {
                       for (
-                        var I = i[A], z = b[A], Z = u[A], j = _[A], T = 0;
+                        var z = i[A], Z = b[A], I = u[A], j = _[A], T = 0;
                         T < g;
                         T++
                       )
-                        I[T] = z[T] / j || 0;
+                        z[T] = Z[T] / j || 0;
                       if (p)
                         for (var q = 0; q < g; q++)
-                          if (Z[q] != I[q]) {
+                          if (I[q] != z[q]) {
                             p = !1;
                             break;
                           }
@@ -1116,12 +1116,14 @@
               super({ maxZoom: e }),
                 (this.superCluster = new f(
                   Object.assign({ maxZoom: this.maxZoom, radius: r }, s)
-                ));
+                )),
+                (this.state = { zoom: null });
             }
             calculate(t) {
+              let e = !1;
               if (!C()(t.markers, this.markers)) {
-                this.markers = t.markers;
-                const e = this.markers.map((t) => ({
+                (e = !0), (this.markers = [...t.markers]);
+                const r = this.markers.map((t) => ({
                   type: "Feature",
                   geometry: {
                     type: "Point",
@@ -1129,19 +1131,21 @@
                   },
                   properties: { marker: t },
                 }));
-                this.superCluster.load(e);
+                this.superCluster.load(r);
               }
-              return this.cluster(t);
+              const r = { zoom: t.map.getZoom() };
+              return (
+                e ||
+                  (this.state.zoom > this.maxZoom && r.zoom > this.maxZoom) ||
+                  (e = e || !C()(this.state, r)),
+                (this.state = r),
+                e && (this.clusters = this.cluster(t)),
+                { clusters: this.clusters, changed: e }
+              );
             }
             cluster({ map: t }) {
-              const {
-                west: e,
-                south: r,
-                east: s,
-                north: i,
-              } = t.getBounds().toJSON();
               return this.superCluster
-                .getClusters([e, r, s, i], t.getZoom())
+                .getClusters([-180, -90, 180, 90], t.getZoom())
                 .map(this.transformCluster.bind(this));
             }
             transformCluster({
@@ -1186,7 +1190,7 @@
                     ? "#ff0000"
                     : "#0000ff",
                 i = window.btoa(
-                  `\n  <svg fill="${s}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">\n    <circle cx="120" cy="120" opacity=".6" r="70" />\n    <circle cx="120" cy="120" opacity=".3" r="90" />\n    <circle cx="120" cy="120" opacity=".2" r="110" />\n    <circle cx="120" cy="120" opacity=".1" r="130" />\n  </svg>`
+                  `\n  <svg fill="${s}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240">\n    <circle cx="120" cy="120" opacity=".6" r="70" />\n    <circle cx="120" cy="120" opacity=".3" r="90" />\n    <circle cx="120" cy="120" opacity=".2" r="110" />\n  </svg>`
                 );
               return new google.maps.Marker({
                 position: e,
@@ -1210,25 +1214,25 @@
               })(A, google.maps.OverlayView);
             }
           }
-          var I;
+          var z;
           !(function (t) {
             (t.CLUSTERING_BEGIN = "clusteringbegin"),
               (t.CLUSTERING_END = "clusteringend"),
               (t.CLUSTER_CLICK = "click");
-          })(I || (I = {}));
-          const z = (t, e, r) => {
+          })(z || (z = {}));
+          const Z = (t, e, r) => {
             r.fitBounds(e.bounds);
           };
-          class Z extends A {
+          class I extends A {
             constructor({
               map: t,
               markers: e = [],
               algorithm: r = new L({}),
               renderer: s = new S(),
-              onClusterClick: i = z,
+              onClusterClick: i = Z,
             }) {
               super(),
-                (this.markers = e),
+                (this.markers = [...e]),
                 (this.clusters = []),
                 (this.algorithm = r),
                 (this.renderer = s),
@@ -1259,29 +1263,27 @@
               let r = !1;
               return (
                 t.forEach((t) => {
-                  r = r || this.removeMarker(t, !0);
+                  r = this.removeMarker(t, !0) || r;
                 }),
                 r && !e && this.render(),
                 r
               );
             }
             clearMarkers(t) {
-              this.markers.forEach((t) => this.removeMarker(t, !0)),
-                t || this.render();
+              (this.markers.length = 0), t || this.render();
             }
             render() {
               const t = this.getMap();
               if (t instanceof google.maps.Map && this.getProjection()) {
-                google.maps.event.trigger(this, I.CLUSTERING_BEGIN, this);
-                const e = this.algorithm.calculate({
+                google.maps.event.trigger(this, z.CLUSTERING_BEGIN, this);
+                const { clusters: e, changed: r } = this.algorithm.calculate({
                   markers: this.markers,
                   map: t,
                   mapCanvasProjection: this.getProjection(),
                 });
-                this.reset(),
-                  (this.clusters = e),
-                  this.renderClusters(),
-                  google.maps.event.trigger(this, I.CLUSTERING_END, this);
+                (r || null == r) &&
+                  (this.reset(), (this.clusters = e), this.renderClusters()),
+                  google.maps.event.trigger(this, z.CLUSTERING_END, this);
               }
             }
             onAdd() {
@@ -1309,7 +1311,7 @@
                   : ((r.marker = this.renderer.render(r, t)),
                     this.onClusterClick &&
                       r.marker.addListener("click", (t) => {
-                        google.maps.event.trigger(this, I.CLUSTER_CLICK, r),
+                        google.maps.event.trigger(this, z.CLUSTER_CLICK, r),
                           this.onClusterClick(t, r, e);
                       })),
                   r.marker.setMap(e);
@@ -1329,7 +1331,7 @@
                     label: e[r % e.length],
                   })
               );
-            new Z({ markers: r, map: t });
+            new I({ markers: r, map: t });
           }
           const T = [
             { lat: -31.56391, lng: 147.154312 },
