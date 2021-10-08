@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>deck.gl Trips Layer</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- Load deck.gl -->
+    <script src="https://unpkg.com/deck.gl@^8.0.0/dist.min.js"></script>
+
+    <!-- jsFiddle will insert css and js -->
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=2"
+      async
+    ></script>
+  </body>
+</html>
