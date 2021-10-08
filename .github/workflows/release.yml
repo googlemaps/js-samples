@@ -35,7 +35,7 @@ jobs:
           restore-keys: |
             default-
       - name: Setup Bazel
-        uses: jpoehnelt/setup-bazel@74990a5bf57cb8275729e56a1ba1d85240d7e5f7
+        uses: jpoehnelt/setup-bazel@051fb974803547e0f020ccef089a8ce5a5f1e849
       - run: bazel version
       - name: Setup Bazel Cache
         run: |
