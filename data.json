@@ -19,6 +19,7 @@
     "Controls Basic Map": "controls-basic-map",
     "Custom Markers": "custom-markers",
     "DECK.GL Points": "deckgl-points",
+    "DECK.GL ArcLayer": "deckgl-arclayer",
     "Deleting a Vertex": "delete-vertex-menu",
     "Directions Service (Complex)": "directions-complex",
     "Draggable Directions": "directions-draggable",
