@@ -20,6 +20,7 @@ SAMPLES = [
     "control-simple",
     "controls-basic-map",
     "custom-markers",
+    "deckgl-tripslayer",
     "deckgl-points",
     "deckgl-arclayer",
     "delete-vertex-menu",

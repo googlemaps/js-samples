@@ -16,53 +16,62 @@
 
 /* eslint-disable no-undef */
 // [START maps_deckgl_tripslayer]
-const DATA_URL = 'https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json';
+const DATA_URL =
+  "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json";
 
 const LOOP_LENGTH = 1800;
 const THEME = {
   trailColor0: [255, 0, 0],
-  trailColor1: [0, 0, 255]
+  trailColor1: [0, 0, 255],
 };
 
 function initMap(): void {
-  const map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
-    center: {lat: 40.72, lng: -74},
-    mapId: 'fae05836df2dc8bb',
-    tilt: 45,
-    zoom: 15
-  });
+  const map = new google.maps.Map(
+    document.getElementById("map") as HTMLElement,
+    {
+      center: { lat: 40.72, lng: -74 },
+      mapId: "fae05836df2dc8bb",
+      tilt: 45,
+      zoom: 15,
+    }
+  );
 
   let currentTime = 0;
   const props = {
-    id: 'trips',
+    id: "trips",
     data: DATA_URL,
-    getPath: d => d.path,
-    getTimestamps: d => d.timestamps,
-    getColor: d => (d.vendor === 0 ? THEME.trailColor0 : THEME.trailColor1),
+    getPath: (d) => d.path,
+    getTimestamps: (d) => d.timestamps,
+    getColor: (d) => (d.vendor === 0 ? THEME.trailColor0 : THEME.trailColor1),
     opacity: 1,
     widthMinPixels: 2,
     trailLength: 180,
     currentTime,
-    shadowEnabled: false
+    shadowEnabled: false,
   };
 
   // @ts-ignore
   const overlay = new deck.GoogleMapsOverlay({});
+
   const animate = () => {
     currentTime = (currentTime + 1) % LOOP_LENGTH;
+
     // @ts-ignore
     const tripsLayer = new deck.TripsLayer({
-      ...props, currentTime
+      ...props,
+      currentTime,
     });
+
     overlay.setProps({
-      layers: [tripsLayer]
+      layers: [tripsLayer],
     });
 
     window.requestAnimationFrame(animate);
   };
-	window.requestAnimationFrame(animate);  
+
+  window.requestAnimationFrame(animate);
 
   overlay.setMap(map);
 }
 // [END maps_deckgl_tripslayer]
-export { initMap }; 
+export { initMap };
