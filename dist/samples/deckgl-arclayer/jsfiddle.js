@@ -6,7 +6,7 @@ function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 50, lng: 14 },
     tilt: 30,
-    mapId: "fae05836df2dc8bb",
+    mapId: "90f87356969d889c",
     zoom: 3,
   });
   const flightsLayer = new deck.ArcLayer({
