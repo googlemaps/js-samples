@@ -4,8 +4,5 @@
   "libraries": [],
   "version": "beta",
   "tag": "deckgl_arclayer",
-  "name": "deckgl-arclayer",
-  "dependencies": {
-    "format": "^0.2.2"
-  }
+  "name": "deckgl-arclayer"
 }
