@@ -20,10 +20,10 @@ const DATA_URL =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json";
 
 const LOOP_LENGTH = 1800;
-const THEME = {
-  trailColor0: [255, 0, 0],
-  trailColor1: [0, 0, 255],
-};
+const VENDOR_COLORS = [
+  [255, 0, 0], // vendor #0
+  [0, 0, 255], // vender #1
+];
 
 function initMap(): void {
   const map = new google.maps.Map(
@@ -42,7 +42,7 @@ function initMap(): void {
     data: DATA_URL,
     getPath: (d) => d.path,
     getTimestamps: (d) => d.timestamps,
-    getColor: (d) => (d.vendor === 0 ? THEME.trailColor0 : THEME.trailColor1),
+    getColor: (d) => VENDOR_COLORS[d.vendor],
     opacity: 1,
     widthMinPixels: 2,
     trailLength: 180,
