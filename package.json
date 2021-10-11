@@ -91,5 +91,8 @@
     "webpack-merge": "^5.7.3",
     "yargs": "^17.0.1"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "html-minifier": "^4.0.0"
+  }
 }
