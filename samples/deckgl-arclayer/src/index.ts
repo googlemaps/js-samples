@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-/* eslint-disable no-undef */
 // [START maps_deckgl_arclayer]
 import * as GeoJSON from "geojson";
 

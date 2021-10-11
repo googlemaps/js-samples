@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-/* eslint-disable no-undef */
 // [START maps_deckgl_points]
 import * as GeoJSON from "geojson";
 
@@ -57,8 +56,10 @@ function initMap(): void {
           },
         },
         onDataLoad: () => {
+          /* eslint-disable no-undef */
           // @ts-ignore defined in include
           progress.done(); // hides progress bar
+          /* eslint-enable no-undef */
         },
       }),
     ],

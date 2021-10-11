@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-/* eslint-disable no-undef */
 // [START maps_deckgl_tripslayer]
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 import { TripsLayer } from "deck.gl";
