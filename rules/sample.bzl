@@ -20,7 +20,6 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
       devDependencies: third party dependencies
     """
     has_runtime_dependency = (len(dependencies) > 0)
-
     js_dependencies = ["@npm//{}".format(package) for package in dependencies] + ["@npm//{}".format(package) for package in devDependencies]
 
     webpack_dependencies = [
