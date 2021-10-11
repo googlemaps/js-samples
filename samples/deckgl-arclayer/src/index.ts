@@ -15,10 +15,9 @@
  */
 
 // [START maps_deckgl_arclayer]
-import * as GeoJSON from "geojson";
-
 import { ArcLayer } from "deck.gl";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+import * as GeoJSON from "geojson";
 
 type Properties = { scalerank: number };
 type Feature = GeoJSON.Feature<GeoJSON.Point, Properties>;

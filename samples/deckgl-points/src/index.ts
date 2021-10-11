@@ -15,10 +15,9 @@
  */
 
 // [START maps_deckgl_points]
-import * as GeoJSON from "geojson";
-
 import { GeoJsonLayer } from "deck.gl";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+import * as GeoJSON from "geojson";
 
 type Properties = { mag: number };
 type Feature = GeoJSON.Feature<GeoJSON.Point, Properties>;
