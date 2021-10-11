@@ -55,7 +55,10 @@
           },
           t = {};
         e.r(t), e.d(t, { initMap: () => r });
-        const o = { trailColor0: [255, 0, 0], trailColor1: [0, 0, 255] };
+        const o = [
+          [255, 0, 0],
+          [0, 0, 255],
+        ];
         function r() {
           const e = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 40.72, lng: -74 },
@@ -69,7 +72,7 @@
               data: "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json",
               getPath: (e) => e.path,
               getTimestamps: (e) => e.timestamps,
-              getColor: (e) => (0 === e.vendor ? o.trailColor0 : o.trailColor1),
+              getColor: (e) => o[e.vendor],
               opacity: 1,
               widthMinPixels: 2,
               trailLength: 180,
@@ -95,7 +98,7 @@
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=beta"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
       async
     ></script>
   </body>
