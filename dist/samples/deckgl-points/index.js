@@ -1,3 +1,4 @@
+// [START maps_deckgl_points]
 import { GeoJsonLayer } from "deck.gl";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 

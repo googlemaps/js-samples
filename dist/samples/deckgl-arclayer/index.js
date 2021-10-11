@@ -1,3 +1,4 @@
+// [START maps_deckgl_arclayer]
 import { ArcLayer } from "deck.gl";
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 const AIRPORTS =
