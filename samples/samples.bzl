@@ -21,6 +21,7 @@ SAMPLES = [
     "controls-basic-map",
     "custom-markers",
     "deckgl-points",
+    "deckgl-arclayer",
     "delete-vertex-menu",
     "directions-complex",
     "directions-draggable",

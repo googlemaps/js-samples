@@ -1,0 +1,8 @@
+{
+  "title": "deck.gl ArcLayer",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "beta",
+  "tag": "deckgl_arclayer",
+  "name": "deckgl-arclayer"
+}
