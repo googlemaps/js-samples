@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>deck.gl Trips Layer</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- Load deck.gl -->
+    <script src="https://unpkg.com/deck.gl@^8.0.0/dist.min.js"></script>
+
+    <style type="text/css">
+      :root {
+        --mdc-theme-primary: #1a73e8;
+        --mdc-theme-secondary: #rgb(225, 245, 254);
+        --mdc-theme-on-primary: #fff;
+        --mdc-theme-on-secondary: rgb(1, 87, 155);
+      }
+
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      (() => {
+        "use strict";
+        var e = {
+            d: (t, o) => {
+              for (var r in o)
+                e.o(o, r) &&
+                  !e.o(t, r) &&
+                  Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+            },
+            o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+            r: (e) => {
+              "undefined" != typeof Symbol &&
+                Symbol.toStringTag &&
+                Object.defineProperty(e, Symbol.toStringTag, {
+                  value: "Module",
+                }),
+                Object.defineProperty(e, "__esModule", { value: !0 });
+            },
+          },
+          t = {};
+        e.r(t), e.d(t, { initMap: () => r });
+        const o = [
+          [255, 0, 0],
+          [0, 0, 255],
+        ];
+        function r() {
+          const e = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 40.72, lng: -74 },
+            mapId: "fae05836df2dc8bb",
+            tilt: 45,
+            zoom: 15,
+          });
+          let t = 0;
+          const r = {
+              id: "trips",
+              data: "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json",
+              getPath: (e) => e.path,
+              getTimestamps: (e) => e.timestamps,
+              getColor: (e) => o[e.vendor],
+              opacity: 1,
+              widthMinPixels: 2,
+              trailLength: 180,
+              currentTime: t,
+              shadowEnabled: !1,
+            },
+            a = new deck.GoogleMapsOverlay({}),
+            n = () => {
+              t = (t + 1) % 1800;
+              const e = new deck.TripsLayer({ ...r, currentTime: t });
+              a.setProps({ layers: [e] }), window.requestAnimationFrame(n);
+            };
+          window.requestAnimationFrame(n), a.setMap(e);
+        }
+        var a = window;
+        for (var n in t) a[n] = t[n];
+        t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      async
+    ></script>
+  </body>
+</html>

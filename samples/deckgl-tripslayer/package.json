@@ -1,0 +1,8 @@
+{
+  "title": "deck.gl Trips Layer",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "deckgl_tripslayer",
+  "name": "deckgl-tripslayer"
+}
