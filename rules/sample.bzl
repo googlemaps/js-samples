@@ -283,8 +283,8 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
               "$(location //rules:strip_region_tags_bin) $@; " +
               "tmp=$$(mktemp); " +
               "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY)  +
-              "$(location //rules:html-minifier) --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true $@ > $$tmp && cat $$tmp > $@",
-        tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:html-minifier"],
+              "$(location //rules:prettier) --write $@; ",
+        tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier"],
         visibility = ["//visibility:public"],
     )
     ###### END IFRAME ######

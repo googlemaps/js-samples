@@ -1,1 +1,118 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">#map{height:100%}body,html{height:100%;margin:0;padding:0}.map-control{background-color:#fff;border:1px solid #ccc;box-shadow:0 2px 2px rgba(33,33,33,.4);font-family:Roboto,sans-serif;margin:10px;padding-right:5px;display:none}#map .map-control{display:block}.selector-control{font-size:14px;line-height:30px;vertical-align:baseline}</style><script>(()=>{"use strict";var n={d:(e,t)=>{for(var o in t)n.o(t,o)&&!n.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};let t;n.r(e),n.d(e,{initMap:()=>function(){t=new google.maps.Map(document.getElementById("map"),{center:{lat:-33.86,lng:151.209},zoom:13,mapTypeControl:!1});var e=document.getElementById("style-selector-control");t.controls[google.maps.ControlPosition.TOP_LEFT].push(e),document.getElementById("hide-poi").addEventListener("click",()=>{t.setOptions({styles:o.hide})}),document.getElementById("show-poi").addEventListener("click",()=>{t.setOptions({styles:o.default})})}});const o={default:[],hide:[{featureType:"poi.business",stylers:[{visibility:"off"}]},{featureType:"transit",elementType:"labels.icon",stylers:[{visibility:"off"}]}]};var l,i=window;for(l in e)i[l]=e[l];e.__esModule&&Object.defineProperty(i,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="style-selector-control"class="map-control"><input type="radio"name="show-hide"id="hide-poi"class="selector-control"> <label for="hide-poi">Hide</label> <input type="radio"name="show-hide"id="show-poi"class="selector-control"checked="checked"> <label for="show-poi">Show</label></div><div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .map-control {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+    font-family: "Roboto", "sans-serif";
+    margin: 10px;
+    padding-right: 5px;
+    /* Hide the control initially, to prevent it from appearing
+           before the map loads. */
+    display: none;
+  }
+
+  /* Display the control once it is inside the map. */
+  #map .map-control {
+    display: block;
+  }
+
+  .selector-control {
+    font-size: 14px;
+    line-height: 30px;
+    vertical-align: baseline;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    let o;
+    function n() {
+      o = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -33.86, lng: 151.209 },
+        zoom: 13,
+        mapTypeControl: !1,
+      });
+      const e = document.getElementById("style-selector-control");
+      o.controls[google.maps.ControlPosition.TOP_LEFT].push(e),
+        document.getElementById("hide-poi").addEventListener("click", () => {
+          o.setOptions({ styles: l.hide });
+        }),
+        document.getElementById("show-poi").addEventListener("click", () => {
+          o.setOptions({ styles: l.default });
+        });
+    }
+    e.r(t), e.d(t, { initMap: () => n });
+    const l = {
+      default: [],
+      hide: [
+        { featureType: "poi.business", stylers: [{ visibility: "off" }] },
+        {
+          featureType: "transit",
+          elementType: "labels.icon",
+          stylers: [{ visibility: "off" }],
+        },
+      ],
+    };
+    var i = window;
+    for (var s in t) i[s] = t[s];
+    t.__esModule && Object.defineProperty(i, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="style-selector-control" class="map-control">
+    <input
+      type="radio"
+      name="show-hide"
+      id="hide-poi"
+      class="selector-control"
+    />
+    <label for="hide-poi">Hide</label>
+    <input
+      type="radio"
+      name="show-hide"
+      id="show-poi"
+      class="selector-control"
+      checked="checked"
+    />
+    <label for="show-poi">Show</label>
+  </div>
+  <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>

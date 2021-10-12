@@ -1,1 +1,210 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">body,html{height:100%;margin:0;padding:0}#container{height:100%;display:flex}#sidebar{flex-basis:15rem;flex-grow:1;padding:1rem;max-width:30rem;height:100%;box-sizing:border-box;overflow:auto}#map{flex-basis:0;flex-grow:4;height:100%}#floating-panel{position:absolute;top:10px;left:25%;z-index:5;background-color:#fff;padding:5px;border:1px solid #999;text-align:center;font-family:Roboto,sans-serif;line-height:30px;padding-left:10px}#floating-panel{background-color:#fff;border:0;border-radius:2px;box-shadow:0 1px 4px -1px rgba(0,0,0,.3);margin:10px;padding:0 .5em;font:400 18px Roboto,Arial,sans-serif;overflow:hidden;padding:5px;font-size:14px;text-align:center;line-height:30px;height:auto}#map{flex:auto}#sidebar{flex:0 1 auto;padding:0}#sidebar>div{padding:.5rem}</style><script>(()=>{"use strict";var n={d:(e,t)=>{for(var o in t)n.o(t,o)&&!n.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};function t(){const r=new google.maps.DirectionsRenderer,a=new google.maps.DirectionsService,e=new google.maps.Map(document.getElementById("map"),{zoom:7,center:{lat:41.85,lng:-87.65},disableDefaultUI:!0});r.setMap(e),r.setPanel(document.getElementById("sidebar"));var t=document.getElementById("floating-panel");e.controls[google.maps.ControlPosition.TOP_CENTER].push(t);t=function(){var e,t,o,n;e=a,t=r,o=document.getElementById("start").value,n=document.getElementById("end").value,e.route({origin:o,destination:n,travelMode:google.maps.TravelMode.DRIVING}).then(e=>{t.setDirections(e)}).catch(e=>window.alert("Directions request failed due to "+status))};document.getElementById("start").addEventListener("change",t),document.getElementById("end").addEventListener("change",t)}n.r(e),n.d(e,{initMap:()=>t});var o,r=window;for(o in e)r[o]=e[o];e.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="floating-panel"><strong>Start:</strong> <select id="start"><option value="chicago, il">Chicago<option value="st louis, mo">St Louis<option value="joplin, mo">Joplin, MO<option value="oklahoma city, ok">Oklahoma City<option value="amarillo, tx">Amarillo<option value="gallup, nm">Gallup, NM<option value="flagstaff, az">Flagstaff, AZ<option value="winona, az">Winona<option value="kingman, az">Kingman<option value="barstow, ca">Barstow<option value="san bernardino, ca">San Bernardino<option value="los angeles, ca">Los Angeles</select><br><strong>End:</strong> <select id="end"><option value="chicago, il">Chicago<option value="st louis, mo">St Louis<option value="joplin, mo">Joplin, MO<option value="oklahoma city, ok">Oklahoma City<option value="amarillo, tx">Amarillo<option value="gallup, nm">Gallup, NM<option value="flagstaff, az">Flagstaff, AZ<option value="winona, az">Winona<option value="kingman, az">Kingman<option value="barstow, ca">Barstow<option value="san bernardino, ca">San Bernardino<option value="los angeles, ca">Los Angeles</select></div><div id="container"><div id="map"></div><div id="sidebar"></div></div><div style="display:none"><div id="floating-panel"><strong>Start:</strong> <select id="start"><option value="chicago, il">Chicago<option value="st louis, mo">St Louis<option value="joplin, mo">Joplin, MO<option value="oklahoma city, ok">Oklahoma City<option value="amarillo, tx">Amarillo<option value="gallup, nm">Gallup, NM<option value="flagstaff, az">Flagstaff, AZ<option value="winona, az">Winona<option value="kingman, az">Kingman<option value="barstow, ca">Barstow<option value="san bernardino, ca">San Bernardino<option value="los angeles, ca">Los Angeles</select><br><strong>End:</strong> <select id="end"><option value="chicago, il">Chicago<option value="st louis, mo">St Louis<option value="joplin, mo">Joplin, MO<option value="oklahoma city, ok">Oklahoma City<option value="amarillo, tx">Amarillo<option value="gallup, nm">Gallup, NM<option value="flagstaff, az">Flagstaff, AZ<option value="winona, az">Winona<option value="kingman, az">Kingman<option value="barstow, ca">Barstow<option value="san bernardino, ca">San Bernardino<option value="los angeles, ca">Los Angeles</select></div></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #container {
+    height: 100%;
+    display: flex;
+  }
+
+  #sidebar {
+    flex-basis: 15rem;
+    flex-grow: 1;
+    padding: 1rem;
+    max-width: 30rem;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+  }
+
+  #map {
+    flex-basis: 0;
+    flex-grow: 4;
+    height: 100%;
+  }
+
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
+  }
+
+  #floating-panel {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    padding: 5px;
+    font-size: 14px;
+    text-align: center;
+    line-height: 30px;
+    height: auto;
+  }
+
+  #map {
+    flex: auto;
+  }
+
+  #sidebar {
+    flex: 0 1 auto;
+    padding: 0;
+  }
+  #sidebar > div {
+    padding: 0.5rem;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, n) => {
+          for (var o in n)
+            e.o(n, o) &&
+              !e.o(t, o) &&
+              Object.defineProperty(t, o, { enumerable: !0, get: n[o] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    function n() {
+      const e = new google.maps.DirectionsRenderer(),
+        t = new google.maps.DirectionsService(),
+        n = new google.maps.Map(document.getElementById("map"), {
+          zoom: 7,
+          center: { lat: 41.85, lng: -87.65 },
+          disableDefaultUI: !0,
+        });
+      e.setMap(n), e.setPanel(document.getElementById("sidebar"));
+      const o = document.getElementById("floating-panel");
+      n.controls[google.maps.ControlPosition.TOP_CENTER].push(o);
+      const r = function () {
+        !(function (e, t) {
+          const n = document.getElementById("start").value,
+            o = document.getElementById("end").value;
+          e.route({
+            origin: n,
+            destination: o,
+            travelMode: google.maps.TravelMode.DRIVING,
+          })
+            .then((e) => {
+              t.setDirections(e);
+            })
+            .catch((e) =>
+              window.alert("Directions request failed due to " + status)
+            );
+        })(t, e);
+      };
+      document.getElementById("start").addEventListener("change", r),
+        document.getElementById("end").addEventListener("change", r);
+    }
+    e.r(t), e.d(t, { initMap: () => n });
+    var o = window;
+    for (var r in t) o[r] = t[r];
+    t.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="floating-panel">
+    <strong>Start:</strong>
+    <select id="start">
+      <option value="chicago, il">Chicago</option>
+      <option value="st louis, mo">St Louis</option>
+      <option value="joplin, mo">Joplin, MO</option>
+      <option value="oklahoma city, ok">Oklahoma City</option>
+      <option value="amarillo, tx">Amarillo</option>
+      <option value="gallup, nm">Gallup, NM</option>
+      <option value="flagstaff, az">Flagstaff, AZ</option>
+      <option value="winona, az">Winona</option>
+      <option value="kingman, az">Kingman</option>
+      <option value="barstow, ca">Barstow</option>
+      <option value="san bernardino, ca">San Bernardino</option>
+      <option value="los angeles, ca">Los Angeles</option>
+    </select>
+    <br />
+    <strong>End:</strong>
+    <select id="end">
+      <option value="chicago, il">Chicago</option>
+      <option value="st louis, mo">St Louis</option>
+      <option value="joplin, mo">Joplin, MO</option>
+      <option value="oklahoma city, ok">Oklahoma City</option>
+      <option value="amarillo, tx">Amarillo</option>
+      <option value="gallup, nm">Gallup, NM</option>
+      <option value="flagstaff, az">Flagstaff, AZ</option>
+      <option value="winona, az">Winona</option>
+      <option value="kingman, az">Kingman</option>
+      <option value="barstow, ca">Barstow</option>
+      <option value="san bernardino, ca">San Bernardino</option>
+      <option value="los angeles, ca">Los Angeles</option>
+    </select>
+  </div>
+  <div id="container">
+    <div id="map"></div>
+    <div id="sidebar"></div>
+  </div>
+  <div style="display: none">
+    <div id="floating-panel">
+      <strong>Start:</strong>
+      <select id="start">
+        <option value="chicago, il">Chicago</option>
+        <option value="st louis, mo">St Louis</option>
+        <option value="joplin, mo">Joplin, MO</option>
+        <option value="oklahoma city, ok">Oklahoma City</option>
+        <option value="amarillo, tx">Amarillo</option>
+        <option value="gallup, nm">Gallup, NM</option>
+        <option value="flagstaff, az">Flagstaff, AZ</option>
+        <option value="winona, az">Winona</option>
+        <option value="kingman, az">Kingman</option>
+        <option value="barstow, ca">Barstow</option>
+        <option value="san bernardino, ca">San Bernardino</option>
+        <option value="los angeles, ca">Los Angeles</option>
+      </select>
+      <br />
+      <strong>End:</strong>
+      <select id="end">
+        <option value="chicago, il">Chicago</option>
+        <option value="st louis, mo">St Louis</option>
+        <option value="joplin, mo">Joplin, MO</option>
+        <option value="oklahoma city, ok">Oklahoma City</option>
+        <option value="amarillo, tx">Amarillo</option>
+        <option value="gallup, nm">Gallup, NM</option>
+        <option value="flagstaff, az">Flagstaff, AZ</option>
+        <option value="winona, az">Winona</option>
+        <option value="kingman, az">Kingman</option>
+        <option value="barstow, ca">Barstow</option>
+        <option value="san bernardino, ca">San Bernardino</option>
+        <option value="los angeles, ca">Los Angeles</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>
