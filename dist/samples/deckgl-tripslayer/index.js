@@ -1,5 +1,6 @@
-/* eslint-disable no-undef */
 // [START maps_deckgl_tripslayer]
+import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+import { TripsLayer } from "deck.gl";
 const DATA_URL =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json";
 const LOOP_LENGTH = 1800;
@@ -28,12 +29,12 @@ function initMap() {
     currentTime,
     shadowEnabled: false,
   };
-  const overlay = new deck.GoogleMapsOverlay({});
+  const overlay = new GoogleMapsOverlay({});
 
   const animate = () => {
     currentTime = (currentTime + 1) % LOOP_LENGTH;
 
-    const tripsLayer = new deck.TripsLayer({
+    const tripsLayer = new TripsLayer({
       ...props,
       currentTime,
     });

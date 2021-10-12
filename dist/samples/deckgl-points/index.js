@@ -1,14 +1,16 @@
-/* eslint-disable no-undef */
 // [START maps_deckgl_points]
+import { GeoJsonLayer } from "deck.gl";
+import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+
 // Initialize and add the map
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: 40, lng: -110 },
     zoom: 4,
   });
-  const deckOverlay = new deck.GoogleMapsOverlay({
+  const deckOverlay = new GoogleMapsOverlay({
     layers: [
-      new deck.GeoJsonLayer({
+      new GeoJsonLayer({
         id: "earthquakes",
         data: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
         filled: true,
@@ -24,12 +26,14 @@ function initMap() {
             type: "spring",
             stiffness: 0.1,
             damping: 0.15,
-            enter: (_) => [0],
+            enter: () => [0],
             duration: 10000,
           },
         },
-        onDataLoad: (_) => {
+        onDataLoad: () => {
+          /* eslint-disable no-undef */
           progress.done(); // hides progress bar
+          /* eslint-enable no-undef */
         },
       }),
     ],

@@ -14,8 +14,14 @@
  * limitations under the License.
  */
 
-/* eslint-disable no-undef */
 // [START maps_deckgl_points]
+import { GeoJsonLayer } from "deck.gl";
+import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+import * as GeoJSON from "geojson";
+
+type Properties = { mag: number };
+type Feature = GeoJSON.Feature<GeoJSON.Point, Properties>;
+
 // Initialize and add the map
 function initMap(): void {
   const map = new google.maps.Map(
@@ -26,11 +32,9 @@ function initMap(): void {
     }
   );
 
-  // @ts-ignore TODO(jpoehnelt) fix deckgl typings
-  const deckOverlay = new deck.GoogleMapsOverlay({
+  const deckOverlay = new GoogleMapsOverlay({
     layers: [
-      // @ts-ignore TODO(jpoehnelt) fix deckgl typings
-      new deck.GeoJsonLayer({
+      new GeoJsonLayer({
         id: "earthquakes",
         data: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
         filled: true,
@@ -38,7 +42,7 @@ function initMap(): void {
         pointRadiusMaxPixels: 200,
         opacity: 0.4,
         pointRadiusScale: 0.3,
-        getRadius: (f: any) => Math.pow(10, f.properties.mag),
+        getRadius: (f: Feature) => Math.pow(10, f.properties.mag),
         getFillColor: [255, 70, 30, 180],
         autoHighlight: true,
         transitions: {
@@ -46,13 +50,15 @@ function initMap(): void {
             type: "spring",
             stiffness: 0.1,
             damping: 0.15,
-            enter: (_) => [0], // grow from size 0,
+            enter: () => [0], // grow from size 0,
             duration: 10000,
           },
         },
-        onDataLoad: (_) => {
+        onDataLoad: () => {
+          /* eslint-disable no-undef */
           // @ts-ignore defined in include
           progress.done(); // hides progress bar
+          /* eslint-enable no-undef */
         },
       }),
     ],

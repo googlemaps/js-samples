@@ -1,5 +1,6 @@
-/* eslint-disable no-undef */
 // [START maps_deckgl_arclayer]
+import { ArcLayer } from "deck.gl";
+import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 const AIRPORTS =
   "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson";
 
@@ -10,17 +11,17 @@ function initMap() {
     mapId: "90f87356969d889c",
     zoom: 3,
   });
-  const flightsLayer = new deck.ArcLayer({
+  const flightsLayer = new ArcLayer({
     id: "flights",
     data: AIRPORTS,
     dataTransform: (d) => d.features.filter((f) => f.properties.scalerank < 4),
-    getSourcePosition: (f) => [14.42076, 50.08804],
+    getSourcePosition: () => [14.42076, 50.08804],
     getTargetPosition: (f) => f.geometry.coordinates,
     getSourceColor: [0, 128, 200],
     getTargetColor: [0, 0, 80],
     getWidth: 1,
   });
-  const overlay = new deck.GoogleMapsOverlay({
+  const overlay = new GoogleMapsOverlay({
     layers: [flightsLayer],
   });
 

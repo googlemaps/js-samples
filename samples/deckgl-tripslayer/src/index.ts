@@ -14,8 +14,16 @@
  * limitations under the License.
  */
 
-/* eslint-disable no-undef */
 // [START maps_deckgl_tripslayer]
+import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+import { TripsLayer } from "deck.gl";
+
+interface Data {
+  vendor: number;
+  path: [number, number][];
+  timestamps: number[];
+}
+
 const DATA_URL =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json";
 
@@ -40,9 +48,9 @@ function initMap(): void {
   const props = {
     id: "trips",
     data: DATA_URL,
-    getPath: (d) => d.path,
-    getTimestamps: (d) => d.timestamps,
-    getColor: (d) => VENDOR_COLORS[d.vendor],
+    getPath: (d: Data) => d.path,
+    getTimestamps: (d: Data) => d.timestamps,
+    getColor: (d: Data) => VENDOR_COLORS[d.vendor],
     opacity: 1,
     widthMinPixels: 2,
     trailLength: 180,
@@ -50,14 +58,12 @@ function initMap(): void {
     shadowEnabled: false,
   };
 
-  // @ts-ignore
-  const overlay = new deck.GoogleMapsOverlay({});
+  const overlay = new GoogleMapsOverlay({});
 
   const animate = () => {
     currentTime = (currentTime + 1) % LOOP_LENGTH;
 
-    // @ts-ignore
-    const tripsLayer = new deck.TripsLayer({
+    const tripsLayer = new TripsLayer({
       ...props,
       currentTime,
     });
