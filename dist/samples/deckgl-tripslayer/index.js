@@ -5,7 +5,7 @@ const DATA_URL =
 const LOOP_LENGTH = 1800;
 const VENDOR_COLORS = [
   [255, 0, 0],
-  [0, 0, 255], // vender #1
+  [0, 0, 255], // vendor #1
 ];
 
 function initMap() {
