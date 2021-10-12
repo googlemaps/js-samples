@@ -66,6 +66,7 @@
     "expect": "^27.0.2",
     "glob": "^7.1.7",
     "html-replace-webpack-plugin": "^2.6.0",
+    "html-minifier": "^4.0.0",
     "html-webpack-plugin": "^5.3.1",
     "http-server": "^13.0.2",
     "jest": "^27.0.3",

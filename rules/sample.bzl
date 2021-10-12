@@ -282,9 +282,14 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
         cmd = "$(location //rules:inline) $(location :_iframe.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "tmp=$$(mktemp); " +
-              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY)  +
-              "$(location //rules:prettier) --write $@; ",
-        tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier"],
+              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY) +
+              "$(location //rules:html-minifier) --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype --minify-css true --minify-js true $@ > $$tmp && cat $$tmp > $@; " +
+              # {{ }} and {% %} cannot be present in the code to avoid issues templating
+              "sed \"s/%}/% }/g\" $@ > $$tmp && cat $$tmp > $@; " +
+              "sed \"s/{%/{ %/g\" $@ > $$tmp && cat $$tmp > $@; " +
+              "sed \"s/}}/} }/g\" $@ > $$tmp && cat $$tmp > $@; " +
+              "sed \"s/{{/{ {/g\" $@ > $$tmp && cat $$tmp > $@; ",
+        tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:html-minifier"],
         visibility = ["//visibility:public"],
     )
     ###### END IFRAME ######
