@@ -945,7 +945,7 @@
                   const r = h.points[t];
                   r.zoom > e && (c += r.numPoints || 1);
                 }
-                if (c >= o) {
+                if (c > l && c >= o) {
                   let t = i.x * l,
                     o = i.y * l,
                     a = n && l > 1 ? this._map(i, !0) : null;
