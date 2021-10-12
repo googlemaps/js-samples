@@ -1,1 +1,113 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">#map{height:100%}body,html{height:100%;margin:0;padding:0}</style><script>(()=>{"use strict";var r={d:(e,t)=>{for(var o in t)r.o(t,o)&&!r.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};let t;function o(e){var t=function(t,o,r){const l=[];for(let e=0;e<3;e++)l.push((o[e]-t[e])*r+t[e]);return"hsl("+l[0]+","+l[1]+"%,"+l[2]+"%)"}([151,83,34],[5,69,54],(Math.min(e.getProperty("mag"),6)-1)/5);return{icon:{path:google.maps.SymbolPath.CIRCLE,strokeWeight:.5,strokeColor:"#fff",fillColor:t,fillOpacity:2/e.getProperty("mag"),scale:Math.pow(e.getProperty("mag"),2)},zIndex:Math.floor(e.getProperty("mag"))}}r.r(e),r.d(e,{initMap:()=>function(){t=new google.maps.Map(document.getElementById("map"),{center:{lat:20,lng:-160},zoom:2,styles:l}),t.data.setStyle(o);const e=document.createElement("script");e.setAttribute("src","https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"),document.getElementsByTagName("head")[0].appendChild(e)},eqfeed_callback:()=>function(e){t.data.addGeoJson(e)}});const l=[{featureType:"all",elementType:"all",stylers:[{visibility:"off"}]},{featureType:"landscape",elementType:"geometry",stylers:[{visibility:"on"},{color:"#fcfcfc"}]},{featureType:"water",elementType:"labels",stylers:[{visibility:"off"}]},{featureType:"water",elementType:"geometry",stylers:[{visibility:"on"},{hue:"#5f94ff"},{lightness:60}]}];var a,n=window;for(a in e)n[a]=e[a];e.__esModule&&Object.defineProperty(n,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var r in o)
+            e.o(o, r) &&
+              !e.o(t, r) &&
+              Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    let o;
+    function r() {
+      (o = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 20, lng: -160 },
+        zoom: 2,
+        styles: n,
+      })),
+        o.data.setStyle(a);
+      const e = document.createElement("script");
+      e.setAttribute(
+        "src",
+        "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
+      ),
+        document.getElementsByTagName("head")[0].appendChild(e);
+    }
+    function l(e) {
+      o.data.addGeoJson(e);
+    }
+    function a(e) {
+      const t = (function (e, t, o) {
+        const r = [];
+        for (let l = 0; l < 3; l++) r.push((t[l] - e[l]) * o + e[l]);
+        return "hsl(" + r[0] + "," + r[1] + "%," + r[2] + "%)";
+      })(
+        [151, 83, 34],
+        [5, 69, 54],
+        (Math.min(e.getProperty("mag"), 6) - 1) / 5
+      );
+      return {
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          strokeWeight: 0.5,
+          strokeColor: "#fff",
+          fillColor: t,
+          fillOpacity: 2 / e.getProperty("mag"),
+          scale: Math.pow(e.getProperty("mag"), 2),
+        },
+        zIndex: Math.floor(e.getProperty("mag")),
+      };
+    }
+    e.r(t), e.d(t, { initMap: () => r, eqfeed_callback: () => l });
+    const n = [
+      {
+        featureType: "all",
+        elementType: "all",
+        stylers: [{ visibility: "off" }],
+      },
+      {
+        featureType: "landscape",
+        elementType: "geometry",
+        stylers: [{ visibility: "on" }, { color: "#fcfcfc" }],
+      },
+      {
+        featureType: "water",
+        elementType: "labels",
+        stylers: [{ visibility: "off" }],
+      },
+      {
+        featureType: "water",
+        elementType: "geometry",
+        stylers: [{ visibility: "on" }, { hue: "#5f94ff" }, { lightness: 60 }],
+      },
+    ];
+    var s = window;
+    for (var i in t) s[i] = t[i];
+    t.__esModule && Object.defineProperty(s, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>

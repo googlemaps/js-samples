@@ -1,1 +1,172 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">#map{height:100%}body,html{height:100%;margin:0;padding:0}#description{font-family:Roboto;font-size:15px;font-weight:300}#infowindow-content .title{font-weight:700}#infowindow-content{display:none}#map #infowindow-content{display:inline}.pac-card{background-color:#fff;border:0;border-radius:2px;box-shadow:0 1px 4px -1px rgba(0,0,0,.3);margin:10px;padding:0 .5em;font:400 18px Roboto,Arial,sans-serif;overflow:hidden;font-family:Roboto;padding:0}#pac-container{padding-bottom:12px;margin-right:12px}.pac-controls{display:inline-block;padding:5px 11px}.pac-controls label{font-family:Roboto;font-size:13px;font-weight:300}#pac-input{background-color:#fff;font-family:Roboto;font-size:15px;font-weight:300;margin-left:12px;padding:0 11px 0 13px;text-overflow:ellipsis;width:400px}#pac-input:focus{border-color:#4d90fe}#title{color:#fff;background-color:#4d90fe;font-size:25px;font-weight:500;padding:6px 12px}#target{width:345px}</style><script>(()=>{"use strict";var n={d:(e,o)=>{for(var t in o)n.o(o,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:o[t]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};n.r(e),n.d(e,{initAutocomplete:()=>function(){const n=new google.maps.Map(document.getElementById("map"),{center:{lat:-33.8688,lng:151.2195},zoom:13,mapTypeId:"roadmap"}),e=document.getElementById("pac-input"),o=new google.maps.places.SearchBox(e);n.controls[google.maps.ControlPosition.TOP_LEFT].push(e),n.addListener("bounds_changed",()=>{o.setBounds(n.getBounds())});let a=[];o.addListener("places_changed",()=>{const e=o.getPlaces();if(0!=e.length){a.forEach(e=>{e.setMap(null)}),a=[];const t=new google.maps.LatLngBounds;e.forEach(e=>{var o;e.geometry&&e.geometry.location?(o={url:e.icon,size:new google.maps.Size(71,71),origin:new google.maps.Point(0,0),anchor:new google.maps.Point(17,34),scaledSize:new google.maps.Size(25,25)},a.push(new google.maps.Marker({map:n,icon:o,title:e.name,position:e.geometry.location})),e.geometry.viewport?t.union(e.geometry.viewport):t.extend(e.geometry.location)):console.log("Returned place contains no geometry")}),n.fitBounds(t)}})}});var o,t=window;for(o in e)t[o]=e[o];e.__esModule&&Object.defineProperty(t,"__esModule",{value:!0})})()</script><div id="iframe-contents"><input id="pac-input"class="controls"placeholder="Search Box"><div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #description {
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+  }
+
+  #infowindow-content .title {
+    font-weight: bold;
+  }
+
+  #infowindow-content {
+    display: none;
+  }
+
+  #map #infowindow-content {
+    display: inline;
+  }
+
+  .pac-card {
+    background-color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+    margin: 10px;
+    padding: 0 0.5em;
+    font: 400 18px Roboto, Arial, sans-serif;
+    overflow: hidden;
+    font-family: Roboto;
+    padding: 0;
+  }
+
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
+
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
+
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
+
+  #target {
+    width: 345px;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    function t() {
+      const e = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -33.8688, lng: 151.2195 },
+          zoom: 13,
+          mapTypeId: "roadmap",
+        }),
+        o = document.getElementById("pac-input"),
+        t = new google.maps.places.SearchBox(o);
+      e.controls[google.maps.ControlPosition.TOP_LEFT].push(o),
+        e.addListener("bounds_changed", () => {
+          t.setBounds(e.getBounds());
+        });
+      let n = [];
+      t.addListener("places_changed", () => {
+        const o = t.getPlaces();
+        if (0 == o.length) return;
+        n.forEach((e) => {
+          e.setMap(null);
+        }),
+          (n = []);
+        const r = new google.maps.LatLngBounds();
+        o.forEach((o) => {
+          if (!o.geometry || !o.geometry.location)
+            return void console.log("Returned place contains no geometry");
+          const t = {
+            url: o.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25),
+          };
+          n.push(
+            new google.maps.Marker({
+              map: e,
+              icon: t,
+              title: o.name,
+              position: o.geometry.location,
+            })
+          ),
+            o.geometry.viewport
+              ? r.union(o.geometry.viewport)
+              : r.extend(o.geometry.location);
+        }),
+          e.fitBounds(r);
+      });
+    }
+    e.r(o), e.d(o, { initAutocomplete: () => t });
+    var n = window;
+    for (var r in o) n[r] = o[r];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+  <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly&channel=1"
+    async
+  ></script>
+</div>

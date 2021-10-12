@@ -1,1 +1,79 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">#map{height:100%}body,html{height:100%;margin:0;padding:0}</style><script>(()=>{"use strict";var a={d:(e,t)=>{for(var o in t)a.o(t,o)&&!a.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};let t;a.r(e),a.d(e,{initMap:()=>function(){t=new google.maps.Map(document.getElementById("map"),{center:{lat:20,lng:-160},zoom:2});const e=document.createElement("script");e.setAttribute("src","https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"),document.getElementsByTagName("head")[0].appendChild(e),t.data.setStyle(e=>{e=.1*Math.exp(parseFloat(e.getProperty("mag")));return{icon:{path:google.maps.SymbolPath.CIRCLE,scale:e,fillColor:"#f00",fillOpacity:.35,strokeWeight:0}}})},eqfeed_callback:()=>function(e){t.data.addGeoJson(e)}});var o,r=window;for(o in e)r[o]=e[o];e.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var a in o)
+            e.o(o, a) &&
+              !e.o(t, a) &&
+              Object.defineProperty(t, a, { enumerable: !0, get: o[a] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    let o;
+    function a() {
+      o = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 20, lng: -160 },
+        zoom: 2,
+      });
+      const e = document.createElement("script");
+      e.setAttribute(
+        "src",
+        "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
+      ),
+        document.getElementsByTagName("head")[0].appendChild(e),
+        o.data.setStyle((e) => {
+          const t = 0.1 * Math.exp(parseFloat(e.getProperty("mag")));
+          return {
+            icon: {
+              path: google.maps.SymbolPath.CIRCLE,
+              scale: t,
+              fillColor: "#f00",
+              fillOpacity: 0.35,
+              strokeWeight: 0,
+            },
+          };
+        });
+    }
+    function r(e) {
+      o.data.addGeoJson(e);
+    }
+    e.r(t), e.d(t, { initMap: () => a, eqfeed_callback: () => r });
+    var n = window;
+    for (var l in t) n[l] = t[l];
+    t.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>

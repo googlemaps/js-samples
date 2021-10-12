@@ -1,1 +1,94 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">#map{height:100%}body,html{height:100%;margin:0;padding:0}#floating-panel{position:absolute;top:10px;left:25%;z-index:5;background-color:#fff;padding:5px;border:1px solid #999;text-align:center;font-family:Roboto,sans-serif;line-height:30px;padding-left:10px}</style><script>(()=>{"use strict";var n={d:(e,t)=>{for(var o in t)n.o(t,o)&&!n.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};let t,o;function r(){t.setMap(o)}function l(){t.setMap(null)}n.r(e),n.d(e,{initMap:()=>function(){o=new google.maps.Map(document.getElementById("map"),{zoom:13,center:{lat:40.74,lng:-74.18}}),t=new google.maps.GroundOverlay("https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",{north:40.773941,south:40.712216,east:-74.12544,west:-74.22655}),document.getElementById("restore-overlay").addEventListener("click",r),document.getElementById("remove-overlay").addEventListener("click",l),r()}});var a,d=window;for(a in e)d[a]=e[a];e.__esModule&&Object.defineProperty(d,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="floating-panel"><input id="remove-overlay"type="button"value="Remove overlay"> <input id="restore-overlay"type="button"value="Restore overlay"></div><div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    let o, n;
+    function r() {
+      (n = new google.maps.Map(document.getElementById("map"), {
+        zoom: 13,
+        center: { lat: 40.74, lng: -74.18 },
+      })),
+        (o = new google.maps.GroundOverlay(
+          "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
+          {
+            north: 40.773941,
+            south: 40.712216,
+            east: -74.12544,
+            west: -74.22655,
+          }
+        )),
+        document.getElementById("restore-overlay").addEventListener("click", l),
+        document.getElementById("remove-overlay").addEventListener("click", a),
+        l();
+    }
+    function l() {
+      o.setMap(n);
+    }
+    function a() {
+      o.setMap(null);
+    }
+    e.r(t), e.d(t, { initMap: () => r });
+    var d = window;
+    for (var i in t) d[i] = t[i];
+    t.__esModule && Object.defineProperty(d, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="floating-panel">
+    <input id="remove-overlay" type="button" value="Remove overlay" />
+    <input id="restore-overlay" type="button" value="Restore overlay" />
+  </div>
+  <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>

@@ -1,1 +1,105 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">#map{height:100%}body,html{height:100%;margin:0;padding:0}#floating-panel{position:absolute;top:10px;left:25%;z-index:5;background-color:#fff;padding:5px;border:1px solid #999;text-align:center;font-family:Roboto,sans-serif;line-height:30px;padding-left:10px}#floating-panel{margin-left:-52px}</style><script>(()=>{"use strict";var n={d:(e,t)=>{for(var o in t)n.o(t,o)&&!n.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};n.r(e),n.d(e,{initMap:()=>function(){o=new google.maps.Map(document.getElementById("map"),{zoom:12,center:{lat:52.52,lng:13.41}}),document.getElementById("drop").addEventListener("click",r)},drop:()=>r});const t=[{lat:52.511,lng:13.447},{lat:52.549,lng:13.422},{lat:52.497,lng:13.396},{lat:52.517,lng:13.394}];let o,l=[];function r(){!function(){for(let e=0;e<l.length;e++)l[e].setMap(null);l=[]}();for(let e=0;e<t.length;e++)!function(e,t){window.setTimeout(()=>{l.push(new google.maps.Marker({position:e,map:o,animation:google.maps.Animation.DROP}))},t)}(t[e],200*e)}var a,i=window;for(a in e)i[a]=e[a];e.__esModule&&Object.defineProperty(i,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="floating-panel"><button id="drop">Drop Markers</button></div><div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: "Roboto", "sans-serif";
+    line-height: 30px;
+    padding-left: 10px;
+  }
+
+  #floating-panel {
+    margin-left: -52px;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    e.r(t), e.d(t, { initMap: () => r, drop: () => a });
+    const o = [
+      { lat: 52.511, lng: 13.447 },
+      { lat: 52.549, lng: 13.422 },
+      { lat: 52.497, lng: 13.396 },
+      { lat: 52.517, lng: 13.394 },
+    ];
+    let n,
+      l = [];
+    function r() {
+      (n = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: { lat: 52.52, lng: 13.41 },
+      })),
+        document.getElementById("drop").addEventListener("click", a);
+    }
+    function a() {
+      !(function () {
+        for (let e = 0; e < l.length; e++) l[e].setMap(null);
+        l = [];
+      })();
+      for (let e = 0; e < o.length; e++) i(o[e], 200 * e);
+    }
+    function i(e, t) {
+      window.setTimeout(() => {
+        l.push(
+          new google.maps.Marker({
+            position: e,
+            map: n,
+            animation: google.maps.Animation.DROP,
+          })
+        );
+      }, t);
+    }
+    var d = window;
+    for (var g in t) d[g] = t[g];
+    t.__esModule && Object.defineProperty(d, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="floating-panel">
+    <button id="drop">Drop Markers</button>
+  </div>
+  <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>

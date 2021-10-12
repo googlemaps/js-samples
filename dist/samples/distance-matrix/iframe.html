@@ -1,1 +1,132 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">body,html{height:100%;margin:0;padding:0}#container{height:100%;display:flex}#sidebar{flex-basis:15rem;flex-grow:1;padding:1rem;max-width:30rem;height:100%;box-sizing:border-box;overflow:auto}#map{flex-basis:0;flex-grow:4;height:100%}#sidebar{flex-direction:column}</style><script>(()=>{"use strict";var n={d:(e,o)=>{for(var t in o)n.o(o,t)&&!n.o(e,t)&&Object.defineProperty(e,t,{enumerable:!0,get:o[t]})},o:(e,o)=>Object.prototype.hasOwnProperty.call(e,o),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};function o(){const r=new google.maps.LatLngBounds,s=[],a=new google.maps.Map(document.getElementById("map"),{center:{lat:55.53,lng:9.4},zoom:10}),i=new google.maps.Geocoder,e=new google.maps.DistanceMatrixService,o={origins:[{lat:55.93,lng:-3.118},"Greenwich, England"],destinations:["Stockholm, Sweden",{lat:50.087,lng:14.421}],travelMode:google.maps.TravelMode.DRIVING,unitSystem:google.maps.UnitSystem.METRIC,avoidHighways:!1,avoidTolls:!1};document.getElementById("request").innerText=JSON.stringify(o,null,2),e.getDistanceMatrix(o).then(o=>{document.getElementById("response").innerText=JSON.stringify(o,null,2);var t=o.originAddresses,n=o.destinationAddresses;!function(o){for(let e=0;e<o.length;e++)o[e].setMap(null)}(s);var l=o=>({results:e})=>{a.fitBounds(r.extend(e[0].geometry.location)),s.push(new google.maps.Marker({map:a,position:e[0].geometry.location,label:o?"D":"O"}))};for(let e=0;e<t.length;e++){const s=o.rows[e].elements;i.geocode({address:t[e]}).then(l(!1));for(let e=0;e<s.length;e++)i.geocode({address:n[e]}).then(l(!0))}})}n.r(e),n.d(e,{initMap:()=>o});var t,l=window;for(t in e)l[t]=e[t];e.__esModule&&Object.defineProperty(l,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="container"><div id="map"></div><div id="sidebar"><h3 style="flex-grow:0">Request</h3><pre style="flex-grow:1"id="request"></pre><h3 style="flex-grow:0">Response</h3><pre style="flex-grow:1"id="response"></pre></div></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #container {
+    height: 100%;
+    display: flex;
+  }
+
+  #sidebar {
+    flex-basis: 15rem;
+    flex-grow: 1;
+    padding: 1rem;
+    max-width: 30rem;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+  }
+
+  #map {
+    flex-basis: 0;
+    flex-grow: 4;
+    height: 100%;
+  }
+
+  #sidebar {
+    flex-direction: column;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (o, t) => {
+          for (var n in t)
+            e.o(t, n) &&
+              !e.o(o, n) &&
+              Object.defineProperty(o, n, { enumerable: !0, get: t[n] });
+        },
+        o: (e, o) => Object.prototype.hasOwnProperty.call(e, o),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      o = {};
+    function t() {
+      const e = new google.maps.LatLngBounds(),
+        o = [],
+        t = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 55.53, lng: 9.4 },
+          zoom: 10,
+        }),
+        n = new google.maps.Geocoder(),
+        l = new google.maps.DistanceMatrixService(),
+        r = {
+          origins: [{ lat: 55.93, lng: -3.118 }, "Greenwich, England"],
+          destinations: ["Stockholm, Sweden", { lat: 50.087, lng: 14.421 }],
+          travelMode: google.maps.TravelMode.DRIVING,
+          unitSystem: google.maps.UnitSystem.METRIC,
+          avoidHighways: !1,
+          avoidTolls: !1,
+        };
+      (document.getElementById("request").innerText = JSON.stringify(
+        r,
+        null,
+        2
+      )),
+        l.getDistanceMatrix(r).then((l) => {
+          document.getElementById("response").innerText = JSON.stringify(
+            l,
+            null,
+            2
+          );
+          const r = l.originAddresses,
+            s = l.destinationAddresses;
+          !(function (e) {
+            for (let o = 0; o < e.length; o++) e[o].setMap(null);
+            e = [];
+          })(o);
+          const a =
+            (n) =>
+            ({ results: l }) => {
+              t.fitBounds(e.extend(l[0].geometry.location)),
+                o.push(
+                  new google.maps.Marker({
+                    map: t,
+                    position: l[0].geometry.location,
+                    label: n ? "D" : "O",
+                  })
+                );
+            };
+          for (let e = 0; e < r.length; e++) {
+            const o = l.rows[e].elements;
+            n.geocode({ address: r[e] }).then(a(!1));
+            for (let e = 0; e < o.length; e++)
+              n.geocode({ address: s[e] }).then(a(!0));
+          }
+        });
+    }
+    e.r(o), e.d(o, { initMap: () => t });
+    var n = window;
+    for (var l in o) n[l] = o[l];
+    o.__esModule && Object.defineProperty(n, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="container">
+    <div id="map"></div>
+    <div id="sidebar">
+      <h3 style="flex-grow: 0">Request</h3>
+      <pre style="flex-grow: 1" id="request"></pre>
+      <h3 style="flex-grow: 0">Response</h3>
+      <pre style="flex-grow: 1" id="response"></pre>
+    </div>
+  </div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>

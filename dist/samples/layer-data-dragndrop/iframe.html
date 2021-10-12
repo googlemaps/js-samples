@@ -1,1 +1,316 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"rel="stylesheet"><link rel="stylesheet"href="https://fonts.googleapis.com/icon?family=Material+Icons"><style type="text/css">html{height:100%}body{height:100%;margin:0;padding:0;overflow:hidden}#map{height:100%}#map.over{opacity:.5;background-color:rgba(100,100,100,.5)}#sidebar{flex-direction:column;align-items:center;justify-content:center;overflow:auto}.file{display:flex;flex-flow:column;margin-top:1em;cursor:move;text-align:center}.file:hover .material-icons{color:#ff8c00}.file:hover .filename{font-weight:700}.file .material-icons{font-size:50px;color:orange}.file .material-icons:hover{color:#ff8c00}.file .filename{margin-top:.5em;font-size:20px;color:#333}body,html{height:100%;margin:0;padding:0}#container{height:100%;display:flex}#sidebar{flex-basis:15rem;flex-grow:1;padding:1rem;max-width:30rem;height:100%;box-sizing:border-box;overflow:auto}#map{flex-basis:0;flex-grow:4;height:100%}</style><script>(()=>{"use strict";var r={d:(e,t)=>{for(var o in t)r.o(t,o)&&!r.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};let o;function n(e){try{var t=JSON.parse(e);o.data.addGeoJson(t)}catch(e){alert("Not a GeoJSON file!")}!function(e){const t=new google.maps.LatLngBounds;e.data.forEach(e=>{e=e.getGeometry();e&&function t(e,o,r){e instanceof google.maps.LatLng?o.call(r,e):e instanceof google.maps.Data.Point?o.call(r,e.get()):e.getArray().forEach(e=>{t(e,o,r)})}(e,t.extend,t)}),e.fitBounds(t)}(o)}function t(e){return e.stopPropagation(),e.preventDefault(),document.getElementById("map").classList.add("over"),!1}function a(e){document.getElementById("map").classList.remove("over")}function i(e){e.preventDefault(),e.stopPropagation(),a();const o=e.dataTransfer.files;if(o.length)for(let e,t=0;e=o[t];t++){const o=new FileReader;o.onload=function(e){n(o.result)},o.onerror=function(e){console.error("reading failed")},o.readAsText(e)}else{const o=e.dataTransfer.getData("text/plain");console.log(o),o&&n(o)}return!1}function s(){o=new google.maps.Map(document.getElementById("map"),{center:new google.maps.LatLng(0,0),zoom:4}),function(){[...document.getElementsByClassName("file")].forEach(e=>{e.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",JSON.stringify(d[Number(e.target.dataset.value)])),console.log(e)},!1)});const e=document.getElementById("map");e.addEventListener("dragenter",t,!1),e.addEventListener("dragover",t,!1),e.addEventListener("drop",i,!1),e.addEventListener("dragleave",a,!1)}()}r.r(e),r.d(e,{initialize:()=>s});const d=[{type:"FeatureCollection",features:[{type:"Feature",properties:{},geometry:{type:"Polygon",coordinates:[[[-99.49218749999999,-11.867350911459294],[24.960937499999996,-11.867350911459294],[24.960937499999996,47.517200697839414],[-99.49218749999999,47.517200697839414],[-99.49218749999999,-11.867350911459294]]]}}]},{type:"FeatureCollection",features:[{type:"Feature",properties:{},geometry:{type:"Point",coordinates:[81.2109375,50.064191736659104]}},{type:"Feature",properties:{},geometry:{type:"Point",coordinates:[103.35937499999999,-47.98992166741417]}},{type:"Feature",properties:{},geometry:{type:"Point",coordinates:[-46.05468749999999,64.01449619484472]}},{type:"Feature",properties:{},geometry:{type:"Point",coordinates:[-113.203125,37.996162679728116]}},{type:"Feature",properties:{},geometry:{type:"Point",coordinates:[-73.828125,-32.249974455863295]}}]},{type:"FeatureCollection",features:[{type:"Feature",properties:{},geometry:{type:"LineString",coordinates:[[147.65625,-5.266007882805485],[118.47656249999999,43.83452678223682],[80.85937499999999,-30.145127183376115],[35.15625,51.83577752045248],[-15.468749999999998,-23.563987128451217],[-29.53125,44.33956524809713],[-73.47656249999999,-32.842673631954305],[-104.765625,35.460669951495305]]}}]}];var l,p=window;for(l in e)p[l]=e[l];e.__esModule&&Object.defineProperty(p,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="container"><div id="map"></div><div id="sidebar"class="mdc-typography"><div class="file"draggable="true"data-value="0"><span class="material-icons">text_snippet</span><div class="filename">polygons.geojson</div></div><div class="file"draggable="true"data-value="1"><span class="material-icons">text_snippet</span><div class="filename">points.geojson</div></div><div class="file"draggable="true"data-value="2"><span class="material-icons">text_snippet</span><div class="filename">polyline.geojson</div></div></div></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<link
+  href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+/>
+
+<style type="text/css">
+  html {
+    height: 100%;
+  }
+
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  #map {
+    height: 100%;
+  }
+  #map.over {
+    opacity: 0.5;
+    background-color: rgba(100, 100, 100, 0.5);
+  }
+
+  #sidebar {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+  }
+
+  .file {
+    display: flex;
+    flex-flow: column;
+    margin-top: 1em;
+    cursor: move;
+    text-align: center;
+  }
+  .file:hover .material-icons {
+    color: darkorange;
+  }
+  .file:hover .filename {
+    font-weight: bold;
+  }
+  .file .material-icons {
+    font-size: 50px;
+    color: orange;
+  }
+  .file .material-icons:hover {
+    color: darkorange;
+  }
+  .file .filename {
+    margin-top: 0.5em;
+    font-size: 20px;
+    color: #333333;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #container {
+    height: 100%;
+    display: flex;
+  }
+
+  #sidebar {
+    flex-basis: 15rem;
+    flex-grow: 1;
+    padding: 1rem;
+    max-width: 30rem;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+  }
+
+  #map {
+    flex-basis: 0;
+    flex-grow: 4;
+    height: 100%;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var r in o)
+            e.o(o, r) &&
+              !e.o(t, r) &&
+              Object.defineProperty(t, r, { enumerable: !0, get: o[r] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    let o;
+    function r(e) {
+      try {
+        const t = JSON.parse(e);
+        o.data.addGeoJson(t);
+      } catch (e) {
+        alert("Not a GeoJSON file!");
+      }
+      !(function (e) {
+        const t = new google.maps.LatLngBounds();
+        e.data.forEach((e) => {
+          const o = e.getGeometry();
+          o && n(o, t.extend, t);
+        }),
+          e.fitBounds(t);
+      })(o);
+    }
+    function n(e, t, o) {
+      e instanceof google.maps.LatLng
+        ? t.call(o, e)
+        : e instanceof google.maps.Data.Point
+        ? t.call(o, e.get())
+        : e.getArray().forEach((e) => {
+            n(e, t, o);
+          });
+    }
+    function a(e) {
+      return (
+        e.stopPropagation(),
+        e.preventDefault(),
+        document.getElementById("map").classList.add("over"),
+        !1
+      );
+    }
+    function i(e) {
+      document.getElementById("map").classList.remove("over");
+    }
+    function s(e) {
+      e.preventDefault(), e.stopPropagation(), i();
+      const t = e.dataTransfer.files;
+      if (t.length)
+        for (let e, o = 0; (e = t[o]); o++) {
+          const t = new FileReader();
+          (t.onload = function (e) {
+            r(t.result);
+          }),
+            (t.onerror = function (e) {
+              console.error("reading failed");
+            }),
+            t.readAsText(e);
+        }
+      else {
+        const t = e.dataTransfer.getData("text/plain");
+        console.log(t), t && r(t);
+      }
+      return !1;
+    }
+    function d() {
+      (o = new google.maps.Map(document.getElementById("map"), {
+        center: new google.maps.LatLng(0, 0),
+        zoom: 4,
+      })),
+        (function () {
+          [...document.getElementsByClassName("file")].forEach((e) => {
+            e.addEventListener(
+              "dragstart",
+              (e) => {
+                e.dataTransfer.setData(
+                  "text/plain",
+                  JSON.stringify(l[Number(e.target.dataset.value)])
+                ),
+                  console.log(e);
+              },
+              !1
+            );
+          });
+          const e = document.getElementById("map");
+          e.addEventListener("dragenter", a, !1),
+            e.addEventListener("dragover", a, !1),
+            e.addEventListener("drop", s, !1),
+            e.addEventListener("dragleave", i, !1);
+        })();
+    }
+    e.r(t), e.d(t, { initialize: () => d });
+    const l = [
+      {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Polygon",
+              coordinates: [
+                [
+                  [-99.49218749999999, -11.867350911459294],
+                  [24.960937499999996, -11.867350911459294],
+                  [24.960937499999996, 47.517200697839414],
+                  [-99.49218749999999, 47.517200697839414],
+                  [-99.49218749999999, -11.867350911459294],
+                ],
+              ],
+            },
+          },
+        ],
+      },
+      {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: [81.2109375, 50.064191736659104],
+            },
+          },
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: [103.35937499999999, -47.98992166741417],
+            },
+          },
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: [-46.05468749999999, 64.01449619484472],
+            },
+          },
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: [-113.203125, 37.996162679728116],
+            },
+          },
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "Point",
+              coordinates: [-73.828125, -32.249974455863295],
+            },
+          },
+        ],
+      },
+      {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            properties: {},
+            geometry: {
+              type: "LineString",
+              coordinates: [
+                [147.65625, -5.266007882805485],
+                [118.47656249999999, 43.83452678223682],
+                [80.85937499999999, -30.145127183376115],
+                [35.15625, 51.83577752045248],
+                [-15.468749999999998, -23.563987128451217],
+                [-29.53125, 44.33956524809713],
+                [-73.47656249999999, -32.842673631954305],
+                [-104.765625, 35.460669951495305],
+              ],
+            },
+          },
+        ],
+      },
+    ];
+    var p = window;
+    for (var c in t) p[c] = t[c];
+    t.__esModule && Object.defineProperty(p, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="container">
+    <div id="map"></div>
+    <div id="sidebar" class="mdc-typography">
+      <div class="file" draggable="true" data-value="0">
+        <span class="material-icons">text_snippet</span>
+        <div class="filename">polygons.geojson</div>
+      </div>
+      <div class="file" draggable="true" data-value="1">
+        <span class="material-icons">text_snippet</span>
+        <div class="filename">points.geojson</div>
+      </div>
+      <div class="file" draggable="true" data-value="2">
+        <span class="material-icons">text_snippet</span>
+        <div class="filename">polyline.geojson</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&v=weekly&channel=1"
+    async
+  ></script>
+</div>

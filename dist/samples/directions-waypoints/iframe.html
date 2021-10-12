@@ -1,1 +1,147 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">body,html{height:100%;margin:0;padding:0}#container{height:100%;display:flex}#sidebar{flex-basis:15rem;flex-grow:1;padding:1rem;max-width:30rem;height:100%;box-sizing:border-box;overflow:auto}#map{flex-basis:0;flex-grow:4;height:100%}#directions-panel{margin-top:10px}</style><script>(()=>{"use strict";var o={d:(e,t)=>{for(var n in t)o.o(t,n)&&!o.o(e,n)&&Object.defineProperty(e,n,{enumerable:!0,get:t[n]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};function t(){const e=new google.maps.DirectionsService,t=new google.maps.DirectionsRenderer,n=new google.maps.Map(document.getElementById("map"),{zoom:6,center:{lat:41.85,lng:-87.65}});t.setMap(n),document.getElementById("submit").addEventListener("click",()=>{!function(e,o){const t=[],n=document.getElementById("waypoints");for(let e=0;e<n.length;e++)n.options[e].selected&&t.push({location:n[e].value,stopover:!0});e.route({origin:document.getElementById("start").value,destination:document.getElementById("end").value,waypoints:t,optimizeWaypoints:!0,travelMode:google.maps.TravelMode.DRIVING}).then(e=>{o.setDirections(e);const t=e.routes[0],n=document.getElementById("directions-panel");n.innerHTML="";for(let e=0;e<t.legs.length;e++){const o=e+1;n.innerHTML+="<b>Route Segment: "+o+"</b><br>",n.innerHTML+=t.legs[e].start_address+" to ",n.innerHTML+=t.legs[e].end_address+"<br>",n.innerHTML+=t.legs[e].distance.text+"<br><br>"}}).catch(e=>window.alert("Directions request failed due to "+status))}(e,t)})}o.r(e),o.d(e,{initMap:()=>t});var n,r=window;for(n in e)r[n]=e[n];e.__esModule&&Object.defineProperty(r,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="container"><div id="map"></div><div id="sidebar"><div><b>Start:</b> <select id="start"><option value="Halifax, NS">Halifax, NS<option value="Boston, MA">Boston, MA<option value="New York, NY">New York, NY<option value="Miami, FL">Miami, FL</select><br><b>Waypoints:</b><br><i>(Ctrl+Click or Cmd+Click for multiple selection)</i><br><select multiple="multiple"id="waypoints"><option value="montreal, quebec">Montreal, QBC<option value="toronto, ont">Toronto, ONT<option value="chicago, il">Chicago<option value="winnipeg, mb">Winnipeg<option value="fargo, nd">Fargo<option value="calgary, ab">Calgary<option value="spokane, wa">Spokane</select><br><b>End:</b> <select id="end"><option value="Vancouver, BC">Vancouver, BC<option value="Seattle, WA">Seattle, WA<option value="San Francisco, CA">San Francisco, CA<option value="Los Angeles, CA">Los Angeles, CA</select><br><input type="submit"id="submit"></div><div id="directions-panel"></div></div></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #container {
+    height: 100%;
+    display: flex;
+  }
+
+  #sidebar {
+    flex-basis: 15rem;
+    flex-grow: 1;
+    padding: 1rem;
+    max-width: 30rem;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+  }
+
+  #map {
+    flex-basis: 0;
+    flex-grow: 4;
+    height: 100%;
+  }
+
+  #directions-panel {
+    margin-top: 10px;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, n) => {
+          for (var o in n)
+            e.o(n, o) &&
+              !e.o(t, o) &&
+              Object.defineProperty(t, o, { enumerable: !0, get: n[o] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    function n() {
+      const e = new google.maps.DirectionsService(),
+        t = new google.maps.DirectionsRenderer(),
+        n = new google.maps.Map(document.getElementById("map"), {
+          zoom: 6,
+          center: { lat: 41.85, lng: -87.65 },
+        });
+      t.setMap(n),
+        document.getElementById("submit").addEventListener("click", () => {
+          !(function (e, t) {
+            const n = [],
+              o = document.getElementById("waypoints");
+            for (let e = 0; e < o.length; e++)
+              o.options[e].selected &&
+                n.push({ location: o[e].value, stopover: !0 });
+            e.route({
+              origin: document.getElementById("start").value,
+              destination: document.getElementById("end").value,
+              waypoints: n,
+              optimizeWaypoints: !0,
+              travelMode: google.maps.TravelMode.DRIVING,
+            })
+              .then((e) => {
+                t.setDirections(e);
+                const n = e.routes[0],
+                  o = document.getElementById("directions-panel");
+                o.innerHTML = "";
+                for (let e = 0; e < n.legs.length; e++) {
+                  const t = e + 1;
+                  (o.innerHTML += "<b>Route Segment: " + t + "</b><br>"),
+                    (o.innerHTML += n.legs[e].start_address + " to "),
+                    (o.innerHTML += n.legs[e].end_address + "<br>"),
+                    (o.innerHTML += n.legs[e].distance.text + "<br><br>");
+                }
+              })
+              .catch((e) =>
+                window.alert("Directions request failed due to " + status)
+              );
+          })(e, t);
+        });
+    }
+    e.r(t), e.d(t, { initMap: () => n });
+    var o = window;
+    for (var r in t) o[r] = t[r];
+    t.__esModule && Object.defineProperty(o, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="container">
+    <div id="map"></div>
+    <div id="sidebar">
+      <div>
+        <b>Start:</b>
+        <select id="start">
+          <option value="Halifax, NS">Halifax, NS</option>
+          <option value="Boston, MA">Boston, MA</option>
+          <option value="New York, NY">New York, NY</option>
+          <option value="Miami, FL">Miami, FL</option>
+        </select>
+        <br />
+        <b>Waypoints:</b> <br />
+        <i>(Ctrl+Click or Cmd+Click for multiple selection)</i> <br />
+        <select multiple id="waypoints">
+          <option value="montreal, quebec">Montreal, QBC</option>
+          <option value="toronto, ont">Toronto, ONT</option>
+          <option value="chicago, il">Chicago</option>
+          <option value="winnipeg, mb">Winnipeg</option>
+          <option value="fargo, nd">Fargo</option>
+          <option value="calgary, ab">Calgary</option>
+          <option value="spokane, wa">Spokane</option>
+        </select>
+        <br />
+        <b>End:</b>
+        <select id="end">
+          <option value="Vancouver, BC">Vancouver, BC</option>
+          <option value="Seattle, WA">Seattle, WA</option>
+          <option value="San Francisco, CA">San Francisco, CA</option>
+          <option value="Los Angeles, CA">Los Angeles, CA</option>
+        </select>
+        <br />
+        <input type="submit" id="submit" />
+      </div>
+      <div id="directions-panel"></div>
+    </div>
+  </div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>

@@ -33,15 +33,6 @@ nodejs_binary(
 )
 
 nodejs_binary(
-    name = "html-minifier",
-    data = [
-        "@npm//html-minifier",
-    ],
-    entry_point = "@npm//:node_modules/html-minifier/cli.js",
-    visibility = ["//visibility:public"],
-)
-
-nodejs_binary(
     name = "eslint",
     data = [
         "@npm//@babel/core",

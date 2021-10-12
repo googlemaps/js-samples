@@ -1,1 +1,88 @@
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script><style type="text/css">#map{height:100%}body,html{height:100%;margin:0;padding:0}</style><script>(()=>{"use strict";var n={d:(e,t)=>{for(var o in t)n.o(t,o)&&!n.o(e,o)&&Object.defineProperty(e,o,{enumerable:!0,get:t[o]})},o:(e,t)=>Object.prototype.hasOwnProperty.call(e,t),r:e=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})}},e={};let l,r;function t(e){const t=this.getPath();let o="<b>Bermuda Triangle polygon</b><br>Clicked location: <br>"+e.latLng.lat()+","+e.latLng.lng()+"<br>";for(let e=0;e<t.getLength();e++){const l=t.getAt(e);o+="<br>Coordinate "+e+":<br>"+l.lat()+","+l.lng()}r.setContent(o),r.setPosition(e.latLng),r.open(l)}n.r(e),n.d(e,{initMap:()=>function(){l=new google.maps.Map(document.getElementById("map"),{zoom:5,center:{lat:24.886,lng:-70.268},mapTypeId:"terrain"});const e=new google.maps.Polygon({paths:[{lat:25.774,lng:-80.19},{lat:18.466,lng:-66.118},{lat:32.321,lng:-64.757}],strokeColor:"#FF0000",strokeOpacity:.8,strokeWeight:3,fillColor:"#FF0000",fillOpacity:.35});e.setMap(l),e.addListener("click",t),r=new google.maps.InfoWindow}});var o,a=window;for(o in e)a[o]=e[o];e.__esModule&&Object.defineProperty(a,"__esModule",{value:!0})})()</script><div id="iframe-contents"><div id="map"></div><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"async></script></div>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<style type="text/css">
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+  #map {
+    height: 100%;
+  }
+
+  /* Optional: Makes the sample page fill the window. */
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+</style>
+<script>
+  (() => {
+    "use strict";
+    var e = {
+        d: (t, o) => {
+          for (var n in o)
+            e.o(o, n) &&
+              !e.o(t, n) &&
+              Object.defineProperty(t, n, { enumerable: !0, get: o[n] });
+        },
+        o: (e, t) => Object.prototype.hasOwnProperty.call(e, t),
+        r: (e) => {
+          "undefined" != typeof Symbol &&
+            Symbol.toStringTag &&
+            Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }),
+            Object.defineProperty(e, "__esModule", { value: !0 });
+        },
+      },
+      t = {};
+    let o, n;
+    function l() {
+      o = new google.maps.Map(document.getElementById("map"), {
+        zoom: 5,
+        center: { lat: 24.886, lng: -70.268 },
+        mapTypeId: "terrain",
+      });
+      const e = new google.maps.Polygon({
+        paths: [
+          { lat: 25.774, lng: -80.19 },
+          { lat: 18.466, lng: -66.118 },
+          { lat: 32.321, lng: -64.757 },
+        ],
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 3,
+        fillColor: "#FF0000",
+        fillOpacity: 0.35,
+      });
+      e.setMap(o),
+        e.addListener("click", r),
+        (n = new google.maps.InfoWindow());
+    }
+    function r(e) {
+      const t = this.getPath();
+      let l =
+        "<b>Bermuda Triangle polygon</b><br>Clicked location: <br>" +
+        e.latLng.lat() +
+        "," +
+        e.latLng.lng() +
+        "<br>";
+      for (let e = 0; e < t.getLength(); e++) {
+        const o = t.getAt(e);
+        l += "<br>Coordinate " + e + ":<br>" + o.lat() + "," + o.lng();
+      }
+      n.setContent(l), n.setPosition(e.latLng), n.open(o);
+    }
+    e.r(t), e.d(t, { initMap: () => l });
+    var a = window;
+    for (var i in t) a[i] = t[i];
+    t.__esModule && Object.defineProperty(a, "__esModule", { value: !0 });
+  })();
+</script>
+
+<div id="iframe-contents">
+  <div id="map"></div>
+
+  <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly&channel=1"
+    async
+  ></script>
+</div>
