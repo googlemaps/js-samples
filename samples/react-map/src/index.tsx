@@ -20,11 +20,11 @@ import * as ReactDom from "react-dom";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
 // [START maps_react_map_app]
-const render = (status: Status): JSX.Element => {
+const render = (status: Status) => {
   return <h1>{status}</h1>;
 };
 
-const App = (): JSX.Element => (
+const App: React.VFC = () => (
   <Wrapper apiKey={"YOUR_API_KEY"} render={render}>
     <Map center={{ lat: 0, lng: 0 }} zoom={3} />
   </Wrapper>
@@ -32,13 +32,11 @@ const App = (): JSX.Element => (
 // [END maps_react_map_app]
 
 // [START maps_react_map_component]
-const Map = ({
-  center,
-  zoom,
-}: {
+interface MapOptions {
   center: google.maps.LatLngLiteral;
   zoom: number;
-}): JSX.Element => {
+}
+const Map: React.FC<MapOptions> = ({ center, zoom }) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
