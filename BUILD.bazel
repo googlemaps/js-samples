@@ -74,6 +74,7 @@ ESLINT_DATA = [
     "@npm//eslint-config-prettier",
     "@npm//eslint-plugin-jest",
     "@npm//eslint-plugin-prettier",
+    "@npm//eslint-plugin-react",
     "@npm//@typescript-eslint/parser",
     "@npm//@typescript-eslint/eslint-plugin",
 ]
