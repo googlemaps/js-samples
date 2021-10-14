@@ -19,6 +19,8 @@ import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
+let map: google.maps.Map;
+
 const render = (status: Status) => {
   return <h1>{status}</h1>;
 };
@@ -35,7 +37,7 @@ const Map: React.FC<google.maps.MapOptions> = ({ center, zoom }) => {
 
   React.useEffect(() => {
     if (ref.current) {
-      new window.google.maps.Map(ref.current, {
+      map = new window.google.maps.Map(ref.current, {
         center,
         zoom,
       });
@@ -49,6 +51,6 @@ const Map: React.FC<google.maps.MapOptions> = ({ center, zoom }) => {
 window.addEventListener("DOMContentLoaded", () => {
   ReactDom.render(<App />, document.getElementById("root"));
 });
-// [END maps_react_map]
 
-export {};
+// [END maps_react_map]
+export { map };
