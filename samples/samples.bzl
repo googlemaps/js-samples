@@ -149,6 +149,7 @@ SAMPLES = [
     "polyline-simple",
     "programmatic-load",
     "programmatic-load-button",
+    "react-map",
     "rectangle-event",
     "rectangle-simple",
     "rectangle-zoom",

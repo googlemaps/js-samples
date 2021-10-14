@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:react/recommended"],
   "parserOptions": {
     "sourceType": "module",
     "requireConfigFile": false
@@ -16,7 +16,8 @@
   },
   "env": {
     "browser": true,
-    "es6": true
+    "es6": true,
+    "node": true
   },
   "rules": {
     "no-unused-vars": [1, { "varsIgnorePattern": "init*" }],

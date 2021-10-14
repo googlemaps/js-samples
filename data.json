@@ -147,6 +147,7 @@
     "Simple Polylines": "polyline-simple",
     "Programmatic Maps Load": "programmatic-load",
     "Programmatic Maps Load with Button": "programmatic-load-button",
+    "React Map": "react-map",
     "Listening to Events": "rectangle-event",
     "Rectangles": "rectangle-simple",
     "Rectangle Zoom": "rectangle-zoom",
