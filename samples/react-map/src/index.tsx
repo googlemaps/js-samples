@@ -19,7 +19,6 @@ import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
 
-// [START maps_react_map_app]
 const render = (status: Status) => {
   return <h1>{status}</h1>;
 };
@@ -29,14 +28,9 @@ const App: React.VFC = () => (
     <Map center={{ lat: 0, lng: 0 }} zoom={3} />
   </Wrapper>
 );
-// [END maps_react_map_app]
 
 // [START maps_react_map_component]
-interface MapOptions {
-  center: google.maps.LatLngLiteral;
-  zoom: number;
-}
-const Map: React.FC<MapOptions> = ({ center, zoom }) => {
+const Map: React.FC<google.maps.MapOptions> = ({ center, zoom }) => {
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
@@ -55,6 +49,6 @@ const Map: React.FC<MapOptions> = ({ center, zoom }) => {
 window.addEventListener("DOMContentLoaded", () => {
   ReactDom.render(<App />, document.getElementById("root"));
 });
-
 // [END maps_react_map]
+
 export {};
