@@ -1,0 +1,10 @@
+/* [START maps_react_map] */
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+/* [END maps_react_map] */
