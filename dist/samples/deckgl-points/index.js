@@ -32,7 +32,6 @@ function initMap() {
         },
         onDataLoad: () => {
           /* eslint-disable no-undef */
-
           progress.done(); // hides progress bar
           /* eslint-enable no-undef */
         },
