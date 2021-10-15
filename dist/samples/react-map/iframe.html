@@ -7,6 +7,22 @@
     width: 100%;
     margin: 0;
   }
+
+  label,
+  h3 {
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: large;
+    font-weight: bold;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.25rem;
+    box-sizing: border-box;
+    font-size: larger;
+  }
 </style>
 <script>
   /*! For license information please see iframe.js.LICENSE.txt */
@@ -8704,23 +8720,118 @@
         t = n(924),
         l = n(376);
       const a = (t) => e.createElement("h1", null, t),
-        o = () =>
-          e.createElement(
-            l.Wrapper,
-            { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: a },
-            e.createElement(i, { center: { lat: 0, lng: 0 }, zoom: 3 })
-          ),
-        i = ({ center: t, zoom: n }) => {
-          const r = e.useRef(null);
+        o = () => {
+          const [t, n] = e.useState([]),
+            [r, o] = e.useState(3),
+            [s, c] = e.useState({ lat: 0, lng: 0 });
+          return e.createElement(
+            "div",
+            { style: { display: "flex", height: "100%" } },
+            e.createElement(
+              l.Wrapper,
+              { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: a },
+              e.createElement(
+                i,
+                {
+                  center: s,
+                  onClick: (e) => {
+                    n([...t, e.latLng]);
+                  },
+                  onIdle: (e) => {
+                    o(e.getZoom()), c(e.getCenter().toJSON());
+                  },
+                  zoom: r,
+                  style: { flexGrow: "1", height: "100%" },
+                },
+                t.map((t, n) => e.createElement(u, { key: n, position: t }))
+              )
+            ),
+            e.createElement(
+              "div",
+              {
+                style: {
+                  padding: "1rem",
+                  flexBasis: "250px",
+                  height: "100%",
+                  overflow: "auto",
+                },
+              },
+              e.createElement("label", { htmlFor: "zoom" }, "Zoom"),
+              e.createElement("input", {
+                type: "number",
+                id: "zoom",
+                name: "zoom",
+                value: r,
+                onChange: (e) => o(Number(e.target.value)),
+              }),
+              e.createElement("br", null),
+              e.createElement("label", { htmlFor: "lat" }, "Latitude"),
+              e.createElement("input", {
+                type: "number",
+                id: "lat",
+                name: "lat",
+                value: s.lat,
+                onChange: (e) => c({ ...s, lat: Number(e.target.value) }),
+              }),
+              e.createElement("br", null),
+              e.createElement("label", { htmlFor: "lng" }, "Longitude"),
+              e.createElement("input", {
+                type: "number",
+                id: "lng",
+                name: "lng",
+                value: s.lng,
+                onChange: (e) => c({ ...s, lng: Number(e.target.value) }),
+              }),
+              e.createElement(
+                "h3",
+                null,
+                0 === t.length ? "Click on map to add markers" : "Clicks"
+              ),
+              t.map((t, n) =>
+                e.createElement(
+                  "pre",
+                  { key: n },
+                  JSON.stringify(t.toJSON(), null, 2)
+                )
+              )
+            )
+          );
+        },
+        i = ({ onClick: t, onIdle: n, children: r, style: l, ...a }) => {
+          const o = e.useRef(null),
+            [i, u] = e.useState();
           return (
             e.useEffect(() => {
-              r.current &&
-                new window.google.maps.Map(r.current, { center: t, zoom: n });
-            }, [r]),
-            e.createElement("div", {
-              ref: r,
-              style: { width: "100%", height: "100%" },
-            })
+              o.current && !i && u(new window.google.maps.Map(o.current));
+            }, [o]),
+            e.useEffect(() => {
+              i && i.setOptions(a);
+            }, [i, a]),
+            e.useEffect(() => {
+              i &&
+                ["click", "idle"].forEach((e) =>
+                  google.maps.event.clearListeners(i, e)
+                ),
+                i && t && i.addListener("click", t),
+                i && n && i.addListener("idle", () => n(i));
+            }, [i, t, n]),
+            e.createElement(
+              e.Fragment,
+              null,
+              e.createElement("div", { ref: o, style: l }),
+              e.Children.map(r, (t) => {
+                if (e.isValidElement(t)) return e.cloneElement(t, { map: i });
+              })
+            )
+          );
+        },
+        u = (t) => {
+          const n = new google.maps.Marker();
+          return (
+            e.useEffect(() => {
+              n.setOptions(t);
+            }, [n, t]),
+            null
           );
         };
       window.addEventListener("DOMContentLoaded", () => {
