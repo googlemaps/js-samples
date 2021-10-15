@@ -41,6 +41,7 @@ nodejs_binary(
         "@npm//eslint-config-prettier",
         "@npm//eslint-plugin-jest",
         "@npm//eslint-plugin-prettier",
+        "@npm//eslint-plugin-react",
         "@npm//fast-diff",
         "@npm//prettier",
         "@npm//prettier-linter-helpers",

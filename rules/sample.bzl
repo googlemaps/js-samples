@@ -10,7 +10,7 @@ load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@npm//webpack-cli:index.bzl", webpack = "webpack_cli")
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 
-def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [], devDependencies = ["@types/google.maps"]):
+def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [], devDependencies = ["@types/google.maps"], tsx=False):
     """ Generates sample outputs
 
     Args:
@@ -18,9 +18,18 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
       YOUR_API_KEY: environment variable name for api key
       dependencies: third party dependencies
       devDependencies: third party dependencies
+      tsx: whether the entry file is .ts or .tsx
     """
     has_runtime_dependency = (len(dependencies) > 0)
     js_dependencies = ["@npm//{}".format(package) for package in dependencies] + ["@npm//{}".format(package) for package in devDependencies]
+
+    extension = "tsx" if tsx else "ts"
+    entry_file = ":src/index.{}".format(extension)
+    
+    native.alias(
+        name = "entry",
+        actual = entry_file,
+    )
 
     webpack_dependencies = [
         "@npm//webpack",
@@ -47,7 +56,7 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
 
     ts_library(
         name = "_compile",
-        srcs = ["src/index.ts"],
+        srcs = [entry_file],
         prodmode_target = "esnext",
         deps = js_dependencies,
         tags = ["ts"],
@@ -83,6 +92,7 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
             "@npm//eslint-config-prettier",
             "@npm//eslint-plugin-jest",
             "@npm//eslint-plugin-prettier",
+            "@npm//eslint-plugin-react",
             "@npm//fast-diff",
             "@npm//prettier",
             "@npm//prettier-linter-helpers",
@@ -246,9 +256,9 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
 
     native.genrule(
         name = "_replaced_key_ts",
-        srcs = [":src/index.ts"],
-        outs = ["_replaced_key_index.ts"],
-        cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :src/index.ts) > $@; ",
+        srcs = [":entry"],
+        outs = ["_replaced_key_index.{}".format(extension)],
+        cmd = "sed \"s/YOUR_API_KEY/$${GOOGLE_MAPS_JS_SAMPLES_KEY}/g\" $(location :entry) > $@; ",
     )
     webpack(
         name = "iframe_bundle",
@@ -257,14 +267,14 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
             "--mode production",
             "--env SKIP_HTML",
             "--entry",
-            "./$(execpath :_replaced_key_index.ts)",
+            "./$(execpath :_replaced_key_index.{})".format(extension),
             "--config",
             "./$(execpath //shared:webpack.config.js)",
             "-o $(@D)",
             "--output-filename iframe.js",
         ],
         data = [
-            ":_replaced_key_index.ts",
+            ":_replaced_key_index.{}".format(extension),
             # config
             "//shared:webpack.config.js",
             "//:tsconfig.json",
@@ -338,9 +348,9 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
 
     native.genrule(
         name = "app_ts",
-        srcs = [":src/index.ts"],
-        outs = ["app/src/index.ts"],
-        cmd = "cat $(location :src/index.ts) > $@; " +
+        srcs = [":entry"],
+        outs = ["app/src/index.{}".format(extension)],
+        cmd = "cat $(location :entry) > $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "tmp=$$(mktemp); " +
               "sed '16 i /* eslint-disable no-undef, @typescript-eslint/no-unused-vars, no-unused-vars */' $@ > $$tmp && cat $$tmp > $@; " +
@@ -461,7 +471,7 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
 
     native.filegroup(
         name = "inputs",
-        srcs = ["src/index.ts", "src/style.scss", "src/index.njk"],
+        srcs = [":entry", "src/style.scss", "src/index.njk"],
         visibility = ["//visibility:public"],
     )
 
