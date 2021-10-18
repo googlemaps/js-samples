@@ -175,7 +175,6 @@ const Map: React.FC<MapProps> = ({
   );
   // [END maps_react_map_component_return]
 };
-// [END maps_react_map_component]
 
 // [START maps_react_map_marker_component]
 const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
