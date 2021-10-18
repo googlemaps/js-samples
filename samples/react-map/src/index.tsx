@@ -24,7 +24,6 @@ const render = (status: Status) => {
 };
 
 const App: React.VFC = () => {
-  /* eslint-disable @typescript-eslint/no-non-null-assertion */
   // [START maps_react_map_component_app_state]
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
   const [zoom, setZoom] = React.useState(3); // initial zoom
@@ -43,7 +42,6 @@ const App: React.VFC = () => {
     setCenter(m.getCenter()!.toJSON());
   };
   // [END maps_react_map_component_app_state]
-  /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
   const form = (
     <div
@@ -115,6 +113,7 @@ const App: React.VFC = () => {
 };
 
 // [START maps_react_map_component]
+// [START maps_react_map_component_signature]
 let PRESERVE_COMMENT_ABOVE = 0;
 interface MapProps extends google.maps.MapOptions {
   style: { [key: string]: string };
@@ -129,7 +128,6 @@ const Map: React.FC<MapProps> = ({
   style,
   ...options
 }) => {
-  // [START_EXCLUDE]
   // [START maps_react_map_component_add_map_hooks]
   const ref = React.useRef<HTMLDivElement>(null);
   const [map, setMap] = React.useState<google.maps.Map>();
@@ -180,7 +178,6 @@ const Map: React.FC<MapProps> = ({
     </>
   );
   // [END maps_react_map_component_return]
-  // [END_EXCLUDE]
 };
 // [END maps_react_map_component]
 
