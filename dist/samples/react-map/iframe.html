@@ -8723,30 +8723,8 @@
         o = () => {
           const [t, n] = e.useState([]),
             [r, o] = e.useState(3),
-            [s, c] = e.useState({ lat: 0, lng: 0 });
-          return e.createElement(
-            "div",
-            { style: { display: "flex", height: "100%" } },
-            e.createElement(
-              l.Wrapper,
-              { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: a },
-              e.createElement(
-                i,
-                {
-                  center: s,
-                  onClick: (e) => {
-                    n([...t, e.latLng]);
-                  },
-                  onIdle: (e) => {
-                    o(e.getZoom()), c(e.getCenter().toJSON());
-                  },
-                  zoom: r,
-                  style: { flexGrow: "1", height: "100%" },
-                },
-                t.map((t, n) => e.createElement(u, { key: n, position: t }))
-              )
-            ),
-            e.createElement(
+            [s, c] = e.useState({ lat: 0, lng: 0 }),
+            f = e.createElement(
               "div",
               {
                 style: {
@@ -8794,7 +8772,30 @@
                   JSON.stringify(t.toJSON(), null, 2)
                 )
               )
-            )
+            );
+          return e.createElement(
+            "div",
+            { style: { display: "flex", height: "100%" } },
+            e.createElement(
+              l.Wrapper,
+              { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: a },
+              e.createElement(
+                i,
+                {
+                  center: s,
+                  onClick: (e) => {
+                    n([...t, e.latLng]);
+                  },
+                  onIdle: (e) => {
+                    o(e.getZoom()), c(e.getCenter().toJSON());
+                  },
+                  zoom: r,
+                  style: { flexGrow: "1", height: "100%" },
+                },
+                t.map((t, n) => e.createElement(u, { key: n, position: t }))
+              )
+            ),
+            f
           );
         },
         i = ({ onClick: t, onIdle: n, children: r, style: l, ...a }) => {
@@ -8809,11 +8810,11 @@
             }, [i, a]),
             e.useEffect(() => {
               i &&
-                ["click", "idle"].forEach((e) =>
+                (["click", "idle"].forEach((e) =>
                   google.maps.event.clearListeners(i, e)
                 ),
-                i && t && i.addListener("click", t),
-                i && n && i.addListener("idle", () => n(i));
+                t && i.addListener("click", t),
+                n && i.addListener("idle", () => n(i)));
             }, [i, t, n]),
             e.createElement(
               e.Fragment,
