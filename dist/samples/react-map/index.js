@@ -152,7 +152,6 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
   // [END maps_react_map_component_return]
 };
 
-// [END maps_react_map_component]
 // [START maps_react_map_marker_component]
 const Marker = (options) => {
   const marker = new google.maps.Marker();
