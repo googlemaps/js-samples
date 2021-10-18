@@ -8723,30 +8723,8 @@
         o = () => {
           const [t, n] = e.useState([]),
             [r, o] = e.useState(3),
-            [s, c] = e.useState({ lat: 0, lng: 0 });
-          return e.createElement(
-            "div",
-            { style: { display: "flex", height: "100%" } },
-            e.createElement(
-              l.Wrapper,
-              { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: a },
-              e.createElement(
-                i,
-                {
-                  center: s,
-                  onClick: (e) => {
-                    n([...t, e.latLng]);
-                  },
-                  onIdle: (e) => {
-                    o(e.getZoom()), c(e.getCenter().toJSON());
-                  },
-                  zoom: r,
-                  style: { flexGrow: "1", height: "100%" },
-                },
-                t.map((t, n) => e.createElement(u, { key: n, position: t }))
-              )
-            ),
-            e.createElement(
+            [i, c] = e.useState({ lat: 0, lng: 0 }),
+            f = e.createElement(
               "div",
               {
                 style: {
@@ -8770,8 +8748,8 @@
                 type: "number",
                 id: "lat",
                 name: "lat",
-                value: s.lat,
-                onChange: (e) => c({ ...s, lat: Number(e.target.value) }),
+                value: i.lat,
+                onChange: (e) => c({ ...i, lat: Number(e.target.value) }),
               }),
               e.createElement("br", null),
               e.createElement("label", { htmlFor: "lng" }, "Longitude"),
@@ -8779,8 +8757,8 @@
                 type: "number",
                 id: "lng",
                 name: "lng",
-                value: s.lng,
-                onChange: (e) => c({ ...s, lng: Number(e.target.value) }),
+                value: i.lng,
+                onChange: (e) => c({ ...i, lng: Number(e.target.value) }),
               }),
               e.createElement(
                 "h3",
@@ -8794,10 +8772,34 @@
                   JSON.stringify(t.toJSON(), null, 2)
                 )
               )
-            )
+            );
+          return e.createElement(
+            "div",
+            { style: { display: "flex", height: "100%" } },
+            e.createElement(
+              l.Wrapper,
+              { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: a },
+              e.createElement(
+                u,
+                {
+                  center: i,
+                  onClick: (e) => {
+                    n([...t, e.latLng]);
+                  },
+                  onIdle: (e) => {
+                    o(e.getZoom()), c(e.getCenter().toJSON());
+                  },
+                  zoom: r,
+                  style: { flexGrow: "1", height: "100%" },
+                },
+                t.map((t, n) => e.createElement(s, { key: n, position: t }))
+              )
+            ),
+            f
           );
-        },
-        i = ({ onClick: t, onIdle: n, children: r, style: l, ...a }) => {
+        };
+      let i = 0;
+      const u = ({ onClick: t, onIdle: n, children: r, style: l, ...a }) => {
           const o = e.useRef(null),
             [i, u] = e.useState();
           return (
@@ -8809,11 +8811,11 @@
             }, [i, a]),
             e.useEffect(() => {
               i &&
-                ["click", "idle"].forEach((e) =>
+                (["click", "idle"].forEach((e) =>
                   google.maps.event.clearListeners(i, e)
                 ),
-                i && t && i.addListener("click", t),
-                i && n && i.addListener("idle", () => n(i));
+                t && i.addListener("click", t),
+                n && i.addListener("idle", n));
             }, [i, t, n]),
             e.createElement(
               e.Fragment,
@@ -8825,7 +8827,7 @@
             )
           );
         },
-        u = (t) => {
+        s = (t) => {
           const n = new google.maps.Marker();
           return (
             e.useEffect(() => {
@@ -8836,7 +8838,8 @@
         };
       window.addEventListener("DOMContentLoaded", () => {
         t.render(e.createElement(o, null), document.getElementById("root"));
-      });
+      }),
+        (i = 1);
     })();
     var l = window;
     for (var a in r) l[a] = r[a];

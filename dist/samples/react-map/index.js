@@ -7,8 +7,9 @@ const render = (status) => {
 };
 
 const App = () => {
+  // [START maps_react_map_component_app_state]
   const [clicks, setClicks] = React.useState([]);
-  const [zoom, setZoom] = React.useState(3);
+  const [zoom, setZoom] = React.useState(3); // initial zoom
   const [center, setCenter] = React.useState({
     lat: 0,
     lng: 0,
@@ -16,16 +17,67 @@ const App = () => {
 
   const onClick = (e) => {
     // avoid directly mutating state
-    // eslint-disable-next-line
     setClicks([...clicks, e.latLng]);
   };
 
   const onIdle = (m) => {
-    // eslint-disable-next-line
     setZoom(m.getZoom());
-    // eslint-disable-next-line
     setCenter(m.getCenter().toJSON());
   };
+
+  // [END maps_react_map_component_app_state]
+  const form = React.createElement(
+    "div",
+    {
+      style: {
+        padding: "1rem",
+        flexBasis: "250px",
+        height: "100%",
+        overflow: "auto",
+      },
+    },
+    React.createElement("label", { htmlFor: "zoom" }, "Zoom"),
+    React.createElement("input", {
+      type: "number",
+      id: "zoom",
+      name: "zoom",
+      value: zoom,
+      onChange: (event) => setZoom(Number(event.target.value)),
+    }),
+    React.createElement("br", null),
+    React.createElement("label", { htmlFor: "lat" }, "Latitude"),
+    React.createElement("input", {
+      type: "number",
+      id: "lat",
+      name: "lat",
+      value: center.lat,
+      onChange: (event) =>
+        setCenter({ ...center, lat: Number(event.target.value) }),
+    }),
+    React.createElement("br", null),
+    React.createElement("label", { htmlFor: "lng" }, "Longitude"),
+    React.createElement("input", {
+      type: "number",
+      id: "lng",
+      name: "lng",
+      value: center.lng,
+      onChange: (event) =>
+        setCenter({ ...center, lng: Number(event.target.value) }),
+    }),
+    React.createElement(
+      "h3",
+      null,
+      clicks.length === 0 ? "Click on map to add markers" : "Clicks"
+    ),
+    clicks.map((latLng, i) =>
+      React.createElement(
+        "pre",
+        { key: i },
+        JSON.stringify(latLng.toJSON(), null, 2)
+      )
+    )
+  );
+  // [START maps_react_map_component_app_return]
   return React.createElement(
     "div",
     { style: { display: "flex", height: "100%" } },
@@ -46,62 +98,15 @@ const App = () => {
         )
       )
     ),
-    React.createElement(
-      "div",
-      {
-        style: {
-          padding: "1rem",
-          flexBasis: "250px",
-          height: "100%",
-          overflow: "auto",
-        },
-      },
-      React.createElement("label", { htmlFor: "zoom" }, "Zoom"),
-      React.createElement("input", {
-        type: "number",
-        id: "zoom",
-        name: "zoom",
-        value: zoom,
-        onChange: (event) => setZoom(Number(event.target.value)),
-      }),
-      React.createElement("br", null),
-      React.createElement("label", { htmlFor: "lat" }, "Latitude"),
-      React.createElement("input", {
-        type: "number",
-        id: "lat",
-        name: "lat",
-        value: center.lat,
-        onChange: (event) =>
-          setCenter({ ...center, lat: Number(event.target.value) }),
-      }),
-      React.createElement("br", null),
-      React.createElement("label", { htmlFor: "lng" }, "Longitude"),
-      React.createElement("input", {
-        type: "number",
-        id: "lng",
-        name: "lng",
-        value: center.lng,
-        onChange: (event) =>
-          setCenter({ ...center, lng: Number(event.target.value) }),
-      }),
-      React.createElement(
-        "h3",
-        null,
-        clicks.length === 0 ? "Click on map to add markers" : "Clicks"
-      ),
-      clicks.map((latLng, i) =>
-        React.createElement(
-          "pre",
-          { key: i },
-          JSON.stringify(latLng.toJSON(), null, 2)
-        )
-      )
-    )
+    form
   );
+  // [END maps_react_map_component_app_return]
 };
 
 // [START maps_react_map_component]
+// [START maps_react_map_component_signature]
 const Map = ({ onClick, onIdle, children, style, ...options }) => {
+  // [START maps_react_map_component_add_map_hooks]
   const ref = React.useRef(null);
   const [map, setMap] = React.useState();
 
@@ -110,26 +115,31 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
       setMap(new window.google.maps.Map(ref.current));
     }
   }, [ref]);
+  // [END maps_react_map_component_add_map_hooks]
+  // [START maps_react_map_component_options_hook]
   React.useEffect(() => {
     if (map) {
       map.setOptions(options);
     }
   }, [map, options]);
+  // [END maps_react_map_component_options_hook]
+  // [START maps_react_map_component_event_hooks]
   React.useEffect(() => {
     if (map) {
       ["click", "idle"].forEach((eventName) =>
         google.maps.event.clearListeners(map, eventName)
       );
-    }
+      if (onClick) {
+        map.addListener("click", onClick);
+      }
 
-    if (map && onClick) {
-      map.addListener("click", onClick);
-    }
-
-    if (map && onIdle) {
-      map.addListener("idle", () => onIdle(map));
+      if (onIdle) {
+        map.addListener("idle", onIdle);
+      }
     }
   }, [map, onClick, onIdle]);
+  // [END maps_react_map_component_event_hooks]
+  // [START maps_react_map_component_return]
   return React.createElement(
     React.Fragment,
     null,
@@ -141,6 +151,7 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
       }
     })
   );
+  // [END maps_react_map_component_return]
 };
 
 // [END maps_react_map_component]
