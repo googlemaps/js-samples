@@ -23,6 +23,7 @@
     "react/prop-types": 0,
     "no-unused-vars": [1, { "varsIgnorePattern": "init*" }],
     "no-var": 2,
+    
     "padding-line-between-statements": [
       1,
       {
