@@ -132,7 +132,7 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
       }
 
       if (onIdle) {
-        map.addListener("idle", onIdle);
+        map.addListener("idle", () => onIdle(map));
       }
     }
   }, [map, onClick, onIdle]);

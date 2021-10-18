@@ -8814,7 +8814,7 @@
                   google.maps.event.clearListeners(i, e)
                 ),
                 t && i.addListener("click", t),
-                n && i.addListener("idle", n));
+                n && i.addListener("idle", () => n(i)));
             }, [i, t, n]),
             e.createElement(
               e.Fragment,
