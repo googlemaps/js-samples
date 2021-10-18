@@ -111,10 +111,6 @@ const App: React.VFC = () => {
   );
   // [END maps_react_map_component_app_return]
 };
-
-// [START maps_react_map_component]
-// [START maps_react_map_component_signature]
-let PRESERVE_COMMENT_ABOVE = 0;
 interface MapProps extends google.maps.MapOptions {
   style: { [key: string]: string };
   onClick?: (e: google.maps.MapMouseEvent) => void;
@@ -198,6 +194,6 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 // [END maps_react_map]
-PRESERVE_COMMENT_ABOVE = 1; // force tsc to maintain the comment above eslint-disable-line
+let PRESERVE_COMMENT_ABOVE; // force tsc to maintain the comment above eslint-disable-line
 
 export {};
