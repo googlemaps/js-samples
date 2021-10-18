@@ -103,8 +103,6 @@ const App = () => {
   // [END maps_react_map_component_app_return]
 };
 
-// [START maps_react_map_component]
-// [START maps_react_map_component_signature]
 const Map = ({ onClick, onIdle, children, style, ...options }) => {
   // [START maps_react_map_component_add_map_hooks]
   const ref = React.useRef(null);

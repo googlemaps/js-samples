@@ -8723,7 +8723,7 @@
         o = () => {
           const [t, n] = e.useState([]),
             [r, o] = e.useState(3),
-            [i, c] = e.useState({ lat: 0, lng: 0 }),
+            [s, c] = e.useState({ lat: 0, lng: 0 }),
             f = e.createElement(
               "div",
               {
@@ -8748,8 +8748,8 @@
                 type: "number",
                 id: "lat",
                 name: "lat",
-                value: i.lat,
-                onChange: (e) => c({ ...i, lat: Number(e.target.value) }),
+                value: s.lat,
+                onChange: (e) => c({ ...s, lat: Number(e.target.value) }),
               }),
               e.createElement("br", null),
               e.createElement("label", { htmlFor: "lng" }, "Longitude"),
@@ -8757,8 +8757,8 @@
                 type: "number",
                 id: "lng",
                 name: "lng",
-                value: i.lng,
-                onChange: (e) => c({ ...i, lng: Number(e.target.value) }),
+                value: s.lng,
+                onChange: (e) => c({ ...s, lng: Number(e.target.value) }),
               }),
               e.createElement(
                 "h3",
@@ -8780,9 +8780,9 @@
               l.Wrapper,
               { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: a },
               e.createElement(
-                u,
+                i,
                 {
-                  center: i,
+                  center: s,
                   onClick: (e) => {
                     n([...t, e.latLng]);
                   },
@@ -8792,14 +8792,13 @@
                   zoom: r,
                   style: { flexGrow: "1", height: "100%" },
                 },
-                t.map((t, n) => e.createElement(s, { key: n, position: t }))
+                t.map((t, n) => e.createElement(u, { key: n, position: t }))
               )
             ),
             f
           );
-        };
-      let i = 0;
-      const u = ({ onClick: t, onIdle: n, children: r, style: l, ...a }) => {
+        },
+        i = ({ onClick: t, onIdle: n, children: r, style: l, ...a }) => {
           const o = e.useRef(null),
             [i, u] = e.useState();
           return (
@@ -8827,7 +8826,7 @@
             )
           );
         },
-        s = (t) => {
+        u = (t) => {
           const n = new google.maps.Marker();
           return (
             e.useEffect(() => {
@@ -8838,8 +8837,7 @@
         };
       window.addEventListener("DOMContentLoaded", () => {
         t.render(e.createElement(o, null), document.getElementById("root"));
-      }),
-        (i = 1);
+      });
     })();
     var l = window;
     for (var a in r) l[a] = r[a];
