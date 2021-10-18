@@ -155,7 +155,7 @@ const Map: React.FC<MapProps> = ({
       }
 
       if (onIdle) {
-        map.addListener("idle", onIdle);
+        map.addListener("idle", () => onIdle(map));
       }
     }
   }, [map, onClick, onIdle]);
