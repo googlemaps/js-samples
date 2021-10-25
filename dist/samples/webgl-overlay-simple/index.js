@@ -33,7 +33,7 @@ function initMap() {
   // Load the model.
   const loader = new GLTFLoader();
   const url =
-    "https://raw.githubusercontent.com/googlemaps/js-samples/master/assets/pin.gltf";
+    "https://raw.githubusercontent.com/googlemaps/js-samples/main/assets/pin.gltf";
 
   loader.load(url, (gltf) => {
     gltf.scene.scale.set(10, 10, 10);
