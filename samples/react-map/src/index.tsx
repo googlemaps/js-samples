@@ -86,6 +86,7 @@ const App: React.VFC = () => {
       {clicks.map((latLng, i) => (
         <pre key={i}>{JSON.stringify(latLng.toJSON(), null, 2)}</pre>
       ))}
+      <button onClick={() => setClicks([])}>Clear</button>
     </div>
   );
 
@@ -132,7 +133,7 @@ const Map: React.FC<MapProps> = ({
     if (ref.current && !map) {
       setMap(new window.google.maps.Map(ref.current));
     }
-  }, [ref]);
+  }, [ref, map]);
   // [END maps_react_map_component_add_map_hooks]
 
   // [START maps_react_map_component_options_hook]
@@ -178,10 +179,25 @@ const Map: React.FC<MapProps> = ({
 
 // [START maps_react_map_marker_component]
 const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
-  const marker = new google.maps.Marker();
+  const [marker, setMarker] = React.useState<google.maps.Marker>();
 
   React.useEffect(() => {
-    marker.setOptions(options);
+    if (!marker) {
+      setMarker(new google.maps.Marker());
+    }
+
+    // remove marker from map on unmount
+    return () => {
+      if (marker) {
+        marker.setMap(null);
+      }
+    };
+  }, [marker]);
+
+  React.useEffect(() => {
+    if (marker) {
+      marker.setOptions(options);
+    }
   }, [marker, options]);
 
   return null;
