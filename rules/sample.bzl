@@ -10,7 +10,7 @@ load("@rules_pkg//:pkg.bzl", "pkg_tar")
 load("@npm//webpack-cli:index.bzl", webpack = "webpack_cli")
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 
-def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [], devDependencies = ["@types/google.maps"], tsx=False):
+def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [], devDependencies = ["@types/google.maps"], tsx = False):
     """ Generates sample outputs
 
     Args:
@@ -25,7 +25,7 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
 
     extension = "tsx" if tsx else "ts"
     entry_file = ":src/index.{}".format(extension)
-    
+
     native.alias(
         name = "entry",
         actual = entry_file,
@@ -291,7 +291,7 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
         cmd = "$(location //rules:inline) $(location :_iframe.html) $@; " +
               "$(location //rules:strip_region_tags_bin) $@; " +
               "tmp=$$(mktemp); " +
-              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY)  +
+              "sed \"s/YOUR_API_KEY/$${}/g\" $@ > $$tmp && cat $$tmp > $@; ".format(YOUR_API_KEY) +
               "$(location //rules:prettier) --write $@; ",
         tools = ["//rules:inline", "//rules:strip_region_tags_bin", "//rules:prettier"],
         visibility = ["//visibility:public"],
@@ -385,11 +385,18 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
     )
 
     copy_file(name = "readme", src = "//shared:README.md", out = "app/README.md")
-    copy_file(name = "webpack-config", src = "//shared:webpack.config.js", out = "app/webpack.config.js")
     copy_file(name = "tsconfig", src = "//:tsconfig.json", out = "app/tsconfig.json")
     copy_file(name = "sandbox-config", src = "//shared:sandbox.config.json", out = "app/sandbox.config.json")
     copy_file(name = "gitpod", src = "//shared:.gitpod.yml", out = "app/.gitpod.yml")
     copy_file(name = "gitignore", src = "//shared:.gitignore", out = "app/.gitignore")
+
+    # change the entry point to be the correct extension
+    native.genrule(
+        name = "webpack-config",
+        srcs = ["//shared:webpack.config.js"],
+        outs = ["app/webpack.config.js"],
+        cmd = "sed 's/\\.\\/src\\/index\\.ts/\\.\\/src\\/index\\.{}/' $(location //shared:webpack.config.js) > $@".format(extension),
+    )
 
     native.filegroup(
         name = "package",
