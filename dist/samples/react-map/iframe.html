@@ -8771,7 +8771,8 @@
                   { key: n },
                   JSON.stringify(t.toJSON(), null, 2)
                 )
-              )
+              ),
+              e.createElement("button", { onClick: () => n([]) }, "Clear")
             );
           return e.createElement(
             "div",
@@ -8804,7 +8805,7 @@
           return (
             e.useEffect(() => {
               o.current && !i && u(new window.google.maps.Map(o.current));
-            }, [o]),
+            }, [o, i]),
             e.useEffect(() => {
               i && i.setOptions(a);
             }, [i, a]),
@@ -8827,10 +8828,19 @@
           );
         },
         u = (t) => {
-          const n = new google.maps.Marker();
+          const [n, r] = e.useState();
           return (
+            e.useEffect(
+              () => (
+                n || r(new google.maps.Marker()),
+                () => {
+                  n && n.setMap(null);
+                }
+              ),
+              [n]
+            ),
             e.useEffect(() => {
-              n.setOptions(t);
+              n && n.setOptions(t);
             }, [n, t]),
             null
           );
