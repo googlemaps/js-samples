@@ -84,7 +84,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "rollup": "^2.50.5",
-    "selenium-standalone": "^7.1.0",
+    "selenium-standalone": "^8.0.4",
     "selenium-webdriver": "^4.0.0-beta.3",
     "sort-package-json": "^1.50.0",
     "string-replace-loader": "^3.0.2",
