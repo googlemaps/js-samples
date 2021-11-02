@@ -18,6 +18,7 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
+import { createCustomEqual } from "fast-equals";
 
 const render = (status: Status) => {
   return <h1>{status}</h1>;
@@ -38,6 +39,7 @@ const App: React.VFC = () => {
   };
 
   const onIdle = (m: google.maps.Map) => {
+    console.log("onIdle");
     setZoom(m.getZoom()!);
     setCenter(m.getCenter()!.toJSON());
   };
@@ -131,13 +133,15 @@ const Map: React.FC<MapProps> = ({
 
   React.useEffect(() => {
     if (ref.current && !map) {
-      setMap(new window.google.maps.Map(ref.current));
+      setMap(new window.google.maps.Map(ref.current, {}));
     }
   }, [ref, map]);
   // [END maps_react_map_component_add_map_hooks]
 
   // [START maps_react_map_component_options_hook]
-  React.useEffect(() => {
+  // because React does not do deep comparisons, a custom hook is used
+  // see discussion in https://github.com/googlemaps/js-samples/issues/946
+  useDeepCompareEffectForMaps(() => {
     if (map) {
       map.setOptions(options);
     }
@@ -203,6 +207,49 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   return null;
 };
 // [END maps_react_map_marker_component]
+
+const deepCompareEqualsForMaps = createCustomEqual(
+  (deepEqual) => (a: any, b: any) => {
+    if (
+      isLatLngLiteral(a) ||
+      a instanceof google.maps.LatLng ||
+      isLatLngLiteral(b) ||
+      b instanceof google.maps.LatLng
+    ) {
+      return new google.maps.LatLng(a).equals(new google.maps.LatLng(b));
+    }
+
+    // TODO extend to other types
+
+    // use fast-equals for other objects
+    return deepEqual(a, b);
+  }
+);
+
+function useDeepCompareMemoize(value: any) {
+  const ref = React.useRef();
+
+  if (!deepCompareEqualsForMaps(value, ref.current)) {
+    ref.current = value;
+  }
+
+  return ref.current;
+}
+
+function useDeepCompareEffectForMaps(
+  callback: React.EffectCallback,
+  dependencies: any[]
+) {
+  React.useEffect(callback, dependencies.map(useDeepCompareMemoize));
+}
+
+function isLatLngLiteral(obj: any): obj is google.maps.LatLngLiteral {
+  return (
+    typeof obj === "object" &&
+    Number.isFinite(obj.lat) &&
+    Number.isFinite(obj.lng)
+  );
+}
 
 window.addEventListener("DOMContentLoaded", () => {
   ReactDom.render(<App />, document.getElementById("root"));

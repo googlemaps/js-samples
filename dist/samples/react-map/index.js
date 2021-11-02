@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Wrapper } from "@googlemaps/react-wrapper";
+import { createCustomEqual } from "fast-equals";
 const render = (status) => {
   return React.createElement("h1", null, status);
 };
@@ -21,6 +22,7 @@ const App = () => {
   };
 
   const onIdle = (m) => {
+    console.log("onIdle");
     setZoom(m.getZoom());
     setCenter(m.getCenter().toJSON());
   };
@@ -111,12 +113,14 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
 
   React.useEffect(() => {
     if (ref.current && !map) {
-      setMap(new window.google.maps.Map(ref.current));
+      setMap(new window.google.maps.Map(ref.current, {}));
     }
   }, [ref, map]);
   // [END maps_react_map_component_add_map_hooks]
   // [START maps_react_map_component_options_hook]
-  React.useEffect(() => {
+  // because React does not do deep comparisons, a custom hook is used
+  // see discussion in https://github.com/googlemaps/js-samples/issues/946
+  useDeepCompareEffectForMaps(() => {
     if (map) {
       map.setOptions(options);
     }
@@ -178,6 +182,41 @@ const Marker = (options) => {
 };
 
 // [END maps_react_map_marker_component]
+const deepCompareEqualsForMaps = createCustomEqual((deepEqual) => (a, b) => {
+  if (
+    isLatLngLiteral(a) ||
+    a instanceof google.maps.LatLng ||
+    isLatLngLiteral(b) ||
+    b instanceof google.maps.LatLng
+  ) {
+    return new google.maps.LatLng(a).equals(new google.maps.LatLng(b));
+  }
+  // TODO extend to other types
+  // use fast-equals for other objects
+  return deepEqual(a, b);
+});
+
+function useDeepCompareMemoize(value) {
+  const ref = React.useRef();
+
+  if (!deepCompareEqualsForMaps(value, ref.current)) {
+    ref.current = value;
+  }
+  return ref.current;
+}
+
+function useDeepCompareEffectForMaps(callback, dependencies) {
+  React.useEffect(callback, dependencies.map(useDeepCompareMemoize));
+}
+
+function isLatLngLiteral(obj) {
+  return (
+    typeof obj === "object" &&
+    Number.isFinite(obj.lat) &&
+    Number.isFinite(obj.lng)
+  );
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   ReactDom.render(
     React.createElement(App, null),

@@ -13,4 +13,4 @@
  # limitations under the License.
 load("//rules:sample.bzl", "sample")
 
-sample(name = "react-map", dependencies=["react", "react-dom", "@googlemaps/react-wrapper"], devDependencies=["@types/react", "@types/google.maps", "@types/react-dom"], tsx=True)
+sample(name = "react-map", dependencies=["react", "react-dom", "@googlemaps/react-wrapper", "fast-equals"], devDependencies=["@types/react", "@types/google.maps", "@types/react-dom"], tsx=True)

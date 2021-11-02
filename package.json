@@ -70,6 +70,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
     "expect": "^27.0.2",
+    "fast-equals": "^2.0.3",
     "glob": "^7.1.7",
     "html-replace-webpack-plugin": "^2.6.0",
     "html-webpack-plugin": "^5.3.1",
