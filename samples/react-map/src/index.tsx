@@ -245,8 +245,8 @@ function useDeepCompareEffectForMaps(
 function isLatLngLiteral(obj: any): obj is google.maps.LatLngLiteral {
   return (
     typeof obj === "object" &&
-    obj.hasOwnProperty("lat") &&
-    obj.hasOwnProperty("lng")
+    Number.isFinite(obj.lat) &&
+    Number.isFinite(obj.lng)
   );
 }
 
