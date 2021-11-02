@@ -140,6 +140,7 @@ const Map: React.FC<MapProps> = ({
 
   // [START maps_react_map_component_options_hook]
   // because React does not do deep comparisons, a custom hook is used
+  // see discussion in https://github.com/googlemaps/js-samples/issues/946
   useDeepCompareEffectForMaps(() => {
     if (map) {
       map.setOptions(options);

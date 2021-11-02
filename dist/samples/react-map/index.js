@@ -119,6 +119,7 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
   // [END maps_react_map_component_add_map_hooks]
   // [START maps_react_map_component_options_hook]
   // because React does not do deep comparisons, a custom hook is used
+  // see discussion in https://github.com/googlemaps/js-samples/issues/946
   useDeepCompareEffectForMaps(() => {
     if (map) {
       map.setOptions(options);
