@@ -450,15 +450,15 @@
                 h = t[Math.floor(Math.random() * o)];
               for (a && h.join("_"), s.push(h); s.length < e; ) {
                 for (
-                  var u = [], l = s.length, c = 0, p = [], f = 0;
-                  f < o;
-                  f++
+                  var u = [], l = s.length, c = 0, p = [], d = 0;
+                  d < o;
+                  d++
                 ) {
-                  for (var d = 1 / 0, g = 0; g < l; g++) {
-                    var m = r(t[f], s[g]);
-                    m <= d && (d = m);
+                  for (var f = 1 / 0, g = 0; g < l; g++) {
+                    var m = r(t[d], s[g]);
+                    m <= f && (f = m);
                   }
-                  u[f] = d;
+                  u[d] = f;
                 }
                 for (var _ = 0; _ < o; _++) c += u[_];
                 for (var v = 0; v < o; v++)
@@ -497,20 +497,20 @@
               l = [],
               c = [],
               p = !1,
-              f = s || 1e4,
-              d = t.length,
+              d = s || 1e4,
+              f = t.length,
               g = t[0].length,
               m = g > 0,
               _ = [];
             if (r) i = "kmrand" == r ? o(t, e) : "kmpp" == r ? a(t, e) : r;
             else
               for (var v = {}; i.length < e; ) {
-                var y = Math.floor(Math.random() * d);
+                var y = Math.floor(Math.random() * f);
                 v[y] || ((v[y] = !0), i.push(t[y]));
               }
             do {
               h(e, 0, _);
-              for (var x = 0; x < d; x++) {
+              for (var x = 0; x < f; x++) {
                 for (var M = 1 / 0, k = 0, w = 0; w < e; w++)
                   (c = m ? n(t[x], i[w]) : Math.abs(t[x] - i[w])) <= M &&
                     ((M = c), (k = w));
@@ -520,7 +520,7 @@
                 (b[C] = m ? h(g, 0, b[C]) : 0), (u[C] = i[C]);
               if (m) {
                 for (var P = 0; P < e; P++) i[P] = [];
-                for (var E = 0; E < d; E++)
+                for (var E = 0; E < f; E++)
                   for (var L = b[l[E]], O = t[E], S = 0; S < g; S++)
                     L[S] += O[S];
                 p = !0;
@@ -539,7 +539,7 @@
                       }
                 }
               } else {
-                for (var D = 0; D < d; D++) b[l[D]] += t[D];
+                for (var D = 0; D < f; D++) b[l[D]] += t[D];
                 for (var N = 0; N < e; N++) i[N] = b[N] / _[N] || 0;
                 p = !0;
                 for (var Q = 0; Q < e; Q++)
@@ -548,9 +548,9 @@
                     break;
                   }
               }
-              p = p || --f <= 0;
+              p = p || --d <= 0;
             } while (!p);
-            return { it: 1e4 - f, k: e, idxs: l, centroids: i };
+            return { it: 1e4 - d, k: e, idxs: l, centroids: i };
           };
         },
       },
@@ -653,23 +653,23 @@
             for (; a.length; ) {
               const c = a.pop(),
                 p = a.pop(),
-                f = a.pop();
-              if (p - f <= o) {
-                for (let o = f; o <= p; o++)
+                d = a.pop();
+              if (p - d <= o) {
+                for (let o = d; o <= p; o++)
                   (u = e[2 * o]),
                     (l = e[2 * o + 1]),
                     u >= r && u <= i && l >= s && l <= n && h.push(t[o]);
                 continue;
               }
-              const d = Math.floor((f + p) / 2);
-              (u = e[2 * d]),
-                (l = e[2 * d + 1]),
-                u >= r && u <= i && l >= s && l <= n && h.push(t[d]);
+              const f = Math.floor((d + p) / 2);
+              (u = e[2 * f]),
+                (l = e[2 * f + 1]),
+                u >= r && u <= i && l >= s && l <= n && h.push(t[f]);
               const g = (c + 1) % 2;
               (0 === c ? r <= u : s <= l) &&
-                (a.push(f), a.push(d - 1), a.push(g)),
+                (a.push(d), a.push(f - 1), a.push(g)),
                 (0 === c ? i >= u : n >= l) &&
-                  (a.push(d + 1), a.push(p), a.push(g));
+                  (a.push(f + 1), a.push(p), a.push(g));
             }
             return h;
           })(this.ids, this.coords, t, e, r, s, this.nodeSize);
@@ -688,15 +688,15 @@
                   o(e[2 * i], e[2 * i + 1], r, s) <= u && h.push(t[i]);
                 continue;
               }
-              const f = Math.floor((p + c) / 2),
-                d = e[2 * f],
-                g = e[2 * f + 1];
-              o(d, g, r, s) <= u && h.push(t[f]);
+              const d = Math.floor((p + c) / 2),
+                f = e[2 * d],
+                g = e[2 * d + 1];
+              o(f, g, r, s) <= u && h.push(t[d]);
               const m = (l + 1) % 2;
-              (0 === l ? r - i <= d : s - i <= g) &&
-                (a.push(p), a.push(f - 1), a.push(m)),
-                (0 === l ? r + i >= d : s + i >= g) &&
-                  (a.push(f + 1), a.push(c), a.push(m));
+              (0 === l ? r - i <= f : s - i <= g) &&
+                (a.push(p), a.push(d - 1), a.push(m)),
+                (0 === l ? r + i >= f : s + i >= g) &&
+                  (a.push(d + 1), a.push(c), a.push(m));
             }
             return h;
           })(this.ids, this.coords, t, e, r, this.nodeSize);
@@ -718,7 +718,7 @@
           Math.fround ||
           ((p = new Float32Array(1)), (t) => ((p[0] = +t), p[0]));
       var p;
-      class f {
+      class d {
         constructor(t) {
           (this.options = M(Object.create(l), t)),
             (this.trees = new Array(this.options.maxZoom + 1));
@@ -927,7 +927,7 @@
                   (s.parentId = p),
                   n && (a || (a = this._map(i, !0)), n(a, this._map(s)));
               }
-              (i.parentId = p), r.push(d(t / c, o / c, p, c, a));
+              (i.parentId = p), r.push(f(t / c, o / c, p, c, a));
             } else if ((r.push(i), c > 1))
               for (const t of u) {
                 const s = h.points[t];
@@ -949,7 +949,7 @@
           return e && s === r ? M({}, s) : s;
         }
       }
-      function d(t, e, r, s, i) {
+      function f(t, e, r, s, i) {
         return {
           x: c(t),
           y: c(e),
@@ -1075,7 +1075,7 @@
               return r;
             })(t, ["maxZoom", "radius"]);
           super({ maxZoom: e }),
-            (this.superCluster = new f(
+            (this.superCluster = new d(
               Object.assign({ maxZoom: this.maxZoom, radius: r }, s)
             )),
             (this.state = { zoom: null });
@@ -1254,7 +1254,6 @@
         }
         reset() {
           this.markers.forEach((t) => t.setMap(null)),
-            this.markers.forEach((t) => t.setMap(null)),
             this.clusters.forEach((t) => t.delete()),
             (this.clusters = []);
         }
