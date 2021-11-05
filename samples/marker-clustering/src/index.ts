@@ -44,7 +44,6 @@ function initMap(): void {
     // markers can only be keyboard focusable when they have click listeners
     // open info window when marker is clicked
     marker.addListener("click", () => {
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       infoWindow.setContent(label);
       infoWindow.open(map, marker);
     });
