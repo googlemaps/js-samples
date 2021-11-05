@@ -542,20 +542,20 @@
                     (b[C] = m ? h(g, 0, b[C]) : 0), (u[C] = i[C]);
                   if (m) {
                     for (var P = 0; P < e; P++) i[P] = [];
-                    for (var E = 0; E < f; E++)
-                      for (var L = b[l[E]], O = t[E], S = 0; S < g; S++)
-                        L[S] += O[S];
+                    for (var L = 0; L < f; L++)
+                      for (var E = b[l[L]], O = t[L], A = 0; A < g; A++)
+                        E[A] += O[A];
                     p = !0;
-                    for (var A = 0; A < e; A++) {
+                    for (var S = 0; S < e; S++) {
                       for (
-                        var z = i[A], Z = b[A], I = u[A], j = _[A], T = 0;
+                        var z = i[S], I = b[S], Z = u[S], j = _[S], T = 0;
                         T < g;
                         T++
                       )
-                        z[T] = Z[T] / j || 0;
+                        z[T] = I[T] / j || 0;
                       if (p)
                         for (var q = 0; q < g; q++)
-                          if (I[q] != z[q]) {
+                          if (Z[q] != z[q]) {
                             p = !1;
                             break;
                           }
@@ -1083,14 +1083,14 @@
                 (this.markers.length = 0);
             }
           }
-          const E = (t) =>
+          const L = (t) =>
             t.map((t) => new P({ position: t.getPosition(), markers: [t] }));
-          class L extends class {
+          class E extends class {
             constructor({ maxZoom: t = 16 }) {
               this.maxZoom = t;
             }
             noop({ markers: t }) {
-              return E(t);
+              return L(t);
             }
           } {
             constructor(t) {
@@ -1183,7 +1183,7 @@
               };
             }
           }
-          class S {
+          class A {
             render({ count: t, position: e }, r) {
               const s =
                   t > Math.max(10, r.clusters.markers.mean)
@@ -1207,11 +1207,11 @@
               });
             }
           }
-          class A {
+          class S {
             constructor() {
               !(function (t, e) {
                 for (let r in e.prototype) t.prototype[r] = e.prototype[r];
-              })(A, google.maps.OverlayView);
+              })(S, google.maps.OverlayView);
             }
           }
           var z;
@@ -1220,16 +1220,16 @@
               (t.CLUSTERING_END = "clusteringend"),
               (t.CLUSTER_CLICK = "click");
           })(z || (z = {}));
-          const Z = (t, e, r) => {
+          const I = (t, e, r) => {
             r.fitBounds(e.bounds);
           };
-          class I extends A {
+          class Z extends S {
             constructor({
               map: t,
               markers: e = [],
-              algorithm: r = new L({}),
-              renderer: s = new S(),
-              onClusterClick: i = Z,
+              algorithm: r = new E({}),
+              renderer: s = new A(),
+              onClusterClick: i = I,
             }) {
               super(),
                 (this.markers = [...e]),
@@ -1322,15 +1322,22 @@
                 zoom: 3,
                 center: { lat: -28.024, lng: 140.887 },
               }),
-              e = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-              r = T.map(
-                (t, r) =>
-                  new google.maps.Marker({
-                    position: t,
-                    label: e[r % e.length],
-                  })
-              );
-            new I({ markers: r, map: t });
+              e = new google.maps.InfoWindow({
+                content: "",
+                disableAutoPan: !0,
+              }),
+              r = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+              s = T.map((s, i) => {
+                const n = r[i % r.length],
+                  o = new google.maps.Marker({ position: s, label: n });
+                return (
+                  o.addListener("click", () => {
+                    e.setContent(n), e.open(t, o);
+                  }),
+                  o
+                );
+              });
+            new Z({ markers: s, map: t });
           }
           const T = [
             { lat: -31.56391, lng: 147.154312 },
