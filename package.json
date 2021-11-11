@@ -44,6 +44,7 @@
     "@googlemaps/markerclusterer": "^1.0.2",
     "@googlemaps/react-wrapper": "^1.1.8",
     "@googlemaps/three": "1.0.5",
+    "@googlemaps/typescript-guards": "^1.0.0",
     "@material/select": "^13.0.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^21.0.0",
