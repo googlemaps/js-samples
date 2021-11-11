@@ -3,6 +3,7 @@ import * as React from "react";
 import * as ReactDom from "react-dom";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { createCustomEqual } from "fast-equals";
+import { isLatLngLiteral } from "@googlemaps/typescript-guards";
 const render = (status) => {
   return React.createElement("h1", null, status);
 };
@@ -207,14 +208,6 @@ function useDeepCompareMemoize(value) {
 
 function useDeepCompareEffectForMaps(callback, dependencies) {
   React.useEffect(callback, dependencies.map(useDeepCompareMemoize));
-}
-
-function isLatLngLiteral(obj) {
-  return (
-    typeof obj === "object" &&
-    Number.isFinite(obj.lat) &&
-    Number.isFinite(obj.lng)
-  );
 }
 
 window.addEventListener("DOMContentLoaded", () => {

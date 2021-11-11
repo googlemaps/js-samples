@@ -8863,16 +8863,12 @@
       var a = (t[r] = { exports: {} });
       return e[r].call(a.exports, a, a.exports, n), a.exports;
     }
-    (n.n = (e) => {
-      var t = e && e.__esModule ? () => e.default : () => e;
-      return n.d(t, { a: t }), t;
+    (n.d = (e, t) => {
+      for (var r in t)
+        n.o(t, r) &&
+          !n.o(e, r) &&
+          Object.defineProperty(e, r, { enumerable: !0, get: t[r] });
     }),
-      (n.d = (e, t) => {
-        for (var r in t)
-          n.o(t, r) &&
-            !n.o(e, r) &&
-            Object.defineProperty(e, r, { enumerable: !0, get: t[r] });
-      }),
       (n.o = (e, t) => Object.prototype.hasOwnProperty.call(e, t)),
       (n.r = (e) => {
         "undefined" != typeof Symbol &&
@@ -8888,11 +8884,16 @@
         t = n(924),
         l = n(376),
         a = n(711);
-      const o = (t) => e.createElement("h1", null, t),
-        i = () => {
+      const o = (e) =>
+          null != e &&
+          "object" == typeof e &&
+          Number.isFinite(e.lat) &&
+          Number.isFinite(e.lng),
+        i = (t) => e.createElement("h1", null, t),
+        u = () => {
           const [t, n] = e.useState([]),
             [r, a] = e.useState(3),
-            [i, c] = e.useState({ lat: 0, lng: 0 }),
+            [o, u] = e.useState({ lat: 0, lng: 0 }),
             f = e.createElement(
               "div",
               {
@@ -8917,8 +8918,8 @@
                 type: "number",
                 id: "lat",
                 name: "lat",
-                value: i.lat,
-                onChange: (e) => c({ ...i, lat: Number(e.target.value) }),
+                value: o.lat,
+                onChange: (e) => u({ ...o, lat: Number(e.target.value) }),
               }),
               e.createElement("br", null),
               e.createElement("label", { htmlFor: "lng" }, "Longitude"),
@@ -8926,8 +8927,8 @@
                 type: "number",
                 id: "lng",
                 name: "lng",
-                value: i.lng,
-                onChange: (e) => c({ ...i, lng: Number(e.target.value) }),
+                value: o.lng,
+                onChange: (e) => u({ ...o, lng: Number(e.target.value) }),
               }),
               e.createElement(
                 "h3",
@@ -8948,29 +8949,29 @@
             { style: { display: "flex", height: "100%" } },
             e.createElement(
               l.Wrapper,
-              { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: o },
+              { apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", render: i },
               e.createElement(
-                u,
+                s,
                 {
-                  center: i,
+                  center: o,
                   onClick: (e) => {
                     n([...t, e.latLng]);
                   },
                   onIdle: (e) => {
                     console.log("onIdle"),
                       a(e.getZoom()),
-                      c(e.getCenter().toJSON());
+                      u(e.getCenter().toJSON());
                   },
                   zoom: r,
                   style: { flexGrow: "1", height: "100%" },
                 },
-                t.map((t, n) => e.createElement(s, { key: n, position: t }))
+                t.map((t, n) => e.createElement(c, { key: n, position: t }))
               )
             ),
             f
           );
         },
-        u = ({ onClick: t, onIdle: n, children: r, style: l, ...a }) => {
+        s = ({ onClick: t, onIdle: n, children: r, style: l, ...a }) => {
           const o = e.useRef(null),
             [i, u] = e.useState();
           var s, c;
@@ -8982,7 +8983,7 @@
               i && i.setOptions(a);
             }),
             (c = [i, a]),
-            e.useEffect(s, c.map(f)),
+            e.useEffect(s, c.map(d)),
             e.useEffect(() => {
               i &&
                 (["click", "idle"].forEach((e) =>
@@ -9001,7 +9002,7 @@
             )
           );
         },
-        s = (t) => {
+        c = (t) => {
           const [n, r] = e.useState();
           return (
             e.useEffect(
@@ -9019,28 +9020,21 @@
             null
           );
         },
-        c = (0, a.createCustomEqual)(
+        f = (0, a.createCustomEqual)(
           (e) => (t, n) =>
-            d(t) ||
+            o(t) ||
             t instanceof google.maps.LatLng ||
-            d(n) ||
+            o(n) ||
             n instanceof google.maps.LatLng
               ? new google.maps.LatLng(t).equals(new google.maps.LatLng(n))
               : e(t, n)
         );
-      function f(t) {
+      function d(t) {
         const n = e.useRef();
-        return c(t, n.current) || (n.current = t), n.current;
-      }
-      function d(e) {
-        return (
-          "object" == typeof e &&
-          Number.isFinite(e.lat) &&
-          Number.isFinite(e.lng)
-        );
+        return f(t, n.current) || (n.current = t), n.current;
       }
       window.addEventListener("DOMContentLoaded", () => {
-        t.render(e.createElement(i, null), document.getElementById("root"));
+        t.render(e.createElement(u, null), document.getElementById("root"));
       });
     })();
     var l = window;
