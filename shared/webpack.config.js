@@ -26,7 +26,7 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /\.(ts|js)$/,
+          test: /\.(tsx|ts|js)$/,
           loader: "string-replace-loader",
           options: {
             search: /YOUR_API_KEY/g,
