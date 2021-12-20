@@ -114,6 +114,7 @@ function initMap(): void {
     {
       types: ["(cities)"],
       componentRestrictions: countryRestrict,
+      fields: ["geometry"],
     }
   );
   places = new google.maps.places.PlacesService(map);
