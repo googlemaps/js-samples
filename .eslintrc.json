@@ -1,5 +1,6 @@
 {
-  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:react/recommended"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:react/recommended", "plugin:googlemaps/recommended"],
+  "plugins": ["googlemaps"],
   "parserOptions": {
     "sourceType": "module",
     "requireConfigFile": false
@@ -20,6 +21,7 @@
     "node": true
   },
   "rules": {
+    "googlemaps/place-fields": 2,
     "react/prop-types": 0,
     "no-unused-vars": [1, { "varsIgnorePattern": "init*" }],
     "no-var": 2,

@@ -39,6 +39,7 @@ nodejs_binary(
         "@npm//@babel/eslint-parser",
         "@npm//eslint",
         "@npm//eslint-config-prettier",
+        "@npm//eslint-plugin-googlemaps",
         "@npm//eslint-plugin-jest",
         "@npm//eslint-plugin-prettier",
         "@npm//eslint-plugin-react",
