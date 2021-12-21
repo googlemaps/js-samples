@@ -67,6 +67,7 @@
     "dotenv": "^10.0.0",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-googlemaps": "^1.2.4",
     "eslint-plugin-jest": "^25.0.1",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
