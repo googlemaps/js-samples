@@ -85,11 +85,9 @@ eslint_test(
     args = [
         "--ignore-pattern webpack.config.js",
         "samples/**/*.ts",
-        "samples/**/*.js",
     ],
     data = ESLINT_DATA + [
         "//samples:inputs",
-        "//samples:outputs",
     ],
 )
 
