@@ -21,7 +21,9 @@ function initMap() {
   });
   new mdc.textField.MDCTextField(document.querySelector(".mdc-text-field"));
   autocompleteInput = document.getElementById("search-input");
-  autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {});
+  autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
+    fields: ["geometry"],
+  });
   autocomplete.addListener("place_changed", placeChanged);
   autocomplete.bindTo("bounds", map); // bias to map viewport
   fetch(

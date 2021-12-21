@@ -131,7 +131,9 @@
               document.querySelector(".mdc-text-field")
             ),
             (s = document.getElementById("search-input")),
-            (r = new google.maps.places.Autocomplete(s, {})),
+            (r = new google.maps.places.Autocomplete(s, {
+              fields: ["geometry"],
+            })),
             r.addListener("place_changed", m),
             r.bindTo("bounds", n),
             fetch(

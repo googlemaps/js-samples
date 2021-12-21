@@ -32,17 +32,17 @@ class AutocompleteDirectionsHandler {
     const originInput = document.getElementById("origin-input");
     const destinationInput = document.getElementById("destination-input");
     const modeSelector = document.getElementById("mode-selector");
-    const originAutocomplete = new google.maps.places.Autocomplete(originInput);
-
     // Specify just the place data fields that you need.
-    originAutocomplete.setFields(["place_id"]);
-
+    const originAutocomplete = new google.maps.places.Autocomplete(
+      originInput,
+      { fields: ["place_id"] }
+    );
+    // Specify just the place data fields that you need.
     const destinationAutocomplete = new google.maps.places.Autocomplete(
-      destinationInput
+      destinationInput,
+      { fields: ["place_id"] }
     );
 
-    // Specify just the place data fields that you need.
-    destinationAutocomplete.setFields(["place_id"]);
     this.setupClickListener(
       "changemode-walking",
       google.maps.TravelMode.WALKING

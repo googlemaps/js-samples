@@ -220,10 +220,10 @@ function initMap() {
     componentRestrictions: {
       country: "us",
     },
+    fields: ["address_components", "geometry", "name"],
   };
   const autocomplete = new google.maps.places.Autocomplete(input, options);
 
-  autocomplete.setFields(["address_components", "geometry", "name"]);
   // [END maps_js_local_context_home_autocomplete]
   autocomplete.addListener("place_changed", () => {
     const place = autocomplete.getPlace();

@@ -174,7 +174,11 @@
             })),
             (c = new google.maps.places.Autocomplete(
               document.getElementById("autocomplete"),
-              { types: ["(cities)"], componentRestrictions: a }
+              {
+                types: ["(cities)"],
+                componentRestrictions: a,
+                fields: ["geometry"],
+              }
             )),
             (o = new google.maps.places.PlacesService(n)),
             c.addListener("place_changed", g),
@@ -189,7 +193,7 @@
                 const e = { bounds: n.getBounds(), types: ["lodging"] };
                 o.nearbySearch(e, (e, t, n) => {
                   if (t === google.maps.places.PlacesServiceStatus.OK && e) {
-                    f(), u();
+                    w(), u();
                     for (let t = 0; t < e.length; t++) {
                       const n = String.fromCharCode(
                           "A".charCodeAt(0) + (t % 26)
@@ -203,7 +207,7 @@
                         (r[t].placeResult = e[t]),
                         google.maps.event.addListener(r[t], "click", h),
                         setTimeout(y(t), 100 * t),
-                        w(e[t], t);
+                        f(e[t], t);
                     }
                   }
                 });
@@ -224,7 +228,7 @@
             : (c.setComponentRestrictions({ country: e }),
               n.setCenter(s[e].center),
               n.setZoom(s[e].zoom)),
-            f(),
+            w(),
             u();
         }
         function y(e) {
@@ -232,7 +236,7 @@
             r[e].setMap(n);
           };
         }
-        function w(e, t) {
+        function f(e, t) {
           const n = document.getElementById("results"),
             o = String.fromCharCode("A".charCodeAt(0) + (t % 26)),
             l = i + o + ".png",
@@ -254,7 +258,7 @@
             c.appendChild(m),
             n.appendChild(c);
         }
-        function f() {
+        function w() {
           const e = document.getElementById("results");
           for (; e.childNodes[0]; ) e.removeChild(e.childNodes[0]);
         }
