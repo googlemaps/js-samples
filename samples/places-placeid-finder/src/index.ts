@@ -35,12 +35,12 @@ function initMap(): void {
 
   const input = document.getElementById("pac-input") as HTMLInputElement;
 
-  const autocomplete = new google.maps.places.Autocomplete(input);
+  // Specify just the place data fields that you need.
+  const autocomplete = new google.maps.places.Autocomplete(input, {
+    fields: ["place_id", "geometry", "formatted_address", "name"],
+  });
 
   autocomplete.bindTo("bounds", map);
-
-  // Specify just the place data fields that you need.
-  autocomplete.setFields(["place_id", "geometry", "formatted_address", "name"]);
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 

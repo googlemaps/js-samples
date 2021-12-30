@@ -107,14 +107,16 @@
             const t = document.getElementById("origin-input"),
               o = document.getElementById("destination-input"),
               i = document.getElementById("mode-selector"),
-              n = new google.maps.places.Autocomplete(t);
-            n.setFields(["place_id"]);
-            const s = new google.maps.places.Autocomplete(o);
-            s.setFields(["place_id"]),
-              this.setupClickListener(
-                "changemode-walking",
-                google.maps.TravelMode.WALKING
-              ),
+              n = new google.maps.places.Autocomplete(t, {
+                fields: ["place_id"],
+              }),
+              s = new google.maps.places.Autocomplete(o, {
+                fields: ["place_id"],
+              });
+            this.setupClickListener(
+              "changemode-walking",
+              google.maps.TravelMode.WALKING
+            ),
               this.setupClickListener(
                 "changemode-transit",
                 google.maps.TravelMode.TRANSIT

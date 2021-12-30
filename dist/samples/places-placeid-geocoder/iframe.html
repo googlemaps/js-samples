@@ -73,9 +73,10 @@
           zoom: 13,
         }),
         o = document.getElementById("pac-input"),
-        t = new google.maps.places.Autocomplete(o);
+        t = new google.maps.places.Autocomplete(o, {
+          fields: ["place_id", "geometry", "name", "formatted_address"],
+        });
       t.bindTo("bounds", e),
-        t.setFields(["place_id", "geometry", "name", "formatted_address"]),
         e.controls[google.maps.ControlPosition.TOP_LEFT].push(o);
       const n = new google.maps.InfoWindow(),
         a = document.getElementById("infowindow-content");

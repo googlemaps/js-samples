@@ -154,22 +154,22 @@
         t = new google.maps.places.Autocomplete(e, {
           types: ["address"],
           componentRestrictions: { country: "us" },
+          fields: ["address_components", "geometry", "name"],
         });
-      t.setFields(["address_components", "geometry", "name"]),
-        t.addListener("place_changed", () => {
-          const e = t.getPlace();
-          e && e.geometry
-            ? (o.setOptions({ center: e.geometry.location, zoom: 14 }),
-              (l.directionsOptions = { origin: e.geometry.location }),
-              new google.maps.Marker({
-                position: e.geometry.location,
-                map: o,
-                icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAbUlEQVR4Ae3LoQ2AMAAF0TMYPJoV2IApGIJtmIMtmIAVqutraj6IiqZpmyYoCO/08R7bXbOOHSF2Ohr0HCh00EPdwImiTgYqRgxKMowUTFiUyTKRMeNQIcdMYsGjSp6FyIoaWkmoUuLxEPzDh1xIaLFFuTyHMgAAAABJRU5ErkJggg==",
-                zIndex: 30,
-              }),
-              l.search())
-            : window.alert("No address available for that input.");
-        });
+      t.addListener("place_changed", () => {
+        const e = t.getPlace();
+        e && e.geometry
+          ? (o.setOptions({ center: e.geometry.location, zoom: 14 }),
+            (l.directionsOptions = { origin: e.geometry.location }),
+            new google.maps.Marker({
+              position: e.geometry.location,
+              map: o,
+              icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAbUlEQVR4Ae3LoQ2AMAAF0TMYPJoV2IApGIJtmIMtmIAVqutraj6IiqZpmyYoCO/08R7bXbOOHSF2Ohr0HCh00EPdwImiTgYqRgxKMowUTFiUyTKRMeNQIcdMYsGjSp6FyIoaWkmoUuLxEPzDh1xIaLFFuTyHMgAAAABJRU5ErkJggg==",
+              zIndex: 30,
+            }),
+            l.search())
+          : window.alert("No address available for that input.");
+      });
     }
     var s = window;
     for (var y in t) s[y] = t[y];
