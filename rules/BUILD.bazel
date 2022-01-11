@@ -1,5 +1,6 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 load("@npm//eslint:index.bzl", "eslint")
+load("@npm//@bazel/typescript:index.bzl", "ts_library")
 
 exports_files([
     "diff.js",
@@ -107,5 +108,30 @@ sh_binary(
 sh_binary(
     name = "strip_source_map_url_bin",
     srcs = ["strip_source_map_url.sh"],
+    visibility = ["//visibility:public"],
+)
+
+ts_library(
+    name = "_playground_lib",
+    srcs = ["playground.ts"],
+    deps = [
+        "@npm//@types/google.maps",
+        "@npm//@types/node",
+        "@npm//@types/yargs",
+        "@npm//playground-elements",
+        "@npm//yargs",
+    ],
+)
+
+nodejs_binary(
+    name = "playground",
+    data = [
+        ":_playground_lib",
+    ],
+    entry_point = ":playground.ts",
+    templated_args = [
+        "--nobazel_node_patches",
+        "--bazel_patch_module_resolver",  # https://github.com/bazelbuild/rules_nodejs/issues/2388
+    ],
     visibility = ["//visibility:public"],
 )

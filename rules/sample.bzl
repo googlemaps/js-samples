@@ -509,3 +509,19 @@ def sample(name, YOUR_API_KEY = "GOOGLE_MAPS_JS_SAMPLES_KEY", dependencies = [],
         static_files = [":index.html", ":style.css"],
         port = 8080,
     )
+
+    if not tsx: 
+        native.genrule(
+            name = "playground",
+            srcs = [
+                ":app_env",
+                ":app_css",
+                ":app_html",
+                ":app_ts",
+                ":package_json",
+                "@npm//@types/google.maps",
+            ],
+            outs = ["playground.json"],
+            cmd = "$(location //rules:playground) --ts $(location :app_ts) --css $(location :app_css) --html $(location :app_html) --package $(location :package_json) --output $@;",
+            tools = [ "//rules:playground"],
+        )

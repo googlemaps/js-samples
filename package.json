@@ -83,6 +83,7 @@
     "mini-css-extract-plugin": "^2.2.2",
     "nan": "^2.14.2",
     "nunjucks-cli": "^1.0.0",
+    "playground-elements": "^0.14.7",
     "prettier": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
