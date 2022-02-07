@@ -86,7 +86,7 @@ function initMap() {
 
     onRemove() {}
 
-    onContextRestored({gl}: google.maps.WebGLStateOptions) {
+    onContextRestored({ gl }: google.maps.WebGLStateOptions) {
       const map = this.getMap()!;
 
       this.deck = new deck.Deck({
@@ -114,7 +114,7 @@ function initMap() {
       }
     }
 
-    onDraw({gl, transformer}: google.maps.WebGLDrawOptions) {
+    onDraw({ gl, transformer }: google.maps.WebGLDrawOptions) {
       const deck = this.deck;
 
       if (!deck || !deck.layerManager) {
