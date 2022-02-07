@@ -1,0 +1,14 @@
+{
+  "title": "Bicycle Layer",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "layer_bicycling",
+  "name": "layer-bicycling",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

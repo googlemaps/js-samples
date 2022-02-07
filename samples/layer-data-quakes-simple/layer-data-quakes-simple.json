@@ -1,0 +1,14 @@
+{
+  "title": "Default Data Layer: Earthquakes",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "layer_data_quakes_simple",
+  "name": "layer-data-quakes-simple",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

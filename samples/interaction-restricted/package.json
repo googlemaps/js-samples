@@ -1,8 +1,0 @@
-{
-  "title": "Restricted Interaction",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "interaction_restricted",
-  "name": "interaction-restricted"
-}

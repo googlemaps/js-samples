@@ -1,0 +1,12 @@
+{
+  "title": "Synchronous Loading",
+  "version": "weekly",
+  "tag": "map_sync",
+  "name": "map-sync",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

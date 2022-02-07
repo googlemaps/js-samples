@@ -1,0 +1,14 @@
+{
+  "title": "Travel Modes in Directions",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "directions_travel_modes",
+  "name": "directions-travel-modes",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

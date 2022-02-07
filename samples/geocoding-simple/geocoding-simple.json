@@ -1,0 +1,14 @@
+{
+  "title": "Geocoding Service",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "geocoding_simple",
+  "name": "geocoding-simple",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

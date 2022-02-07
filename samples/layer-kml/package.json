@@ -1,8 +1,0 @@
-{
-  "title": "KML Layers",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_kml",
-  "name": "layer-kml"
-}

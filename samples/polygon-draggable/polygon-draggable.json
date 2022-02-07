@@ -1,0 +1,14 @@
+{
+  "title": "Draggable Polygons",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "polygon_draggable",
+  "name": "polygon-draggable",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

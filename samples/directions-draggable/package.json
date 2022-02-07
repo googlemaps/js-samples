@@ -1,8 +1,0 @@
-{
-  "title": "Draggable Directions",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "directions_draggable",
-  "name": "directions-draggable"
-}

@@ -1,0 +1,14 @@
+{
+  "title": "Styled Maps - Night Mode",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "style_array",
+  "name": "style-array",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

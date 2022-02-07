@@ -1,0 +1,14 @@
+{
+  "title": "Data Layer: Polygon",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "layer_data_polygon",
+  "name": "layer-data-polygon",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

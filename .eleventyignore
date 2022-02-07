@@ -1,0 +1,10 @@
+dist
+rules
+cli
+assets
+.github
+node_modules
+playground
+shared
+*.md
+.cache

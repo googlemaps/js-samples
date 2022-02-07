@@ -1,0 +1,14 @@
+{
+  "title": "Basic Map Types",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "maptype_base",
+  "name": "maptype-base",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

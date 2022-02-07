@@ -1,0 +1,14 @@
+{
+  "title": "Traffic Layer",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "layer_traffic",
+  "name": "layer-traffic",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

@@ -1,8 +1,0 @@
-{
-  "title": "Street View split-map-panes",
-  "callback": "initialize",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "streetview_simple",
-  "name": "streetview-simple"
-}

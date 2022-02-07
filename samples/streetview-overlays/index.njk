@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="floating-panel">
+  <input
+    type="button"
+    value="Toggle Street View"
+    id="toggle"
+  />
+</div>
+<div id="map"></div>
+{% endblock %}

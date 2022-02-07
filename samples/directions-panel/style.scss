@@ -1,0 +1,36 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+/* [START maps_directions_panel] */
+@include meta.load-css("../../shared/scss/sidebar.scss");
+@include meta.load-css("../../shared/scss/floating-panel.scss");
+@import "../../shared/scss/mixins.scss";
+
+#floating-panel {
+  @include map-control;
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  height: auto;
+}
+
+#map {
+  flex: auto;
+}
+
+#sidebar {
+  flex: 0 1 auto;
+  padding: 0;
+
+  // add padding to Directions renderer output
+  > div {
+    padding: 0.5rem;
+  }
+}
+/* [END maps_directions_panel] */

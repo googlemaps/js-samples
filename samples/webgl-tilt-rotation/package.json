@@ -1,8 +1,0 @@
-{
-  "title": "Tilt and Rotation",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "beta",
-  "tag": "webgl_tilt_rotation",
-  "name": "webgl-tilt-rotation"
-}

@@ -1,8 +1,0 @@
-{
-  "title": "Geolocation",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "map_geolocation",
-  "name": "map-geolocation"
-}

@@ -1,8 +1,0 @@
-{
-  "title": "Info Windows",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "infowindow_simple",
-  "name": "infowindow-simple"
-}

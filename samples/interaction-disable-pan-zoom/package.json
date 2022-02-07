@@ -1,8 +1,0 @@
-{
-  "title": "Disable Pan and Zoom",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "interaction_disable_pan_zoom",
-  "name": "interaction-disable-pan-zoom"
-}

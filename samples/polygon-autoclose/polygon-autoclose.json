@@ -1,0 +1,14 @@
+{
+  "title": "Polygon Auto-Completion",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "polygon_autoclose",
+  "name": "polygon-autoclose",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

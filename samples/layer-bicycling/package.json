@@ -1,8 +1,0 @@
-{
-  "title": "Bicycle Layer",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_bicycling",
-  "name": "layer-bicycling"
-}

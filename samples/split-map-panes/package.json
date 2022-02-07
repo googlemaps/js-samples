@@ -1,8 +1,0 @@
-{
-  "title": "Split Map Panes",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "split_map_panes",
-  "name": "split-map-panes"
-}

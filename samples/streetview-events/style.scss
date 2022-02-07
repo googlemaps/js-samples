@@ -1,0 +1,27 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+/* [START maps_streetview_events] */
+@include meta.load-css("../../shared/scss/default.scss");
+@include meta.load-css("../../shared/scss/floating-panel.scss");
+
+#pano {
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+#floating-panel {
+  width: 45%;
+  height: 100%;
+  float: right;
+  text-align: left;
+  overflow: auto;
+  position: static;
+  border: 0px solid #999;
+}
+/* [END maps_streetview_events] */

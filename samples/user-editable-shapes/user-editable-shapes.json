@@ -1,0 +1,14 @@
+{
+  "title": "User-Editable Shapes",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "user_editable_shapes",
+  "name": "user-editable-shapes",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

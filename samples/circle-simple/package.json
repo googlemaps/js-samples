@@ -1,8 +1,0 @@
-{
-  "title": "Circles",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "circle_simple",
-  "name": "circle-simple"
-}

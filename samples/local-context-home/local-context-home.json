@@ -1,0 +1,17 @@
+{
+  "title": "Local Context Home",
+  "callback": "initMap",
+  "libraries": [
+    "localContext",
+    "places"
+  ],
+  "version": "beta",
+  "tag": "js_local_context_home",
+  "name": "js-local-context-home",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page | outputPathStem }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}
