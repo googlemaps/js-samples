@@ -2184,7 +2184,7 @@
             scene: r = new s.Scene(),
             map: o,
           }) {
-            (this.overlay = new google.maps.WebglOverlayView()),
+            (this.overlay = new google.maps.WebGLOverlayView()),
               (this.renderer = null),
               (this.camera = null),
               (this.anchor = e),
@@ -2200,6 +2200,12 @@
               (this.overlay.onDraw = this.onDraw.bind(this)),
               (this.camera = new s.PerspectiveCamera()),
               o && this.setMap(o);
+          }
+          onStateUpdate(e) {
+            this.overlay.onStateUpdate(e);
+          }
+          requestStateUpdate() {
+            this.overlay.requestStateUpdate();
           }
           onAdd() {}
           onRemove() {}
@@ -2236,7 +2242,7 @@
           unbindAll() {
             this.overlay.unbindAll();
           }
-          onContextRestored(e) {
+          onContextRestored({ gl: e }) {
             (this.renderer = new s.WebGLRenderer(
               Object.assign(
                 { canvas: e.canvas, context: e },
@@ -2254,7 +2260,7 @@
           onContextLost() {
             this.renderer && (this.renderer.dispose(), (this.renderer = null));
           }
-          onDraw(e, t) {
+          onDraw({ gl: e, transformer: t }) {
             const { lat: s, lng: n, altitude: r } = this.anchor;
             this.camera.projectionMatrix.fromArray(
               t.fromLatLngAltitude(
@@ -2270,9 +2276,9 @@
               this.renderer.resetState();
           }
         }
-        let B;
+        let G;
         Math.PI;
-        const G = {
+        const B = {
           tilt: 0,
           heading: 0,
           zoom: 18,
@@ -2284,7 +2290,7 @@
         };
         function j() {
           const e = document.getElementById("map");
-          B = new google.maps.Map(e, G);
+          G = new google.maps.Map(e, B);
           const t = new s.Scene(),
             r = new s.AmbientLight(16777215, 0.75);
           t.add(r);
@@ -2297,20 +2303,20 @@
                 e.scene.scale.set(10, 10, 10),
                   (e.scene.rotation.x = Math.PI / 2),
                   t.add(e.scene);
-                let { tilt: s, heading: n, zoom: r } = G;
+                let { tilt: s, heading: n, zoom: r } = B;
                 const o = () => {
                   if (s < 67.5) s += 0.5;
                   else {
                     if (!(n <= 360)) return;
                     (n += 0.2), (r -= 5e-4);
                   }
-                  B.moveCamera({ tilt: s, heading: n, zoom: r }),
+                  G.moveCamera({ tilt: s, heading: n, zoom: r }),
                     requestAnimationFrame(o);
                 };
                 requestAnimationFrame(o);
               }
             ),
-            new k({ map: B, scene: t, anchor: { ...G.center, altitude: 100 } });
+            new k({ map: G, scene: t, anchor: { ...B.center, altitude: 100 } });
         }
         var K = window;
         for (var V in t) K[V] = t[V];

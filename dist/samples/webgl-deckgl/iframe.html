@@ -66,7 +66,7 @@
       });
       const r = document.getElementById("tooltip"),
         i = { click: null, dblclick: null, mousemove: null, mouseout: null };
-      class l extends google.maps.WebglOverlayView {
+      class l extends google.maps.WebGLOverlayView {
         canvas;
         deck;
         layers_;
@@ -83,7 +83,7 @@
         }
         onAdd() {}
         onRemove() {}
-        onContextRestored(o) {
+        onContextRestored({ gl: o }) {
           const a = this.getMap();
           this.deck = new deck.Deck({
             canvas: this.canvas,
@@ -99,7 +99,7 @@
               this.handleMouseEvent(this.deck, e, t)
             );
         }
-        onDraw(e, t) {
+        onDraw({ gl: e, transformer: t }) {
           const o = this.deck;
           if (!o || !o.layerManager) return;
           const a = t.getCameraParams(),
@@ -108,8 +108,8 @@
             r = Math.max(0, a.zoom - 1),
             i = a.tilt,
             l = a.heading,
-            c = a.lat,
-            p = a.lng;
+            c = a.center.lat,
+            p = a.center.lng;
           (this.canvas.style.left = "0px"),
             (this.canvas.style.top = "0px"),
             o.setProps({
