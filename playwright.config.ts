@@ -1,6 +1,7 @@
 import { PlaywrightTestConfig } from "@playwright/test";
 const config: PlaywrightTestConfig = {
   testDir: "e2e",
+  timeout: 5000,
   use: {
     viewport: {
       width: 600,

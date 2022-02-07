@@ -19,7 +19,7 @@ samples.forEach((sample) => {
   test(`playground preview runs without error - ${sample}`, async ({ page }) => {
     failOnPageError(page)
 
-    await page.goto(`/samples/${sample}`);
+    await page.goto(`/samples/playground.html?sample=${sample}`);
     await waitForPlaygroundPreviewToLoad(page);
   });
 });

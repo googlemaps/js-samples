@@ -26,6 +26,7 @@ export async function waitForPlaygroundPreviewToLoad(page: Page) {
 
 export const failOnPageError = (page: Page) => {
   page.on("pageerror", (e) => {
+    console.error(e.message);
     process.emit("uncaughtException", e);
   });
 };
