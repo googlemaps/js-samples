@@ -6,7 +6,7 @@ module.exports = {
   data() {
     return {
       eleventyExcludeFromCollections: true,
-      permalink: (data) => `/samples/${data.sample.data.name}/app/package.json`,
+      permalink: (data) => `/samples/${data.sample.fileSlug}/app/package.json`,
       pagination: {
         data: "collections.samples_ts",
         alias: "sample",

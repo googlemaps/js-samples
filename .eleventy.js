@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 
 const typescript = require("./src/engines/typescript/sample");
 const sass = require("./src/engines/sass");
@@ -8,10 +8,6 @@ const format = require("./src/transforms/format");
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./shared/**/*");
   eleventyConfig.addWatchTarget(".env*");
-
-  eleventyConfig.addFilter("outputPathStem", function (page) {
-    return page.filePathStem.split("/").slice(0, 2).join("/");
-  });
 
   eleventyConfig.addTemplateFormats("scss");
   eleventyConfig.addExtension("scss", sass);

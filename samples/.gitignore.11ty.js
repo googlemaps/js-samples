@@ -2,7 +2,7 @@ module.exports = {
   data() {
     return {
       eleventyExcludeFromCollections: true,
-      permalink: (data) => `/samples/${data.sample.data.name}/app/.gitignore`,
+      permalink: (data) => `/samples/${data.sample.fileSlug}/app/.gitignore`,
       pagination: {
         data: "collections.samples_ts",
         alias: "sample",
@@ -14,6 +14,6 @@ module.exports = {
     return `.env
 .parcel-cache
 node_modules
-`
+`;
   },
 };
