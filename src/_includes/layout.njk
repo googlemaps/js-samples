@@ -10,16 +10,18 @@
   <title>{{ title }}</title>
   {% block polyfill -%}<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>{% endblock -%}
   {% block external -%}{% endblock -%}
+  {% if mode == "playground" %}
+    <!-- playground-hide -->
+    <script>
+      const process = {env: {}}
+      process.env.GOOGLE_MAPS_API_KEY = "{{GOOGLE_MAPS_API_KEY}}";
+    </script>
+    <!-- playground-hide-end -->
+  {% endif -%}
   {% block resources %}
   {% if mode == "jsfiddle" -%}
     <!-- jsFiddle will insert css and js -->
-  {% else %}
-    <!-- playground-hide -->
-  <script>
-    const process = {env: {}}
-    process.env.GOOGLE_MAPS_API_KEY = "{{GOOGLE_MAPS_API_KEY}}";
-  </script>
-  <!-- playground-hide-end -->
+  {% else %}    
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script type="module" src="./index.js"></script>
   {% endif -%}
