@@ -38,4 +38,6 @@ jobs:
       #     git commit -m "chore: update dist folder" || true
       #     git push origin
       #   if: github.actor!= 'dependabot[bot]' && !startsWith(github.ref, 'refs/tags/')
-      - run: exit 1 # TODO check if dist is dirty
+      - run: |
+          git status -s
+          git diff --exit-code
