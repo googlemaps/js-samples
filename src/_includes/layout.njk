@@ -34,7 +34,7 @@
       Replace key with your own key.
     -->
     <script 
-      src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}}&callback={{ callback }}{% if libraries|length %}&libraries={{ libraries }}{% endif %}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" async></script>
+      src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}}&callback={{ callback }}{% if libraries|length %}&libraries={{ libraries }}{% endif %}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" defer></script>
   {% endblock %}   
   </body>
 </html>
