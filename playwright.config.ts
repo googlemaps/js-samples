@@ -11,7 +11,7 @@ const config: PlaywrightTestConfig = {
      baseURL: 'http://localhost:8000/',
   },
      webServer: {       
-       command: 'npx http-server dist --port 8000',
+       command: 'npm run serve',
        port: 8000,
      },
   updateSnapshots: "none",
