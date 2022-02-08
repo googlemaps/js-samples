@@ -23,7 +23,7 @@
     "build": "parcel build index.html"
   },
   "devDependencies": {
-    "@types/google.maps": "^3.45.3",
+    "@types/google.maps": "^3.47.3",
     "parcel": "^2.2.1"
   },
   "private": true,
