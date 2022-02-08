@@ -7,19 +7,23 @@ const samples = fs
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name);
 
-samples.forEach((sample) => {
-  // test(`playground preview screenshot - ${sample}`, async ({ page }) => {
-  //   await page.goto(`/samples/${sample}`);
-  //   await waitForPlaygroundPreviewToLoad(page);
+test.describe.parallel("suite", () => {
+  samples.forEach((sample) => {
+    // test(`playground preview screenshot - ${sample}`, async ({ page }) => {
+    //   await page.goto(`/samples/${sample}`);
+    //   await waitForPlaygroundPreviewToLoad(page);
 
-  //   const preview = page.locator("playground-preview");
-  //   expect(await preview.screenshot()).toMatchSnapshot(`samples/${sample}.png`)
-  // });
+    //   const preview = page.locator("playground-preview");
+    //   expect(await preview.screenshot()).toMatchSnapshot(`samples/${sample}.png`)
+    // });
 
-  test(`playground preview runs without error - ${sample}`, async ({ page }) => {
-    failOnPageError(page)
+    test(`playground preview runs without error - ${sample}`, async ({
+      page,
+    }) => {
+      failOnPageError(page);
 
-    await page.goto(`/samples/playground.html?sample=${sample}`);
-    await waitForPlaygroundPreviewToLoad(page);
+      await page.goto(`/samples/playground.html?sample=${sample}`);
+      await waitForPlaygroundPreviewToLoad(page);
+    });
   });
 });
