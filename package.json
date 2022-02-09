@@ -33,7 +33,7 @@
     "@babel/eslint-parser": "^7.14.4",
     "@babel/preset-env": "^7.14.4",
     "@bazel/buildifier": "^4.0.1",
-    "@bazel/buildozer": "^4.0.1",
+    "@bazel/buildozer": "^5.0.0",
     "@bazel/concatjs": "^4.3.0",
     "@bazel/ibazel": "^0.15.10",
     "@bazel/rollup": "^4.3.0",
