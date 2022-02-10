@@ -15,6 +15,9 @@
 name: Build
 on:
   - push
+concurrency: 
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
