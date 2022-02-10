@@ -1,3 +1,8 @@
+dist/index.js
+dist/index.js.map
+dist/playground-typescript-worker.*.js
+dist/playground-typescript-worker.*.js.map
+
 **/node_modules
 samples/**/package-lock.json
 **/.npmrc
