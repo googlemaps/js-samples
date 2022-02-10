@@ -1,0 +1,15 @@
+{
+  "warnings": true,
+  "ecma": 2017,
+  "compress": {
+    "unsafe": true,
+    "passes": 2
+  },
+  "output": {
+    "comments": "some",
+    "inline_script": false
+  },
+  "mangle": {
+    "properties": false
+  }
+}

@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "@types/google.maps": "^3.47.3",
-    "parcel": "^2.2.1"
+    "parcel": "^2.3.1"
   },
   "private": true,
   "dependencies": {
