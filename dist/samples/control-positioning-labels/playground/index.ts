@@ -1,9 +1,4 @@
 /**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-/**
  * Creates a series of custom controls to demonstrate positioning
  * of controls within a map.
  */

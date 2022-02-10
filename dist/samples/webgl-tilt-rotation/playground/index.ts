@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2021 Google LLC.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,

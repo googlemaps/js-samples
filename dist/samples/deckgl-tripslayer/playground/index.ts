@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2021 Google LLC.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { GoogleMapsOverlay } from "@deck.gl/google-maps";
 import { TripsLayer } from "deck.gl";
 

@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2021 Google LLC.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { AmbientLight, DirectionalLight, Scene } from "three";
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";

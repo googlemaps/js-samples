@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 // This example adds three custom symbols to a polyline.
 
 function initMap(): void {

@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 // This example retrieves autocomplete predictions programmatically from the
 // autocomplete service, and displays them as an HTML list.
 // This example requires the Places library. Include the libraries=places

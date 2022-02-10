@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 // Initialize and add the map
 function initMap(): void {
   // The location of Uluru

@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2021 Google LLC.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { Easing, Tween, update } from "@tweenjs/tween.js";
 
 let map: google.maps.Map;

@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 let map: google.maps.Map;
 
 const chicago = { lat: 41.85, lng: -87.65 };

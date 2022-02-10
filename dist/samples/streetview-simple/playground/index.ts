@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 function initialize() {
   const fenway = { lat: 42.345573, lng: -71.098326 };
   const map = new google.maps.Map(

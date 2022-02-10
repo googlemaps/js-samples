@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 function initMap(): void {
   // Create a new StyledMapType object, passing it an array of styles,
   // and the name to be displayed on the map type control.

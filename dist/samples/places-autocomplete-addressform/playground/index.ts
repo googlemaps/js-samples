@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 // This sample uses the Places Autocomplete widget to:
 // 1. Help the user select a place
 // 2. Retrieve the address components associated with that place

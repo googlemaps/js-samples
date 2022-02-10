@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 // Load the Visualization API and the columnchart package.
 // @ts-ignore TODO(jpoehnelt) update to newest visualization library
 google.load("visualization", "1", { packages: ["columnchart"] });

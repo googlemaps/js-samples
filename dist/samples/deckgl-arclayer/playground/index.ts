@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2021 Google LLC.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import * as GeoJSON from "geojson";
 
 import { ArcLayer } from "deck.gl";

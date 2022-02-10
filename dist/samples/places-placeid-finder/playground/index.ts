@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 // This sample uses the Place Autocomplete widget to allow the user to search
 // for and select a place. The sample then displays an info window containing
 // the place ID and other information about the place that the user has

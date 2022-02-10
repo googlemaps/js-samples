@@ -1,9 +1,3 @@
-/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */
-
 // @ts-nocheck TODO(jpoehnelt) remove when fixed
 
 // This sample requires the Places library. Include the libraries=places
