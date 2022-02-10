@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="floating-panel">
+  <input id="latlng" type="text" value="40.714224,-73.961452" />
+  <input id="submit" type="button" value="Reverse Geocode" />
+</div>
+<div id="map"></div>
+{% endblock %}

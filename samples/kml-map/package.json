@@ -1,8 +1,0 @@
-{
-  "title": "KML Map",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "kml_map",
-  "name": "kml-map"
-}

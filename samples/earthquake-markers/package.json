@@ -1,8 +1,0 @@
-{
-  "title": "Earthquake Markers",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "earthquake_markers",
-  "name": "earthquake-markers"
-}

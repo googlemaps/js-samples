@@ -1,0 +1,40 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+/* [START maps_geocoding_simple] */
+@include meta.load-css("../../shared/scss/default.scss");
+@import "../../shared/scss/mixins.scss";
+
+input[type="text"] {
+  @include map-control;
+  line-height: 40px;
+  margin-right: 0;
+  min-width: 25%;
+}
+
+input[type="button"] {
+  @include map-control-button-tiered;
+  margin-left: 5px;
+}
+
+#response-container {
+  @include map-control;
+  overflow: auto;
+  max-height: 50%;
+  max-width: 90%;
+  background-color: rgba(255, 255, 255, 0.95);
+  font-size: small;
+}
+
+#instructions {
+  @include map-control;
+  padding: 1rem;
+  font-size: medium;
+}
+
+/* [END maps_geocoding_simple] */

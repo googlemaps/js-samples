@@ -1,8 +1,0 @@
-{
-  "title": "WebGL DeckGL OverlayView",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "beta",
-  "tag": "webgl_deckgl",
-  "name": "webgl-deckgl"
-}

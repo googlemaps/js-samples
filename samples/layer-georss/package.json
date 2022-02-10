@@ -1,8 +1,0 @@
-{
-  "title": "GeoRSS Layers",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_georss",
-  "name": "layer-georss"
-}

@@ -17,6 +17,7 @@ on:
   push:
     branches:
       - main
+      - next
 jobs:
   release:
     if: "!contains(github.event.head_commit.message, 'skip ci')"
@@ -27,27 +28,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
-      - uses: actions/cache@v1
-        id: cache
+      - uses: actions/cache@v2
         with:
-          path: .cache
-          key: default-${{ hashFiles('WORKSPACE') }}
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            default-
-      - name: Setup Bazel
-        uses: jpoehnelt/setup-bazel@051fb974803547e0f020ccef089a8ce5a5f1e849
-      - run: bazel version
-      - name: Setup Bazel Cache
-        run: |
-          BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
-          echo "${BAZEL_CACHE_SERVICE_ACCOUNT}" > "${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}"
-          echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc.user
-          echo "build --remote_http_cache=https://storage.googleapis.com/${BAZEL_CACHE_BUCKET}" >> .bazelrc
-        env:
-          BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
-          BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-      - run: bazel build --jobs 8 //:public.tar
-      - run: bazel test ...
+            ${{ runner.os }}-node
+      - run: npm i
+      - run: npm run test:jest
+      - run: npm run build
       - name: Update dist
         run: |
           npm run build
@@ -70,6 +59,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_WOMBAT_TOKEN }}
       - name: Push samples to branches
         run: |
-          bazel run //:sample-to-branch
+          bash ./sample-to-branch.sh
         env:
           GITHUB_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}

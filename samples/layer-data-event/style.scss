@@ -1,0 +1,21 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+/* [START maps_layer_data_event] */
+@include meta.load-css("../../shared/scss/default.scss");
+
+#info-box {
+  background-color: white;
+  border: 1px solid black;
+  bottom: 30px;
+  height: 20px;
+  padding: 10px;
+  position: absolute;
+  left: 30px;
+}
+/* [END maps_layer_data_event] */

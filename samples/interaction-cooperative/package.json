@@ -1,8 +1,0 @@
-{
-  "title": "Cooperative Gesture Handling",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "interaction_cooperative",
-  "name": "interaction-cooperative"
-}

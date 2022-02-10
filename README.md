@@ -21,35 +21,13 @@ The samples can be demoed at the [official documentation site](https://developer
 
 ### Test
 
-1. `npm run lint` Optionaly fix lint issues with `npm run format`
 1. `npm test` Test outputs.
+1. (Optional) `npm run lint` Fix lint issues with `npm run format`
+1. (Optional) `npm run test:playwright:playground:update-snapshots` Update snapshots
 
 ### Run
 
-1. Start a server with all samples using `npm start` or `bazel run serve` (or `ibazel` for faster live reload)
-1. Start a specific sample with `bazel run samples/map-simple:devserver` (or `ibazel` for faster live reload)
-
-### Caching
-
-It may be possible to enable remote caching with Bazel to speed builds. This will require running `gcloud auth application-default login`. This requires access to a specific GCS bucket that most developers do not have.
-
-## Inputs and outputs
-
-The following table identifies the inputs and outputs.
-
-| File                          | Edit | jsFiddle | Description                                                                                     |
-| ----------------------------- | ---- | -------- | ----------------------------------------------------------------------------------------------- |
-| samples/\*/src/index.js       | Y    | N        | JavaScript for sample for *JS* tab                                                              |
-| samples/\*/src/index.njk      | Y    | N        | HTML template for sample                                                                        |
-| samples/\*/src/style.scss     | Y    | N        | SCSS style for sample                                                                           |
-| shared/layout.njk             | Y    | N        | Shared HTML template to extend                                                                  |
-| shared/scss/\*                | Y    | N        | Shared SCSS styles                                                                              |                                                                         |
-| dist/samples/\*/index.html    | N    | N        | Inline HTML, CSS, JS with development key and transpiled for >1%, ie11                          |
-| dist/samples/\*/iframe.html   | N    | N        | Inline HTML, CSS, JS for iframe without html, head, body tags transpiled for ie11 and >1%, ie11 |
-| dist/samples/\*/inline.html   | N    | N        | Inline HTML, CSS, JS for *All* tab transpiled for >3%                                           |
-| dist/samples/\*/jsfiddle.html | N    | Y        | HTML without CSS or JS for in jsFiddle                                                          |
-| dist/samples/\*/sample.html   | N    | N        | HTML without CSS or JS for *HTML* tab                                                           |
-| dist/samples/\*/style.css     | N    | Y        | CSS output from SCSS for *CSS* tab                                                              |
+1. Start a server with all samples using `npm start`
 
 ## Other resources
 
@@ -63,5 +41,4 @@ The following table identifies the inputs and outputs.
 These libraries are community supported. We're comfortable enough with the stability and features of
 the libraries that we want you to build real production applications on it.
 
-If you find a bug, or have a feature suggestion, please [log an issue](issues). If you'd like to
-contribute, please read [How to Contribute](CONTRIB.md).
+If you find a bug, or have a feature suggestion, please [log an issue](issues). If you'd like to contribute, please read [How to Contribute](CONTRIB.md).

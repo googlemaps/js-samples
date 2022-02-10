@@ -1,8 +1,0 @@
-{
-  "title": "Event Click LatLng",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "event_click_latlng",
-  "name": "event-click-latlng"
-}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="style-selector-control" class="map-control">
+  <input type="radio" name="show-hide" id="hide-poi" class="selector-control" />
+  <label for="hide-poi">Hide</label>
+  <input
+    type="radio"
+    name="show-hide"
+    id="show-poi"
+    class="selector-control"
+    checked="checked"
+  />
+  <label for="show-poi">Show</label>
+</div>
+<div id="map"></div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="floating-panel">
+  <button id="toggle-heatmap">Toggle Heatmap</button>
+  <button id="change-gradient">Change gradient</button>
+  <button id="change-radius">Change radius</button>
+  <button id="change-opacity">Change opacity</button>
+</div>
+<div id="map"></div>
+{% endblock %}

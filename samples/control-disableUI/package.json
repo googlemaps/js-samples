@@ -1,8 +1,0 @@
-{
-  "title": "Disabling the Default UI",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "control_disableUI",
-  "name": "control-disableUI"
-}

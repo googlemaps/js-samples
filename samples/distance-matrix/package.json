@@ -1,8 +1,0 @@
-{
-  "title": "Distance Matrix Service",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "distance_matrix",
-  "name": "distance-matrix"
-}

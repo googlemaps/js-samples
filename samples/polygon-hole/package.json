@@ -1,8 +1,0 @@
-{
-  "title": "Polygon With Hole",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "polygon_hole",
-  "name": "polygon-hole"
-}
