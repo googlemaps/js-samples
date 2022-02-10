@@ -116,7 +116,7 @@ export class GoogleMapsSample extends LitElement {
         id=${projectId}
         .sandboxBaseUrl=https://unpkg.com/playground-elements@${npmVersion}/
         .sandboxScope=__playground_swfs_${serviceWorkerHash}/
-        .projectSrc=/samples/${this.sample}/playground/playground.ts.json
+        .projectSrc=./${this.sample}/playground/playground.ts.json
       >
         <slot></slot>
       </playground-project>
