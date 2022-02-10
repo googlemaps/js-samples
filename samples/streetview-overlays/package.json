@@ -1,8 +1,0 @@
-{
-  "title": "Overlays Within Street View",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "streetview_overlays",
-  "name": "streetview-overlays"
-}

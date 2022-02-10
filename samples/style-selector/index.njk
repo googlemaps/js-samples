@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="style-selector-control" class="map-control">
+  <select id="style-selector" class="selector-control">
+    <option value="default">Default</option>
+    <option value="silver">Silver</option>
+    <option value="night">Night mode</option>
+    <option value="retro" selected="selected">Retro</option>
+    <option value="hiding">Hide features</option>
+  </select>
+</div>
+<div id="map"></div>
+{% endblock %}

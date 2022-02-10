@@ -1,8 +1,0 @@
-{
-  "title": "Add Map",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "react_map",
-  "name": "react-map"
-}

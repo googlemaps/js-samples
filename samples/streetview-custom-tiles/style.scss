@@ -1,0 +1,20 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+/* [START maps_streetview_custom_tiles] */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+#street-view {
+  height: 100%;
+}
+/* [END maps_streetview_custom_tiles] */

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="floating-panel">
+  <code>componentRestrictions: {country: "AU", postalCode: "2000"}</code><br/>
+  <button id="submit">Geocode</button>
+</div>
+<div id="map"></div>
+{% endblock %}

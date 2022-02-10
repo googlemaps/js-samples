@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%}
+{% block external %}
+  <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+{% endblock %}
+{% block html %}
+<div id="container">
+  <div id="map"></div>
+  <div id="sidebar" class="mdc-typography">
+    <div class="file" draggable="true" data-value="0">
+      <span class="material-icons">text_snippet</span>
+      <div class="filename">polygons.geojson</div>
+    </div>
+    <div class="file" draggable="true" data-value="1">
+      <span class="material-icons">text_snippet</span>
+      <div class="filename">points.geojson</div>
+    </div>
+    <div class="file" draggable="true" data-value="2">
+      <span class="material-icons">text_snippet</span>
+      <div class="filename">polyline.geojson</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

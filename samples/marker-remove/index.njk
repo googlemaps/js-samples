@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="floating-panel">
+  <input id="hide-markers" type="button" value="Hide Markers" />
+  <input id="show-markers" type="button" value="Show Markers" />
+  <input id="delete-markers" type="button" value="Delete Markers" />
+</div>
+<div id="map"></div>
+<p>Click on the map to add markers.</p>
+{% endblock %}

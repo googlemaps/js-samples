@@ -1,0 +1,13 @@
+{
+  "files": {
+    "index.ts": {
+      "label": "TypeScript"
+    },
+    "style.css": {
+      "label": "CSS"
+    },
+    "index.html": {
+      "label": "HTML"
+    }
+  }
+}

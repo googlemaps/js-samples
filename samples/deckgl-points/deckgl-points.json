@@ -1,0 +1,14 @@
+{
+  "title": "deck.gl and Google Maps Platform",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "deckgl_points",
+  "name": "deckgl-points",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/index.{{ page.outputFileExtension }}"
+}

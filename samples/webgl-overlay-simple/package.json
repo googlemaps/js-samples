@@ -1,8 +1,0 @@
-{
-  "title": "Simple WebGL Overlay",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "beta",
-  "tag": "webgl_overlay_simple",
-  "name": "webgl-overlay-simple"
-}
