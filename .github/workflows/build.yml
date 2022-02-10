@@ -16,7 +16,7 @@ name: Build
 on:
   - push
 concurrency: 
-  group: ${{ github.ref }}
+  group: build-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   build:
