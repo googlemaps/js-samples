@@ -1,8 +1,0 @@
-{
-  "title": "Marker Animations With setTimeout()",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "marker_animations_iteration",
-  "name": "marker-animations-iteration"
-}

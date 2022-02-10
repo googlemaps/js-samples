@@ -1,0 +1,48 @@
+<!--
+  Copyright 2019 Google LLC. All Rights Reserved. All Rights Reserved.
+ 
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+{% extends '../../src/_includes/layout.njk'%}
+{% block external %}
+  <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+  <script src="https://unpkg.com/@google/markerclustererplus@^4.0.1/dist/markerclustererplus.min.js"></script>
+  <head>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+{% endblock %}
+{% block html %}
+  <div id="container">
+    <div id="map"></div>
+    <div id="sidebar">
+      <div id="search">
+        <label class="mdc-text-field mdc-text-field--outlined">
+          <input type="text" class="mdc-text-field__input" aria-labelledby="my-label-id" id="search-input">
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span class="mdc-floating-label" id="my-label-id">Enter a location</span>
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
+          </span>
+        </label>
+        <button id="near-me" class="mdc-icon-button material-icons">near_me</button>
+        <button id="refresh" class="mdc-icon-button material-icons">refresh</button>
+      </div>
+      <div id="cards">
+          {% include '../../shared/progress-circular.njk' %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

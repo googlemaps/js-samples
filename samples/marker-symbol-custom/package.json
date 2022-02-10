@@ -1,8 +1,0 @@
-{
-  "title": "Custom Symbols (Marker)",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "marker_symbol_custom",
-  "name": "marker-symbol-custom"
-}

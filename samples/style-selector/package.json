@@ -1,8 +1,0 @@
-{
-  "title": "Styled Map Selection",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "style_selector",
-  "name": "style-selector"
-}

@@ -1,8 +1,0 @@
-{
-  "title": "Styled Map Types",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "maptype_styled_simple",
-  "name": "maptype-styled-simple"
-}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block external %}
+<script src="https://www.google.com/jsapi"></script>
+{% endblock %} {% block html %}
+<div>
+  <div id="map" style="height:250px;"></div>
+  <div id="elevation_chart"></div>
+</div>
+{% endblock %}

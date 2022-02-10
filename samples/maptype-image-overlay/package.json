@@ -1,8 +1,0 @@
-{
-  "title": "Overlaying an Image Map Type",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "maptype_image_overlay",
-  "name": "maptype-image-overlay"
-}

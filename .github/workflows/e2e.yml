@@ -17,33 +17,46 @@ on:
   push:
   schedule:
     - cron: "0 12 * * *"
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     if: "!contains(github.event.head_commit.message, 'chore: update dist folder')"
-    runs-on: ubuntu-latest   
-    services:
-      hub:
-        image: selenium/standalone-chrome
-        volumes:
-          - ${{ github.workspace }}:${{ github.workspace }}
-        ports:
-          - 4444:4444
-        options: --name selenium -v /home/runner:/home/runner:ro # required for access to html and other generated files, drops z if not specificed here
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        shard: [1, 2, 3, 4, 5, 6, 7, 8]
+      fail-fast: false
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Bazel
-        uses: jpoehnelt/setup-bazel@051fb974803547e0f020ccef089a8ce5a5f1e849
-      - run: bazel version
-      - name: Setup Bazel Cache
-        run: |
-          BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
-          echo "${BAZEL_CACHE_SERVICE_ACCOUNT}" > "${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}"
-          echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc 
-          echo "build --remote_http_cache=https://storage.googleapis.com/${BAZEL_CACHE_BUCKET}" >> .bazelrc
+        with:
+          lfs: true
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-e2e
+          restore-keys: |
+            ${{ runner.os }}-node-e2e
+      - run: npm ci
         env:
-          BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
-          BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-        if: github.actor != 'dependabot[bot]'
-      - run: bazel build --jobs 8 //:public.tar
-      - run: bazel build //samples/add-map:index.webpack.js
-      - run: bazel test --jobs 1 e2e:e2e
+          # https://playwright.dev/docs/installation/#skip-browser-downloads
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      - run: npm run build
+      - run: npx playwright install-deps
+      - run: npx playwright install
+      - run: npm run test:playwright -- --shard=${{matrix.shard}}/8
+        env:
+          CI: true
+      - name: Push test report to artifacts
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: Test Results
+          path: test-results/

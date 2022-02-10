@@ -1,8 +1,0 @@
-{
-  "title": "Default Gesture Handling",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "interaction_default",
-  "name": "interaction-default"
-}

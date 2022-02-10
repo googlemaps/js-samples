@@ -1,0 +1,27 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+/* [START maps_geocoding_reverse] */
+@include meta.load-css("../../shared/scss/default.scss");
+@include meta.load-css("../../shared/scss/floating-panel.scss");
+
+#floating-panel {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  margin-left: -180px;
+  width: 350px;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
+  border: 1px solid #999;
+}
+#latlng {
+  width: 225px;
+}
+/* [END maps_geocoding_reverse] */

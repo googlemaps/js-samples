@@ -1,8 +1,0 @@
-{
-  "title": "Hiding Map Features With Styling",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "hiding_features",
-  "name": "hiding-features"
-}

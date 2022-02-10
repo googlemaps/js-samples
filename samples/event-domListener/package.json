@@ -1,8 +1,0 @@
-{
-  "title": "Listening to DOM Events",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "event_domListener",
-  "name": "event-domListener"
-}

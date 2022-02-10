@@ -1,8 +1,0 @@
-{
-  "title": "Move Camera Easing",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "beta",
-  "tag": "move_camera_ease",
-  "name": "move-camera-ease"
-}

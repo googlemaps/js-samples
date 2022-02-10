@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="map"></div>
+<div id="floating-panel">
+  Origin: <input type="text" readonly id="origin" /> Destination:
+  <input type="text" readonly id="destination" /><br />
+  Heading: <input type="text" readonly id="heading" /> degrees
+</div>
+{% endblock %}

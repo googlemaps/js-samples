@@ -1,0 +1,31 @@
+---
+pagination:
+  data: "collections.samples_ts"
+  alias: "sample"
+  size: 1
+permalink: /samples/{{ sample.fileSlug }}/app/README.md
+---
+
+# Google Maps JavaScript Sample
+
+This sample is generated from @googlemaps/js-samples located at
+https://github.com/googlemaps/js-samples.
+{%- if sample.data.dependencies|length -%}
+This sample has the following dependencies:
+{% for dep in sample.data.dependencies -%}
+- {{ dep}}
+{% endfor %}
+{% endif %}
+
+## Setup
+
+```sh
+npm i
+npm start  # development
+npm run build  # production
+```
+
+## Feedback
+
+For feedback related to this sample, please open a new issue on
+[GitHub](https://github.com/googlemaps/js-samples/issues).

@@ -1,8 +1,0 @@
-{
-  "title": "Custom Popups",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "overlay_popup",
-  "name": "overlay-popup"
-}

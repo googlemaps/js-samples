@@ -1,9 +1,0 @@
-{
-  "title": "Geocoding Region - ES",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "js_geocoding_region_es",
-  "name": "geocoding-region-es",
-  "region": "ES"
-}

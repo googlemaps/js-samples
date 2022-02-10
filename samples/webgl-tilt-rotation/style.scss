@@ -1,0 +1,17 @@
+/**
+ * @license
+ * Copyright 2021 Google LLC.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+ @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+ /* [START maps_webgl_tilt_rotation] */
+ @include meta.load-css("../../shared/scss/default.scss");
+ @import "../../shared/scss/mixins.scss";
+
+ .ui-button {
+  @include map-control-button;
+ }
+ 
+ /* [END maps_webgl_tilt_rotation] */

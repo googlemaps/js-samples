@@ -1,8 +1,0 @@
-{
-  "title": "Directions Service",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "directions_simple",
-  "name": "directions-simple"
-}

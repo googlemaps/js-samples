@@ -1,8 +1,0 @@
-{
-  "title": "Simple Polylines",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "polyline_simple",
-  "name": "polyline-simple"
-}

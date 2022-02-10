@@ -15,6 +15,9 @@
 name: Build
 on:
   - push
+concurrency: 
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,22 +28,15 @@ jobs:
         if: github.actor != 'dependabot[bot]'
       - uses: actions/checkout@v2
         if: github.actor == 'dependabot[bot]'
-      - name: Setup Bazel
-        uses: jpoehnelt/setup-bazel@051fb974803547e0f020ccef089a8ce5a5f1e849
-      - run: bazel version
-      - name: Setup Bazel Cache
-        run: |
-          BAZEL_CACHE_SERVICE_ACCOUNT_FILE=$(mktemp)
-          echo "${BAZEL_CACHE_SERVICE_ACCOUNT}" > "${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}"
-          echo "build --google_credentials=${BAZEL_CACHE_SERVICE_ACCOUNT_FILE}" >> .bazelrc.user
-          echo "build --remote_http_cache=https://storage.googleapis.com/${BAZEL_CACHE_BUCKET}" >> .bazelrc.user
-        env:
-          BAZEL_CACHE_BUCKET: ${{secrets.SYNCED_BAZEL_CACHE_BUCKET}}
-          BAZEL_CACHE_SERVICE_ACCOUNT: ${{secrets.SYNCED_BAZEL_CACHE_SERVICE_ACCOUNT}}
-        if: github.actor != 'dependabot[bot]'
-      - run: bazel build --profile /tmp/bazel-profile-build.gz --jobs 8 //:public.tar
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node
+      - run: npm i
+      - run: npm run test:jest
       - name: Update dist
-        id: update
         run: |
           npm run build
           git config --global user.name 'googlemaps-bot'
@@ -49,12 +45,6 @@ jobs:
           git commit -m "chore: update dist folder" || true
           git push origin
         if: github.actor!= 'dependabot[bot]' && !startsWith(github.ref, 'refs/tags/')
-      - run: bazel build //samples/add-map:index.webpack.js
-      - run: bazel build //samples/programmatic-load-button:index.webpack.js
-      - run: bazel test --jobs 8 ...
-      - name: Upload Bazel profiles
-        uses: actions/upload-artifact@v2
-        with:
-          name: bazel profiles
-          path: |
-            /tmp/bazel-profile-*.gz
+      - run: |
+          git status -s
+          git diff --exit-code dist
