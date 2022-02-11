@@ -22,5 +22,6 @@ const config: PlaywrightTestConfig = {
       use: { ...devices["Desktop Chrome"] },
     },
   ],
+  reporter: process.env.CI ? "github" : "list",
 };
 export default config;
