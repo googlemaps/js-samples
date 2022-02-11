@@ -56,7 +56,7 @@ export class GoogleMapsSample extends LitElement {
     playground-tab-bar {
       border-bottom: var(--border)
     }
-  
+
     #playground {
       font-family: "Google Sans", "Noto Sans", "Noto Sans JP", "Noto Sans KR",
         "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew",
