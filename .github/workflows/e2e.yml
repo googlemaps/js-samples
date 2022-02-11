@@ -39,6 +39,7 @@ jobs:
         env:
           # https://playwright.dev/docs/installation/#skip-browser-downloads
           PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      - run: npm run build
       - run: npx playwright install-deps
       - run: npx playwright install
       - run: npm run test:playwright -- --shard=${{matrix.shard}}/8
