@@ -1,11 +1,9 @@
 import "playground-elements";
 
 import { LitElement, css, html } from "lit";
-import { Ref, createRef } from "lit/directives/ref.js";
 import { customElement, property } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
 
-import type { PlaygroundIde } from "playground-elements";
 import {
   npmVersion,
   serviceWorkerHash,
@@ -19,7 +17,6 @@ declare global {
 
 @customElement("google-maps-sample")
 export class GoogleMapsSample extends LitElement {
-  playGroundRef: Ref<PlaygroundIde> = createRef();
   connectedCallback(): void {
     super.connectedCallback();
   }
@@ -145,5 +142,15 @@ export class GoogleMapsSample extends LitElement {
       
     </div>
     `;
+  }
+
+  protected firstUpdated(): void {
+    // if this is embedded in an iframe, let the parent know the height
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        parent.postMessage(entry.contentRect, "*");
+      }
+    });
+    resizeObserver.observe(this.shadowRoot?.getElementById("playground")!);
   }
 }
