@@ -28,6 +28,12 @@ jobs:
         if: github.actor != 'dependabot[bot]'
       - uses: actions/checkout@v2
         if: github.actor == 'dependabot[bot]'
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node
       - run: npm i
       - run: npm run test:jest
       - name: Update dist
