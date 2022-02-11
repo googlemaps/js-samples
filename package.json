@@ -21,6 +21,7 @@
   "scripts": {
     "build:eleventy": "eleventy --incremental",
     "build:playground": "parcel build --no-content-hash --detailed-report 10 src/playground/index.ts",
+    "build:resizer": "parcel build --no-content-hash src/playground/resizer.ts",
     "build": "npm-run-all clean -p build:*",
     "ci": "npm run build && npm run test",
     "clean": "rm -rf dist/* .cache/*",
@@ -32,7 +33,8 @@
     "test:jest": "tsc --noEmit --skipLibCheck",
     "test:playwright": "playwright test",
     "watch:eleventy": "eleventy --serve --port 8000 --incremental",
-    "watch:playground": "parcel watch --no-content-hash src/playground/index.ts"
+    "watch:playground": "parcel watch --no-content-hash src/playground/index.ts",
+    "watch:resizer": "parcel watch --no-content-hash src/playground/resizer.ts"
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.0",
