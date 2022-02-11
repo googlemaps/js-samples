@@ -1,7 +1,7 @@
 import { PlaywrightTestConfig } from "@playwright/test";
 const config: PlaywrightTestConfig = {
   testDir: "e2e",
-  timeout: 10000,
+  timeout: process.env.CI ? 30000 : 10000,
   workers: process.env.CI ? 1 : undefined,
   use: {
     viewport: {
