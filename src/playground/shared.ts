@@ -1,8 +1,10 @@
+export interface ResizeData {
+  rect: DOMRectReadOnly;
+  type: "resizeMessage";
+}
+
 export interface ResizeMessage extends MessageEvent {
-  data: {
-    rect: DOMRectReadOnly;
-    type: "resizeMessage";
-  };
+  data: ResizeData;
 }
 
 export const isResizeMessage = (

@@ -8,6 +8,7 @@ import {
   npmVersion,
   serviceWorkerHash,
 } from "playground-elements/shared/version.js";
+import { ResizeData } from "./shared";
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -138,17 +139,20 @@ export class GoogleMapsSample extends LitElement {
           .pragmas="on"
         >
         </playground-file-editor>
-      </div> 
-      
+      </div>
     </div>
     `;
   }
 
   protected firstUpdated(): void {
-    // if this is embedded in an iframe, let the parent know the height
+    // if this is embedded in an iframe, let the parent know the height as it changes
     const resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
-        parent.postMessage(entry.contentRect, "*");
+        const data: ResizeData = {
+          type: "resizeMessage",
+          rect: entry.contentRect,
+        };
+        parent.postMessage(data, "*");
       }
     });
     resizeObserver.observe(this.shadowRoot?.getElementById("playground")!);
