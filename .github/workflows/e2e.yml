@@ -49,6 +49,12 @@ jobs:
       - run: npm run build
       - run: npx playwright install-deps
       - run: npx playwright install
-      - run: npm run test:playwright -- --shard=${{matrix.shard}}/8
+      - run: npm run test:playwright -- --shard=${{matrix.shard}}/4
         env:
           CI: true
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v2
+        with:
+          name: playwright-results
+          path: test-results
