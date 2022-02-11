@@ -2,6 +2,8 @@ dist/index.js
 dist/index.js.map
 dist/playground-typescript-worker.*.js
 dist/playground-typescript-worker.*.js.map
+dist/resizer.js
+dist/resizer.js.map
 
 **/node_modules
 samples/**/package-lock.json
