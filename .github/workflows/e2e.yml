@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        shard: [1, 2, 3, 4]
+        shard: [1, 2, 3, 4, 5, 6, 7, 8]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
@@ -49,12 +49,6 @@ jobs:
       - run: npm run build
       - run: npx playwright install-deps
       - run: npx playwright install
-      - run: npm run test:playwright -- --shard=${{matrix.shard}}/4
+      - run: npm run test:playwright -- --shard=${{matrix.shard}}/8
         env:
           CI: true
-      - name: Upload test results
-        if: always()
-        uses: actions/upload-artifact@v2
-        with:
-          name: playwright-results
-          path: test-results
