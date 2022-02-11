@@ -31,7 +31,7 @@
     "serve": "http-server dist --port 8000",
     "test": "npm-run-all -s test:*",
     "test:jest": "tsc --noEmit --skipLibCheck",
-    "test:playwright": "DEBUG=pw:webserver playwright test",
+    "test:playwright": "playwright test",
     "watch:eleventy": "eleventy --serve --port 8000 --incremental",
     "watch:playground": "parcel watch --no-content-hash src/playground/index.ts",
     "watch:resizer": "parcel watch --no-content-hash src/playground/resizer.ts"
