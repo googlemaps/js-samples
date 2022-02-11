@@ -45,6 +45,7 @@ export class GoogleMapsSample extends LitElement {
     }
 
     #editor {
+      -webkit-font-smoothing: antialiased;
       overflow: auto
       height: auto !important;
     }
@@ -61,28 +62,31 @@ export class GoogleMapsSample extends LitElement {
         "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew",
         "Noto Sans Bengali", sans-serif;
       
-      <!-- playground-elements vars -->
-      --playground-code-font-family: Roboto Mono, monospace;
+      --border-radius: 8px;
+      --border: 1px solid #dadce0;
+      --playground-bar-height: 46px;
       --playground-code-background: #f1f3f4;
+      --playground-code-builtin-color: #37474f;
+      --playground-code-callee-color: #9436e6;
+      --playground-code-comment-color: #b80672;
+      --playground-code-def-color: #473333;
       --playground-code-default-color: #37474f;
+      --playground-code-font-family: Roboto Mono, monospace;
       --playground-code-keyword-color: #1967d2;
       --playground-code-number-color: #c5221f;
-      --playground-code-def-color: #473333;
-      --playground-code-variable-2-color: #000000;
-      --playground-code-variable-3-color: #000000;
-      --playground-code-type-color: #1967d2;
-      --playground-code-comment-color: #b80672;
-      --playground-code-string-color: #188038;
+      --playground-code-padding: 24px;
+      --playground-code-property-color: #37474f;
+      --playground-code-selection-background: #add2fa;
       --playground-code-string-2-color: #188038;
+      --playground-code-string-color: #188038;
       --playground-code-tag-color: #1967d2;
+      --playground-code-type-color: #9436e6;
+      --playground-code-variable-2-color: #37474f;
+      --playground-code-variable-3-color: #37474f;
+      --playground-code-variable-color: #37474f;
       --playground-highlight-color: #1a73e8;
-      --playground-bar-height: 47px;
       --playground-tab-bar-background: rgba(0, 0, 0, 0);
       --playground-tab-bar-foreground-color: rgb(95, 99, 104);
-
-      <!-- custom vars -->
-      --border: 1px solid #dadce0;
-      --border-radius: 8px;
     }
 
     mwc-button {
