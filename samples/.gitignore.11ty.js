@@ -14,6 +14,8 @@ module.exports = {
     return `.env
 .parcel-cache
 node_modules
+dist
+package-lock.json
 `;
   },
 };
