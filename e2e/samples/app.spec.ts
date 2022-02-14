@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { waitForPlaygroundPreviewToLoad, failOnPageError } from "../utils";
+import { waitForGoogleMapsToLoad, failOnPageError } from "../utils";
 import fs from "fs";
 import child_process from "child_process";
 
@@ -25,11 +25,20 @@ test.describe.parallel("sample applications", () => {
   samples.forEach((sample) => {
     test.describe(sample, () => {
       test(`app builds`, async ({ page }) => {
-        test.setTimeout(60000);
+        test.setTimeout(30000);
+        failOnPageError(page);
+
         await execAsync(
           `cd dist/samples/${sample}/app && npm i && npm run build`
         );
-        await page.goto(`/samples/${sample}/app`);
+
+        // go to page and fail if errors
+        await page.goto(`/samples/${sample}/app/dist`, {
+          waitUntil: "networkidle",
+        });
+
+        // wait for google.maps to be loaded
+        await waitForGoogleMapsToLoad(page);
       });
     });
   });

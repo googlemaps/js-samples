@@ -20,7 +20,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "parcel index.html --open",
-    "build": "parcel build index.html --no-optimize"
+    "build": "parcel build index.html --no-optimize --public-url ./"
   },
   "devDependencies": {
     "@types/google.maps": "^3.47.3",

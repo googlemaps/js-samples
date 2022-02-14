@@ -24,6 +24,11 @@ export async function waitForPlaygroundPreviewToLoad(page: Page) {
   }, await page.waitForSelector('playground-preview [part="preview-loading-indicator"]', { state: "attached" }));
 }
 
+export async function waitForGoogleMapsToLoad(page: Page) {
+  await page.waitForFunction(() => window.google && window.google.maps);
+  await page.waitForTimeout(100);
+}
+
 export const failOnPageError = (page: Page) => {
   page.on("pageerror", (e) => {
     console.error(e.message);

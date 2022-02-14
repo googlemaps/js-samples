@@ -9,11 +9,11 @@ const config: PlaywrightTestConfig = {
       width: 600,
       height: 1200,
     },
-    baseURL: "http://localhost:8000/",
+    baseURL: "http://localhost:8080/",
   },
   webServer: {
     command: "npm run serve",
-    port: 8000,
+    port: 8080,
   },
   updateSnapshots: "none",
   projects: [
