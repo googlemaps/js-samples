@@ -14,6 +14,9 @@ const samples = fs
   .filter(
     (name) =>
       ![
+        "deckgl-arclayer",
+        "deckgl-points",
+        "deckgl-tripslayer",
         "event-poi",
         "marker-clustering",
         "places-autocomplete-multiple-countries",
