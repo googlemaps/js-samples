@@ -65,9 +65,8 @@ jobs:
           user_name: 'googlemaps-bot'
           user_email: 'googlemaps-bot@users.noreply.github.com'
           commit_message: ${{ github.event.head_commit.message }}
-      # TODO handle branches for samples
-      # - name: Push samples to branches
-      #   run: |
-      #     bazel run //:sample-to-branch
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+      - name: Push samples to branches
+        run: |
+          sh ./sample-to-branch.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
