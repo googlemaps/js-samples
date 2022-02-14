@@ -15,7 +15,7 @@ const data = {
   dependencies: [],
   scripts: {
     start: "parcel index.html --open",
-    build: "parcel build index.html",
+    build: "parcel build index.html --no-optimize",
   },
 };
 

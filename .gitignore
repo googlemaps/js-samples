@@ -4,6 +4,8 @@ dist/playground-typescript-worker.*.js
 dist/playground-typescript-worker.*.js.map
 dist/resizer.js
 dist/resizer.js.map
+dist/samples/*/app/dist
+dist/samples/*/app/package-lock.json
 
 **/node_modules
 samples/**/package-lock.json
