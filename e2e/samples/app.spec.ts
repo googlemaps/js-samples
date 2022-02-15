@@ -20,6 +20,7 @@ const samples = fs
         "event-poi",
         "marker-clustering",
         "places-autocomplete-multiple-countries",
+        "programmatic-load-button", // requires specific input from user
         "react-map",
       ].includes(name)
   );
