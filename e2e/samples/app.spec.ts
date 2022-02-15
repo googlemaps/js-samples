@@ -22,6 +22,7 @@ const samples = fs
         "places-autocomplete-multiple-countries",
         "programmatic-load-button", // requires specific input from user
         "react-map",
+        "store-locator", // hits over query Limit
       ].includes(name)
   );
 
