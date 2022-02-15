@@ -29,13 +29,16 @@ const samples = fs
 test.describe.parallel("sample applications", () => {
   samples.forEach((sample) => {
     test.describe(sample, () => {
-      test(`app builds`, async ({ page }) => {
-        test.setTimeout(30000);
-        failOnPageError(page);
-
+      test.beforeAll(async () => {
+        test.setTimeout(60000);
         await execAsync(
           `cd dist/samples/${sample}/app && npm i && npm run build`
         );
+      });
+
+      test(`app loads without error`, async ({ page }) => {
+        test.slow();
+        failOnPageError(page);
 
         // go to page and fail if errors
         await page.goto(`/samples/${sample}/app/dist`, {
