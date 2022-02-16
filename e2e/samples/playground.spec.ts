@@ -15,26 +15,25 @@ const samples = fs
         "deckgl-tripslayer",
         "marker-clustering",
         "react-map",
+        "store-locator",
       ].includes(name)
   );
 
 test.describe.parallel("suite", () => {
   samples.forEach((sample) => {
-    // test(`playground preview screenshot - ${sample}`, async ({ page }) => {
-    //   await page.goto(`/samples/${sample}`);
-    //   await waitForPlaygroundPreviewToLoad(page);
-
-    //   const preview = page.locator("playground-preview");
-    //   expect(await preview.screenshot()).toMatchSnapshot(`samples/${sample}.png`)
-    // });
-
     test(`playground preview runs without error - ${sample}`, async ({
       page,
     }) => {
+      test.setTimeout(30000);
       failOnPageError(page);
 
       await page.goto(`/samples/playground.html?sample=${sample}`);
       await waitForPlaygroundPreviewToLoad(page);
+      await page.waitForTimeout(1000);
+      await page.waitForLoadState("networkidle");
+
+      expect(await page.locator("playground-preview").screenshot()).toMatchImageDiff({ name: `${sample}-preview.png` });
+      expect(await page.locator("#code").screenshot()).toMatchImageDiff({ name: `${sample}-code.png` });
     });
   });
 });
