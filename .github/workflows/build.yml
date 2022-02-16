@@ -47,4 +47,4 @@ jobs:
         if: github.actor!= 'dependabot[bot]' && !startsWith(github.ref, 'refs/tags/')
       - run: |
           git status -s
-          git diff --exit-code
+          git diff --exit-code dist
