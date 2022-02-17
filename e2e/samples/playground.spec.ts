@@ -13,7 +13,11 @@ const samples = fs
         "deckgl-arclayer",
         "deckgl-points",
         "deckgl-tripslayer",
+        "map-sync",
         "marker-clustering",
+        "move-camera-ease",
+        "places-autocomplete-service",
+        "programmatic-load",
         "react-map",
         "store-locator",
       ].includes(name)
@@ -21,7 +25,7 @@ const samples = fs
 
 test.describe.parallel("suite", () => {
   samples.forEach((sample) => {
-    test(`playground preview runs without error - ${sample}`, async ({
+    test(`playground screenshots match - ${sample}`, async ({
       page,
     }) => {
       test.setTimeout(30000);
