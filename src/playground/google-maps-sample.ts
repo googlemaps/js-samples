@@ -29,10 +29,6 @@ export class GoogleMapsSample extends LitElement {
       --border-radius: 8px;
     }
 
-    playground-preview {
-      min-height: 400px;
-    }
-
     playground-preview::part(preview-toolbar) {
       display: none;
     }
@@ -103,6 +99,9 @@ export class GoogleMapsSample extends LitElement {
   @property()
   hideCode?: boolean = false;
 
+  @property()
+  previewHeight?: string = "400px";
+
   // Render the UI as a function of component state
   render() {
     const projectId = "project";
@@ -123,6 +122,7 @@ export class GoogleMapsSample extends LitElement {
         <slot></slot>
       </playground-project>
       <playground-preview
+        style=${styleMap({ height: this.previewHeight })}
         part="preview"        
         html-file="index.html"
         .project=${projectId}
