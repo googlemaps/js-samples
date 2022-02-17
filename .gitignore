@@ -4,7 +4,7 @@ dist/playground-typescript-worker.*.js
 dist/playground-typescript-worker.*.js.map
 dist/resizer.js
 dist/resizer.js.map
-
+test-results
 **/node_modules
 samples/**/package-lock.json
 **/.npmrc
