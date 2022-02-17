@@ -68,7 +68,7 @@
     "css-loader": "^6.2.0",
     "deck.gl": "^8.6.0-beta.1",
     "dotenv": "^10.0.0",
-    "esbuild": "^0.14.21",
+    "dts-minify": "^0.3.0",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-googlemaps": "^1.2.5",

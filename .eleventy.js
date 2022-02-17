@@ -5,6 +5,7 @@ const sass = require("./src/engines/sass");
 const stripRegionTags = require("./src/transforms/strip-region-tags");
 const stripLicenseHeaders = require("./src/transforms/strip-license-headers");
 const format = require("./src/transforms/format");
+const minify = require("./src/transforms/minify");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./shared/**/*");
@@ -18,6 +19,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addTransform("stripRegionTags", stripRegionTags);
   eleventyConfig.addTransform("stripLicenseHeaders", stripLicenseHeaders);
+  eleventyConfig.addTransform("minify", minify);
   eleventyConfig.addTransform("format", format);
 
   eleventyConfig.addCollection("samples_ts", function (collectionApi) {

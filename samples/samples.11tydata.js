@@ -11,6 +11,11 @@ const data = {
   libraries: [],
   version: "weekly",
   mode: ["jsfiddle", "docs", "app", "playground"],
+  availableTypings: [
+    "@types/google.maps",
+    "@types/geojson",
+    "@types/google.visualization",
+  ],
   devDependencies: ["@types/google.maps", "parcel"],
   dependencies: [],
   scripts: {

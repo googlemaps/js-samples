@@ -12,7 +12,7 @@ module.exports = {
     };
   },
 
-  render({ devDependencies }) {
+  render({ availableTypings, sample }) {
     const files = {
       "index.ts": {
         label: "TypeScript",
@@ -23,6 +23,16 @@ module.exports = {
       "index.html": {
         label: "HTML",
       },
+      ...Object.fromEntries(
+        sample.data.devDependencies
+          .filter(
+            (dep) => dep.startsWith("@types") && availableTypings.includes(dep)
+          )
+          .map((dep) => [
+            `../../../types/${this.slugify(dep.split("/")[1])}/index.d.ts`,
+            { label: dep, hidden: true },
+          ])
+      ),
     };
 
     return JSON.stringify(

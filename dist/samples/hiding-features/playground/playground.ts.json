@@ -8,6 +8,10 @@
     },
     "index.html": {
       "label": "HTML"
+    },
+    "../../../types/google-maps/index.d.ts": {
+      "label": "@types/google.maps",
+      "hidden": true
     }
   }
 }
