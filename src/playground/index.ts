@@ -14,5 +14,9 @@ if (config.get("hideCode")) {
   samplePlayground.hideCode = true;
 }
 
+if (config.has("previewHeight")) {
+  samplePlayground.previewHeight = config.get("previewHeight")!;
+}
+
 // append the playground to the body
 document.body.append(samplePlayground);
