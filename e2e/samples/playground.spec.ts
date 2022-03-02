@@ -21,6 +21,7 @@ const samples = fs
         "react-map",
         "store-locator",
         "map-puzzle", // non deterministic
+        "map-coordinates", // non deterministic
       ].includes(name)
   );
 
