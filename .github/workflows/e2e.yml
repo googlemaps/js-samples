@@ -52,3 +52,9 @@ jobs:
       - run: npm run test:playwright -- --shard=${{matrix.shard}}/8
         env:
           CI: true
+      - name: Push test report to artifacts
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: Test Results
+          path: test-results/
