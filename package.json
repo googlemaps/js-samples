@@ -61,6 +61,7 @@
     "@types/three": "^0.130.0",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
+    "buffer": "^6.0.3",
     "clean-css": "^5.2.2",
     "core-js": "^3.13.1",
     "css-loader": "^6.2.0",
@@ -83,7 +84,7 @@
     "lodash": "^4.17.21",
     "mime": "^3.0.0",
     "npm-run-all": "^4.1.5",
-    "parcel": "^2.3.1",
+    "parcel": "^2.3.2",
     "prettier": "^2.3.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -94,8 +95,6 @@
   "private": true,
   "dependencies": {
     "@material/mwc-button": "^0.25.3",
-    "buffer": "^6.0.3",
-    "playground-elements": "^0.14.8",
-    "process": "^0.11.10"
+    "playground-elements": "^0.14.8"
   }
 }
