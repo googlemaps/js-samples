@@ -23,7 +23,7 @@ The samples can be demoed at the [official documentation site](https://developer
 
 1. `npm test` Test outputs.
 1. (Optional) `npm run lint` Fix lint issues with `npm run format`
-1. (Optional) `npm run test:playwright:update-snapshots` Update snapshots
+1. (Optional) `npm run test:playwright:playground:update-snapshots` Update snapshots
 
 ### Run
 
