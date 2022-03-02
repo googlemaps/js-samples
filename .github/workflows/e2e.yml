@@ -30,6 +30,8 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
+        with:
+          lfs: true
       - uses: actions/cache@v2
         with:
           path: ~/.npm
