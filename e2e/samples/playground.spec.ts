@@ -20,6 +20,8 @@ const samples = fs
         "programmatic-load",
         "react-map",
         "store-locator",
+        "map-puzzle", // non deterministic
+        "map-coordinates", // non deterministic
       ].includes(name)
   );
 
