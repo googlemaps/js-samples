@@ -6,6 +6,10 @@ module.exports = function (content, outputPath) {
     return content;
   }
 
+  if (path.basename(outputPath) === "vite.config.js") {
+    return prettier.format(content, { parser: "babel" });
+  }
+
   const ext = path.extname(outputPath);
   switch (ext) {
     case ".md":
