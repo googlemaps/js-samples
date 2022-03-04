@@ -31,3 +31,11 @@ steps:
       - '-Z'  # gzip
       - dist/
       - 'gs://$_BUCKET/$REPO_NAME/$_PATH'
+  - name: 'google/cloud-sdk:slim'
+    args:
+      - gsutil
+      - setmeta
+      - '-h'
+      - 'content-type:video/mp2t'
+      - 'gs://$_BUCKET/$REPO_NAME/$_PATH/**/*.ts'
+  
