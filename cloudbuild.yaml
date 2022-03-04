@@ -31,6 +31,7 @@ steps:
       - '-Z'  # gzip
       - dist/
       - 'gs://$_BUCKET/$REPO_NAME/$_PATH'
+  # remove following after https://github.com/google/playground-elements/pull/279
   - name: 'google/cloud-sdk:slim'
     args:
       - gsutil
