@@ -3,7 +3,7 @@
   "title": "Marker Collision Management",
   "callback": "initMap",
   "libraries": [],
-  "version": "weekly",
+  "version": "beta",
   "tag": "marker_collision_management",
   "pagination": {
     "data": "mode",
