@@ -16,11 +16,13 @@ const data = {
     "@types/geojson",
     "@types/google.visualization",
   ],
-  devDependencies: ["@types/google.maps", "parcel"],
+  devDependencies: ["@types/google.maps", "typescript", "vite"],
   dependencies: [],
   scripts: {
-    start: "parcel index.html --open",
-    build: "parcel build index.html --no-optimize --public-url ./",
+    dev: "vite",
+    build: "vite build --outDir dist --base './'",
+    test: "tsc --no-emit",
+    preview: "vite preview",
   },
 };
 
