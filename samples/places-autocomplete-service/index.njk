@@ -10,11 +10,6 @@
   <script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 {% endblock %}
-{% block api %}
-  <script 
-    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initialize&libraries=places&v=weekly" 
-    defer></script>
-{% endblock %}
 {% block html %}
   <div id="container" class="mdc-typography">
     <div id="map"></div>
