@@ -35,6 +35,7 @@ steps:
   - name: 'google/cloud-sdk:slim'
     args:
       - gsutil
+      - '-m'
       - setmeta
       - '-h'
       - 'content-type:video/mp2t'
