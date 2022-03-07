@@ -39,4 +39,10 @@ steps:
       - '-h'
       - 'content-type:video/mp2t'
       - 'gs://$_BUCKET/$REPO_NAME/$_PATH/**/*.ts'
-  
+  - name: 'google/cloud-sdk:slim'
+    args:
+      - gsutil
+      - cors 
+      - set
+      - 'cors.json'
+      - 'gs://$_BUCKET'
