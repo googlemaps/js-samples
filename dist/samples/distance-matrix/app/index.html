@@ -11,6 +11,15 @@
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script type="module" src="./index.ts"></script>
+
+    <!-- 
+     The `defer` attribute cause the callback to execute after the full HTML document has been parsed.
+     For non-blocking use, consider `async` or https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
   </head>
   <body>
     <div id="container">
@@ -22,14 +31,5 @@
         <pre style="flex-grow: 1" id="response"></pre>
       </div>
     </div>
-
-    <!-- 
-      Async script executes immediately and must be after any DOM elements used in callback. 
-      Replace key with your own key.
-    -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
-      defer
-    ></script>
   </body>
 </html>

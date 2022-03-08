@@ -9,6 +9,15 @@
     <title>Directions Service (Complex)</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- jsFiddle will insert css and js -->
+
+    <!-- 
+     The `defer` attribute cause the callback to execute after the full HTML document has been parsed.
+     For non-blocking use, consider `async` or https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
   </head>
   <body>
     <div id="floating-panel">
@@ -47,14 +56,5 @@
     <div id="map"></div>
     &nbsp;
     <div id="warnings-panel"></div>
-
-    <!-- 
-      Async script executes immediately and must be after any DOM elements used in callback. 
-      Replace key with your own key.
-    -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
-      defer
-    ></script>
   </body>
 </html>
