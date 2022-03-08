@@ -9,15 +9,6 @@
     <title>POI Click Events</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- jsFiddle will insert css and js -->
-
-    <!-- 
-     The `defer` attribute cause the callback to execute after the full HTML document has been parsed.
-     For non-blocking use, consider `async` or https://www.npmjs.com/package/@googlemaps/js-api-loader.
-    -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
-      defer
-    ></script>
   </head>
   <body>
     <div id="map"></div>
@@ -27,5 +18,16 @@
       Place ID <span id="place-id"></span><br />
       <span id="place-address"></span>
     </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
   </body>
 </html>

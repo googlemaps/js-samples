@@ -12,15 +12,6 @@
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script type="module" src="./index.js"></script>
-
-    <!-- 
-     The `defer` attribute cause the callback to execute after the full HTML document has been parsed.
-     For non-blocking use, consider `async` or https://www.npmjs.com/package/@googlemaps/js-api-loader.
-    -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
-      defer
-    ></script>
   </head>
   <body>
     <div class="pac-card" id="pac-card">
@@ -51,6 +42,17 @@
       <span id="place-name" class="title"></span><br />
       <span id="place-address"></span>
     </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
   </body>
 </html>
 <!-- [END maps_places_autocomplete_multiple_countries] -->

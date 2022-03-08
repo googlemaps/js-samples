@@ -17,15 +17,6 @@
 
     <link rel="stylesheet" type="text/css" href="./style.css" />
     <script type="module" src="./index.js"></script>
-
-    <!-- 
-     The `defer` attribute cause the callback to execute after the full HTML document has been parsed.
-     For non-blocking use, consider `async` or https://www.npmjs.com/package/@googlemaps/js-api-loader.
-    -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly"
-      defer
-    ></script>
   </head>
   <body>
     <!-- Note: The address components in this sample are based on North American address format. You might need to adjust them for the locations relevant to your app. For more information, see
@@ -71,5 +62,16 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
   Not recommended for user-facing forms due to risk of mis-click when aiming for Submit button. -->
       <input type="reset" value="Clear form" />
     </form>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly"
+      defer
+    ></script>
   </body>
 </html>
