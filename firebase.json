@@ -8,7 +8,7 @@
         "headers": [
           {
             "key": "Access-Control-Allow-Origin",
-            "value": "https://*.google.com"
+            "value": "*"
           }
         ]
       }
