@@ -93,7 +93,7 @@ export class GoogleMapsSample extends LitElement {
 
   // Declare reactive properties
   @property()
-  sample?: string = "add-map";
+  projectSrc?: string = "";
 
   // Declare reactive properties
   @property()
@@ -117,7 +117,7 @@ export class GoogleMapsSample extends LitElement {
         id=${projectId}
         .sandboxBaseUrl=https://unpkg.com/playground-elements@${npmVersion}/
         .sandboxScope=__playground_swfs_${serviceWorkerHash}/
-        .projectSrc=./${this.sample}/playground/playground.ts.json
+        .projectSrc=${this.projectSrc}
       >
         <slot></slot>
       </playground-project>

@@ -7,7 +7,7 @@ const config = new URL(document.location.href).searchParams;
 const samplePlayground = document.createElement("google-maps-sample");
 
 // get ?sample=<sample>
-samplePlayground.sample = config.get("sample")!;
+samplePlayground.projectSrc = `./${config.get("sample")!}/playground/playground.ts.json`;
 
 // hide the code if ?hideCode=true
 if (config.get("hideCode")) {
