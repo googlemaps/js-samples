@@ -20,8 +20,10 @@
     <p>Click on the map to add markers.</p>
 
     <!-- 
-      Async script executes immediately and must be after any DOM elements used in callback. 
-      Replace key with your own key.
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
     -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
