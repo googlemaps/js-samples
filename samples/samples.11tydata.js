@@ -20,6 +20,7 @@ const data = {
   dependencies: [],
   scripts: {
     dev: "vite",
+    start: "vite",
     build: "vite build --outDir dist --base './'",
     test: "tsc --no-emit",
     preview: "vite preview",
