@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { MarkerClusterer } from "@googlemaps/markerclusterer";
+import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@^1.0.2";
 
 function initMap() {
   const map = new google.maps.Map(document.getElementById("map"), {

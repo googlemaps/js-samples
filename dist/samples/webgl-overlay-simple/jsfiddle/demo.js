@@ -3,9 +3,9 @@
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { AmbientLight, DirectionalLight, Scene } from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { ThreeJSOverlayView } from "@googlemaps/three";
+import { AmbientLight, DirectionalLight, Scene } from "https://cdn.skypack.dev/three@^0.129.0";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@^0.129.0/examples/jsm/loaders/GLTFLoader";
+import { ThreeJSOverlayView } from "https://cdn.skypack.dev/@googlemaps/three@1.0.5";
 let map;
 const mapOptions = {
   tilt: 0,
