@@ -22,7 +22,9 @@ module.exports = {
         return `/samples${data.page.filePathStem
           .split("/")
           .slice(0, 2)
-          .join("/")}/${data.mode}/style.css`;
+          .join("/")}/${data.mode}/${
+          data.mode === "jsfiddle" ? "demo" : "style"
+        }.css`;
       };
     },
   },
