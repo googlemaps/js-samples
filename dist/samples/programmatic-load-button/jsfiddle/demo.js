@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { Loader } from "@googlemaps/js-api-loader";
+import { Loader } from "https://cdn.skypack.dev/@googlemaps/js-api-loader@^1.11.4";
 let map;
 const center = { lat: 41.90476224706472, lng: 12.49822074385094 };
 const zoom = 14;

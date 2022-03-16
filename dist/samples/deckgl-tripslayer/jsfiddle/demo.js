@@ -3,8 +3,8 @@
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { GoogleMapsOverlay } from "@deck.gl/google-maps";
-import { TripsLayer } from "deck.gl";
+import { GoogleMapsOverlay } from "https://cdn.skypack.dev/@deck.gl/google-maps@^8.6.0-beta.1";
+import { TripsLayer } from "https://cdn.skypack.dev/deck.gl@^8.6.0-beta.1";
 const DATA_URL =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json";
 const LOOP_LENGTH = 1800;

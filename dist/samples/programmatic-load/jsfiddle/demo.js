@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { Loader } from "@googlemaps/js-api-loader";
+import { Loader } from "https://cdn.skypack.dev/@googlemaps/js-api-loader@^1.11.4";
 let map;
 const additionalOptions = {};
 const loader = new Loader({
