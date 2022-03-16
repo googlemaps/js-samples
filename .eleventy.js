@@ -6,6 +6,7 @@ const stripRegionTags = require("./src/transforms/strip-region-tags");
 const stripLicenseHeaders = require("./src/transforms/strip-license-headers");
 const format = require("./src/transforms/format");
 const minify = require("./src/transforms/minify");
+const skypack = require("./src/transforms/skypack");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./shared/**/*");
@@ -19,6 +20,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addTransform("stripRegionTags", stripRegionTags);
   eleventyConfig.addTransform("stripLicenseHeaders", stripLicenseHeaders);
+  eleventyConfig.addTransform("skypack", skypack);
   eleventyConfig.addTransform("minify", minify);
   eleventyConfig.addTransform("format", format);
 
