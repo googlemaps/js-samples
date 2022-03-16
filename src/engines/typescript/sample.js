@@ -149,7 +149,9 @@ module.exports = {
         return `/samples${data.page.filePathStem
           .split("/")
           .slice(0, 2)
-          .join("/")}/${folder}/index.${ext}`;
+          .join("/")}/${folder}/${
+          data.file === "jsfiddle.js" ? "demo" : "index"
+        }.${ext}`;
       };
     },
   },

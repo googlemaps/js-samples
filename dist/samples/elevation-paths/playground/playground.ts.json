@@ -1,0 +1,21 @@
+{
+  "files": {
+    "index.ts": {
+      "label": "TypeScript"
+    },
+    "style.css": {
+      "label": "CSS"
+    },
+    "index.html": {
+      "label": "HTML"
+    },
+    "../../../types/google-maps/index.d.ts": {
+      "label": "@types/google.maps",
+      "hidden": true
+    },
+    "../../../types/google-visualization/index.d.ts": {
+      "label": "@types/google.visualization",
+      "hidden": true
+    }
+  }
+}
