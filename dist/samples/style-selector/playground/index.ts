@@ -325,7 +325,6 @@ const styles: Record<string, google.maps.MapTypeStyle[]> = {
   ],
 };
 
-
 declare global {
   interface Window {
     initMap: () => void;

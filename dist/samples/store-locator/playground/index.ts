@@ -287,7 +287,6 @@ function seeDetail(location: google.maps.LatLng) {
 }
 // [END maps_store_locator_45]
 
-
 declare global {
   interface Window {
     initMap: () => void;

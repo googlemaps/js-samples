@@ -14,7 +14,7 @@ const url = "https://maps.googleapis.com/maps/api/staticmap";
 
 // @ts-ignore google.maps.plugins
 const loader = new Loader({
-  apiKey: "YOUR_API_KEY",
+  apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY!,
   version: "weekly",
 });
 
