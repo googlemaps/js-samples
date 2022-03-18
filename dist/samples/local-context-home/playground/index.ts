@@ -257,7 +257,7 @@ function initMap() {
 
 declare global {
   interface Window {
-    initMap: () => void
+    initMap: () => void;
   }
 }
 window.initMap = initMap;

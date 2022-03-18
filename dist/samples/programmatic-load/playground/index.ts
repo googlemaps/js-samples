@@ -4,7 +4,7 @@ let map: google.maps.Map;
 
 const additionalOptions = {};
 const loader = new Loader({
-  apiKey: "YOUR_API_KEY",
+  apiKey: process.env.GOOGLE_MAPS_API_KEY!,
   version: "weekly",
   ...additionalOptions,
 });
