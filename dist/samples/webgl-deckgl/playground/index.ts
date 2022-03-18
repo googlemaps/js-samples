@@ -2,7 +2,6 @@ declare global {
   const deck: any;
 }
 
-
 let map: google.maps.Map, webGLOverlay: any;
 // source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
 const AIR_PORTS =

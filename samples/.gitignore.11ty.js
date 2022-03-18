@@ -11,8 +11,7 @@ module.exports = {
     };
   },
   render() {
-    return `.env
-.parcel-cache
+    return `
 node_modules
 dist
 package-lock.json

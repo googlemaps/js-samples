@@ -4,6 +4,7 @@ const typescript = require("./src/engines/typescript/sample");
 const sass = require("./src/engines/sass");
 const stripRegionTags = require("./src/transforms/strip-region-tags");
 const stripLicenseHeaders = require("./src/transforms/strip-license-headers");
+const yourAPIKey = require("./src/transforms/your-api-key");
 const format = require("./src/transforms/format");
 const minify = require("./src/transforms/minify");
 const skypack = require("./src/transforms/skypack");
@@ -18,6 +19,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTemplateFormats("ts");
   eleventyConfig.addExtension("ts", typescript);
 
+  eleventyConfig.addTransform("yourAPIKey", yourAPIKey);
   eleventyConfig.addTransform("stripRegionTags", stripRegionTags);
   eleventyConfig.addTransform("stripLicenseHeaders", stripLicenseHeaders);
   eleventyConfig.addTransform("skypack", skypack);

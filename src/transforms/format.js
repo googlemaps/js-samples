@@ -6,8 +6,15 @@ module.exports = function (content, outputPath) {
     return content;
   }
 
-  if (path.basename(outputPath) === "vite.config.js") {
+  if (["vite.config.js"].includes(path.basename(outputPath))) {
     return prettier.format(content, { parser: "babel" });
+  }
+
+  if (
+    outputPath.match(/env\.d\.ts$/) ||
+    outputPath.match(/playground\/index\.ts$/)
+  ) {
+    return prettier.format(content, { parser: "typescript" });
   }
 
   const ext = path.extname(outputPath);
