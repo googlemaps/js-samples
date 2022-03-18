@@ -12,6 +12,6 @@ module.exports = {
   },
 
   render() {
-    return `VITE_GOOGLE_MAPS_API_KEY="${process.env.GOOGLE_MAPS_SANDBOX_API_KEY}"`;
+    return `VITE_GOOGLE_MAPS_API_KEY=AIzaSyDcwGyRxRbcNGWOFQVT87A1mkxEOfm8t0w`;
   },
 };
