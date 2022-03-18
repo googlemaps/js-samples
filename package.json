@@ -34,7 +34,7 @@
     "test:jest": "tsc --noEmit --skipLibCheck",
     "test:playwright": "playwright test e2e",
     "test:playwright:playground": "playwright test playground",
-    "test:playwright:playground:update-snapshots": "playwright test playground --update-snapshots",
+    "test:playwright:playground:update-snapshots": "playwright test playground --workers 1 --update-snapshots",
     "test:playwright:app": "playwright test app",
     "watch:eleventy": "eleventy --serve --port 8080 --incremental",
     "watch:esbuild": "esbuild src/playground/index.ts src/playground/resizer.ts --target=es2020 --bundle --format=esm --analyze --watch --outdir=dist",
@@ -48,7 +48,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@googlemaps/js-api-loader": "^1.11.4",
-    "@googlemaps/markerclusterer": "^1.0.2",
+    "@googlemaps/markerclusterer": "^2.0.1",
     "@googlemaps/react-wrapper": "^1.1.8",
     "@googlemaps/three": "1.0.5",
     "@googlemaps/typescript-guards": "^1.0.0",
@@ -100,6 +100,6 @@
   "private": true,
   "dependencies": {
     "@material/mwc-button": "^0.25.3",
-    "playground-elements": "^0.14.8"
+    "playground-elements": "^0.15.1"
   }
 }
