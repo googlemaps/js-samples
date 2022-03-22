@@ -19,14 +19,11 @@ const loader = new Loader({
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const wrapper = document.getElementById("wrapper") as HTMLElement;
+  const wrapper = document.getElementById("wrapper") as HTMLButtonElement;
+
   wrapper.style.backgroundImage = `url(${url}?center=${center.lat},${center.lng}&zoom=${zoom}&scale=2&size=${wrapper.clientWidth}x${wrapper.clientHeight}&key=YOUR_API_KEY)`;
 
-  const button = document.getElementById(
-    "load_map_button"
-  ) as HTMLButtonElement;
-
-  button.addEventListener("click", () => {
+  wrapper.addEventListener("click", () => {
     wrapper.remove();
 
     loader.load().then(() => {
