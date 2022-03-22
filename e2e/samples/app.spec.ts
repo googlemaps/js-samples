@@ -31,14 +31,14 @@ test.describe.parallel("sample applications", () => {
         test.slow();
         failOnPageError(page);
 
-        if (sample === "programmatic-load-button") {
-          await page.locator("button").click();
-        }
-
         // go to page and fail if errors
         await page.goto(`/samples/${sample}/app/dist`, {
           waitUntil: "networkidle",
         });
+
+        if (sample === "programmatic-load-button") {
+          await page.locator("button").click();
+        }
 
         // wait for google.maps to be loaded
         await waitForGoogleMapsToLoad(page);
