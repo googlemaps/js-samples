@@ -64,7 +64,7 @@ export function toMatchImageDiff(
     if (testInfo.config.updateSnapshots === "none") {
       return {
         pass: false,
-        message:
+        message: () =>
           '"updateSnapshots" is set to "none" but snapshot file does not exist',
       };
     }
@@ -74,7 +74,7 @@ export function toMatchImageDiff(
 
     return {
       pass: true,
-      message: `created new snapshot: ${snapshotFile}`,
+      message: () => `created new snapshot: ${snapshotFile}`,
     };
   }
 
