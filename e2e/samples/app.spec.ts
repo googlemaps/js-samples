@@ -6,25 +6,16 @@ import child_process from "child_process";
 import util from "util";
 const execAsync = util.promisify(child_process.exec);
 
+export const BROKEN_APP_SAMPLES = [
+  "store-locator", // Distance Matrix Service: You have exceeded your rate-limit for this API.
+  "react-map", // missing files
+];
+
 const samples = fs
   .readdirSync("samples", { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
-  // TODO: remove this once the samples are fixed
-  .filter(
-    (name) =>
-      ![
-        "deckgl-arclayer",
-        "deckgl-points",
-        "deckgl-tripslayer",
-        "event-poi",
-        "marker-clustering",
-        "places-autocomplete-multiple-countries",
-        "programmatic-load-button", // requires specific input from user
-        "react-map",
-        "store-locator", // hits over query Limit
-      ].includes(name)
-  );
+  .filter((name) => !BROKEN_APP_SAMPLES.includes(name));
 
 test.describe.parallel("sample applications", () => {
   samples.forEach((sample) => {
@@ -44,6 +35,10 @@ test.describe.parallel("sample applications", () => {
         await page.goto(`/samples/${sample}/app/dist`, {
           waitUntil: "networkidle",
         });
+
+        if (sample === "programmatic-load-button") {
+          await page.locator("button").click();
+        }
 
         // wait for google.maps to be loaded
         await waitForGoogleMapsToLoad(page);
