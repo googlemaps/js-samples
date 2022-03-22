@@ -9,6 +9,7 @@ const execAsync = util.promisify(child_process.exec);
 export const BROKEN_APP_SAMPLES = [
   "store-locator", // Distance Matrix Service: You have exceeded your rate-limit for this API.
   "react-map", // missing files
+  "programmatic-load-button" // need to manually trigger map load
 ];
 
 const samples = fs
