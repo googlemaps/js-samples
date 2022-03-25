@@ -3,9 +3,8 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// [START maps_deckgl_points]
-import { GeoJsonLayer } from "deck.gl";
-import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+const GeoJsonLayer = deck.GeoJsonLayer;
+const GoogleMapsOverlay = deck.GoogleMapsOverlay;
 
 // Initialize and add the map
 function initMap() {

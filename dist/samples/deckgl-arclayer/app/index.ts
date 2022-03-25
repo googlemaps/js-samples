@@ -4,10 +4,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import * as GeoJSON from "geojson";
+// TODO stop using CDN once Deck.gl works in more bundlers such as Skypack to
+// better support code playgrounds such as JSFiddle.
+// https://github.com/visgl/deck.gl/issues/6351#issuecomment-1079424167
 
-import { ArcLayer } from "deck.gl";
-import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+// import type { ArcLayer as ArcLayer_ } from "deck.gl";
+// import type { GoogleMapsOverlay as GoogleMapsOverlay_ } from "@deck.gl/google-maps";
+import type * as GeoJSON from "geojson";
+
+const ArcLayer = deck.ArcLayer;
+const GoogleMapsOverlay = deck.GoogleMapsOverlay;
 
 type Properties = { scalerank: number };
 type Feature = GeoJSON.Feature<GeoJSON.Point, Properties>;

@@ -1,7 +1,13 @@
-import * as GeoJSON from "geojson";
+// TODO stop using CDN once Deck.gl works in more bundlers such as Skypack to
+// better support code playgrounds such as JSFiddle.
+// https://github.com/visgl/deck.gl/issues/6351#issuecomment-1079424167
 
-import { GeoJsonLayer } from "deck.gl";
-import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+// import { GeoJsonLayer } from "deck.gl";
+// import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+
+import type * as GeoJSON from "geojson";
+const GeoJsonLayer = deck.GeoJsonLayer;
+const GoogleMapsOverlay = deck.GoogleMapsOverlay;
 
 type Properties = { mag: number };
 type Feature = GeoJSON.Feature<GeoJSON.Point, Properties>;

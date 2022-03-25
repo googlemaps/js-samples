@@ -4,9 +4,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+// TODO stop using CDN once Deck.gl works in more bundlers such as Skypack to
+// better support code playgrounds such as JSFiddle.
+// https://github.com/visgl/deck.gl/issues/6351#issuecomment-1079424167
+
+// import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+// import { TripsLayer } from "deck.gl";
+
 // [START maps_deckgl_tripslayer]
-import { GoogleMapsOverlay } from "@deck.gl/google-maps";
-import { TripsLayer } from "deck.gl";
+const GoogleMapsOverlay = deck.GoogleMapsOverlay;
+const TripsLayer = deck.TripsLayer;
 
 interface Data {
   vendor: number;
