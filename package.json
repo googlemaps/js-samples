@@ -1,13 +1,8 @@
 {
-  "name": "marker-clustering",
+  "name": "custommarkerclusterer",
   "version": "1.0.0",
-  "description": "Sample for Google Maps Platform JavaScript",
-  "keywords": [
-    "google",
-    "javascript",
-    "maps",
-    "samples"
-  ],
+  "description": "",
+  "keywords": [],
   "homepage": "https://github.com/googlemaps/js-samples#readme",
   "bugs": {
     "url": "https://github.com/googlemaps/js-samples/issues"
