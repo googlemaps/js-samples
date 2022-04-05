@@ -2261,14 +2261,8 @@
             this.renderer && (this.renderer.dispose(), (this.renderer = null));
           }
           onDraw({ gl: e, transformer: t }) {
-            const { lat: s, lng: n, altitude: r } = this.anchor;
             this.camera.projectionMatrix.fromArray(
-              t.fromLatLngAltitude(
-                { lat: s, lng: n },
-                r,
-                this.rotation,
-                this.scale
-              )
+              t.fromLatLngAltitude(this.anchor, this.rotation, this.scale)
             ),
               e.disable(e.SCISSOR_TEST),
               this.requestRedraw(),
