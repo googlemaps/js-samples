@@ -4,11 +4,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import * as GeoJSON from "geojson";
-
 // [START maps_deckgl_points]
-import { GeoJsonLayer } from "deck.gl";
-import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+// TODO Use imports when Deck.gl works in more bundlers
+// https://github.com/visgl/deck.gl/issues/6351#issuecomment-1079424167
+
+import type * as GeoJSON from "geojson";
+// import { GeoJsonLayer } from "deck.gl";
+// import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+
+const GeoJsonLayer = deck.GeoJsonLayer;
+const GoogleMapsOverlay = deck.GoogleMapsOverlay;
 
 type Properties = { mag: number };
 type Feature = GeoJSON.Feature<GeoJSON.Point, Properties>;
