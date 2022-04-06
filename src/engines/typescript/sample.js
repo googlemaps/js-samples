@@ -92,6 +92,14 @@ const compileTypescriptSample = async (source, data) => {
     .replace(/^.*PRESERVE_COMMENT_ABOVE.*\n?/gm, "")
     .trim();
 
+  const startRegionTag = `// [START maps_${data.tag}]`;
+  if (output.indexOf(startRegionTag) === -1) {
+    const lines = output.split("\n");
+    output = [...lines.slice(0, 5), startRegionTag, ...lines.slice(5)].join(
+      "\n"
+    );
+  }
+
   const endRegionTag = `// [END maps_${data.tag}]`;
   if (output.indexOf(endRegionTag) === -1) {
     output += `\n// [END maps_${data.tag}]\n`;

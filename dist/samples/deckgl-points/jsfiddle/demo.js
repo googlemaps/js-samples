@@ -3,8 +3,10 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { GeoJsonLayer } from "https://cdn.skypack.dev/deck.gl@^8.6.0-beta.1";
-import { GoogleMapsOverlay } from "https://cdn.skypack.dev/@deck.gl/google-maps@^8.6.0-beta.1";
+// import { GeoJsonLayer } from "https://cdn.skypack.dev/deck.gl";
+// import { GoogleMapsOverlay } from "https://cdn.skypack.dev/@deck.gl/google-maps";
+const GeoJsonLayer = deck.GeoJsonLayer;
+const GoogleMapsOverlay = deck.GoogleMapsOverlay;
 
 // Initialize and add the map
 function initMap() {
