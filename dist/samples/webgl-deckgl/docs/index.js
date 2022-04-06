@@ -63,7 +63,7 @@ function initMap() {
     }
     onAdd() {}
     onRemove() {}
-    onContextRestored(gl) {
+    onContextRestored({ gl }) {
       const map = this.getMap();
 
       this.deck = new deck.Deck({
@@ -88,14 +88,14 @@ function initMap() {
         );
       }
     }
-    onDraw(gl, coordinateTransformer) {
+    onDraw({ gl, transformer }) {
       const deck = this.deck;
 
       if (!deck || !deck.layerManager) {
         return;
       }
 
-      const camParams = coordinateTransformer.getCameraParams();
+      const camParams = transformer.getCameraParams();
       const width = this.canvas.clientWidth;
       const height = this.canvas.clientHeight;
       const left = 0;
@@ -103,8 +103,8 @@ function initMap() {
       const zoom = Math.max(0, camParams.zoom - 1);
       const pitch = camParams.tilt;
       const bearing = camParams.heading;
-      const latitude = camParams.lat;
-      const longitude = camParams.lng;
+      const latitude = camParams.center.lat;
+      const longitude = camParams.center.lng;
 
       this.canvas.style.left = `${left}px`;
       this.canvas.style.top = `${top}px`;
