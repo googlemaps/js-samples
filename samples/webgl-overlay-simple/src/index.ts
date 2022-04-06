@@ -80,7 +80,7 @@ function initWebglOverlayView(map: google.maps.Map): void {
 
   // [END maps_webgl_overlay_simple_on_add]
   // [START maps_webgl_overlay_simple_on_context_restored]
-  webglOverlayView.onContextRestored = ({gl}) => {
+  webglOverlayView.onContextRestored = ({ gl }) => {
     // Create the js renderer, using the
     // maps's WebGL rendering context.
     renderer = new WebGLRenderer({
@@ -112,12 +112,12 @@ function initWebglOverlayView(map: google.maps.Map): void {
 
   // [END maps_webgl_overlay_simple_on_context_restored]
   // [START maps_webgl_overlay_simple_on_draw]
-  webglOverlayView.onDraw = ({gl, transformer}): void => {
+  webglOverlayView.onDraw = ({ gl, transformer }): void => {
     const latLngAltitudeLiteral: google.maps.LatLngAltitudeLiteral = {
       lat: mapOptions.center.lat,
       lng: mapOptions.center.lng,
-      altitude: 100
-    }
+      altitude: 100,
+    };
 
     // Update camera matrix to ensure the model is georeferenced correctly on the map.
     const matrix = transformer.fromLatLngAltitude(latLngAltitudeLiteral);
