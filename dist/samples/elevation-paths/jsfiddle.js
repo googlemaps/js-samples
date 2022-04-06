@@ -72,6 +72,7 @@ function plotElevation({ results }) {
   chart.draw(data, {
     height: 150,
     legend: "none",
+
     titleY: "Elevation (m)",
   });
 }

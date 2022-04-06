@@ -101,6 +101,7 @@ const initializeMaterialDesignComponents = () => {
     .forEach((el) => new mdc.textField.MDCTextField(el));
   document
     .querySelectorAll(".mdc-switch")
+
     .forEach((el) => new mdc.switchControl.MDCSwitch(el));
   document
     .querySelectorAll(".mdc-select")
