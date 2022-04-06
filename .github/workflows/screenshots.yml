@@ -1,0 +1,58 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+name: Update Screenshots
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: next # TODO remove after https://github.com/googlemaps/js-samples/pull/1048 
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-e2e
+          restore-keys: |
+            ${{ runner.os }}-node-e2e
+      - run: npm ci
+        env:
+          # https://playwright.dev/docs/installation/#skip-browser-downloads
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      - run: npm run build
+      - run: npx playwright install-deps
+      - run: npx playwright install
+      - run: npm run test:playwright:playground:update-snapshots
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }}
+          commit-message: 'chore: update screenshots'
+          author: googlemaps-bot <googlemaps-bot@google.com>
+          committer: googlemaps-bot <googlemaps-bot@google.com>
+          title: 'chore: update screenshots'
+          branch: googlemaps-bot/update_screenshots
+          base: next
+          add-paths: |
+            e2e/**/*.png
