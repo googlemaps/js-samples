@@ -31,7 +31,5 @@
     "vite": "^2.8.6"
   },
   "private": true,
-  "dependencies": {
-    "deck.gl": "^8.6.0-beta.1"
-  }
+  "dependencies": {}
 }
