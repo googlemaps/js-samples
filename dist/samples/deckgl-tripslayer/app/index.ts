@@ -3,9 +3,7 @@
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */
-
-// TODO stop using CDN once Deck.gl works in more bundlers such as Skypack to
-// better support code playgrounds such as JSFiddle.
+// TODO Use imports when Deck.gl works in more bundlers
 // https://github.com/visgl/deck.gl/issues/6351#issuecomment-1079424167
 
 // import { GoogleMapsOverlay } from "@deck.gl/google-maps";

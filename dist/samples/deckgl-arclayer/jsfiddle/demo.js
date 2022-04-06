@@ -3,6 +3,8 @@
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */
+// import { ArcLayer} from "https://cdn.skypack.dev/deck.gl";
+// import { GoogleMapsOverlay } from "https://cdn.skypack.dev/@deck.gl/google-maps";
 const ArcLayer = deck.ArcLayer;
 const GoogleMapsOverlay = deck.GoogleMapsOverlay;
 const AIRPORTS =
