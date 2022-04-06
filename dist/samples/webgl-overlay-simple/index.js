@@ -52,7 +52,7 @@ function initWebglOverlayView(map) {
     loader = new GLTFLoader();
 
     const source =
-      "https://raw.githubusercontent.com/googlemaps/js-samples/master/assets/pin.gltf";
+      "https://raw.githubusercontent.com/googlemaps/js-samples/main/assets/pin.gltf";
 
     loader.load(source, (gltf) => {
       gltf.scene.scale.set(10, 10, 10);
