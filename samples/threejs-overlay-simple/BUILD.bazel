@@ -14,6 +14,6 @@
 load("//rules:sample.bzl", "sample")
 
 sample(
-    name = "webgl-overlay-simple",
-    dependencies = ["three"],
+    name = "threejs-overlay-simple",
+    dependencies = ["three", "@googlemaps/three"],
 )

@@ -31,6 +31,7 @@ function initMap() {
     tileSize: new google.maps.Size(256, 256),
     maxZoom: 9,
     minZoom: 0,
+
     radius: 1738000,
     name: "Moon",
   });
