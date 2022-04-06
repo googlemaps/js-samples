@@ -1,6 +1,3 @@
 ignoreFiles:
-  - src/_includes/**
-  - src/engines/**
-  - src/playground/**
-  - src/shortcodes/**
-  - src/transforms/**
+  - src/**/*.js
+  - src/**/*.ts
