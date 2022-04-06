@@ -29,10 +29,21 @@ jobs:
           path: ~/.npm
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            ${{ runner.os }}-node-
-      - run: |
-          npm ci
-          npm run test:playwright:playground:update-snapshots
+            ${{ runner.os }}-node
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-e2e
+          restore-keys: |
+            ${{ runner.os }}-node-e2e
+      - run: npm ci
+        env:
+          # https://playwright.dev/docs/installation/#skip-browser-downloads
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      - run: npm run build
+      - run: npx playwright install-deps
+      - run: npx playwright install
+      - run: npm run test:playwright:playground:update-snapshots
       - name: Create pull request
         uses: peter-evans/create-pull-request@v3
         with:
