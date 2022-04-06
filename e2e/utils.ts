@@ -40,4 +40,5 @@ export const NONDETERMINISTIC_SAMPLES = [
   "move-camera-ease", // camera always moving
   "map-puzzle", // random puzzle placement
   "map-coordinates",
+  "deckgl-tripslayer", // always in motion polylines
 ];

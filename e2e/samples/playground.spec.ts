@@ -7,9 +7,9 @@ import {
 import fs from "fs";
 
 export const BROKEN_PLAYGROUND_SAMPLES = [
-  "deckgl-arclayer", // https://github.com/google/playground-elements/issues/286
-  "deckgl-points", // https://github.com/google/playground-elements/issues/286
-  "deckgl-tripslayer", // https://github.com/google/playground-elements/issues/286
+  // "deckgl-arclayer", // https://github.com/google/playground-elements/issues/286
+  // "deckgl-points", // https://github.com/google/playground-elements/issues/286
+  // "deckgl-tripslayer", // https://github.com/google/playground-elements/issues/286
   "react-map", // requires jsx support
   "store-locator", // Distance Matrix Service: You have exceeded your rate-limit for this API.
 ];

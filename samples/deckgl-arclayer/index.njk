@@ -14,6 +14,10 @@
   limitations under the License.
 -->
 {% extends '../../src/_includes/layout.njk'%}
+{% block external %}
+  <script src="https://unpkg.com/deck.gl@8.7.3/dist.min.js"></script>
+  <script src="https://unpkg.com/@deck.gl/google-maps@8.7.3/dist.min.js"></script>
+{% endblock %}
 {% block html %}
   <div id="map"></div>
 {% endblock %}

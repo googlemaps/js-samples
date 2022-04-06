@@ -3,8 +3,12 @@
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { GoogleMapsOverlay } from "https://cdn.skypack.dev/@deck.gl/google-maps@^8.6.0-beta.1";
-import { TripsLayer } from "https://cdn.skypack.dev/deck.gl@^8.6.0-beta.1";
+// TODO Use imports when Deck.gl works in more bundlers
+// https://github.com/visgl/deck.gl/issues/6351#issuecomment-1079424167
+// import { GoogleMapsOverlay } from "https://cdn.skypack.dev/@deck.gl/google-maps";
+// import { TripsLayer } from "https://cdn.skypack.dev/deck.gl";
+const GoogleMapsOverlay = deck.GoogleMapsOverlay;
+const TripsLayer = deck.TripsLayer;
 const DATA_URL =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json";
 const LOOP_LENGTH = 1800;

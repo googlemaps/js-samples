@@ -1,7 +1,12 @@
-import * as GeoJSON from "geojson";
+// TODO Use imports when Deck.gl works in more bundlers
+// https://github.com/visgl/deck.gl/issues/6351#issuecomment-1079424167
 
-import { ArcLayer } from "deck.gl";
-import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+import type * as GeoJSON from "geojson";
+// import { ArcLayer} from "deck.gl";
+// import { GoogleMapsOverlay } from "@deck.gl/google-maps";
+
+const ArcLayer = deck.ArcLayer;
+const GoogleMapsOverlay = deck.GoogleMapsOverlay;
 
 type Properties = { scalerank: number };
 type Feature = GeoJSON.Feature<GeoJSON.Point, Properties>;
