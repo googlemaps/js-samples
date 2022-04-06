@@ -27,7 +27,7 @@ import {
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 
-let map;
+let map: google.maps.Map;
 
 const mapOptions = {
   tilt: 0,
@@ -41,9 +41,7 @@ const mapOptions = {
   keyboardShortcuts: false,
 };
 
-// Comment: add a commwent.
-
-function initMap():void {
+function initMap(): void {
   const mapDiv = document.getElementById("map") as HTMLElement;
   map = new google.maps.Map(mapDiv, mapOptions);
   initWebglOverlayView(map);
@@ -51,7 +49,7 @@ function initMap():void {
 // [END maps_webgl_overlay_simple_init_map]
 
 // [START maps_webgl_overlay_simple_on_add]
-function initWebglOverlayView(map: google.maps.Map) {
+function initWebglOverlayView(map: google.maps.Map): void {
   let scene, renderer, camera, loader;
   const webglOverlayView = new google.maps.WebGLOverlayView();
 
@@ -114,8 +112,8 @@ function initWebglOverlayView(map: google.maps.Map) {
 
   // [END maps_webgl_overlay_simple_on_context_restored]
   // [START maps_webgl_overlay_simple_on_draw]
-  webglOverlayView.onDraw = ({gl, transformer}) => {
-    const latLngAltitudeLiteral = {
+  webglOverlayView.onDraw = ({gl, transformer}): void => {
+    const latLngAltitudeLiteral: google.maps.LatLngAltitudeLiteral = {
       lat: mapOptions.center.lat,
       lng: mapOptions.center.lng,
       altitude: 100
