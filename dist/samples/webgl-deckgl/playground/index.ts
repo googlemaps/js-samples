@@ -44,7 +44,7 @@ function initMap() {
     mouseout: null,
   };
 
-  class DeckGLOverlay extends google.maps.WebglOverlayView {
+  class DeckGLOverlay extends google.maps.WebGLOverlayView {
     private canvas: HTMLElement;
     private deck: any;
     private layers_: any[];
