@@ -3,7 +3,7 @@ module.exports = function (content, outputPath) {
     return content;
   }
 
-  if (outputPath.endsWith("app/index.ts")) {
+  if (/app\/index\.tsx?$/.test(outputPath)) {
     content = content.replace(
       /"YOUR_API_KEY"/g,
       "import.meta.env.VITE_GOOGLE_MAPS_API_KEY!"

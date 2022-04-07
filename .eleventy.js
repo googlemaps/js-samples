@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const typescript = require("./src/engines/typescript/sample");
+const typescriptJSX = require("./src/engines/typescript/sample-jsx");
 const sass = require("./src/engines/sass");
 const stripRegionTags = require("./src/transforms/strip-region-tags");
 const stripLicenseHeaders = require("./src/transforms/strip-license-headers");
@@ -18,6 +19,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addTemplateFormats("ts");
   eleventyConfig.addExtension("ts", typescript);
+  eleventyConfig.addTemplateFormats("tsx");
+  eleventyConfig.addExtension("tsx", typescriptJSX);
 
   eleventyConfig.addTransform("yourAPIKey", yourAPIKey);
   eleventyConfig.addTransform("stripRegionTags", stripRegionTags);
@@ -27,7 +30,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addTransform("format", format);
 
   eleventyConfig.addCollection("samples_ts", function (collectionApi) {
-    const samples = collectionApi.getFilteredByGlob("samples/*/index.ts");
+    const samples = collectionApi.getFilteredByGlob("samples/*/index.ts*");
 
     if (samples.length === 0) {
       throw new Error("No samples found in samples collection");

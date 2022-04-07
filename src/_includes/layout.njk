@@ -24,7 +24,7 @@
     <!-- jsFiddle will insert css and js -->
   {% elif mode == "app" %}
     <link rel="stylesheet" type="text/css" href="./style.css">
-    <script type="module" src="./index.ts"></script>
+    <script type="module" src="./index.{% if tsx %}tsx{% else %}ts{% endif %}"></script>
   {% else %}    
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script type="module" src="./index.js"></script>

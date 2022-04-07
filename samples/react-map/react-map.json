@@ -1,0 +1,16 @@
+{
+  "title": "React Map",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "react_map",
+  "name": "react-map",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "tsx": true,
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}",
+  "dependencies": ["react", "react-dom", "@googlemaps/react-wrapper", "@googlemaps/typescript-guards", "fast-equals"]
+}

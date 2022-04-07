@@ -1,16 +1,16 @@
 const ts = require("typescript");
 const fs = require("fs");
 const path = require("path");
-const { AssetCache } = require("@11ty/eleventy-cache-assets");
-const crypto = require("crypto");
-const slug = require("@11ty/eleventy/src/Filters/Slug");
 
 const prettier = require("prettier");
 const Linter = require("eslint").Linter;
 
 const linter = new Linter();
 
-linter.defineParser("@babel/eslint-parser", require("@babel/eslint-parser"));
+linter.defineParser(
+  "@typescript-eslint/parser",
+  require("@typescript-eslint/parser")
+);
 
 // TODO move to data
 let eslintConfig = JSON.parse(
@@ -87,7 +87,7 @@ eslintConfig = {
 
 const compileTypescriptSample = async (source, data) => {
   let output = ts
-    .transpileModule(source, data.tsconfig)
+    .transpileModule(source, { ...data.tsconfig, jsx: "preserve" })
     .outputText.replace(/export {([\w\d\s_,]*|\n)*};/g, "")
     .replace(/^.*PRESERVE_COMMENT_ABOVE.*\n?/gm, "")
     .trim();
@@ -107,10 +107,22 @@ const compileTypescriptSample = async (source, data) => {
 
   let messages;
 
-  ({ messages, output } = linter.verifyAndFix(output, eslintConfig));
+  let input = output;
+
+  ({ messages, output } = linter.verifyAndFix(
+    output,
+    eslintConfig,
+    data.page.outputPath
+  ));
 
   if (messages.filter((m) => m.severity === 2).length > 0) {
-    throw new Error(JSON.stringify({ messages, page: data.page }, null, 2));
+    throw new Error(
+      JSON.stringify(
+        { input, messages, page: data.page, eslintConfig },
+        null,
+        2
+      )
+    );
   }
 
   // TODO fix this to run as part of eslint
@@ -127,6 +139,8 @@ module.exports = {
       switch (data.file) {
         case "app.ts":
         case "playground.ts":
+        case "playground.tsx":
+        case "app.tsx":
           return inputContent.replace(/^.*PRESERVE_COMMENT_ABOVE.*\n?/gm, "");
         default:
           return compileTypescriptSample(inputContent, data);
@@ -158,7 +172,7 @@ module.exports = {
           .split("/")
           .slice(0, 2)
           .join("/")}/${folder}/${
-          data.file === "jsfiddle.js" ? "demo" : "index"
+          data.file.startsWith("jsfiddle.") ? "demo" : "index"
         }.${ext}`;
       };
     },

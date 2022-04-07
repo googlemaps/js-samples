@@ -11,7 +11,7 @@
     "requireConfigFile": false,
     "ecmaVersion": 2017
   },
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "globals": {
     "google": "writable",
     "deck": "readonly",
