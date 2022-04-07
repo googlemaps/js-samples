@@ -15,10 +15,17 @@
  */
 
 // [START maps_webgl_overlay_simple]
-import { AmbientLight, DirectionalLight, Scene } from "three";
+// [START maps_webgl_overlay_simple_init_map]
+import {
+  AmbientLight,
+  DirectionalLight,
+  Matrix4,
+  PerspectiveCamera,
+  Scene,
+  WebGLRenderer,
+} from "three";
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { ThreeJSOverlayView } from "@googlemaps/three";
 
 let map: google.maps.Map;
 
@@ -36,56 +43,96 @@ const mapOptions = {
 
 function initMap(): void {
   const mapDiv = document.getElementById("map") as HTMLElement;
-
   map = new google.maps.Map(mapDiv, mapOptions);
+  initWebglOverlayView(map);
+}
+// [END maps_webgl_overlay_simple_init_map]
 
-  const scene = new Scene();
+// [START maps_webgl_overlay_simple_on_add]
+function initWebglOverlayView(map: google.maps.Map): void {
+  let scene, renderer, camera, loader;
+  const webglOverlayView = new google.maps.WebGLOverlayView();
 
-  const ambientLight = new AmbientLight(0xffffff, 0.75);
+  webglOverlayView.onAdd = () => {
+    // Set up the scene.
 
-  scene.add(ambientLight);
+    scene = new Scene();
 
-  const directionalLight = new DirectionalLight(0xffffff, 0.25);
+    camera = new PerspectiveCamera();
 
-  directionalLight.position.set(0, 10, 50);
-  scene.add(directionalLight);
+    const ambientLight = new AmbientLight(0xffffff, 0.75); // Soft white light.
+    scene.add(ambientLight);
 
-  // Load the model.
-  const loader = new GLTFLoader();
-  const url =
-    "https://raw.githubusercontent.com/googlemaps/js-samples/main/assets/pin.gltf";
+    const directionalLight = new DirectionalLight(0xffffff, 0.25);
+    directionalLight.position.set(0.5, -1, 0.5);
+    scene.add(directionalLight);
 
-  loader.load(url, (gltf) => {
-    gltf.scene.scale.set(10, 10, 10);
-    gltf.scene.rotation.x = Math.PI / 2;
-    scene.add(gltf.scene);
+    // Load the model.
+    loader = new GLTFLoader();
+    const source =
+      "https://raw.githubusercontent.com/googlemaps/js-samples/main/assets/pin.gltf";
+    loader.load(source, (gltf) => {
+      gltf.scene.scale.set(10, 10, 10);
+      gltf.scene.rotation.x = Math.PI; // Rotations are in radians.
+      scene.add(gltf.scene);
+    });
+  };
 
-    let { tilt, heading, zoom } = mapOptions;
+  // [END maps_webgl_overlay_simple_on_add]
+  // [START maps_webgl_overlay_simple_on_context_restored]
+  webglOverlayView.onContextRestored = ({ gl }) => {
+    // Create the js renderer, using the
+    // maps's WebGL rendering context.
+    renderer = new WebGLRenderer({
+      canvas: gl.canvas,
+      context: gl,
+      ...gl.getContextAttributes(),
+    });
+    renderer.autoClear = false;
 
-    const animate = () => {
-      if (tilt < 67.5) {
-        tilt += 0.5;
-      } else if (heading <= 360) {
-        heading += 0.2;
-        zoom -= 0.0005;
-      } else {
-        // exit animation loop
-        return;
-      }
+    // Wait to move the camera until the 3D model loads.
+    loader.manager.onLoad = () => {
+      renderer.setAnimationLoop(() => {
+        webglOverlayView.requestRedraw();
+        const { tilt, heading, zoom } = mapOptions;
+        map.moveCamera({ tilt, heading, zoom });
 
-      map.moveCamera({ tilt, heading, zoom });
+        // Rotate the map 360 degrees.
+        if (mapOptions.tilt < 67.5) {
+          mapOptions.tilt += 0.5;
+        } else if (mapOptions.heading <= 360) {
+          mapOptions.heading += 0.2;
+          mapOptions.zoom -= 0.0005;
+        } else {
+          renderer.setAnimationLoop(null);
+        }
+      });
+    };
+  };
 
-      requestAnimationFrame(animate);
+  // [END maps_webgl_overlay_simple_on_context_restored]
+  // [START maps_webgl_overlay_simple_on_draw]
+  webglOverlayView.onDraw = ({ gl, transformer }): void => {
+    const latLngAltitudeLiteral: google.maps.LatLngAltitudeLiteral = {
+      lat: mapOptions.center.lat,
+      lng: mapOptions.center.lng,
+      altitude: 100,
     };
 
-    requestAnimationFrame(animate);
-  });
+    // Update camera matrix to ensure the model is georeferenced correctly on the map.
+    const matrix = transformer.fromLatLngAltitude(latLngAltitudeLiteral);
+    camera.projectionMatrix = new Matrix4().fromArray(matrix);
 
-  new ThreeJSOverlayView({
-    map,
-    scene,
-    anchor: { ...mapOptions.center, altitude: 100 },
-  });
+    webglOverlayView.requestRedraw();
+    renderer.render(scene, camera);
+
+    // Sometimes it is necessary to reset the GL state.
+    renderer.resetState();
+  };
+  // [END maps_webgl_overlay_simple_on_draw]
+  // [START maps_webgl_overlay_simple_add_to_map]
+  webglOverlayView.setMap(map);
+  // [END maps_webgl_overlay_simple_add_to_map]
 }
 // [END maps_webgl_overlay_simple]
 export { initMap };

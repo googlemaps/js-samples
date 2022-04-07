@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Simple WebGL Overlay</title>
+    <title>Simple WebGL Overlay View</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <script src="https://unpkg.com/three@0.129.0/build/three.min.js"></script>
 
@@ -45,7 +45,7 @@
             },
           },
           t = {};
-        e.r(t), e.d(t, { initMap: () => j });
+        e.r(t), e.d(t, { initMap: () => B });
         const s = window.THREE;
         class n extends s.Loader {
           constructor(e) {
@@ -164,7 +164,7 @@
                   )
                 )
               );
-            const h = new F(u, {
+            const h = new U(u, {
               path: t || this.resourcePath || "",
               crossOrigin: this.crossOrigin,
               requestHeader: this.requestHeader,
@@ -195,7 +195,7 @@
                     l[t] = new g();
                     break;
                   case o.KHR_MESH_QUANTIZATION:
-                    l[t] = new v();
+                    l[t] = new M();
                     break;
                   default:
                     s.indexOf(t) >= 0 &&
@@ -601,7 +601,7 @@
               const n = A[t] || t.toLowerCase();
               if (void 0 !== o[t]) {
                 const r = s.accessors[e.attributes[t]],
-                  o = y[r.componentType];
+                  o = R[r.componentType];
                 (l[n] = o), (i[n] = !0 === r.normalized);
               }
             }
@@ -864,12 +864,12 @@
             );
           }
         }
-        class v {
+        class M {
           constructor() {
             this.name = o.KHR_MESH_QUANTIZATION;
           }
         }
-        class M extends s.Interpolant {
+        class v extends s.Interpolant {
           constructor(e, t, s, n) {
             super(e, t, s, n);
           }
@@ -882,9 +882,9 @@
             return t;
           }
         }
-        (M.prototype.beforeStart_ = M.prototype.copySampleValue_),
-          (M.prototype.afterEnd_ = M.prototype.copySampleValue_),
-          (M.prototype.interpolate_ = function (e, t, s, n) {
+        (v.prototype.beforeStart_ = v.prototype.copySampleValue_),
+          (v.prototype.afterEnd_ = v.prototype.copySampleValue_),
+          (v.prototype.interpolate_ = function (e, t, s, n) {
             const r = this.resultBuffer,
               o = this.sampleValues,
               a = this.valueSize,
@@ -909,7 +909,7 @@
             }
             return r;
           });
-        const y = {
+        const R = {
             5120: Int8Array,
             5121: Uint8Array,
             5122: Int16Array,
@@ -917,7 +917,7 @@
             5125: Uint32Array,
             5126: Float32Array,
           },
-          R = {
+          y = {
             9728: s.NearestFilter,
             9729: s.LinearFilter,
             9984: s.NearestMipmapNearestFilter,
@@ -949,13 +949,13 @@
             WEIGHTS_0: "skinWeight",
             JOINTS_0: "skinIndex",
           },
-          b = {
+          _ = {
             scale: "scale",
             translation: "position",
             rotation: "quaternion",
             weights: "morphTargetInfluences",
           },
-          _ = {
+          b = {
             CUBICSPLINE: void 0,
             LINEAR: s.InterpolateLinear,
             STEP: s.InterpolateDiscrete,
@@ -1041,7 +1041,7 @@
               );
           }
         }
-        class F {
+        class U {
           constructor(e = {}, t = {}) {
             (this.json = e),
               (this.extensions = {}),
@@ -1280,7 +1280,7 @@
               Promise.all(o).then(function (e) {
                 const o = e[0],
                   a = w[r.type],
-                  i = y[r.componentType],
+                  i = R[r.componentType],
                   l = i.BYTES_PER_ELEMENT,
                   c = l * a,
                   u = r.byteOffset || 0,
@@ -1315,7 +1315,7 @@
                 } else (p = null === o ? new i(r.count * a) : new i(o, u, r.count * a)), (m = new s.BufferAttribute(p, a, d));
                 if (void 0 !== r.sparse) {
                   const t = w.SCALAR,
-                    n = y[r.sparse.indices.componentType],
+                    n = R[r.sparse.indices.componentType],
                     l = r.sparse.indices.byteOffset || 0,
                     c = r.sparse.values.byteOffset || 0,
                     u = new n(e[1], l, r.sparse.count * t),
@@ -1409,8 +1409,8 @@
                   d || (t.format = s.RGBFormat);
                 const n = (o.samplers || {})[i.sampler] || {};
                 return (
-                  (t.magFilter = R[n.magFilter] || s.LinearFilter),
-                  (t.minFilter = R[n.minFilter] || s.LinearMipmapLinearFilter),
+                  (t.magFilter = y[n.magFilter] || s.LinearFilter),
+                  (t.minFilter = y[n.minFilter] || s.LinearMipmapLinearFilter),
                   (t.wrapS = S[n.wrapS] || s.RepeatWrapping),
                   (t.wrapT = S[n.wrapT] || s.RepeatWrapping),
                   r.associations.set(t, { type: "textures", index: e }),
@@ -1815,12 +1815,12 @@
                 if (void 0 === t) continue;
                 let p;
                 switch (
-                  (t.updateMatrix(), (t.matrixAutoUpdate = !0), b[d.path])
+                  (t.updateMatrix(), (t.matrixAutoUpdate = !0), _[d.path])
                 ) {
-                  case b.weights:
+                  case _.weights:
                     p = s.NumberKeyframeTrack;
                     break;
-                  case b.rotation:
+                  case _.rotation:
                     p = s.QuaternionKeyframeTrack;
                     break;
                   default:
@@ -1829,10 +1829,10 @@
                 const m = t.name ? t.name : t.uuid,
                   f =
                     void 0 !== h.interpolation
-                      ? _[h.interpolation]
+                      ? b[h.interpolation]
                       : s.InterpolateLinear,
                   g = [];
-                b[d.path] === b.weights
+                _[d.path] === _.weights
                   ? t.traverse(function (e) {
                       !0 === e.isMesh &&
                         e.morphTargetInfluences &&
@@ -1847,10 +1847,10 @@
                   T = t;
                 }
                 for (let e = 0, t = g.length; e < t; e++) {
-                  const t = new p(g[e] + "." + b[d.path], n.array, T, f);
+                  const t = new p(g[e] + "." + _[d.path], n.array, T, f);
                   "CUBICSPLINE" === h.interpolation &&
                     ((t.createInterpolant = function (e) {
-                      return new M(
+                      return new v(
                         this.times,
                         this.values,
                         this.getValueSize() / 3,
@@ -1950,13 +1950,13 @@
               r.extensions && L(n, a, r);
             const i = r.nodes || [],
               l = [];
-            for (let e = 0, s = i.length; e < s; e++) l.push(U(i[e], a, t, o));
+            for (let e = 0, s = i.length; e < s; e++) l.push(F(i[e], a, t, o));
             return Promise.all(l).then(function () {
               return a;
             });
           }
         }
-        function U(e, t, n, r) {
+        function F(e, t, n, r) {
           const o = n.nodes[e];
           return r
             .getDependency("node", e)
@@ -2005,7 +2005,7 @@
                 const t = o.children;
                 for (let o = 0, a = t.length; o < a; o++) {
                   const a = t[o];
-                  s.push(U(a, e, n, r));
+                  s.push(F(a, e, n, r));
                 }
               }
               return Promise.all(s);
@@ -2050,7 +2050,7 @@
                   ),
                   e.normalized)
                 ) {
-                  const t = N(y[e.componentType]);
+                  const t = N(R[e.componentType]);
                   o.min.multiplyScalar(t), o.max.multiplyScalar(t);
                 }
               }
@@ -2071,7 +2071,7 @@
                         t.setZ(Math.max(Math.abs(o[2]), Math.abs(a[2]))),
                         s.normalized)
                       ) {
-                        const e = N(y[s.componentType]);
+                        const e = N(R[s.componentType]);
                         t.multiplyScalar(e);
                       }
                       e.max(t);
@@ -2176,103 +2176,8 @@
           const a = e.clone();
           return a.setIndex(o), a;
         }
-        class k {
-          constructor({
-            anchor: e = { lat: 0, lng: 0, altitude: 0 },
-            rotation: t = new Float32Array([0, 0, 0]),
-            scale: n = new Float32Array([1, 1, 1]),
-            scene: r = new s.Scene(),
-            map: o,
-          }) {
-            (this.overlay = new google.maps.WebGLOverlayView()),
-              (this.renderer = null),
-              (this.camera = null),
-              (this.anchor = e),
-              (this.rotation = t),
-              (this.scale = n),
-              (this.scene = r),
-              (this.scene.rotation.x = Math.PI / 2),
-              (this.overlay.onAdd = this.onAdd.bind(this)),
-              (this.overlay.onRemove = this.onRemove.bind(this)),
-              (this.overlay.onContextLost = this.onContextLost.bind(this)),
-              (this.overlay.onContextRestored =
-                this.onContextRestored.bind(this)),
-              (this.overlay.onDraw = this.onDraw.bind(this)),
-              (this.camera = new s.PerspectiveCamera()),
-              o && this.setMap(o);
-          }
-          onStateUpdate(e) {
-            this.overlay.onStateUpdate(e);
-          }
-          requestStateUpdate() {
-            this.overlay.requestStateUpdate();
-          }
-          onAdd() {}
-          onRemove() {}
-          getMap() {
-            return this.overlay.getMap();
-          }
-          requestRedraw() {
-            this.overlay.requestRedraw();
-          }
-          setMap(e) {
-            this.overlay.setMap(e);
-          }
-          addListener(e, t) {
-            return this.overlay.addListener(e, t);
-          }
-          bindTo(e, t, s, n) {
-            this.overlay.bindTo(e, t, s, n);
-          }
-          get(e) {
-            return this.overlay.get(e);
-          }
-          notify(e) {
-            this.overlay.notify(e);
-          }
-          set(e, t) {
-            this.overlay.set(e, t);
-          }
-          setValues(e) {
-            this.overlay.setValues(e);
-          }
-          unbind(e) {
-            this.overlay.unbind(e);
-          }
-          unbindAll() {
-            this.overlay.unbindAll();
-          }
-          onContextRestored({ gl: e }) {
-            (this.renderer = new s.WebGLRenderer(
-              Object.assign(
-                { canvas: e.canvas, context: e },
-                e.getContextAttributes()
-              )
-            )),
-              (this.renderer.autoClear = !1),
-              (this.renderer.autoClearDepth = !1),
-              (this.renderer.shadowMap.enabled = !0),
-              (this.renderer.shadowMap.type = s.PCFSoftShadowMap),
-              (this.renderer.outputEncoding = s.sRGBEncoding);
-            const { width: t, height: n, clientWidth: r } = e.canvas;
-            this.renderer.setPixelRatio(t / r), this.renderer.setSize(t, n, !1);
-          }
-          onContextLost() {
-            this.renderer && (this.renderer.dispose(), (this.renderer = null));
-          }
-          onDraw({ gl: e, transformer: t }) {
-            this.camera.projectionMatrix.fromArray(
-              t.fromLatLngAltitude(this.anchor, this.rotation, this.scale)
-            ),
-              e.disable(e.SCISSOR_TEST),
-              this.requestRedraw(),
-              this.renderer.render(this.scene, this.camera),
-              this.renderer.resetState();
-          }
-        }
-        let G;
-        Math.PI;
-        const B = {
+        let k;
+        const G = {
           tilt: 0,
           heading: 0,
           zoom: 18,
@@ -2282,39 +2187,65 @@
           gestureHandling: "none",
           keyboardShortcuts: !1,
         };
-        function j() {
+        function B() {
           const e = document.getElementById("map");
-          G = new google.maps.Map(e, B);
-          const t = new s.Scene(),
-            r = new s.AmbientLight(16777215, 0.75);
-          t.add(r);
-          const o = new s.DirectionalLight(16777215, 0.25);
-          o.position.set(0, 10, 50),
-            t.add(o),
-            new n().load(
-              "https://raw.githubusercontent.com/googlemaps/js-samples/main/assets/pin.gltf",
-              (e) => {
-                e.scene.scale.set(10, 10, 10),
-                  (e.scene.rotation.x = Math.PI / 2),
-                  t.add(e.scene);
-                let { tilt: s, heading: n, zoom: r } = B;
-                const o = () => {
-                  if (s < 67.5) s += 0.5;
-                  else {
-                    if (!(n <= 360)) return;
-                    (n += 0.2), (r -= 5e-4);
+          (k = new google.maps.Map(e, G)),
+            (function (e) {
+              let t, r, o, a;
+              const i = new google.maps.WebGLOverlayView();
+              (i.onAdd = () => {
+                (t = new s.Scene()), (o = new s.PerspectiveCamera());
+                const e = new s.AmbientLight(16777215, 0.75);
+                t.add(e);
+                const r = new s.DirectionalLight(16777215, 0.25);
+                r.position.set(0.5, -1, 0.5), t.add(r), (a = new n());
+                a.load(
+                  "https://raw.githubusercontent.com/googlemaps/js-samples/main/assets/pin.gltf",
+                  (e) => {
+                    e.scene.scale.set(10, 10, 10),
+                      (e.scene.rotation.x = Math.PI),
+                      t.add(e.scene);
                   }
-                  G.moveCamera({ tilt: s, heading: n, zoom: r }),
-                    requestAnimationFrame(o);
-                };
-                requestAnimationFrame(o);
-              }
-            ),
-            new k({ map: G, scene: t, anchor: { ...B.center, altitude: 100 } });
+                );
+              }),
+                (i.onContextRestored = ({ gl: t }) => {
+                  (r = new s.WebGLRenderer({
+                    canvas: t.canvas,
+                    context: t,
+                    ...t.getContextAttributes(),
+                  })),
+                    (r.autoClear = !1),
+                    (a.manager.onLoad = () => {
+                      r.setAnimationLoop(() => {
+                        i.requestRedraw();
+                        const { tilt: t, heading: s, zoom: n } = G;
+                        e.moveCamera({ tilt: t, heading: s, zoom: n }),
+                          G.tilt < 67.5
+                            ? (G.tilt += 0.5)
+                            : G.heading <= 360
+                            ? ((G.heading += 0.2), (G.zoom -= 5e-4))
+                            : r.setAnimationLoop(null);
+                      });
+                    });
+                }),
+                (i.onDraw = ({ gl: e, transformer: n }) => {
+                  const a = {
+                      lat: G.center.lat,
+                      lng: G.center.lng,
+                      altitude: 100,
+                    },
+                    l = n.fromLatLngAltitude(a);
+                  (o.projectionMatrix = new s.Matrix4().fromArray(l)),
+                    i.requestRedraw(),
+                    r.render(t, o),
+                    r.resetState();
+                }),
+                i.setMap(e);
+            })(k);
         }
-        var K = window;
-        for (var V in t) K[V] = t[V];
-        t.__esModule && Object.defineProperty(K, "__esModule", { value: !0 });
+        var j = window;
+        for (var K in t) j[K] = t[K];
+        t.__esModule && Object.defineProperty(j, "__esModule", { value: !0 });
       })();
     </script>
   </head>

@@ -1,5 +1,5 @@
 {
-  "title": "Simple WebGL Overlay",
+  "title": "Simple WebGL Overlay View",
   "callback": "initMap",
   "libraries": [],
   "version": "beta",

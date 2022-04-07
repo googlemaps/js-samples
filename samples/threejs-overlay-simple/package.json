@@ -1,0 +1,8 @@
+{
+  "title": "Simple ThreeJS Overlay View",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "beta",
+  "tag": "threejs_overlay_simple",
+  "name": "threejs-overlay-simple"
+}
