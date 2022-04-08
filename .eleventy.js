@@ -80,13 +80,13 @@ module.exports = function (eleventyConfig) {
                       const reScript = new RegExp(
                         `<script type="module"[^>]*?src="[./]*${o.fileName}"[^>]*?></script>`
                       );
-                      const code = `<script type="module">\n//${o.fileName}\n${o.code}\n</script>`;
+                      const code = `<script type="module">${o.code}</script>`;
                       html = html.replace(reScript, () => code);
                     } else if (a.fileName.endsWith(".css")) {
                       const reCSS = new RegExp(
                         `<link rel="stylesheet"[^>]*?href="[./]*${a.fileName}"[^>]*?>`
                       );
-                      const code = `<style type="text/css">\n${a.source}\n</style>`;
+                      const code = `<style type="text/css">${a.source}</style>`;
                       html = html.replace(reCSS, () => code);
                     } else {
                       throw new Error(`asset not inlined: ${a.fileName}`);
@@ -106,6 +106,12 @@ module.exports = function (eleventyConfig) {
             assetsInlineLimit: 100000000,
             cssCodeSplit: false,
             outDir: path.join("../", "iframe"),
+            rollupOptions: {
+              inlineDynamicImports: true,
+              output: {
+                manualChunks: () => "everything.js",
+              },
+            },
           },
         })
       )

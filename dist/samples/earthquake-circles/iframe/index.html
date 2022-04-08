@@ -11,22 +11,17 @@
 
     
     
-    <script type="module">
-//assets/index.08f15ca0.js
-const s=function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))a(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&a(i)}).observe(document,{childList:!0,subtree:!0});function n(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function a(e){if(e.ep)return;e.ep=!0;const t=n(e);fetch(e.href,t)}};s();/**
+    <script type="module">const s=function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))a(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&a(i)}).observe(document,{childList:!0,subtree:!0});function n(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function a(e){if(e.ep)return;e.ep=!0;const t=n(e);fetch(e.href,t)}};s();/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */let l;function c(){l=new google.maps.Map(document.getElementById("map"),{zoom:2,center:{lat:-33.865427,lng:151.196123},mapTypeId:"terrain"});const o=document.createElement("script");o.src="https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js",document.getElementsByTagName("head")[0].appendChild(o),l.data.setStyle(r=>{const n=r.getProperty("mag");return{icon:d(n)}})}function d(o){return{path:google.maps.SymbolPath.CIRCLE,fillColor:"red",fillOpacity:.2,scale:Math.pow(2,o)/2,strokeColor:"white",strokeWeight:.5}}function u(o){l.data.addGeoJson(o)}window.initMap=c;window.eqfeed_callback=u;
-
 </script>
-    <style type="text/css">
-/**
+    <style type="text/css">/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */#map{height:100%}html,body{height:100%;margin:0;padding:0}
-
 </style>
   </head>
   <body>

@@ -11,18 +11,13 @@
 
     
     
-    <script type="module">
-//assets/index.74badc16.js
-var m=Object.defineProperty,p=Object.defineProperties;var g=Object.getOwnPropertyDescriptors;var u=Object.getOwnPropertySymbols;var y=Object.prototype.hasOwnProperty,E=Object.prototype.propertyIsEnumerable;var d=(n,e,o)=>e in n?m(n,e,{enumerable:!0,configurable:!0,writable:!0,value:o}):n[e]=o,c=(n,e)=>{for(var o in e||(e={}))y.call(e,o)&&d(n,o,e[o]);if(u)for(var o of u(e))E.call(e,o)&&d(n,o,e[o]);return n},f=(n,e)=>p(n,g(e));const O=function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const l of r.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&i(l)}).observe(document,{childList:!0,subtree:!0});function o(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerpolicy&&(r.referrerPolicy=t.referrerpolicy),t.crossorigin==="use-credentials"?r.credentials="include":t.crossorigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function i(t){if(t.ep)return;t.ep=!0;const r=o(t);fetch(t.href,r)}};O();/**
+    <script type="module">var m=Object.defineProperty,p=Object.defineProperties;var g=Object.getOwnPropertyDescriptors;var u=Object.getOwnPropertySymbols;var y=Object.prototype.hasOwnProperty,E=Object.prototype.propertyIsEnumerable;var d=(n,e,o)=>e in n?m(n,e,{enumerable:!0,configurable:!0,writable:!0,value:o}):n[e]=o,c=(n,e)=>{for(var o in e||(e={}))y.call(e,o)&&d(n,o,e[o]);if(u)for(var o of u(e))E.call(e,o)&&d(n,o,e[o]);return n},f=(n,e)=>p(n,g(e));const O=function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const l of r.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&i(l)}).observe(document,{childList:!0,subtree:!0});function o(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerpolicy&&(r.referrerPolicy=t.referrerpolicy),t.crossorigin==="use-credentials"?r.credentials="include":t.crossorigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function i(t){if(t.ep)return;t.ep=!0;const r=o(t);fetch(t.href,r)}};O();/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */let s,a;const M=5,h=3,I=10;function v(){const n={center:{lat:50,lng:8},zoom:7};s=new google.maps.Map(document.getElementById("map"),c({},n)),a=new google.maps.Map(document.getElementById("overview"),f(c({},n),{disableDefaultUI:!0,gestureHandling:"none",zoomControl:!1}));function e(o,i,t){return Math.min(Math.max(o,i),t)}s.addListener("bounds_changed",()=>{a.setCenter(s.getCenter()),a.setZoom(e(s.getZoom()-M,h,I))})}window.initMap=v;
-
 </script>
-    <style type="text/css">
-#map{height:100%}html,body{height:100%;margin:0;padding:0}#container,#map{height:100%;width:100%}#map{position:relative}#overview{position:absolute;left:40px;height:175px;width:175px;bottom:50px;box-shadow:0 2px 6px #0000004d}
-
+    <style type="text/css">#map{height:100%}html,body{height:100%;margin:0;padding:0}#container,#map{height:100%;width:100%}#map{position:relative}#overview{position:absolute;left:40px;height:175px;width:175px;bottom:50px;box-shadow:0 2px 6px #0000004d}
 </style>
   </head>
   <body>

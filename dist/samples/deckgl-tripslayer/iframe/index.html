@@ -13,22 +13,17 @@
 
     
     
-    <script type="module">
-//assets/index.89c27314.js
-var p=Object.defineProperty,u=Object.defineProperties;var m=Object.getOwnPropertyDescriptors;var a=Object.getOwnPropertySymbols;var f=Object.prototype.hasOwnProperty,g=Object.prototype.propertyIsEnumerable;var l=(n,e,r)=>e in n?p(n,e,{enumerable:!0,configurable:!0,writable:!0,value:r}):n[e]=r,c=(n,e)=>{for(var r in e||(e={}))f.call(e,r)&&l(n,r,e[r]);if(a)for(var r of a(e))g.call(e,r)&&l(n,r,e[r]);return n},d=(n,e)=>u(n,m(e));const y=function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const o of document.querySelectorAll('link[rel="modulepreload"]'))s(o);new MutationObserver(o=>{for(const t of o)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function r(o){const t={};return o.integrity&&(t.integrity=o.integrity),o.referrerpolicy&&(t.referrerPolicy=o.referrerpolicy),o.crossorigin==="use-credentials"?t.credentials="include":o.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function s(o){if(o.ep)return;o.ep=!0;const t=r(o);fetch(o.href,t)}};y();/**
+    <script type="module">var p=Object.defineProperty,u=Object.defineProperties;var m=Object.getOwnPropertyDescriptors;var a=Object.getOwnPropertySymbols;var f=Object.prototype.hasOwnProperty,g=Object.prototype.propertyIsEnumerable;var l=(n,e,r)=>e in n?p(n,e,{enumerable:!0,configurable:!0,writable:!0,value:r}):n[e]=r,c=(n,e)=>{for(var r in e||(e={}))f.call(e,r)&&l(n,r,e[r]);if(a)for(var r of a(e))g.call(e,r)&&l(n,r,e[r]);return n},d=(n,e)=>u(n,m(e));const y=function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const o of document.querySelectorAll('link[rel="modulepreload"]'))s(o);new MutationObserver(o=>{for(const t of o)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function r(o){const t={};return o.integrity&&(t.integrity=o.integrity),o.referrerpolicy&&(t.referrerPolicy=o.referrerpolicy),o.crossorigin==="use-credentials"?t.credentials="include":o.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function s(o){if(o.ep)return;o.ep=!0;const t=r(o);fetch(o.href,t)}};y();/**
  * @license
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */const h=deck.GoogleMapsOverlay,w=deck.TripsLayer,L="https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json",O=1800,v=[[255,0,0],[0,0,255]];function M(){const n=new google.maps.Map(document.getElementById("map"),{center:{lat:40.72,lng:-74},mapId:"fae05836df2dc8bb",tilt:45,zoom:15});let e=0;const r={id:"trips",data:L,getPath:t=>t.path,getTimestamps:t=>t.timestamps,getColor:t=>v[t.vendor],opacity:1,widthMinPixels:2,trailLength:180,currentTime:e,shadowEnabled:!1},s=new h({}),o=()=>{e=(e+1)%O;const t=new w(d(c({},r),{currentTime:e}));s.setProps({layers:[t]}),window.requestAnimationFrame(o)};window.requestAnimationFrame(o),s.setMap(n)}window.initMap=M;
-
 </script>
-    <style type="text/css">
-/**
+    <style type="text/css">/**
  * @license
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */:root{--mdc-theme-primary: #1a73e8;--mdc-theme-secondary: #rgb(225, 245, 254);--mdc-theme-on-primary: #fff;--mdc-theme-on-secondary: rgb(1, 87, 155)}.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label{color:var(--mdc-theme-primary)}#map{height:100%}html,body{height:100%;margin:0;padding:0}
-
 </style>
   </head>
   <body>

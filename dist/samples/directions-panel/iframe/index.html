@@ -11,22 +11,17 @@
 
     
     
-    <script type="module">
-//assets/index.c8a1ed4e.js
-const l=function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const s of t.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}};l();/**
+    <script type="module">const l=function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const s of t.addedNodes)s.tagName==="LINK"&&s.rel==="modulepreload"&&i(s)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}};l();/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */function c(){const o=new google.maps.DirectionsRenderer,n=new google.maps.DirectionsService,r=new google.maps.Map(document.getElementById("map"),{zoom:7,center:{lat:41.85,lng:-87.65},disableDefaultUI:!0});o.setMap(r),o.setPanel(document.getElementById("sidebar"));const i=document.getElementById("floating-panel");r.controls[google.maps.ControlPosition.TOP_CENTER].push(i);const e=function(){d(n,o)};document.getElementById("start").addEventListener("change",e),document.getElementById("end").addEventListener("change",e)}function d(o,n){const r=document.getElementById("start").value,i=document.getElementById("end").value;o.route({origin:r,destination:i,travelMode:google.maps.TravelMode.DRIVING}).then(e=>{n.setDirections(e)}).catch(e=>window.alert("Directions request failed due to "+status))}window.initMap=c;
-
 </script>
-    <style type="text/css">
-/**
+    <style type="text/css">/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */html,body{height:100%;margin:0;padding:0}#container{height:100%;display:flex}#sidebar{flex-basis:15rem;flex-grow:1;padding:1rem;max-width:30rem;height:100%;box-sizing:border-box;overflow:auto}#map{flex-basis:0;flex-grow:4;height:100%}#floating-panel{position:absolute;top:10px;left:25%;z-index:5;background-color:#fff;border:1px solid #999;text-align:center;font-family:Roboto,"sans-serif";line-height:30px;padding:5px 5px 5px 10px}#floating-panel{background-color:#fff;border:0;border-radius:2px;box-shadow:0 1px 4px -1px #0000004d;margin:10px;font:400 18px Roboto,Arial,sans-serif;overflow:hidden;padding:5px;font-size:14px;text-align:center;line-height:30px;height:auto}#map{flex:auto}#sidebar{flex:0 1 auto;padding:0}#sidebar>div{padding:.5rem}
-
 </style>
   </head>
   <body>
