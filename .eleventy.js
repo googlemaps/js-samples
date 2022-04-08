@@ -13,7 +13,6 @@ const fs = require("fs");
 const path = require("path");
 const vite = require("vite");
 const chalk = require("chalk");
-const { rm } = require("fs/promises");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./shared/**/*");
@@ -65,65 +64,12 @@ module.exports = function (eleventyConfig) {
     await Promise.all(
       samples.map((sample) =>
         vite.build({
-          plugins: [
-            {
-              name: "vite:iframe",
-              transformIndexHtml: {
-                enforce: "post",
-                transform(html, ctx) {
-                  if (!ctx || !ctx.bundle) return html;
-
-                  for (const [, value] of Object.entries(ctx.bundle)) {
-                    const o = value;
-                    const a = value;
-                    if (o.code) {
-                      const reScript = new RegExp(
-                        `<script type="module"[^>]*?src="[./]*${o.fileName}"[^>]*?></script>`
-                      );
-                      const code = `<script type="module">${o.code}</script>`;
-                      html = html.replace(reScript, () => code);
-                    } else if (a.fileName.endsWith(".css")) {
-                      const reCSS = new RegExp(
-                        `<link rel="stylesheet"[^>]*?href="[./]*${a.fileName}"[^>]*?>`
-                      );
-                      const code = `<style type="text/css">${a.source}</style>`;
-                      html = html.replace(reCSS, () => code);
-                    } else {
-                      throw new Error(`asset not inlined: ${a.fileName}`);
-                    }
-                  }
-
-                  return html;
-                },
-              },
-            },
-          ],
           root: path.join(samplesPath, sample, "app"),
           base: "./",
           logLevel: "error",
           build: {
             target: "es2019",
-            assetsInlineLimit: 100000000,
-            cssCodeSplit: false,
-            outDir: path.join("../", "iframe"),
-            minify: 'terser',
-            rollupOptions: {
-              inlineDynamicImports: true,
-              output: {
-                manualChunks: () => "everything.js",
-              },
-            },
           },
-        })
-      )
-    );
-
-    // remove assets directories since plugin inlined assets
-    await Promise.all(
-      samples.map((sample) =>
-        rm(path.join(samplesPath, sample, "iframe", "assets"), {
-          recursive: true,
-          force: true,
         })
       )
     );
