@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Split Map Panes</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
+
+    
+    
+    <script type="module">
+//assets/index.51abdf23.js
+var y=Object.defineProperty,h=Object.defineProperties;var O=Object.getOwnPropertyDescriptors;var f=Object.getOwnPropertySymbols;var T=Object.prototype.hasOwnProperty,C=Object.prototype.propertyIsEnumerable;var m=(i,o,t)=>o in i?y(i,o,{enumerable:!0,configurable:!0,writable:!0,value:t}):i[o]=t,p=(i,o)=>{for(var t in o||(o={}))T.call(o,t)&&m(i,t,o[t]);if(f)for(var t of f(o))C.call(o,t)&&m(i,t,o[t]);return i},c=(i,o)=>h(i,O(o));const E=function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))r(e);new MutationObserver(e=>{for(const n of e)if(n.type==="childList")for(const a of n.addedNodes)a.tagName==="LINK"&&a.rel==="modulepreload"&&r(a)}).observe(document,{childList:!0,subtree:!0});function t(e){const n={};return e.integrity&&(n.integrity=e.integrity),e.referrerpolicy&&(n.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?n.credentials="include":e.crossorigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function r(e){if(e.ep)return;e.ep=!0;const n=t(e);fetch(e.href,n)}};E();/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */let u,g;function w(){const i={center:{lat:44.5250489,lng:-110.83819},zoom:18,scaleControl:!1,streetViewControl:!1};u=new google.maps.Map(document.getElementById("map-left"),c(p({},i),{mapTypeId:"satellite",tilt:0,fullscreenControlOptions:{position:google.maps.ControlPosition.LEFT_BOTTOM},mapTypeControlOptions:{position:google.maps.ControlPosition.LEFT_TOP},zoomControlOptions:{position:google.maps.ControlPosition.LEFT_BOTTOM}})),g=new google.maps.Map(document.getElementById("map-right"),c(p({},i),{fullscreenControlOptions:{position:google.maps.ControlPosition.RIGHT_BOTTOM},mapTypeControlOptions:{position:google.maps.ControlPosition.RIGHT_TOP},zoomControlOptions:{position:google.maps.ControlPosition.RIGHT_BOTTOM}}));function o(...r){let e,n;function a(s){r.forEach(l=>{l!==s&&(l.setCenter(e),l.setZoom(n))})}r.forEach(s=>{s.addListener("bounds_changed",()=>{const l=s.getCenter(),d=s.getZoom();(l!==e||d!==n)&&(e=l,n=d,a(s))})})}o(u,g);function t(){const r=document.getElementById("container").offsetWidth;document.getElementById("map-left").style.width=`${r}px`,document.getElementById("map-right").style.width=`${r}px`}t(),window.addEventListener("resize",t),Split(["#left","#right"],{sizes:[50,50]})}window.initMap=w;
+
+</script>
+    <style type="text/css">
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */#map{height:100%}html,body{height:100%;margin:0;padding:0}#container,#left,#right,.map,.gutter{height:100%}#left,#right,.gutter{float:left;position:relative;overflow:hidden}#map-left{position:absolute;left:0;top:0}#map-right{position:absolute;right:0;top:0}.gutter{background-color:#eee;background-repeat:no-repeat;background-position:50%}.gutter.gutter-horizontal{cursor:col-resize;background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==)}
+
+</style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="left">
+        <div id="map-left" class="map"></div>
+      </div>
+      <div id="right">
+        <div id="map-right" class="map"></div>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

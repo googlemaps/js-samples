@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Place Autocomplete Restricted to Multiple Countries</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    
+    
+    <script type="module">
+//assets/index.2d88059c.js
+const y=function(){const c=document.createElement("link").relList;if(c&&c.supports&&c.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const o of t)if(o.type==="childList")for(const n of o.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&i(n)}).observe(document,{childList:!0,subtree:!0});function r(t){const o={};return t.integrity&&(o.integrity=t.integrity),t.referrerpolicy&&(o.referrerPolicy=t.referrerpolicy),t.crossorigin==="use-credentials"?o.credentials="include":t.crossorigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function i(t){if(t.ep)return;t.ep=!0;const o=r(t);fetch(t.href,o)}};y();/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */function h(){const s=new google.maps.Map(document.getElementById("map"),{center:{lat:50.064192,lng:-130.605469},zoom:3}),c=document.getElementById("pac-card");s.controls[google.maps.ControlPosition.TOP_RIGHT].push(c);const r={lat:50.064192,lng:-130.605469},i={north:r.lat+.1,south:r.lat-.1,east:r.lng+.1,west:r.lng-.1},t=document.getElementById("pac-input"),o={bounds:i,componentRestrictions:{country:"us"},fields:["address_components","geometry","icon","name"],strictBounds:!1,types:["establishment"]},n=new google.maps.places.Autocomplete(t,o);n.setComponentRestrictions({country:["us","pr","vi","gu","mp"]});const p={lat:5.6108,lng:136.589326},g={lat:61.179287,lng:2.64325},f=new google.maps.LatLngBounds(p,g);n.setBounds(f);const u=new google.maps.InfoWindow,a=document.getElementById("infowindow-content");u.setContent(a);const l=new google.maps.Marker({map:s,anchorPoint:new google.maps.Point(0,-29)});n.addListener("place_changed",()=>{u.close(),l.setVisible(!1);const e=n.getPlace();if(!e.geometry||!e.geometry.location){window.alert("No details available for input: '"+e.name+"'");return}e.geometry.viewport?s.fitBounds(e.geometry.viewport):(s.setCenter(e.geometry.location),s.setZoom(17)),l.setPosition(e.geometry.location),l.setVisible(!0);let d="";e.address_components&&(d=[e.address_components[0]&&e.address_components[0].short_name||"",e.address_components[1]&&e.address_components[1].short_name||"",e.address_components[2]&&e.address_components[2].short_name||""].join(" ")),a.children["place-icon"].src=e.icon,a.children["place-name"].textContent=e.name,a.children["place-address"].textContent=d,u.open(s,l)});function m(e,d){document.getElementById(e).addEventListener("click",()=>{n.setComponentRestrictions({country:d})})}m("changecountry-usa","us"),m("changecountry-usa-and-uot",["us","pr","vi","gu","mp"])}window.initMap=h;
+
+</script>
+    <style type="text/css">
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */#map{height:100%}html,body{height:100%;margin:0;padding:0}#description{font-family:Roboto;font-size:15px;font-weight:300}#infowindow-content .title{font-weight:700}#infowindow-content{display:none}#map #infowindow-content{display:inline}.pac-card{background-color:#fff;border:0;border-radius:2px;box-shadow:0 1px 4px -1px #0000004d;margin:10px;font:400 18px Roboto,Arial,sans-serif;overflow:hidden;font-family:Roboto;padding:0}#pac-container{padding-bottom:12px;margin-right:12px}.pac-controls{display:inline-block;padding:5px 11px}.pac-controls label{font-family:Roboto;font-size:13px;font-weight:300}#pac-input{background-color:#fff;font-family:Roboto;font-size:15px;font-weight:300;margin-left:12px;padding:0 11px 0 13px;text-overflow:ellipsis;width:400px}#pac-input:focus{border-color:#4d90fe}#title{color:#fff;background-color:#4d90fe;font-size:25px;font-weight:500;padding:6px 12px}
+
+</style>
+  </head>
+  <body>
+    <div class="pac-card" id="pac-card">
+      <div>
+        <div id="title">Countries</div>
+        <div id="country-selector" class="pac-controls">
+          <input type="radio" name="type" id="changecountry-usa" />
+          <label for="changecountry-usa">USA</label>
+
+          <input
+            type="radio"
+            name="type"
+            id="changecountry-usa-and-uot"
+            checked="checked"
+          />
+          <label for="changecountry-usa-and-uot"
+            >USA and unincorporated organized territories</label
+          >
+        </div>
+      </div>
+      <div id="pac-container">
+        <input id="pac-input" type="text" placeholder="Enter a location" />
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon" />
+      <span id="place-name" class="title"></span><br />
+      <span id="place-address"></span>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
