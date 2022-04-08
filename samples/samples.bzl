@@ -165,6 +165,7 @@ SAMPLES = [
     "streetview-simple",
     "style-array",
     "style-selector",
+    "threejs-overlay-simple",
     "user-editable-shapes",
     "webgl-overlay-simple",
     "webgl-tilt-rotation",
