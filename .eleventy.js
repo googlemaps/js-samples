@@ -9,6 +9,10 @@ const yourAPIKey = require("./src/transforms/your-api-key");
 const format = require("./src/transforms/format");
 const minify = require("./src/transforms/minify");
 const skypack = require("./src/transforms/skypack");
+const fs = require("fs");
+const path = require("path");
+const vite = require("vite");
+const chalk = require("chalk");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./shared/**/*");
@@ -37,6 +41,44 @@ module.exports = function (eleventyConfig) {
     }
 
     return samples;
+  });
+
+  // build sample iframes after building the site using vite and a plugin to
+  // inline assets such as css and js
+  eleventyConfig.on("eleventy.after", async () => {
+    console.log(chalk.green("[11ty.after] Building dist/samples/*/app"));
+
+    const samplesPath = path.join(__dirname, "dist", "samples");
+
+    // get samples in dist folder
+    const samples = fs
+      .readdirSync(samplesPath, {
+        withFileTypes: true,
+      })
+      .filter((d) => d.isDirectory())
+      .map((d) => d.name);
+
+    // remove warning https://stackoverflow.com/questions/8313628/node-js-request-how-to-emitter-setmaxlisteners
+    require("events").EventEmitter.defaultMaxListeners = samples.length * 2;
+
+    await Promise.all(
+      samples.map((sample) =>
+        vite.build({
+          // vite automatically loads the config file from the root and merges
+          // with the config specified here
+          root: path.join(samplesPath, sample, "app"),
+          base: "./",
+          logLevel: "error",
+          build: {
+            target: "es2019",
+          },
+        })
+      )
+    );
+
+    console.log(
+      chalk.green("[11ty.after] Finished building dist/samples/*/app")
+    );
   });
 
   return {
