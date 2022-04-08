@@ -102,10 +102,11 @@ module.exports = function (eleventyConfig) {
           base: "./",
           logLevel: "error",
           build: {
-            target: "es2015",
+            target: "es2019",
             assetsInlineLimit: 100000000,
             cssCodeSplit: false,
             outDir: path.join("../", "iframe"),
+            minify: 'terser',
             rollupOptions: {
               inlineDynamicImports: true,
               output: {

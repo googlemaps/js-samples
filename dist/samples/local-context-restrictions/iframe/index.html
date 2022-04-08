@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">const c=function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const r of t.addedNodes)r.tagName==="LINK"&&r.rel==="modulepreload"&&l(r)}).observe(document,{childList:!0,subtree:!0});function s(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function l(e){if(e.ep)return;e.ep=!0;const t=s(e);fetch(e.href,t)}};c();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))t(e);new MutationObserver((e=>{for(const o of e)if("childList"===o.type)for(const e of o.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&t(e)})).observe(document,{childList:!0,subtree:!0})}function t(e){if(e.ep)return;e.ep=!0;const t=function(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?t.credentials="include":"anonymous"===e.crossorigin?t.credentials="omit":t.credentials="same-origin",t}(e);fetch(e.href,t)}}();
+/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */let i;function a(){const n={lat:37.4219998,lng:-122.0840572},o={north:37.432,south:37.412,west:-122.094,east:-122.074};i=new google.maps.localContext.LocalContextMapView({element:document.getElementById("map"),placeTypePreferences:[{type:"restaurant"}],maxPlaceCount:12,locationRestriction:o,directionsOptions:{origin:n}}).map,new google.maps.Marker({position:n,map:i}),i.setOptions({center:n,zoom:16})}window.initMap=a;
+ */
+let e;window.initMap=function(){const t={lat:37.4219998,lng:-122.0840572},o=new google.maps.localContext.LocalContextMapView({element:document.getElementById("map"),placeTypePreferences:[{type:"restaurant"}],maxPlaceCount:12,locationRestriction:{north:37.432,south:37.412,west:-122.094,east:-122.074},directionsOptions:{origin:t}});e=o.map,new google.maps.Marker({position:t,map:e}),e.setOptions({center:t,zoom:16})};
 </script>
     <style type="text/css">/**
  * @license

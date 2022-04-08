@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">const l=function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))i(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const n of t.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&i(n)}).observe(document,{childList:!0,subtree:!0});function s(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function i(e){if(e.ep)return;e.ep=!0;const t=s(e);fetch(e.href,t)}};l();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver((e=>{for(const t of e)if("childList"===t.type)for(const e of t.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&o(e)})).observe(document,{childList:!0,subtree:!0})}function o(e){if(e.ep)return;e.ep=!0;const o=function(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerpolicy&&(o.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?o.credentials="include":"anonymous"===e.crossorigin?o.credentials="omit":o.credentials="same-origin",o}(e);fetch(e.href,o)}}();window.initMap=
+/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */function c(){const r=new google.maps.LatLng({lat:-25.363,lng:131.044}),o=4;new google.maps.Map(document.getElementById("map"),{zoom:o,center:r,minZoom:o-3,maxZoom:o+3,restriction:{latLngBounds:{north:-10,south:-40,east:160,west:100}}})}window.initMap=c;
+ */
+function(){const e=new google.maps.LatLng({lat:-25.363,lng:131.044});new google.maps.Map(document.getElementById("map"),{zoom:4,center:e,minZoom:1,maxZoom:7,restriction:{latLngBounds:{north:-10,south:-40,east:160,west:100}}})};
 </script>
     <style type="text/css">/**
  * @license

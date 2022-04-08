@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">const u=function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const i of o.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&l(i)}).observe(document,{childList:!0,subtree:!0});function c(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerpolicy&&(o.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?o.credentials="include":e.crossorigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function l(e){if(e.ep)return;e.ep=!0;const o=c(e);fetch(e.href,o)}};u();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))t(e);new MutationObserver((e=>{for(const n of e)if("childList"===n.type)for(const e of n.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&t(e)})).observe(document,{childList:!0,subtree:!0})}function t(e){if(e.ep)return;e.ep=!0;const t=function(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?t.credentials="include":"anonymous"===e.crossorigin?t.credentials="omit":t.credentials="same-origin",t}(e);fetch(e.href,t)}}();
+/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */const s=[{lat:52.511,lng:13.447},{lat:52.549,lng:13.422},{lat:52.497,lng:13.396},{lat:52.517,lng:13.394}];let r=[],a;function d(){a=new google.maps.Map(document.getElementById("map"),{zoom:12,center:{lat:52.52,lng:13.41}}),document.getElementById("drop").addEventListener("click",f)}function f(){p();for(let t=0;t<s.length;t++)m(s[t],t*200)}function m(t,n){window.setTimeout(()=>{r.push(new google.maps.Marker({position:t,map:a,animation:google.maps.Animation.DROP}))},n)}function p(){for(let t=0;t<r.length;t++)r[t].setMap(null);r=[]}window.initMap=d;
+ */
+const e=[{lat:52.511,lng:13.447},{lat:52.549,lng:13.422},{lat:52.497,lng:13.396},{lat:52.517,lng:13.394}];let t,n=[];function o(){!function(){for(let e=0;e<n.length;e++)n[e].setMap(null);n=[]}();for(let t=0;t<e.length;t++)r(e[t],200*t)}function r(e,o){window.setTimeout((()=>{n.push(new google.maps.Marker({position:e,map:t,animation:google.maps.Animation.DROP}))}),o)}window.initMap=function(){t=new google.maps.Map(document.getElementById("map"),{zoom:12,center:{lat:52.52,lng:13.41}}),document.getElementById("drop").addEventListener("click",o)};
 </script>
     <style type="text/css">/**
  * @license

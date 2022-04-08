@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">const l=function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&s(i)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function s(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}};l();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver((e=>{for(const t of e)if("childList"===t.type)for(const e of t.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&o(e)})).observe(document,{childList:!0,subtree:!0})}function o(e){if(e.ep)return;e.ep=!0;const o=function(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerpolicy&&(o.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?o.credentials="include":"anonymous"===e.crossorigin?o.credentials="omit":o.credentials="same-origin",o}(e);fetch(e.href,o)}}();window.initialize=
+/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */function c(){const n={lat:42.345573,lng:-71.098326},o=new google.maps.Map(document.getElementById("map"),{center:n,zoom:14}),r=new google.maps.StreetViewPanorama(document.getElementById("pano"),{position:n,pov:{heading:34,pitch:10}});o.setStreetView(r)}window.initialize=c;
+ */
+function(){const e={lat:42.345573,lng:-71.098326},o=new google.maps.Map(document.getElementById("map"),{center:e,zoom:14}),t=new google.maps.StreetViewPanorama(document.getElementById("pano"),{position:e,pov:{heading:34,pitch:10}});o.setStreetView(t)};
 </script>
     <style type="text/css">/**
  * @license

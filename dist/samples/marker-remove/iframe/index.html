@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">const f=function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))s(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const l of r.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&s(l)}).observe(document,{childList:!0,subtree:!0});function u(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerpolicy&&(r.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?r.credentials="include":e.crossorigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function s(e){if(e.ep)return;e.ep=!0;const r=u(e);fetch(e.href,r)}};f();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))t(e);new MutationObserver((e=>{for(const n of e)if("childList"===n.type)for(const e of n.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&t(e)})).observe(document,{childList:!0,subtree:!0})}function t(e){if(e.ep)return;e.ep=!0;const t=function(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?t.credentials="include":"anonymous"===e.crossorigin?t.credentials="omit":t.credentials="same-origin",t}(e);fetch(e.href,t)}}();
+/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */let o,i=[];function m(){const n={lat:37.769,lng:-122.446};o=new google.maps.Map(document.getElementById("map"),{zoom:12,center:n,mapTypeId:"terrain"}),o.addListener("click",t=>{c(t.latLng)}),document.getElementById("show-markers").addEventListener("click",p),document.getElementById("hide-markers").addEventListener("click",d),document.getElementById("delete-markers").addEventListener("click",g),c(n)}function c(n){const t=new google.maps.Marker({position:n,map:o});i.push(t)}function a(n){for(let t=0;t<i.length;t++)i[t].setMap(n)}function d(){a(null)}function p(){a(o)}function g(){d(),i=[]}window.initMap=m;
+ */
+let e,t=[];function n(n){const o=new google.maps.Marker({position:n,map:e});t.push(o)}function o(e){for(let n=0;n<t.length;n++)t[n].setMap(e)}function r(){o(null)}function i(){o(e)}function c(){r(),t=[]}window.initMap=function(){const t={lat:37.769,lng:-122.446};e=new google.maps.Map(document.getElementById("map"),{zoom:12,center:t,mapTypeId:"terrain"}),e.addListener("click",(e=>{n(e.latLng)})),document.getElementById("show-markers").addEventListener("click",i),document.getElementById("hide-markers").addEventListener("click",r),document.getElementById("delete-markers").addEventListener("click",c),n(t)};
 </script>
     <style type="text/css">/**
  * @license

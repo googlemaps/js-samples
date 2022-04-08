@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">const s=function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&l(i)}).observe(document,{childList:!0,subtree:!0});function n(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function l(e){if(e.ep)return;e.ep=!0;const t=n(e);fetch(e.href,t)}};s();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver((e=>{for(const t of e)if("childList"===t.type)for(const e of t.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&o(e)})).observe(document,{childList:!0,subtree:!0})}function o(e){if(e.ep)return;e.ep=!0;const o=function(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerpolicy&&(o.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?o.credentials="include":"anonymous"===e.crossorigin?o.credentials="omit":o.credentials="same-origin",o}(e);fetch(e.href,o)}}();window.initMap=
+/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */function c(){const r=new google.maps.Map(document.getElementById("map"),{center:{lat:20.291,lng:153.027},zoom:6,mapTypeId:"terrain"}),o={path:google.maps.SymbolPath.CIRCLE,scale:8,strokeColor:"#393"},n=new google.maps.Polyline({path:[{lat:22.291,lng:153.027},{lat:18.291,lng:153.027}],icons:[{icon:o,offset:"100%"}],map:r});a(n)}function a(r){let o=0;window.setInterval(()=>{o=(o+1)%200;const n=r.get("icons");n[0].offset=o/2+"%",r.set("icons",n)},20)}window.initMap=c;
+ */
+function(){const e=new google.maps.Map(document.getElementById("map"),{center:{lat:20.291,lng:153.027},zoom:6,mapTypeId:"terrain"}),o={path:google.maps.SymbolPath.CIRCLE,scale:8,strokeColor:"#393"};!function(e){let o=0;window.setInterval((()=>{o=(o+1)%200;const t=e.get("icons");t[0].offset=o/2+"%",e.set("icons",t)}),20)}(new google.maps.Polyline({path:[{lat:22.291,lng:153.027},{lat:18.291,lng:153.027}],icons:[{icon:o,offset:"100%"}],map:e}))};
 </script>
     <style type="text/css">/**
  * @license

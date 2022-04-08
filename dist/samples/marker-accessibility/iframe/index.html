@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">const s=function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))l(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const o of t.addedNodes)o.tagName==="LINK"&&o.rel==="modulepreload"&&l(o)}).observe(document,{childList:!0,subtree:!0});function r(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function l(e){if(e.ep)return;e.ep=!0;const t=r(e);fetch(e.href,t)}};s();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver((e=>{for(const t of e)if("childList"===t.type)for(const e of t.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&o(e)})).observe(document,{childList:!0,subtree:!0})}function o(e){if(e.ep)return;e.ep=!0;const o=function(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerpolicy&&(o.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?o.credentials="include":"anonymous"===e.crossorigin?o.credentials="omit":o.credentials="same-origin",o}(e);fetch(e.href,o)}}();window.initMap=
+/**
  * @license
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
- */function a(){const i=new google.maps.Map(document.getElementById("map"),{zoom:12,center:{lat:34.84555,lng:-111.8035}}),n=[[{lat:34.8791806,lng:-111.8265049},"Boynton Pass"],[{lat:34.8559195,lng:-111.7988186},"Airport Mesa"],[{lat:34.832149,lng:-111.7695277},"Chapel of the Holy Cross"],[{lat:34.823736,lng:-111.8001857},"Red Rock Crossing"],[{lat:34.800326,lng:-111.7665047},"Bell Rock"]],r=new google.maps.InfoWindow;n.forEach(([l,e],t)=>{const o=new google.maps.Marker({position:l,map:i,title:`${t+1}. ${e}`,label:`${t+1}`,optimized:!1});o.addListener("click",()=>{r.close(),r.setContent(o.getTitle()),r.open(o.getMap(),o)})})}window.initMap=a;
+ */
+function(){const e=new google.maps.Map(document.getElementById("map"),{zoom:12,center:{lat:34.84555,lng:-111.8035}}),o=new google.maps.InfoWindow;[[{lat:34.8791806,lng:-111.8265049},"Boynton Pass"],[{lat:34.8559195,lng:-111.7988186},"Airport Mesa"],[{lat:34.832149,lng:-111.7695277},"Chapel of the Holy Cross"],[{lat:34.823736,lng:-111.8001857},"Red Rock Crossing"],[{lat:34.800326,lng:-111.7665047},"Bell Rock"]].forEach((([t,n],r)=>{const l=new google.maps.Marker({position:t,map:e,title:`${r+1}. ${n}`,label:`${r+1}`,optimized:!1});l.addListener("click",(()=>{o.close(),o.setContent(l.getTitle()),o.open(l.getMap(),l)}))}))};
 </script>
     <style type="text/css">/**
  * @license

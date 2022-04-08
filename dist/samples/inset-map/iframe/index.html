@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">var m=Object.defineProperty,p=Object.defineProperties;var g=Object.getOwnPropertyDescriptors;var u=Object.getOwnPropertySymbols;var y=Object.prototype.hasOwnProperty,E=Object.prototype.propertyIsEnumerable;var d=(n,e,o)=>e in n?m(n,e,{enumerable:!0,configurable:!0,writable:!0,value:o}):n[e]=o,c=(n,e)=>{for(var o in e||(e={}))y.call(e,o)&&d(n,o,e[o]);if(u)for(var o of u(e))E.call(e,o)&&d(n,o,e[o]);return n},f=(n,e)=>p(n,g(e));const O=function(){const e=document.createElement("link").relList;if(e&&e.supports&&e.supports("modulepreload"))return;for(const t of document.querySelectorAll('link[rel="modulepreload"]'))i(t);new MutationObserver(t=>{for(const r of t)if(r.type==="childList")for(const l of r.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&i(l)}).observe(document,{childList:!0,subtree:!0});function o(t){const r={};return t.integrity&&(r.integrity=t.integrity),t.referrerpolicy&&(r.referrerPolicy=t.referrerpolicy),t.crossorigin==="use-credentials"?r.credentials="include":t.crossorigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function i(t){if(t.ep)return;t.ep=!0;const r=o(t);fetch(t.href,r)}};O();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver((e=>{for(const t of e)if("childList"===t.type)for(const e of t.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&o(e)})).observe(document,{childList:!0,subtree:!0})}function o(e){if(e.ep)return;e.ep=!0;const o=function(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerpolicy&&(o.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?o.credentials="include":"anonymous"===e.crossorigin?o.credentials="omit":o.credentials="same-origin",o}(e);fetch(e.href,o)}}();
+/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */let s,a;const M=5,h=3,I=10;function v(){const n={center:{lat:50,lng:8},zoom:7};s=new google.maps.Map(document.getElementById("map"),c({},n)),a=new google.maps.Map(document.getElementById("overview"),f(c({},n),{disableDefaultUI:!0,gestureHandling:"none",zoomControl:!1}));function e(o,i,t){return Math.min(Math.max(o,i),t)}s.addListener("bounds_changed",()=>{a.setCenter(s.getCenter()),a.setZoom(e(s.getZoom()-M,h,I))})}window.initMap=v;
+ */
+let e,o;window.initMap=function(){const t={center:{lat:50,lng:8},zoom:7};e=new google.maps.Map(document.getElementById("map"),{...t}),o=new google.maps.Map(document.getElementById("overview"),{...t,disableDefaultUI:!0,gestureHandling:"none",zoomControl:!1}),e.addListener("bounds_changed",(()=>{var t,n,r;o.setCenter(e.getCenter()),o.setZoom((t=e.getZoom()-5,n=3,r=10,Math.min(Math.max(t,n),r)))}))};
 </script>
     <style type="text/css">#map{height:100%}html,body{height:100%;margin:0;padding:0}#container,#map{height:100%;width:100%}#map{position:relative}#overview{position:absolute;left:40px;height:175px;width:175px;bottom:50px;box-shadow:0 2px 6px #0000004d}
 </style>

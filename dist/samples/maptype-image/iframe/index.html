@@ -11,11 +11,13 @@
 
     
     
-    <script type="module">const s=function(){const n=document.createElement("link").relList;if(n&&n.supports&&n.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))t(e);new MutationObserver(e=>{for(const o of e)if(o.type==="childList")for(const l of o.addedNodes)l.tagName==="LINK"&&l.rel==="modulepreload"&&t(l)}).observe(document,{childList:!0,subtree:!0});function r(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerpolicy&&(o.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?o.credentials="include":e.crossorigin==="anonymous"?o.credentials="omit":o.credentials="same-origin",o}function t(e){if(e.ep)return;e.ep=!0;const o=r(e);fetch(e.href,o)}};s();/**
+    <script type="module">!function(){const e=document.createElement("link").relList;if(!(e&&e.supports&&e.supports("modulepreload"))){for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver((e=>{for(const n of e)if("childList"===n.type)for(const e of n.addedNodes)"LINK"===e.tagName&&"modulepreload"===e.rel&&o(e)})).observe(document,{childList:!0,subtree:!0})}function o(e){if(e.ep)return;e.ep=!0;const o=function(e){const o={};return e.integrity&&(o.integrity=e.integrity),e.referrerpolicy&&(o.referrerPolicy=e.referrerpolicy),"use-credentials"===e.crossorigin?o.credentials="include":"anonymous"===e.crossorigin?o.credentials="omit":o.credentials="same-origin",o}(e);fetch(e.href,o)}}();window.initMap=
+/**
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */function a(){const i=new google.maps.Map(document.getElementById("map"),{center:{lat:0,lng:0},zoom:1,streetViewControl:!1,mapTypeControlOptions:{mapTypeIds:["moon"]}}),n=new google.maps.ImageMapType({getTileUrl:function(r,t){const e=c(r,t);if(!e)return"";const o=Math.pow(2,t);return"https://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/"+t+"/"+e.x+"/"+(o-e.y-1)+".jpg"},tileSize:new google.maps.Size(256,256),maxZoom:9,minZoom:0,radius:1738e3,name:"Moon"});i.mapTypes.set("moon",n),i.setMapTypeId("moon")}function c(i,n){const r=i.y;let t=i.x;const e=1<<n;return r<0||r>=e?null:((t<0||t>=e)&&(t=(t%e+e)%e),{x:t,y:r})}window.initMap=a;
+ */
+function(){const e=new google.maps.Map(document.getElementById("map"),{center:{lat:0,lng:0},zoom:1,streetViewControl:!1,mapTypeControlOptions:{mapTypeIds:["moon"]}}),o=new google.maps.ImageMapType({getTileUrl:function(e,o){const n=function(e,o){const n=e.y;let t=e.x;const r=1<<o;if(n<0||n>=r)return null;(t<0||t>=r)&&(t=(t%r+r)%r);return{x:t,y:n}}(e,o);if(!n)return"";const t=Math.pow(2,o);return"https://mw1.google.com/mw-planetary/lunar/lunarmaps_v1/clem_bw/"+o+"/"+n.x+"/"+(t-n.y-1)+".jpg"},tileSize:new google.maps.Size(256,256),maxZoom:9,minZoom:0,radius:1738e3,name:"Moon"});e.mapTypes.set("moon",o),e.setMapTypeId("moon")};
 </script>
     <style type="text/css">/**
  * @license
