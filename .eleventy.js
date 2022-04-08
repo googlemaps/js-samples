@@ -64,7 +64,8 @@ module.exports = function (eleventyConfig) {
     await Promise.all(
       samples.map((sample) =>
         vite.build({
-          // config options should mostly match dist/samples/*/app/vite.config.js
+          // vite automatically loads the config file from the root and merges
+          // with the config specified here
           root: path.join(samplesPath, sample, "app"),
           base: "./",
           logLevel: "error",
