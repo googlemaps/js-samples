@@ -162,6 +162,7 @@
     "Street View Side-By-Side": "streetview-simple",
     "Styled Maps - Night Mode": "style-array",
     "Styled Map Selection": "style-selector",
+    "ThreeJS Overlay": "threejs-overlay-simple",
     "User-Editable Shapes": "user-editable-shapes",
     "WebGL Overlay": "webgl-overlay-simple",
     "WebGL Tilt and Rotation": "webgl-tilt-rotation",
