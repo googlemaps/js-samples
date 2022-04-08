@@ -45,26 +45,3 @@ test.describe.parallel("sample applications", () => {
     });
   });
 });
-
-test.describe.parallel("sample iframe", () => {
-  samples.forEach((sample) => {
-    test.describe(sample, () => {
-      test(`iframe loads without error`, async ({ page }) => {
-        test.slow();
-        failOnPageError(page);
-
-        // go to page and fail if errors
-        await page.goto(`/samples/${sample}/iframe`, {
-          waitUntil: "networkidle",
-        });
-
-        if (sample === "programmatic-load-button") {
-          await page.locator("button").click();
-        }
-
-        // wait for google.maps to be loaded
-        await waitForGoogleMapsToLoad(page);
-      });
-    });
-  });
-});
