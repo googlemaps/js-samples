@@ -17,7 +17,7 @@ import * as React from "https://cdn.skypack.dev/react@^17.0.2";
 import * as ReactDom from "https://cdn.skypack.dev/react-dom@^17.0.2";
 import { Wrapper } from "https://cdn.skypack.dev/@googlemaps/react-wrapper@^1.1.8";
 import { createCustomEqual } from "https://cdn.skypack.dev/fast-equals@^2.0.3";
-import { isLatLngLiteral } from "https://cdn.skypack.dev/@googlemaps/typescript-guards@^1.0.0";
+import { isLatLngLiteral } from "https://cdn.skypack.dev/@googlemaps/typescript-guards@^1.0.12";
 const render = (status) => {
   return <h1>{status}</h1>;
 };
