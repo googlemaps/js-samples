@@ -83,7 +83,7 @@
     "@googlemaps/markerclusterer": "^2.0.1",
     "@googlemaps/react-wrapper": "^1.1.8",
     "@googlemaps/three": "^2.0.8",
-    "@googlemaps/typescript-guards": "^1.0.0",
+    "@googlemaps/typescript-guards": "^1.0.12",
     "@material/mwc-button": "^0.25.3",
     "@material/select": "^13.0.0",
     "@tweenjs/tween.js": "^18.6.4",
