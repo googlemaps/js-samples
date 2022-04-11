@@ -1,5 +1,7 @@
 const resolveDeps = (pkg, deps) => {
-  return Object.fromEntries(deps.map((dep) => [dep, pkg.devDependencies[dep]]));
+  return Object.fromEntries(
+    deps.map((dep) => [dep, pkg.dependencies[dep] || pkg.devDependencies[dep]])
+  );
 };
 
 module.exports = {
