@@ -1,0 +1,8 @@
+[
+  {
+    "origin": ["https://*.google.com"],
+    "responseHeader": ["*"],
+    "method": ["GET", "HEAD", "DELETE", "POST", "PUT", "OPTIONS"],
+    "maxAgeSeconds": 3600
+  }
+]

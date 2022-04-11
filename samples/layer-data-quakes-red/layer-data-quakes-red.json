@@ -1,0 +1,14 @@
+{
+  "title": "Simple Data Layer: Earthquakes",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "layer_data_quakes_red",
+  "name": "layer-data-quakes-red",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

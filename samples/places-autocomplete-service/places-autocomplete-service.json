@@ -1,0 +1,14 @@
+{
+  "name": "places-autocomplete-service",
+  "title": "Places Autocomplete Service",
+  "callback": "initialize",
+  "libraries": ["places"],
+  "version": "weekly",
+  "tag": "places_autocomplete_service",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

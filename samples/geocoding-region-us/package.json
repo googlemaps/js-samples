@@ -1,8 +1,0 @@
-{
-  "title": "Geocoding Region - US",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "js_geocoding_region_us",
-  "name": "geocoding-region-us"
-}

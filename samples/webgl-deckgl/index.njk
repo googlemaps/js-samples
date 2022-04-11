@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%}
+{% block external %}
+  <script src="https://unpkg.com/deck.gl@8.7.3/dist.min.js"></script>
+{% endblock %}
+{% block html %}
+  <div id="map"></div>
+  <div id="tooltip"></div>
+{% endblock %}

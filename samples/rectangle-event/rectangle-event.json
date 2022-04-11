@@ -1,0 +1,14 @@
+{
+  "title": "Listening to Events",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "rectangle_event",
+  "name": "rectangle-event",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

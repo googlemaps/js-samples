@@ -1,0 +1,12 @@
+{
+  "title": "Programmatically Load Google Maps JS",
+  "libraries": [],
+  "tag": "programmatic_load_button",
+  "name": "programmatic-load-button",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

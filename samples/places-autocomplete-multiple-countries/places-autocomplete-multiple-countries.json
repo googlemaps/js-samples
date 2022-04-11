@@ -1,0 +1,16 @@
+{
+  "title": "Place Autocomplete Restricted to Multiple Countries",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "tag": "places_autocomplete_multiple_countries",
+  "name": "places-autocomplete-multiple-countries",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

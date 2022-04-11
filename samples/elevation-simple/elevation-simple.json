@@ -1,0 +1,14 @@
+{
+  "title": "Elevation Service",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "elevation_simple",
+  "name": "elevation-simple",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

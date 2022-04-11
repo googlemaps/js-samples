@@ -1,8 +1,8 @@
-dist/samples/*/app
+dist/*.js
+test-results
 **/node_modules
 samples/**/package-lock.json
 **/.npmrc
-**/docs
 /index.html
 bazel-*
 .bazelrc.user
@@ -18,7 +18,8 @@ lerna-debug.log*
 bazel-*
 # Firebase
 .firebase/
-
+# parcel
+.parcel-cache
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -83,6 +84,7 @@ typings/
 
 # dotenv environment variables file
 .env
+!dist/samples/*/app/.env
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)

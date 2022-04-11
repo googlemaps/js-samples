@@ -1,0 +1,17 @@
+{
+  "name": "store-locator",
+  "title": "Store Locator",
+  "callback": "initMap",
+  "libraries": [
+    "places",
+    "geometry"
+  ],
+  "version": "weekly",
+  "tag": "store_locator",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

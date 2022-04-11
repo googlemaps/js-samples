@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%}
+{% block external %}
+  <!-- Use Material Design Progress indicator -->
+  <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+  <script src="https://unpkg.com/deck.gl@8.7.3/dist.min.js"></script>
+  <script src="https://unpkg.com/@deck.gl/google-maps@8.7.3/dist.min.js"></script>
+{% endblock %}
+{% block html %}
+  {% include '../../shared/progress.njk' %}
+  <div id="map"></div>
+{% endblock %}

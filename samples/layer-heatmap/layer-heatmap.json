@@ -1,0 +1,16 @@
+{
+  "title": "Heatmaps",
+  "libraries": [
+    "visualization"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "tag": "layer_heatmap",
+  "name": "layer-heatmap",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

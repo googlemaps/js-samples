@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="map"></div>
+<div id="infowindow-content">
+  <img id="place-icon" src="" height="16" width="16" />
+  <span id="place-name" class="title"></span><br />
+  Place ID <span id="place-id"></span><br />
+  <span id="place-address"></span>
+</div>
+{% endblock %}

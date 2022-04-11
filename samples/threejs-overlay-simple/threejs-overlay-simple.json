@@ -1,0 +1,14 @@
+{
+  "title": "Simple ThreeJS Overlay View",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "beta",
+  "tag": "threejs_overlay_simple",
+  "name": "threejs-overlay-simple",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

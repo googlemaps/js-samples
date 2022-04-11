@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%}
+{% block external %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
+{% endblock %}
+{% block html %}
+  <div id="container">
+    <div id="left">
+      <div id="map-left" class="map"></div>
+    </div>
+    <div id="right">
+      <div id="map-right" class="map"></div>
+    </div>
+  </div>
+{% endblock %}

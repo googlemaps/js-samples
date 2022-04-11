@@ -1,8 +1,0 @@
-{
-  "title": "Showing/Hiding Overlays",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "overlay_hideshow",
-  "name": "overlay-hideshow"
-}

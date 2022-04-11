@@ -1,0 +1,15 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+/* [START maps_add_map] */
+/* Set the size of the div element that contains the map */
+#map {
+  height: 400px; /* The height is 400 pixels */
+  width: 100%; /* The width is the width of the web page */
+}
+/* [END maps_add_map] */

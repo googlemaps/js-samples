@@ -1,13 +1,11 @@
 #!/bin/bash
 set -e
 
-tar xf $1
-
 tmp=`mktemp -d`
 
-for sample in samples/*/; do
+for sample in dist/samples/*/; do
   name=`basename $sample`
-  branch="sample-${name}"
+  branch="sample-next-${name}"
 
   pushd $tmp
     rm -rf .git
@@ -27,14 +25,13 @@ for sample in samples/*/; do
   popd
 
   cp -r $sample/app/* $tmp
-  cp $sample/app/.env $tmp/.env
-  cp $sample/app/.*.yml $tmp/
+  cp $sample/app/.eslintrc.json $tmp/.eslintrc.json
   cp $sample/app/.gitignore $tmp/.gitignore
-  cp $sample/CLOUD_SHELL_INSTRUCTIONS.md $tmp/CLOUD_SHELL_INSTRUCTIONS.md
 
   pushd $tmp
     git add -A
     git commit -am "chore: sync ${name} [skip-ci]" --no-verify || true
     git push -q --set-upstream origin $branch -f
+    git status
   popd
 done

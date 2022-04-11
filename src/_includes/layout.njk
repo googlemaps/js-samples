@@ -1,0 +1,48 @@
+<!DOCTYPE html>{% if mode != "playground" -%}
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% endif -%}
+<!-- [START maps_{{tag}}] -->
+<html>
+  <head>
+  <title>{{ title }}</title>
+  {% block polyfill -%}<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>{% endblock -%}
+  {% block external -%}{% endblock -%}
+  {% if mode == "playground" %}
+    <!-- playground-hide -->
+    <script>
+      const process = {env: {}}
+      process.env.GOOGLE_MAPS_API_KEY = "{{GOOGLE_MAPS_API_KEY}}";
+    </script>
+    <!-- playground-hide-end -->
+  {% endif -%}
+  {% block resources %}
+  {% if mode == "jsfiddle" -%}
+    <!-- jsFiddle will insert css and js -->
+  {% elif mode == "app" %}
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script type="module" src="./index.{% if tsx %}tsx{% else %}ts{% endif %}"></script>
+  {% else %}    
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script type="module" src="./index.js"></script>
+  {% endif -%}
+  {% endblock %}
+  </head>
+  <body>
+  {% block html %}{% endblock %}
+  {% block api %}
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script 
+      src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}}&callback={{ callback }}{% if libraries|length %}&libraries={{ libraries }}{% endif %}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" defer></script>
+  {% endblock %}   
+  </body>
+</html>
+<!-- [END maps_{{tag}}] -->

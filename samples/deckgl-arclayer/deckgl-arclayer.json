@@ -1,0 +1,15 @@
+{
+  "title": "deck.gl ArcLayer",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "beta",
+  "tag": "deckgl_arclayer",
+  "name": "deckgl-arclayer",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}",
+  "devDependencies": ["@types/google.maps", "@types/geojson"]
+}

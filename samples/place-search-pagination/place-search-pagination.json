@@ -1,0 +1,17 @@
+{
+  "title": "Place Search Pagination",
+  "libraries": [
+    "places"
+  ],
+  "callback": "initMap",
+  "version": "weekly",
+  "tag": "place_search_pagination",
+  "name": "place-search-pagination",
+  "mapIds": "8d193001f940fde3",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

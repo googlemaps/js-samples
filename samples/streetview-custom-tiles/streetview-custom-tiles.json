@@ -1,0 +1,14 @@
+{
+  "title": "Custom Street View Panorama Tiles",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "weekly",
+  "tag": "streetview_custom_tiles",
+  "name": "streetview-custom-tiles",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

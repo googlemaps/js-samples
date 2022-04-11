@@ -1,8 +1,0 @@
-{
-  "title": "Data Layer: Polygon",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_data_polygon",
-  "name": "layer-data-polygon"
-}

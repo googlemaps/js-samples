@@ -1,0 +1,14 @@
+{
+  "title": "Tilt and Rotation",
+  "callback": "initMap",
+  "libraries": [],
+  "version": "beta",
+  "tag": "webgl_tilt_rotation",
+  "name": "webgl-tilt-rotation",
+  "pagination": {
+    "data": "mode",
+    "size": 1,
+    "alias": "mode"
+  },
+  "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

@@ -1,8 +1,0 @@
-{
-  "title": "Data Layer: Event Handling",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "layer_data_event",
-  "name": "layer-data-event"
-}

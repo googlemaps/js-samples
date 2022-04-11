@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<div id="floating-panel">
+  <input id="remove-overlay" type="button" value="Remove overlay" />
+  <input id="restore-overlay" type="button" value="Restore overlay" />
+</div>
+<div id="map"></div>
+{% endblock %}

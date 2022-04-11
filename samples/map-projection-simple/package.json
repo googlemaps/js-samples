@@ -1,8 +1,0 @@
-{
-  "title": "Custom Map Projections",
-  "callback": "initMap",
-  "libraries": [],
-  "version": "weekly",
-  "tag": "map_projection_simple",
-  "name": "map-projection-simple"
-}
