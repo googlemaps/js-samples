@@ -13,14 +13,20 @@
 # limitations under the License.
 
 steps:
-  - name: 'node:17-slim'
+  - name: "node:17-slim"
     args:
       - ci
     entrypoint: npm
-  - name: 'node:17-slim'
+  - name: "node:17-slim"
     args:
       - run
       - build
     entrypoint: npm
   - name: gcr.io/$PROJECT_ID/firebase
-    args: ['hosting:channel:deploy', '--project=$PROJECT_ID', '$SHORT_SHA']
+    args:
+      [
+        "hosting:channel:deploy",
+        "--project=$PROJECT_ID",
+        "$SHORT_SHA",
+        "--expires=1d",
+      ]
