@@ -5,7 +5,7 @@ tmp=`mktemp -d`
 
 for sample in dist/samples/*/; do
   name=`basename $sample`
-  branch="sample-next-${name}"
+  branch="sample-${name}"
 
   pushd $tmp
     rm -rf .git
