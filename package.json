@@ -46,7 +46,7 @@
     "@types/geojson": "^7946.0.8",
     "@types/google.maps": "^3.48.5",
     "@types/google.visualization": "0.0.68",
-    "@types/jest": "^27.0.1",
+    "@types/jest": "^27.4.1",
     "@types/react-dom": "^17.0.9",
     "@types/react": "^17.0.29",
     "@types/three": "^0.130.0",
