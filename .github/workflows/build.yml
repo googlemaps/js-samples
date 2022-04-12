@@ -48,5 +48,6 @@ jobs:
           git push origin
         if: github.actor!= 'dependabot[bot]' && !startsWith(github.ref, 'refs/tags/')
       - run: |
+          npm run build
           git status -s
           git diff --exit-code dist
