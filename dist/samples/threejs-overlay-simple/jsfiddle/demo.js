@@ -15,7 +15,7 @@
  */
 import { AmbientLight, DirectionalLight, Scene } from "https://cdn.skypack.dev/three@^0.129.0";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@^0.129.0/examples/jsm/loaders/GLTFLoader";
-import { ThreeJSOverlayView } from "https://cdn.skypack.dev/@googlemaps/three@^2.0.8";
+import { ThreeJSOverlayView } from "https://cdn.skypack.dev/@googlemaps/three@^2.0.9";
 let map;
 const mapOptions = {
   tilt: 0,
