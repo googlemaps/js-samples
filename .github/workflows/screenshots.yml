@@ -21,9 +21,7 @@ jobs:
   screenshot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: next # TODO remove after https://github.com/googlemaps/js-samples/pull/1048 
+      - uses: actions/checkout@v2       
       - uses: actions/cache@v2
         with:
           path: ~/.npm
