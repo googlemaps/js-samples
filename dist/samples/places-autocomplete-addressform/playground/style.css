@@ -15,7 +15,7 @@ body {
 body {
   font-family: "Roboto", sans-serif;
   font-size: 18px;
-  color: #686868;
+  color: rgb(104, 104, 104);
 }
 
 form {
@@ -46,7 +46,7 @@ input[type=reset] {
   height: auto;
   border-bottom: 0;
   background-color: transparent;
-  color: #686868;
+  color: rgb(104, 104, 104);
   font-size: 14px;
 }
 

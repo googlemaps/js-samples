@@ -31,7 +31,7 @@ body {
   cursor: pointer;
 }
 .custom-map-control-button:hover {
-  background: #ebebeb;
+  background: rgb(235, 235, 235);
 }
 
 /* [END maps_overlay_hideshow] */

@@ -34,7 +34,7 @@
   "dependencies": {
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "@googlemaps/react-wrapper": "^1.1.8",
+    "@googlemaps/react-wrapper": "^1.1.30",
     "@googlemaps/typescript-guards": "^1.0.13",
     "fast-equals": "^2.0.3"
   }

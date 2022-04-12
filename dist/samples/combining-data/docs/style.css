@@ -21,9 +21,9 @@ body,
   z-index: 5;
   box-shadow: 0 4px 6px -4px #333;
   padding: 5px 10px;
-  background: white;
-  background: linear-gradient(to bottom, white 0%, whitesmoke 100%);
-  border: #e5e5e5 1px solid;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(245, 245, 245) 100%);
+  border: rgb(229, 229, 229) 1px solid;
 }
 
 #controls {
@@ -53,7 +53,7 @@ body,
 }
 
 .color-key {
-  background: linear-gradient(to right, #db4639 0%, #db7f29 17%, #d1bf1f 33%, #92c51b 50%, #48ba17 67%, #12ab24 83%, #0f9f59 100%);
+  background: linear-gradient(to right, hsl(5deg, 69%, 54%) 0%, hsl(29deg, 71%, 51%) 17%, hsl(54deg, 74%, 47%) 33%, hsl(78deg, 76%, 44%) 50%, hsl(102deg, 78%, 41%) 67%, hsl(127deg, 81%, 37%) 83%, hsl(151deg, 83%, 34%) 100%);
   flex: 1;
   -webkit-box-flex: 1;
   margin: 0 5px;
