@@ -88,7 +88,7 @@
     "@material/select": "^13.0.0",
     "@tweenjs/tween.js": "^18.6.4",
     "fast-equals": "^2.0.3",
-    "playground-elements": "^0.15.1",
+    "playground-elements": "^0.15.4",
     "react-dom": "^18.0.0",
     "react": "^18.0.0",
     "three": "^0.129.0"
