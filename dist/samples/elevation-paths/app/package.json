@@ -28,7 +28,7 @@
   "devDependencies": {
     "@types/google.maps": "^3.48.5",
     "typescript": "^4.6.3",
-    "vite": "^2.8.6",
+    "vite": "^2.9.1",
     "@types/google.visualization": "0.0.68"
   },
   "private": true,
