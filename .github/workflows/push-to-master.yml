@@ -12,16 +12,18 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Build
+# Some tooling has hardcoded the default GitHub branch as `master`. This
+# workflow will keep master up to date with the latest changes.
+name: Push to Master
 on:
   push:
-    branches-ignore:
-      - master
+    branches:
+      - main
 concurrency: 
-  group: build-${{ github.ref }}
+  group: push-to-master-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  build:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -30,23 +32,10 @@ jobs:
         if: github.actor != 'dependabot[bot]'
       - uses: actions/checkout@v2
         if: github.actor == 'dependabot[bot]'
-      - uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node
-      - run: npm i
-      - run: npm run test:jest
-      - name: Update dist
+      - name: Update master branch from main
         run: |
-          npm run build
           git config --global user.name 'googlemaps-bot'
           git config --global user.email 'googlemaps-bot@google.com'
-          git add dist
-          git commit -m "chore: update dist folder" || true
-          git push origin
-        if: github.actor!= 'dependabot[bot]' && !startsWith(github.ref, 'refs/tags/')
-      - run: |
-          git status -s
-          git diff --exit-code dist
+          git checkout master
+          git reset --hard origin/main
+          git push origin master

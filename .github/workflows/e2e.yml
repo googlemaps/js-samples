@@ -15,6 +15,8 @@
 name: e2e
 on:
   push:
+    branches-ignore:
+      - master
   schedule:
     - cron: "0 12 * * *"
 concurrency:
