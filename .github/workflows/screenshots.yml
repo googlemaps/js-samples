@@ -53,6 +53,6 @@ jobs:
           committer: googlemaps-bot <googlemaps-bot@google.com>
           title: 'chore: update screenshots'
           branch: googlemaps-bot/update_screenshots
-          base: next
+          base: main
           add-paths: |
             e2e/**/*.png
