@@ -28,6 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          fetch-depth: 0
           token: ${{ secrets.SYNCED_GITHUB_TOKEN_REPO }} # required otherwise GitHub blocks infinite loops in pushes originating in an action
         if: github.actor != 'dependabot[bot]'
       - uses: actions/checkout@v2
