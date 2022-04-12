@@ -25,6 +25,9 @@ for sample in dist/samples/*/; do
   popd
 
   cp -r $sample/app/* $tmp
+
+  # manually copy all files beginning with .
+  cp $sample/app/.env $tmp/.env
   cp $sample/app/.eslintrc.json $tmp/.eslintrc.json
   cp $sample/app/.gitignore $tmp/.gitignore
 
