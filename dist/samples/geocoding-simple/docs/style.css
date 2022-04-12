@@ -46,7 +46,7 @@ input[type=button] {
   margin-left: 5px;
 }
 input[type=button]:hover {
-  background: #ebebeb;
+  background: rgb(235, 235, 235);
 }
 input[type=button].button-primary {
   background-color: #1a73e8;

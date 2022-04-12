@@ -31,7 +31,7 @@ body {
   cursor: pointer;
 }
 .ui-button:hover {
-  background: #ebebeb;
+  background: rgb(235, 235, 235);
 }
 
 /* [END maps_webgl_tilt_rotation] */
