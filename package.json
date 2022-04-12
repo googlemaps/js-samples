@@ -63,7 +63,7 @@
     "eslint-plugin-react": "^7.26.1",
     "eslint": "^7.26.0",
     "http-server": "^14.1.0",
-    "jest": "^27.0.3",
+    "jest": "^27.5.1",
     "jimp": "^0.16.1",
     "json": "^11.0.0",
     "lodash": "^4.17.21",
