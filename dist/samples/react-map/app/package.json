@@ -32,8 +32,8 @@
   },
   "private": true,
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "@googlemaps/react-wrapper": "^1.1.8",
     "@googlemaps/typescript-guards": "^1.0.12",
     "fast-equals": "^2.0.3"
