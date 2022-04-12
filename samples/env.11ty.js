@@ -12,6 +12,6 @@ module.exports = {
   },
 
   render() {
-    return `VITE_GOOGLE_MAPS_API_KEY=AIzaSyDcwGyRxRbcNGWOFQVT87A1mkxEOfm8t0w`;
+    return `VITE_GOOGLE_MAPS_API_KEY=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg`;
   },
 };
