@@ -34,7 +34,7 @@
     "test:jest": "tsc --noEmit --skipLibCheck",
     "test:playwright": "playwright test e2e",
     "test:playwright:playground": "playwright test playground",
-    "test:playwright:playground:update-snapshots": "playwright test playground --workers 1 --update-snapshots",
+    "test:playwright:playground:update-snapshots": "UPDATE_SNAPSHOTS_DIFFERENT=1 playwright test playground --workers 1",
     "test:playwright:app": "playwright test app",
     "watch:eleventy": "eleventy --serve --port 8080 --incremental",
     "watch:esbuild": "esbuild src/playground/index.ts src/playground/resizer.ts --target=es2020 --bundle --format=esm --analyze --watch --outdir=dist",
