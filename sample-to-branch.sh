@@ -31,6 +31,8 @@ for sample in dist/samples/*/; do
   cp $sample/app/.eslintrc.json $tmp/.eslintrc.json
   cp $sample/app/.gitignore $tmp/.gitignore
 
+  cp shared/sandbox.config.json $tmp/sandbox.config.json
+
   pushd $tmp
     git add -A
     git commit -am "chore: sync ${name} [skip-ci]" --no-verify || true
