@@ -32,6 +32,7 @@ for sample in dist/samples/*/; do
   cp $sample/app/.gitignore $tmp/.gitignore
 
   cp shared/sandbox.config.json $tmp/sandbox.config.json
+  cp shared/cloud_shell_instructions.md $tmp/cloud_shell_instructions.md
 
   pushd $tmp
     git add -A
