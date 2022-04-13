@@ -21,7 +21,9 @@ jobs:
   screenshot:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2       
+      - uses: actions/checkout@v2
+        with:
+          lfs: true     
       - uses: actions/cache@v2
         with:
           path: ~/.npm
