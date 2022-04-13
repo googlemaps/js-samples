@@ -57,8 +57,6 @@ export function toMatchImageDiff(
     .scale(0.5)
     .quality(60);
 
-  console.log(testInfo.config.updateSnapshots);
-
   if (
     !fs.existsSync(snapshotFile) ||
     testInfo.config.updateSnapshots === "all"
@@ -90,7 +88,6 @@ export function toMatchImageDiff(
   if (distance < threshold.distance || diff.percent < threshold.percent) {
     return { message: "", pass: true };
   } else {
-    // @ts-ignore different is a custom option
     if (process.env.UPDATE_SNAPSHOTS_DIFFERENT) {
       fs.mkdirSync(path.dirname(snapshotFile), { recursive: true });
       fs.writeFileSync(snapshotFile, Jimp.encoders[mimeType](actual));
