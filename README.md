@@ -23,7 +23,7 @@ The samples can be demoed at the [official documentation site](https://developer
 
 1. `npm test` Test outputs.
 1. (Optional) `npm run lint` Fix lint issues with `npm run format`
-1. (Optional) `npm run test:playwright:playground:update-snapshots` Update snapshots. This uses an custom env var to only to only update screenshots that differ from the previous ones (Playwright only supports `none`, `all`, or `missing`). To update all screenshots, use `npm run test:playwright:playground:update-snapshots -- --update-snapshots`.
+1. (Optional) `npm run test:playwright:playground:update-snapshots` Update snapshots. This uses an custom env var to only to only update screenshots that differ from the previous ones (Playwright only supports `none`, `all`, or `missing`). To update all screenshots, use `npm run test:playwright:playground:update-snapshots -- --update-snapshots`. It's possible to target a single sample by using `-g <sample-name>`.
 
 ### Run
 

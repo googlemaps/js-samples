@@ -18,9 +18,9 @@ const samples = fs
   // TODO: remove this once the samples are fixed
   .filter((name) => !BROKEN_PLAYGROUND_SAMPLES.includes(name));
 
-test.describe.parallel("suite", () => {
+test.describe.parallel("playground screenshot tests", () => {
   samples.forEach((sample) => {
-    test(`playground screenshots match - ${sample}`, async ({ page }) => {
+    test(sample, async ({ page }) => {
       test.setTimeout(30000);
       failOnPageError(page);
 
