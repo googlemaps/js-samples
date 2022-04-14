@@ -7,30 +7,14 @@
 @use "sass:meta"; // To enable @use via meta.load-css and keep comments in order
 
 /* [START maps_map_events] */
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-}
-#map {
-  height: 100%;
-}
-.event {
-  transition: background-color 0.5s ease-out;
-  padding-bottom: 2px;
-}
-#map {
-  float: left;
-  width: 600px;
-  height: 400px;
-  margin-right: 10px;
-}
-#events {
+@include meta.load-css("../../shared/scss/sidebar.scss");
+
+#sidebar {
   padding: 2px;
   overflow: hidden;
   font-size: 15px;
   font-family: "Droid Sans Mono", monospace;
+  max-width: 300px;
 }
 .active {
   background-color: #99ccff;
