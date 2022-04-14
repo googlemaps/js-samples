@@ -47,7 +47,7 @@ function initMap(): void {
 
 // Dynamically create the table of events from the defined hashmap
 function populateTable() {
-  const eventsTable = document.getElementById("events") as HTMLElement;
+  const eventsTable = document.getElementById("sidebar") as HTMLElement;
   let content = "";
 
   for (let i = 0; i < events.length; i++) {
