@@ -1,0 +1,43 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#map {
+  height: 100%;
+}
+
+.event {
+  transition: background-color 0.5s ease-out;
+  padding-bottom: 2px;
+}
+
+#map {
+  float: left;
+  width: 600px;
+  height: 400px;
+  margin-right: 10px;
+}
+
+#events {
+  padding: 2px;
+  overflow: hidden;
+  font-size: 15px;
+  font-family: "Droid Sans Mono", monospace;
+}
+
+.active {
+  background-color: #99ccff;
+}
+
+.inactive {
+  background-color: white;
+}
+
