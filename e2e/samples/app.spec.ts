@@ -15,7 +15,7 @@ const samples = fs
 test.describe.parallel("sample applications", () => {
   samples.forEach((sample) => {
     test.describe(sample, () => {
-      test(`app loads without error`, async ({ page }) => {
+      test(`app loads without error ${sample}`, async ({ page }) => {
         test.slow();
         failOnPageError(page);
 
