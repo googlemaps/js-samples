@@ -22,6 +22,8 @@ const render = (status) => {
   return <h1>{status}</h1>;
 };
 
+const apiKey = "YOUR_API_KEY";
+
 const App = () => {
   const [clicks, setClicks] = React.useState([]);
   const [zoom, setZoom] = React.useState(3); // initial zoom
@@ -89,7 +91,7 @@ const App = () => {
   );
   return (
     <div style={{ display: "flex", height: "100%" }}>
-      <Wrapper apiKey={"YOUR_API_KEY"} render={render}>
+      <Wrapper apiKey={apiKey} render={render}>
         <Map
           center={center}
           onClick={onClick}
