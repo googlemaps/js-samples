@@ -61,7 +61,7 @@
     "eslint-plugin-jest": "^26.1.4",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
-    "eslint": "^7.26.0",
+    "eslint": "^8.13.0",
     "http-server": "^14.1.0",
     "jest": "^27.5.1",
     "jimp": "^0.16.1",
