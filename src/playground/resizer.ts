@@ -4,7 +4,7 @@ const iframe = document.getElementById("iframe") as HTMLIFrameElement;
 
 window.addEventListener("message", (event) => {
   if (isResizeMessage(event)) {
-    iframe.style.height = `${event.data.rect.height + 50}px`;
+    iframe.style.height = `${event.data.rect.height}px`;
   }
 });
 
