@@ -1,4 +1,7 @@
-import "playground-elements";
+import "playground-elements/playground-preview";
+import "playground-elements/playground-project";
+import "playground-elements/playground-file-editor";
+import "playground-elements/playground-tab-bar";
 
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
