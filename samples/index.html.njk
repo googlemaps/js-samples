@@ -1,10 +1,32 @@
 ---
 permalink: /samples/playground.html
+preconnect:
+  - unpkg.com
+  - maps.googleapis.com
+  - maps.gstatic.com
+  - fonts.googleapis.com
+  - khms0.googleapis.com
+  - khms1.googleapis.com
+  - polyfill.io
 ---
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <title>Playground</title>
+    <meta name="description" content="An interactive playground for Google Maps Platform JavaScript samples.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="robots" content="noindex" />
+
+    <link rel="prefetch" content="/playground-typescript-worker.js">
+    {% for domain in preconnect -%}
+      <link rel="dns-prefetch" href="https://{{ domain }}" />
+      <link rel="preconnect" href="https://{{ domain }}" />
+    {% endfor %}
+
+    <script type="module" src="../index.js"></script>    
+
     <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+
     <style>
       body {
         scrollbar-width: none;
@@ -13,7 +35,6 @@ permalink: /samples/playground.html
         display:none;
       }
     </style>
-    <script type="module" src="../index.js"></script>    
   </head>
   <body>
   </body>
