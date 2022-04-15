@@ -1,0 +1,11 @@
+{
+  "files": [
+    {
+      "path": "dist/*.js"
+    }
+  ],
+  "ci": {
+    "trackBranches": ["main", "next"],
+    "repoBranchBase": "main"
+  }
+}

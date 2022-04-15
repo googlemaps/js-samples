@@ -51,3 +51,7 @@ jobs:
           npm run build
           git status -s
           git diff --exit-code dist
+      - uses: jackyef/bundlewatch-gh-action@b9753bc9b3ea458ff21069eaf6206e01e046f0b5
+        with:
+          bundlewatch-github-token: ${{ secrets.BUNDLEWATCH_GITHUB_TOKEN }}
+          bundlewatch-config: .github/bundlewatch.config.json
