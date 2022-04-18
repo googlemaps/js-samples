@@ -44,7 +44,7 @@
     "@11ty/eleventy": "^1.0.0",
     "@playwright/test": "^1.21.0",
     "@types/geojson": "^7946.0.8",
-    "@types/google.maps": "^3.48.5",
+    "@types/google.maps": "^3.48.6",
     "@types/google.visualization": "0.0.68",
     "@types/jest": "^27.4.1",
     "@types/react-dom": "^18.0.1",
