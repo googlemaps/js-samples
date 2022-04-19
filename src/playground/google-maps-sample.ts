@@ -20,7 +20,7 @@ declare global {
 }
 
 @customElement("google-maps-sample")
-export class GoogleMapsSample extends LitElement {
+export class GoogleMapsSample extends LitElement { 
   connectedCallback(): void {
     super.connectedCallback();
   }
@@ -37,7 +37,6 @@ export class GoogleMapsSample extends LitElement {
     }
 
     #code {
-      margin: 8px 0;
       border: var(--border);
       border-radius: var(--border-radius);
       height: fit-content;
@@ -48,6 +47,24 @@ export class GoogleMapsSample extends LitElement {
       overflow: auto
       height: auto !important;
     }
+
+    #toolbar {
+      justify-content: end;
+      gap: 8px;
+      padding-right: 8px;
+    }
+
+    #toolbar a, #toolbar button {
+      color: rgb(95, 99, 104);
+    }
+
+    #toolbar button {
+        background: none!important;
+        border: none;
+        padding: 0!important;
+        cursor: pointer;
+    }
+
     playground-file-editor {
       height: fit-content !important;
     }
@@ -57,6 +74,9 @@ export class GoogleMapsSample extends LitElement {
     }
 
     #playground {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       font-family: "Google Sans", "Noto Sans", "Noto Sans JP", "Noto Sans KR",
         "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew",
         "Noto Sans Bengali", sans-serif;
@@ -98,12 +118,17 @@ export class GoogleMapsSample extends LitElement {
   @property()
   projectSrc?: string = "";
 
-  // Declare reactive properties
   @property()
   hideCode?: boolean = false;
 
   @property()
+  showToolbar?: boolean = false;
+
+  @property()
   previewHeight?: string = "400px";
+
+  @property()
+  name: string = "";
 
   // Render the UI as a function of component state
   render() {
@@ -113,8 +138,12 @@ export class GoogleMapsSample extends LitElement {
       display: this.hideCode ? "none" : "block",
     };
 
+    const toolbarStyles = {
+      display: this.showToolbar ? "flex" : "none",
+    };
+
     return html`
-    <link href="https://fonts.googleapis.com/css?family=Material+Icons&display=block" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
     <div id="playground">
       <playground-project
         id=${projectId}
@@ -131,6 +160,14 @@ export class GoogleMapsSample extends LitElement {
         .project=${projectId}
       >
       </playground-preview>
+      <div id="toolbar" style=${styleMap(toolbarStyles)}>
+        <a target="_blank" href="https://github.com/googlemaps/js-samples/issues/new?assignees=&labels=type%3A+bug%2C+triage+me&template=sample_bug.yml&title=${encodeURIComponent(
+          `Bug: ${this.name}`
+        )}" title="Report issue"><span class="material-icons">bug_report</span></a>
+        <a target="_blank" href="https://github.com/googlemaps/js-samples/tree/main/samples/${
+          this.name
+        }" title="View source on GitHub"><span class="material-icons">code</span></a>
+      </div>
       <div id="code" style=${styleMap(codeStyles)}>          
         <playground-tab-bar
           part="tab-bar"
