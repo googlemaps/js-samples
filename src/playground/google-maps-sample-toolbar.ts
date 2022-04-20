@@ -47,6 +47,7 @@ export class GoogleMapsSampleToolbar extends LitElement {
         </button>
 
         <button
+          id="toggle-fullscreen"
           @click=${this.toggleFullscreen}
           title="Toggle Fullscreen"
           aria-label="Toggle Fullscreen"
