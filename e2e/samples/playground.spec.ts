@@ -24,23 +24,19 @@ test.describe.parallel("playground screenshot tests", () => {
       test.setTimeout(30000);
       failOnPageError(page);
 
-      await page.setViewportSize({
-        width: 600,
-        height: 1200,
-      });
-
       await page.goto(`/samples/playground.html?sample=${sample}`);
+      await page.setViewportSize({
+        width: 800,
+        height: 800,
+      });
       await waitForPlaygroundPreviewToLoad(page);
       await page.waitForTimeout(1000);
       await page.waitForLoadState("networkidle");
 
       if (!NONDETERMINISTIC_SAMPLES.includes(sample)) {
         expect(
-          await page.locator("playground-preview").screenshot()
-        ).toMatchImageDiff({ name: `${sample}-preview.png` });
-        expect(await page.locator("#code").screenshot()).toMatchImageDiff({
-          name: `${sample}-code.png`,
-        });
+          await page.locator("google-maps-sample").screenshot()
+        ).toMatchImageDiff({ name: `${sample}.png` });
       }
     });
   });
