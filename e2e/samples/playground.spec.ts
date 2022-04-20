@@ -3,6 +3,7 @@ import {
   waitForPlaygroundPreviewToLoad,
   failOnPageError,
   NONDETERMINISTIC_SAMPLES,
+  SAMPLES_NEEDING_EXTRA_DELAY,
 } from "../utils";
 import fs from "fs";
 
@@ -25,17 +26,20 @@ test.describe.parallel("playground screenshot tests", () => {
       failOnPageError(page);
 
       await page.goto(`/samples/playground.html?sample=${sample}`);
+      await page.setViewportSize({
+        width: 800,
+        height: 800,
+      });
       await waitForPlaygroundPreviewToLoad(page);
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(
+        1000 * (SAMPLES_NEEDING_EXTRA_DELAY.includes(sample) ? 5 : 1)
+      );
       await page.waitForLoadState("networkidle");
 
       if (!NONDETERMINISTIC_SAMPLES.includes(sample)) {
         expect(
-          await page.locator("playground-preview").screenshot()
-        ).toMatchImageDiff({ name: `${sample}-preview.png` });
-        expect(await page.locator("#code").screenshot()).toMatchImageDiff({
-          name: `${sample}-code.png`,
-        });
+          await page.locator("google-maps-sample").screenshot()
+        ).toMatchImageDiff({ name: `${sample}.png` });
       }
     });
   });

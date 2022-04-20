@@ -1,8 +1,9 @@
 import "playground-elements/playground-preview";
 import "playground-elements/playground-project";
-import "playground-elements/playground-file-editor";
 import "playground-elements/playground-tab-bar";
-
+import "playground-elements/playground-file-editor";
+import "./google-maps-sample-toolbar";
+import clsx from "clsx";
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
@@ -20,69 +21,12 @@ declare global {
 }
 
 @customElement("google-maps-sample")
-export class GoogleMapsSample extends LitElement { 
-  connectedCallback(): void {
-    super.connectedCallback();
-  }
-
+export class GoogleMapsSample extends LitElement {
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
     :host {
       --border: 1px solid #dadce0;
       --border-radius: 8px;
-    }
-
-    playground-preview::part(preview-toolbar) {
-      display: none;
-    }
-
-    #code {
-      border: var(--border);
-      border-radius: var(--border-radius);
-      height: fit-content;
-    }
-
-    #editor {
-      -webkit-font-smoothing: antialiased;
-      overflow: auto
-      height: auto !important;
-    }
-
-    #toolbar {
-      justify-content: end;
-      gap: 8px;
-      padding-right: 8px;
-    }
-
-    #toolbar a, #toolbar button {
-      color: rgb(95, 99, 104);
-    }
-
-    #toolbar button {
-        background: none!important;
-        border: none;
-        padding: 0!important;
-        cursor: pointer;
-    }
-
-    playground-file-editor {
-      height: fit-content !important;
-    }
-
-    playground-tab-bar {
-      border-bottom: var(--border)
-    }
-
-    #playground {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      font-family: "Google Sans", "Noto Sans", "Noto Sans JP", "Noto Sans KR",
-        "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew",
-        "Noto Sans Bengali", sans-serif;
-      
-      --border-radius: 8px;
-      --border: 1px solid #dadce0;
       --playground-bar-height: 46px;
       --playground-code-background: #f1f3f4;
       --playground-code-builtin-color: #37474f;
@@ -108,9 +52,38 @@ export class GoogleMapsSample extends LitElement {
       --playground-tab-bar-foreground-color: rgb(95, 99, 104);
     }
 
-    mwc-button {
-      --mdc-theme-primary: #1a73e8;
-      --mdc-theme-on-primary: white;
+    playground-preview::part(preview-toolbar) {
+      display: none;
+    }
+
+    #code {
+      border: var(--border);
+      border-radius: var(--border-radius);
+      max-height: calc(100% - var(--playground-bar-height));
+      padding-bottom: calc(2 * var(--playground-code-padding));
+    }
+
+    playground-tab-bar {
+      border-bottom: var(--border);
+    }
+
+    #playground {
+      max-height: 100vh;
+      background-color: #fff;
+      font-family: "Google Sans", "Noto Sans", "Noto Sans JP", "Noto Sans KR",
+        "Noto Naskh Arabic", "Noto Sans Thai", "Noto Sans Hebrew",
+        "Noto Sans Bengali", sans-serif;
+    }
+    a,
+    button {
+      color: rgb(95, 99, 104);
+    }
+
+    button {
+      background: none !important;
+      border: none;
+      padding: 0 !important;
+      cursor: pointer;
     }
   `;
 
@@ -130,59 +103,66 @@ export class GoogleMapsSample extends LitElement {
   @property()
   name: string = "";
 
+  @property()
+  isFullscreen: boolean = false;
+
   // Render the UI as a function of component state
   render() {
-    const projectId = "project";
+    const project = "project";
     const editorId = "editor";
     const codeStyles = {
       display: this.hideCode ? "none" : "block",
     };
 
-    const toolbarStyles = {
-      display: this.showToolbar ? "flex" : "none",
-    };
-
     return html`
     <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
-    <div id="playground">
+    <link href="./playground.css" rel="stylesheet" />
+    <div id="playground" class="${clsx(
+      "flex flex-col w-full gap-2 lg:p-2",
+      { "lg:flex-row-reverse": !this.hideCode },
+      { "h-screen fullscreen": this.isFullscreen }
+    )}">
       <playground-project
-        id=${projectId}
+        id=${project}
         .sandboxBaseUrl=https://unpkg.com/playground-elements@${npmVersion}/
         .sandboxScope=__playground_swfs_${serviceWorkerHash}/
         .projectSrc=${this.projectSrc}
       >
-        <slot></slot>
       </playground-project>
       <playground-preview
-        style=${styleMap({ height: this.previewHeight })}
+        style=${styleMap({
+          height: this.previewHeight,
+          "min-height": this.previewHeight,
+        })}
+        class="${clsx("grow", { "!h-full": this.isFullscreen })}"
         part="preview"        
         html-file="index.html"
-        .project=${projectId}
+        .project=${project}
       >
       </playground-preview>
-      <div id="toolbar" style=${styleMap(toolbarStyles)}>
-        <a target="_blank" href="https://github.com/googlemaps/js-samples/issues/new?assignees=&labels=type%3A+bug%2C+triage+me&template=sample_bug.yml&title=${encodeURIComponent(
-          `Bug: ${this.name}`
-        )}" title="Report issue"><span class="material-icons">bug_report</span></a>
-        <a target="_blank" href="https://github.com/googlemaps/js-samples/tree/main/samples/${
-          this.name
-        }" title="View source on GitHub"><span class="material-icons">code</span></a>
-      </div>
-      <div id="code" style=${styleMap(codeStyles)}>          
-        <playground-tab-bar
-          part="tab-bar"
-          .project=${projectId}
-          .editor=${editorId}
-          .editableFileSystem="false"
-        >
-        </playground-tab-bar>
-        <playground-file-editor
-          id=${editorId}
-          part="editor"
-          .project=${projectId}
-          .pragmas="on"
-        >
-        </playground-file-editor>
+      <div id="ide" class="${clsx("flex flex-col", {
+        "lg:w-2/5": !this.hideCode,
+      })}">
+        <div id="toolbar" class="${this.showToolbar ? "block" : "hidden"}">
+          <google-maps-sample-toolbar name="${this.name}" />
+        </div>
+        <div id="code" class="h-full" style="${styleMap(codeStyles)}">
+          <playground-tab-bar
+            part="tab-bar"
+            .project=${project}
+            .editor=${editorId}
+            .editableFileSystem="false"
+          >
+          </playground-tab-bar>
+          <playground-file-editor
+            style="height: calc(100% - var(--playground-bar-height));"
+            id=${editorId}
+            part="editor"
+            .project=${project}
+            .pragmas="on"
+          >
+          </playground-file-editor>
+        </div>
       </div>
     </div>
     `;

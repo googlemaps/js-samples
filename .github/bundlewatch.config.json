@@ -2,6 +2,9 @@
   "files": [
     {
       "path": "dist/*.js"
+    },
+    {
+      "path": "dist/samples/*.css"
     }
   ],
   "ci": {
