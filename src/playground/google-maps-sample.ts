@@ -7,7 +7,6 @@ import clsx from "clsx";
 import { LitElement, css, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { styleMap } from "lit/directives/style-map.js";
-import screenfull from "screenfull";
 
 import {
   npmVersion,
@@ -23,7 +22,6 @@ declare global {
 
 @customElement("google-maps-sample")
 export class GoogleMapsSample extends LitElement {
-
   // Define scoped styles right with your component, in plain CSS
   static styles = css`
     :host {
@@ -105,6 +103,9 @@ export class GoogleMapsSample extends LitElement {
   @property()
   name: string = "";
 
+  @property()
+  isFullscreen: boolean = false;
+
   // Render the UI as a function of component state
   render() {
     const project = "project";
@@ -113,15 +114,13 @@ export class GoogleMapsSample extends LitElement {
       display: this.hideCode ? "none" : "block",
     };
 
-    const isFullscreen = screenfull.isEnabled && screenfull.isFullscreen;
-
     return html`
     <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
     <link href="./playground.css" rel="stylesheet" />
     <div id="playground" class="${clsx(
       "flex flex-col w-full gap-2 lg:p-2",
       { "lg:flex-row-reverse": !this.hideCode },
-      { "h-screen fullscreen": isFullscreen }
+      { "h-screen fullscreen": this.isFullscreen }
     )}">
       <playground-project
         id=${project}
@@ -135,7 +134,7 @@ export class GoogleMapsSample extends LitElement {
           height: this.previewHeight,
           "min-height": this.previewHeight,
         })}
-        class="${clsx("grow", { "!h-full": isFullscreen })}"
+        class="${clsx("grow", { "!h-full": this.isFullscreen })}"
         part="preview"        
         html-file="index.html"
         .project=${project}

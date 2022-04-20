@@ -24,7 +24,7 @@ export class GoogleMapsSampleToolbar extends LitElement {
   name: string = "";
 
   @property()
-  isFullscreen: boolean = false;
+  isFullscreen = false;
 
   render() {
     return html`
@@ -53,7 +53,9 @@ export class GoogleMapsSampleToolbar extends LitElement {
           aria-label="Toggle Fullscreen"
         >
           <span class="material-icons"
-            >${this.isFullscreen ? "fullscreen_exit" : "fullscreen"}</span
+            >${
+              this.isFullscreen === true ? "fullscreen_exit" : "fullscreen"
+            }</span
           >
         </button>
       </div>
@@ -69,12 +71,7 @@ export class GoogleMapsSampleToolbar extends LitElement {
   private toggleFullscreen() {
     if (screenfull.isEnabled) {
       const playground = this.playground;
-
-      screenfull.toggle(playground).then(() => {
-        this.isFullscreen = screenfull.isFullscreen;
-        this.requestUpdate();
-        playground.requestUpdate();
-      });
+      screenfull.toggle(playground);
     }
   }
 
@@ -82,5 +79,15 @@ export class GoogleMapsSampleToolbar extends LitElement {
     const playground = this.playground;
     playground.hideCode = !playground.hideCode;
     playground.requestUpdate();
+  }
+
+  protected firstUpdated(): void {
+    if (screenfull.isEnabled) {
+      screenfull.onchange(() => {
+        this.isFullscreen = screenfull.isFullscreen;
+        this.playground.isFullscreen = screenfull.isFullscreen;
+        this.requestUpdate();
+      });
+    }
   }
 }
