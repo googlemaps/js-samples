@@ -60,7 +60,12 @@ export class GoogleMapsSample extends LitElement {
       border: var(--border);
       border-radius: var(--border-radius);
       max-height: calc(100% - var(--playground-bar-height));
-      padding-bottom: calc(2 * var(--playground-code-padding));
+    }
+
+    @media (min-width: 1024px) {
+      #code {
+        padding-bottom: calc(2 * var(--playground-code-padding));
+      }
     }
 
     playground-tab-bar {
