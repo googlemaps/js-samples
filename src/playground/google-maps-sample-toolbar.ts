@@ -87,6 +87,7 @@ export class GoogleMapsSampleToolbar extends LitElement {
         this.isFullscreen = screenfull.isFullscreen;
         this.playground.isFullscreen = screenfull.isFullscreen;
         this.requestUpdate();
+        this.playground.requestUpdate();
       });
     }
   }
