@@ -24,6 +24,11 @@ test.describe.parallel("playground screenshot tests", () => {
       test.setTimeout(30000);
       failOnPageError(page);
 
+      await page.setViewportSize({
+        width: 600,
+        height: 1200,
+      });
+
       await page.goto(`/samples/playground.html?sample=${sample}`);
       await waitForPlaygroundPreviewToLoad(page);
       await page.waitForTimeout(1000);
