@@ -3,6 +3,7 @@ import {
   waitForPlaygroundPreviewToLoad,
   failOnPageError,
   NONDETERMINISTIC_SAMPLES,
+  SAMPLES_NEEDING_EXTRA_DELAY,
 } from "../utils";
 import fs from "fs";
 
@@ -30,7 +31,9 @@ test.describe.parallel("playground screenshot tests", () => {
         height: 800,
       });
       await waitForPlaygroundPreviewToLoad(page);
-      await page.waitForTimeout(1000);
+      await page.waitForTimeout(
+        1000 * (SAMPLES_NEEDING_EXTRA_DELAY.includes(sample) ? 5 : 1)
+      );
       await page.waitForLoadState("networkidle");
 
       if (!NONDETERMINISTIC_SAMPLES.includes(sample)) {

@@ -42,3 +42,7 @@ export const NONDETERMINISTIC_SAMPLES = [
   "map-coordinates",
   "deckgl-tripslayer", // always in motion polylines
 ];
+
+export const SAMPLES_NEEDING_EXTRA_DELAY = [
+  "directions-complex", // allow for extra time to calculate and render directions
+];
