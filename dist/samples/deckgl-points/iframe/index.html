@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>deck.gl and Google Maps Platform</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- Use Material Design Progress indicator -->
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+    <script src="https://unpkg.com/deck.gl@8.7.3/dist.min.js"></script>
+    <script src="https://unpkg.com/@deck.gl/google-maps@8.7.3/dist.min.js"></script>
+
+    <script type="module" crossorigin>
+      const a = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          s(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const n of t.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && s(n);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function r(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function s(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = r(e);
+          fetch(e.href, t);
+        }
+      };
+      a();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ const l = deck.GeoJsonLayer,
+        d = deck.GoogleMapsOverlay;
+      function u() {
+        const i = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 40, lng: -110 },
+          zoom: 4,
+        });
+        new d({
+          layers: [
+            new l({
+              id: "earthquakes",
+              data: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
+              filled: !0,
+              pointRadiusMinPixels: 2,
+              pointRadiusMaxPixels: 200,
+              opacity: 0.4,
+              pointRadiusScale: 0.3,
+              getRadius: (r) => Math.pow(10, r.properties.mag),
+              getFillColor: [255, 70, 30, 180],
+              autoHighlight: !0,
+              transitions: {
+                getRadius: {
+                  type: "spring",
+                  stiffness: 0.1,
+                  damping: 0.15,
+                  enter: () => [0],
+                  duration: 1e4,
+                },
+              },
+              onDataLoad: () => {
+                progress.done();
+              },
+            }),
+          ],
+        }).setMap(i);
+      }
+      window.initMap = u;
+    </script>
+    <link rel="stylesheet" href="./assets/index.2502a2d9.css" />
+  </head>
+  <body>
+    <div
+      role="progressbar"
+      class="mdc-linear-progress"
+      aria-label="Data Progress Bar"
+    >
+      <div class="mdc-linear-progress__buffer">
+        <div class="mdc-linear-progress__buffer-bar"></div>
+        <div class="mdc-linear-progress__buffer-dots"></div>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+      <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+      </div>
+    </div>
+    <script>
+      var progress, progressDiv;
+      progressDiv = document.querySelector(".mdc-linear-progress");
+      progress = new mdc.linearProgress.MDCLinearProgress(progressDiv);
+      progress.open();
+      progress.determinate = false;
+      progress.done = function () {
+        progress.close();
+        progressDiv.remove();
+      };
+    </script>
+
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Map Events</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const l = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          s(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const c of o.addedNodes)
+                c.tagName === "LINK" && c.rel === "modulepreload" && s(c);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function t(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function s(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = t(e);
+          fetch(e.href, o);
+        }
+      };
+      l();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ const r = [
+        "bounds_changed",
+        "center_changed",
+        "click",
+        "contextmenu",
+        "dblclick",
+        "drag",
+        "dragend",
+        "dragstart",
+        "heading_changed",
+        "idle",
+        "maptypeid_changed",
+        "mousemove",
+        "mouseout",
+        "mouseover",
+        "projection_changed",
+        "resize",
+        "rightclick",
+        "tilesloaded",
+        "tilt_changed",
+        "zoom_changed",
+      ];
+      function a(i, n) {
+        const t = document.getElementById(n);
+        google.maps.event.addListener(i, n, () => {
+          (t.className = "event active"),
+            setTimeout(() => {
+              t.className = "event inactive";
+            }, 1e3);
+        });
+      }
+      function d() {
+        u();
+        const i = document.getElementById("map"),
+          n = new google.maps.Map(i, {
+            center: new google.maps.LatLng(37.4419, -122.1419),
+            zoom: 13,
+            mapTypeId: "roadmap",
+          });
+        for (let t = 0; t < r.length; t++) a(n, r[t]);
+      }
+      function u() {
+        const i = document.getElementById("sidebar");
+        let n = "";
+        for (let t = 0; t < r.length; t++)
+          n += '<div class="event" id="' + r[t] + '">' + r[t] + "</div>";
+        i.innerHTML = n;
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.ccd0d287.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar"></div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

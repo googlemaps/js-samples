@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Showing Pixel and Tile Coordinates</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const e = document.createElement("link").relList;
+        if (e && e.supports && e.supports("modulepreload")) return;
+        for (const o of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(o);
+        new MutationObserver((o) => {
+          for (const t of o)
+            if (t.type === "childList")
+              for (const l of t.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && i(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(o) {
+          const t = {};
+          return (
+            o.integrity && (t.integrity = o.integrity),
+            o.referrerpolicy && (t.referrerPolicy = o.referrerpolicy),
+            o.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : o.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function i(o) {
+          if (o.ep) return;
+          o.ep = !0;
+          const t = n(o);
+          fetch(o.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function d() {
+        const r = new google.maps.LatLng(41.85, -87.65),
+          e = new google.maps.Map(document.getElementById("map"), {
+            center: r,
+            zoom: 3,
+          }),
+          n = new google.maps.InfoWindow();
+        n.setContent(a(r, e.getZoom())),
+          n.setPosition(r),
+          n.open(e),
+          e.addListener("zoom_changed", () => {
+            n.setContent(a(r, e.getZoom())), n.open(e);
+          });
+      }
+      const s = 256;
+      function a(r, e) {
+        const n = 1 << e,
+          i = f(r),
+          o = new google.maps.Point(Math.floor(i.x * n), Math.floor(i.y * n)),
+          t = new google.maps.Point(
+            Math.floor((i.x * n) / s),
+            Math.floor((i.y * n) / s)
+          );
+        return [
+          "Chicago, IL",
+          "LatLng: " + r,
+          "Zoom level: " + e,
+          "World Coordinate: " + i,
+          "Pixel Coordinate: " + o,
+          "Tile Coordinate: " + t,
+        ].join("<br>");
+      }
+      function f(r) {
+        let e = Math.sin((r.lat() * Math.PI) / 180);
+        return (
+          (e = Math.min(Math.max(e, -0.9999), 0.9999)),
+          new google.maps.Point(
+            s * (0.5 + r.lng() / 360),
+            s * (0.5 - Math.log((1 + e) / (1 - e)) / (4 * Math.PI))
+          )
+        );
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

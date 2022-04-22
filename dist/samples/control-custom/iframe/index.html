@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Custom Controls</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const d = function () {
+        const i = document.createElement("link").relList;
+        if (i && i.supports && i.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          o(e);
+        new MutationObserver((e) => {
+          for (const n of e)
+            if (n.type === "childList")
+              for (const l of n.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && o(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function t(e) {
+          const n = {};
+          return (
+            e.integrity && (n.integrity = e.integrity),
+            e.referrerpolicy && (n.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (n.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (n.credentials = "omit")
+              : (n.credentials = "same-origin"),
+            n
+          );
+        }
+        function o(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const n = t(e);
+          fetch(e.href, n);
+        }
+      };
+      d();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let s;
+      const c = { lat: 41.85, lng: -87.65 };
+      function a(r, i) {
+        const t = document.createElement("div");
+        (t.style.backgroundColor = "#fff"),
+          (t.style.border = "2px solid #fff"),
+          (t.style.borderRadius = "3px"),
+          (t.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)"),
+          (t.style.cursor = "pointer"),
+          (t.style.marginTop = "8px"),
+          (t.style.marginBottom = "22px"),
+          (t.style.textAlign = "center"),
+          (t.title = "Click to recenter the map"),
+          r.appendChild(t);
+        const o = document.createElement("div");
+        (o.style.color = "rgb(25,25,25)"),
+          (o.style.fontFamily = "Roboto,Arial,sans-serif"),
+          (o.style.fontSize = "16px"),
+          (o.style.lineHeight = "38px"),
+          (o.style.paddingLeft = "5px"),
+          (o.style.paddingRight = "5px"),
+          (o.innerHTML = "Center Map"),
+          t.appendChild(o),
+          t.addEventListener("click", () => {
+            i.setCenter(c);
+          });
+      }
+      function p() {
+        s = new google.maps.Map(document.getElementById("map"), {
+          zoom: 12,
+          center: c,
+        });
+        const r = document.createElement("div");
+        a(r, s), s.controls[google.maps.ControlPosition.TOP_CENTER].push(r);
+      }
+      window.initMap = p;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

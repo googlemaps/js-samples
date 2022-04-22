@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Reverse Geocoding</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          s(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const n of t.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && s(n);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function r(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function s(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = r(e);
+          fetch(e.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function a() {
+        const l = new google.maps.Map(document.getElementById("map"), {
+            zoom: 8,
+            center: { lat: 40.731, lng: -73.997 },
+          }),
+          o = new google.maps.Geocoder(),
+          r = new google.maps.InfoWindow();
+        document.getElementById("submit").addEventListener("click", () => {
+          d(o, l, r);
+        });
+      }
+      function d(l, o, r) {
+        const e = document.getElementById("latlng").value.split(",", 2),
+          t = { lat: parseFloat(e[0]), lng: parseFloat(e[1]) };
+        l.geocode({ location: t })
+          .then((n) => {
+            if (n.results[0]) {
+              o.setZoom(11);
+              const i = new google.maps.Marker({ position: t, map: o });
+              r.setContent(n.results[0].formatted_address), r.open(o, i);
+            } else window.alert("No results found");
+          })
+          .catch((n) => window.alert("Geocoder failed due to: " + n));
+      }
+      window.initMap = a;
+    </script>
+    <link rel="stylesheet" href="./assets/index.6c00d603.css" />
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input id="latlng" type="text" value="40.714224,-73.961452" />
+      <input id="submit" type="button" value="Reverse Geocode" />
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

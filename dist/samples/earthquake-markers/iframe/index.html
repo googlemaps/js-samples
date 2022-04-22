@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Earthquake Markers</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const s of t.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && i(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function r(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function i(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = r(e);
+          fetch(e.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let a;
+      function l() {
+        a = new google.maps.Map(document.getElementById("map"), {
+          zoom: 2,
+          center: new google.maps.LatLng(2.8, -187.3),
+          mapTypeId: "terrain",
+        });
+        const n = document.createElement("script");
+        (n.src =
+          "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js"),
+          document.getElementsByTagName("head")[0].appendChild(n);
+      }
+      const d = function (n) {
+        for (let o = 0; o < n.features.length; o++) {
+          const r = n.features[o].geometry.coordinates,
+            i = new google.maps.LatLng(r[1], r[0]);
+          new google.maps.Marker({ position: i, map: a });
+        }
+      };
+      window.initMap = l;
+      window.eqfeed_callback = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

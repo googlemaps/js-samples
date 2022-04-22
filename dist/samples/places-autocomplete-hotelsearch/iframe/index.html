@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Place Autocomplete Hotel Search</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const I = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          s(t);
+        new MutationObserver((t) => {
+          for (const o of t)
+            if (o.type === "childList")
+              for (const i of o.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && s(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function r(t) {
+          const o = {};
+          return (
+            t.integrity && (o.integrity = t.integrity),
+            t.referrerpolicy && (o.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function s(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const o = r(t);
+          fetch(t.href, o);
+        }
+      };
+      I();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let l,
+        u,
+        p,
+        c = [],
+        a;
+      const E = { country: "us" },
+        f =
+          "https://developers.google.com/maps/documentation/javascript/images/marker_green",
+        C = new RegExp("^https?://.+?/"),
+        d = {
+          au: { center: { lat: -25.3, lng: 133.8 }, zoom: 4 },
+          br: { center: { lat: -14.2, lng: -51.9 }, zoom: 3 },
+          ca: { center: { lat: 62, lng: -110 }, zoom: 3 },
+          fr: { center: { lat: 46.2, lng: 2.2 }, zoom: 5 },
+          de: { center: { lat: 51.2, lng: 10.4 }, zoom: 5 },
+          mx: { center: { lat: 23.6, lng: -102.5 }, zoom: 4 },
+          nz: { center: { lat: -40.9, lng: 174.9 }, zoom: 5 },
+          it: { center: { lat: 41.9, lng: 12.6 }, zoom: 5 },
+          za: { center: { lat: -30.6, lng: 22.9 }, zoom: 5 },
+          es: { center: { lat: 40.5, lng: -3.7 }, zoom: 5 },
+          pt: { center: { lat: 39.4, lng: -8.2 }, zoom: 6 },
+          us: { center: { lat: 37.1, lng: -95.7 }, zoom: 3 },
+          uk: { center: { lat: 54.8, lng: -4.6 }, zoom: 5 },
+        };
+      function b() {
+        (l = new google.maps.Map(document.getElementById("map"), {
+          zoom: d.us.zoom,
+          center: d.us.center,
+          mapTypeControl: !1,
+          panControl: !1,
+          zoomControl: !1,
+          streetViewControl: !1,
+        })),
+          (p = new google.maps.InfoWindow({
+            content: document.getElementById("info-content"),
+          })),
+          (a = new google.maps.places.Autocomplete(
+            document.getElementById("autocomplete"),
+            {
+              types: ["(cities)"],
+              componentRestrictions: E,
+              fields: ["geometry"],
+            }
+          )),
+          (u = new google.maps.places.PlacesService(l)),
+          a.addListener("place_changed", B),
+          document.getElementById("country").addEventListener("change", k);
+      }
+      function B() {
+        const e = a.getPlace();
+        e.geometry && e.geometry.location
+          ? (l.panTo(e.geometry.location), l.setZoom(15), z())
+          : (document.getElementById("autocomplete").placeholder =
+              "Enter a city");
+      }
+      function z() {
+        const e = { bounds: l.getBounds(), types: ["lodging"] };
+        u.nearbySearch(e, (n, r, s) => {
+          if (r === google.maps.places.PlacesServiceStatus.OK && n) {
+            h(), y();
+            for (let t = 0; t < n.length; t++) {
+              const o = String.fromCharCode("A".charCodeAt(0) + (t % 26)),
+                i = f + o + ".png";
+              (c[t] = new google.maps.Marker({
+                position: n[t].geometry.location,
+                animation: google.maps.Animation.DROP,
+                icon: i,
+              })),
+                (c[t].placeResult = n[t]),
+                google.maps.event.addListener(c[t], "click", M),
+                setTimeout(v(t), t * 100),
+                L(n[t], t);
+            }
+          }
+        });
+      }
+      function y() {
+        for (let e = 0; e < c.length; e++) c[e] && c[e].setMap(null);
+        c = [];
+      }
+      function k() {
+        const e = document.getElementById("country").value;
+        e == "all"
+          ? (a.setComponentRestrictions({ country: [] }),
+            l.setCenter({ lat: 15, lng: 0 }),
+            l.setZoom(2))
+          : (a.setComponentRestrictions({ country: e }),
+            l.setCenter(d[e].center),
+            l.setZoom(d[e].zoom)),
+          h(),
+          y();
+      }
+      function v(e) {
+        return function () {
+          c[e].setMap(l);
+        };
+      }
+      function L(e, n) {
+        const r = document.getElementById("results"),
+          s = String.fromCharCode("A".charCodeAt(0) + (n % 26)),
+          t = f + s + ".png",
+          o = document.createElement("tr");
+        (o.style.backgroundColor = n % 2 === 0 ? "#F0F0F0" : "#FFFFFF"),
+          (o.onclick = function () {
+            google.maps.event.trigger(c[n], "click");
+          });
+        const i = document.createElement("td"),
+          g = document.createElement("td"),
+          m = document.createElement("img");
+        (m.src = t),
+          m.setAttribute("class", "placeIcon"),
+          m.setAttribute("className", "placeIcon");
+        const w = document.createTextNode(e.name);
+        i.appendChild(m),
+          g.appendChild(w),
+          o.appendChild(i),
+          o.appendChild(g),
+          r.appendChild(o);
+      }
+      function h() {
+        const e = document.getElementById("results");
+        for (; e.childNodes[0]; ) e.removeChild(e.childNodes[0]);
+      }
+      function M() {
+        const e = this;
+        u.getDetails({ placeId: e.placeResult.place_id }, (n, r) => {
+          r === google.maps.places.PlacesServiceStatus.OK &&
+            (p.open(l, e), R(n));
+        });
+      }
+      function R(e) {
+        if (
+          ((document.getElementById("iw-icon").innerHTML =
+            '<img class="hotelIcon" src="' + e.icon + '"/>'),
+          (document.getElementById("iw-url").innerHTML =
+            '<b><a href="' + e.url + '">' + e.name + "</a></b>"),
+          (document.getElementById("iw-address").textContent = e.vicinity),
+          e.formatted_phone_number
+            ? ((document.getElementById("iw-phone-row").style.display = ""),
+              (document.getElementById("iw-phone").textContent =
+                e.formatted_phone_number))
+            : (document.getElementById("iw-phone-row").style.display = "none"),
+          e.rating)
+        ) {
+          let n = "";
+          for (let r = 0; r < 5; r++)
+            e.rating < r + 0.5 ? (n += "&#10025;") : (n += "&#10029;"),
+              (document.getElementById("iw-rating-row").style.display = ""),
+              (document.getElementById("iw-rating").innerHTML = n);
+        } else document.getElementById("iw-rating-row").style.display = "none";
+        if (e.website) {
+          e.website;
+          let n = String(C.exec(e.website));
+          n || (n = "http://" + e.website + "/"),
+            (document.getElementById("iw-website-row").style.display = ""),
+            (document.getElementById("iw-website").textContent = n);
+        } else document.getElementById("iw-website-row").style.display = "none";
+      }
+      window.initMap = b;
+    </script>
+    <link rel="stylesheet" href="./assets/index.ce3bd4be.css" />
+  </head>
+  <body>
+    <div class="hotel-search">
+      <div id="findhotels">Find hotels in:</div>
+
+      <div id="locationField">
+        <input id="autocomplete" placeholder="Enter a city" type="text" />
+      </div>
+
+      <div id="controls">
+        <select id="country">
+          <option value="all">All</option>
+          <option value="au">Australia</option>
+          <option value="br">Brazil</option>
+          <option value="ca">Canada</option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+          <option value="mx">Mexico</option>
+          <option value="nz">New Zealand</option>
+          <option value="it">Italy</option>
+          <option value="za">South Africa</option>
+          <option value="es">Spain</option>
+          <option value="pt">Portugal</option>
+          <option value="us" selected>U.S.A.</option>
+          <option value="uk">United Kingdom</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <div id="listing">
+      <table id="resultsTable">
+        <tbody id="results"></tbody>
+      </table>
+    </div>
+
+    <div style="display: none">
+      <div id="info-content">
+        <table>
+          <tr id="iw-url-row" class="iw_table_row">
+            <td id="iw-icon" class="iw_table_icon"></td>
+            <td id="iw-url"></td>
+          </tr>
+          <tr id="iw-address-row" class="iw_table_row">
+            <td class="iw_attribute_name">Address:</td>
+            <td id="iw-address"></td>
+          </tr>
+          <tr id="iw-phone-row" class="iw_table_row">
+            <td class="iw_attribute_name">Telephone:</td>
+            <td id="iw-phone"></td>
+          </tr>
+          <tr id="iw-rating-row" class="iw_table_row">
+            <td class="iw_attribute_name">Rating:</td>
+            <td id="iw-rating"></td>
+          </tr>
+          <tr id="iw-website-row" class="iw_table_row">
+            <td class="iw_attribute_name">Website:</td>
+            <td id="iw-website"></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Geocoding Service</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const g = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(e);
+        new MutationObserver((e) => {
+          for (const n of e)
+            if (n.type === "childList")
+              for (const u of n.addedNodes)
+                u.tagName === "LINK" && u.rel === "modulepreload" && l(u);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function o(e) {
+          const n = {};
+          return (
+            e.integrity && (n.integrity = e.integrity),
+            e.referrerpolicy && (n.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (n.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (n.credentials = "omit")
+              : (n.credentials = "same-origin"),
+            n
+          );
+        }
+        function l(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const n = o(e);
+          fetch(e.href, n);
+        }
+      };
+      g();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let r, a, m, i, c;
+      function f() {
+        (r = new google.maps.Map(document.getElementById("map"), {
+          zoom: 8,
+          center: { lat: -34.397, lng: 150.644 },
+          mapTypeControl: !1,
+        })),
+          (m = new google.maps.Geocoder());
+        const s = document.createElement("input");
+        (s.type = "text"), (s.placeholder = "Enter a location");
+        const t = document.createElement("input");
+        (t.type = "button"),
+          (t.value = "Geocode"),
+          t.classList.add("button", "button-primary");
+        const o = document.createElement("input");
+        (o.type = "button"),
+          (o.value = "Clear"),
+          o.classList.add("button", "button-secondary"),
+          (c = document.createElement("pre")),
+          (c.id = "response"),
+          (c.innerText = ""),
+          (i = document.createElement("div")),
+          (i.id = "response-container"),
+          i.appendChild(c);
+        const l = document.createElement("p");
+        (l.id = "instructions"),
+          (l.innerHTML =
+            "<strong>Instructions</strong>: Enter an address in the textbox to geocode or click on the map to reverse geocode."),
+          r.controls[google.maps.ControlPosition.TOP_LEFT].push(s),
+          r.controls[google.maps.ControlPosition.TOP_LEFT].push(t),
+          r.controls[google.maps.ControlPosition.TOP_LEFT].push(o),
+          r.controls[google.maps.ControlPosition.LEFT_TOP].push(l),
+          r.controls[google.maps.ControlPosition.LEFT_TOP].push(i),
+          (a = new google.maps.Marker({ map: r })),
+          r.addListener("click", (e) => {
+            p({ location: e.latLng });
+          }),
+          t.addEventListener("click", () => p({ address: s.value })),
+          o.addEventListener("click", () => {
+            d();
+          }),
+          d();
+      }
+      function d() {
+        a.setMap(null), (i.style.display = "none");
+      }
+      function p(s) {
+        d(),
+          m
+            .geocode(s)
+            .then((t) => {
+              const { results: o } = t;
+              return (
+                r.setCenter(o[0].geometry.location),
+                a.setPosition(o[0].geometry.location),
+                a.setMap(r),
+                (i.style.display = "block"),
+                (c.innerText = JSON.stringify(t, null, 2)),
+                o
+              );
+            })
+            .catch((t) => {
+              alert(
+                "Geocode was not successful for the following reason: " + t
+              );
+            });
+      }
+      window.initMap = f;
+    </script>
+    <link rel="stylesheet" href="./assets/index.ab7d6760.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Store Locator</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+    <script src="https://unpkg.com/@google/markerclustererplus@^4.0.1/dist/markerclustererplus.min.js"></script>
+    <head>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      />
+      <script type="module" crossorigin>
+        const M = function () {
+          const e = document.createElement("link").relList;
+          if (e && e.supports && e.supports("modulepreload")) return;
+          for (const t of document.querySelectorAll(
+            'link[rel="modulepreload"]'
+          ))
+            c(t);
+          new MutationObserver((t) => {
+            for (const a of t)
+              if (a.type === "childList")
+                for (const s of a.addedNodes)
+                  s.tagName === "LINK" && s.rel === "modulepreload" && c(s);
+          }).observe(document, { childList: !0, subtree: !0 });
+          function o(t) {
+            const a = {};
+            return (
+              t.integrity && (a.integrity = t.integrity),
+              t.referrerpolicy && (a.referrerPolicy = t.referrerpolicy),
+              t.crossorigin === "use-credentials"
+                ? (a.credentials = "include")
+                : t.crossorigin === "anonymous"
+                ? (a.credentials = "omit")
+                : (a.credentials = "same-origin"),
+              a
+            );
+          }
+          function c(t) {
+            if (t.ep) return;
+            t.ep = !0;
+            const a = o(t);
+            fetch(t.href, a);
+          }
+        };
+        M();
+        /**
+         * @license
+         * Copyright 2019 Google LLC. All Rights Reserved.
+         * SPDX-License-Identifier: Apache-2.0
+         */ let n,
+          d,
+          y,
+          u,
+          p,
+          h,
+          L,
+          g = !1;
+        const i = [];
+        function _() {
+          (h = new google.maps.DistanceMatrixService()),
+            (d = google.maps.MapTypeId.ROADMAP),
+            (y = google.maps.MapTypeId.HYBRID),
+            (n = new google.maps.Map(document.getElementById("map"), {
+              center: { lat: 39.79, lng: -104.98 },
+              mapTypeId: d,
+              zoom: 10,
+            })),
+            new mdc.textField.MDCTextField(
+              document.querySelector(".mdc-text-field")
+            ),
+            (p = document.getElementById("search-input")),
+            (u = new google.maps.places.Autocomplete(p, {
+              fields: ["geometry"],
+            })),
+            u.addListener("place_changed", T),
+            u.bindTo("bounds", n),
+            fetch(
+              "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
+            )
+              .then((r) => r.json())
+              .then((r) => {
+                const e = r.features,
+                  o = [];
+                e.forEach(
+                  ({ attributes: { NAME: c }, geometry: { x: t, y: a } }) => {
+                    i.push({
+                      name: c,
+                      location: { lat: a, lng: t },
+                      address: "",
+                    });
+                    const s = new google.maps.Marker({
+                      position: { lat: a, lng: t },
+                    });
+                    s.addListener("click", () => {
+                      m(new google.maps.LatLng({ lat: a, lng: t })),
+                        v(new google.maps.LatLng({ lat: a, lng: t }));
+                    }),
+                      o.push(s);
+                  }
+                ),
+                  new MarkerClusterer(n, o, {
+                    imagePath:
+                      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+                  }),
+                  window.addEventListener("load", () => {
+                    L.done();
+                  }),
+                  m(n.getCenter()),
+                  n.setZoom(13),
+                  n.setMapTypeId(d);
+              }),
+            document.getElementById("near-me").addEventListener("click", () => {
+              navigator.geolocation &&
+                navigator.geolocation.getCurrentPosition(
+                  ({ coords: { latitude: r, longitude: e } }) => {
+                    m(new google.maps.LatLng({ lat: r, lng: e })),
+                      n.setZoom(10),
+                      n.setMapTypeId(d);
+                  }
+                );
+            }),
+            document.getElementById("refresh").addEventListener("click", () => {
+              m(n.getCenter());
+            });
+        }
+        function w(r) {
+          const e = document.getElementById("cards");
+          (e.innerHTML = ""),
+            r
+              .slice(0, 25)
+              .forEach(
+                ({
+                  name: o,
+                  location: c,
+                  address: t,
+                  travelDistanceText: a,
+                  travelDurationText: s,
+                }) => {
+                  const l = document.createElement("div");
+                  l.classList.add("mdc-card", "mdc-card--outlined"),
+                    (l.innerHTML = `
+<div class="mdc-card__primary-action">
+  <div id="card-header">
+    <h2 class="mdc-typography--headline6">${o}</h2>
+  </div>
+</div>
+<div id="card-body">
+  </div>
+<div class="mdc-card__actions">
+  <a class="mdc-button mdc-card__action mdc-card__action--button"
+    target="_blank" href="https://maps.google.com?q=${t || o}">
+    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__label">Directions</span>
+  </a>
+  <button class="mdc-button mdc-card__action mdc-card__action--button">
+    <div class="mdc-button__ripple"></div>
+    <span class="mdc-button__label">More Information</span>
+  </button>
+</div>`);
+                  const f = l.querySelector("#card-body");
+                  t &&
+                    (f.innerHTML = `<h2 class="mdc-typography--body1">${t}</h2>`),
+                    a &&
+                      (f.innerHTML += `<h2 class="mdc-typography--body2">${a}, ${s}</h2>`),
+                    l
+                      .querySelector(".mdc-card__primary-action")
+                      .addEventListener("click", () => {
+                        v(new google.maps.LatLng(c));
+                      }),
+                    e.appendChild(l);
+                }
+              ),
+            e.scrollTo(0, 0);
+        }
+        function b(r) {
+          const e = [r];
+          return new Promise((o, c) => {
+            const t = (a, s) => {
+              s === google.maps.DistanceMatrixStatus.OK && a ? o(a) : c(s);
+            };
+            h.getDistanceMatrix(
+              {
+                origins: e,
+                destinations: i.slice(0, 25).map((a) => a.location),
+                travelMode: google.maps.TravelMode.DRIVING,
+                unitSystem: google.maps.UnitSystem.IMPERIAL,
+              },
+              t
+            );
+          });
+        }
+        function T() {
+          p.disabled = !0;
+          const e = u.getPlace().geometry.location;
+          m(e), n.setZoom(10), n.setMapTypeId(d);
+        }
+        function m(r) {
+          if (!!r) {
+            if (g) {
+              alert("Update in progress, please try again.");
+              return;
+            }
+            (p.disabled = !0),
+              (g = !0),
+              n.setCenter(r),
+              i.forEach((e) => {
+                delete e.travelDistance,
+                  delete e.travelDistanceText,
+                  delete e.travelDuration,
+                  delete e.travelDurationText;
+              }),
+              i.sort(
+                (e, o) =>
+                  google.maps.geometry.spherical.computeDistanceBetween(
+                    new google.maps.LatLng(e.location),
+                    r
+                  ) -
+                  google.maps.geometry.spherical.computeDistanceBetween(
+                    new google.maps.LatLng(o.location),
+                    r
+                  )
+              ),
+              b(r)
+                .then((e) => {
+                  for (let o = 0; o < e.rows[0].elements.length; o++)
+                    (i[o].address = e.destinationAddresses[o]),
+                      (i[o].travelDistance =
+                        e.rows[0].elements[o].distance.value),
+                      (i[o].travelDistanceText =
+                        e.rows[0].elements[o].distance.text),
+                      (i[o].travelDuration =
+                        e.rows[0].elements[o].duration.value),
+                      (i[o].travelDurationText =
+                        e.rows[0].elements[o].duration.text);
+                })
+                .finally(() => {
+                  w(i), (p.disabled = !1), (g = !1);
+                });
+          }
+        }
+        function v(r) {
+          n.setCenter(r),
+            n.setZoom(19),
+            n.setMapTypeId(y),
+            n.setTilt(45),
+            google.maps.event.addListenerOnce(n, "zoom_changed", () => {
+              n.getZoom() < 19 && (n.setTilt(0), n.setMapTypeId(d));
+            });
+        }
+        window.initMap = _;
+      </script>
+      <link rel="stylesheet" href="./assets/index.9923ab2e.css" />
+    </head>
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <div id="search">
+          <label class="mdc-text-field mdc-text-field--outlined">
+            <input
+              type="text"
+              class="mdc-text-field__input"
+              aria-labelledby="my-label-id"
+              id="search-input"
+            />
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__notch">
+                <span class="mdc-floating-label" id="my-label-id"
+                  >Enter a location</span
+                >
+              </span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+          </label>
+          <button id="near-me" class="mdc-icon-button material-icons">
+            near_me
+          </button>
+          <button id="refresh" class="mdc-icon-button material-icons">
+            refresh
+          </button>
+        </div>
+        <div id="cards">
+          <div class="progress-wrapper"></div>
+
+          <script>
+            var progressWrapper, progress, progressDiv;
+            progressWrapper = document.querySelector(".progress-wrapper");
+            // because white space impacts rendering, add via JS to avoid formatting/linting issues
+            progressWrapper.innerHTML = `
+<div class="mdc-circular-progress mdc-circular-progress--large" role="progressbar" aria-label="Example Progress Bar" aria-valuemin="0" aria-valuemax="1">
+  <div class="mdc-circular-progress__determinate-container">
+    <svg class="mdc-circular-progress__determinate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <circle class="mdc-circular-progress__determinate-circle" cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="113.097"/>
+    </svg>
+  </div>
+  <div class="mdc-circular-progress__indeterminate-container">
+    <div class="mdc-circular-progress__spinner-layer">
+      <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549"/>
+        </svg>
+      </div><div class="mdc-circular-progress__gap-patch">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549"/>
+        </svg>
+      </div><div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
+        <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+            progress = new mdc.circularProgress.MDCCircularProgress(
+              document.querySelector(".mdc-circular-progress")
+            );
+            progress.open();
+            progress.determinate = false;
+            progress.done = function () {
+              progress.close();
+              progressWrapper.remove();
+            };
+          </script>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places,geometry&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

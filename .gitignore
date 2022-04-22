@@ -1,4 +1,5 @@
 dist/*.js
+dist/samples/*/iframe/assets
 test-results
 **/node_modules
 samples/**/package-lock.json

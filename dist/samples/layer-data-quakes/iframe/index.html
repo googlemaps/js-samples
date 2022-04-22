@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Advanced Data Layer: Earthquakes</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const a = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const s of o.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && r(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function l(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = l(e);
+          fetch(e.href, o);
+        }
+      };
+      a();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let i;
+      function c() {
+        (i = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 20, lng: -160 },
+          zoom: 2,
+          styles: u,
+        })),
+          i.data.setStyle(p);
+        const t = document.createElement("script");
+        t.setAttribute(
+          "src",
+          "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
+        ),
+          document.getElementsByTagName("head")[0].appendChild(t);
+      }
+      function f(t) {
+        i.data.addGeoJson(t);
+      }
+      function p(t) {
+        const n = [151, 83, 34],
+          l = [5, 69, 54],
+          r = 1,
+          e = 6,
+          o = (Math.min(t.getProperty("mag"), e) - r) / (e - r),
+          s = m(n, l, o);
+        return {
+          icon: {
+            path: google.maps.SymbolPath.CIRCLE,
+            strokeWeight: 0.5,
+            strokeColor: "#fff",
+            fillColor: s,
+            fillOpacity: 2 / t.getProperty("mag"),
+            scale: Math.pow(t.getProperty("mag"), 2),
+          },
+          zIndex: Math.floor(t.getProperty("mag")),
+        };
+      }
+      function m(t, n, l) {
+        const r = [];
+        for (let e = 0; e < 3; e++) r.push((n[e] - t[e]) * l + t[e]);
+        return "hsl(" + r[0] + "," + r[1] + "%," + r[2] + "%)";
+      }
+      const u = [
+        {
+          featureType: "all",
+          elementType: "all",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "landscape",
+          elementType: "geometry",
+          stylers: [{ visibility: "on" }, { color: "#fcfcfc" }],
+        },
+        {
+          featureType: "water",
+          elementType: "labels",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "water",
+          elementType: "geometry",
+          stylers: [
+            { visibility: "on" },
+            { hue: "#5f94ff" },
+            { lightness: 60 },
+          ],
+        },
+      ];
+      window.initMap = c;
+      window.eqfeed_callback = f;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

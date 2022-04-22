@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Place Autocomplete</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const p = function () {
+        const d = document.createElement("link").relList;
+        if (d && d.supports && d.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const n of t.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function c(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function i(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = c(e);
+          fetch(e.href, t);
+        }
+      };
+      p();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function g() {
+        const s = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 40.749933, lng: -73.98633 },
+            zoom: 13,
+            mapTypeControl: !1,
+          }),
+          d = document.getElementById("pac-card"),
+          c = document.getElementById("pac-input"),
+          i = document.getElementById("use-location-bias"),
+          e = document.getElementById("use-strict-bounds"),
+          t = {
+            fields: ["formatted_address", "geometry", "name"],
+            strictBounds: !1,
+            types: ["establishment"],
+          };
+        s.controls[google.maps.ControlPosition.TOP_LEFT].push(d);
+        const n = new google.maps.places.Autocomplete(c, t);
+        n.bindTo("bounds", s);
+        const l = new google.maps.InfoWindow(),
+          u = document.getElementById("infowindow-content");
+        l.setContent(u);
+        const a = new google.maps.Marker({
+          map: s,
+          anchorPoint: new google.maps.Point(0, -29),
+        });
+        n.addListener("place_changed", () => {
+          l.close(), a.setVisible(!1);
+          const o = n.getPlace();
+          if (!o.geometry || !o.geometry.location) {
+            window.alert("No details available for input: '" + o.name + "'");
+            return;
+          }
+          o.geometry.viewport
+            ? s.fitBounds(o.geometry.viewport)
+            : (s.setCenter(o.geometry.location), s.setZoom(17)),
+            a.setPosition(o.geometry.location),
+            a.setVisible(!0),
+            (u.children["place-name"].textContent = o.name),
+            (u.children["place-address"].textContent = o.formatted_address),
+            l.open(s, a);
+        });
+        function r(o, m) {
+          document.getElementById(o).addEventListener("click", () => {
+            n.setTypes(m), (c.value = "");
+          });
+        }
+        r("changetype-all", []),
+          r("changetype-address", ["address"]),
+          r("changetype-establishment", ["establishment"]),
+          r("changetype-geocode", ["geocode"]),
+          r("changetype-cities", ["(cities)"]),
+          r("changetype-regions", ["(regions)"]),
+          i.addEventListener("change", () => {
+            i.checked
+              ? n.bindTo("bounds", s)
+              : (n.unbind("bounds"),
+                n.setBounds({ east: 180, west: -180, north: 90, south: -90 }),
+                (e.checked = i.checked)),
+              (c.value = "");
+          }),
+          e.addEventListener("change", () => {
+            n.setOptions({ strictBounds: e.checked }),
+              e.checked && ((i.checked = e.checked), n.bindTo("bounds", s)),
+              (c.value = "");
+          });
+      }
+      window.initMap = g;
+    </script>
+    <link rel="stylesheet" href="./assets/index.1a217202.css" />
+  </head>
+  <body>
+    <div class="pac-card" id="pac-card">
+      <div>
+        <div id="title">Autocomplete search</div>
+        <div id="type-selector" class="pac-controls">
+          <input
+            type="radio"
+            name="type"
+            id="changetype-all"
+            checked="checked"
+          />
+          <label for="changetype-all">All</label>
+
+          <input type="radio" name="type" id="changetype-establishment" />
+          <label for="changetype-establishment">establishment</label>
+
+          <input type="radio" name="type" id="changetype-address" />
+          <label for="changetype-address">address</label>
+
+          <input type="radio" name="type" id="changetype-geocode" />
+          <label for="changetype-geocode">geocode</label>
+
+          <input type="radio" name="type" id="changetype-cities" />
+          <label for="changetype-cities">(cities)</label>
+
+          <input type="radio" name="type" id="changetype-regions" />
+          <label for="changetype-regions">(regions)</label>
+        </div>
+        <br />
+        <div id="strict-bounds-selector" class="pac-controls">
+          <input type="checkbox" id="use-location-bias" value="" checked />
+          <label for="use-location-bias">Bias to map viewport</label>
+
+          <input type="checkbox" id="use-strict-bounds" value="" />
+          <label for="use-strict-bounds">Strict bounds</label>
+        </div>
+      </div>
+      <div id="pac-container">
+        <input id="pac-input" type="text" placeholder="Enter a location" />
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <span id="place-name" class="title"></span><br />
+      <span id="place-address"></span>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

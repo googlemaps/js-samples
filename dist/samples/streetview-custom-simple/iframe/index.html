@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Custom Street View Panoramas</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const a = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const l of o.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && r(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = i(e);
+          fetch(e.href, o);
+        }
+      };
+      a();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function s() {
+        new google.maps.StreetViewPanorama(document.getElementById("map"), {
+          pano: "reception",
+          visible: !0,
+        }).registerPanoProvider(u);
+      }
+      function c(n, t, i, r) {
+        return (
+          "https://developers.google.com/maps/documentation/javascript/examples/full/images/panoReception1024-" +
+          t +
+          "-" +
+          i +
+          "-" +
+          r +
+          ".jpg"
+        );
+      }
+      function u(n) {
+        return n === "reception"
+          ? {
+              location: {
+                pano: "reception",
+                description: "Google Sydney - Reception",
+              },
+              links: [],
+              copyright: "Imagery (c) 2010 Google",
+              tiles: {
+                tileSize: new google.maps.Size(1024, 512),
+                worldSize: new google.maps.Size(2048, 1024),
+                centerHeading: 105,
+                getTileUrl: c,
+              },
+            }
+          : null;
+      }
+      window.initPano = s;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initPano&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

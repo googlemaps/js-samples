@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Tilt and Rotation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const a = function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          n(t);
+        new MutationObserver((t) => {
+          for (const e of t)
+            if (e.type === "childList")
+              for (const i of e.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && n(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function l(t) {
+          const e = {};
+          return (
+            t.integrity && (e.integrity = t.integrity),
+            t.referrerpolicy && (e.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (e.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (e.credentials = "omit")
+              : (e.credentials = "same-origin"),
+            e
+          );
+        }
+        function n(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const e = l(t);
+          fetch(t.href, e);
+        }
+      };
+      a();
+      /**
+       * @license
+       * Copyright 2021 Google LLC.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function d() {
+        const o = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 37.7893719, lng: -122.3942 },
+          zoom: 16,
+          heading: 320,
+          tilt: 47.5,
+          mapId: "90f87356969d889c",
+        });
+        [
+          [
+            "Rotate Left",
+            "rotate",
+            20,
+            google.maps.ControlPosition.LEFT_CENTER,
+          ],
+          [
+            "Rotate Right",
+            "rotate",
+            -20,
+            google.maps.ControlPosition.RIGHT_CENTER,
+          ],
+          ["Tilt Down", "tilt", 20, google.maps.ControlPosition.TOP_CENTER],
+          ["Tilt Up", "tilt", -20, google.maps.ControlPosition.BOTTOM_CENTER],
+        ].forEach(([n, t, e, i]) => {
+          const c = document.createElement("div"),
+            s = document.createElement("button");
+          s.classList.add("ui-button"),
+            (s.innerText = `${n}`),
+            s.addEventListener("click", () => {
+              l(t, e);
+            }),
+            c.appendChild(s),
+            o.controls[i].push(c);
+        });
+        const l = function (n, t) {
+          switch (n) {
+            case "tilt":
+              o.setTilt(o.getTilt() + t);
+              break;
+            case "rotate":
+              o.setHeading(o.getHeading() + t);
+              break;
+          }
+        };
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.2933b7d3.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

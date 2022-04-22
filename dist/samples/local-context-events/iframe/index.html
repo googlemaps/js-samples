@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Local Context Events</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const p = function () {
+        const a = document.createElement("link").relList;
+        if (a && a.supports && a.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const c of o.addedNodes)
+                c.tagName === "LINK" && c.rel === "modulepreload" && i(c);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function i(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = n(e);
+          fetch(e.href, o);
+        }
+      };
+      p();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let l, r, s;
+      const d = {
+        a: {
+          label: "1",
+          location: { lat: -1.283975, lng: 36.818797 },
+          name: "Central",
+          description:
+            "The Central Business District is a hub of economic activity during the day and a destination for great food at night.",
+        },
+        b: {
+          label: "2",
+          location: { lat: -1.270955, lng: 36.810857 },
+          name: "Westlands",
+          description:
+            "With many high-end restaurants and a vibrant nightlife, Westlands attracts young professionals and their families. ",
+        },
+        c: {
+          label: "3",
+          location: { lat: -1.311868, lng: 36.838624 },
+          name: "South",
+          description:
+            "Known for high-rise apartment buildings, South B and South C are in high demand.",
+        },
+      };
+      function u() {
+        const t = new google.maps.localContext.LocalContextMapView({
+          element: document.getElementById("map"),
+          placeTypePreferences: [
+            { type: "restaurant" },
+            { type: "tourist_attraction" },
+          ],
+          maxPlaceCount: 12,
+        });
+        (l = t.map), l.setOptions({ center: d.a.location, zoom: 13 });
+        for (const a in d) {
+          const n = d[a],
+            i = new google.maps.Marker({
+              label: n.label,
+              position: n.location,
+              map: l,
+              zIndex: 30,
+            });
+          i.addListener("click", () => {
+            t.hidePlaceDetailsView(),
+              r && r.close(),
+              f(n, i),
+              (t.directionsOptions = { origin: n.location });
+          });
+        }
+        t.addListener("placedetailsviewshowstart", () => {
+          r && r.close();
+        }),
+          t.addListener("placedetailsviewhidestart", () => {
+            s && f(s.district, s.marker);
+          });
+      }
+      function f(t, a) {
+        const n = document.createElement("div"),
+          i = document.createElement("div"),
+          e = document.createTextNode(t.description);
+        n.classList.add("infowindow-content"),
+          i.classList.add("title"),
+          (i.textContent = t.name),
+          (e.textContent = t.description),
+          n.appendChild(i),
+          n.appendChild(e),
+          (r = new google.maps.InfoWindow()),
+          r.setContent(n),
+          r.open(l, a),
+          (s = { district: t, marker: a }),
+          r.addListener("closeclick", () => {
+            s && (s = null);
+          });
+      }
+      window.initMap = u;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f422de31.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=localContext&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

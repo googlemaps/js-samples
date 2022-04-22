@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Removing Polylines</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const d = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const o of t.addedNodes)
+                o.tagName === "LINK" && o.rel === "modulepreload" && l(o);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function c(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function l(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = c(e);
+          fetch(e.href, t);
+        }
+      };
+      d();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let r, a;
+      function u() {
+        a = new google.maps.Map(document.getElementById("map"), {
+          zoom: 3,
+          center: { lat: 0, lng: -180 },
+          mapTypeId: "terrain",
+        });
+        const i = [
+          { lat: 37.772, lng: -122.214 },
+          { lat: 21.291, lng: -157.821 },
+          { lat: -18.142, lng: 178.431 },
+          { lat: -27.467, lng: 153.027 },
+        ];
+        (r = new google.maps.Polyline({
+          path: i,
+          strokeColor: "#FF0000",
+          strokeOpacity: 1,
+          strokeWeight: 2,
+        })),
+          document.getElementById("add-line").addEventListener("click", s),
+          document.getElementById("remove-line").addEventListener("click", f),
+          s();
+      }
+      function s() {
+        r.setMap(a);
+      }
+      function f() {
+        r.setMap(null);
+      }
+      window.initMap = u;
+    </script>
+    <link rel="stylesheet" href="./assets/index.500371f2.css" />
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input id="remove-line" type="button" value="Remove line" />
+      <input id="add-line" type="button" value="Restore line" />
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

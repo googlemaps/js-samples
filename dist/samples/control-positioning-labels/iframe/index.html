@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Control Positioning Labels</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const s = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const o of document.querySelectorAll('link[rel="modulepreload"]'))
+          t(o);
+        new MutationObserver((o) => {
+          for (const e of o)
+            if (e.type === "childList")
+              for (const l of e.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && t(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(o) {
+          const e = {};
+          return (
+            o.integrity && (e.integrity = o.integrity),
+            o.referrerpolicy && (e.referrerPolicy = o.referrerpolicy),
+            o.crossorigin === "use-credentials"
+              ? (e.credentials = "include")
+              : o.crossorigin === "anonymous"
+              ? (e.credentials = "omit")
+              : (e.credentials = "same-origin"),
+            e
+          );
+        }
+        function t(o) {
+          if (o.ep) return;
+          o.ep = !0;
+          const e = i(o);
+          fetch(o.href, e);
+        }
+      };
+      s();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function T(r, n) {
+        const i = document.createElement("div");
+        (i.title = n), (i.className = "controlUI"), r.appendChild(i);
+        const t = document.createElement("div");
+        (t.innerHTML = n), (t.className = "controlText"), i.appendChild(t);
+      }
+      function c() {
+        const r = document.getElementById("map"),
+          n = {
+            zoom: 11,
+            center: { lat: 47.46, lng: -122.52 },
+            disableDefaultUI: !0,
+          },
+          i = new google.maps.Map(r, n),
+          t = [
+            ["TOP_LEFT", google.maps.ControlPosition.TOP_LEFT],
+            ["LEFT_TOP", google.maps.ControlPosition.LEFT_TOP],
+            ["TOP_CENTER", google.maps.ControlPosition.TOP_CENTER],
+            ["TOP_RIGHT", google.maps.ControlPosition.TOP_RIGHT],
+            ["RIGHT_TOP", google.maps.ControlPosition.RIGHT_TOP],
+            ["LEFT_CENTER", google.maps.ControlPosition.LEFT_CENTER],
+            ["RIGHT_CENTER", google.maps.ControlPosition.RIGHT_CENTER],
+            ["BOTTOM_LEFT", google.maps.ControlPosition.BOTTOM_LEFT],
+            ["LEFT_BOTTOM", google.maps.ControlPosition.LEFT_BOTTOM],
+            ["BOTTOM_CENTER", google.maps.ControlPosition.BOTTOM_CENTER],
+            ["BOTTOM_RIGHT", google.maps.ControlPosition.BOTTOM_RIGHT],
+            ["RIGHT_BOTTOM", google.maps.ControlPosition.RIGHT_BOTTOM],
+          ];
+        for (let o = 0; o < t.length; o++) {
+          const e = t[o][0],
+            l = document.createElement("div");
+          T(l, e), i.controls[t[o][1]].push(l);
+        }
+      }
+      window.initialize = c;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Travel Modes in Directions</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const s of t.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && i(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function r(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function i(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = r(e);
+          fetch(e.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function d() {
+        const n = new google.maps.DirectionsRenderer(),
+          o = new google.maps.DirectionsService(),
+          r = new google.maps.Map(document.getElementById("map"), {
+            zoom: 14,
+            center: { lat: 37.77, lng: -122.447 },
+          });
+        n.setMap(r),
+          l(o, n),
+          document.getElementById("mode").addEventListener("change", () => {
+            l(o, n);
+          });
+      }
+      function l(n, o) {
+        const r = document.getElementById("mode").value;
+        n.route({
+          origin: { lat: 37.77, lng: -122.447 },
+          destination: { lat: 37.768, lng: -122.511 },
+          travelMode: google.maps.TravelMode[r],
+        })
+          .then((i) => {
+            o.setDirections(i);
+          })
+          .catch((i) =>
+            window.alert("Directions request failed due to " + status)
+          );
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.500371f2.css" />
+  </head>
+  <body>
+    <div id="floating-panel">
+      <b>Mode of Travel: </b>
+      <select id="mode">
+        <option value="DRIVING">Driving</option>
+        <option value="WALKING">Walking</option>
+        <option value="BICYCLING">Bicycling</option>
+        <option value="TRANSIT">Transit</option>
+      </select>
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

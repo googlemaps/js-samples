@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Listening to Events</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const u = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          a(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const l of t.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && a(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function a(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = i(e);
+          fetch(e.href, t);
+        }
+      };
+      u();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let r, c, s;
+      function d() {
+        c = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 44.5452, lng: -78.5389 },
+          zoom: 9,
+        });
+        const o = { north: 44.599, south: 44.49, east: -78.443, west: -78.649 };
+        (r = new google.maps.Rectangle({
+          bounds: o,
+          editable: !0,
+          draggable: !0,
+        })),
+          r.setMap(c),
+          r.addListener("bounds_changed", f),
+          (s = new google.maps.InfoWindow());
+      }
+      function f() {
+        const o = r.getBounds().getNorthEast(),
+          n = r.getBounds().getSouthWest(),
+          i =
+            "<b>Rectangle moved.</b><br>New north-east corner: " +
+            o.lat() +
+            ", " +
+            o.lng() +
+            "<br>New south-west corner: " +
+            n.lat() +
+            ", " +
+            n.lng();
+        s.setContent(i), s.setPosition(o), s.open(c);
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

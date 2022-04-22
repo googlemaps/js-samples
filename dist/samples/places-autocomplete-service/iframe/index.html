@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Places Autocomplete Service</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <script type="module" crossorigin>
+      const f = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(t);
+        new MutationObserver((t) => {
+          for (const c of t)
+            if (c.type === "childList")
+              for (const a of c.addedNodes)
+                a.tagName === "LINK" && a.rel === "modulepreload" && l(a);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function e(t) {
+          const c = {};
+          return (
+            t.integrity && (c.integrity = t.integrity),
+            t.referrerpolicy && (c.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (c.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (c.credentials = "omit")
+              : (c.credentials = "same-origin"),
+            c
+          );
+        }
+        function l(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const c = e(t);
+          fetch(t.href, c);
+        }
+      };
+      f();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let u, m, p, d, i, r;
+      const g = (o, n) => {
+          let e = 0;
+          return (...t) => {
+            window.clearTimeout(e), (e = window.setTimeout(() => n(...t), o));
+          };
+        },
+        y = () => {
+          (r = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 47.609414458375674, lng: -122.33897030353548 },
+            zoom: 12,
+          })),
+            (u = new google.maps.places.AutocompleteService()),
+            new google.maps.places.PlacesService(r),
+            (d = document.getElementById("input")),
+            (m = document.getElementById("request")),
+            (p = document.getElementById("response")),
+            (i = document.getElementById("bias-to-map")),
+            document.getElementById("autocomplete-type");
+          const o = document.getElementById("autocomplete-type-list");
+          [
+            "",
+            "establishment",
+            "geocode",
+            "address",
+            "(cities)",
+            "(regions)",
+          ].forEach((n) => {
+            const e = document.createElement("LI");
+            e.classList.add("mdc-list-item"), e.setAttribute("data-value", n);
+            const l = document.createElement("SPAN");
+            l.classList.add("mdc-list-item__text"),
+              (l.innerText = n),
+              e.appendChild(l),
+              o.appendChild(e);
+          }),
+            d.addEventListener("input", s),
+            i.addEventListener("change", s),
+            r.addListener("bounds_changed", () => {
+              i.checked && s();
+            }),
+            (i.checked = !0),
+            h(),
+            s();
+        },
+        s = g(100, () => {
+          const o = { input: d.value },
+            n = r.getBounds();
+          i.checked && n && (o.bounds = n);
+          const e = document.querySelector(
+            "#autocomplete-type-list > .mdc-list-item--selected"
+          );
+          e &&
+            e.getAttribute("data-value") !== "" &&
+            (o.types = [e.getAttribute("data-value")]),
+            (m.innerText = JSON.stringify(o, null, 2)),
+            d.value && u.getPlacePredictions(o, b);
+        }),
+        b = (o, n) => {
+          p.innerText = JSON.stringify({ results: o, status: n }, null, 2);
+        },
+        h = () => {
+          document
+            .querySelectorAll(".mdc-text-field")
+            .forEach((e) => new mdc.textField.MDCTextField(e)),
+            document
+              .querySelectorAll(".mdc-switch")
+              .forEach((e) => new mdc.switchControl.MDCSwitch(e)),
+            document
+              .querySelectorAll(".mdc-select")
+              .forEach((e) =>
+                new mdc.select.MDCSelect(e).listen("MDCSelect:change", s)
+              );
+          const o = new mdc.tabBar.MDCTabBar(
+              document.querySelector(".mdc-tab-bar")
+            ),
+            n = document.querySelectorAll(".tab-content");
+          o.listen("MDCTabBar:activated", (e) => {
+            document
+              .querySelector(".tab-content--active")
+              .classList.remove("tab-content--active"),
+              n[e.detail.index].classList.add("tab-content--active");
+          });
+        };
+      window.initialize = y;
+    </script>
+    <link rel="stylesheet" href="./assets/index.dd92395c.css" />
+  </head>
+  <body>
+    <div id="container" class="mdc-typography">
+      <div id="map"></div>
+      <div id="service">
+        <div id="inputs">
+          <div class="row">
+            <label class="mdc-text-field mdc-text-field--filled">
+              <span class="mdc-text-field__ripple"></span>
+              <input
+                class="mdc-text-field__input"
+                type="text"
+                id="input"
+                autocomplete="off"
+                aria-labelledby="input-label"
+              />
+              <span class="mdc-floating-label" id="input-label"
+                >Autocomplete Input</span
+              >
+              <span class="mdc-line-ripple"></span>
+            </label>
+          </div>
+          <div class="row">
+            <label for="bias-to-map">Bias to map bounds</label>
+            <div class="mdc-switch">
+              <div class="mdc-switch__track"></div>
+              <div class="mdc-switch__thumb-underlay">
+                <div class="mdc-switch__thumb"></div>
+                <input
+                  type="checkbox"
+                  id="bias-to-map"
+                  class="mdc-switch__native-control"
+                  role="switch"
+                  aria-checked="false"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="mdc-select mdc-select--filled">
+              <div class="mdc-select__anchor">
+                <span class="mdc-select__ripple"></span>
+                <span class="mdc-select__selected-text"></span>
+                <span class="mdc-select__dropdown-icon">
+                  <svg
+                    class="mdc-select__dropdown-icon-graphic"
+                    viewBox="7 10 10 5"
+                  >
+                    <polygon
+                      class="mdc-select__dropdown-icon-inactive"
+                      stroke="none"
+                      fill-rule="evenodd"
+                      points="7 10 12 15 17 10"
+                    ></polygon>
+                    <polygon
+                      class="mdc-select__dropdown-icon-active"
+                      stroke="none"
+                      fill-rule="evenodd"
+                      points="7 15 12 10 17 15"
+                    ></polygon>
+                  </svg>
+                </span>
+                <span class="mdc-floating-label">Autocomplete Type</span>
+                <span class="mdc-line-ripple"></span>
+              </div>
+              <div
+                class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth"
+              >
+                <ul class="mdc-list" id="autocomplete-type-list"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="results">
+          <div class="mdc-tab-bar" role="tablist">
+            <div class="mdc-tab-scroller">
+              <div class="mdc-tab-scroller__scroll-area">
+                <div class="mdc-tab-scroller__scroll-content">
+                  <button
+                    class="mdc-tab mdc-tab--active"
+                    role="tab"
+                    aria-selected="true"
+                    tabindex="0"
+                  >
+                    <span class="mdc-tab__content">
+                      <span class="mdc-tab__text-label">Request</span>
+                    </span>
+                    <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                      <span
+                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
+                      ></span>
+                    </span>
+                    <span class="mdc-tab__ripple"></span>
+                  </button>
+                  <button
+                    class="mdc-tab mdc-tab"
+                    role="tab"
+                    aria-selected="true"
+                    tabindex="0"
+                  >
+                    <span class="mdc-tab__content">
+                      <span class="mdc-tab__text-label">Response</span>
+                    </span>
+                    <span class="mdc-tab-indicator mdc-tab-indicator">
+                      <span
+                        class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"
+                      ></span>
+                    </span>
+                    <span class="mdc-tab__ripple"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-content tab-content--active">
+            <pre><code id="request"></code></pre>
+          </div>
+          <div class="tab-content">
+            <pre><code id="response"></code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&libraries=places&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

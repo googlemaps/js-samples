@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Data Layer: Drag and Drop GeoJSON</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <script type="module" crossorigin>
+      const p = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          a(t);
+        new MutationObserver((t) => {
+          for (const r of t)
+            if (r.type === "childList")
+              for (const i of r.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && a(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(t) {
+          const r = {};
+          return (
+            t.integrity && (r.integrity = t.integrity),
+            t.referrerpolicy && (r.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (r.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (r.credentials = "omit")
+              : (r.credentials = "same-origin"),
+            r
+          );
+        }
+        function a(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const r = n(t);
+          fetch(t.href, r);
+        }
+      };
+      p();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let s;
+      function u() {
+        s = new google.maps.Map(document.getElementById("map"), {
+          center: new google.maps.LatLng(0, 0),
+          zoom: 4,
+        });
+      }
+      function l(e) {
+        try {
+          const o = JSON.parse(e);
+          s.data.addGeoJson(o);
+        } catch {
+          alert("Not a GeoJSON file!");
+        }
+        g(s);
+      }
+      function g(e) {
+        const o = new google.maps.LatLngBounds();
+        e.data.forEach((n) => {
+          const a = n.getGeometry();
+          a && c(a, o.extend, o);
+        }),
+          e.fitBounds(o);
+      }
+      function c(e, o, n) {
+        e instanceof google.maps.LatLng
+          ? o.call(n, e)
+          : e instanceof google.maps.Data.Point
+          ? o.call(n, e.get())
+          : e.getArray().forEach((a) => {
+              c(a, o, n);
+            });
+      }
+      function m() {
+        [...document.getElementsByClassName("file")].forEach((o) => {
+          o.addEventListener(
+            "dragstart",
+            (n) => {
+              n.dataTransfer.setData(
+                "text/plain",
+                JSON.stringify(v[Number(n.target.dataset.value)])
+              ),
+                console.log(n);
+            },
+            !1
+          );
+        });
+        const e = document.getElementById("map");
+        e.addEventListener("dragenter", d, !1),
+          e.addEventListener("dragover", d, !1),
+          e.addEventListener("drop", y, !1),
+          e.addEventListener("dragleave", f, !1);
+      }
+      function d(e) {
+        return (
+          e.stopPropagation(),
+          e.preventDefault(),
+          document.getElementById("map").classList.add("over"),
+          !1
+        );
+      }
+      function f(e) {
+        document.getElementById("map").classList.remove("over");
+      }
+      function y(e) {
+        e.preventDefault(), e.stopPropagation(), f();
+        const o = e.dataTransfer.files;
+        if (o.length)
+          for (let n = 0, a; (a = o[n]); n++) {
+            const t = new FileReader();
+            (t.onload = function (r) {
+              l(t.result);
+            }),
+              (t.onerror = function (r) {
+                console.error("reading failed");
+              }),
+              t.readAsText(a);
+          }
+        else {
+          const n = e.dataTransfer.getData("text/plain");
+          console.log(n), n && l(n);
+        }
+        return !1;
+      }
+      function L() {
+        u(), m();
+      }
+      const v = [
+        {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Polygon",
+                coordinates: [
+                  [
+                    [-99.49218749999999, -11.867350911459294],
+                    [24.960937499999996, -11.867350911459294],
+                    [24.960937499999996, 47.517200697839414],
+                    [-99.49218749999999, 47.517200697839414],
+                    [-99.49218749999999, -11.867350911459294],
+                  ],
+                ],
+              },
+            },
+          ],
+        },
+        {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [81.2109375, 50.064191736659104],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [103.35937499999999, -47.98992166741417],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [-46.05468749999999, 64.01449619484472],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [-113.203125, 37.996162679728116],
+              },
+            },
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "Point",
+                coordinates: [-73.828125, -32.249974455863295],
+              },
+            },
+          ],
+        },
+        {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "LineString",
+                coordinates: [
+                  [147.65625, -5.266007882805485],
+                  [118.47656249999999, 43.83452678223682],
+                  [80.85937499999999, -30.145127183376115],
+                  [35.15625, 51.83577752045248],
+                  [-15.468749999999998, -23.563987128451217],
+                  [-29.53125, 44.33956524809713],
+                  [-73.47656249999999, -32.842673631954305],
+                  [-104.765625, 35.460669951495305],
+                ],
+              },
+            },
+          ],
+        },
+      ];
+      window.initialize = L;
+    </script>
+    <link rel="stylesheet" href="./assets/index.8ed20beb.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar" class="mdc-typography">
+        <div class="file" draggable="true" data-value="0">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">polygons.geojson</div>
+        </div>
+        <div class="file" draggable="true" data-value="1">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">points.geojson</div>
+        </div>
+        <div class="file" draggable="true" data-value="2">
+          <span class="material-icons">text_snippet</span>
+          <div class="filename">polyline.geojson</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

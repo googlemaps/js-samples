@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Place ID Geocoder</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const a = function () {
+        const c = document.createElement("link").relList;
+        if (c && c.supports && c.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const t of o.addedNodes)
+                t.tagName === "LINK" && t.rel === "modulepreload" && r(t);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = i(e);
+          fetch(e.href, o);
+        }
+      };
+      a();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function s() {
+        const n = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -33.8688, lng: 151.2195 },
+            zoom: 13,
+          }),
+          c = document.getElementById("pac-input"),
+          i = new google.maps.places.Autocomplete(c, {
+            fields: ["place_id", "geometry", "name", "formatted_address"],
+          });
+        i.bindTo("bounds", n),
+          n.controls[google.maps.ControlPosition.TOP_LEFT].push(c);
+        const r = new google.maps.InfoWindow(),
+          e = document.getElementById("infowindow-content");
+        r.setContent(e);
+        const o = new google.maps.Geocoder(),
+          t = new google.maps.Marker({ map: n });
+        t.addListener("click", () => {
+          r.open(n, t);
+        }),
+          i.addListener("place_changed", () => {
+            r.close();
+            const l = i.getPlace();
+            !l.place_id ||
+              o
+                .geocode({ placeId: l.place_id })
+                .then(({ results: d }) => {
+                  n.setZoom(11),
+                    n.setCenter(d[0].geometry.location),
+                    t.setPlace({
+                      placeId: l.place_id,
+                      location: d[0].geometry.location,
+                    }),
+                    t.setVisible(!0),
+                    (e.children["place-name"].textContent = l.name),
+                    (e.children["place-id"].textContent = l.place_id),
+                    (e.children["place-address"].textContent =
+                      d[0].formatted_address),
+                    r.open(n, t);
+                })
+                .catch((d) => window.alert("Geocoder failed due to: " + d));
+          });
+      }
+      window.initMap = s;
+    </script>
+    <link rel="stylesheet" href="./assets/index.e76b7222.css" />
+  </head>
+  <body>
+    <div style="display: none">
+      <input
+        id="pac-input"
+        class="controls"
+        type="text"
+        placeholder="Enter a location"
+      />
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <span id="place-name" class="title"></span><br />
+      <strong>Place ID</strong>: <span id="place-id"></span><br />
+      <span id="place-address"></span>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

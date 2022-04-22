@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Markers with SVG and Fonts</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <script type="module" crossorigin>
+      const f = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const n of o.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && l(n);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function s(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function l(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = s(e);
+          fetch(e.href, o);
+        }
+      };
+      f();
+      /*!
+       * Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com
+       * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
+       * Copyright 2022 Fonticons, Inc.
+       */ var r = {
+        prefix: "fas",
+        iconName: "bus",
+        icon: [
+          576,
+          512,
+          [128653],
+          "f207",
+          "M288 0C422.4 0 512 35.2 512 80V128C529.7 128 544 142.3 544 160V224C544 241.7 529.7 256 512 256L512 416C512 433.7 497.7 448 480 448V480C480 497.7 465.7 512 448 512H416C398.3 512 384 497.7 384 480V448H192V480C192 497.7 177.7 512 160 512H128C110.3 512 96 497.7 96 480V448C78.33 448 64 433.7 64 416L64 256C46.33 256 32 241.7 32 224V160C32 142.3 46.33 128 64 128V80C64 35.2 153.6 0 288 0zM128 256C128 273.7 142.3 288 160 288H272V128H160C142.3 128 128 142.3 128 160V256zM304 288H416C433.7 288 448 273.7 448 256V160C448 142.3 433.7 128 416 128H304V288zM144 400C161.7 400 176 385.7 176 368C176 350.3 161.7 336 144 336C126.3 336 112 350.3 112 368C112 385.7 126.3 400 144 400zM432 400C449.7 400 464 385.7 464 368C464 350.3 449.7 336 432 336C414.3 336 400 350.3 400 368C400 385.7 414.3 400 432 400zM368 64H208C199.2 64 192 71.16 192 80C192 88.84 199.2 96 208 96H368C376.8 96 384 88.84 384 80C384 71.16 376.8 64 368 64z",
+        ],
+      };
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function a() {
+        const i = { lat: 36.6163, lng: -100.605 },
+          t = new google.maps.Map(document.getElementById("map"), {
+            zoom: 15,
+            center: i,
+          });
+        new google.maps.Marker({
+          position: { lat: 36.6163, lng: -100.61 },
+          map: t,
+          icon: {
+            path: r.icon[4],
+            fillColor: "#0000ff",
+            fillOpacity: 1,
+            anchor: new google.maps.Point(r.icon[0] / 2, r.icon[1]),
+            strokeWeight: 1,
+            strokeColor: "#ffffff",
+            scale: 0.075,
+          },
+          title: "FontAwesome SVG Marker",
+        }),
+          new google.maps.Marker({
+            position: { lat: 36.6163, lng: -100.6 },
+            map: t,
+            label: {
+              text: "\uE530",
+              fontFamily: "Material Icons",
+              color: "#ffffff",
+              fontSize: "18px",
+            },
+            title: "Material Icon Font Marker",
+          });
+      }
+      window.initMap = a;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
