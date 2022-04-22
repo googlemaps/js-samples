@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Custom Map Projections</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const l = function () {
+        const a = document.createElement("link").relList;
+        if (a && a.supports && a.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          n(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const i of o.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && n(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function t(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function n(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = t(e);
+          fetch(e.href, o);
+        }
+      };
+      l();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function p() {
+        const r = new google.maps.Map(document.getElementById("map"), {
+          zoom: 0,
+          center: { lat: 0, lng: 0 },
+          mapTypeControl: !1,
+        });
+        c(), r.mapTypes.set("gallPeters", s), r.setMapTypeId("gallPeters");
+        const a = document.getElementById("coords");
+        r.controls[google.maps.ControlPosition.TOP_CENTER].push(a),
+          r.addListener("mousemove", (t) => {
+            a.textContent =
+              "lat: " +
+              Math.round(t.latLng.lat()) +
+              ", lng: " +
+              Math.round(t.latLng.lng());
+          }),
+          r.data.setStyle((t) => ({
+            title: t.getProperty("name"),
+            optimized: !1,
+          })),
+          r.data.addGeoJson(m);
+      }
+      let s;
+      function c() {
+        (s = new google.maps.ImageMapType({
+          getTileUrl: function (t, n) {
+            const e = 1 << n,
+              o = ((t.x % e) + e) % e,
+              i = t.y;
+            return i < 0 || i >= e
+              ? ""
+              : "https://developers.google.com/maps/documentation/javascript/examples/full/images/gall-peters_" +
+                  n +
+                  "_" +
+                  o +
+                  "_" +
+                  i +
+                  ".png";
+          },
+          tileSize: new google.maps.Size(800, 512),
+          minZoom: 0,
+          maxZoom: 1,
+          name: "Gall-Peters",
+        })),
+          (s.projection = {
+            fromLatLngToPoint: function (t) {
+              const n = (t.lat() * Math.PI) / 180;
+              return new google.maps.Point(
+                800 * (0.5 + t.lng() / 360),
+                512 * (0.5 - 0.5 * Math.sin(n))
+              );
+            },
+            fromPointToLatLng: function (t, n) {
+              const e = t.x / 800,
+                o = Math.max(0, Math.min(1, t.y / 512));
+              return new google.maps.LatLng(
+                (Math.asin(1 - 2 * o) * 180) / Math.PI,
+                -180 + 360 * e,
+                n
+              );
+            },
+          });
+      }
+      const m = {
+        type: "FeatureCollection",
+        features: [
+          {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [-87.65, 41.85] },
+            properties: { name: "Chicago" },
+          },
+          {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [-149.9, 61.218] },
+            properties: { name: "Anchorage" },
+          },
+          {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [-99.127, 19.427] },
+            properties: { name: "Mexico City" },
+          },
+          {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [-0.126, 51.5] },
+            properties: { name: "London" },
+          },
+          {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [28.045, -26.201] },
+            properties: { name: "Johannesburg" },
+          },
+          {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [15.322, -4.325] },
+            properties: { name: "Kinshasa" },
+          },
+          {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [151.207, -33.867] },
+            properties: { name: "Sydney" },
+          },
+          {
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [0, 0] },
+            properties: { name: "0\xB0N 0\xB0E" },
+          },
+        ],
+      };
+      window.initMap = p;
+    </script>
+    <link rel="stylesheet" href="./assets/index.c0832199.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="coords"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Directly Accessing Street View Data</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const d = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          a(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const s of o.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && a(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function a(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = i(e);
+          fetch(e.href, o);
+        }
+      };
+      d();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let l, n;
+      function u() {
+        const r = { lat: 37.869085, lng: -122.254775 },
+          t = new google.maps.StreetViewService();
+        (n = new google.maps.StreetViewPanorama(
+          document.getElementById("pano")
+        )),
+          (l = new google.maps.Map(document.getElementById("map"), {
+            center: r,
+            zoom: 16,
+            streetViewControl: !1,
+          })),
+          t.getPanorama({ location: r, radius: 50 }).then(c),
+          l.addListener("click", (i) => {
+            t.getPanorama({ location: i.latLng, radius: 50 })
+              .then(c)
+              .catch((a) =>
+                console.error("Street View data not found for this location.")
+              );
+          });
+      }
+      function c({ data: r }) {
+        const t = r.location,
+          i = new google.maps.Marker({
+            position: t.latLng,
+            map: l,
+            title: t.description,
+          });
+        n.setPano(t.pano),
+          n.setPov({ heading: 270, pitch: 0 }),
+          n.setVisible(!0),
+          i.addListener("click", () => {
+            const a = t.pano;
+            n.setPano(a),
+              n.setPov({ heading: 270, pitch: 0 }),
+              n.setVisible(!0);
+          });
+      }
+      window.initMap = u;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map" style="width: 45%; height: 100%; float: left"></div>
+    <div id="pano" style="width: 45%; height: 100%; float: left"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

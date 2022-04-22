@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>WebGL DeckGL OverlayView</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/deck.gl@8.7.3/dist.min.js"></script>
+
+    <script type="module" crossorigin>
+      const S = function () {
+        const l = document.createElement("link").relList;
+        if (l && l.supports && l.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          d(t);
+        new MutationObserver((t) => {
+          for (const r of t)
+            if (r.type === "childList")
+              for (const a of r.addedNodes)
+                a.tagName === "LINK" && a.rel === "modulepreload" && d(a);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function p(t) {
+          const r = {};
+          return (
+            t.integrity && (r.integrity = t.integrity),
+            t.referrerpolicy && (r.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (r.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (r.credentials = "omit")
+              : (r.credentials = "same-origin"),
+            r
+          );
+        }
+        function d(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const r = p(t);
+          fetch(t.href, r);
+        }
+      };
+      S();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let h, m;
+      const f =
+        "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson";
+      function x() {
+        const c = 51.4709959,
+          l = -0.4531566,
+          p = 2,
+          d = 0,
+          t = 0,
+          r = document.getElementById("map");
+        h = new google.maps.Map(r, {
+          zoom: p,
+          center: new google.maps.LatLng(c, l),
+          heading: d,
+          tilt: t,
+          mapId: "b1beacae401d047c",
+        });
+        const a = document.getElementById("tooltip");
+        function y({ x: i, y: e, object: s }) {
+          s
+            ? ((a.style.display = "block"),
+              (a.style.left = `${i + 5}px`),
+              (a.style.top = `${e + 5}px`),
+              (a.innerHTML = `${s.properties.name} - ${s.properties.abbrev}`))
+            : (a.style.display = "none");
+        }
+        const u = {
+          click: null,
+          dblclick: null,
+          mousemove: null,
+          mouseout: null,
+        };
+        class g extends google.maps.WebGLOverlayView {
+          constructor(e, s, n = {}) {
+            super(),
+              (this.deck = null),
+              (this.layers_ = s),
+              (this.props = n),
+              (this.canvas = e);
+          }
+          set layers(e) {
+            (this.layers_ = e), this.deck.setProps({ layers: [this.layers_] });
+          }
+          onAdd() {}
+          onRemove() {}
+          onContextRestored({ gl: e }) {
+            const s = this.getMap();
+            this.deck = new deck.Deck({
+              canvas: this.canvas,
+              initialViewState: {
+                longitude: l,
+                latitude: c,
+                pitch: t,
+                zoom: p,
+              },
+              gl: e,
+              layers: this.layers_,
+              props: this.props,
+              controller: !1,
+              userData: { map: s },
+            });
+            for (const n in u)
+              u[n] = s.addListener(n, (o) =>
+                this.handleMouseEvent(this.deck, n, o)
+              );
+          }
+          onDraw({ gl: e, transformer: s }) {
+            const n = this.deck;
+            if (!n || !n.layerManager) return;
+            const o = s.getCameraParams(),
+              b = this.canvas.clientWidth,
+              k = this.canvas.clientHeight,
+              w = 0,
+              E = 0,
+              M = Math.max(0, o.zoom - 1),
+              _ = o.tilt,
+              P = o.heading,
+              C = o.center.lat,
+              T = o.center.lng;
+            (this.canvas.style.left = `${w}px`),
+              (this.canvas.style.top = `${E}px`),
+              n.setProps({
+                width: b,
+                height: k,
+                viewState: {
+                  latitude: C,
+                  longitude: T,
+                  zoom: M,
+                  pitch: _,
+                  bearing: P,
+                  nearZMultiplier: 0.01,
+                  farZMultiplier: 1.01,
+                  repeat: !0,
+                },
+              }),
+              e.disable(e.SCISSOR_TEST),
+              e.disable(e.STENCIL_TEST),
+              e.enable(e.DEPTH_TEST),
+              e.disable(e.CULL_FACE),
+              e.depthFunc(e.LEQUAL),
+              e.depthMask(!0),
+              this.requestRedraw(),
+              n._drawLayers("google-map-repaint", { clearCanvas: !1 });
+          }
+          onContextLost() {}
+          getEventPixel(e, s) {
+            const n = s
+              .getViewports()[0]
+              .project([e.latLng.lng(), e.latLng.lat()]);
+            return { x: n[0], y: n[1] };
+          }
+          handleMouseEvent(e, s, n) {
+            const o = {
+              type: s,
+              offsetCenter: this.getEventPixel(n, e),
+              srcEvent: n,
+            };
+            switch (s) {
+              case "click":
+                (e._lastPointerDownInfo = e.pickObject(o.offsetCenter)),
+                  (o.tapCount = 1),
+                  e._onEvent(o);
+                break;
+              case "dblclick":
+                (o.type = "click"), (o.tapCount = 2), e._onEvent(o);
+                break;
+              case "mousemove":
+                (o.type = "pointermove"), e._onPointerMove(o);
+                break;
+              case "mouseout":
+                (o.type = "pointerleave"), e._onPointerMove(o);
+                break;
+              default:
+                return;
+            }
+            this.requestRedraw();
+          }
+        }
+        const v = [
+            new deck.GeoJsonLayer({
+              id: "airports",
+              data: f,
+              filled: !0,
+              pointRadiusMinPixels: 2,
+              opacity: 1,
+              pointRadiusScale: 2e3,
+              getRadius: (i) => 11 - i.properties.scalerank,
+              getFillColor: [200, 0, 80, 180],
+              pickable: !0,
+              autoHighlight: !0,
+              onHover: y,
+            }),
+            new deck.ArcLayer({
+              id: "arcs",
+              data: f,
+              dataTransform: (i) =>
+                i.features.filter((e) => e.properties.scalerank < 4),
+              getSourcePosition: (i) => [l, c],
+              getTargetPosition: (i) => i.geometry.coordinates,
+              getSourceColor: [0, 128, 200],
+              getTargetColor: [200, 0, 80],
+              getWidth: 1,
+            }),
+          ],
+          L = {};
+        (m = new g(r, v, L)), m.setMap(h);
+      }
+      window.initMap = x;
+    </script>
+    <link rel="stylesheet" href="./assets/index.68dd5a9e.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="tooltip"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

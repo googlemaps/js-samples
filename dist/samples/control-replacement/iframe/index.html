@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Replacing Default Controls</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const i = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const o of document.querySelectorAll('link[rel="modulepreload"]'))
+          s(o);
+        new MutationObserver((o) => {
+          for (const n of o)
+            if (n.type === "childList")
+              for (const r of n.addedNodes)
+                r.tagName === "LINK" && r.rel === "modulepreload" && s(r);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function l(o) {
+          const n = {};
+          return (
+            o.integrity && (n.integrity = o.integrity),
+            o.referrerpolicy && (n.referrerPolicy = o.referrerpolicy),
+            o.crossorigin === "use-credentials"
+              ? (n.credentials = "include")
+              : o.crossorigin === "anonymous"
+              ? (n.credentials = "omit")
+              : (n.credentials = "same-origin"),
+            n
+          );
+        }
+        function s(o) {
+          if (o.ep) return;
+          o.ep = !0;
+          const n = l(o);
+          fetch(o.href, n);
+        }
+      };
+      i();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let c;
+      function m() {
+        (c = new google.maps.Map(document.querySelector("#map"), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 8,
+          disableDefaultUI: !0,
+        })),
+          d(c),
+          f(c),
+          a(c);
+      }
+      function d(e) {
+        (document.querySelector(".zoom-control-in").onclick = function () {
+          e.setZoom(e.getZoom() + 1);
+        }),
+          (document.querySelector(".zoom-control-out").onclick = function () {
+            e.setZoom(e.getZoom() - 1);
+          }),
+          e.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
+            document.querySelector(".zoom-control")
+          );
+      }
+      function f(e) {
+        const t = document.querySelector(".maptype-control");
+        (document.querySelector(".maptype-control-map").onclick = function () {
+          t.classList.add("maptype-control-is-map"),
+            t.classList.remove("maptype-control-is-satellite"),
+            e.setMapTypeId("roadmap");
+        }),
+          (document.querySelector(".maptype-control-satellite").onclick =
+            function () {
+              t.classList.remove("maptype-control-is-map"),
+                t.classList.add("maptype-control-is-satellite"),
+                e.setMapTypeId("hybrid");
+            }),
+          e.controls[google.maps.ControlPosition.LEFT_TOP].push(t);
+      }
+      function a(e) {
+        const t = e.getDiv().firstChild,
+          l = document.querySelector(".fullscreen-control");
+        e.controls[google.maps.ControlPosition.RIGHT_TOP].push(l),
+          (l.onclick = function () {
+            u(t) ? y() : p(t);
+          }),
+          (document.onwebkitfullscreenchange =
+            document.onmsfullscreenchange =
+            document.onmozfullscreenchange =
+            document.onfullscreenchange =
+              function () {
+                u(t)
+                  ? l.classList.add("is-fullscreen")
+                  : l.classList.remove("is-fullscreen");
+              });
+      }
+      function u(e) {
+        return (
+          (document.fullscreenElement ||
+            document.webkitFullscreenElement ||
+            document.mozFullScreenElement ||
+            document.msFullscreenElement) == e
+        );
+      }
+      function p(e) {
+        e.requestFullscreen
+          ? e.requestFullscreen()
+          : e.webkitRequestFullScreen
+          ? e.webkitRequestFullScreen()
+          : e.mozRequestFullScreen
+          ? e.mozRequestFullScreen()
+          : e.msRequestFullScreen && e.msRequestFullScreen();
+      }
+      function y() {
+        document.exitFullscreen
+          ? document.exitFullscreen()
+          : document.webkitExitFullscreen
+          ? document.webkitExitFullscreen()
+          : document.mozCancelFullScreen
+          ? document.mozCancelFullScreen()
+          : document.msExitFullscreen && document.msExitFullscreen();
+      }
+      window.initMap = m;
+    </script>
+    <link rel="stylesheet" href="./assets/index.d73e260b.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+    <!-- Hide controls until they are moved into the map. -->
+    <div style="display: none">
+      <div class="controls zoom-control">
+        <button class="zoom-control-in" title="Zoom In">+</button>
+        <button class="zoom-control-out" title="Zoom Out">−</button>
+      </div>
+      <div class="controls maptype-control maptype-control-is-map">
+        <button class="maptype-control-map" title="Show road map">Map</button>
+        <button
+          class="maptype-control-satellite"
+          title="Show satellite imagery"
+        >
+          Satellite
+        </button>
+      </div>
+      <div class="controls fullscreen-control">
+        <button title="Toggle Fullscreen">
+          <div
+            class="fullscreen-control-icon fullscreen-control-top-left"
+          ></div>
+          <div
+            class="fullscreen-control-icon fullscreen-control-top-right"
+          ></div>
+          <div
+            class="fullscreen-control-icon fullscreen-control-bottom-left"
+          ></div>
+          <div
+            class="fullscreen-control-icon fullscreen-control-bottom-right"
+          ></div>
+        </button>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

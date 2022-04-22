@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Place Autocomplete Restricted to Multiple Countries</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const y = function () {
+        const c = document.createElement("link").relList;
+        if (c && c.supports && c.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(t);
+        new MutationObserver((t) => {
+          for (const o of t)
+            if (o.type === "childList")
+              for (const n of o.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function r(t) {
+          const o = {};
+          return (
+            t.integrity && (o.integrity = t.integrity),
+            t.referrerpolicy && (o.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function i(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const o = r(t);
+          fetch(t.href, o);
+        }
+      };
+      y();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function h() {
+        const s = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 50.064192, lng: -130.605469 },
+            zoom: 3,
+          }),
+          c = document.getElementById("pac-card");
+        s.controls[google.maps.ControlPosition.TOP_RIGHT].push(c);
+        const r = { lat: 50.064192, lng: -130.605469 },
+          i = {
+            north: r.lat + 0.1,
+            south: r.lat - 0.1,
+            east: r.lng + 0.1,
+            west: r.lng - 0.1,
+          },
+          t = document.getElementById("pac-input"),
+          o = {
+            bounds: i,
+            componentRestrictions: { country: "us" },
+            fields: ["address_components", "geometry", "icon", "name"],
+            strictBounds: !1,
+            types: ["establishment"],
+          },
+          n = new google.maps.places.Autocomplete(t, o);
+        n.setComponentRestrictions({ country: ["us", "pr", "vi", "gu", "mp"] });
+        const p = { lat: 5.6108, lng: 136.589326 },
+          g = { lat: 61.179287, lng: 2.64325 },
+          f = new google.maps.LatLngBounds(p, g);
+        n.setBounds(f);
+        const u = new google.maps.InfoWindow(),
+          a = document.getElementById("infowindow-content");
+        u.setContent(a);
+        const l = new google.maps.Marker({
+          map: s,
+          anchorPoint: new google.maps.Point(0, -29),
+        });
+        n.addListener("place_changed", () => {
+          u.close(), l.setVisible(!1);
+          const e = n.getPlace();
+          if (!e.geometry || !e.geometry.location) {
+            window.alert("No details available for input: '" + e.name + "'");
+            return;
+          }
+          e.geometry.viewport
+            ? s.fitBounds(e.geometry.viewport)
+            : (s.setCenter(e.geometry.location), s.setZoom(17)),
+            l.setPosition(e.geometry.location),
+            l.setVisible(!0);
+          let d = "";
+          e.address_components &&
+            (d = [
+              (e.address_components[0] && e.address_components[0].short_name) ||
+                "",
+              (e.address_components[1] && e.address_components[1].short_name) ||
+                "",
+              (e.address_components[2] && e.address_components[2].short_name) ||
+                "",
+            ].join(" ")),
+            (a.children["place-icon"].src = e.icon),
+            (a.children["place-name"].textContent = e.name),
+            (a.children["place-address"].textContent = d),
+            u.open(s, l);
+        });
+        function m(e, d) {
+          document.getElementById(e).addEventListener("click", () => {
+            n.setComponentRestrictions({ country: d });
+          });
+        }
+        m("changecountry-usa", "us"),
+          m("changecountry-usa-and-uot", ["us", "pr", "vi", "gu", "mp"]);
+      }
+      window.initMap = h;
+    </script>
+    <link rel="stylesheet" href="./assets/index.1a217202.css" />
+  </head>
+  <body>
+    <div class="pac-card" id="pac-card">
+      <div>
+        <div id="title">Countries</div>
+        <div id="country-selector" class="pac-controls">
+          <input type="radio" name="type" id="changecountry-usa" />
+          <label for="changecountry-usa">USA</label>
+
+          <input
+            type="radio"
+            name="type"
+            id="changecountry-usa-and-uot"
+            checked="checked"
+          />
+          <label for="changecountry-usa-and-uot"
+            >USA and unincorporated organized territories</label
+          >
+        </div>
+      </div>
+      <div id="pac-container">
+        <input id="pac-input" type="text" placeholder="Enter a location" />
+      </div>
+    </div>
+    <div id="map"></div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon" />
+      <span id="place-name" class="title"></span><br />
+      <span id="place-address"></span>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

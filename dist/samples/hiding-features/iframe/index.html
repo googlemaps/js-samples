@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Hiding Map Features With Styling</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const d = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const i of t.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && r(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function c(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = c(e);
+          fetch(e.href, t);
+        }
+      };
+      d();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let o;
+      function u() {
+        o = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -33.86, lng: 151.209 },
+          zoom: 13,
+          mapTypeControl: !1,
+        });
+        const s = document.getElementById("style-selector-control");
+        o.controls[google.maps.ControlPosition.TOP_LEFT].push(s),
+          document.getElementById("hide-poi").addEventListener("click", () => {
+            o.setOptions({ styles: l.hide });
+          }),
+          document.getElementById("show-poi").addEventListener("click", () => {
+            o.setOptions({ styles: l.default });
+          });
+      }
+      const l = {
+        default: [],
+        hide: [
+          { featureType: "poi.business", stylers: [{ visibility: "off" }] },
+          {
+            featureType: "transit",
+            elementType: "labels.icon",
+            stylers: [{ visibility: "off" }],
+          },
+        ],
+      };
+      window.initMap = u;
+    </script>
+    <link rel="stylesheet" href="./assets/index.558b76fc.css" />
+  </head>
+  <body>
+    <div id="style-selector-control" class="map-control">
+      <input
+        type="radio"
+        name="show-hide"
+        id="hide-poi"
+        class="selector-control"
+      />
+      <label for="hide-poi">Hide</label>
+      <input
+        type="radio"
+        name="show-hide"
+        id="show-poi"
+        class="selector-control"
+        checked="checked"
+      />
+      <label for="show-poi">Show</label>
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

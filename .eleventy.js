@@ -13,6 +13,7 @@ const fs = require("fs");
 const path = require("path");
 const vite = require("vite");
 const chalk = require("chalk");
+const prettier = require("prettier");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./shared/**/*");
@@ -61,19 +62,62 @@ module.exports = function (eleventyConfig) {
     // remove warning https://stackoverflow.com/questions/8313628/node-js-request-how-to-emitter-setmaxlisteners
     require("events").EventEmitter.defaultMaxListeners = samples.length * 2;
 
+    const inlinePlugin = {
+      name: "vite:singlefile",
+      transformIndexHtml: {
+        enforce: "post",
+        transform(html, ctx) {
+          for (const asset of Object.values(ctx.bundle)) {
+            switch (asset.name) {
+              case "index.css":
+                html = html.replace(
+                  /<link rel="stylesheet" href="\.\/assets\/style\..*.css">/gm,
+                  () => `<link rel="stylesheet">${asset.source.trim()}</link>`
+                );
+                // case "index.js":
+                break;
+              case "index":
+                html = html.replace(
+                  /<script type="module" crossorigin src="\.\/assets\/index\..*.js"><\/script>/gm,
+                  () =>
+                    `<script type="module" crossorigin>${asset.code.trim()}</script>`
+                );
+                break;
+              default:
+                console.error({ ctx, html });
+                throw new Error(`Expected asset, ${asset.name} to be inlined.`);
+            }
+          }
+          return prettier.format(html, { parser: "html" });
+        },
+      },
+    };
+
+    const config = {
+      // vite automatically loads the config file from the root and merges
+      // with the config specified here
+      plugins: [],
+      base: "./",
+      logLevel: "error",
+      build: {
+        target: "es2019",
+      },
+    };
+
     await Promise.all(
-      samples.map((sample) =>
-        vite.build({
-          // vite automatically loads the config file from the root and merges
-          // with the config specified here
-          root: path.join(samplesPath, sample, "app"),
-          base: "./",
-          logLevel: "error",
+      samples.map(async (sample) => {
+        const root = path.join(samplesPath, sample, "app");
+        await vite.build({ ...config, root });
+        await vite.build({
+          ...config,
           build: {
-            target: "es2019",
+            ...config.build,
+            outDir: path.join(samplesPath, sample, "iframe"),
           },
-        })
-      )
+          plugins: [...(config.plugins || []), inlinePlugin],
+          root,
+        });
+      })
     );
 
     console.log(

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Street View Events</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const d = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const n of e)
+            if (n.type === "childList")
+              for (const l of n.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && r(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(e) {
+          const n = {};
+          return (
+            e.integrity && (n.integrity = e.integrity),
+            e.referrerpolicy && (n.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (n.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (n.credentials = "omit")
+              : (n.credentials = "same-origin"),
+            n
+          );
+        }
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const n = i(e);
+          fetch(e.href, n);
+        }
+      };
+      d();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function s() {
+        const o = new google.maps.StreetViewPanorama(
+          document.getElementById("pano"),
+          {
+            position: { lat: 37.869, lng: -122.255 },
+            pov: { heading: 270, pitch: 0 },
+            visible: !0,
+          }
+        );
+        o.addListener("pano_changed", () => {
+          const t = document.getElementById("pano-cell");
+          t.innerHTML = o.getPano();
+        }),
+          o.addListener("links_changed", () => {
+            const t = document.getElementById("links_table");
+            for (; t.hasChildNodes(); ) t.removeChild(t.lastChild);
+            const i = o.getLinks();
+            for (const r in i) {
+              const e = document.createElement("tr");
+              t.appendChild(e);
+              const n = document.createElement("td");
+              n.innerHTML = "<b>Link: " + r + "</b>";
+              const l = document.createElement("td");
+              (l.innerHTML = i[r].description),
+                t.appendChild(n),
+                t.appendChild(l);
+            }
+          }),
+          o.addListener("position_changed", () => {
+            const t = document.getElementById("position-cell");
+            t.firstChild.nodeValue = o.getPosition() + "";
+          }),
+          o.addListener("pov_changed", () => {
+            const t = document.getElementById("heading-cell"),
+              i = document.getElementById("pitch-cell");
+            (t.firstChild.nodeValue = o.getPov().heading + ""),
+              (i.firstChild.nodeValue = o.getPov().pitch + "");
+          });
+      }
+      window.initPano = s;
+    </script>
+    <link rel="stylesheet" href="./assets/index.7e329d17.css" />
+  </head>
+  <body>
+    <div id="pano"></div>
+    <div id="floating-panel">
+      <table>
+        <tr>
+          <td><b>Position</b></td>
+          <td id="position-cell">&nbsp;</td>
+        </tr>
+        <tr>
+          <td><b>POV Heading</b></td>
+          <td id="heading-cell">270</td>
+        </tr>
+        <tr>
+          <td><b>POV Pitch</b></td>
+          <td id="pitch-cell">0.0</td>
+        </tr>
+        <tr>
+          <td><b>Pano ID</b></td>
+          <td id="pano-cell">&nbsp;</td>
+        </tr>
+        <table id="links_table"></table>
+      </table>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initPano&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

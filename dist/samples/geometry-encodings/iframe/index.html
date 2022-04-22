@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Encoding Methods</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const s = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const l of t.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && i(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function i(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = n(e);
+          fetch(e.href, t);
+        }
+      };
+      s();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function c() {
+        const r = new google.maps.Map(document.getElementById("map"), {
+            zoom: 14,
+            center: { lat: 34.366, lng: -89.519 },
+          }),
+          o = new google.maps.Polyline({
+            strokeColor: "#000000",
+            strokeOpacity: 1,
+            strokeWeight: 3,
+            map: r,
+          });
+        google.maps.event.addListener(r, "click", (n) => {
+          a(n.latLng, o);
+        });
+      }
+      function a(r, o) {
+        const n = o.getPath();
+        n.push(r);
+        const i = google.maps.geometry.encoding.encodePath(n);
+        i && (document.getElementById("encoded-polyline").value = i);
+      }
+      window.initMap = c;
+    </script>
+    <link rel="stylesheet" href="./assets/index.dbcd9090.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <div>Encoding:</div>
+        <textarea id="encoded-polyline"></textarea>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=geometry&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

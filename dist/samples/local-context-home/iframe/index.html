@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Local Context Home</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const y = function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          o(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const a of t.addedNodes)
+                a.tagName === "LINK" && a.rel === "modulepreload" && o(a);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function l(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function o(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = l(e);
+          fetch(e.href, t);
+        }
+      };
+      y();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let s, i;
+      const p = [
+        { elementType: "geometry", stylers: [{ color: "#f5f5f5" }] },
+        { elementType: "labels", stylers: [{ visibility: "off" }] },
+        { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+        { elementType: "labels.text.fill", stylers: [{ color: "#616161" }] },
+        { elementType: "labels.text.stroke", stylers: [{ color: "#f5f5f5" }] },
+        {
+          featureType: "administrative.land_parcel",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "administrative.land_parcel",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#bdbdbd" }],
+        },
+        {
+          featureType: "administrative.neighborhood",
+          stylers: [{ visibility: "off" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "geometry",
+          stylers: [{ color: "#eeeeee" }],
+        },
+        {
+          featureType: "poi",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#757575" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "geometry",
+          stylers: [{ color: "#e5e5e5" }],
+        },
+        {
+          featureType: "poi.park",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#9e9e9e" }],
+        },
+        {
+          featureType: "road",
+          elementType: "geometry",
+          stylers: [{ color: "#ffffff" }],
+        },
+        {
+          featureType: "road.arterial",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#757575" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "geometry",
+          stylers: [{ color: "#dadada" }],
+        },
+        {
+          featureType: "road.highway",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#616161" }],
+        },
+        {
+          featureType: "road.local",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#9e9e9e" }],
+        },
+        {
+          featureType: "transit.line",
+          elementType: "geometry",
+          stylers: [{ color: "#e5e5e5" }],
+        },
+        {
+          featureType: "transit.station",
+          elementType: "geometry",
+          stylers: [{ color: "#eeeeee" }],
+        },
+        {
+          featureType: "water",
+          elementType: "geometry",
+          stylers: [{ color: "#c9c9c9" }],
+        },
+        {
+          featureType: "water",
+          elementType: "labels.text.fill",
+          stylers: [{ color: "#9e9e9e" }],
+        },
+      ];
+      function c() {
+        (i = new google.maps.localContext.LocalContextMapView({
+          element: document.getElementById("map"),
+          placeTypePreferences: [
+            { type: "bakery", weight: 1 },
+            { type: "bank", weight: 1 },
+            { type: "cafe", weight: 2 },
+            { type: "department_store", weight: 1 },
+            { type: "drugstore", weight: 1 },
+            { type: "park", weight: 3 },
+            { type: "restaurant", weight: 2 },
+            { type: "primary_school", weight: 3 },
+            { type: "secondary_school", weight: 3 },
+            { type: "supermarket", weight: 2 },
+          ],
+          maxPlaceCount: 24,
+        })),
+          (s = i.map),
+          s.setOptions({
+            center: { lat: 51.507307, lng: -0.08114 },
+            zoom: 14,
+            styles: p,
+          });
+        const n = document.getElementById("input"),
+          r = {
+            types: ["address"],
+            componentRestrictions: { country: "us" },
+            fields: ["address_components", "geometry", "name"],
+          },
+          l = new google.maps.places.Autocomplete(n, r);
+        l.addListener("place_changed", () => {
+          const o = l.getPlace();
+          if (!o || !o.geometry) {
+            window.alert("No address available for that input.");
+            return;
+          }
+          s.setOptions({ center: o.geometry.location, zoom: 14 }),
+            (i.directionsOptions = { origin: o.geometry.location }),
+            new google.maps.Marker({
+              position: o.geometry.location,
+              map: s,
+              icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAbUlEQVR4Ae3LoQ2AMAAF0TMYPJoV2IApGIJtmIMtmIAVqutraj6IiqZpmyYoCO/08R7bXbOOHSF2Ohr0HCh00EPdwImiTgYqRgxKMowUTFiUyTKRMeNQIcdMYsGjSp6FyIoaWkmoUuLxEPzDh1xIaLFFuTyHMgAAAABJRU5ErkJggg==",
+              zIndex: 30,
+            }),
+            i.search();
+        });
+      }
+      window.initMap = c;
+    </script>
+    <link rel="stylesheet" href="./assets/index.ce1fbe80.css" />
+  </head>
+  <body>
+    <input id="input" placeholder="Enter a US address" />
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=localContext,places&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

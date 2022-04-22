@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Custom Popups</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const s = document.createElement("link").relList;
+        if (s && s.supports && s.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const r of t.addedNodes)
+                r.tagName === "LINK" && r.rel === "modulepreload" && i(r);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function i(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = n(e);
+          fetch(e.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let a, l;
+      function d() {
+        a = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -33.9, lng: 151.1 },
+          zoom: 10,
+        });
+        class o extends google.maps.OverlayView {
+          constructor(n, i) {
+            super(), (this.position = n), i.classList.add("popup-bubble");
+            const e = document.createElement("div");
+            e.classList.add("popup-bubble-anchor"),
+              e.appendChild(i),
+              (this.containerDiv = document.createElement("div")),
+              this.containerDiv.classList.add("popup-container"),
+              this.containerDiv.appendChild(e),
+              o.preventMapHitsAndGesturesFrom(this.containerDiv);
+          }
+          onAdd() {
+            this.getPanes().floatPane.appendChild(this.containerDiv);
+          }
+          onRemove() {
+            this.containerDiv.parentElement &&
+              this.containerDiv.parentElement.removeChild(this.containerDiv);
+          }
+          draw() {
+            const n = this.getProjection().fromLatLngToDivPixel(this.position),
+              i = Math.abs(n.x) < 4e3 && Math.abs(n.y) < 4e3 ? "block" : "none";
+            i === "block" &&
+              ((this.containerDiv.style.left = n.x + "px"),
+              (this.containerDiv.style.top = n.y + "px")),
+              this.containerDiv.style.display !== i &&
+                (this.containerDiv.style.display = i);
+          }
+        }
+        (l = new o(
+          new google.maps.LatLng(-33.866, 151.196),
+          document.getElementById("content")
+        )),
+          l.setMap(a);
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.d0c083b8.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="content">Hello world!</div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

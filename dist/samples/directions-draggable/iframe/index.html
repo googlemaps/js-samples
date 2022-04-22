@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Draggable Directions</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const s = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          n(e);
+        new MutationObserver((e) => {
+          for (const r of e)
+            if (r.type === "childList")
+              for (const l of r.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && n(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function o(e) {
+          const r = {};
+          return (
+            e.integrity && (r.integrity = e.integrity),
+            e.referrerpolicy && (r.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (r.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (r.credentials = "omit")
+              : (r.credentials = "same-origin"),
+            r
+          );
+        }
+        function n(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const r = o(e);
+          fetch(e.href, r);
+        }
+      };
+      s();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function c() {
+        const i = new google.maps.Map(document.getElementById("map"), {
+            zoom: 4,
+            center: { lat: -24.345, lng: 134.46 },
+          }),
+          t = new google.maps.DirectionsService(),
+          o = new google.maps.DirectionsRenderer({
+            draggable: !0,
+            map: i,
+            panel: document.getElementById("panel"),
+          });
+        o.addListener("directions_changed", () => {
+          const n = o.getDirections();
+          n && a(n);
+        }),
+          d("Perth, WA", "Sydney, NSW", t, o);
+      }
+      function d(i, t, o, n) {
+        o.route({
+          origin: i,
+          destination: t,
+          waypoints: [
+            { location: "Adelaide, SA" },
+            { location: "Broken Hill, NSW" },
+          ],
+          travelMode: google.maps.TravelMode.DRIVING,
+          avoidTolls: !0,
+        })
+          .then((e) => {
+            n.setDirections(e);
+          })
+          .catch((e) => {
+            alert("Could not display directions due to: " + e);
+          });
+      }
+      function a(i) {
+        let t = 0;
+        const o = i.routes[0];
+        if (!!o) {
+          for (let n = 0; n < o.legs.length; n++) t += o.legs[n].distance.value;
+          (t = t / 1e3),
+            (document.getElementById("total").innerHTML = t + " km");
+        }
+      }
+      window.initMap = c;
+    </script>
+    <link rel="stylesheet" href="./assets/index.ef8c9db0.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <p>Total Distance: <span id="total"></span></p>
+        <div id="panel"></div>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

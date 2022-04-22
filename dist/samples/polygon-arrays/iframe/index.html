@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Polygon Arrays</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const s of t.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && r(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function l(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = l(e);
+          fetch(e.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let a, i;
+      function g() {
+        a = new google.maps.Map(document.getElementById("map"), {
+          zoom: 5,
+          center: { lat: 24.886, lng: -70.268 },
+          mapTypeId: "terrain",
+        });
+        const n = [
+            { lat: 25.774, lng: -80.19 },
+            { lat: 18.466, lng: -66.118 },
+            { lat: 32.321, lng: -64.757 },
+          ],
+          o = new google.maps.Polygon({
+            paths: n,
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 3,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+          });
+        o.setMap(a),
+          o.addListener("click", d),
+          (i = new google.maps.InfoWindow());
+      }
+      function d(n) {
+        const l = this.getPath();
+        let r =
+          "<b>Bermuda Triangle polygon</b><br>Clicked location: <br>" +
+          n.latLng.lat() +
+          "," +
+          n.latLng.lng() +
+          "<br>";
+        for (let e = 0; e < l.getLength(); e++) {
+          const t = l.getAt(e);
+          r += "<br>Coordinate " + e + ":<br>" + t.lat() + "," + t.lng();
+        }
+        i.setContent(r), i.setPosition(n.latLng), i.open(a);
+      }
+      window.initMap = g;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

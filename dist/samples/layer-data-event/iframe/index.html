@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Data Layer: Event Handling</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const a = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const i of t.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && l(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function s(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function l(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = s(e);
+          fetch(e.href, t);
+        }
+      };
+      a();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let r;
+      function c() {
+        (r = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: { lat: -28, lng: 137 },
+        })),
+          r.data.loadGeoJson(
+            "https://storage.googleapis.com/maps-devrel/google.json"
+          ),
+          r.data.setStyle((o) => ({
+            fillColor: o.getProperty("color"),
+            strokeWeight: 1,
+          })),
+          r.data.addListener("mouseover", (o) => {
+            document.getElementById("info-box").textContent =
+              o.feature.getProperty("letter");
+          });
+      }
+      window.initMap = c;
+    </script>
+    <link rel="stylesheet" href="./assets/index.b6271cff.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="info-box">?</div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

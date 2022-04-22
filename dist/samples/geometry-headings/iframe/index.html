@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Navigation Functions (Heading)</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const u = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          a(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const s of t.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && a(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function c(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function a(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = c(e);
+          fetch(e.href, t);
+        }
+      };
+      u();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let i, r, g, d;
+      function p() {
+        const o = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: { lat: 34, lng: -40.605 },
+        });
+        o.controls[google.maps.ControlPosition.TOP_CENTER].push(
+          document.getElementById("info")
+        ),
+          (i = new google.maps.Marker({
+            map: o,
+            draggable: !0,
+            position: { lat: 40.714, lng: -74.006 },
+          })),
+          (r = new google.maps.Marker({
+            map: o,
+            draggable: !0,
+            position: { lat: 48.857, lng: 2.352 },
+          }));
+        const n = new google.maps.LatLngBounds(
+          i.getPosition(),
+          r.getPosition()
+        );
+        o.fitBounds(n),
+          google.maps.event.addListener(i, "position_changed", l),
+          google.maps.event.addListener(r, "position_changed", l),
+          (g = new google.maps.Polyline({
+            strokeColor: "#FF0000",
+            strokeOpacity: 1,
+            strokeWeight: 3,
+            map: o,
+          })),
+          (d = new google.maps.Polyline({
+            strokeColor: "#CC0099",
+            strokeOpacity: 1,
+            strokeWeight: 3,
+            geodesic: !0,
+            map: o,
+          })),
+          l();
+      }
+      function l() {
+        const o = [i.getPosition(), r.getPosition()];
+        g.setPath(o), d.setPath(o);
+        const n = google.maps.geometry.spherical.computeHeading(o[0], o[1]);
+        (document.getElementById("heading").value = String(n)),
+          (document.getElementById("origin").value = String(o[0])),
+          (document.getElementById("destination").value = String(o[1]));
+      }
+      window.initMap = p;
+    </script>
+    <link rel="stylesheet" href="./assets/index.500371f2.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+    <div id="floating-panel">
+      Origin: <input type="text" readonly id="origin" /> Destination:
+      <input type="text" readonly id="destination" /><br />
+      Heading: <input type="text" readonly id="heading" /> degrees
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=geometry&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

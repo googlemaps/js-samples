@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Marker Animations With setTimeout()</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const u = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const i of o.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && l(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function c(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function l(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = c(e);
+          fetch(e.href, o);
+        }
+      };
+      u();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ const s = [
+        { lat: 52.511, lng: 13.447 },
+        { lat: 52.549, lng: 13.422 },
+        { lat: 52.497, lng: 13.396 },
+        { lat: 52.517, lng: 13.394 },
+      ];
+      let r = [],
+        a;
+      function d() {
+        (a = new google.maps.Map(document.getElementById("map"), {
+          zoom: 12,
+          center: { lat: 52.52, lng: 13.41 },
+        })),
+          document.getElementById("drop").addEventListener("click", f);
+      }
+      function f() {
+        p();
+        for (let t = 0; t < s.length; t++) m(s[t], t * 200);
+      }
+      function m(t, n) {
+        window.setTimeout(() => {
+          r.push(
+            new google.maps.Marker({
+              position: t,
+              map: a,
+              animation: google.maps.Animation.DROP,
+            })
+          );
+        }, n);
+      }
+      function p() {
+        for (let t = 0; t < r.length; t++) r[t].setMap(null);
+        r = [];
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.455d8a2f.css" />
+  </head>
+  <body>
+    <div id="floating-panel">
+      <button id="drop">Drop Markers</button>
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

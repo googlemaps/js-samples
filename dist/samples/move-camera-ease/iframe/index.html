@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Move Camera Easing</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const b = function () {
+        const e = document.createElement("link").relList;
+        if (e && e.supports && e.supports("modulepreload")) return;
+        for (const r of document.querySelectorAll('link[rel="modulepreload"]'))
+          s(r);
+        new MutationObserver((r) => {
+          for (const n of r)
+            if (n.type === "childList")
+              for (const a of n.addedNodes)
+                a.tagName === "LINK" && a.rel === "modulepreload" && s(a);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(r) {
+          const n = {};
+          return (
+            r.integrity && (n.integrity = r.integrity),
+            r.referrerpolicy && (n.referrerPolicy = r.referrerpolicy),
+            r.crossorigin === "use-credentials"
+              ? (n.credentials = "include")
+              : r.crossorigin === "anonymous"
+              ? (n.credentials = "omit")
+              : (n.credentials = "same-origin"),
+            n
+          );
+        }
+        function s(r) {
+          if (r.ep) return;
+          r.ep = !0;
+          const n = i(r);
+          fetch(r.href, n);
+        }
+      };
+      b();
+      var p = {
+          Linear: {
+            None: function (t) {
+              return t;
+            },
+          },
+          Quadratic: {
+            In: function (t) {
+              return t * t;
+            },
+            Out: function (t) {
+              return t * (2 - t);
+            },
+            InOut: function (t) {
+              return (t *= 2) < 1 ? 0.5 * t * t : -0.5 * (--t * (t - 2) - 1);
+            },
+          },
+          Cubic: {
+            In: function (t) {
+              return t * t * t;
+            },
+            Out: function (t) {
+              return --t * t * t + 1;
+            },
+            InOut: function (t) {
+              return (t *= 2) < 1
+                ? 0.5 * t * t * t
+                : 0.5 * ((t -= 2) * t * t + 2);
+            },
+          },
+          Quartic: {
+            In: function (t) {
+              return t * t * t * t;
+            },
+            Out: function (t) {
+              return 1 - --t * t * t * t;
+            },
+            InOut: function (t) {
+              return (t *= 2) < 1
+                ? 0.5 * t * t * t * t
+                : -0.5 * ((t -= 2) * t * t * t - 2);
+            },
+          },
+          Quintic: {
+            In: function (t) {
+              return t * t * t * t * t;
+            },
+            Out: function (t) {
+              return --t * t * t * t * t + 1;
+            },
+            InOut: function (t) {
+              return (t *= 2) < 1
+                ? 0.5 * t * t * t * t * t
+                : 0.5 * ((t -= 2) * t * t * t * t + 2);
+            },
+          },
+          Sinusoidal: {
+            In: function (t) {
+              return 1 - Math.cos((t * Math.PI) / 2);
+            },
+            Out: function (t) {
+              return Math.sin((t * Math.PI) / 2);
+            },
+            InOut: function (t) {
+              return 0.5 * (1 - Math.cos(Math.PI * t));
+            },
+          },
+          Exponential: {
+            In: function (t) {
+              return t === 0 ? 0 : Math.pow(1024, t - 1);
+            },
+            Out: function (t) {
+              return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
+            },
+            InOut: function (t) {
+              return t === 0
+                ? 0
+                : t === 1
+                ? 1
+                : (t *= 2) < 1
+                ? 0.5 * Math.pow(1024, t - 1)
+                : 0.5 * (-Math.pow(2, -10 * (t - 1)) + 2);
+            },
+          },
+          Circular: {
+            In: function (t) {
+              return 1 - Math.sqrt(1 - t * t);
+            },
+            Out: function (t) {
+              return Math.sqrt(1 - --t * t);
+            },
+            InOut: function (t) {
+              return (t *= 2) < 1
+                ? -0.5 * (Math.sqrt(1 - t * t) - 1)
+                : 0.5 * (Math.sqrt(1 - (t -= 2) * t) + 1);
+            },
+          },
+          Elastic: {
+            In: function (t) {
+              return t === 0
+                ? 0
+                : t === 1
+                ? 1
+                : -Math.pow(2, 10 * (t - 1)) *
+                  Math.sin((t - 1.1) * 5 * Math.PI);
+            },
+            Out: function (t) {
+              return t === 0
+                ? 0
+                : t === 1
+                ? 1
+                : Math.pow(2, -10 * t) * Math.sin((t - 0.1) * 5 * Math.PI) + 1;
+            },
+            InOut: function (t) {
+              return t === 0
+                ? 0
+                : t === 1
+                ? 1
+                : ((t *= 2),
+                  t < 1
+                    ? -0.5 *
+                      Math.pow(2, 10 * (t - 1)) *
+                      Math.sin((t - 1.1) * 5 * Math.PI)
+                    : 0.5 *
+                        Math.pow(2, -10 * (t - 1)) *
+                        Math.sin((t - 1.1) * 5 * Math.PI) +
+                      1);
+            },
+          },
+          Back: {
+            In: function (t) {
+              var e = 1.70158;
+              return t * t * ((e + 1) * t - e);
+            },
+            Out: function (t) {
+              var e = 1.70158;
+              return --t * t * ((e + 1) * t + e) + 1;
+            },
+            InOut: function (t) {
+              var e = 2.5949095;
+              return (t *= 2) < 1
+                ? 0.5 * (t * t * ((e + 1) * t - e))
+                : 0.5 * ((t -= 2) * t * ((e + 1) * t + e) + 2);
+            },
+          },
+          Bounce: {
+            In: function (t) {
+              return 1 - p.Bounce.Out(1 - t);
+            },
+            Out: function (t) {
+              return t < 1 / 2.75
+                ? 7.5625 * t * t
+                : t < 2 / 2.75
+                ? 7.5625 * (t -= 1.5 / 2.75) * t + 0.75
+                : t < 2.5 / 2.75
+                ? 7.5625 * (t -= 2.25 / 2.75) * t + 0.9375
+                : 7.5625 * (t -= 2.625 / 2.75) * t + 0.984375;
+            },
+            InOut: function (t) {
+              return t < 0.5
+                ? p.Bounce.In(t * 2) * 0.5
+                : p.Bounce.Out(t * 2 - 1) * 0.5 + 0.5;
+            },
+          },
+        },
+        d;
+      typeof self == "undefined" &&
+      typeof process != "undefined" &&
+      process.hrtime
+        ? (d = function () {
+            var t = process.hrtime();
+            return t[0] * 1e3 + t[1] / 1e6;
+          })
+        : typeof self != "undefined" &&
+          self.performance !== void 0 &&
+          self.performance.now !== void 0
+        ? (d = self.performance.now.bind(self.performance))
+        : Date.now !== void 0
+        ? (d = Date.now)
+        : (d = function () {
+            return new Date().getTime();
+          });
+      var l = d,
+        I = (function () {
+          function t() {
+            (this._tweens = {}), (this._tweensAddedDuringUpdate = {});
+          }
+          return (
+            (t.prototype.getAll = function () {
+              var e = this;
+              return Object.keys(this._tweens).map(function (i) {
+                return e._tweens[i];
+              });
+            }),
+            (t.prototype.removeAll = function () {
+              this._tweens = {};
+            }),
+            (t.prototype.add = function (e) {
+              (this._tweens[e.getId()] = e),
+                (this._tweensAddedDuringUpdate[e.getId()] = e);
+            }),
+            (t.prototype.remove = function (e) {
+              delete this._tweens[e.getId()],
+                delete this._tweensAddedDuringUpdate[e.getId()];
+            }),
+            (t.prototype.update = function (e, i) {
+              e === void 0 && (e = l()), i === void 0 && (i = !1);
+              var s = Object.keys(this._tweens);
+              if (s.length === 0) return !1;
+              for (; s.length > 0; ) {
+                this._tweensAddedDuringUpdate = {};
+                for (var r = 0; r < s.length; r++) {
+                  var n = this._tweens[s[r]],
+                    a = !i;
+                  n && n.update(e, a) === !1 && !i && delete this._tweens[s[r]];
+                }
+                s = Object.keys(this._tweensAddedDuringUpdate);
+              }
+              return !0;
+            }),
+            t
+          );
+        })(),
+        _ = {
+          Linear: function (t, e) {
+            var i = t.length - 1,
+              s = i * e,
+              r = Math.floor(s),
+              n = _.Utils.Linear;
+            return e < 0
+              ? n(t[0], t[1], s)
+              : e > 1
+              ? n(t[i], t[i - 1], i - s)
+              : n(t[r], t[r + 1 > i ? i : r + 1], s - r);
+          },
+          Bezier: function (t, e) {
+            for (
+              var i = 0,
+                s = t.length - 1,
+                r = Math.pow,
+                n = _.Utils.Bernstein,
+                a = 0;
+              a <= s;
+              a++
+            )
+              i += r(1 - e, s - a) * r(e, a) * t[a] * n(s, a);
+            return i;
+          },
+          CatmullRom: function (t, e) {
+            var i = t.length - 1,
+              s = i * e,
+              r = Math.floor(s),
+              n = _.Utils.CatmullRom;
+            return t[0] === t[i]
+              ? (e < 0 && (r = Math.floor((s = i * (1 + e)))),
+                n(
+                  t[(r - 1 + i) % i],
+                  t[r],
+                  t[(r + 1) % i],
+                  t[(r + 2) % i],
+                  s - r
+                ))
+              : e < 0
+              ? t[0] - (n(t[0], t[0], t[1], t[1], -s) - t[0])
+              : e > 1
+              ? t[i] - (n(t[i], t[i], t[i - 1], t[i - 1], s - i) - t[i])
+              : n(
+                  t[r ? r - 1 : 0],
+                  t[r],
+                  t[i < r + 1 ? i : r + 1],
+                  t[i < r + 2 ? i : r + 2],
+                  s - r
+                );
+          },
+          Utils: {
+            Linear: function (t, e, i) {
+              return (e - t) * i + t;
+            },
+            Bernstein: function (t, e) {
+              var i = _.Utils.Factorial;
+              return i(t) / i(e) / i(t - e);
+            },
+            Factorial: (function () {
+              var t = [1];
+              return function (e) {
+                var i = 1;
+                if (t[e]) return t[e];
+                for (var s = e; s > 1; s--) i *= s;
+                return (t[e] = i), i;
+              };
+            })(),
+            CatmullRom: function (t, e, i, s, r) {
+              var n = (i - t) * 0.5,
+                a = (s - e) * 0.5,
+                o = r * r,
+                f = r * o;
+              return (
+                (2 * e - 2 * i + n + a) * f +
+                (-3 * e + 3 * i - 2 * n - a) * o +
+                n * r +
+                e
+              );
+            },
+          },
+        },
+        P = (function () {
+          function t() {}
+          return (
+            (t.nextId = function () {
+              return t._nextId++;
+            }),
+            (t._nextId = 0),
+            t
+          );
+        })(),
+        w = new I(),
+        C = (function () {
+          function t(e, i) {
+            i === void 0 && (i = w),
+              (this._object = e),
+              (this._group = i),
+              (this._isPaused = !1),
+              (this._pauseStart = 0),
+              (this._valuesStart = {}),
+              (this._valuesEnd = {}),
+              (this._valuesStartRepeat = {}),
+              (this._duration = 1e3),
+              (this._initialRepeat = 0),
+              (this._repeat = 0),
+              (this._yoyo = !1),
+              (this._isPlaying = !1),
+              (this._reversed = !1),
+              (this._delayTime = 0),
+              (this._startTime = 0),
+              (this._easingFunction = p.Linear.None),
+              (this._interpolationFunction = _.Linear),
+              (this._chainedTweens = []),
+              (this._onStartCallbackFired = !1),
+              (this._id = P.nextId()),
+              (this._isChainStopped = !1),
+              (this._goToEnd = !1);
+          }
+          return (
+            (t.prototype.getId = function () {
+              return this._id;
+            }),
+            (t.prototype.isPlaying = function () {
+              return this._isPlaying;
+            }),
+            (t.prototype.isPaused = function () {
+              return this._isPaused;
+            }),
+            (t.prototype.to = function (e, i) {
+              return (
+                (this._valuesEnd = Object.create(e)),
+                i !== void 0 && (this._duration = i),
+                this
+              );
+            }),
+            (t.prototype.duration = function (e) {
+              return (this._duration = e), this;
+            }),
+            (t.prototype.start = function (e) {
+              if (this._isPlaying) return this;
+              if (
+                (this._group && this._group.add(this),
+                (this._repeat = this._initialRepeat),
+                this._reversed)
+              ) {
+                this._reversed = !1;
+                for (var i in this._valuesStartRepeat)
+                  this._swapEndStartRepeatValues(i),
+                    (this._valuesStart[i] = this._valuesStartRepeat[i]);
+              }
+              return (
+                (this._isPlaying = !0),
+                (this._isPaused = !1),
+                (this._onStartCallbackFired = !1),
+                (this._isChainStopped = !1),
+                (this._startTime =
+                  e !== void 0
+                    ? typeof e == "string"
+                      ? l() + parseFloat(e)
+                      : e
+                    : l()),
+                (this._startTime += this._delayTime),
+                this._setupProperties(
+                  this._object,
+                  this._valuesStart,
+                  this._valuesEnd,
+                  this._valuesStartRepeat
+                ),
+                this
+              );
+            }),
+            (t.prototype._setupProperties = function (e, i, s, r) {
+              for (var n in s) {
+                var a = e[n],
+                  o = Array.isArray(a),
+                  f = o ? "array" : typeof a,
+                  c = !o && Array.isArray(s[n]);
+                if (!(f === "undefined" || f === "function")) {
+                  if (c) {
+                    var u = s[n];
+                    if (u.length === 0) continue;
+                    (u = u.map(this._handleRelativeValue.bind(this, a))),
+                      (s[n] = [a].concat(u));
+                  }
+                  if ((f === "object" || o) && a && !c) {
+                    i[n] = o ? [] : {};
+                    for (var v in a) i[n][v] = a[v];
+                    (r[n] = o ? [] : {}),
+                      this._setupProperties(a, i[n], s[n], r[n]);
+                  } else
+                    typeof i[n] == "undefined" && (i[n] = a),
+                      o || (i[n] *= 1),
+                      c ? (r[n] = s[n].slice().reverse()) : (r[n] = i[n] || 0);
+                }
+              }
+            }),
+            (t.prototype.stop = function () {
+              return (
+                this._isChainStopped ||
+                  ((this._isChainStopped = !0), this.stopChainedTweens()),
+                this._isPlaying
+                  ? (this._group && this._group.remove(this),
+                    (this._isPlaying = !1),
+                    (this._isPaused = !1),
+                    this._onStopCallback && this._onStopCallback(this._object),
+                    this)
+                  : this
+              );
+            }),
+            (t.prototype.end = function () {
+              return (this._goToEnd = !0), this.update(1 / 0), this;
+            }),
+            (t.prototype.pause = function (e) {
+              return (
+                e === void 0 && (e = l()),
+                this._isPaused || !this._isPlaying
+                  ? this
+                  : ((this._isPaused = !0),
+                    (this._pauseStart = e),
+                    this._group && this._group.remove(this),
+                    this)
+              );
+            }),
+            (t.prototype.resume = function (e) {
+              return (
+                e === void 0 && (e = l()),
+                !this._isPaused || !this._isPlaying
+                  ? this
+                  : ((this._isPaused = !1),
+                    (this._startTime += e - this._pauseStart),
+                    (this._pauseStart = 0),
+                    this._group && this._group.add(this),
+                    this)
+              );
+            }),
+            (t.prototype.stopChainedTweens = function () {
+              for (var e = 0, i = this._chainedTweens.length; e < i; e++)
+                this._chainedTweens[e].stop();
+              return this;
+            }),
+            (t.prototype.group = function (e) {
+              return (this._group = e), this;
+            }),
+            (t.prototype.delay = function (e) {
+              return (this._delayTime = e), this;
+            }),
+            (t.prototype.repeat = function (e) {
+              return (this._initialRepeat = e), (this._repeat = e), this;
+            }),
+            (t.prototype.repeatDelay = function (e) {
+              return (this._repeatDelayTime = e), this;
+            }),
+            (t.prototype.yoyo = function (e) {
+              return (this._yoyo = e), this;
+            }),
+            (t.prototype.easing = function (e) {
+              return (this._easingFunction = e), this;
+            }),
+            (t.prototype.interpolation = function (e) {
+              return (this._interpolationFunction = e), this;
+            }),
+            (t.prototype.chain = function () {
+              for (var e = [], i = 0; i < arguments.length; i++)
+                e[i] = arguments[i];
+              return (this._chainedTweens = e), this;
+            }),
+            (t.prototype.onStart = function (e) {
+              return (this._onStartCallback = e), this;
+            }),
+            (t.prototype.onUpdate = function (e) {
+              return (this._onUpdateCallback = e), this;
+            }),
+            (t.prototype.onRepeat = function (e) {
+              return (this._onRepeatCallback = e), this;
+            }),
+            (t.prototype.onComplete = function (e) {
+              return (this._onCompleteCallback = e), this;
+            }),
+            (t.prototype.onStop = function (e) {
+              return (this._onStopCallback = e), this;
+            }),
+            (t.prototype.update = function (e, i) {
+              if (
+                (e === void 0 && (e = l()),
+                i === void 0 && (i = !0),
+                this._isPaused)
+              )
+                return !0;
+              var s,
+                r,
+                n = this._startTime + this._duration;
+              if (!this._goToEnd && !this._isPlaying) {
+                if (e > n) return !1;
+                i && this.start(e);
+              }
+              if (((this._goToEnd = !1), e < this._startTime)) return !0;
+              this._onStartCallbackFired === !1 &&
+                (this._onStartCallback && this._onStartCallback(this._object),
+                (this._onStartCallbackFired = !0)),
+                (r = (e - this._startTime) / this._duration),
+                (r = this._duration === 0 || r > 1 ? 1 : r);
+              var a = this._easingFunction(r);
+              if (
+                (this._updateProperties(
+                  this._object,
+                  this._valuesStart,
+                  this._valuesEnd,
+                  a
+                ),
+                this._onUpdateCallback &&
+                  this._onUpdateCallback(this._object, r),
+                r === 1)
+              )
+                if (this._repeat > 0) {
+                  isFinite(this._repeat) && this._repeat--;
+                  for (s in this._valuesStartRepeat)
+                    !this._yoyo &&
+                      typeof this._valuesEnd[s] == "string" &&
+                      (this._valuesStartRepeat[s] =
+                        this._valuesStartRepeat[s] +
+                        parseFloat(this._valuesEnd[s])),
+                      this._yoyo && this._swapEndStartRepeatValues(s),
+                      (this._valuesStart[s] = this._valuesStartRepeat[s]);
+                  return (
+                    this._yoyo && (this._reversed = !this._reversed),
+                    this._repeatDelayTime !== void 0
+                      ? (this._startTime = e + this._repeatDelayTime)
+                      : (this._startTime = e + this._delayTime),
+                    this._onRepeatCallback &&
+                      this._onRepeatCallback(this._object),
+                    !0
+                  );
+                } else {
+                  this._onCompleteCallback &&
+                    this._onCompleteCallback(this._object);
+                  for (var o = 0, f = this._chainedTweens.length; o < f; o++)
+                    this._chainedTweens[o].start(
+                      this._startTime + this._duration
+                    );
+                  return (this._isPlaying = !1), !1;
+                }
+              return !0;
+            }),
+            (t.prototype._updateProperties = function (e, i, s, r) {
+              for (var n in s)
+                if (i[n] !== void 0) {
+                  var a = i[n] || 0,
+                    o = s[n],
+                    f = Array.isArray(e[n]),
+                    c = Array.isArray(o),
+                    u = !f && c;
+                  u
+                    ? (e[n] = this._interpolationFunction(o, r))
+                    : typeof o == "object" && o
+                    ? this._updateProperties(e[n], a, o, r)
+                    : ((o = this._handleRelativeValue(a, o)),
+                      typeof o == "number" && (e[n] = a + (o - a) * r));
+                }
+            }),
+            (t.prototype._handleRelativeValue = function (e, i) {
+              return typeof i != "string"
+                ? i
+                : i.charAt(0) === "+" || i.charAt(0) === "-"
+                ? e + parseFloat(i)
+                : parseFloat(i);
+            }),
+            (t.prototype._swapEndStartRepeatValues = function (e) {
+              var i = this._valuesStartRepeat[e],
+                s = this._valuesEnd[e];
+              typeof s == "string"
+                ? (this._valuesStartRepeat[e] =
+                    this._valuesStartRepeat[e] + parseFloat(s))
+                : (this._valuesStartRepeat[e] = this._valuesEnd[e]),
+                (this._valuesEnd[e] = i);
+            }),
+            t
+          );
+        })(),
+        h = w;
+      h.getAll.bind(h);
+      h.removeAll.bind(h);
+      h.add.bind(h);
+      h.remove.bind(h);
+      var M = h.update.bind(h);
+      /**
+       * @license
+       * Copyright 2021 Google LLC.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let y;
+      const g = {
+          tilt: 0,
+          heading: 0,
+          zoom: 3,
+          center: { lat: 35.6594945, lng: 139.6999859 },
+        },
+        O = { ...g, mapId: "15431d2b469f209e" };
+      function S() {
+        (y = new google.maps.Map(document.getElementById("map"), O)),
+          new C(g)
+            .to({ tilt: 65, heading: 90, zoom: 18 }, 15e3)
+            .easing(p.Quadratic.Out)
+            .onUpdate(() => {
+              y.moveCamera(g);
+            })
+            .start();
+        function t(e) {
+          requestAnimationFrame(t), M(e);
+        }
+        requestAnimationFrame(t);
+      }
+      window.initMap = S;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map" class="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

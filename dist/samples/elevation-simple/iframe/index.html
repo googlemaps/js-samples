@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Elevation Service</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const l = function () {
+        const i = document.createElement("link").relList;
+        if (i && i.supports && i.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          n(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const s of t.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && n(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function o(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function n(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = o(e);
+          fetch(e.href, t);
+        }
+      };
+      l();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function a() {
+        const r = new google.maps.Map(document.getElementById("map"), {
+            zoom: 8,
+            center: { lat: 63.333, lng: -150.5 },
+            mapTypeId: "terrain",
+          }),
+          i = new google.maps.ElevationService(),
+          o = new google.maps.InfoWindow({});
+        o.open(r),
+          r.addListener("click", (n) => {
+            c(n.latLng, i, o);
+          });
+      }
+      function c(r, i, o) {
+        i.getElevationForLocations({ locations: [r] })
+          .then(({ results: n }) => {
+            o.setPosition(r),
+              n[0]
+                ? o.setContent(
+                    "The elevation at this point <br>is " +
+                      n[0].elevation +
+                      " meters."
+                  )
+                : o.setContent("No results found");
+          })
+          .catch((n) => o.setContent("Elevation service failed due to: " + n));
+      }
+      window.initMap = a;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

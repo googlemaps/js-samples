@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Overlaying an Image Map Type</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const l = function () {
+        const i = document.createElement("link").relList;
+        if (i && i.supports && i.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          n(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const o of t.addedNodes)
+                o.tagName === "LINK" && o.rel === "modulepreload" && n(o);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function r(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function n(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = r(e);
+          fetch(e.href, t);
+        }
+      };
+      l();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function a() {
+        const s = new google.maps.Map(document.getElementById("map"), {
+            zoom: 18,
+            center: { lat: 37.783, lng: -122.403 },
+          }),
+          i = {
+            17: [
+              [20969, 20970],
+              [50657, 50658],
+            ],
+            18: [
+              [41939, 41940],
+              [101315, 101317],
+            ],
+            19: [
+              [83878, 83881],
+              [202631, 202634],
+            ],
+            20: [
+              [167757, 167763],
+              [405263, 405269],
+            ],
+          },
+          r = new google.maps.ImageMapType({
+            getTileUrl: function (n, e) {
+              return e < 17 ||
+                e > 20 ||
+                i[e][0][0] > n.x ||
+                n.x > i[e][0][1] ||
+                i[e][1][0] > n.y ||
+                n.y > i[e][1][1]
+                ? ""
+                : [
+                    "https://www.gstatic.com/io2010maps/tiles/5/L2_",
+                    e,
+                    "_",
+                    n.x,
+                    "_",
+                    n.y,
+                    ".png",
+                  ].join("");
+            },
+            tileSize: new google.maps.Size(256, 256),
+          });
+        s.overlayMapTypes.push(r);
+      }
+      window.initMap = a;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

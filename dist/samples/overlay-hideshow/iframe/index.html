@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Showing/Hiding Overlays</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const l = document.createElement("link").relList;
+        if (l && l.supports && l.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(t);
+        new MutationObserver((t) => {
+          for (const e of t)
+            if (e.type === "childList")
+              for (const o of e.addedNodes)
+                o.tagName === "LINK" && o.rel === "modulepreload" && r(o);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function d(t) {
+          const e = {};
+          return (
+            t.integrity && (e.integrity = t.integrity),
+            t.referrerpolicy && (e.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (e.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (e.credentials = "omit")
+              : (e.credentials = "same-origin"),
+            e
+          );
+        }
+        function r(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const e = d(t);
+          fetch(t.href, e);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function h() {
+        const n = new google.maps.Map(document.getElementById("map"), {
+            zoom: 11,
+            center: { lat: 62.323907, lng: -150.109291 },
+            mapTypeId: "satellite",
+          }),
+          l = new google.maps.LatLngBounds(
+            new google.maps.LatLng(62.281819, -150.287132),
+            new google.maps.LatLng(62.400471, -150.005608)
+          );
+        let d = "https://developers.google.com/maps/documentation/javascript/";
+        d += "examples/full/images/talkeetna.png";
+        class r extends google.maps.OverlayView {
+          constructor(i, s) {
+            super(), (this.bounds = i), (this.image = s);
+          }
+          onAdd() {
+            (this.div = document.createElement("div")),
+              (this.div.style.borderStyle = "none"),
+              (this.div.style.borderWidth = "0px"),
+              (this.div.style.position = "absolute");
+            const i = document.createElement("img");
+            (i.src = this.image),
+              (i.style.width = "100%"),
+              (i.style.height = "100%"),
+              (i.style.position = "absolute"),
+              this.div.appendChild(i),
+              this.getPanes().overlayLayer.appendChild(this.div);
+          }
+          draw() {
+            const i = this.getProjection(),
+              s = i.fromLatLngToDivPixel(this.bounds.getSouthWest()),
+              a = i.fromLatLngToDivPixel(this.bounds.getNorthEast());
+            this.div &&
+              ((this.div.style.left = s.x + "px"),
+              (this.div.style.top = a.y + "px"),
+              (this.div.style.width = a.x - s.x + "px"),
+              (this.div.style.height = s.y - a.y + "px"));
+          }
+          onRemove() {
+            this.div &&
+              (this.div.parentNode.removeChild(this.div), delete this.div);
+          }
+          hide() {
+            this.div && (this.div.style.visibility = "hidden");
+          }
+          show() {
+            this.div && (this.div.style.visibility = "visible");
+          }
+          toggle() {
+            this.div &&
+              (this.div.style.visibility === "hidden"
+                ? this.show()
+                : this.hide());
+          }
+          toggleDOM(i) {
+            this.getMap() ? this.setMap(null) : this.setMap(i);
+          }
+        }
+        const t = new r(l, d);
+        t.setMap(n);
+        const e = document.createElement("button");
+        (e.textContent = "Toggle"),
+          e.classList.add("custom-map-control-button");
+        const o = document.createElement("button");
+        (o.textContent = "Toggle DOM Attachment"),
+          o.classList.add("custom-map-control-button"),
+          e.addEventListener("click", () => {
+            t.toggle();
+          }),
+          o.addEventListener("click", () => {
+            t.toggleDOM(n);
+          }),
+          n.controls[google.maps.ControlPosition.TOP_RIGHT].push(o),
+          n.controls[google.maps.ControlPosition.TOP_RIGHT].push(e);
+      }
+      window.initMap = h;
+    </script>
+    <link rel="stylesheet" href="./assets/index.26505568.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

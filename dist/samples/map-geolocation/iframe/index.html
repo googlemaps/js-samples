@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Geolocation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const u = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          c(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const l of t.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && c(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function c(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = i(e);
+          fetch(e.href, t);
+        }
+      };
+      u();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let r, s;
+      function d() {
+        (r = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 6,
+        })),
+          (s = new google.maps.InfoWindow());
+        const n = document.createElement("button");
+        (n.textContent = "Pan to Current Location"),
+          n.classList.add("custom-map-control-button"),
+          r.controls[google.maps.ControlPosition.TOP_CENTER].push(n),
+          n.addEventListener("click", () => {
+            navigator.geolocation
+              ? navigator.geolocation.getCurrentPosition(
+                  (o) => {
+                    const i = {
+                      lat: o.coords.latitude,
+                      lng: o.coords.longitude,
+                    };
+                    s.setPosition(i),
+                      s.setContent("Location found."),
+                      s.open(r),
+                      r.setCenter(i);
+                  },
+                  () => {
+                    a(!0, s, r.getCenter());
+                  }
+                )
+              : a(!1, s, r.getCenter());
+          });
+      }
+      function a(n, o, i) {
+        o.setPosition(i),
+          o.setContent(
+            n
+              ? "Error: The Geolocation service failed."
+              : "Error: Your browser doesn't support geolocation."
+          ),
+          o.open(r);
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.26505568.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

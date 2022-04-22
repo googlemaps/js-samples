@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Retrieving an Address for a Place ID</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const l = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const c of o.addedNodes)
+                c.tagName === "LINK" && c.rel === "modulepreload" && i(c);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function i(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = n(e);
+          fetch(e.href, o);
+        }
+      };
+      l();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function d() {
+        const r = new google.maps.Map(document.getElementById("map"), {
+            zoom: 8,
+            center: { lat: 40.72, lng: -73.96 },
+          }),
+          t = new google.maps.Geocoder(),
+          n = new google.maps.InfoWindow();
+        document.getElementById("submit").addEventListener("click", () => {
+          s(t, r, n);
+        });
+      }
+      function s(r, t, n) {
+        const i = document.getElementById("place-id").value;
+        r.geocode({ placeId: i })
+          .then(({ results: e }) => {
+            if (e[0]) {
+              t.setZoom(11), t.setCenter(e[0].geometry.location);
+              const o = new google.maps.Marker({
+                map: t,
+                position: e[0].geometry.location,
+              });
+              n.setContent(e[0].formatted_address), n.open(t, o);
+            } else window.alert("No results found");
+          })
+          .catch((e) => window.alert("Geocoder failed due to: " + e));
+      }
+      window.initMap = d;
+    </script>
+    <link rel="stylesheet" href="./assets/index.83e81d17.css" />
+  </head>
+  <body>
+    <div id="floating-panel">
+      <!-- Supply a default place ID for a place in Brooklyn, New York. -->
+      <input id="place-id" type="text" value="ChIJd8BlQ2BZwokRAFUEcm_qrcA" />
+      <input id="submit" type="button" value="Get Address for Place ID" />
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

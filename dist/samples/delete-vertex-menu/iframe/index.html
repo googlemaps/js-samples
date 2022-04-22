@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Deleting a Vertex</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const s of t.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && l(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function a(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function l(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = a(e);
+          fetch(e.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function p() {
+        const d = {
+            zoom: 3,
+            center: new google.maps.LatLng(0, -180),
+            mapTypeId: "terrain",
+          },
+          r = new google.maps.Map(document.getElementById("map"), d),
+          a = [
+            new google.maps.LatLng(37.772323, -122.214897),
+            new google.maps.LatLng(21.291982, -157.821856),
+            new google.maps.LatLng(-18.142599, 178.431),
+            new google.maps.LatLng(-27.46758, 153.027892),
+          ],
+          l = new google.maps.Polyline({
+            path: a,
+            editable: !0,
+            strokeColor: "#FF0000",
+            strokeOpacity: 1,
+            strokeWeight: 2,
+            map: r,
+          });
+        class e extends google.maps.OverlayView {
+          constructor() {
+            super(),
+              (this.div_ = document.createElement("div")),
+              (this.div_.className = "delete-menu"),
+              (this.div_.innerHTML = "Delete");
+            const o = this;
+            google.maps.event.addDomListener(this.div_, "click", () => {
+              o.removeVertex();
+            });
+          }
+          onAdd() {
+            const o = this,
+              i = this.getMap();
+            this.getPanes().floatPane.appendChild(this.div_),
+              (this.divListener_ = google.maps.event.addDomListener(
+                i.getDiv(),
+                "mousedown",
+                (n) => {
+                  n.target != o.div_ && o.close();
+                },
+                !0
+              ));
+          }
+          onRemove() {
+            this.divListener_ &&
+              google.maps.event.removeListener(this.divListener_),
+              this.div_.parentNode.removeChild(this.div_),
+              this.set("position", null),
+              this.set("path", null),
+              this.set("vertex", null);
+          }
+          close() {
+            this.setMap(null);
+          }
+          draw() {
+            const o = this.get("position"),
+              i = this.getProjection();
+            if (!o || !i) return;
+            const n = i.fromLatLngToDivPixel(o);
+            (this.div_.style.top = n.y + "px"),
+              (this.div_.style.left = n.x + "px");
+          }
+          open(o, i, n) {
+            this.set("position", i.getAt(n)),
+              this.set("path", i),
+              this.set("vertex", n),
+              this.setMap(o),
+              this.draw();
+          }
+          removeVertex() {
+            const o = this.get("path"),
+              i = this.get("vertex");
+            if (!o || i == null) {
+              this.close();
+              return;
+            }
+            o.removeAt(i), this.close();
+          }
+        }
+        const t = new e();
+        google.maps.event.addListener(l, "contextmenu", (s) => {
+          s.vertex != null && t.open(r, l.getPath(), s.vertex);
+        });
+      }
+      window.initialize = p;
+    </script>
+    <link rel="stylesheet" href="./assets/index.30598a99.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initialize&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

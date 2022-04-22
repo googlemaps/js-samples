@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>deck.gl ArcLayer</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://unpkg.com/deck.gl@8.7.3/dist.min.js"></script>
+    <script src="https://unpkg.com/@deck.gl/google-maps@8.7.3/dist.min.js"></script>
+
+    <script type="module" crossorigin>
+      const a = function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          o(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const n of t.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && o(n);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function s(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function o(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = s(e);
+          fetch(e.href, t);
+        }
+      };
+      a();
+      /**
+       * @license
+       * Copyright 2021 Google LLC.
+       * SPDX-License-Identifier: Apache-2.0
+       */ const l = deck.ArcLayer,
+        c = deck.GoogleMapsOverlay,
+        d =
+          "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson";
+      function u() {
+        const i = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 50, lng: 14 },
+            tilt: 30,
+            mapId: "90f87356969d889c",
+            zoom: 3,
+          }),
+          r = new l({
+            id: "flights",
+            data: d,
+            dataTransform: (o) =>
+              o.features.filter((e) => e.properties.scalerank < 4),
+            getSourcePosition: () => [14.42076, 50.08804],
+            getTargetPosition: (o) => o.geometry.coordinates,
+            getSourceColor: [0, 128, 200],
+            getTargetColor: [0, 0, 80],
+            getWidth: 1,
+          });
+        new c({ layers: [r] }).setMap(i);
+      }
+      window.initMap = u;
+    </script>
+    <link rel="stylesheet" href="./assets/index.f40a5560.css" />
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Place Autocomplete Address Form</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500"
+      rel="stylesheet"
+    />
+
+    <script type="module" crossorigin>
+      const u = function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          t(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const c of o.addedNodes)
+                c.tagName === "LINK" && c.rel === "modulepreload" && t(c);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function t(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = n(e);
+          fetch(e.href, o);
+        }
+      };
+      u();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let l, s, i, d;
+      function m() {
+        (s = document.querySelector("#ship-address")),
+          (i = document.querySelector("#address2")),
+          (d = document.querySelector("#postcode")),
+          (l = new google.maps.places.Autocomplete(s, {
+            componentRestrictions: { country: ["us", "ca"] },
+            fields: ["address_components", "geometry"],
+            types: ["address"],
+          })),
+          s.focus(),
+          l.addListener("place_changed", p);
+      }
+      function p() {
+        const a = l.getPlace();
+        let r = "",
+          n = "";
+        for (const t of a.address_components)
+          switch (t.types[0]) {
+            case "street_number": {
+              r = `${t.long_name} ${r}`;
+              break;
+            }
+            case "route": {
+              r += t.short_name;
+              break;
+            }
+            case "postal_code": {
+              n = `${t.long_name}${n}`;
+              break;
+            }
+            case "postal_code_suffix": {
+              n = `${n}-${t.long_name}`;
+              break;
+            }
+            case "locality":
+              document.querySelector("#locality").value = t.long_name;
+              break;
+            case "administrative_area_level_1": {
+              document.querySelector("#state").value = t.short_name;
+              break;
+            }
+            case "country":
+              document.querySelector("#country").value = t.long_name;
+              break;
+          }
+        (s.value = r), (d.value = n), i.focus();
+      }
+      window.initAutocomplete = m;
+    </script>
+    <link rel="stylesheet" href="./assets/index.84e52e0f.css" />
+  </head>
+  <body>
+    <!-- Note: The address components in this sample are based on North American address format. You might need to adjust them for the locations relevant to your app. For more information, see
+https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+    -->
+
+    <form id="address-form" action="" method="get" autocomplete="off">
+      <p class="title">Sample address form for North America</p>
+      <p class="note"><em>* = required field</em></p>
+      <label class="full-field">
+        <!-- Avoid the word "address" in id, name, or label text to avoid browser autofill from conflicting with Place Autocomplete. Star or comment bug https://crbug.com/587466 to request Chromium to honor autocomplete="off" attribute. -->
+        <span class="form-label">Deliver to*</span>
+        <input
+          id="ship-address"
+          name="ship-address"
+          required
+          autocomplete="off"
+        />
+      </label>
+      <label class="full-field">
+        <span class="form-label">Apartment, unit, suite, or floor #</span>
+        <input id="address2" name="address2" />
+      </label>
+      <label class="full-field">
+        <span class="form-label">City*</span>
+        <input id="locality" name="locality" required />
+      </label>
+      <label class="slim-field-left">
+        <span class="form-label">State/Province*</span>
+        <input id="state" name="state" required />
+      </label>
+      <label class="slim-field-right" for="postal_code">
+        <span class="form-label">Postal code*</span>
+        <input id="postcode" name="postcode" required />
+      </label>
+      <label class="full-field">
+        <span class="form-label">Country/Region*</span>
+        <input id="country" name="country" required />
+      </label>
+      <button type="button" class="my-button">Save address</button>
+
+      <!-- Reset button provided for development testing convenience.
+  Not recommended for user-facing forms due to risk of mis-click when aiming for Submit button. -->
+      <input type="reset" value="Clear form" />
+    </form>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initAutocomplete&libraries=places&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

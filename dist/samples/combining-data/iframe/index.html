@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Mashups with google.maps.Data</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const f = function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const s of o.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && l(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function i(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function l(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = i(e);
+          fetch(e.href, o);
+        }
+      };
+      f();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ const m = [
+        { stylers: [{ visibility: "off" }] },
+        {
+          featureType: "landscape",
+          elementType: "geometry",
+          stylers: [{ visibility: "on" }, { color: "#fcfcfc" }],
+        },
+        {
+          featureType: "water",
+          elementType: "geometry",
+          stylers: [{ visibility: "on" }, { color: "#bfd4ff" }],
+        },
+      ];
+      let a,
+        r = Number.MAX_VALUE,
+        c = -Number.MAX_VALUE;
+      function y() {
+        (a = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 40, lng: -100 },
+          zoom: 4,
+          styles: m,
+        })),
+          a.data.setStyle(v),
+          a.data.addListener("mouseover", h),
+          a.data.addListener("mouseout", E);
+        const t = document.getElementById("census-variable");
+        google.maps.event.addDomListener(t, "change", () => {
+          b(), g(t.options[t.selectedIndex].value);
+        }),
+          p();
+      }
+      function p() {
+        a.data.loadGeoJson(
+          "https://storage.googleapis.com/mapsdevsite/json/states.js",
+          { idPropertyName: "STATE" }
+        ),
+          google.maps.event.addListenerOnce(a.data, "addfeature", () => {
+            google.maps.event.trigger(
+              document.getElementById("census-variable"),
+              "change"
+            );
+          });
+      }
+      function g(t) {
+        const n = new XMLHttpRequest();
+        n.open("GET", t + ".json"),
+          (n.onload = function () {
+            const i = JSON.parse(n.responseText);
+            i.shift(),
+              i.forEach((l) => {
+                const e = parseFloat(l[0]),
+                  o = l[1];
+                e < r && (r = e), e > c && (c = e);
+                const s = a.data.getFeatureById(o);
+                s && s.setProperty("census_variable", e);
+              }),
+              (document.getElementById("census-min").textContent =
+                r.toLocaleString()),
+              (document.getElementById("census-max").textContent =
+                c.toLocaleString());
+          }),
+          n.send();
+      }
+      function b() {
+        (r = Number.MAX_VALUE),
+          (c = -Number.MAX_VALUE),
+          a.data.forEach((t) => {
+            t.setProperty("census_variable", void 0);
+          }),
+          (document.getElementById("data-box").style.display = "none"),
+          (document.getElementById("data-caret").style.display = "none");
+      }
+      function v(t) {
+        const n = [5, 69, 54],
+          i = [151, 83, 34],
+          l = (t.getProperty("census_variable") - r) / (c - r),
+          e = [];
+        for (let d = 0; d < 3; d++) e.push((i[d] - n[d]) * l + n[d]);
+        let o = !0;
+        (t.getProperty("census_variable") == null ||
+          isNaN(t.getProperty("census_variable"))) &&
+          (o = !1);
+        let s = 0.5,
+          u = 1;
+        return (
+          t.getProperty("state") === "hover" && (s = u = 2),
+          {
+            strokeWeight: s,
+            strokeColor: "#fff",
+            zIndex: u,
+            fillColor: "hsl(" + e[0] + "," + e[1] + "%," + e[2] + "%)",
+            fillOpacity: 0.75,
+            visible: o,
+          }
+        );
+      }
+      function h(t) {
+        t.feature.setProperty("state", "hover");
+        const n =
+          ((t.feature.getProperty("census_variable") - r) / (c - r)) * 100;
+        (document.getElementById("data-label").textContent =
+          t.feature.getProperty("NAME")),
+          (document.getElementById("data-value").textContent = t.feature
+            .getProperty("census_variable")
+            .toLocaleString()),
+          (document.getElementById("data-box").style.display = "block"),
+          (document.getElementById("data-caret").style.display = "block"),
+          (document.getElementById("data-caret").style.paddingLeft = n + "%");
+      }
+      function E(t) {
+        t.feature.setProperty("state", "normal");
+      }
+      window.initMap = y;
+    </script>
+    <link rel="stylesheet" href="./assets/index.badcca8e.css" />
+  </head>
+  <body>
+    <div id="controls" class="nicebox">
+      <div>
+        <select id="census-variable">
+          <option
+            value="https://storage.googleapis.com/mapsdevsite/json/DP02_0066PE"
+          >
+            Percent of population over 25 that completed high school
+          </option>
+          <option
+            value="https://storage.googleapis.com/mapsdevsite/json/DP05_0017E"
+          >
+            Median age
+          </option>
+          <option
+            value="https://storage.googleapis.com/mapsdevsite/json/DP05_0001E"
+          >
+            Total population
+          </option>
+          <option
+            value="https://storage.googleapis.com/mapsdevsite/json/DP02_0016E"
+          >
+            Average family size
+          </option>
+          <option
+            value="https://storage.googleapis.com/mapsdevsite/json/DP03_0088E"
+          >
+            Per-capita income
+          </option>
+        </select>
+      </div>
+      <div id="legend">
+        <div id="census-min">min</div>
+        <div class="color-key"><span id="data-caret">&#x25c6;</span></div>
+        <div id="census-max">max</div>
+      </div>
+    </div>
+    <div id="data-box" class="nicebox">
+      <label id="data-label" for="data-value"></label>
+      <span id="data-value"></span>
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>

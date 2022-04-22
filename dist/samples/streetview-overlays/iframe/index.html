@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Overlays Within Street View</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const r of t.addedNodes)
+                r.tagName === "LINK" && r.rel === "modulepreload" && l(r);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function s(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function l(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = s(e);
+          fetch(e.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let i;
+      function a() {
+        const n = { lat: 40.729884, lng: -73.990988 },
+          o = new google.maps.Map(document.getElementById("map"), {
+            center: n,
+            zoom: 18,
+            streetViewControl: !1,
+          });
+        document.getElementById("toggle").addEventListener("click", p),
+          new google.maps.Marker({
+            position: { lat: 40.730031, lng: -73.991428 },
+            map: o,
+            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
+            title: "Cafe",
+          }),
+          new google.maps.Marker({
+            position: { lat: 40.729681, lng: -73.991138 },
+            map: o,
+            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
+            title: "Bank",
+          }),
+          new google.maps.Marker({
+            position: { lat: 40.729559, lng: -73.990741 },
+            map: o,
+            icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
+            title: "Bus Stop",
+          }),
+          (i = o.getStreetView()),
+          i.setPosition(n),
+          i.setPov({ heading: 265, pitch: 0 });
+      }
+      function p() {
+        i.getVisible() == !1 ? i.setVisible(!0) : i.setVisible(!1);
+      }
+      window.initMap = a;
+    </script>
+    <link rel="stylesheet" href="./assets/index.c320eeb3.css" />
+  </head>
+  <body>
+    <div id="floating-panel">
+      <input type="button" value="Toggle Street View" id="toggle" />
+    </div>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer
+    ></script>
+  </body>
+</html>
