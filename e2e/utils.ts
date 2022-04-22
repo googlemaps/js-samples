@@ -41,6 +41,7 @@ export const NONDETERMINISTIC_SAMPLES = [
   "map-puzzle", // random puzzle placement
   "map-coordinates",
   "deckgl-tripslayer", // always in motion polylines
+  "layer-traffic", // traffic changes
 ];
 
 export const SAMPLES_NEEDING_EXTRA_DELAY = [
