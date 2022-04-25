@@ -87,7 +87,44 @@
       }
       window.initPano = s;
     </script>
-    <link rel="stylesheet" href="./assets/index.7e329d17.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 1px solid #999;
+        font-family: Roboto, "sans-serif";
+        left: 25%;
+        line-height: 30px;
+        padding: 5px 5px 5px 10px;
+        position: absolute;
+        text-align: center;
+        top: 10px;
+        z-index: 5;
+      }
+      #pano {
+        float: left;
+        height: 100%;
+        width: 50%;
+      }
+      #floating-panel {
+        border: 0 solid #999;
+        float: right;
+        height: 100%;
+        overflow: auto;
+        position: static;
+        text-align: left;
+        width: 45%;
+      }
+    </style>
   </head>
   <body>
     <div id="pano"></div>

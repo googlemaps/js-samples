@@ -115,7 +115,80 @@
       }
       window.initMap = f;
     </script>
-    <link rel="stylesheet" href="./assets/index.ab7d6760.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      input[type="text"] {
+        line-height: 40px;
+        margin: 10px 0 10px 10px;
+        min-width: 25%;
+      }
+      input[type="button"],
+      input[type="text"] {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px #0000004d;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
+        padding: 0 0.5em;
+      }
+      input[type="button"] {
+        cursor: pointer;
+        height: 40px;
+        margin: 10px 10px 10px 5px;
+      }
+      input[type="button"]:hover {
+        background: #ebebeb;
+      }
+      input[type="button"].button-primary {
+        background-color: #1a73e8;
+        color: #fff;
+      }
+      input[type="button"].button-primary:hover {
+        background-color: #1765cc;
+      }
+      input[type="button"].button-secondary {
+        background-color: #fff;
+        color: #1a73e8;
+      }
+      input[type="button"].button-secondary:hover {
+        background-color: #d2e3fc;
+      }
+      #response-container {
+        background-color: #fff;
+        background-color: #fffffff2;
+        font: 400 18px Roboto, Arial, sans-serif;
+        font-size: small;
+        max-height: 50%;
+        max-width: 90%;
+        overflow: hidden;
+        overflow: auto;
+        padding: 0 0.5em;
+      }
+      #instructions,
+      #response-container {
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px #0000004d;
+        margin: 10px;
+      }
+      #instructions {
+        background-color: #fff;
+        font: 400 18px Roboto, Arial, sans-serif;
+        font-size: medium;
+        overflow: hidden;
+        padding: 1rem;
+      }
+    </style>
   </head>
   <body>
     <div id="map"></div>

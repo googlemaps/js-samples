@@ -128,7 +128,130 @@
       }
       window.initMap = m;
     </script>
-    <link rel="stylesheet" href="./assets/index.d73e260b.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      .gm-style .controls {
+        background-color: #fff;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px #0000004d;
+        box-sizing: border-box;
+        cursor: pointer;
+        font-size: 28px;
+        font-weight: 300;
+        height: 1em;
+        margin: 6px;
+        padding: 2px;
+        text-align: center;
+        user-select: none;
+        width: 1em;
+      }
+      .gm-style .controls button {
+        background-color: #fff;
+        border: 0;
+        color: #0009;
+      }
+      .gm-style .controls button:hover {
+        color: #000000e6;
+      }
+      .gm-style .controls.zoom-control {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+      }
+      .gm-style .controls.zoom-control button {
+        font: 0.85em Arial;
+        margin: 1px;
+        padding: 0;
+      }
+      .gm-style .controls.maptype-control {
+        display: flex;
+        flex-direction: row;
+        width: auto;
+      }
+      .gm-style .controls.maptype-control button {
+        display: inline-block;
+        font-size: 0.5em;
+        margin: 0 1px;
+        padding: 0 6px;
+      }
+      .gm-style
+        .controls.maptype-control.maptype-control-is-map
+        .maptype-control-map,
+      .gm-style
+        .controls.maptype-control.maptype-control-is-satellite
+        .maptype-control-satellite {
+        font-weight: 700;
+      }
+      .gm-style .controls.fullscreen-control button {
+        display: block;
+        font-size: 1em;
+        height: 100%;
+        width: 100%;
+      }
+      .gm-style .controls.fullscreen-control .fullscreen-control-icon {
+        border-style: solid;
+        height: 0.25em;
+        position: absolute;
+        width: 0.25em;
+      }
+      .gm-style
+        .controls.fullscreen-control
+        .fullscreen-control-icon.fullscreen-control-top-left {
+        border-width: 2px 0 0 2px;
+        left: 0.1em;
+        top: 0.1em;
+      }
+      .gm-style
+        .controls.fullscreen-control.is-fullscreen
+        .fullscreen-control-icon.fullscreen-control-top-left {
+        border-width: 0 2px 2px 0;
+      }
+      .gm-style
+        .controls.fullscreen-control
+        .fullscreen-control-icon.fullscreen-control-top-right {
+        border-width: 2px 2px 0 0;
+        right: 0.1em;
+        top: 0.1em;
+      }
+      .gm-style
+        .controls.fullscreen-control.is-fullscreen
+        .fullscreen-control-icon.fullscreen-control-top-right {
+        border-width: 0 0 2px 2px;
+      }
+      .gm-style
+        .controls.fullscreen-control
+        .fullscreen-control-icon.fullscreen-control-bottom-left {
+        border-width: 0 0 2px 2px;
+        bottom: 0.1em;
+        left: 0.1em;
+      }
+      .gm-style
+        .controls.fullscreen-control.is-fullscreen
+        .fullscreen-control-icon.fullscreen-control-bottom-left {
+        border-width: 2px 2px 0 0;
+      }
+      .gm-style
+        .controls.fullscreen-control
+        .fullscreen-control-icon.fullscreen-control-bottom-right {
+        border-width: 0 2px 2px 0;
+        bottom: 0.1em;
+        right: 0.1em;
+      }
+      .gm-style
+        .controls.fullscreen-control.is-fullscreen
+        .fullscreen-control-icon.fullscreen-control-bottom-right {
+        border-width: 2px 0 0 2px;
+      }
+    </style>
   </head>
   <body>
     <div id="map"></div>

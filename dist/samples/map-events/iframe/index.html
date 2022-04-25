@@ -96,7 +96,45 @@
       }
       window.initMap = d;
     </script>
-    <link rel="stylesheet" href="./assets/index.ccd0d287.css" />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: flex;
+        height: 100%;
+      }
+      #sidebar {
+        box-sizing: border-box;
+        flex-basis: 15rem;
+        flex-grow: 1;
+        height: 100%;
+        max-width: 30rem;
+        overflow: auto;
+        padding: 1rem;
+      }
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+      #sidebar {
+        font-family: Droid Sans Mono, monospace;
+        font-size: 15px;
+        max-width: 300px;
+        overflow: hidden;
+        padding: 2px;
+      }
+      .active {
+        background-color: #9cf;
+      }
+      .inactive {
+        background-color: #fff;
+      }
+    </style>
   </head>
   <body>
     <div id="container">

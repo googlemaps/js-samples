@@ -27641,7 +27641,21 @@ void main() {
       }
       window.initMap = ax;
     </script>
-    <link rel="stylesheet" href="./assets/index.cfe0d128.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body>
     <div id="map" class="map"></div>

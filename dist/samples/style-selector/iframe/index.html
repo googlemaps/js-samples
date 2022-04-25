@@ -349,7 +349,35 @@
       };
       window.initMap = i;
     </script>
-    <link rel="stylesheet" href="./assets/index.faa69d32.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      .map-control {
+        background-color: #fff;
+        border: 1px solid #ccc;
+        box-shadow: 0 2px 2px #21212166;
+        display: none;
+        font-family: Roboto, "sans-serif";
+        margin: 10px;
+      }
+      #map .map-control {
+        display: block;
+      }
+      .selector-control {
+        font-size: 14px;
+        line-height: 30px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    </style>
   </head>
   <body>
     <div id="style-selector-control" class="map-control">

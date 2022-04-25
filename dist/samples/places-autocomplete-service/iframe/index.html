@@ -141,7 +141,99 @@
         };
       window.initialize = y;
     </script>
-    <link rel="stylesheet" href="./assets/index.dd92395c.css" />
+    <style>
+      :root {
+        --mdc-theme-primary: #1a73e8;
+        --mdc-theme-secondary: #rgb(225, 245, 254);
+        --mdc-theme-on-primary: #fff;
+        --mdc-theme-on-secondary: #01579b;
+      }
+      .mdc-select--focused .mdc-select__dropdown-icon {
+        background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' opacity='.54' d='m7 10 5 5 5-5z'/%3E%3C/svg%3E")
+          no-repeat 50%;
+      }
+      .mdc-select:not(.mdc-select--disabled).mdc-select--focused
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #container,
+      body,
+      html {
+        height: 100%;
+      }
+      #service {
+        box-sizing: border-box;
+        display: flex;
+        margin-top: 1rem;
+        overflow: initial;
+      }
+      #service #inputs {
+        flex-basis: 0;
+        flex-grow: 1;
+        margin-right: 1em;
+      }
+      #service #inputs .row {
+        display: flex;
+        margin-bottom: 1em;
+        width: 100%;
+      }
+      #service #inputs .row .mdc-select,
+      #service #inputs .row label {
+        flex-grow: 1;
+      }
+      #service #inputs .row .mdc-text-field {
+        width: 100%;
+      }
+      #service #results {
+        flex-basis: 0;
+        flex-grow: 3;
+        overflow: hidden;
+      }
+      #service #results .tab-content {
+        display: none;
+        height: 300px;
+        overflow: auto;
+      }
+      #service #results .tab-content--active {
+        display: block;
+      }
+      #map {
+        height: 200px;
+      }
+      pre {
+        word-wrap: break-word;
+        background: #f5f5f5;
+        border: 1px solid #f0f0f0;
+        border-radius: 2px;
+        color: #0009;
+        font-family: monospace;
+        overflow: auto;
+        padding: 0.5em;
+        page-break-inside: avoid;
+      }
+      .mdc-select__anchor,
+      .mdc-select__menu {
+        width: 100%;
+      }
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+      .mdc-switch.mdc-switch--checked .mdc-switch__thumb {
+        background-color: var(--mdc-theme-primary);
+        border-color: var(--mdc-theme-primary);
+      }
+      .mdc-switch.mdc-switch--checked .mdc-switch__track,
+      .mdc-switch__thumb-underlay:after,
+      .mdc-switch__thumb-underlay:before {
+        background-color: var(--mdc-theme-primary);
+      }
+    </style>
   </head>
   <body>
     <div id="container" class="mdc-typography">

@@ -110,7 +110,55 @@
       }
       window.initMap = d;
     </script>
-    <link rel="stylesheet" href="./assets/index.f6bfea8c.css" />
+    <style>
+      :root {
+        --mdc-theme-primary: #1a73e8;
+        --mdc-theme-secondary: #rgb(225, 245, 254);
+        --mdc-theme-on-primary: #fff;
+        --mdc-theme-on-secondary: #01579b;
+      }
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+      .mdc-select--focused .mdc-select__dropdown-icon {
+        background: url("data:image/svg+xml;charset=utf-8,%3Csvg width='10' height='5' viewBox='7 10 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' opacity='.54' d='m7 10 5 5 5-5z'/%3E%3C/svg%3E")
+          no-repeat 50%;
+      }
+      .mdc-select:not(.mdc-select--disabled).mdc-select--focused
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: flex;
+        height: 100%;
+      }
+      #sidebar {
+        box-sizing: border-box;
+        flex-basis: 15rem;
+        flex-grow: 1;
+        height: 100%;
+        max-width: 30rem;
+        overflow: auto;
+        padding: 1rem;
+      }
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+      .mdc-select,
+      .mdc-select__anchor,
+      .mdc-select__menu {
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="container">

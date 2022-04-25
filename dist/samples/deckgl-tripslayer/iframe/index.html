@@ -87,7 +87,28 @@
       }
       window.initMap = m;
     </script>
-    <link rel="stylesheet" href="./assets/index.2502a2d9.css" />
+    <style>
+      :root {
+        --mdc-theme-primary: #1a73e8;
+        --mdc-theme-secondary: #rgb(225, 245, 254);
+        --mdc-theme-on-primary: #fff;
+        --mdc-theme-on-secondary: #01579b;
+      }
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
   </head>
   <body>
     <div id="map"></div>

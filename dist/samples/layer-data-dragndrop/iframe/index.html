@@ -233,7 +233,75 @@
       ];
       window.initialize = L;
     </script>
-    <link rel="stylesheet" href="./assets/index.8ed20beb.css" />
+    <style>
+      body,
+      html {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+      }
+      #map.over {
+        background-color: #63636380;
+        opacity: 0.5;
+      }
+      #sidebar {
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .file {
+        cursor: move;
+        display: flex;
+        flex-flow: column;
+        margin-top: 1em;
+        text-align: center;
+      }
+      .file:hover .material-icons {
+        color: #ff8c00;
+      }
+      .file:hover .filename {
+        font-weight: 700;
+      }
+      .file .material-icons {
+        color: orange;
+        font-size: 50px;
+      }
+      .file .material-icons:hover {
+        color: #ff8c00;
+      }
+      .file .filename {
+        color: #333;
+        font-size: 20px;
+        margin-top: 0.5em;
+      }
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: flex;
+        height: 100%;
+      }
+      #sidebar {
+        box-sizing: border-box;
+        flex-basis: 15rem;
+        flex-grow: 1;
+        height: 100%;
+        max-width: 30rem;
+        overflow: auto;
+        padding: 1rem;
+      }
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
     <div id="container">

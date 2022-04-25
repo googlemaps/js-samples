@@ -160,7 +160,87 @@
       }
       window.initMap = y;
     </script>
-    <link rel="stylesheet" href="./assets/index.badcca8e.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+      }
+      .nicebox {
+        background: #fff;
+        background: linear-gradient(180deg, #fff 0, #f5f5f5);
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 4px 6px -4px #333;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 13px;
+        padding: 5px 10px;
+        position: absolute;
+        text-align: center;
+        z-index: 5;
+      }
+      #controls {
+        left: 110px;
+        width: 360px;
+      }
+      #controls,
+      #data-box {
+        height: 45px;
+        top: 10px;
+      }
+      #data-box {
+        display: none;
+        left: 500px;
+        line-height: 45px;
+      }
+      #census-variable {
+        height: 20px;
+        width: 360px;
+      }
+      #legend {
+        display: flex;
+        display: -webkit-box;
+        padding-top: 7px;
+      }
+      .color-key {
+        -webkit-box-flex: 1;
+        background: linear-gradient(
+          90deg,
+          #db4639 0,
+          #db7f29 17%,
+          #d1bf1f 33%,
+          #92c51b 50%,
+          #48ba17 67%,
+          #12ab24 83%,
+          #0f9f59
+        );
+        flex: 1;
+        font-size: 1em;
+        line-height: 1em;
+        margin: 0 5px;
+        text-align: left;
+      }
+      #data-value {
+        font-size: 2em;
+        font-weight: 700;
+      }
+      #data-label {
+        font-size: 2em;
+        font-weight: 400;
+        padding-right: 10px;
+      }
+      #data-label:after {
+        content: ":";
+      }
+      #data-caret {
+        display: none;
+        font-size: 14px;
+        margin-left: -5px;
+        width: 14px;
+      }
+    </style>
   </head>
   <body>
     <div id="controls" class="nicebox">

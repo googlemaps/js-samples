@@ -101,7 +101,78 @@
       }
       window.initMap = a;
     </script>
-    <link rel="stylesheet" href="./assets/index.2356a8ad.css" />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: flex;
+        height: 100%;
+      }
+      #sidebar {
+        box-sizing: border-box;
+        flex-basis: 5rem;
+        flex-grow: 1;
+        height: 100%;
+        max-width: 30rem;
+        overflow: auto;
+        padding: 1rem;
+      }
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+      #sidebar {
+        display: flex;
+        flex-direction: column;
+      }
+      h2 {
+        flex-grow: 0;
+        font-size: 1.5rem;
+        margin: 0 0 5px;
+      }
+      ul {
+        flex-grow: 1;
+        list-style-type: none;
+        margin: 0;
+        overflow-y: scroll;
+        padding: 0;
+      }
+      li {
+        background-color: #f1f1f1;
+        cursor: pointer;
+        font-size: 1.25rem;
+        overflow: hidden;
+        padding: 10px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      li:nth-child(odd) {
+        background-color: #fcfcfc;
+      }
+      button {
+        background: #1a73e8;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        flex-grow: 0;
+        font-size: 1.5rem;
+        padding: 1rem;
+        width: 100%;
+      }
+      button:hover {
+        color: #c5d4f0;
+      }
+      button:disabled {
+        background-color: #9fc1ee;
+        color: #c5d4f0;
+        cursor: auto;
+      }
+    </style>
   </head>
   <body>
     <div id="container">

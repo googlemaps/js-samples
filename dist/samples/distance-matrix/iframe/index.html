@@ -103,7 +103,35 @@
       }
       window.initMap = h;
     </script>
-    <link rel="stylesheet" href="./assets/index.fdd6cf00.css" />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: flex;
+        height: 100%;
+      }
+      #sidebar {
+        box-sizing: border-box;
+        flex-basis: 15rem;
+        flex-grow: 1;
+        height: 100%;
+        max-width: 30rem;
+        overflow: auto;
+        padding: 1rem;
+      }
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+      #sidebar {
+        flex-direction: column;
+      }
+    </style>
   </head>
   <body>
     <div id="container">
