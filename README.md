@@ -29,6 +29,16 @@ The samples can be demoed at the [official documentation site](https://developer
 
 1. Start a server with all samples using `npm start`
 
+### Staging
+
+For staging samples (not common), use Cloud Source Repositories which are controlled by an access control list.
+
+1. `gcloud auth login`
+2. `git config --global credential.https://source.developers.google.com.helper gcloud.sh`
+3. `git remote add google https://source.developers.google.com/p/geo-devrel-javascript-samples/r/js-samples`
+4. `git push google`
+5. `git rev-parse --short HEAD` or visit the [bucket](https://console.cloud.google.com/storage/browser/geo-devrel-javascript-samples-staging).
+
 ## Other resources
 
 - [Google Maps JavaScript API Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
