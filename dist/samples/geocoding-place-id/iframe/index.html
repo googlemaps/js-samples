@@ -74,7 +74,34 @@
       }
       window.initMap = d;
     </script>
-    <link rel="stylesheet" href="./assets/index.83e81d17.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 1px solid #999;
+        font-family: Roboto, "sans-serif";
+        left: 25%;
+        line-height: 30px;
+        padding: 5px 5px 5px 10px;
+        position: absolute;
+        text-align: center;
+        top: 10px;
+        width: 440px;
+        z-index: 5;
+      }
+      #place-id {
+        width: 250px;
+      }
+    </style>
   </head>
   <body>
     <div id="floating-panel">

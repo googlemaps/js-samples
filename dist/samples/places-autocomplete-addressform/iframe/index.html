@@ -100,7 +100,92 @@
       }
       window.initAutocomplete = m;
     </script>
-    <link rel="stylesheet" href="./assets/index.84e52e0f.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        color: #686868;
+        font-family: Roboto, sans-serif;
+        font-size: 18px;
+      }
+      form {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 400px;
+        padding: 20px;
+      }
+      input {
+        border: 0;
+        border-bottom: 2px solid gray;
+        font-family: Roboto, sans-serif;
+        font-size: 18px;
+        height: 1.2rem;
+        margin-top: 0;
+        padding: 0.5em;
+        width: 100%;
+      }
+      input:focus {
+        border-bottom: 4px solid #000;
+      }
+      input[type="reset"] {
+        background-color: transparent;
+        border-bottom: 0;
+        color: #686868;
+        font-size: 14px;
+        height: auto;
+        width: auto;
+      }
+      .title {
+        font-weight: 500;
+        margin-block-end: 0;
+        width: 100%;
+      }
+      .note {
+        font-size: 12px;
+        margin-block-start: 0;
+        width: 100%;
+      }
+      .form-label {
+        padding: 0.5em;
+        width: 100%;
+      }
+      .full-field {
+        flex: 400px;
+        margin: 15px 0;
+      }
+      .slim-field-left {
+        flex: 1 150px;
+        margin: 15px 15px 15px 0;
+      }
+      .slim-field-right {
+        flex: 1 150px;
+        margin: 15px 0 15px 15px;
+      }
+      .my-button {
+        background-color: #000;
+        border-radius: 6px;
+        color: #fff;
+        margin: 10px;
+        padding: 6px 24px;
+        text-decoration: none;
+      }
+      .my-button:hover {
+        background-color: #666;
+      }
+      .my-button:active {
+        position: relative;
+        top: 1px;
+      }
+    </style>
   </head>
   <body>
     <!-- Note: The address components in this sample are based on North American address format. You might need to adjust them for the locations relevant to your app. For more information, see

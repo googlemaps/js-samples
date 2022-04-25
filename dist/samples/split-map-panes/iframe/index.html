@@ -108,7 +108,52 @@
       }
       window.initMap = m;
     </script>
-    <link rel="stylesheet" href="./assets/index.b4809da0.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #container,
+      #left,
+      #right,
+      .gutter,
+      .map {
+        height: 100%;
+      }
+      #left,
+      #right,
+      .gutter {
+        float: left;
+        overflow: hidden;
+        position: relative;
+      }
+      #map-left {
+        left: 0;
+      }
+      #map-left,
+      #map-right {
+        position: absolute;
+        top: 0;
+      }
+      #map-right {
+        right: 0;
+      }
+      .gutter {
+        background-color: #eee;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+      .gutter.gutter-horizontal {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==);
+        cursor: col-resize;
+      }
+    </style>
   </head>
   <body>
     <div id="container">

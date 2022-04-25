@@ -128,7 +128,54 @@
       }
       window.initMap = c;
     </script>
-    <link rel="stylesheet" href="./assets/index.33bd132f.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      .controls {
+        border: 1px solid transparent;
+        border-radius: 2px 0 0 2px;
+        box-shadow: 0 2px 6px #0000004d;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        height: 32px;
+        margin-top: 10px;
+        outline: none;
+      }
+      #destination-input,
+      #origin-input {
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 200px;
+      }
+      #destination-input:focus,
+      #origin-input:focus {
+        border-color: #4d90fe;
+      }
+      #mode-selector {
+        background-color: #4d90fe;
+        color: #fff;
+        margin-left: 12px;
+        padding: 5px 11px 0;
+      }
+      #mode-selector label {
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+    </style>
   </head>
   <body>
     <div style="display: none">

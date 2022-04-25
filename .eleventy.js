@@ -71,10 +71,9 @@ module.exports = function (eleventyConfig) {
             switch (asset.name) {
               case "index.css":
                 html = html.replace(
-                  /<link rel="stylesheet" href="\.\/assets\/style\..*.css">/gm,
-                  () => `<link rel="stylesheet">${asset.source.trim()}</link>`
+                  /<link rel="stylesheet" href="\.\/assets\/index\..*.css">/gm,
+                  () => `<style>${asset.source.trim()}</style>`
                 );
-                // case "index.js":
                 break;
               case "index":
                 html = html.replace(

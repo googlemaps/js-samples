@@ -96,7 +96,80 @@
       }
       window.initAutocomplete = a;
     </script>
-    <link rel="stylesheet" href="./assets/index.d145e3ee.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #description {
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+      #infowindow-content .title {
+        font-weight: 700;
+      }
+      #infowindow-content {
+        display: none;
+      }
+      #map #infowindow-content {
+        display: inline;
+      }
+      .pac-card {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px #0000004d;
+        font: 400 18px Roboto, Arial, sans-serif;
+        font-family: Roboto;
+        margin: 10px;
+        overflow: hidden;
+        padding: 0;
+      }
+      #pac-container {
+        margin-right: 12px;
+        padding-bottom: 12px;
+      }
+      .pac-controls {
+        display: inline-block;
+        padding: 5px 11px;
+      }
+      .pac-controls label {
+        font-size: 13px;
+      }
+      #pac-input,
+      .pac-controls label {
+        font-family: Roboto;
+        font-weight: 300;
+      }
+      #pac-input {
+        background-color: #fff;
+        font-size: 15px;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+      #title {
+        background-color: #4d90fe;
+        color: #fff;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 345px;
+      }
+    </style>
   </head>
   <body>
     <input

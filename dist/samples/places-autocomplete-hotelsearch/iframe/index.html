@@ -206,7 +206,97 @@
       }
       window.initMap = b;
     </script>
-    <link rel="stylesheet" href="./assets/index.ce3bd4be.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        padding: 0 !important;
+      }
+      table {
+        font-size: 12px;
+      }
+      .hotel-search {
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        background: #fff;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 440px;
+        z-index: 1;
+      }
+      #map {
+        margin-top: 40px;
+        width: 440px;
+      }
+      #listing {
+        cursor: pointer;
+        height: 470px;
+        left: 442px;
+        overflow: auto;
+        overflow-x: hidden;
+        position: absolute;
+        top: 0;
+        width: 200px;
+      }
+      #findhotels {
+        font-size: 14px;
+      }
+      #locationField {
+        -webkit-box-flex: 1 1 190px;
+        -ms-flex: 1 1 190px;
+        flex: 1 1 190px;
+        margin: 0 8px;
+      }
+      #controls {
+        -webkit-box-flex: 1 1 140px;
+        -ms-flex: 1 1 140px;
+        flex: 1 1 140px;
+      }
+      #autocomplete,
+      #country {
+        width: 100%;
+      }
+      .placeIcon {
+        height: 34px;
+        margin: 4px;
+        width: 20px;
+      }
+      .hotelIcon {
+        height: 24px;
+        width: 24px;
+      }
+      #resultsTable {
+        border-collapse: collapse;
+        width: 240px;
+      }
+      #rating {
+        font-family: Arial Unicode MS;
+        font-size: 13px;
+      }
+      .iw_table_row {
+        height: 18px;
+      }
+      .iw_attribute_name {
+        font-weight: 700;
+        text-align: right;
+      }
+      .iw_table_icon {
+        text-align: right;
+      }
+    </style>
   </head>
   <body>
     <div class="hotel-search">

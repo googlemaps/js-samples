@@ -80,7 +80,61 @@
       }
       window.initMap = c;
     </script>
-    <link rel="stylesheet" href="./assets/index.a267e742.css" />
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: flex;
+        height: 100%;
+      }
+      #sidebar {
+        box-sizing: border-box;
+        flex-basis: 15rem;
+        flex-grow: 1;
+        height: 100%;
+        max-width: 30rem;
+        overflow: auto;
+        padding: 1rem;
+      }
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+      #floating-panel {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px #0000004d;
+        font-family: Roboto, "sans-serif";
+        font: 400 18px Roboto, Arial, sans-serif;
+        font-size: 14px;
+        height: auto;
+        left: 25%;
+        line-height: 30px;
+        margin: 10px;
+        overflow: hidden;
+        padding: 5px;
+        position: absolute;
+        text-align: center;
+        top: 10px;
+        z-index: 5;
+      }
+      #map {
+        flex: auto;
+      }
+      #sidebar {
+        flex: 0 1 auto;
+        padding: 0;
+      }
+      #sidebar > div {
+        padding: 0.5rem;
+      }
+    </style>
   </head>
   <body>
     <div id="floating-panel">

@@ -92,7 +92,41 @@
       }
       window.initMap = m;
     </script>
-    <link rel="stylesheet" href="./assets/index.19863adc.css" />
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #goCenterUI,
+      #setCenterUI {
+        background-color: #fff;
+        border: 2px solid #fff;
+        border-radius: 3px;
+        box-shadow: 0 2px 6px #0000004d;
+        cursor: pointer;
+        float: left;
+        margin-bottom: 22px;
+        text-align: center;
+      }
+      #goCenterText,
+      #setCenterText {
+        color: #191919;
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 15px;
+        line-height: 25px;
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      #setCenterUI {
+        margin-left: 12px;
+      }
+    </style>
   </head>
   <body>
     <div id="map"></div>
