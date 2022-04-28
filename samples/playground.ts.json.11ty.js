@@ -35,6 +35,12 @@ module.exports = {
       ),
     };
 
+    if (sample.data.dependencies.length) {
+      files["package.json"] = {
+        label: "Dependencies",
+      };
+    }
+
     return JSON.stringify(
       {
         files,

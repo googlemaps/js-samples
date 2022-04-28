@@ -31,5 +31,7 @@
     "vite": "^2.9.1"
   },
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@googlemaps/markerclusterer": "2.0.5"
+  }
 }
