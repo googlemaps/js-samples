@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { AmbientLight, DirectionalLight, Scene } from "https://cdn.skypack.dev/three@^0.129.0";
+import * as THREE from "https://cdn.skypack.dev/three@^0.129.0";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@^0.129.0/examples/jsm/loaders/GLTFLoader";
-import { ThreeJSOverlayView } from "https://cdn.skypack.dev/@googlemaps/three@^2.0.9";
+import { ThreeJSOverlayView } from "https://cdn.skypack.dev/@googlemaps/three@^3.0.1";
 let map;
 const mapOptions = {
   tilt: 0,
@@ -34,12 +34,12 @@ function initMap() {
 
   map = new google.maps.Map(mapDiv, mapOptions);
 
-  const scene = new Scene();
-  const ambientLight = new AmbientLight(0xffffff, 0.75);
+  const scene = new THREE.Scene();
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
 
   scene.add(ambientLight);
 
-  const directionalLight = new DirectionalLight(0xffffff, 0.25);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
 
   directionalLight.position.set(0, 10, 50);
   scene.add(directionalLight);
@@ -77,6 +77,7 @@ function initMap() {
     map,
     scene,
     anchor: { ...mapOptions.center, altitude: 100 },
+    THREE,
   });
 }
 
