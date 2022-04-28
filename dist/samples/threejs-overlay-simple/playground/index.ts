@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-import { AmbientLight, DirectionalLight, Scene } from "three";
+import * as THREE from "three";
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { ThreeJSOverlayView } from "@googlemaps/three";
@@ -38,13 +38,13 @@ function initMap(): void {
 
   map = new google.maps.Map(mapDiv, mapOptions);
 
-  const scene = new Scene();
+  const scene = new THREE.Scene();
 
-  const ambientLight = new AmbientLight(0xffffff, 0.75);
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.75);
 
   scene.add(ambientLight);
 
-  const directionalLight = new DirectionalLight(0xffffff, 0.25);
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.25);
 
   directionalLight.position.set(0, 10, 50);
   scene.add(directionalLight);
@@ -84,6 +84,7 @@ function initMap(): void {
     map,
     scene,
     anchor: { ...mapOptions.center, altitude: 100 },
+    THREE,
   });
 }
 

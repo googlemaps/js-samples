@@ -1,7 +1,10 @@
 # Google Maps JavaScript Sample
 
 This sample is generated from @googlemaps/js-samples located at
-https://github.com/googlemaps/js-samples.
+https://github.com/googlemaps/js-samples.This sample has the following dependencies:
+
+- @googlemaps/three
+- three
 
 ## Setup
 
