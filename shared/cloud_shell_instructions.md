@@ -53,7 +53,7 @@ After changing the key, the Webpack server must be restarted with the following
 command:
 
 ```bash
-npm start
+npm start -- --port=8080
 ```
 
 ## Inspect and edit the application files
