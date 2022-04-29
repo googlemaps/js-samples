@@ -30,7 +30,7 @@ After installation, Vite can be called using the following command.
 npm start -- --port=8080
 ```
 
-For configuration of Webpack, check
+For configuration of Vite, check
 <walkthrough-editor-open-file filePath="vite.config.js">vite.config.js</walkthrough-editor-open-file>.
 
 ## Enable Web Preview in the Google Cloud Shell
