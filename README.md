@@ -1,4 +1,4 @@
-![Build](https://github.com/googlemaps/js-samples/workflows/Build/badge.svg)
+![Test](https://github.com/googlemaps/js-samples/workflows/Test/badge.svg)
 ![Release](https://github.com/googlemaps/js-samples/workflows/Release/badge.svg)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/js-samples)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
