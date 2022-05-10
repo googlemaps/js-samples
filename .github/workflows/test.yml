@@ -12,16 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: Build
+name: Test
 on:
   push:
     branches-ignore:
       - master
 concurrency: 
-  group: build-${{ github.ref }}
+  group: test-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
