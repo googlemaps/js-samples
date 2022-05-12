@@ -62,7 +62,7 @@
     "esbuild": "^0.14.36",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-googlemaps": "^1.4.12",
+    "eslint-plugin-googlemaps": "^1.4.13",
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.29.4",
