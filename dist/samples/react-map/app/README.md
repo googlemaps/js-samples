@@ -7,7 +7,6 @@ https://github.com/googlemaps/js-samples.This sample has the following dependenc
 - react-dom
 - @googlemaps/react-wrapper
 - @googlemaps/typescript-guards
-- fast-equals
 
 ## Setup
 
