@@ -67,7 +67,7 @@
           L,
           g = !1;
         const i = [];
-        function _() {
+        function w() {
           (h = new google.maps.DistanceMatrixService()),
             (d = google.maps.MapTypeId.ROADMAP),
             (y = google.maps.MapTypeId.HYBRID),
@@ -83,7 +83,7 @@
             (u = new google.maps.places.Autocomplete(p, {
               fields: ["geometry"],
             })),
-            u.addListener("place_changed", T),
+            u.addListener("place_changed", _),
             u.bindTo("bounds", n),
             fetch(
               "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
@@ -134,7 +134,7 @@
               m(n.getCenter());
             });
         }
-        function w(r) {
+        function b(r) {
           const e = document.getElementById("cards");
           (e.innerHTML = ""),
             r
@@ -183,7 +183,7 @@
               ),
             e.scrollTo(0, 0);
         }
-        function b(r) {
+        function T(r) {
           const e = [r];
           return new Promise((o, c) => {
             const t = (a, s) => {
@@ -200,7 +200,7 @@
             );
           });
         }
-        function T() {
+        function _() {
           p.disabled = !0;
           const e = u.getPlace().geometry.location;
           m(e), n.setZoom(10), n.setMapTypeId(d);
@@ -231,7 +231,7 @@
                     r
                   )
               ),
-              b(r)
+              T(r)
                 .then((e) => {
                   for (let o = 0; o < e.rows[0].elements.length; o++)
                     (i[o].address = e.destinationAddresses[o]),
@@ -245,7 +245,7 @@
                         e.rows[0].elements[o].duration.text);
                 })
                 .finally(() => {
-                  w(i), (p.disabled = !1), (g = !1);
+                  b(i), (p.disabled = !1), (g = !1);
                 });
           }
         }
@@ -258,7 +258,7 @@
               n.getZoom() < 19 && (n.setTilt(0), n.setMapTypeId(d));
             });
         }
-        window.initMap = _;
+        window.initMap = w;
       </script>
       <style>
         body,
@@ -324,13 +324,6 @@
         #card-header {
           padding: 0 1rem;
         }
-        .progress-wrapper {
-          align-items: center;
-          display: flex;
-          height: 100%;
-          justify-content: center;
-          width: 100%;
-        }
       </style>
     </head>
   </head>
@@ -365,7 +358,15 @@
         </div>
         <div id="cards">
           <div class="progress-wrapper"></div>
-
+          <style>
+            .progress-wrapper {
+              align-items: center;
+              display: flex;
+              height: 100%;
+              justify-content: center;
+              width: 100%;
+            }
+          </style>
           <script>
             var progressWrapper, progress, progressDiv;
             progressWrapper = document.querySelector(".progress-wrapper");

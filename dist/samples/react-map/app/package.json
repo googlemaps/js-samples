@@ -26,16 +26,16 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "@types/google.maps": "^3.48.7",
-    "typescript": "^4.6.3",
-    "vite": "^2.9.1"
+    "@types/google.maps": "^3.48.8",
+    "typescript": "^4.6.4",
+    "vite": "^2.9.9"
   },
   "private": true,
   "dependencies": {
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "@googlemaps/react-wrapper": "^1.1.30",
-    "@googlemaps/typescript-guards": "^1.0.13",
-    "fast-equals": "^2.0.3"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "@googlemaps/react-wrapper": "^1.1.33",
+    "@googlemaps/typescript-guards": "^1.0.16",
+    "fast-equals": "^3.0.2"
   }
 }
