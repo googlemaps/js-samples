@@ -35,7 +35,6 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "@googlemaps/react-wrapper": "^1.1.33",
-    "@googlemaps/typescript-guards": "^1.0.16",
-    "fast-equals": "^3.0.2"
+    "@googlemaps/typescript-guards": "^1.0.16"
   }
 }
