@@ -46,4 +46,9 @@ export const NONDETERMINISTIC_SAMPLES = [
 
 export const SAMPLES_NEEDING_EXTRA_DELAY = [
   "directions-complex", // allow for extra time to calculate and render directions
+  // local context samples need time for sidebars to appear
+  "local-context-basic",
+  "local-context-events",
+  "local-context-home",
+  "local-context-restrictions",
 ];
