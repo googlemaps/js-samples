@@ -14,14 +14,14 @@
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          s(e);
+          n(e);
         new MutationObserver((e) => {
           for (const t of e)
             if (t.type === "childList")
-              for (const n of t.addedNodes)
-                n.tagName === "LINK" && n.rel === "modulepreload" && s(n);
+              for (const s of t.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && n(s);
         }).observe(document, { childList: !0, subtree: !0 });
-        function i(e) {
+        function r(e) {
           const t = {};
           return (
             e.integrity && (t.integrity = e.integrity),
@@ -34,10 +34,10 @@
             t
           );
         }
-        function s(e) {
+        function n(e) {
           if (e.ep) return;
           e.ep = !0;
-          const t = i(e);
+          const t = r(e);
           fetch(e.href, t);
         }
       };
@@ -47,12 +47,26 @@
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ function c() {
-        const r = new google.maps.Map(document.getElementById("map"), {
+        const i = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 44.5452, lng: -78.5389 },
             zoom: 9,
           }),
-          o = { north: 44.599, south: 44.49, east: -78.443, west: -78.649 };
-        new google.maps.Rectangle({ bounds: o, editable: !0 }).setMap(r);
+          o = { north: 44.599, south: 44.49, east: -78.443, west: -78.649 },
+          r = new google.maps.Rectangle({
+            bounds: o,
+            editable: !0,
+            draggable: !0,
+          });
+        r.setMap(i),
+          ["bounds_changed", "dragstart", "drag", "dragend"].forEach((n) => {
+            r.addListener(n, () => {
+              var e;
+              console.log({
+                bounds: (e = r.getBounds()) == null ? void 0 : e.toJSON(),
+                eventName: n,
+              });
+            });
+          });
       }
       window.initMap = c;
     </script>
