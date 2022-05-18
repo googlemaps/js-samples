@@ -10,8 +10,8 @@ import {
   PerspectiveCamera,
   Scene,
   WebGLRenderer,
-} from "https://cdn.skypack.dev/three@^0.129.0";
-import { GLTFLoader } from "https://cdn.skypack.dev/three@^0.129.0/examples/jsm/loaders/GLTFLoader";
+} from "https://cdn.skypack.dev/three@^0.140.2";
+import { GLTFLoader } from "https://cdn.skypack.dev/three@^0.140.2/examples/jsm/loaders/GLTFLoader";
 let map;
 const mapOptions = {
   tilt: 0,
