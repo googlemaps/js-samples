@@ -19,9 +19,16 @@ function initMap() {
   const rectangle = new google.maps.Rectangle({
     bounds: bounds,
     editable: true,
+    draggable: true,
   });
 
   rectangle.setMap(map);
+  // listen to changes
+  ["bounds_changed", "dragstart", "drag", "dragend"].forEach((eventName) => {
+    rectangle.addListener(eventName, () => {
+      console.log({ bounds: rectangle.getBounds()?.toJSON(), eventName });
+    });
+  });
 }
 
 window.initMap = initMap;
