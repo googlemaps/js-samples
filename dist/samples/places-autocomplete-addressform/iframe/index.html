@@ -185,6 +185,9 @@
         position: relative;
         top: 1px;
       }
+      img.powered-by-google {
+        margin: 0.5em;
+      }
     </style>
   </head>
   <body>
@@ -231,6 +234,12 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
   Not recommended for user-facing forms due to risk of mis-click when aiming for Submit button. -->
       <input type="reset" value="Clear form" />
     </form>
+    <!-- Replace Powered By Google image src with self hosted image. https://developers.google.com/maps/documentation/places/web-service/policies#other_attribution_requirements -->
+    <img
+      class="powered-by-google"
+      src="https://storage.googleapis.com/geo-devrel-public-buckets/powered_by_google_on_white.png"
+      alt="Powered by Google"
+    />
 
     <!-- 
      The `defer` attribute causes the callback to execute after the full HTML

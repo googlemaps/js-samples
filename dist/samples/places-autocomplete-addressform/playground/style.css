@@ -104,3 +104,7 @@ input[type=reset] {
   top: 1px;
 }
 
+img.powered-by-google {
+  margin: 0.5em;
+}
+
