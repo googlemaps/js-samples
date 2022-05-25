@@ -12,5 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-dist/samples/*/index.js @chrisjshull @jpoehnelt
-samples/*/src/index.ts @chrisjshull @jpoehnelt
+.github/ @googlemaps/admin
+dist/samples/*/index.js @chrisjshull @amuramoto @willum070 @wangela
+samples/*/src/index.ts @chrisjshull @amuramoto @willum070 @wangela

@@ -1,4 +1,4 @@
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 
 function initPano() {
   // Set up Street View and initially set it visible. Register the
@@ -54,7 +54,7 @@ function getCustomPanorama(pano: string): google.maps.StreetViewPanoramaData {
       },
     };
   }
-  // @ts-ignore TODO(jpoehnelt) fix typings
+  // @ts-ignore TODO fix typings
   return null;
 }
 
