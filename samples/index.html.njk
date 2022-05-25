@@ -90,7 +90,7 @@ permalink: /index.html
   </head>
   <body>
 
-  {% set initial="/samples/playground.html?sample=map-simple" %}
+  {% set initial="./samples/playground.html?sample=map-simple" %}
 
   <div style="display:flex;gap: 10px; height: 100vh;">
     <div id="sidebar">
@@ -98,9 +98,9 @@ permalink: /index.html
         <div class="card">
           <h4 class="card-header">{{ sample.data.name }}</h4>
           <div class="card-footer">
-            <button class="button" onclick="setIframe('/samples/playground.html?sample={{ sample.data.name }}')">Playground</button>
-            <button class="button" onclick="setIframe('/samples/{{ sample.data.name }}/iframe/index.html')">Iframe</button>
-            <button class="button" onclick="setIframe('/samples/{{ sample.data.name }}/app/dist/index.html')">App</button>
+            <button class="button" onclick="setIframe('./samples/playground.html?sample={{ sample.data.name }}')">Playground</button>
+            <button class="button" onclick="setIframe('./samples/{{ sample.data.name }}/iframe/index.html')">Iframe</button>
+            <button class="button" onclick="setIframe('./samples/{{ sample.data.name }}/app/dist/index.html')">App</button>
             <a class="button" href="https://github.com/googlemaps/js-samples/tree/main/samples/{{ sample.data.name }}">Code</a>
           </div>
         </div>
