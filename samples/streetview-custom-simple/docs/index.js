@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 // [START maps_streetview_custom_simple]
 function initPano() {
   // Set up Street View and initially set it visible. Register the
@@ -54,7 +54,7 @@ function getCustomPanorama(pano) {
       },
     };
   }
-  // @ts-ignore TODO(jpoehnelt) fix typings
+  // @ts-ignore TODO fix typings
   return null;
 }
 

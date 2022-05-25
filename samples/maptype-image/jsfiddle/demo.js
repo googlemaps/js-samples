@@ -35,7 +35,7 @@ function initMap() {
     tileSize: new google.maps.Size(256, 256),
     maxZoom: 9,
     minZoom: 0,
-    // @ts-ignore TODO(jpoehnelt) 'radius' does not exist in type 'ImageMapTypeOptions'
+    // @ts-ignore TODO 'radius' does not exist in type 'ImageMapTypeOptions'
     radius: 1738000,
     name: "Moon",
   });
