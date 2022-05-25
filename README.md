@@ -39,6 +39,10 @@ For staging samples (not common), use Cloud Source Repositories which are contro
 4. `git push google`
 5. `git rev-parse --short HEAD` or visit the [bucket](https://console.cloud.google.com/storage/browser/geo-devrel-javascript-samples-staging).
 
+### Explore
+
+All samples can be explored at https://googlemaps.github.io/js-samples/.
+
 ## Other resources
 
 - [Google Maps JavaScript API Documentation](https://developers.google.com/maps/documentation/javascript/tutorial)
