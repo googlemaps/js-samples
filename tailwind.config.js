@@ -1,5 +1,5 @@
 module.exports = {
-  content: ["./src/playground/*.{html,js,ts}", "./samples/index.html.njk"],
+  content: ["./src/playground/*.{html,js,ts}", "./samples/playground.html.njk"],
   theme: {
     extend: {},
   },

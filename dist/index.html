@@ -1,0 +1,5017 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>JS Samples</title>
+    <meta
+      name="description"
+      content="An interactive playground for Google Maps Platform JavaScript samples."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+          Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+      }
+
+      .card {
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+      .card-header {
+        margin: 0;
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+        border-radius: 6px 6px 0 0;
+        background: #f5f5f5;
+        font-weight: normal;
+      }
+      .card-footer {
+        padding: 10px;
+        display: flex;
+        gap: 4px;
+        flex-wrap: wrap;
+      }
+
+      .button {
+        appearance: none;
+        background-color: #1a73e8;
+        border: 1px solid #dadce0;
+        border-radius: 6px;
+        box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 14px;
+        line-height: 20px;
+        padding: 4px 12px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      .button:focus:not(:focus-visible):not(.focus-visible) {
+        box-shadow: none;
+        outline: none;
+      }
+
+      .button:hover {
+        background-color: #1765cc;
+      }
+
+      iframe {
+        border: 0;
+        flex-grow: 1;
+      }
+
+      #sidebar {
+        width: 300px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+    </style>
+
+    <script>
+      function setIframe(src) {
+        document.getElementById("iframe").src = src;
+      }
+    </script>
+  </head>
+  <body>
+    <div style="display: flex; gap: 10px; height: 100vh">
+      <div id="sidebar">
+        <div class="card">
+          <h4 class="card-header">add-map</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=add-map')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/add-map/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/add-map/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/add-map"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">aerial-rotation</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=aerial-rotation')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/aerial-rotation/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/aerial-rotation/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/aerial-rotation"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">aerial-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=aerial-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/aerial-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/aerial-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/aerial-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">circle-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=circle-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/circle-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/circle-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/circle-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">combining-data</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=combining-data')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/combining-data/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/combining-data/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/combining-data"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">conserve-map-on-scroll</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=conserve-map-on-scroll')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/conserve-map-on-scroll/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/conserve-map-on-scroll/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/conserve-map-on-scroll"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-bounds-restriction</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-bounds-restriction')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-bounds-restriction/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-bounds-restriction/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-bounds-restriction"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-custom</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-custom')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-custom/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-custom/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-custom"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-custom-state</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-custom-state')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-custom-state/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-custom-state/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-custom-state"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-default</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-default')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-default/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-default/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-default"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-disableUI</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-disableUI')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-disableUI/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-disableUI/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-disableUI"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-options</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-options')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-options/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-options/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-options"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-positioning</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-positioning')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-positioning/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-positioning/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-positioning"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-positioning-labels</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-positioning-labels')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-positioning-labels/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-positioning-labels/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-positioning-labels"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-replacement</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-replacement')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-replacement/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-replacement/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-replacement"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">control-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=control-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/control-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/control-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">controls-basic-map</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=controls-basic-map')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/controls-basic-map/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/controls-basic-map/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/controls-basic-map"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">custom-markers</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=custom-markers')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/custom-markers/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/custom-markers/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/custom-markers"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">deckgl-arclayer</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=deckgl-arclayer')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/deckgl-arclayer/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/deckgl-arclayer/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/deckgl-arclayer"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">deckgl-points</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=deckgl-points')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/deckgl-points/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/deckgl-points/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/deckgl-points"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">deckgl-tripslayer</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=deckgl-tripslayer')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/deckgl-tripslayer/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/deckgl-tripslayer/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/deckgl-tripslayer"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">delete-vertex-menu</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=delete-vertex-menu')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/delete-vertex-menu/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/delete-vertex-menu/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/delete-vertex-menu"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">directions-complex</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=directions-complex')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-complex/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-complex/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/directions-complex"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">directions-draggable</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=directions-draggable')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-draggable/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-draggable/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/directions-draggable"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">directions-panel</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=directions-panel')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-panel/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-panel/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/directions-panel"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">directions-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=directions-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/directions-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">directions-travel-modes</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=directions-travel-modes')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-travel-modes/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-travel-modes/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/directions-travel-modes"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">directions-waypoints</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=directions-waypoints')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-waypoints/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/directions-waypoints/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/directions-waypoints"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">disable-zoom-and-pan</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=disable-zoom-and-pan')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/disable-zoom-and-pan/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/disable-zoom-and-pan/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/disable-zoom-and-pan"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">distance-matrix</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=distance-matrix')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/distance-matrix/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/distance-matrix/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/distance-matrix"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">drawing-tools</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=drawing-tools')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/drawing-tools/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/drawing-tools/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/drawing-tools"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">earthquake-circles</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=earthquake-circles')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/earthquake-circles/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/earthquake-circles/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/earthquake-circles"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">earthquake-heatmap</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=earthquake-heatmap')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/earthquake-heatmap/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/earthquake-heatmap/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/earthquake-heatmap"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">earthquake-markers</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=earthquake-markers')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/earthquake-markers/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/earthquake-markers/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/earthquake-markers"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">elevation-paths</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=elevation-paths')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/elevation-paths/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/elevation-paths/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/elevation-paths"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">elevation-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=elevation-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/elevation-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/elevation-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/elevation-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">event-arguments</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=event-arguments')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-arguments/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-arguments/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/event-arguments"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">event-click-latlng</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=event-click-latlng')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-click-latlng/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-click-latlng/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/event-click-latlng"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">event-closure</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=event-closure')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-closure/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-closure/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/event-closure"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">event-domListener</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=event-domListener')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-domListener/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-domListener/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/event-domListener"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">event-poi</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=event-poi')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-poi/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-poi/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/event-poi"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">event-properties</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=event-properties')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-properties/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-properties/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/event-properties"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">event-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=event-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/event-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/event-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">geocoding-component-restriction</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=geocoding-component-restriction')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-component-restriction/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-component-restriction/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/geocoding-component-restriction"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">geocoding-place-id</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=geocoding-place-id')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-place-id/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-place-id/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/geocoding-place-id"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">geocoding-region-es</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=geocoding-region-es')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-region-es/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-region-es/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/geocoding-region-es"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">geocoding-region-us</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=geocoding-region-us')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-region-us/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-region-us/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/geocoding-region-us"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">geocoding-reverse</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=geocoding-reverse')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-reverse/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-reverse/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/geocoding-reverse"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">geocoding-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=geocoding-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geocoding-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/geocoding-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">geometry-encodings</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=geometry-encodings')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geometry-encodings/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geometry-encodings/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/geometry-encodings"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">geometry-headings</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=geometry-headings')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geometry-headings/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/geometry-headings/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/geometry-headings"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">groundoverlay-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=groundoverlay-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/groundoverlay-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/groundoverlay-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/groundoverlay-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">hiding-features</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=hiding-features')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/hiding-features/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/hiding-features/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/hiding-features"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">icon-complex</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=icon-complex')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/icon-complex/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/icon-complex/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/icon-complex"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">icon-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=icon-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/icon-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/icon-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/icon-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">infowindow-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=infowindow-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/infowindow-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/infowindow-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/infowindow-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">infowindow-simple-max</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=infowindow-simple-max')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/infowindow-simple-max/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/infowindow-simple-max/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/infowindow-simple-max"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">inset-map</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=inset-map')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/inset-map/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/inset-map/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/inset-map"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">interaction-cooperative</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=interaction-cooperative')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-cooperative/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-cooperative/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/interaction-cooperative"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">interaction-default</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=interaction-default')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-default/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-default/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/interaction-default"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">interaction-disable-pan-zoom</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=interaction-disable-pan-zoom')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-disable-pan-zoom/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-disable-pan-zoom/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/interaction-disable-pan-zoom"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">interaction-greedy</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=interaction-greedy')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-greedy/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-greedy/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/interaction-greedy"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">interaction-none</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=interaction-none')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-none/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-none/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/interaction-none"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">interaction-restricted</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=interaction-restricted')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-restricted/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/interaction-restricted/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/interaction-restricted"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">kml-map</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=kml-map')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/kml-map/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/kml-map/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/kml-map"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-bicycling</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-bicycling')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-bicycling/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-bicycling/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-bicycling"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-dragndrop</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-dragndrop')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-dragndrop/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-dragndrop/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-dragndrop"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-dynamic</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-dynamic')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-dynamic/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-dynamic/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-dynamic"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-event</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-event')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-event/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-event/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-event"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-polygon</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-polygon')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-polygon/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-polygon/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-polygon"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-quakes</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-quakes')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-quakes/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-quakes/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-quakes"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-quakes-red</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-quakes-red')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-quakes-red/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-quakes-red/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-quakes-red"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-quakes-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-quakes-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-quakes-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-quakes-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-quakes-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-data-style</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-data-style')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-style/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-data-style/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-data-style"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-georss</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-georss')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-georss/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-georss/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-georss"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-heatmap</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-heatmap')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-heatmap/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-heatmap/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-heatmap"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-kml</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-kml')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-kml/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-kml/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-kml"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-kml-features</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-kml-features')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-kml-features/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-kml-features/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-kml-features"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-traffic</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-traffic')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-traffic/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-traffic/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-traffic"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">layer-transit</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=layer-transit')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-transit/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/layer-transit/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/layer-transit"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">legend</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=legend')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/legend/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/legend/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/legend"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">js-local-context-basic</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=js-local-context-basic')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-basic/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-basic/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/js-local-context-basic"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">js-local-context-events</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=js-local-context-events')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-events/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-events/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/js-local-context-events"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">js-local-context-home</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=js-local-context-home')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-home/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-home/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/js-local-context-home"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">js-local-context-restrictions</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=js-local-context-restrictions')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-restrictions/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-restrictions/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/js-local-context-restrictions"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">js-local-context-styles</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=js-local-context-styles')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-styles/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/js-local-context-styles/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/js-local-context-styles"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-coordinates</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-coordinates')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-coordinates/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-coordinates/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-coordinates"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-events</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-events')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-events/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-events/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-events"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-geolocation</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-geolocation')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-geolocation/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-geolocation/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-geolocation"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-id</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-id')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-id/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-id/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-id"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-language</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-language')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-language/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-language/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-language"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-latlng-literal</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-latlng-literal')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-latlng-literal/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-latlng-literal/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-latlng-literal"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-projection-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-projection-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-projection-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-projection-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-projection-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-puzzle</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-puzzle')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-puzzle/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-puzzle/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-puzzle"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-rtl</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-rtl')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-rtl/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-rtl/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-rtl"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">map-sync</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=map-sync')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-sync/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/map-sync/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/map-sync"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">maptype-base</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=maptype-base')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-base/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-base/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/maptype-base"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">maptype-image</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=maptype-image')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-image/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-image/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/maptype-image"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">maptype-image-overlay</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=maptype-image-overlay')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-image-overlay/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-image-overlay/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/maptype-image-overlay"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">maptype-overlay</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=maptype-overlay')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-overlay/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-overlay/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/maptype-overlay"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">maptype-styled-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=maptype-styled-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-styled-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maptype-styled-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/maptype-styled-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-accessibility</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-accessibility')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-accessibility/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-accessibility/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-accessibility"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-animations</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-animations')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-animations/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-animations/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-animations"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-animations-iteration</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-animations-iteration')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-animations-iteration/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-animations-iteration/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-animations-iteration"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-clustering</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-clustering')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-clustering/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-clustering/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-clustering"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-collision-management</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-collision-management')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-collision-management/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-collision-management/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-collision-management"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-labels</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-labels')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-labels/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-labels/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-labels"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-modern</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-modern')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-modern/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-modern/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-modern"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-remove</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-remove')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-remove/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-remove/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-remove"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-symbol-custom</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-symbol-custom')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-symbol-custom/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-symbol-custom/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-symbol-custom"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">marker-symbol-predefined</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=marker-symbol-predefined')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-symbol-predefined/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/marker-symbol-predefined/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/marker-symbol-predefined"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">maxzoom-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=maxzoom-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maxzoom-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/maxzoom-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/maxzoom-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">move-camera-ease</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=move-camera-ease')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/move-camera-ease/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/move-camera-ease/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/move-camera-ease"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">overlay-hideshow</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=overlay-hideshow')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-hideshow/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-hideshow/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/overlay-hideshow"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">overlay-popup</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=overlay-popup')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-popup/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-popup/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/overlay-popup"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">overlay-remove</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=overlay-remove')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-remove/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-remove/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/overlay-remove"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">overlay-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=overlay-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/overlay-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">overlay-symbol-animate</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=overlay-symbol-animate')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-symbol-animate/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-symbol-animate/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/overlay-symbol-animate"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">overlay-symbol-arrow</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=overlay-symbol-arrow')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-symbol-arrow/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-symbol-arrow/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/overlay-symbol-arrow"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">overlay-symbol-custom</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=overlay-symbol-custom')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-symbol-custom/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-symbol-custom/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/overlay-symbol-custom"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">overlay-symbol-dashed</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=overlay-symbol-dashed')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-symbol-dashed/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/overlay-symbol-dashed/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/overlay-symbol-dashed"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">place-details</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=place-details')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/place-details/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/place-details/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/place-details"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">place-search</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=place-search')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/place-search/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/place-search/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/place-search"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">place-search-pagination</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=place-search-pagination')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/place-search-pagination/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/place-search-pagination/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/place-search-pagination"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-autocomplete</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-autocomplete')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-autocomplete"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-autocomplete-addressform</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-autocomplete-addressform')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-addressform/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-addressform/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-autocomplete-addressform"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-autocomplete-directions</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-autocomplete-directions')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-directions/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-directions/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-autocomplete-directions"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-autocomplete-hotelsearch</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-autocomplete-hotelsearch')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-hotelsearch/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-hotelsearch/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-autocomplete-hotelsearch"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-autocomplete-multiple-countries</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-autocomplete-multiple-countries')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-multiple-countries/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-multiple-countries/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-autocomplete-multiple-countries"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-autocomplete-service</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-autocomplete-service')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-service/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-autocomplete-service/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-autocomplete-service"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-placeid-finder</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-placeid-finder')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-placeid-finder/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-placeid-finder/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-placeid-finder"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-placeid-geocoder</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-placeid-geocoder')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-placeid-geocoder/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-placeid-geocoder/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-placeid-geocoder"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-queryprediction</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-queryprediction')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-queryprediction/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-queryprediction/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-queryprediction"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">places-searchbox</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=places-searchbox')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-searchbox/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/places-searchbox/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/places-searchbox"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">poly-containsLocation</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=poly-containsLocation')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/poly-containsLocation/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/poly-containsLocation/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/poly-containsLocation"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">polygon-arrays</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=polygon-arrays')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-arrays/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-arrays/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/polygon-arrays"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">polygon-autoclose</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=polygon-autoclose')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-autoclose/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-autoclose/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/polygon-autoclose"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">polygon-draggable</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=polygon-draggable')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-draggable/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-draggable/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/polygon-draggable"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">polygon-hole</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=polygon-hole')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-hole/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-hole/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/polygon-hole"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">polygon-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=polygon-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polygon-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/polygon-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">polyline-complex</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=polyline-complex')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polyline-complex/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polyline-complex/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/polyline-complex"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">polyline-remove</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=polyline-remove')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polyline-remove/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polyline-remove/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/polyline-remove"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">polyline-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=polyline-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polyline-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/polyline-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/polyline-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">programmatic-load</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=programmatic-load')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/programmatic-load/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/programmatic-load/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/programmatic-load"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">programmatic-load-button</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=programmatic-load-button')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/programmatic-load-button/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/programmatic-load-button/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/programmatic-load-button"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">react-map</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=react-map')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/react-map/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/react-map/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/react-map"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">rectangle-event</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=rectangle-event')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/rectangle-event/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/rectangle-event/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/rectangle-event"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">rectangle-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=rectangle-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/rectangle-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/rectangle-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/rectangle-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">rectangle-zoom</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=rectangle-zoom')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/rectangle-zoom/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/rectangle-zoom/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/rectangle-zoom"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">split-map-panes</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=split-map-panes')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/split-map-panes/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/split-map-panes/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/split-map-panes"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">store-locator</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=store-locator')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/store-locator/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/store-locator/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/store-locator"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">streetview-controls</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=streetview-controls')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-controls/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-controls/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/streetview-controls"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">streetview-custom-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=streetview-custom-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-custom-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-custom-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/streetview-custom-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">streetview-custom-tiles</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=streetview-custom-tiles')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-custom-tiles/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-custom-tiles/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/streetview-custom-tiles"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">streetview-embed</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=streetview-embed')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-embed/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-embed/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/streetview-embed"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">streetview-events</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=streetview-events')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-events/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-events/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/streetview-events"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">streetview-overlays</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=streetview-overlays')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-overlays/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-overlays/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/streetview-overlays"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">streetview-service</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=streetview-service')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-service/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-service/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/streetview-service"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">streetview-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=streetview-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/streetview-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/streetview-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">style-array</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=style-array')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/style-array/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/style-array/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/style-array"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">style-selector</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=style-selector')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/style-selector/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/style-selector/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/style-selector"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">threejs-overlay-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=threejs-overlay-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/threejs-overlay-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/threejs-overlay-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/threejs-overlay-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">user-editable-shapes</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=user-editable-shapes')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/user-editable-shapes/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/user-editable-shapes/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/user-editable-shapes"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">webgl-deckgl</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=webgl-deckgl')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/webgl-deckgl/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/webgl-deckgl/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/webgl-deckgl"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">webgl-overlay-simple</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=webgl-overlay-simple')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/webgl-overlay-simple/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/webgl-overlay-simple/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/webgl-overlay-simple"
+              >Code</a
+            >
+          </div>
+        </div>
+
+        <div class="card">
+          <h4 class="card-header">webgl-tilt-rotation</h4>
+          <div class="card-footer">
+            <button
+              class="button"
+              onclick="setIframe('/samples/playground.html?sample=webgl-tilt-rotation')"
+            >
+              Playground
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/webgl-tilt-rotation/iframe/index.html')"
+            >
+              Iframe
+            </button>
+            <button
+              class="button"
+              onclick="setIframe('/samples/webgl-tilt-rotation/app/dist/index.html')"
+            >
+              App
+            </button>
+            <a
+              class="button"
+              href="https://github.com/googlemaps/js-samples/tree/main/samples/webgl-tilt-rotation"
+              >Code</a
+            >
+          </div>
+        </div>
+      </div>
+      <div
+        style="display: flex; flex-direction: column; gap: 10px; flex-grow: 1"
+      >
+        <iframe
+          id="iframe"
+          src="/samples/playground.html?sample=map-simple"
+          allow="geolocation"
+        ></iframe>
+        <p>
+          Rendering
+          <a id="path" href="/samples/playground.html?sample=map-simple"
+            >/samples/playground.html?sample=map-simple</a
+          >
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
