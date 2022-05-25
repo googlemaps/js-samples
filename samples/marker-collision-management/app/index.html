@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Marker Collision Management</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+      href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.ts"></script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="map"></div>
+      <div id="sidebar">
+        <div class="mdc-select mdc-select--outlined">
+          <div
+            class="mdc-select__anchor"
+            aria-labelledby="outlined-select-label"
+          >
+            <input
+              type="text"
+              disabled
+              readonly
+              id="demo-selected-text"
+              class="mdc-select__selected-text"
+            />
+            <i class="mdc-select__dropdown-icon"></i>
+            <span class="mdc-notched-outline">
+              <span class="mdc-notched-outline__leading"></span>
+              <span class="mdc-notched-outline__notch">
+                <span
+                  id="outlined-select-label"
+                  class="mdc-floating-label mdc-theme--primary"
+                  >Pick a Collision Behavior</span
+                >
+              </span>
+              <span class="mdc-notched-outline__trailing"></span>
+            </span>
+          </div>
+          <div class="mdc-select__menu mdc-menu mdc-menu-surface">
+            <ul class="mdc-list"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=beta"
+      defer
+    ></script>
+  </body>
+</html>
