@@ -1,4 +1,4 @@
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 
 // Initialize the map.
 function initMap(): void {

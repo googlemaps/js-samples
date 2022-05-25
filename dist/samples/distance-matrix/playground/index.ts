@@ -1,4 +1,4 @@
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 
 function initMap(): void {
   const bounds = new google.maps.LatLngBounds();

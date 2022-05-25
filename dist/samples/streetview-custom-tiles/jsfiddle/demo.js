@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 let panorama;
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
 let outsideGoogle;
@@ -54,7 +54,7 @@ function initPanorama() {
     if (pano === "reception") {
       return getReceptionPanoramaData();
     }
-    // @ts-ignore TODO(jpoehnelt) fix typings
+    // @ts-ignore TODO fix typings
     return null;
   });
   // Add a link to our custom panorama from outside the Google Sydney office.

@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 
 // [START maps_streetview_custom_simple]
 function initPano() {
@@ -61,7 +61,7 @@ function getCustomPanorama(pano: string): google.maps.StreetViewPanoramaData {
       },
     };
   }
-  // @ts-ignore TODO(jpoehnelt) fix typings
+  // @ts-ignore TODO fix typings
   return null;
 }
 

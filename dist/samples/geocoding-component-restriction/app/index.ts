@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 
 function initMap(): void {
   const geocoder = new google.maps.Geocoder();

@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 function initPano() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
@@ -53,7 +53,7 @@ function getCustomPanorama(pano) {
       },
     };
   }
-  // @ts-ignore TODO(jpoehnelt) fix typings
+  // @ts-ignore TODO fix typings
   return null;
 }
 

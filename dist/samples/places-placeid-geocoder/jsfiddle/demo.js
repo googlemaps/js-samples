@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// @ts-nocheck TODO(jpoehnelt) remove when fixed
+// @ts-nocheck TODO remove when fixed
 // This sample requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
@@ -48,7 +48,7 @@ function initMap() {
         map.setZoom(11);
         map.setCenter(results[0].geometry.location);
         // Set the position of the marker using the place ID and location.
-        // @ts-ignore TODO(jpoehnelt) This should be in @typings/googlemaps.
+        // @ts-ignore TODO This should be in @typings/googlemaps.
         marker.setPlace({
           placeId: place.place_id,
           location: results[0].geometry.location,
