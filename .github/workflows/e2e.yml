@@ -56,6 +56,14 @@ jobs:
       - run: npm run test:playwright -- --shard=${{matrix.shard}}/8
         env:
           CI: true
+      - uses: octokit/request-action@v2.x
+        id: get_latest_release
+        with:
+          route: POST /actions/runs/:github_run_id/rerun-failed-jobs
+          github_run_id: ${{github.run_id}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: "{{ github.run_attempt < 3 }}" # starts at 1      
       - name: Push test report to artifacts
         uses: actions/upload-artifact@v2
         if: failure()
