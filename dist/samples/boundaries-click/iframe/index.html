@@ -87,7 +87,7 @@
           fillOpacity: 0.1,
         };
       function f(r) {
-        a.style = (t) => (t.feature.placeId == r ? y : m);
+        a.style = (t) => (r && t.feature.placeId == r ? y : m);
       }
       function g(r, t) {
         l.setContent(r), l.setPosition(t), l.open({ map: s, shouldFocus: !1 });

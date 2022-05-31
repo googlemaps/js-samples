@@ -69,13 +69,10 @@ const styleDefault = {
 
 // Apply styles to the map.
 function applyStyleToSelected(placeid) {
-  if (!placeid) {
-    placeid == "";
-  }
   // Apply styles to the feature layer.
   featureLayer.style = (options) => {
     // Style fill and stroke for a polygon.
-    if (options.feature.placeId == placeid) {
+    if (placeid && options.feature.placeId == placeid) {
       return styleClicked;
     }
     // Style only the stroke for the entire feature type.
