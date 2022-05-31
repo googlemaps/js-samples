@@ -63,7 +63,7 @@ jobs:
           github_run_id: ${{github.run_id}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: "{{ github.run_attempt < 3 }}" # starts at 1      
+        if: ${{ github.run_attempt < 3 }} # starts at 1      
       - name: Push test report to artifacts
         uses: actions/upload-artifact@v2
         if: failure()
