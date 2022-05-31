@@ -15,7 +15,7 @@
  */
 // [START maps_react_map]
 import * as React from "react";
-import * as ReactDom from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Wrapper } from "@googlemaps/react-wrapper";
 import { createCustomEqual } from "fast-equals";
 import { isLatLngLiteral } from "@googlemaps/typescript-guards";
@@ -217,6 +217,8 @@ function useDeepCompareEffectForMaps(callback, dependencies) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  ReactDom.render(<App />, document.getElementById("root"));
+  const root = createRoot(document.getElementById("root"));
+
+  root.render(<App />);
 });
 // [END maps_react_map]
