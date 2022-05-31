@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import * as React from "https://cdn.skypack.dev/react@^18.1.0";
-import * as ReactDom from "https://cdn.skypack.dev/react-dom@^18.1.0";
+import { createRoot } from "https://cdn.skypack.dev/react-dom@^18.1.0/client";
 import { Wrapper } from "https://cdn.skypack.dev/@googlemaps/react-wrapper@^1.1.33";
 import { createCustomEqual } from "https://cdn.skypack.dev/fast-equals@^3.0.2";
 import { isLatLngLiteral } from "https://cdn.skypack.dev/@googlemaps/typescript-guards@^1.0.16";
@@ -202,5 +202,7 @@ function useDeepCompareEffectForMaps(callback, dependencies) {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  ReactDom.render(<App />, document.getElementById("root"));
+  const root = createRoot(document.getElementById("root"));
+
+  root.render(<App />);
 });
