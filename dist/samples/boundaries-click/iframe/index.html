@@ -6,11 +6,11 @@
 -->
 <html>
   <head>
-    <title>Handle Boundaries Click Event</title>
+    <title>Handle Region Boundary Click Event</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const u = function () {
+      const d = function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -21,7 +21,7 @@
               for (const i of o.addedNodes)
                 i.tagName === "LINK" && i.rel === "modulepreload" && c(i);
         }).observe(document, { childList: !0, subtree: !0 });
-        function n(e) {
+        function r(e) {
           const o = {};
           return (
             e.integrity && (o.integrity = e.integrity),
@@ -37,32 +37,32 @@
         function c(e) {
           if (e.ep) return;
           e.ep = !0;
-          const o = n(e);
+          const o = r(e);
           fetch(e.href, o);
         }
       };
-      u();
+      d();
       /**
        * @license
        * Copyright 2022 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let s, a, l;
-      function d() {
-        (s = new google.maps.Map(document.getElementById("map"), {
+       */ let a, s, l;
+      function p() {
+        (a = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 39.23, lng: -105.73 },
           zoom: 8,
           mapId: "a3efe1c035bad51b",
         })),
-          (a = s.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
-          a.addListener("click", p),
+          (s = a.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
+          s.addListener("click", y),
           (l = new google.maps.InfoWindow({})),
-          f();
+          u();
       }
-      function p(r) {
-        let t = r.features[0];
-        if ((console.log(r), !t.placeId)) return;
-        f(t.placeId);
-        let n =
+      function y(n) {
+        let t = n.features[0];
+        if ((console.log(n), !t.placeId)) return;
+        u(t.placeId);
+        let r =
           '<span style="font-size:small">Display name: ' +
           t.displayName +
           "<br/> Place ID: " +
@@ -70,29 +70,23 @@
           "<br/> Feature type: " +
           t.featureType +
           "</span>";
-        g(n, r.latLng);
+        g(r, n.latLng);
       }
-      const y = {
-          strokeColor: "#810FCB",
-          strokeOpacity: 1,
-          strokeWeight: 3,
-          fillColor: "#810FCB",
-          fillOpacity: 0.5,
-        },
-        m = {
+      const f = {
           strokeColor: "#810FCB",
           strokeOpacity: 1,
           strokeWeight: 2,
           fillColor: "white",
           fillOpacity: 0.1,
-        };
-      function f(r) {
-        a.style = (t) => (r && t.feature.placeId == r ? y : m);
+        },
+        m = { ...f, fillColor: "#810FCB", fillOpacity: 0.5 };
+      function u(n) {
+        s.style = (t) => (n && t.feature.placeId == n ? m : f);
       }
-      function g(r, t) {
-        l.setContent(r), l.setPosition(t), l.open({ map: s, shouldFocus: !1 });
+      function g(n, t) {
+        l.setContent(n), l.setPosition(t), l.open({ map: a, shouldFocus: !1 });
       }
-      window.initMap = d;
+      window.initMap = p;
     </script>
     <style>
       #map,

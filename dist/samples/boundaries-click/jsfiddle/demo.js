@@ -48,15 +48,6 @@ function handlePlaceClick(event) {
   updateInfoWindow(content, event.latLng);
 }
 
-// Style for the clicked Administrative Area Level 2 polygon.
-//@ts-ignore
-const styleClicked = {
-  strokeColor: "#810FCB",
-  strokeOpacity: 1.0,
-  strokeWeight: 3.0,
-  fillColor: "#810FCB",
-  fillOpacity: 0.5,
-};
 // Stroke and fill with minimum opacity value.
 //@ts-ignore
 const styleDefault = {
@@ -65,6 +56,13 @@ const styleDefault = {
   strokeWeight: 2.0,
   fillColor: "white",
   fillOpacity: 0.1, // Polygons must be visible to receive click events.
+};
+// Style for the clicked Administrative Area Level 2 polygon.
+//@ts-ignore
+const styleClicked = {
+  ...styleDefault,
+  fillColor: "#810FCB",
+  fillOpacity: 0.5,
 };
 
 // Apply styles to the map.
