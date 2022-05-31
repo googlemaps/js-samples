@@ -1,5 +1,5 @@
 {
-    "title": "Handle Boundaries Click Event",
+    "title": "Handle Region Boundary Click Event",
     "callback": "initMap",
     "libraries": [],
     "version": "beta",
