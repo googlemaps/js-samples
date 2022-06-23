@@ -1,0 +1,4204 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Region Coverage Viewer</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const F = function () {
+        const e = document.createElement("link").relList;
+        if (e && e.supports && e.supports("modulepreload")) return;
+        for (const i of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(i);
+        new MutationObserver((i) => {
+          for (const s of i)
+            if (s.type === "childList")
+              for (const n of s.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && l(n);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function t(i) {
+          const s = {};
+          return (
+            i.integrity && (s.integrity = i.integrity),
+            i.referrerpolicy && (s.referrerPolicy = i.referrerpolicy),
+            i.crossorigin === "use-credentials"
+              ? (s.credentials = "include")
+              : i.crossorigin === "anonymous"
+              ? (s.credentials = "omit")
+              : (s.credentials = "same-origin"),
+            s
+          );
+        }
+        function l(i) {
+          if (i.ep) return;
+          i.ep = !0;
+          const s = t(i);
+          fetch(i.href, s);
+        }
+      };
+      F();
+      /**
+       * @license
+       * Copyright 2022 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let r, v, _, T, M, S, f, L, E, G, d, c, m, u, y, b, h, g, p, I;
+      function O() {
+        (r = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 39.32, lng: -95 },
+          zoom: 6,
+          mapTypeControl: !1,
+          streetViewControl: !1,
+          mapId: "1bf5295b744a394a",
+        })),
+          document.getElementById("pac-card"),
+          (f = document.getElementById("pac-content")),
+          (T = document.getElementById("pac-input")),
+          (v = document.getElementById("country-select")),
+          (_ = document.getElementById("feature-type-select")),
+          (M = document.getElementById("fill-color-picker")),
+          (S = document.getElementById("stroke-color-picker")),
+          v.addEventListener("change", C),
+          _.addEventListener("change", R),
+          M.addEventListener("change", B),
+          S.addEventListener("change", B);
+        const a = document.getElementById("sidebar");
+        r.controls[google.maps.ControlPosition.TOP_LEFT].push(a);
+        const e = {
+          fields: ["place_id", "type"],
+          strictBounds: !1,
+          types: ["(regions)"],
+        };
+        (L = new google.maps.places.Autocomplete(T, e)),
+          (E = new google.maps.places.PlacesService(r)),
+          L.addListener("place_changed", () => {
+            const t = L.getPlace();
+            switch (t.types[0]) {
+              case "country":
+                _.selectedIndex = 0;
+                break;
+              case "administrative_area_level_1":
+                _.selectedIndex = 1;
+                break;
+              case "administrative_area_level_2":
+                _.selectedIndex = 2;
+                break;
+              case "administrative_area_level_3":
+                _.selectedIndex = 3;
+                break;
+              case "administrative_area_level_4":
+                _.selectedIndex = 4;
+                break;
+              case "locality":
+                _.selectedIndex = 5;
+                break;
+              case "sublocality_level_1":
+                _.selectedIndex = 6;
+                break;
+              case "neighborhood":
+                _.selectedIndex = 7;
+                break;
+              case "postal_code":
+                _.selectedIndex = 8;
+                break;
+            }
+            A(t.place_id);
+          }),
+          (d = r.getFeatureLayer("COUNTRY")),
+          (c = r.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_1")),
+          (m = r.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
+          (u = r.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_3")),
+          (y = r.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_4")),
+          (b = r.getFeatureLayer("LOCALITY")),
+          (h = r.getFeatureLayer("SUBLOCALITY_LEVEL_1")),
+          (g = r.getFeatureLayer("NEIGHBORHOOD")),
+          (p = r.getFeatureLayer("POSTAL_CODE")),
+          d.addListener("click", o),
+          c.addListener("click", o),
+          m.addListener("click", o),
+          u.addListener("click", o),
+          y.addListener("click", o),
+          b.addListener("click", o),
+          h.addListener("click", o),
+          g.addListener("click", o),
+          p.addListener("click", o),
+          (G = [d, c, m, u, y, b, h, g, p]),
+          k(),
+          K(),
+          C();
+      }
+      function R() {
+        let a = {
+          fillColor: "white",
+          fillOpacity: 0.01,
+          strokeColor: S.value,
+          strokeOpacity: 1,
+          strokeWeight: 2,
+        };
+        switch ((P(), (I = ""), (f.innerHTML = ""), _.value)) {
+          case "country":
+            d.style = a;
+            break;
+          case "administrative_area_level_1":
+            c.style = a;
+            break;
+          case "administrative_area_level_2":
+            m.style = a;
+            break;
+          case "administrative_area_level_3":
+            u.style = a;
+            break;
+          case "administrative_area_level_4":
+            y.style = a;
+            break;
+          case "locality":
+            b.style = a;
+            break;
+          case "sublocality_level_1":
+            h.style = a;
+            break;
+          case "neighborhood":
+            g.style = a;
+            break;
+          case "postal_code":
+            p.style = a;
+            break;
+        }
+      }
+      function B() {
+        I && k(I);
+      }
+      function k(a) {
+        let e = {
+            strokeColor: S.value,
+            strokeOpacity: 1,
+            strokeWeight: 2,
+            fillColor: "white",
+            fillOpacity: 0.1,
+          },
+          t = {
+            strokeColor: S.value,
+            strokeOpacity: 1,
+            strokeWeight: 2,
+            fillColor: M.value,
+            fillOpacity: 0.5,
+          };
+        P();
+        const l = (i) => (i.feature.placeId == a ? t : e);
+        switch (_.value) {
+          case "country":
+            d.style = l;
+            break;
+          case "administrative_area_level_1":
+            c.style = l;
+            break;
+          case "administrative_area_level_2":
+            m.style = l;
+            break;
+          case "administrative_area_level_3":
+            u.style = l;
+            break;
+          case "administrative_area_level_4":
+            y.style = l;
+            break;
+          case "locality":
+            b.style = l;
+            break;
+          case "sublocality_level_1":
+            h.style = l;
+            break;
+          case "neighborhood":
+            g.style = l;
+            break;
+          case "postal_code":
+            p.style = l;
+            break;
+        }
+      }
+      function K() {
+        for (const a of N) {
+          let e = document.createElement("option");
+          (e.innerHTML = a.name),
+            (e.value = a.code),
+            a.code == "US" && (e.selected = !0),
+            v.appendChild(e);
+        }
+      }
+      function C() {
+        let a = v.value;
+        const e = N.find((l) => l.code === a);
+        let t = new Map([
+          ["country", e == null ? void 0 : e.feature.country],
+          [
+            "administrative_area_level_1",
+            e == null ? void 0 : e.feature.administrative_area_level_1,
+          ],
+          [
+            "administrative_area_level_2",
+            e == null ? void 0 : e.feature.administrative_area_level_2,
+          ],
+          [
+            "administrative_area_level_3",
+            e == null ? void 0 : e.feature.administrative_area_level_3,
+          ],
+          [
+            "administrative_area_level_4",
+            e == null ? void 0 : e.feature.administrative_area_level_4,
+          ],
+          ["postal_code", e == null ? void 0 : e.feature.postal_code],
+          ["locality", e == null ? void 0 : e.feature.locality],
+          [
+            "sublocality_level_1",
+            e == null ? void 0 : e.feature.sublocality_level_1,
+          ],
+          ["neighborhood", e == null ? void 0 : e.feature.neighborhood],
+        ]);
+        _.namedItem("country").selected = !0;
+        for (const l of t)
+          l[1] == !1
+            ? (_.namedItem(l[0]).disabled = !0)
+            : (_.namedItem(l[0]).disabled = !1);
+        V(v.options[v.selectedIndex].text);
+      }
+      function P() {
+        for (const a of G) a.style = null;
+      }
+      function o(a) {
+        let e = a.features[0].placeId;
+        !e || A(e);
+      }
+      function V(a) {
+        f.innerHTML = "";
+        const e = { query: a, fields: ["place_id"] };
+        E.findPlaceFromQuery(e, (t, l) => {
+          l === google.maps.places.PlacesServiceStatus.OK &&
+            t &&
+            A(t[0].place_id);
+        });
+      }
+      function A(a) {
+        (I = a), (f.innerHTML = "");
+        const e = {
+          placeId: a,
+          fields: ["name", "formatted_address", "geometry", "type"],
+        };
+        E.getDetails(e, (t, l) => {
+          var s;
+          if (
+            l === google.maps.places.PlacesServiceStatus.OK &&
+            t &&
+            t.geometry &&
+            t.geometry.location
+          ) {
+            var i = (s = t.geometry) == null ? void 0 : s.viewport;
+            r.fitBounds(i, 155), f.appendChild(document.createElement("hr"));
+            const n = t.types;
+            f.innerHTML =
+              '<hr><span id="place-info"><b>' +
+              t.formatted_address +
+              "</b><br/> Place ID: <code>" +
+              a +
+              "</code><br/> Feature type: <code>" +
+              n[0] +
+              "</code></span><br/>";
+          }
+        }),
+          k(a);
+      }
+      const N = [
+        {
+          name: "Afghanistan",
+          code: "AF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Albania",
+          code: "AL",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Algeria",
+          code: "DZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "American Samoa",
+          code: "AS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Andorra",
+          code: "AD",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Angola",
+          code: "AO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Anguilla",
+          code: "AI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Antarctica",
+          code: "AQ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Antigua and Barbuda",
+          code: "AG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Argentina",
+          code: "AR",
+          feature: {
+            country: !1,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Armenia",
+          code: "AM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Aruba",
+          code: "AW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Australia",
+          code: "AU",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Austria",
+          code: "AT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Azerbaijan",
+          code: "AZ",
+          feature: {
+            country: !1,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Bahrain",
+          code: "BH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Bangladesh",
+          code: "BD",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Barbados",
+          code: "BB",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Belarus",
+          code: "BY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Belgium",
+          code: "BE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Belize",
+          code: "BZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Benin",
+          code: "BJ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Bermuda",
+          code: "BM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Bhutan",
+          code: "BT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Bolivia",
+          code: "BO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Bosnia and Herzegovina",
+          code: "BA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Botswana",
+          code: "BW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Bouvet Island",
+          code: "BV",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Brazil",
+          code: "BR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "British Indian Ocean Territory",
+          code: "IO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "British Virgin Islands",
+          code: "VG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Brunei",
+          code: "BN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Bulgaria",
+          code: "BG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Burkina Faso",
+          code: "BF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Burundi",
+          code: "BI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cambodia",
+          code: "KH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cameroon",
+          code: "CM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Canada",
+          code: "CA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cape Verde",
+          code: "CV",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Caribbean Netherlands",
+          code: "BQ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cayman Islands",
+          code: "KY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Central African Republic",
+          code: "CF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Chad",
+          code: "TD",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Chile",
+          code: "CL",
+          feature: {
+            country: !1,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "China",
+          code: "CN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Christmas Island",
+          code: "CX",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cocos (Keeling) Islands",
+          code: "CC",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Colombia",
+          code: "CO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Comoros",
+          code: "KM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cook Islands",
+          code: "CK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Costa Rica",
+          code: "CR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Croatia",
+          code: "HR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cuba",
+          code: "CU",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cura\xE7ao",
+          code: "CW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cyprus",
+          code: "CY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Czechia",
+          code: "CZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "C\xF4te d'Ivoire",
+          code: "CI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Democratic Republic of the Congo",
+          code: "CD",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Denmark",
+          code: "DK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Djibouti",
+          code: "DJ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Dominica",
+          code: "DM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Dominican Republic",
+          code: "DO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Ecuador",
+          code: "EC",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Egypt",
+          code: "EG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "El Salvador",
+          code: "SV",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Equatorial Guinea",
+          code: "GQ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Eritrea",
+          code: "ER",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Estonia",
+          code: "EE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Eswatini",
+          code: "SZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Ethiopia",
+          code: "ET",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Falkland Islands (Islas Malvinas)",
+          code: "FK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Faroe Islands",
+          code: "FO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Federated States of Micronesia",
+          code: "FM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Fiji",
+          code: "FJ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Finland",
+          code: "FI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "France",
+          code: "FR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !0,
+            administrative_area_level_4: !0,
+            postal_code: !0,
+            locality: !0,
+            sublocality_level_1: !0,
+            neighborhood: !0,
+          },
+        },
+        {
+          name: "French Guiana",
+          code: "GF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "French Polynesia",
+          code: "PF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "French Southern and Antarctic Lands",
+          code: "TF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Gabon",
+          code: "GA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Georgia",
+          code: "GE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Germany",
+          code: "DE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !0,
+            administrative_area_level_4: !0,
+            postal_code: !0,
+            locality: !0,
+            sublocality_level_1: !0,
+            neighborhood: !0,
+          },
+        },
+        {
+          name: "Ghana",
+          code: "GH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Gibraltar",
+          code: "GI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Greece",
+          code: "GR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Greenland",
+          code: "GL",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Grenada",
+          code: "GD",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Guadeloupe",
+          code: "GP",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Guam",
+          code: "GU",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Guatemala",
+          code: "GT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Guernsey",
+          code: "GG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Guinea",
+          code: "GN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Guinea-Bissau",
+          code: "GW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Guyana",
+          code: "GY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Haiti",
+          code: "HT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Heard Island and McDonald Islands",
+          code: "HM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Honduras",
+          code: "HN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Hong Kong",
+          code: "HK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Hungary",
+          code: "HU",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Iceland",
+          code: "IS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "India",
+          code: "IN",
+          feature: {
+            country: !1,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Indonesia",
+          code: "ID",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Iran",
+          code: "IR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Iraq",
+          code: "IQ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Ireland",
+          code: "IE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Isle of Man",
+          code: "IM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Israel",
+          code: "IL",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Italy",
+          code: "IT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Jamaica",
+          code: "JM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Japan",
+          code: "JP",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !0,
+            sublocality_level_1: !0,
+            neighborhood: !0,
+          },
+        },
+        {
+          name: "Jersey",
+          code: "JE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Jordan",
+          code: "JO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Kazakhstan",
+          code: "KZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Kenya",
+          code: "KE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Kiribati",
+          code: "KI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Kosovo",
+          code: "XK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Kuwait",
+          code: "KW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Kyrgyzstan",
+          code: "KG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Laos",
+          code: "LA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Latvia",
+          code: "LV",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Lebanon",
+          code: "LB",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Lesotho",
+          code: "LS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Liberia",
+          code: "LR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Libya",
+          code: "LY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Liechtenstein",
+          code: "LI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Lithuania",
+          code: "LT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Luxembourg",
+          code: "LU",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Macao",
+          code: "MO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Madagascar",
+          code: "MG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Malawi",
+          code: "MW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Malaysia",
+          code: "MY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Maldives",
+          code: "MV",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Mali",
+          code: "ML",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Malta",
+          code: "MT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Marshall Islands",
+          code: "MH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Martinique",
+          code: "MQ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Mauritania",
+          code: "MR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Mauritius",
+          code: "MU",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Mayotte",
+          code: "YT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Mexico",
+          code: "MX",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Moldova",
+          code: "MD",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Monaco",
+          code: "MC",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Mongolia",
+          code: "MN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Montenegro",
+          code: "ME",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Montserrat",
+          code: "MS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Morocco",
+          code: "MA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Mozambique",
+          code: "MZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Myanmar (Burma)",
+          code: "MM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Namibia",
+          code: "NA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Nauru",
+          code: "NR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Nepal",
+          code: "NP",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Netherlands",
+          code: "NL",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "New Caledonia",
+          code: "NC",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "New Zealand",
+          code: "NZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Nicaragua",
+          code: "NI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Niger",
+          code: "NE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Nigeria",
+          code: "NG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Niue",
+          code: "NU",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Norfolk Island",
+          code: "NF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "North Korea",
+          code: "KP",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "North Macedonia",
+          code: "MK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Northern Mariana Islands",
+          code: "MP",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Norway",
+          code: "NO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Oman",
+          code: "OM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Pakistan",
+          code: "PK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Palau",
+          code: "PW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Palestine",
+          code: "PS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Panama",
+          code: "PA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Papua New Guinea",
+          code: "PG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Paraguay",
+          code: "PY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Peru",
+          code: "PE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Philippines",
+          code: "PH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Pitcairn Islands",
+          code: "PN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Poland",
+          code: "PL",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Portugal",
+          code: "PT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Puerto Rico",
+          code: "PR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Qatar",
+          code: "QA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Republic of the Congo",
+          code: "CG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Romania",
+          code: "RO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Russia",
+          code: "RU",
+          feature: {
+            country: !1,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Rwanda",
+          code: "RW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "R\xE9union",
+          code: "RE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Saint Barth\xE9lemy",
+          code: "BL",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Saint Helena, Ascension and Tristan da Cunha",
+          code: "SH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Saint Kitts and Nevis",
+          code: "KN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Saint Lucia",
+          code: "LC",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Saint Martin",
+          code: "MF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Saint Pierre and Miquelon",
+          code: "PM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Saint Vincent and the Grenadines",
+          code: "VC",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Samoa",
+          code: "WS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "San Marino",
+          code: "SM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Saudi Arabia",
+          code: "SA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Senegal",
+          code: "SN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Serbia",
+          code: "RS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Seychelles",
+          code: "SC",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Sierra Leone",
+          code: "SL",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Singapore",
+          code: "SG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Sint Maarten",
+          code: "SX",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Slovakia",
+          code: "SK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Slovenia",
+          code: "SI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Solomon Islands",
+          code: "SB",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Somalia",
+          code: "SO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "South Africa",
+          code: "ZA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "South Georgia and the South Sandwich Islands",
+          code: "GS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "South Korea",
+          code: "KR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "South Sudan",
+          code: "SS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Spain",
+          code: "ES",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Sri Lanka",
+          code: "LK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Sudan",
+          code: "SD",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Suriname",
+          code: "SR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Svalbard and Jan Mayen",
+          code: "SJ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Sweden",
+          code: "SE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Switzerland",
+          code: "CH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Syria",
+          code: "SY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "S\xE3o Tom\xE9 and Pr\xEDncipe",
+          code: "ST",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Taiwan",
+          code: "TW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Tajikistan",
+          code: "TJ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Tanzania",
+          code: "TZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Thailand",
+          code: "TH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "The Bahamas",
+          code: "BS",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "The Gambia",
+          code: "GM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Timor-Leste",
+          code: "TL",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Togo",
+          code: "TG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Tokelau",
+          code: "TK",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Tonga",
+          code: "TO",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Trinidad and Tobago",
+          code: "TT",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Tunisia",
+          code: "TN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Turkey",
+          code: "TR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Turkmenistan",
+          code: "TM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Turks and Caicos Islands",
+          code: "TC",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Tuvalu",
+          code: "TV",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "U.S. Virgin Islands",
+          code: "VI",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Uganda",
+          code: "UG",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Ukraine",
+          code: "UA",
+          feature: {
+            country: !1,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "United Arab Emirates",
+          code: "AE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "United Kingdom",
+          code: "GB",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !0,
+            administrative_area_level_4: !0,
+            postal_code: !1,
+            locality: !0,
+            sublocality_level_1: !1,
+            neighborhood: !0,
+          },
+        },
+        {
+          name: "United States",
+          code: "US",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !0,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !0,
+            locality: !0,
+            sublocality_level_1: !0,
+            neighborhood: !0,
+          },
+        },
+        {
+          name: "United States Minor Outlying Islands",
+          code: "UM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Uruguay",
+          code: "UY",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Uzbekistan",
+          code: "UZ",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Vanuatu",
+          code: "VU",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Vatican City",
+          code: "VA",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Venezuela",
+          code: "VE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Vietnam",
+          code: "VN",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Wallis and Futuna",
+          code: "WF",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Western Sahara",
+          code: "EH",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Yemen",
+          code: "YE",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Zambia",
+          code: "ZM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "Zimbabwe",
+          code: "ZW",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+        {
+          name: "\xC5land Islands",
+          code: "AX",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            administrative_area_level_3: !1,
+            administrative_area_level_4: !1,
+            postal_code: !1,
+            locality: !1,
+            sublocality_level_1: !1,
+            neighborhood: !1,
+          },
+        },
+      ];
+      window.initMap = O;
+    </script>
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        font-family: Roboto;
+        font-size: 14px;
+        height: 100%;
+      }
+      #sidebar {
+        background-color: #fff;
+        box-sizing: border-box;
+        display: table;
+        flex-basis: 15rem;
+        flex-grow: 1;
+        margin: 1rem;
+        overflow: auto;
+        padding: 5px;
+      }
+      #title {
+        background-color: #4d90fe;
+        color: #fff;
+        font-size: 22px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #pac-input {
+        background-color: #fff;
+        text-overflow: ellipsis;
+      }
+      #pac-input:focus {
+        border-color: #4d90fe;
+      }
+      .pac-controls {
+        width: -webkit-fill-available;
+      }
+      #pac-content,
+      .pac-controls {
+        margin-top: 10px;
+      }
+      #place-info {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="sidebar">
+        <div id="title">Region Coverage Viewer</div>
+        <div id="country-menu-div">
+          <!-- Country selection dropdown -->
+          <select id="country-select" class="pac-controls"></select>
+        </div>
+        <div id="feature-menu-div">
+          <!-- Feature type dropdown -->
+          <select id="feature-type-select" class="pac-controls">
+            <option id="country" value="country" selected>Country</option>
+            <option
+              id="administrative_area_level_1"
+              value="administrative_area_level_1"
+            >
+              Administrative Area Level 1
+            </option>
+            <option
+              id="administrative_area_level_2"
+              value="administrative_area_level_2"
+            >
+              Administrative Area Level 2
+            </option>
+            <option
+              id="administrative_area_level_3"
+              value="administrative_area_level_3"
+            >
+              Administrative Area Level 3
+            </option>
+            <option
+              id="administrative_area_level_4"
+              value="administrative_area_level_4"
+            >
+              Administrative Area Level 4
+            </option>
+            <option id="locality" value="locality">Locality</option>
+            <option id="sublocality_level_1" value="sublocality_level_1">
+              Sublocality Level 1
+            </option>
+            <option id="neighborhood" value="neighborhood">Neighborhood</option>
+            <option id="postal_code" value="postal_code">Postal code</option>
+          </select>
+        </div>
+        <div id="ac-input">
+          <input
+            id="pac-input"
+            class="pac-controls"
+            type="text"
+            placeholder="Enter a location name"
+          />
+        </div>
+        <!-- Color controls -->
+        <div id="color-controls" class="pac-controls">
+          <label for="head">Fill:</label>
+          <input
+            type="color"
+            id="fill-color-picker"
+            name="head"
+            value="#810FCB"
+          />
+          <label for="body">Stroke:</label>
+          <input
+            type="color"
+            id="stroke-color-picker"
+            name="body"
+            value="#810FCB"
+          />
+        </div>
+        <!-- Place details, photo, etc. -->
+        <div id="pac-content"></div>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBn0q_XQID1-QN1HeNAE1IwhUbM1S-dH2U&callback=initMap&libraries=places&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

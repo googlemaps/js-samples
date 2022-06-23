@@ -1,0 +1,14 @@
+{
+    "title": "Handle Region Boundary Click Event",
+    "callback": "initMap",
+    "libraries": [],
+    "version": "beta",
+    "tag": "boundaries_click_event",
+    "name": "boundaries-click-event",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+  }
