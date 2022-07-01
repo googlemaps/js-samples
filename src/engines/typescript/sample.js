@@ -126,7 +126,7 @@ const compileTypescriptSample = async (source, data) => {
   }
 
   // TODO fix this to run as part of eslint
-  output = prettier.format(output, { parser: "babel" });
+  output = prettier.format(output, { quoteProps: "consistent", parser: "babel" });
   //   await cache.save(output, "text");
 
   return output;
