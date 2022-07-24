@@ -31,5 +31,7 @@
     "vite": "^2.9.9"
   },
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.1.1"
+  }
 }
