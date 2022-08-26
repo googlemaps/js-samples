@@ -10,78 +10,79 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const d = function () {
-        const i = document.createElement("link").relList;
-        if (i && i.supports && i.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          o(e);
-        new MutationObserver((e) => {
-          for (const n of e)
-            if (n.type === "childList")
-              for (const l of n.addedNodes)
-                l.tagName === "LINK" && l.rel === "modulepreload" && o(l);
+      const a = function () {
+        const e = document.createElement("link").relList;
+        if (e && e.supports && e.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(t);
+        new MutationObserver((t) => {
+          for (const o of t)
+            if (o.type === "childList")
+              for (const r of o.addedNodes)
+                r.tagName === "LINK" && r.rel === "modulepreload" && i(r);
         }).observe(document, { childList: !0, subtree: !0 });
-        function t(e) {
-          const n = {};
+        function c(t) {
+          const o = {};
           return (
-            e.integrity && (n.integrity = e.integrity),
-            e.referrerpolicy && (n.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (n.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (n.credentials = "omit")
-              : (n.credentials = "same-origin"),
-            n
+            t.integrity && (o.integrity = t.integrity),
+            t.referrerpolicy && (o.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
           );
         }
-        function o(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const n = t(e);
-          fetch(e.href, n);
+        function i(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const o = c(t);
+          fetch(t.href, o);
         }
       };
-      d();
+      a();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let s;
-      const c = { lat: 41.85, lng: -87.65 };
-      function a(r, i) {
-        const t = document.createElement("div");
-        (t.style.backgroundColor = "#fff"),
-          (t.style.border = "2px solid #fff"),
-          (t.style.borderRadius = "3px"),
-          (t.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)"),
-          (t.style.cursor = "pointer"),
-          (t.style.marginTop = "8px"),
-          (t.style.marginBottom = "22px"),
-          (t.style.textAlign = "center"),
-          (t.title = "Click to recenter the map"),
-          r.appendChild(t);
-        const o = document.createElement("div");
-        (o.style.color = "rgb(25,25,25)"),
-          (o.style.fontFamily = "Roboto,Arial,sans-serif"),
-          (o.style.fontSize = "16px"),
-          (o.style.lineHeight = "38px"),
-          (o.style.paddingLeft = "5px"),
-          (o.style.paddingRight = "5px"),
-          (o.innerHTML = "Center Map"),
-          t.appendChild(o),
-          t.addEventListener("click", () => {
-            i.setCenter(c);
-          });
+       */ let l;
+      const s = { lat: 41.85, lng: -87.65 };
+      function d(n) {
+        const e = document.createElement("button");
+        return (
+          (e.style.backgroundColor = "#fff"),
+          (e.style.border = "2px solid #fff"),
+          (e.style.borderRadius = "3px"),
+          (e.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)"),
+          (e.style.color = "rgb(25,25,25)"),
+          (e.style.cursor = "pointer"),
+          (e.style.fontFamily = "Roboto,Arial,sans-serif"),
+          (e.style.fontSize = "16px"),
+          (e.style.lineHeight = "38px"),
+          (e.style.margin = "8px 0 22px"),
+          (e.style.padding = "0 5px"),
+          (e.style.textAlign = "center"),
+          (e.textContent = "Center Map"),
+          (e.title = "Click to recenter the map"),
+          (e.type = "button"),
+          e.addEventListener("click", () => {
+            n.setCenter(s);
+          }),
+          e
+        );
       }
-      function p() {
-        s = new google.maps.Map(document.getElementById("map"), {
+      function u() {
+        l = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
-          center: c,
+          center: s,
         });
-        const r = document.createElement("div");
-        a(r, s), s.controls[google.maps.ControlPosition.TOP_CENTER].push(r);
+        const n = document.createElement("div"),
+          e = d(l);
+        n.appendChild(e),
+          l.controls[google.maps.ControlPosition.TOP_CENTER].push(n);
       }
-      window.initMap = p;
+      window.initMap = u;
     </script>
     <style>
       #map,
