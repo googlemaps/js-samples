@@ -5,17 +5,17 @@
  */
 
 function initMap() {
-  const myLatlng = { lat: -25.363, lng: 131.044 };
+  const myLatlng = { lat: 29.42698, lng: -98.43749 };
 
   const map = new google.maps.Map(document.getElementById("map")!, {
-    zoom: 4,
-    center: myLatlng,
+    zoom: 11,
+    center: myLatlng
   });
 
   // Create the initial InfoWindow.
   let infoWindow = new google.maps.InfoWindow({
     content: "Click the map to get Lat/Lng!",
-    position: myLatlng,
+    position: myLatlng
   });
 
   infoWindow.open(map);
@@ -27,13 +27,27 @@ function initMap() {
 
     // Create a new InfoWindow.
     infoWindow = new google.maps.InfoWindow({
-      position: mapsMouseEvent.latLng,
+      position: mapsMouseEvent.latLng
     });
     infoWindow.setContent(
       JSON.stringify(mapsMouseEvent.latLng.toJSON(), null, 2)
     );
+
     infoWindow.open(map);
   });
+  var kmlUrl =
+    "https://spurs-floorplans.s3.ap-southeast-1.amazonaws.com/KML/L1-Event.kml";
+  // var kmlLayer = new google.maps.KmlLayer({ url: kmlUrl });
+
+  const kmlLayer = new google.maps.KmlLayer({
+    url: kmlUrl,
+    suppressInfoWindows: true,
+    clickable: false,
+    screenOverlays: false
+    // map: map,
+  });
+  // add layer to map
+  kmlLayer.setMap(map);
 }
 
 declare global {
