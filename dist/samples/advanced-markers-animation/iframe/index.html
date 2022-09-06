@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Advanced Markers CSS Animation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const d = function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const i of o.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && r(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = n(e);
+          fetch(e.href, o);
+        }
+      };
+      d();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function m(s) {
+        const t = s.getBounds(),
+          n = t.getSouthWest().lat(),
+          r = t.getSouthWest().lng(),
+          e = t.getNorthEast().lat(),
+          o = t.getNorthEast().lng(),
+          i = e - n;
+        let a = o - r;
+        return (
+          o < r && (a += 360),
+          { lat: n + Math.random() * i, lng: r + Math.random() * a }
+        );
+      }
+      const c = new IntersectionObserver((s) => {
+        for (const t of s)
+          t.isIntersecting &&
+            (t.target.classList.add("drop"), c.unobserve(t.target));
+      });
+      function l() {
+        const s = { lat: 37.4242011827985, lng: -122.09242296450893 },
+          t = new google.maps.Map(document.getElementById("map"), {
+            zoom: 14,
+            center: s,
+            mapId: "4504f8b37365c3d0",
+          });
+        google.maps.event.addListenerOnce(t, "idle", () => {
+          for (let e = 0; e < 100; e++) u(t);
+        });
+        const n = document.createElement("div"),
+          r = document.createElement("button");
+        r.classList.add("ui-button"),
+          (r.innerText = "Reset the example"),
+          r.addEventListener("click", () => {
+            p();
+          }),
+          n.appendChild(r),
+          t.controls[google.maps.ControlPosition.TOP_CENTER].push(n);
+      }
+      function u(s) {
+        const n = new google.maps.marker.AdvancedMarkerView({
+          position: m(s),
+          map: s,
+        }).content;
+        (n.style.opacity = 0),
+          n.addEventListener("animationend", (e) => {
+            n.classList.remove("drop"), (n.style.opacity = 1);
+          });
+        const r = 2 + Math.random();
+        n.style.setProperty("--delay-time", r + "s"), c.observe(n);
+      }
+      function p() {
+        const s = document.getElementById("mapContainer");
+        document.getElementById("map").remove();
+        const n = document.createElement("div");
+        (n.id = "map"), s.appendChild(n), l();
+      }
+      window.initMap = l;
+    </script>
+    <style>
+      :root {
+        --delay-time: 0.5s;
+      }
+      #map,
+      #mapContainer,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      @keyframes drop {
+        0% {
+          opacity: 0;
+          transform: translateY(-200px) scaleY(0.9);
+        }
+        5% {
+          opacity: 0.7;
+        }
+        50% {
+          opacity: 1;
+          transform: translateY(0) scaleY(1);
+        }
+        65% {
+          opacity: 1;
+          transform: translateY(-17px) scaleY(0.9);
+        }
+        75% {
+          opacity: 1;
+          transform: translateY(-22px) scaleY(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scaleY(1);
+        }
+      }
+      .drop {
+        animation: drop 0.3s linear forwards var(--delay-time);
+      }
+      .ui-button {
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px #0000004d;
+        cursor: pointer;
+        font: 400 18px Roboto, Arial, sans-serif;
+        height: 40px;
+        margin: 10px;
+        overflow: hidden;
+        padding: 0 0.5em;
+      }
+      .ui-button:hover {
+        background: #ebebeb;
+      }
+      [class$="api-load-alpha-banner"] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mapContainer">
+      <div id="map" style="height: 100%"></div>
+    </div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiAZPj19KM7OHb1OM5XluBVqCbTvrxGm8&callback=initMap&libraries=marker&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

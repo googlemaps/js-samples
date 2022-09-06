@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Advanced Markers Using Graphics</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
+
+    <script type="module" crossorigin>
+      const d = function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          a(e);
+        new MutationObserver((e) => {
+          for (const o of e)
+            if (o.type === "childList")
+              for (const i of o.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && a(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function l(e) {
+          const o = {};
+          return (
+            e.integrity && (o.integrity = e.integrity),
+            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function a(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const o = l(e);
+          fetch(e.href, o);
+        }
+      };
+      d();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function u() {
+        const t = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 37.42475, lng: -122.0845 },
+            zoom: 13,
+            mapId: "4504f8b37365c3d0",
+          }),
+          r = new DOMParser(),
+          l =
+            '<svg xmlns="http://www.w3.org/2000/svg" width="48" height="61" viewBox="0 0 92.3 132.3"><path fill="#1a73e8" d="M60.2 2.2C55.8.8 51 0 46.1 0 32 0 19.3 6.4 10.8 16.5l21.8 18.3L60.2 2.2z"/><path fill="#ea4335" d="M10.8 16.5C4.1 24.5 0 34.9 0 46.1c0 8.7 1.7 15.7 4.6 22l28-33.3-21.8-18.3z"/><path fill="#4285f4" d="M46.2 28.5c9.8 0 17.7 7.9 17.7 17.7 0 4.3-1.6 8.3-4.2 11.4 0 0 13.9-16.6 27.5-32.7-5.6-10.8-15.3-19-27-22.7L32.6 34.8c3.3-3.8 8.1-6.3 13.6-6.3"/><path fill="#fbbc04" d="M46.2 63.8c-9.8 0-17.7-7.9-17.7-17.7 0-4.3 1.5-8.3 4.1-11.3l-28 33.3c4.8 10.6 12.8 19.2 21 29.9l34.1-40.5c-3.3 3.9-8.1 6.3-13.5 6.3"/><path fill="#34a853" d="M59.1 109.2c15.4-24.1 33.3-35 33.3-63 0-7.7-1.9-14.9-5.2-21.3L25.6 98c2.6 3.4 5.3 7.3 7.9 11.3 9.4 14.5 6.8 23.1 12.8 23.1s3.4-8.7 12.8-23.2"/></svg>',
+          a = r.parseFromString(l, "image/svg+xml").documentElement;
+        new google.maps.marker.AdvancedMarkerView({
+          map: t,
+          position: { lat: 37.42475, lng: -122.094 },
+          content: a,
+          title: "A marker using a custom SVG image.",
+        });
+        const e = document.createElement("img");
+        (e.src =
+          "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png"),
+          new google.maps.marker.AdvancedMarkerView({
+            map: t,
+            position: { lat: 37.434, lng: -122.082 },
+            content: e,
+            title: "A marker using a custom PNG Image",
+          });
+        const o = document.createElement("img");
+        o.src =
+          "https://developers.google.com/maps/documentation/javascript/examples/full/images/google_logo_g.svg";
+        const i = new google.maps.marker.PinView({ glyph: o });
+        new google.maps.marker.AdvancedMarkerView({
+          map: t,
+          position: { lat: 37.425, lng: -122.07 },
+          content: i.element,
+          title: "A marker using a custom SVG for the glyph.",
+        });
+        const c = {
+          placeId: "ChIJN5Nz71W3j4ARhx5bwpTQEGg",
+          fields: [
+            "geometry",
+            "name",
+            "icon_mask_base_uri",
+            "icon_background_color",
+          ],
+        };
+        new google.maps.places.PlacesService(t).getDetails(c, (n, m) => {
+          if (
+            m === google.maps.places.PlacesServiceStatus.OK &&
+            n &&
+            n.geometry &&
+            n.geometry.location
+          ) {
+            const p = new google.maps.marker.PinView({
+              background: n.icon_background_color,
+              glyph: new URL(n.icon_mask_base_uri + ".png"),
+            });
+            new google.maps.marker.AdvancedMarkerView({
+              map: t,
+              position: n.geometry.location,
+              content: p.element,
+              title: n.name,
+            });
+          }
+        });
+        const s = document.createElement("div");
+        s.innerHTML = '<i class="fa fa-pizza-slice fa-lg"></i>';
+        const g = new google.maps.marker.PinView({
+          glyph: s,
+          glyphColor: "#ff8300",
+          background: "#FFD514",
+          borderColor: "#ff8300",
+        });
+        new google.maps.marker.AdvancedMarkerView({
+          map: t,
+          position: { lat: 37.412, lng: -122.095829650878 },
+          content: g.element,
+          title: "A marker using a FontAwesome icon for the glyph.",
+        });
+      }
+      window.initMap = u;
+    </script>
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      [class$="api-load-alpha-banner"] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiAZPj19KM7OHb1OM5XluBVqCbTvrxGm8&callback=initMap&libraries=marker,places&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

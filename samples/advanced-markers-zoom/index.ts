@@ -1,0 +1,58 @@
+
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+// [START maps_advanced_markers_zoom]
+function initMap() {
+    const map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
+        center: {lat: 37.424563902650114, lng: -122.09512859577026},
+        zoom: 17,
+        mapId: '4504f8b37365c3d0',
+    });
+
+    const markerView01 = new google.maps.marker.AdvancedMarkerView({
+        map,
+        position: { lat: 37.4239163, lng: -122.094 },
+        title: 'This marker is visible at zoom level 15 and higher.'
+    });
+
+    const markerView02 = new google.maps.marker.AdvancedMarkerView({
+        map,
+        position: { lat: 37.4245, lng: -122.096 },
+        title: 'This marker is visible at zoom level 16 and higher.'
+    });
+
+    const markerView03 = new google.maps.marker.AdvancedMarkerView({
+        map,
+        position: { lat: 37.4249, lng: -122.095 },
+        title: 'This marker is visible at zoom level 17 and higher.'
+    });
+
+    const markerView04 = new google.maps.marker.AdvancedMarkerView({
+        map,
+        position: { lat: 37.425, lng: -122.0955 },
+        title: 'This marker is visible at zoom level 18 and higher.'
+    });
+    // [START maps_advanced_markers_zoom_listener]
+    map.addListener('zoom_changed', () => {
+        console.log(map.getZoom());
+        // Only show each marker above a certain zoom level.
+        markerView01.map = map.getZoom() > 14 ? map : null;
+        markerView02.map = map.getZoom() > 15 ? map : null;
+        markerView03.map = map.getZoom() > 16 ? map : null;
+        markerView04.map = map.getZoom() > 17 ? map : null;
+    });
+    // [END maps_advanced_markers_zoom_listener]
+}
+
+declare global {
+    interface Window {
+        initMap: () => void;
+    }
+}
+window.initMap = initMap;
+// [END maps_advanced_markers_zoom]
+export { };

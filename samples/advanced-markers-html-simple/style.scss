@@ -1,0 +1,39 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+/* [START maps_advanced_markers_html_simple] */
+@include meta.load-css("../../shared/scss/default.scss");
+
+/* HTML marker styles */
+.price-tag {
+    background-color: #4285F4;
+    border-radius: 8px;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding: 10px 15px;
+    position: relative;
+}
+
+.price-tag::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 0);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #4285F4;
+}
+
+[class$="api-load-alpha-banner"] {
+    display: none;
+}
+
+/* [END maps_advanced_markers_html_simple] */
