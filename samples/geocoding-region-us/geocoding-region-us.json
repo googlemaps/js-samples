@@ -5,6 +5,7 @@
   "version": "weekly",
   "tag": "js_geocoding_region_us",
   "name": "geocoding-region-us",
+  "region": "US",
   "pagination": {
     "data": "mode",
     "size": 1,
