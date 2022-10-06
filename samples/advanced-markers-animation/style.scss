@@ -6,7 +6,7 @@
 
  @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
- /* [START maps_advanced_markers_simple] */
+ /* [START maps_advanced_markers_animation] */
  @include meta.load-css("../../shared/scss/default.scss");
 
 /* set the default transition time */
@@ -85,4 +85,4 @@ body {
      display: none;
  }
  
- /* [END maps_advanced_markers_simple] */
+ /* [END maps_advanced_markers_animation] */

@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-/* [START maps_advanced_markers_simple] */
+/* [START maps_advanced_markers_animation] */
 /* 
  * Always set the map height explicitly to define the size of the div element
  * that contains the map. 
@@ -92,4 +92,4 @@ body {
   display: none;
 }
 
-/* [END maps_advanced_markers_simple] */
+/* [END maps_advanced_markers_animation] */
