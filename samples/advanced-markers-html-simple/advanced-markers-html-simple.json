@@ -1,0 +1,15 @@
+{
+    "title": "Advanced Marker Simple HTML",
+    "callback": "initMap",
+    "GOOGLE_MAPS_API_KEY": "AIzaSyCiAZPj19KM7OHb1OM5XluBVqCbTvrxGm8",
+    "libraries": ["marker"],
+    "version": "beta",
+    "tag": "advanced_markers_html_simple",
+    "name": "advanced-markers-html-simple",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+  }
