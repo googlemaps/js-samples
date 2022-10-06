@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Draggable Advanced Marker</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const l = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const i of t.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && r(i);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = n(e);
+          fetch(e.href, t);
+        }
+      };
+      l();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function a() {
+        const s = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 37.39094933041195, lng: -122.02503913145092 },
+            zoom: 14,
+            mapId: "4504f8b37365c3d0",
+          }),
+          o = new google.maps.InfoWindow(),
+          n = new google.maps.marker.AdvancedMarkerView({
+            map: s,
+            position: { lat: 37.39094933041195, lng: -122.02503913145092 },
+            draggable: !0,
+            title: "This marker is draggable.",
+          });
+        n.addListener("click", (r) => {
+          o.close(),
+            o.setContent("Pin dropped at: " + n.position.toString()),
+            o.open(n.map, n);
+        });
+      }
+      window.initMap = a;
+    </script>
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      [class$="api-load-alpha-banner"] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCiAZPj19KM7OHb1OM5XluBVqCbTvrxGm8&callback=initMap&libraries=marker&v=beta"
+      defer
+    ></script>
+  </body>
+</html>
