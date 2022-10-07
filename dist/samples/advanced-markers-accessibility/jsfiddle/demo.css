@@ -21,7 +21,3 @@ body {
   padding: 0;
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-

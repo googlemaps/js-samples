@@ -39,7 +39,3 @@ body {
   border-top: 8px solid #4285F4;
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-
