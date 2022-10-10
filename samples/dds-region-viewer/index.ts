@@ -60,7 +60,7 @@ function initMap() {
     strokeColorPicker.addEventListener('change', styleChanged);
 
     // Inject the UI HTML.
-    const sidebar = document.getElementById('sidebar');
+    const sidebar = document.getElementById('sidebar') as HTMLElement;
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(sidebar);
 
     // Set up the Autocomplete widget.

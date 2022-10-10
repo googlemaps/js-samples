@@ -35,7 +35,7 @@ function addLatLng(event: google.maps.MapMouseEvent) {
 
   // Because path is an MVCArray, we can simply append a new coordinate
   // and it will automatically appear.
-  path.push(event.latLng);
+  path.push(event.latLng as google.maps.LatLng);
 
   // Add a new marker at the new plotted point on the polyline.
   new google.maps.Marker({

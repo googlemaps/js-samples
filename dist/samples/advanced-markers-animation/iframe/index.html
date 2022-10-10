@@ -89,9 +89,9 @@
           position: m(s),
           map: s,
         }).content;
-        (n.style.opacity = 0),
+        (n.style.opacity = "0"),
           n.addEventListener("animationend", (e) => {
-            n.classList.remove("drop"), (n.style.opacity = 1);
+            n.classList.remove("drop"), (n.style.opacity = "1");
           });
         const r = 2 + Math.random();
         n.style.setProperty("--delay-time", r + "s"), c.observe(n);

@@ -60,8 +60,9 @@
             title: "This marker is draggable.",
           });
         n.addListener("click", (r) => {
+          const e = n.position;
           o.close(),
-            o.setContent("Pin dropped at: " + n.position.toString()),
+            o.setContent(`Pin dropped at: ${e.lat}, ${e.lng}`),
             o.open(n.map, n);
         });
       }
