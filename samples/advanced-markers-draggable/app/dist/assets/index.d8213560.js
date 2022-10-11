@@ -2,4 +2,4 @@ const l=function(){const o=document.createElement("link").relList;if(o&&o.suppor
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */function a(){const s=new google.maps.Map(document.getElementById("map"),{center:{lat:37.39094933041195,lng:-122.02503913145092},zoom:14,mapId:"4504f8b37365c3d0"}),o=new google.maps.InfoWindow,n=new google.maps.marker.AdvancedMarkerView({map:s,position:{lat:37.39094933041195,lng:-122.02503913145092},draggable:!0,title:"This marker is draggable."});n.addListener("click",r=>{o.close(),o.setContent("Pin dropped at: "+n.position.toString()),o.open(n.map,n)})}window.initMap=a;
+ */function a(){const s=new google.maps.Map(document.getElementById("map"),{center:{lat:37.39094933041195,lng:-122.02503913145092},zoom:14,mapId:"4504f8b37365c3d0"}),o=new google.maps.InfoWindow,n=new google.maps.marker.AdvancedMarkerView({map:s,position:{lat:37.39094933041195,lng:-122.02503913145092},draggable:!0,title:"This marker is draggable."});n.addListener("click",r=>{const e=n.position;o.close(),o.setContent(`Pin dropped at: ${e.lat}, ${e.lng}`),o.open(n.map,n)})}window.initMap=a;

@@ -15,8 +15,10 @@ function initMap() {
     google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_1
   );
 
-  featureLayer.style = (placeFeature) => {
-    const population = states[placeFeature.feature.displayName];
+  featureLayer.style = (featureStyleFunctionOptions) => {
+    const placeFeature =
+      featureStyleFunctionOptions.feature as google.maps.PlaceFeature;
+    const population = states[placeFeature.displayName];
 
     let fillColor;
     // Specify colors using any of the following:

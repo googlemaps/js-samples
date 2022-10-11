@@ -18,8 +18,9 @@ function initMap() {
   );
 
   // [START maps_boundaries_choropleth_style_function]
-  featureLayer.style = (placeFeature) => {
-    const population = states[placeFeature.feature.displayName];
+  featureLayer.style = (featureStyleFunctionOptions) => {
+    const placeFeature = featureStyleFunctionOptions.feature;
+    const population = states[placeFeature.displayName];
     let fillColor;
 
     // Specify colors using any of the following:
