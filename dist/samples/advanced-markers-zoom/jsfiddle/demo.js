@@ -31,12 +31,15 @@ function initMap() {
   });
 
   map.addListener("zoom_changed", () => {
-    console.log(map.getZoom());
-    // Only show each marker above a certain zoom level.
-    markerView01.map = map.getZoom() > 14 ? map : null;
-    markerView02.map = map.getZoom() > 15 ? map : null;
-    markerView03.map = map.getZoom() > 16 ? map : null;
-    markerView04.map = map.getZoom() > 17 ? map : null;
+    const zoom = map.getZoom();
+
+    if (zoom) {
+      // Only show each marker above a certain zoom level.
+      markerView01.map = zoom > 14 ? map : null;
+      markerView02.map = zoom > 15 ? map : null;
+      markerView03.map = zoom > 16 ? map : null;
+      markerView04.map = zoom > 17 ? map : null;
+    }
   });
 }
 

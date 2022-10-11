@@ -18,25 +18,25 @@ function initMap() {
   });
 
   for (const property of properties) {
-    const markerView = new google.maps.marker.AdvancedMarkerView({
+    const advancedMarkerView = new google.maps.marker.AdvancedMarkerView({
       map,
       content: buildContent(property),
       position: property.position,
       title: property.description,
     });
-
+    const element = advancedMarkerView.content as HTMLElement;
     ["focus", "pointerenter"].forEach((event) => {
-      markerView.element.addEventListener(event, () => {
-        highlight(markerView, property);
+      element.addEventListener(event, () => {
+        highlight(advancedMarkerView, property);
       });
     });
     ["blur", "pointerleave"].forEach((event) => {
-      markerView.element.addEventListener(event, () => {
-        unhighlight(markerView, property);
+      element.addEventListener(event, () => {
+        unhighlight(advancedMarkerView, property);
       });
     });
-    markerView.addListener("click", (event) => {
-      unhighlight(markerView, property);
+    advancedMarkerView.addListener("click", (event) => {
+      unhighlight(advancedMarkerView, property);
     });
   }
 }

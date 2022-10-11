@@ -1,7 +1,6 @@
 {
     "title": "Default Advanced Marker",
     "callback": "initMap",
-    "GOOGLE_MAPS_API_KEY": "AIzaSyCiAZPj19KM7OHb1OM5XluBVqCbTvrxGm8",
     "libraries": ["marker,places"],
     "version": "beta",
     "tag": "advanced_markers_simple",

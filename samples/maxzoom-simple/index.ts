@@ -25,7 +25,7 @@ function initMap(): void {
 
 function showMaxZoom(e: google.maps.MapMouseEvent) {
   maxZoomService.getMaxZoomAtLatLng(
-    e.latLng,
+    e.latLng as google.maps.LatLng,
     (result: google.maps.MaxZoomResult) => {
       if (result.status !== "OK") {
         infoWindow.setContent("Error in MaxZoomService");

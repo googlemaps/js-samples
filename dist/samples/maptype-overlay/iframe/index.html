@@ -14,12 +14,12 @@
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          r(e);
+          i(e);
         new MutationObserver((e) => {
           for (const t of e)
             if (t.type === "childList")
-              for (const i of t.addedNodes)
-                i.tagName === "LINK" && i.rel === "modulepreload" && r(i);
+              for (const n of t.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
         }).observe(document, { childList: !0, subtree: !0 });
         function l(e) {
           const t = {};
@@ -34,7 +34,7 @@
             t
           );
         }
-        function r(e) {
+        function i(e) {
           if (e.ep) return;
           e.ep = !0;
           const t = l(e);
@@ -48,10 +48,16 @@
        * SPDX-License-Identifier: Apache-2.0
        */ class c {
         constructor(o) {
-          this.tileSize = o;
+          (this.alt = null),
+            (this.maxZoom = 17),
+            (this.minZoom = 0),
+            (this.name = null),
+            (this.projection = null),
+            (this.radius = 6378137),
+            (this.tileSize = o);
         }
-        getTile(o, l, r) {
-          const e = r.createElement("div");
+        getTile(o, l, i) {
+          const e = i.createElement("div");
           return (
             (e.innerHTML = String(o)),
             (e.style.width = this.tileSize.width + "px"),
@@ -66,10 +72,12 @@
         releaseTile(o) {}
       }
       function d() {
-        new google.maps.Map(document.getElementById("map"), {
-          zoom: 10,
-          center: { lat: 41.85, lng: -87.65 },
-        }).overlayMapTypes.insertAt(0, new c(new google.maps.Size(256, 256)));
+        const r = new google.maps.Map(document.getElementById("map"), {
+            zoom: 10,
+            center: { lat: 41.85, lng: -87.65 },
+          }),
+          o = new c(new google.maps.Size(256, 256));
+        r.overlayMapTypes.insertAt(0, o);
       }
       window.initMap = d;
     </script>
