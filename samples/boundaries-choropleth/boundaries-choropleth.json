@@ -1,7 +1,6 @@
 {
     "title": "Choropleth Map",
     "callback": "initMap",
-    "GOOGLE_MAPS_API_KEY": "AIzaSyBn0q_XQID1-QN1HeNAE1IwhUbM1S-dH2U",
     "libraries": [],
     "version": "beta",
     "tag": "boundaries_choropleth",

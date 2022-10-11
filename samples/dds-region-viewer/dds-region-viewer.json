@@ -1,7 +1,6 @@
 {
     "title": "Region Coverage Viewer",
     "callback": "initMap",
-    "GOOGLE_MAPS_API_KEY": "AIzaSyBn0q_XQID1-QN1HeNAE1IwhUbM1S-dH2U",
     "libraries": ["places"],
     "version": "beta",
     "tag": "dds_region_viewer",
