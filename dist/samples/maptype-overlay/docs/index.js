@@ -17,6 +17,12 @@
  */
 class CoordMapType {
   tileSize;
+  alt = null;
+  maxZoom = 17;
+  minZoom = 0;
+  name = null;
+  projection = null;
+  radius = 6378137;
   constructor(tileSize) {
     this.tileSize = tileSize;
   }
@@ -40,14 +46,12 @@ function initMap() {
     zoom: 10,
     center: { lat: 41.85, lng: -87.65 },
   });
-
   // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of
   // their parent base map.
-  map.overlayMapTypes.insertAt(
-    0,
-    new CoordMapType(new google.maps.Size(256, 256))
-  );
+  const coordMapType = new CoordMapType(new google.maps.Size(256, 256));
+
+  map.overlayMapTypes.insertAt(0, coordMapType);
 }
 
 window.initMap = initMap;

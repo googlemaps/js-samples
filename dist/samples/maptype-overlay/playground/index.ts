@@ -10,8 +10,14 @@
  * Try panning and zooming the map to see how the coordinates change.
  */
 
-class CoordMapType {
+class CoordMapType implements google.maps.MapType {
   tileSize: google.maps.Size;
+  alt: string | null = null;
+  maxZoom: number = 17;
+  minZoom: number = 0;
+  name: string | null = null;
+  projection: google.maps.Projection | null = null;
+  radius: number = 6378137;
 
   constructor(tileSize: google.maps.Size) {
     this.tileSize = tileSize;
@@ -47,10 +53,8 @@ function initMap(): void {
   // Insert this overlay map type as the first overlay map type at
   // position 0. Note that all overlay map types appear on top of
   // their parent base map.
-  map.overlayMapTypes.insertAt(
-    0,
-    new CoordMapType(new google.maps.Size(256, 256))
-  );
+  const coordMapType = new CoordMapType(new google.maps.Size(256, 256));
+  map.overlayMapTypes.insertAt(0, coordMapType);
 }
 
 declare global {

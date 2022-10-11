@@ -17,10 +17,9 @@ function initMap() {
     title: "This marker is draggable.",
   });
   draggableMarker.addListener("click", (event) => {
+    const position = draggableMarker.position as google.maps.LatLngLiteral;
     infoWindow.close();
-    infoWindow.setContent(
-      "Pin dropped at: " + draggableMarker.position.toString()
-    );
+    infoWindow.setContent(`Pin dropped at: ${position.lat}, ${position.lng}`);
     infoWindow.open(draggableMarker.map, draggableMarker);
   });
 }
