@@ -6,7 +6,7 @@
 -->
 {% endif -%}
 <!-- [START maps_{{tag}}] -->
-<html>
+<html {% if rtl == "true" %}dir="rtl"{% endif -%}>
   <head>
   <title>{{ title }}</title>
   {% block polyfill -%}<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>{% endblock -%}
