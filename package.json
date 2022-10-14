@@ -51,7 +51,7 @@
     "@types/google.visualization": "0.0.68",
     "@types/jest": "^27.5.1",
     "@types/react": "^18.0.21",
-    "@types/react-dom": "^18.0.4",
+    "@types/react-dom": "^18.0.6",
     "@types/three": "^0.140.0",
     "@typescript-eslint/eslint-plugin": "^5.25.0",
     "@typescript-eslint/parser": "^5.25.0",
@@ -97,7 +97,7 @@
     "fast-equals": "^3.0.2",
     "playground-elements": "^0.16.1",
     "react": "^18.2.0",
-    "react-dom": "^18.1.0",
+    "react-dom": "^18.2.0",
     "screenfull": "^6.0.1",
     "three": "^0.140.2"
   }
