@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -21,7 +21,7 @@
               for (const i of t.addedNodes)
                 i.tagName === "LINK" && i.rel === "modulepreload" && s(i);
         }).observe(document, { childList: !0, subtree: !0 });
-        function a(e) {
+        function c(e) {
           const t = {};
           return (
             e.integrity && (t.integrity = e.integrity),
@@ -37,17 +37,16 @@
         function s(e) {
           if (e.ep) return;
           e.ep = !0;
-          const t = a(e);
+          const t = c(e);
           fetch(e.href, t);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let l, n;
-      function u() {
+      function a() {
         (n = new google.maps.Map(document.getElementById("map"), {
           zoom: 7,
           center: { lat: 41.879, lng: -87.624 },
@@ -58,9 +57,9 @@
             strokeWeight: 3,
           })),
           l.setMap(n),
-          n.addListener("click", d);
+          n.addListener("click", u);
       }
-      function d(r) {
+      function u(r) {
         const o = l.getPath();
         o.push(r.latLng),
           new google.maps.Marker({
@@ -69,7 +68,7 @@
             map: n,
           });
       }
-      window.initMap = u;
+      window.initMap = a;
     </script>
     <style>
       #map,

@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const l = function () {
+      (function () {
         const a = document.createElement("link").relList;
         if (a && a.supports && a.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,19 +40,18 @@
           const o = t(e);
           fetch(e.href, o);
         }
-      };
-      l();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function p() {
+       */ function l() {
         const r = new google.maps.Map(document.getElementById("map"), {
           zoom: 0,
           center: { lat: 0, lng: 0 },
           mapTypeControl: !1,
         });
-        c(), r.mapTypes.set("gallPeters", s), r.setMapTypeId("gallPeters");
+        p(), r.mapTypes.set("gallPeters", s), r.setMapTypeId("gallPeters");
         const a = document.getElementById("coords");
         r.controls[google.maps.ControlPosition.TOP_CENTER].push(a),
           r.addListener("mousemove", (t) => {
@@ -66,10 +65,10 @@
             title: t.getProperty("name"),
             optimized: !1,
           })),
-          r.data.addGeoJson(m);
+          r.data.addGeoJson(c);
       }
       let s;
-      function c() {
+      function p() {
         (s = new google.maps.ImageMapType({
           getTileUrl: function (t, n) {
             const e = 1 << n,
@@ -109,7 +108,7 @@
             },
           });
       }
-      const m = {
+      const c = {
         type: "FeatureCollection",
         features: [
           {
@@ -154,7 +153,7 @@
           },
         ],
       };
-      window.initMap = p;
+      window.initMap = l;
     </script>
     <style>
       #map,

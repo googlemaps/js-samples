@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const p = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const t = l(e);
           fetch(e.href, t);
         }
-      };
-      p();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function h() {
+       */ function p() {
         const o = new google.maps.LatLngBounds(),
           n = [],
           l = new google.maps.Map(document.getElementById("map"), {
@@ -55,7 +54,7 @@
           }),
           r = new google.maps.Geocoder(),
           e = new google.maps.DistanceMatrixService(),
-          c = {
+          a = {
             origins: [{ lat: 55.93, lng: -3.118 }, "Greenwich, England"],
             destinations: ["Stockholm, Sweden", { lat: 50.087, lng: 14.421 }],
             travelMode: google.maps.TravelMode.DRIVING,
@@ -64,19 +63,19 @@
             avoidTolls: !1,
           };
         (document.getElementById("request").innerText = JSON.stringify(
-          c,
+          a,
           null,
           2
         )),
-          e.getDistanceMatrix(c).then((a) => {
+          e.getDistanceMatrix(a).then((c) => {
             document.getElementById("response").innerText = JSON.stringify(
-              a,
+              c,
               null,
               2
             );
-            const g = a.originAddresses,
-              m = a.destinationAddresses;
-            y(n);
+            const g = c.originAddresses,
+              m = c.destinationAddresses;
+            h(n);
             const u =
               (i) =>
               ({ results: s }) => {
@@ -90,18 +89,18 @@
                   );
               };
             for (let i = 0; i < g.length; i++) {
-              const f = a.rows[i].elements;
+              const f = c.rows[i].elements;
               r.geocode({ address: g[i] }).then(u(!1));
               for (let s = 0; s < f.length; s++)
                 r.geocode({ address: m[s] }).then(u(!0));
             }
           });
       }
-      function y(o) {
+      function h(o) {
         for (let n = 0; n < o.length; n++) o[n].setMap(null);
         o = [];
       }
-      window.initMap = h;
+      window.initMap = p;
     </script>
     <style>
       body,

@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -21,7 +21,7 @@
               for (const i of o.addedNodes)
                 i.tagName === "LINK" && i.rel === "modulepreload" && t(i);
         }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
+        function l(e) {
           const o = {};
           return (
             e.integrity && (o.integrity = e.integrity),
@@ -37,17 +37,16 @@
         function t(e) {
           if (e.ep) return;
           e.ep = !0;
-          const o = r(e);
+          const o = l(e);
           fetch(e.href, o);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function a() {
-        const l = new google.maps.Map(document.getElementById("map"), {
+       */ function s() {
+        const r = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 24.886, lng: -70.269 },
             zoom: 5,
           }),
@@ -56,17 +55,17 @@
             { lat: 18.466, lng: -66.118 },
             { lat: 32.321, lng: -64.757 },
           ],
-          r = new google.maps.Polygon({ paths: n });
-        google.maps.event.addListener(l, "click", (t) => {
-          const e = google.maps.geometry.poly.containsLocation(t.latLng, r)
+          l = new google.maps.Polygon({ paths: n });
+        google.maps.event.addListener(r, "click", (t) => {
+          const e = google.maps.geometry.poly.containsLocation(t.latLng, l)
               ? "blue"
               : "red",
-            o = google.maps.geometry.poly.containsLocation(t.latLng, r)
+            o = google.maps.geometry.poly.containsLocation(t.latLng, l)
               ? "m 0 -1 l 1 2 -2 0 z"
               : google.maps.SymbolPath.CIRCLE;
           new google.maps.Marker({
             position: t.latLng,
-            map: l,
+            map: r,
             icon: {
               path: o,
               fillColor: e,
@@ -78,7 +77,7 @@
           });
         });
       }
-      window.initMap = a;
+      window.initMap = s;
     </script>
     <style>
       #map,

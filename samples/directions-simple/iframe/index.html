@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const t = o(e);
           fetch(e.href, t);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
+       */ function c() {
         const i = new google.maps.DirectionsService(),
           n = new google.maps.DirectionsRenderer(),
           o = new google.maps.Map(document.getElementById("map"), {
@@ -55,12 +54,12 @@
           });
         n.setMap(o);
         const r = function () {
-          d(i, n);
+          l(i, n);
         };
         document.getElementById("start").addEventListener("change", r),
           document.getElementById("end").addEventListener("change", r);
       }
-      function d(i, n) {
+      function l(i, n) {
         i.route({
           origin: { query: document.getElementById("start").value },
           destination: { query: document.getElementById("end").value },
@@ -73,7 +72,7 @@
             window.alert("Directions request failed due to " + status)
           );
       }
-      window.initMap = l;
+      window.initMap = c;
     </script>
     <style>
       #map,

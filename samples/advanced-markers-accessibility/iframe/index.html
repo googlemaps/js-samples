@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const a = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,8 +40,7 @@
           const t = n(e);
           fetch(e.href, t);
         }
-      };
-      a();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
@@ -83,7 +82,7 @@
               title: `${t + 1}. ${e}`,
               content: i.element,
             });
-          l.addListener("click", ({ domEvent: d, latLng: p }) => {
+          l.addListener("click", ({ domEvent: a, latLng: d }) => {
             n.close(), n.setContent(l.title), n.open(l.map, l);
           });
         });

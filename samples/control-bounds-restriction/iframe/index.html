@@ -10,16 +10,16 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          n(e);
+          r(e);
         new MutationObserver((e) => {
           for (const t of e)
             if (t.type === "childList")
-              for (const r of t.addedNodes)
-                r.tagName === "LINK" && r.rel === "modulepreload" && n(r);
+              for (const n of t.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && r(n);
         }).observe(document, { childList: !0, subtree: !0 });
         function i(e) {
           const t = {};
@@ -34,33 +34,32 @@
             t
           );
         }
-        function n(e) {
+        function r(e) {
           if (e.ep) return;
           e.ep = !0;
           const t = i(e);
           fetch(e.href, t);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ const l = {
+       */ const s = {
           north: -34.36,
           south: -47.35,
           west: 166.28,
           east: -175.81,
         },
-        c = { lat: -37.06, lng: 174.58 };
-      function u() {
+        l = { lat: -37.06, lng: 174.58 };
+      function c() {
         new google.maps.Map(document.getElementById("map"), {
-          center: c,
-          restriction: { latLngBounds: l, strictBounds: !1 },
+          center: l,
+          restriction: { latLngBounds: s, strictBounds: !1 },
           zoom: 7,
         });
       }
-      window.initMap = u;
+      window.initMap = c;
     </script>
     <style>
       #map,

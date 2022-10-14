@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const l = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,14 +40,13 @@
           const t = r(e);
           fetch(e.href, t);
         }
-      };
-      l();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let s;
-      function c() {
+      function l() {
         s = new google.maps.Map(document.getElementById("map"), {
           zoom: 2,
           center: { lat: -33.865427, lng: 151.196123 },
@@ -58,7 +57,7 @@
           "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js"),
           document.getElementsByTagName("head")[0].appendChild(o);
       }
-      function d(o) {
+      function c(o) {
         const n = [];
         for (let r = 0; r < o.features.length; r++) {
           const a = o.features[r].geometry.coordinates,
@@ -71,8 +70,8 @@
           map: s,
         });
       }
-      window.initMap = c;
-      window.eqfeed_callback = d;
+      window.initMap = l;
+      window.eqfeed_callback = c;
     </script>
     <style>
       #map,

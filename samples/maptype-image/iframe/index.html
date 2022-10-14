@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const o = r(e);
           fetch(e.href, o);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function a() {
+       */ function s() {
         const i = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 0, lng: 0 },
             zoom: 1,
@@ -55,7 +54,7 @@
           }),
           n = new google.maps.ImageMapType({
             getTileUrl: function (r, t) {
-              const e = c(r, t);
+              const e = a(r, t);
               if (!e) return "";
               const o = Math.pow(2, t);
               return (
@@ -76,7 +75,7 @@
           });
         i.mapTypes.set("moon", n), i.setMapTypeId("moon");
       }
-      function c(i, n) {
+      function a(i, n) {
         const r = i.y;
         let t = i.x;
         const e = 1 << n;
@@ -84,7 +83,7 @@
           ? null
           : ((t < 0 || t >= e) && (t = ((t % e) + e) % e), { x: t, y: r });
       }
-      window.initMap = a;
+      window.initMap = s;
     </script>
     <style>
       #map,

@@ -15,7 +15,7 @@
     />
 
     <script type="module" crossorigin>
-      const b = function () {
+      (function () {
         const e = document.createElement("link").relList;
         if (e && e.supports && e.supports("modulepreload")) return;
         for (const i of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -45,9 +45,8 @@
           const s = t(i);
           fetch(i.href, s);
         }
-      };
-      b();
-      var v = function r(e, t) {
+      })();
+      var b = function r(e, t) {
         if (e === t) return !0;
         if (e && t && typeof e == "object" && typeof t == "object") {
           if (e.constructor !== t.constructor) return !1;
@@ -122,7 +121,7 @@
             (this.version = I),
             l.instance)
           ) {
-            if (!v(this.options, l.instance.options))
+            if (!b(this.options, l.instance.options))
               throw new Error(
                 `Loader must not be called again with different options. ${JSON.stringify(
                   this.options
@@ -271,7 +270,7 @@
        */ const c = { lat: 41.90476224706472, lng: 12.49822074385094 },
         u = 14,
         E = "https://maps.googleapis.com/maps/api/staticmap",
-        w = new l({
+        v = new l({
           apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg",
           version: "weekly",
         });
@@ -280,7 +279,7 @@
         (r.style.backgroundImage = `url(${E}?center=${c.lat},${c.lng}&zoom=${u}&scale=2&size=${r.clientWidth}x${r.clientHeight}&key=YOUR_API_KEY)`),
           r.addEventListener("click", () => {
             r.remove(),
-              w.load().then(() => {
+              v.load().then(() => {
                 new google.maps.Map(document.getElementById("map"), {
                   center: c,
                   zoom: u,

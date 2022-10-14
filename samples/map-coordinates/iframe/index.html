@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
+      (function () {
         const e = document.createElement("link").relList;
         if (e && e.supports && e.supports("modulepreload")) return;
         for (const o of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const t = n(o);
           fetch(o.href, t);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function d() {
+       */ function c() {
         const r = new google.maps.LatLng(41.85, -87.65),
           e = new google.maps.Map(document.getElementById("map"), {
             center: r,
@@ -63,7 +62,7 @@
       const s = 256;
       function a(r, e) {
         const n = 1 << e,
-          i = f(r),
+          i = d(r),
           o = new google.maps.Point(Math.floor(i.x * n), Math.floor(i.y * n)),
           t = new google.maps.Point(
             Math.floor((i.x * n) / s),
@@ -78,7 +77,7 @@
           "Tile Coordinate: " + t,
         ].join("<br>");
       }
-      function f(r) {
+      function d(r) {
         let e = Math.sin((r.lat() * Math.PI) / 180);
         return (
           (e = Math.min(Math.max(e, -0.9999), 0.9999)),
@@ -88,7 +87,7 @@
           )
         );
       }
-      window.initMap = d;
+      window.initMap = c;
     </script>
     <style>
       #map,

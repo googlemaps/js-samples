@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const d = function () {
+      (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,14 +40,13 @@
           const o = i(e);
           fetch(e.href, o);
         }
-      };
-      d();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let l, n;
-      function u() {
+      function d() {
         const r = { lat: 37.869085, lng: -122.254775 },
           t = new google.maps.StreetViewService();
         (n = new google.maps.StreetViewPanorama(
@@ -84,7 +83,7 @@
               n.setVisible(!0);
           });
       }
-      window.initMap = u;
+      window.initMap = d;
     </script>
     <style>
       #map,

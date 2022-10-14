@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const a = function () {
+      (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,19 +40,18 @@
           const o = i(e);
           fetch(e.href, o);
         }
-      };
-      a();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function s() {
+       */ function a() {
         new google.maps.StreetViewPanorama(document.getElementById("map"), {
           pano: "reception",
           visible: !0,
-        }).registerPanoProvider(u);
+        }).registerPanoProvider(c);
       }
-      function c(n, t, i, r) {
+      function s(n, t, i, r) {
         return (
           "https://developers.google.com/maps/documentation/javascript/examples/full/images/panoReception1024-" +
           t +
@@ -63,7 +62,7 @@
           ".jpg"
         );
       }
-      function u(n) {
+      function c(n) {
         return n === "reception"
           ? {
               location: {
@@ -76,12 +75,12 @@
                 tileSize: new google.maps.Size(1024, 512),
                 worldSize: new google.maps.Size(2048, 1024),
                 centerHeading: 105,
-                getTileUrl: c,
+                getTileUrl: s,
               },
             }
           : null;
       }
-      window.initPano = s;
+      window.initPano = a;
     </script>
     <style>
       #map,

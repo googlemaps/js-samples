@@ -14,7 +14,7 @@
     />
 
     <script type="module" crossorigin>
-      const f = function () {
+      (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -44,8 +44,7 @@
           const o = s(e);
           fetch(e.href, o);
         }
-      };
-      f();
+      })();
       /*!
        * Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com
        * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -65,7 +64,7 @@
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function a() {
+       */ function f() {
         const i = { lat: 36.6163, lng: -100.605 },
           t = new google.maps.Map(document.getElementById("map"), {
             zoom: 15,
@@ -97,7 +96,7 @@
             title: "Material Icon Font Marker",
           });
       }
-      window.initMap = a;
+      window.initMap = f;
     </script>
     <style>
       #map,

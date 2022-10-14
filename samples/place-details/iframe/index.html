@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const m = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const t = s(e);
           fetch(e.href, t);
         }
-      };
-      m();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function p() {
+       */ function m() {
         const r = new google.maps.Map(document.getElementById("map"), {
             center: { lat: -33.866, lng: 151.196 },
             zoom: 15,
@@ -71,18 +70,18 @@
               const i = document.createElement("div"),
                 l = document.createElement("h2");
               (l.textContent = e.name), i.appendChild(l);
-              const a = document.createElement("p");
-              (a.textContent = e.place_id), i.appendChild(a);
               const d = document.createElement("p");
-              (d.textContent = e.formatted_address),
-                i.appendChild(d),
+              (d.textContent = e.place_id), i.appendChild(d);
+              const a = document.createElement("p");
+              (a.textContent = e.formatted_address),
+                i.appendChild(a),
                 s.setContent(i),
                 s.open(r, o);
             });
           }
         });
       }
-      window.initMap = p;
+      window.initMap = m;
     </script>
     <style>
       #map,

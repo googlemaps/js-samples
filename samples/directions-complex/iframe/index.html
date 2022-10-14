@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const l = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const e = o(t);
           fetch(t.href, e);
         }
-      };
-      l();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function d() {
+       */ function l() {
         const s = [],
           n = new google.maps.DirectionsService(),
           o = new google.maps.Map(document.getElementById("map"), {
@@ -73,27 +72,27 @@
             (document.getElementById("warnings-panel").innerHTML =
               "<b>" + e.routes[0].warnings + "</b>"),
               s.setDirections(e),
-              a(e, o, i, t);
+              d(e, o, i, t);
           })
           .catch((e) => {
             window.alert("Directions request failed due to " + e);
           });
       }
-      function a(s, n, o, i) {
+      function d(s, n, o, i) {
         const t = s.routes[0].legs[0];
         for (let e = 0; e < t.steps.length; e++) {
           const r = (n[e] = n[e] || new google.maps.Marker());
           r.setMap(i),
             r.setPosition(t.steps[e].start_location),
-            u(o, r, t.steps[e].instructions, i);
+            a(o, r, t.steps[e].instructions, i);
         }
       }
-      function u(s, n, o, i) {
+      function a(s, n, o, i) {
         google.maps.event.addListener(n, "click", () => {
           s.setContent(o), s.open(i, n);
         });
       }
-      window.initMap = d;
+      window.initMap = l;
     </script>
     <style>
       #map,

@@ -10,18 +10,18 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const l = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          n(e);
+          r(e);
         new MutationObserver((e) => {
           for (const t of e)
             if (t.type === "childList")
               for (const s of t.addedNodes)
-                s.tagName === "LINK" && s.rel === "modulepreload" && n(s);
+                s.tagName === "LINK" && s.rel === "modulepreload" && r(s);
         }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
+        function n(e) {
           const t = {};
           return (
             e.integrity && (t.integrity = e.integrity),
@@ -34,41 +34,40 @@
             t
           );
         }
-        function n(e) {
+        function r(e) {
           if (e.ep) return;
           e.ep = !0;
-          const t = r(e);
+          const t = n(e);
           fetch(e.href, t);
         }
-      };
-      l();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function c() {
+       */ function l() {
         const i = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 44.5452, lng: -78.5389 },
             zoom: 9,
           }),
           o = { north: 44.599, south: 44.49, east: -78.443, west: -78.649 },
-          r = new google.maps.Rectangle({
+          n = new google.maps.Rectangle({
             bounds: o,
             editable: !0,
             draggable: !0,
           });
-        r.setMap(i),
-          ["bounds_changed", "dragstart", "drag", "dragend"].forEach((n) => {
-            r.addListener(n, () => {
+        n.setMap(i),
+          ["bounds_changed", "dragstart", "drag", "dragend"].forEach((r) => {
+            n.addListener(r, () => {
               var e;
               console.log({
-                bounds: (e = r.getBounds()) == null ? void 0 : e.toJSON(),
-                eventName: n,
+                bounds: (e = n.getBounds()) == null ? void 0 : e.toJSON(),
+                eventName: r,
               });
             });
           });
       }
-      window.initMap = c;
+      window.initMap = l;
     </script>
     <style>
       #map,

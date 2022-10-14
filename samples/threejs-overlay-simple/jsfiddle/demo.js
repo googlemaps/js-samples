@@ -15,7 +15,7 @@
  */
 import * as THREE from "https://cdn.skypack.dev/three@^0.140.2";
 import { GLTFLoader } from "https://cdn.skypack.dev/three@^0.140.2/examples/jsm/loaders/GLTFLoader";
-import { ThreeJSOverlayView } from "https://cdn.skypack.dev/@googlemaps/three@^3.0.1";
+import { ThreeJSOverlayView } from "https://cdn.skypack.dev/@googlemaps/three@^3.0.3";
 let map;
 const mapOptions = {
   tilt: 0,

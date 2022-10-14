@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -18,10 +18,10 @@
         new MutationObserver((e) => {
           for (const t of e)
             if (t.type === "childList")
-              for (const n of t.addedNodes)
-                n.tagName === "LINK" && n.rel === "modulepreload" && l(n);
+              for (const r of t.addedNodes)
+                r.tagName === "LINK" && r.rel === "modulepreload" && l(r);
         }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
+        function n(e) {
           const t = {};
           return (
             e.integrity && (t.integrity = e.integrity),
@@ -37,22 +37,21 @@
         function l(e) {
           if (e.ep) return;
           e.ep = !0;
-          const t = r(e);
+          const t = n(e);
           fetch(e.href, t);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function c() {
+       */ function s() {
         const i = new google.maps.LatLng(-33.712451, 150.311823),
           o = new google.maps.Map(document.getElementById("map"), {
             zoom: 9,
             center: i,
           }),
-          r = {
+          n = {
             path: "M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z",
             fillColor: "blue",
             fillOpacity: 0.6,
@@ -61,9 +60,9 @@
             scale: 2,
             anchor: new google.maps.Point(15, 30),
           };
-        new google.maps.Marker({ position: o.getCenter(), icon: r, map: o });
+        new google.maps.Marker({ position: o.getCenter(), icon: n, map: o });
       }
-      window.initMap = c;
+      window.initMap = s;
     </script>
     <style>
       #map,

@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,15 +40,14 @@
           const t = r(e);
           fetch(e.href, t);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let a;
-      function l() {
-        a = new google.maps.Map(document.getElementById("map"), {
+       */ let c;
+      function a() {
+        c = new google.maps.Map(document.getElementById("map"), {
           zoom: 2,
           center: new google.maps.LatLng(2.8, -187.3),
           mapTypeId: "terrain",
@@ -58,15 +57,15 @@
           "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js"),
           document.getElementsByTagName("head")[0].appendChild(n);
       }
-      const d = function (n) {
+      const l = function (n) {
         for (let o = 0; o < n.features.length; o++) {
           const r = n.features[o].geometry.coordinates,
             i = new google.maps.LatLng(r[1], r[0]);
-          new google.maps.Marker({ position: i, map: a });
+          new google.maps.Marker({ position: i, map: c });
         }
       };
-      window.initMap = l;
-      window.eqfeed_callback = d;
+      window.initMap = a;
+      window.eqfeed_callback = l;
     </script>
     <style>
       #map,

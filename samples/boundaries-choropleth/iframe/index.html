@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
+      (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const o = i(e);
           fetch(e.href, o);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2022 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
+       */ function s() {
         const t = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 40.76, lng: -101.64 },
           zoom: 5,
@@ -120,7 +119,7 @@
           Wyoming: 578803,
         };
       }
-      window.initMap = l;
+      window.initMap = s;
     </script>
     <style>
       #map,

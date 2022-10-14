@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,8 +40,7 @@
           const t = c(e);
           fetch(e.href, t);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
@@ -55,7 +54,7 @@
         },
         vancouver: { center: { lat: 49.25, lng: -123.1 }, population: 603502 },
       };
-      function a() {
+      function s() {
         const i = new google.maps.Map(document.getElementById("map"), {
           zoom: 4,
           center: { lat: 37.09, lng: -95.712 },
@@ -73,7 +72,7 @@
             radius: Math.sqrt(r[o].population) * 100,
           });
       }
-      window.initMap = a;
+      window.initMap = s;
     </script>
     <style>
       #map,

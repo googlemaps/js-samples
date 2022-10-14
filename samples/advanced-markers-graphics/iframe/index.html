@@ -11,7 +11,7 @@
     <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
 
     <script type="module" crossorigin>
-      const d = function () {
+      (function () {
         const r = document.createElement("link").relList;
         if (r && r.supports && r.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -41,13 +41,12 @@
           const o = l(e);
           fetch(e.href, o);
         }
-      };
-      d();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function u() {
+       */ function d() {
         const t = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 37.42475, lng: -122.0845 },
             zoom: 13,
@@ -125,7 +124,7 @@
           title: "A marker using a FontAwesome icon for the glyph.",
         });
       }
-      window.initMap = u;
+      window.initMap = d;
     </script>
     <style>
       #map,

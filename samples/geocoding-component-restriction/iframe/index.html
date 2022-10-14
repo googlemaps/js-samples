@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
+      (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,23 +40,22 @@
           const o = n(e);
           fetch(e.href, o);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
+       */ function c() {
         const r = new google.maps.Geocoder(),
           t = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
             center: { lat: -33.865, lng: 151.209 },
           });
         document.getElementById("submit").addEventListener("click", () => {
-          d(r, t);
+          l(r, t);
         });
       }
-      function d(r, t) {
+      function l(r, t) {
         r.geocode({
           address: "483 George St.",
           componentRestrictions: { country: "AU", postalCode: "2000" },
@@ -74,7 +73,7 @@
             )
           );
       }
-      window.initMap = l;
+      window.initMap = c;
     </script>
     <style>
       #map,
