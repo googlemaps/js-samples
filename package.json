@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
-    "@googlemaps/three": "^3.0.1",
+    "@googlemaps/three": "^3.0.3",
     "@playwright/test": "^1.22.2",
     "@types/geojson": "^7946.0.8",
     "@types/google.maps": "^3.50.3",
