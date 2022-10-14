@@ -27,7 +27,7 @@ class CenterControl {
     controlDiv.style.clear = "both";
 
     // Set CSS for the control border
-    const goCenterUI = document.createElement("div");
+    const goCenterUI = document.createElement("button");
 
     goCenterUI.id = "goCenterUI";
     goCenterUI.title = "Click to recenter the map";
@@ -41,7 +41,7 @@ class CenterControl {
     goCenterUI.appendChild(goCenterText);
 
     // Set CSS for the setCenter control border
-    const setCenterUI = document.createElement("div");
+    const setCenterUI = document.createElement("button");
 
     setCenterUI.id = "setCenterUI";
     setCenterUI.title = "Click to change the center of the map";
