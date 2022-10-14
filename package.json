@@ -88,7 +88,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@googlemaps/js-api-loader": "^1.14.2",
     "@googlemaps/markerclusterer": "2.0.3",
-    "@googlemaps/react-wrapper": "^1.1.33",
+    "@googlemaps/react-wrapper": "^1.1.35",
     "@googlemaps/typescript-guards": "^1.0.16",
     "@material/mwc-button": "^0.26.1",
     "@material/select": "^14.0.0",
