@@ -59,7 +59,7 @@
     "cssnano": "^5.1.8",
     "dotenv": "^16.0.1",
     "dts-minify": "^0.3.0",
-    "esbuild": "^0.14.39",
+    "esbuild": "^0.15.11",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-googlemaps": "^1.4.14",
