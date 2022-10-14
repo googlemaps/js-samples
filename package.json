@@ -43,7 +43,7 @@
     "watch:worker": "npm run build:worker -- --watch"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^1.0.2",
     "@googlemaps/three": "^3.0.3",
     "@playwright/test": "^1.22.2",
     "@types/geojson": "^7946.0.8",
