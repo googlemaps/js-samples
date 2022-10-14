@@ -10,56 +10,73 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
+      var d = Object.defineProperty;
+      var l = (t, e, o) =>
+        e in t
+          ? d(t, e, {
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+              value: o,
+            })
+          : (t[e] = o);
+      var s = (t, e, o) => (l(t, typeof e != "symbol" ? e + "" : e, o), o);
+      (function () {
         const e = document.createElement("link").relList;
         if (e && e.supports && e.supports("modulepreload")) return;
-        for (const o of document.querySelectorAll('link[rel="modulepreload"]'))
-          n(o);
-        new MutationObserver((o) => {
-          for (const i of o)
-            if (i.type === "childList")
-              for (const s of i.addedNodes)
-                s.tagName === "LINK" && s.rel === "modulepreload" && n(s);
+        for (const n of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(n);
+        new MutationObserver((n) => {
+          for (const r of n)
+            if (r.type === "childList")
+              for (const c of r.addedNodes)
+                c.tagName === "LINK" && c.rel === "modulepreload" && i(c);
         }).observe(document, { childList: !0, subtree: !0 });
-        function t(o) {
-          const i = {};
+        function o(n) {
+          const r = {};
           return (
-            o.integrity && (i.integrity = o.integrity),
-            o.referrerpolicy && (i.referrerPolicy = o.referrerpolicy),
-            o.crossorigin === "use-credentials"
-              ? (i.credentials = "include")
-              : o.crossorigin === "anonymous"
-              ? (i.credentials = "omit")
-              : (i.credentials = "same-origin"),
-            i
+            n.integrity && (r.integrity = n.integrity),
+            n.referrerpolicy && (r.referrerPolicy = n.referrerpolicy),
+            n.crossorigin === "use-credentials"
+              ? (r.credentials = "include")
+              : n.crossorigin === "anonymous"
+              ? (r.credentials = "omit")
+              : (r.credentials = "same-origin"),
+            r
           );
         }
-        function n(o) {
-          if (o.ep) return;
-          o.ep = !0;
-          const i = t(o);
-          fetch(o.href, i);
+        function i(n) {
+          if (n.ep) return;
+          n.ep = !0;
+          const r = o(n);
+          fetch(n.href, r);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
-        const r = { lat: -33.871, lng: 151.197 },
+       */ function a() {
+        const t = { lat: -33.871, lng: 151.197 },
           e = new google.maps.Map(document.getElementById("map"), {
             zoom: 18,
-            center: r,
+            center: t,
           });
-        new a(e, r);
+        new u(e, t);
       }
-      function d(r) {
-        return "placeId" in r;
+      function f(t) {
+        return "placeId" in t;
       }
-      class a {
-        constructor(e, t) {
-          (this.origin = t),
+      class u {
+        constructor(e, o) {
+          s(this, "origin");
+          s(this, "map");
+          s(this, "directionsService");
+          s(this, "directionsRenderer");
+          s(this, "placesService");
+          s(this, "infowindow");
+          s(this, "infowindowContent");
+          (this.origin = o),
             (this.map = e),
             (this.directionsService = new google.maps.DirectionsService()),
             (this.directionsRenderer = new google.maps.DirectionsRenderer()),
@@ -73,7 +90,7 @@
         }
         handleClick(e) {
           console.log("You clicked on: " + e.latLng),
-            d(e) &&
+            f(e) &&
               (console.log("You clicked on place:" + e.placeId),
               e.stop(),
               e.placeId &&
@@ -81,40 +98,40 @@
                 this.getPlaceInformation(e.placeId)));
         }
         calculateAndDisplayRoute(e) {
-          const t = this;
+          const o = this;
           this.directionsService
             .route({
               origin: this.origin,
               destination: { placeId: e },
               travelMode: google.maps.TravelMode.WALKING,
             })
-            .then((n) => {
-              t.directionsRenderer.setDirections(n);
+            .then((i) => {
+              o.directionsRenderer.setDirections(i);
             })
-            .catch((n) =>
+            .catch((i) =>
               window.alert("Directions request failed due to " + status)
             );
         }
         getPlaceInformation(e) {
-          const t = this;
-          this.placesService.getDetails({ placeId: e }, (n, o) => {
-            o === "OK" &&
-              n &&
-              n.geometry &&
-              n.geometry.location &&
-              (t.infowindow.close(),
-              t.infowindow.setPosition(n.geometry.location),
-              (t.infowindowContent.children["place-icon"].src = n.icon),
-              (t.infowindowContent.children["place-name"].textContent = n.name),
-              (t.infowindowContent.children["place-id"].textContent =
-                n.place_id),
-              (t.infowindowContent.children["place-address"].textContent =
-                n.formatted_address),
-              t.infowindow.open(t.map));
+          const o = this;
+          this.placesService.getDetails({ placeId: e }, (i, n) => {
+            n === "OK" &&
+              i &&
+              i.geometry &&
+              i.geometry.location &&
+              (o.infowindow.close(),
+              o.infowindow.setPosition(i.geometry.location),
+              (o.infowindowContent.children["place-icon"].src = i.icon),
+              (o.infowindowContent.children["place-name"].textContent = i.name),
+              (o.infowindowContent.children["place-id"].textContent =
+                i.place_id),
+              (o.infowindowContent.children["place-address"].textContent =
+                i.formatted_address),
+              o.infowindow.open(o.map));
           });
         }
       }
-      window.initMap = l;
+      window.initMap = a;
     </script>
     <style>
       #map,

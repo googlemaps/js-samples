@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const l = function () {
+      (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const o = n(e);
           fetch(e.href, o);
         }
-      };
-      l();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function d() {
+       */ function l() {
         const r = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
             center: { lat: 40.72, lng: -73.96 },
@@ -54,10 +53,10 @@
           t = new google.maps.Geocoder(),
           n = new google.maps.InfoWindow();
         document.getElementById("submit").addEventListener("click", () => {
-          s(t, r, n);
+          d(t, r, n);
         });
       }
-      function s(r, t, n) {
+      function d(r, t, n) {
         const i = document.getElementById("place-id").value;
         r.geocode({ placeId: i })
           .then(({ results: e }) => {
@@ -72,7 +71,7 @@
           })
           .catch((e) => window.alert("Geocoder failed due to: " + e));
       }
-      window.initMap = d;
+      window.initMap = l;
     </script>
     <style>
       #map,

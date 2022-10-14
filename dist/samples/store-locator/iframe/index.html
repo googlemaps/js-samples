@@ -14,142 +14,139 @@
     />
     <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
     <script src="https://unpkg.com/@google/markerclustererplus@^4.0.1/dist/markerclustererplus.min.js"></script>
-    <head>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      />
-      <script type="module" crossorigin>
-        const M = function () {
-          const e = document.createElement("link").relList;
-          if (e && e.supports && e.supports("modulepreload")) return;
-          for (const t of document.querySelectorAll(
-            'link[rel="modulepreload"]'
-          ))
-            c(t);
-          new MutationObserver((t) => {
-            for (const a of t)
-              if (a.type === "childList")
-                for (const s of a.addedNodes)
-                  s.tagName === "LINK" && s.rel === "modulepreload" && c(s);
-          }).observe(document, { childList: !0, subtree: !0 });
-          function o(t) {
-            const a = {};
-            return (
-              t.integrity && (a.integrity = t.integrity),
-              t.referrerpolicy && (a.referrerPolicy = t.referrerpolicy),
-              t.crossorigin === "use-credentials"
-                ? (a.credentials = "include")
-                : t.crossorigin === "anonymous"
-                ? (a.credentials = "omit")
-                : (a.credentials = "same-origin"),
-              a
-            );
-          }
-          function c(t) {
-            if (t.ep) return;
-            t.ep = !0;
-            const a = o(t);
-            fetch(t.href, a);
-          }
-        };
-        M();
-        /**
-         * @license
-         * Copyright 2019 Google LLC. All Rights Reserved.
-         * SPDX-License-Identifier: Apache-2.0
-         */ let n,
-          d,
-          y,
-          u,
-          p,
-          h,
-          L,
-          g = !1;
-        const i = [];
-        function w() {
-          (h = new google.maps.DistanceMatrixService()),
-            (d = google.maps.MapTypeId.ROADMAP),
-            (y = google.maps.MapTypeId.HYBRID),
-            (n = new google.maps.Map(document.getElementById("map"), {
-              center: { lat: 39.79, lng: -104.98 },
-              mapTypeId: d,
-              zoom: 10,
-            })),
-            new mdc.textField.MDCTextField(
-              document.querySelector(".mdc-text-field")
-            ),
-            (p = document.getElementById("search-input")),
-            (u = new google.maps.places.Autocomplete(p, {
-              fields: ["geometry"],
-            })),
-            u.addListener("place_changed", _),
-            u.bindTo("bounds", n),
-            fetch(
-              "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
-            )
-              .then((r) => r.json())
-              .then((r) => {
-                const e = r.features,
-                  o = [];
-                e.forEach(
-                  ({ attributes: { NAME: c }, geometry: { x: t, y: a } }) => {
-                    i.push({
-                      name: c,
-                      location: { lat: a, lng: t },
-                      address: "",
-                    });
-                    const s = new google.maps.Marker({
-                      position: { lat: a, lng: t },
-                    });
-                    s.addListener("click", () => {
-                      m(new google.maps.LatLng({ lat: a, lng: t })),
-                        v(new google.maps.LatLng({ lat: a, lng: t }));
-                    }),
-                      o.push(s);
-                  }
-                ),
-                  new MarkerClusterer(n, o, {
-                    imagePath:
-                      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
-                  }),
-                  window.addEventListener("load", () => {
-                    L.done();
-                  }),
-                  m(n.getCenter()),
-                  n.setZoom(13),
-                  n.setMapTypeId(d);
-              }),
-            document.getElementById("near-me").addEventListener("click", () => {
-              navigator.geolocation &&
-                navigator.geolocation.getCurrentPosition(
-                  ({ coords: { latitude: r, longitude: e } }) => {
-                    m(new google.maps.LatLng({ lat: r, lng: e })),
-                      n.setZoom(10),
-                      n.setMapTypeId(d);
-                  }
-                );
-            }),
-            document.getElementById("refresh").addEventListener("click", () => {
-              m(n.getCenter());
-            });
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+
+    <script type="module" crossorigin>
+      (function () {
+        const e = document.createElement("link").relList;
+        if (e && e.supports && e.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          c(t);
+        new MutationObserver((t) => {
+          for (const a of t)
+            if (a.type === "childList")
+              for (const s of a.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && c(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function o(t) {
+          const a = {};
+          return (
+            t.integrity && (a.integrity = t.integrity),
+            t.referrerpolicy && (a.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (a.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (a.credentials = "omit")
+              : (a.credentials = "same-origin"),
+            a
+          );
         }
-        function b(r) {
-          const e = document.getElementById("cards");
-          (e.innerHTML = ""),
-            r
-              .slice(0, 25)
-              .forEach(
-                ({
-                  name: o,
-                  location: c,
-                  address: t,
-                  travelDistanceText: a,
-                  travelDurationText: s,
-                }) => {
-                  const l = document.createElement("div");
-                  l.classList.add("mdc-card", "mdc-card--outlined"),
-                    (l.innerHTML = `
+        function c(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const a = o(t);
+          fetch(t.href, a);
+        }
+      })();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let n,
+        d,
+        y,
+        u,
+        p,
+        h,
+        M,
+        g = !1;
+      const i = [];
+      function L() {
+        (h = new google.maps.DistanceMatrixService()),
+          (d = google.maps.MapTypeId.ROADMAP),
+          (y = google.maps.MapTypeId.HYBRID),
+          (n = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: 39.79, lng: -104.98 },
+            mapTypeId: d,
+            zoom: 10,
+          })),
+          new mdc.textField.MDCTextField(
+            document.querySelector(".mdc-text-field")
+          ),
+          (p = document.getElementById("search-input")),
+          (u = new google.maps.places.Autocomplete(p, {
+            fields: ["geometry"],
+          })),
+          u.addListener("place_changed", T),
+          u.bindTo("bounds", n),
+          fetch(
+            "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
+          )
+            .then((r) => r.json())
+            .then((r) => {
+              const e = r.features,
+                o = [];
+              e.forEach(
+                ({ attributes: { NAME: c }, geometry: { x: t, y: a } }) => {
+                  i.push({
+                    name: c,
+                    location: { lat: a, lng: t },
+                    address: "",
+                  });
+                  const s = new google.maps.Marker({
+                    position: { lat: a, lng: t },
+                  });
+                  s.addListener("click", () => {
+                    m(new google.maps.LatLng({ lat: a, lng: t })),
+                      v(new google.maps.LatLng({ lat: a, lng: t }));
+                  }),
+                    o.push(s);
+                }
+              ),
+                new MarkerClusterer(n, o, {
+                  imagePath:
+                    "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m",
+                }),
+                window.addEventListener("load", () => {
+                  M.done();
+                }),
+                m(n.getCenter()),
+                n.setZoom(13),
+                n.setMapTypeId(d);
+            }),
+          document.getElementById("near-me").addEventListener("click", () => {
+            navigator.geolocation &&
+              navigator.geolocation.getCurrentPosition(
+                ({ coords: { latitude: r, longitude: e } }) => {
+                  m(new google.maps.LatLng({ lat: r, lng: e })),
+                    n.setZoom(10),
+                    n.setMapTypeId(d);
+                }
+              );
+          }),
+          document.getElementById("refresh").addEventListener("click", () => {
+            m(n.getCenter());
+          });
+      }
+      function w(r) {
+        const e = document.getElementById("cards");
+        (e.innerHTML = ""),
+          r
+            .slice(0, 25)
+            .forEach(
+              ({
+                name: o,
+                location: c,
+                address: t,
+                travelDistanceText: a,
+                travelDurationText: s,
+              }) => {
+                const l = document.createElement("div");
+                l.classList.add("mdc-card", "mdc-card--outlined"),
+                  (l.innerHTML = `
 <div class="mdc-card__primary-action">
   <div id="card-header">
     <h2 class="mdc-typography--headline6">${o}</h2>
@@ -168,164 +165,163 @@
     <span class="mdc-button__label">More Information</span>
   </button>
 </div>`);
-                  const f = l.querySelector("#card-body");
-                  t &&
-                    (f.innerHTML = `<h2 class="mdc-typography--body1">${t}</h2>`),
-                    a &&
-                      (f.innerHTML += `<h2 class="mdc-typography--body2">${a}, ${s}</h2>`),
-                    l
-                      .querySelector(".mdc-card__primary-action")
-                      .addEventListener("click", () => {
-                        v(new google.maps.LatLng(c));
-                      }),
-                    e.appendChild(l);
-                }
-              ),
-            e.scrollTo(0, 0);
-        }
-        function T(r) {
-          const e = [r];
-          return new Promise((o, c) => {
-            const t = (a, s) => {
-              s === google.maps.DistanceMatrixStatus.OK && a ? o(a) : c(s);
-            };
-            h.getDistanceMatrix(
-              {
-                origins: e,
-                destinations: i.slice(0, 25).map((a) => a.location),
-                travelMode: google.maps.TravelMode.DRIVING,
-                unitSystem: google.maps.UnitSystem.IMPERIAL,
-              },
-              t
-            );
-          });
-        }
-        function _() {
-          p.disabled = !0;
-          const e = u.getPlace().geometry.location;
-          m(e), n.setZoom(10), n.setMapTypeId(d);
-        }
-        function m(r) {
-          if (!!r) {
-            if (g) {
-              alert("Update in progress, please try again.");
-              return;
-            }
-            (p.disabled = !0),
-              (g = !0),
-              n.setCenter(r),
-              i.forEach((e) => {
-                delete e.travelDistance,
-                  delete e.travelDistanceText,
-                  delete e.travelDuration,
-                  delete e.travelDurationText;
-              }),
-              i.sort(
-                (e, o) =>
-                  google.maps.geometry.spherical.computeDistanceBetween(
-                    new google.maps.LatLng(e.location),
-                    r
-                  ) -
-                  google.maps.geometry.spherical.computeDistanceBetween(
-                    new google.maps.LatLng(o.location),
-                    r
-                  )
-              ),
-              T(r)
-                .then((e) => {
-                  for (let o = 0; o < e.rows[0].elements.length; o++)
-                    (i[o].address = e.destinationAddresses[o]),
-                      (i[o].travelDistance =
-                        e.rows[0].elements[o].distance.value),
-                      (i[o].travelDistanceText =
-                        e.rows[0].elements[o].distance.text),
-                      (i[o].travelDuration =
-                        e.rows[0].elements[o].duration.value),
-                      (i[o].travelDurationText =
-                        e.rows[0].elements[o].duration.text);
-                })
-                .finally(() => {
-                  b(i), (p.disabled = !1), (g = !1);
-                });
+                const f = l.querySelector("#card-body");
+                t &&
+                  (f.innerHTML = `<h2 class="mdc-typography--body1">${t}</h2>`),
+                  a &&
+                    (f.innerHTML += `<h2 class="mdc-typography--body2">${a}, ${s}</h2>`),
+                  l
+                    .querySelector(".mdc-card__primary-action")
+                    .addEventListener("click", () => {
+                      v(new google.maps.LatLng(c));
+                    }),
+                  e.appendChild(l);
+              }
+            ),
+          e.scrollTo(0, 0);
+      }
+      function b(r) {
+        const e = [r];
+        return new Promise((o, c) => {
+          const t = (a, s) => {
+            s === google.maps.DistanceMatrixStatus.OK && a ? o(a) : c(s);
+          };
+          h.getDistanceMatrix(
+            {
+              origins: e,
+              destinations: i.slice(0, 25).map((a) => a.location),
+              travelMode: google.maps.TravelMode.DRIVING,
+              unitSystem: google.maps.UnitSystem.IMPERIAL,
+            },
+            t
+          );
+        });
+      }
+      function T() {
+        p.disabled = !0;
+        const e = u.getPlace().geometry.location;
+        m(e), n.setZoom(10), n.setMapTypeId(d);
+      }
+      function m(r) {
+        if (!!r) {
+          if (g) {
+            alert("Update in progress, please try again.");
+            return;
           }
+          (p.disabled = !0),
+            (g = !0),
+            n.setCenter(r),
+            i.forEach((e) => {
+              delete e.travelDistance,
+                delete e.travelDistanceText,
+                delete e.travelDuration,
+                delete e.travelDurationText;
+            }),
+            i.sort(
+              (e, o) =>
+                google.maps.geometry.spherical.computeDistanceBetween(
+                  new google.maps.LatLng(e.location),
+                  r
+                ) -
+                google.maps.geometry.spherical.computeDistanceBetween(
+                  new google.maps.LatLng(o.location),
+                  r
+                )
+            ),
+            b(r)
+              .then((e) => {
+                for (let o = 0; o < e.rows[0].elements.length; o++)
+                  (i[o].address = e.destinationAddresses[o]),
+                    (i[o].travelDistance =
+                      e.rows[0].elements[o].distance.value),
+                    (i[o].travelDistanceText =
+                      e.rows[0].elements[o].distance.text),
+                    (i[o].travelDuration =
+                      e.rows[0].elements[o].duration.value),
+                    (i[o].travelDurationText =
+                      e.rows[0].elements[o].duration.text);
+              })
+              .finally(() => {
+                w(i), (p.disabled = !1), (g = !1);
+              });
         }
-        function v(r) {
-          n.setCenter(r),
-            n.setZoom(19),
-            n.setMapTypeId(y),
-            n.setTilt(45),
-            google.maps.event.addListenerOnce(n, "zoom_changed", () => {
-              n.getZoom() < 19 && (n.setTilt(0), n.setMapTypeId(d));
-            });
-        }
-        window.initMap = w;
-      </script>
-      <style>
-        body,
-        html {
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-        #container {
-          display: flex;
-          height: 100%;
-        }
-        #sidebar {
-          box-sizing: border-box;
-          flex-grow: 1;
-          height: 100%;
-          max-width: 30rem;
-          overflow: auto;
-          padding: 1rem;
-        }
-        #map {
-          flex-basis: 0;
-          flex-grow: 4;
-          height: 100%;
-        }
-        :root {
-          --mdc-theme-primary: #1a73e8;
-          --mdc-theme-secondary: #rgb(225, 245, 254);
-          --mdc-theme-on-primary: #fff;
-          --mdc-theme-on-secondary: #01579b;
-        }
-        .mdc-text-field--focused:not(.mdc-text-field--disabled)
-          .mdc-floating-label {
-          color: var(--mdc-theme-primary);
-        }
-        #sidebar {
-          flex-basis: 5rem;
-          flex-direction: column;
-        }
-        #search,
-        .mdc-card {
-          margin-bottom: 1rem;
-        }
-        #search {
-          align-items: center;
-          display: flex;
-        }
-        #search .mdc-icon-button,
-        #search .mdc-text-field {
-          margin: 0 0.1rem 0 0;
-        }
-        #search .mdc-icon-button {
-          color: var(--mdc-theme-primary);
-        }
-        #search .mdc-text-field {
-          flex-grow: 1;
-        }
-        #cards {
-          height: calc(100% - 56px);
-          overflow: scroll;
-        }
-        #card-body,
-        #card-header {
-          padding: 0 1rem;
-        }
-      </style>
-    </head>
+      }
+      function v(r) {
+        n.setCenter(r),
+          n.setZoom(19),
+          n.setMapTypeId(y),
+          n.setTilt(45),
+          google.maps.event.addListenerOnce(n, "zoom_changed", () => {
+            n.getZoom() < 19 && (n.setTilt(0), n.setMapTypeId(d));
+          });
+      }
+      window.initMap = L;
+    </script>
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        display: flex;
+        height: 100%;
+      }
+      #sidebar {
+        box-sizing: border-box;
+        flex-grow: 1;
+        height: 100%;
+        max-width: 30rem;
+        overflow: auto;
+        padding: 1rem;
+      }
+      #map {
+        flex-basis: 0;
+        flex-grow: 4;
+        height: 100%;
+      }
+      :root {
+        --mdc-theme-primary: #1a73e8;
+        --mdc-theme-secondary: #rgb(225, 245, 254);
+        --mdc-theme-on-primary: #fff;
+        --mdc-theme-on-secondary: #01579b;
+      }
+      .mdc-text-field--focused:not(.mdc-text-field--disabled)
+        .mdc-floating-label {
+        color: var(--mdc-theme-primary);
+      }
+      #sidebar {
+        flex-basis: 5rem;
+        flex-direction: column;
+      }
+      #search,
+      .mdc-card {
+        margin-bottom: 1rem;
+      }
+      #search {
+        align-items: center;
+        display: flex;
+      }
+      #search .mdc-icon-button,
+      #search .mdc-text-field {
+        margin: 0 0.1rem 0 0;
+      }
+      #search .mdc-icon-button {
+        color: var(--mdc-theme-primary);
+      }
+      #search .mdc-text-field {
+        flex-grow: 1;
+      }
+      #cards {
+        height: calc(100% - 56px);
+        overflow: scroll;
+      }
+      #card-body,
+      #card-header {
+        padding: 0 1rem;
+      }
+    </style>
   </head>
   <body>
     <div id="container">

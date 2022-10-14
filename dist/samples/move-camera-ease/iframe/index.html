@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const I = function () {
+      (function () {
         const e = document.createElement("link").relList;
         if (e && e.supports && e.supports("modulepreload")) return;
         for (const n of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,8 +40,7 @@
           const r = i(n);
           fetch(n.href, r);
         }
-      };
-      I();
+      })();
       var p = {
           Linear: {
             None: function (t) {
@@ -225,7 +224,7 @@
             return new Date().getTime();
           });
       var l = d,
-        P = (function () {
+        I = (function () {
           function t() {
             (this._tweens = {}), (this._tweensAddedDuringUpdate = {});
           }
@@ -357,8 +356,8 @@
             t
           );
         })(),
-        b = new P(),
-        C = (function () {
+        b = new I(),
+        P = (function () {
           function t(e, i) {
             i === void 0 && (i = b),
               (this._object = e),
@@ -650,7 +649,7 @@
       h.removeAll.bind(h);
       h.add.bind(h);
       h.remove.bind(h);
-      var M = h.update.bind(h);
+      var C = h.update.bind(h);
       /**
        * @license
        * Copyright 2021 Google LLC.
@@ -662,10 +661,10 @@
           zoom: 3,
           center: { lat: 35.6594945, lng: 139.6999859 },
         },
-        O = { ...g, mapId: "15431d2b469f209e" };
-      function S() {
-        (y = new google.maps.Map(document.getElementById("map"), O)),
-          new C(g)
+        M = { ...g, mapId: "15431d2b469f209e" };
+      function O() {
+        (y = new google.maps.Map(document.getElementById("map"), M)),
+          new P(g)
             .to({ tilt: 65, heading: 90, zoom: 18 }, 15e3)
             .easing(p.Quadratic.Out)
             .onUpdate(() => {
@@ -673,11 +672,11 @@
             })
             .start();
         function t(e) {
-          requestAnimationFrame(t), M(e);
+          requestAnimationFrame(t), C(e);
         }
         requestAnimationFrame(t);
       }
-      window.initMap = S;
+      window.initMap = O;
     </script>
     <style>
       #map,

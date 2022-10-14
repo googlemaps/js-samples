@@ -14,7 +14,7 @@
     />
 
     <script type="module" crossorigin>
-      const u = function () {
+      (function () {
         const r = document.createElement("link").relList;
         if (r && r.supports && r.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -44,14 +44,13 @@
           const o = n(e);
           fetch(e.href, o);
         }
-      };
-      u();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let l, s, i, d;
-      function m() {
+      function u() {
         (s = document.querySelector("#ship-address")),
           (i = document.querySelector("#address2")),
           (d = document.querySelector("#postcode")),
@@ -61,9 +60,9 @@
             types: ["address"],
           })),
           s.focus(),
-          l.addListener("place_changed", p);
+          l.addListener("place_changed", m);
       }
-      function p() {
+      function m() {
         const a = l.getPlace();
         let r = "",
           n = "";
@@ -98,7 +97,7 @@
           }
         (s.value = r), (d.value = n), i.focus();
       }
-      window.initAutocomplete = m;
+      window.initAutocomplete = u;
     </script>
     <style>
       #map,

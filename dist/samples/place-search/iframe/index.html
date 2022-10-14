@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const f = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,16 +40,15 @@
           const o = r(e);
           fetch(e.href, o);
         }
-      };
-      f();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let i, c, a;
-      function m() {
+       */ let i, a, c;
+      function f() {
         const t = new google.maps.LatLng(-33.867, 151.195);
-        (a = new google.maps.InfoWindow()),
+        (c = new google.maps.InfoWindow()),
           (i = new google.maps.Map(document.getElementById("map"), {
             center: t,
             zoom: 15,
@@ -58,25 +57,25 @@
           query: "Museum of Contemporary Art Australia",
           fields: ["name", "geometry"],
         };
-        (c = new google.maps.places.PlacesService(i)),
-          c.findPlaceFromQuery(n, (r, s) => {
+        (a = new google.maps.places.PlacesService(i)),
+          a.findPlaceFromQuery(n, (r, s) => {
             if (s === google.maps.places.PlacesServiceStatus.OK && r) {
-              for (let e = 0; e < r.length; e++) u(r[e]);
+              for (let e = 0; e < r.length; e++) m(r[e]);
               i.setCenter(r[0].geometry.location);
             }
           });
       }
-      function u(t) {
+      function m(t) {
         if (!t.geometry || !t.geometry.location) return;
         const n = new google.maps.Marker({
           map: i,
           position: t.geometry.location,
         });
         google.maps.event.addListener(n, "click", () => {
-          a.setContent(t.name || ""), a.open(i);
+          c.setContent(t.name || ""), c.open(i);
         });
       }
-      window.initMap = m;
+      window.initMap = f;
     </script>
     <style>
       #map,

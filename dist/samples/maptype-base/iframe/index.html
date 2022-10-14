@@ -10,53 +10,64 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const l = function () {
-        const o = document.createElement("link").relList;
-        if (o && o.supports && o.supports("modulepreload")) return;
+      var a = Object.defineProperty;
+      var d = (o, t, i) =>
+        t in o
+          ? a(o, t, {
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+              value: i,
+            })
+          : (o[t] = i);
+      var n = (o, t, i) => (d(o, typeof t != "symbol" ? t + "" : t, i), i);
+      (function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          i(e);
+          l(e);
         new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const n of t.addedNodes)
-                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
+          for (const r of e)
+            if (r.type === "childList")
+              for (const s of r.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && l(s);
         }).observe(document, { childList: !0, subtree: !0 });
-        function s(e) {
-          const t = {};
+        function i(e) {
+          const r = {};
           return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.integrity && (r.integrity = e.integrity),
+            e.referrerpolicy && (r.referrerPolicy = e.referrerpolicy),
             e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
+              ? (r.credentials = "include")
               : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
+              ? (r.credentials = "omit")
+              : (r.credentials = "same-origin"),
+            r
           );
         }
-        function i(e) {
+        function l(e) {
           if (e.ep) return;
           e.ep = !0;
-          const t = s(e);
-          fetch(e.href, t);
+          const r = i(e);
+          fetch(e.href, r);
         }
-      };
-      l();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ class a {
-        constructor(o) {
-          (this.maxZoom = 19),
-            (this.name = "Tile #s"),
-            (this.alt = "Tile Coordinate Map Type"),
-            (this.tileSize = o);
+       */ class c {
+        constructor(t) {
+          n(this, "tileSize");
+          n(this, "maxZoom", 19);
+          n(this, "name", "Tile #s");
+          n(this, "alt", "Tile Coordinate Map Type");
+          this.tileSize = t;
         }
-        getTile(o, s, i) {
-          const e = i.createElement("div");
+        getTile(t, i, l) {
+          const e = l.createElement("div");
           return (
-            (e.innerHTML = String(o)),
+            (e.innerHTML = String(t)),
             (e.style.width = this.tileSize.width + "px"),
             (e.style.height = this.tileSize.height + "px"),
             (e.style.fontSize = "10"),
@@ -67,10 +78,10 @@
             e
           );
         }
-        releaseTile(o) {}
+        releaseTile(t) {}
       }
-      function d() {
-        const r = new google.maps.Map(document.getElementById("map"), {
+      function p() {
+        const o = new google.maps.Map(document.getElementById("map"), {
           zoom: 10,
           center: { lat: 41.85, lng: -87.65 },
           streetViewControl: !1,
@@ -80,13 +91,13 @@
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
           },
         });
-        r.addListener("maptypeid_changed", () => {
-          const o = r.getMapTypeId() !== "coordinate";
-          r.setOptions({ streetViewControl: o });
+        o.addListener("maptypeid_changed", () => {
+          const t = o.getMapTypeId() !== "coordinate";
+          o.setOptions({ streetViewControl: t });
         }),
-          r.mapTypes.set("coordinate", new a(new google.maps.Size(256, 256)));
+          o.mapTypes.set("coordinate", new c(new google.maps.Size(256, 256)));
       }
-      window.initMap = d;
+      window.initMap = p;
     </script>
     <style>
       #map,

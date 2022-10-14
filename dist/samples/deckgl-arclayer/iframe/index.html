@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/@deck.gl/google-maps@8.7.3/dist.min.js"></script>
 
     <script type="module" crossorigin>
-      const a = function () {
+      (function () {
         const r = document.createElement("link").relList;
         if (r && r.supports && r.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -42,26 +42,25 @@
           const t = s(e);
           fetch(e.href, t);
         }
-      };
-      a();
+      })();
       /**
        * @license
        * Copyright 2021 Google LLC.
        * SPDX-License-Identifier: Apache-2.0
-       */ const l = deck.ArcLayer,
-        c = deck.GoogleMapsOverlay,
-        d =
+       */ const a = deck.ArcLayer,
+        l = deck.GoogleMapsOverlay,
+        c =
           "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson";
-      function u() {
+      function d() {
         const i = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 50, lng: 14 },
             tilt: 30,
             mapId: "90f87356969d889c",
             zoom: 3,
           }),
-          r = new l({
+          r = new a({
             id: "flights",
-            data: d,
+            data: c,
             dataTransform: (o) =>
               o.features.filter((e) => e.properties.scalerank < 4),
             getSourcePosition: () => [14.42076, 50.08804],
@@ -70,9 +69,9 @@
             getTargetColor: [0, 0, 80],
             getWidth: 1,
           });
-        new c({ layers: [r] }).setMap(i);
+        new l({ layers: [r] }).setMap(i);
       }
-      window.initMap = u;
+      window.initMap = d;
     </script>
     <style>
       #map,

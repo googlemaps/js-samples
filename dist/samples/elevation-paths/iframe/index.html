@@ -11,7 +11,7 @@
     <script src="https://www.google.com/jsapi"></script>
 
     <script type="module" crossorigin>
-      const r = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -41,14 +41,13 @@
           const t = a(e);
           fetch(e.href, t);
         }
-      };
-      r();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ google.load("visualization", "1", { packages: ["columnchart"] });
-      function c() {
+      function r() {
         const o = [
             { lat: 36.579, lng: -118.292 },
             { lat: 36.606, lng: -118.0638 },
@@ -63,9 +62,9 @@
             mapTypeId: "terrain",
           }),
           a = new google.maps.ElevationService();
-        s(o, a, n);
+        c(o, a, n);
       }
-      function s(o, n, a) {
+      function c(o, n, a) {
         new google.maps.Polyline({
           path: o,
           strokeColor: "#0000CC",
@@ -74,14 +73,14 @@
         }),
           n
             .getElevationAlongPath({ path: o, samples: 256 })
-            .then(d)
+            .then(s)
             .catch((l) => {
               const e = document.getElementById("elevation_chart");
               e.innerHTML =
                 "Cannot show elevation: request failed because " + l;
             });
       }
-      function d({ results: o }) {
+      function s({ results: o }) {
         const n = document.getElementById("elevation_chart"),
           a = new google.visualization.ColumnChart(n),
           l = new google.visualization.DataTable();
@@ -89,7 +88,7 @@
         for (let e = 0; e < o.length; e++) l.addRow(["", o[e].elevation]);
         a.draw(l, { height: 150, legend: "none", titleY: "Elevation (m)" });
       }
-      window.initMap = c;
+      window.initMap = r;
     </script>
     <style>
       #map,

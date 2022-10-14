@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -18,8 +18,8 @@
         new MutationObserver((e) => {
           for (const t of e)
             if (t.type === "childList")
-              for (const r of t.addedNodes)
-                r.tagName === "LINK" && r.rel === "modulepreload" && l(r);
+              for (const i of t.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && l(i);
         }).observe(document, { childList: !0, subtree: !0 });
         function s(e) {
           const t = {};
@@ -40,14 +40,13 @@
           const t = s(e);
           fetch(e.href, t);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let n;
-      function a() {
+      function c() {
         (n = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 40.76, lng: -73.983 },
           zoom: 15,
@@ -55,16 +54,16 @@
           heading: 90,
           tilt: 45,
         })),
-          document.getElementById("rotate").addEventListener("click", u);
+          document.getElementById("rotate").addEventListener("click", d);
+      }
+      function a() {
+        const r = n.getHeading() || 0;
+        n.setHeading(r + 90);
       }
       function d() {
-        const i = n.getHeading() || 0;
-        n.setHeading(i + 90);
+        n.getTilt() !== 0 && window.setInterval(a, 3e3);
       }
-      function u() {
-        n.getTilt() !== 0 && window.setInterval(d, 3e3);
-      }
-      window.initMap = a;
+      window.initMap = c;
     </script>
     <style>
       #map,

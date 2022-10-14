@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const u = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,8 +40,7 @@
           const o = c(e);
           fetch(e.href, o);
         }
-      };
-      u();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
@@ -54,18 +53,18 @@
       ];
       let r = [],
         a;
-      function d() {
+      function u() {
         (a = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
           center: { lat: 52.52, lng: 13.41 },
         })),
-          document.getElementById("drop").addEventListener("click", f);
+          document.getElementById("drop").addEventListener("click", d);
       }
-      function f() {
-        p();
-        for (let t = 0; t < s.length; t++) m(s[t], t * 200);
+      function d() {
+        m();
+        for (let t = 0; t < s.length; t++) f(s[t], t * 200);
       }
-      function m(t, n) {
+      function f(t, n) {
         window.setTimeout(() => {
           r.push(
             new google.maps.Marker({
@@ -76,11 +75,11 @@
           );
         }, n);
       }
-      function p() {
+      function m() {
         for (let t = 0; t < r.length; t++) r[t].setMap(null);
         r = [];
       }
-      window.initMap = d;
+      window.initMap = u;
     </script>
     <style>
       #map,

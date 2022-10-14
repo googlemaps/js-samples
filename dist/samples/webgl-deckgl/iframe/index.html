@@ -11,18 +11,29 @@
     <script src="https://unpkg.com/deck.gl@8.7.3/dist.min.js"></script>
 
     <script type="module" crossorigin>
-      const S = function () {
-        const l = document.createElement("link").relList;
-        if (l && l.supports && l.supports("modulepreload")) return;
+      var O = Object.defineProperty;
+      var R = (i, s, l) =>
+        s in i
+          ? O(i, s, {
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+              value: l,
+            })
+          : (i[s] = l);
+      var d = (i, s, l) => (R(i, typeof s != "symbol" ? s + "" : s, l), l);
+      (function () {
+        const s = document.createElement("link").relList;
+        if (s && s.supports && s.supports("modulepreload")) return;
         for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
-          d(t);
+          u(t);
         new MutationObserver((t) => {
           for (const r of t)
             if (r.type === "childList")
-              for (const a of r.addedNodes)
-                a.tagName === "LINK" && a.rel === "modulepreload" && d(a);
+              for (const c of r.addedNodes)
+                c.tagName === "LINK" && c.rel === "modulepreload" && u(c);
         }).observe(document, { childList: !0, subtree: !0 });
-        function p(t) {
+        function l(t) {
           const r = {};
           return (
             t.integrity && (r.integrity = t.integrity),
@@ -35,55 +46,58 @@
             r
           );
         }
-        function d(t) {
+        function u(t) {
           if (t.ep) return;
           t.ep = !0;
-          const r = p(t);
+          const r = l(t);
           fetch(t.href, r);
         }
-      };
-      S();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let h, m;
-      const f =
+       */ let f, y;
+      const g =
         "https://d2ad6b4ur7yvpq.cloudfront.net/naturalearth-3.3.0/ne_10m_airports.geojson";
-      function x() {
-        const c = 51.4709959,
-          l = -0.4531566,
-          p = 2,
-          d = 0,
+      function I() {
+        const i = 51.4709959,
+          s = -0.4531566,
+          l = 2,
+          u = 0,
           t = 0,
           r = document.getElementById("map");
-        h = new google.maps.Map(r, {
-          zoom: p,
-          center: new google.maps.LatLng(c, l),
-          heading: d,
+        f = new google.maps.Map(r, {
+          zoom: l,
+          center: new google.maps.LatLng(i, s),
+          heading: u,
           tilt: t,
           mapId: "b1beacae401d047c",
         });
-        const a = document.getElementById("tooltip");
-        function y({ x: i, y: e, object: s }) {
-          s
-            ? ((a.style.display = "block"),
-              (a.style.left = `${i + 5}px`),
-              (a.style.top = `${e + 5}px`),
-              (a.innerHTML = `${s.properties.name} - ${s.properties.abbrev}`))
-            : (a.style.display = "none");
+        const c = document.getElementById("tooltip");
+        function v({ x: p, y: h, object: e }) {
+          e
+            ? ((c.style.display = "block"),
+              (c.style.left = `${p + 5}px`),
+              (c.style.top = `${h + 5}px`),
+              (c.innerHTML = `${e.properties.name} - ${e.properties.abbrev}`))
+            : (c.style.display = "none");
         }
-        const u = {
+        const m = {
           click: null,
           dblclick: null,
           mousemove: null,
           mouseout: null,
         };
-        class g extends google.maps.WebGLOverlayView {
-          constructor(e, s, n = {}) {
-            super(),
-              (this.deck = null),
-              (this.layers_ = s),
+        class L extends google.maps.WebGLOverlayView {
+          constructor(e, a, n = {}) {
+            super();
+            d(this, "canvas");
+            d(this, "deck");
+            d(this, "layers_");
+            d(this, "props");
+            (this.deck = null),
+              (this.layers_ = a),
               (this.props = n),
               (this.canvas = e);
           }
@@ -93,50 +107,50 @@
           onAdd() {}
           onRemove() {}
           onContextRestored({ gl: e }) {
-            const s = this.getMap();
+            const a = this.getMap();
             this.deck = new deck.Deck({
               canvas: this.canvas,
               initialViewState: {
-                longitude: l,
-                latitude: c,
+                longitude: s,
+                latitude: i,
                 pitch: t,
-                zoom: p,
+                zoom: l,
               },
               gl: e,
               layers: this.layers_,
               props: this.props,
               controller: !1,
-              userData: { map: s },
+              userData: { map: a },
             });
-            for (const n in u)
-              u[n] = s.addListener(n, (o) =>
+            for (const n in m)
+              m[n] = a.addListener(n, (o) =>
                 this.handleMouseEvent(this.deck, n, o)
               );
           }
-          onDraw({ gl: e, transformer: s }) {
+          onDraw({ gl: e, transformer: a }) {
             const n = this.deck;
             if (!n || !n.layerManager) return;
-            const o = s.getCameraParams(),
-              b = this.canvas.clientWidth,
-              k = this.canvas.clientHeight,
-              w = 0,
-              E = 0,
-              M = Math.max(0, o.zoom - 1),
-              _ = o.tilt,
-              P = o.heading,
-              C = o.center.lat,
-              T = o.center.lng;
-            (this.canvas.style.left = `${w}px`),
-              (this.canvas.style.top = `${E}px`),
+            const o = a.getCameraParams(),
+              w = this.canvas.clientWidth,
+              E = this.canvas.clientHeight,
+              _ = 0,
+              M = 0,
+              P = Math.max(0, o.zoom - 1),
+              C = o.tilt,
+              T = o.heading,
+              S = o.center.lat,
+              x = o.center.lng;
+            (this.canvas.style.left = `${_}px`),
+              (this.canvas.style.top = `${M}px`),
               n.setProps({
-                width: b,
-                height: k,
+                width: w,
+                height: E,
                 viewState: {
-                  latitude: C,
-                  longitude: T,
-                  zoom: M,
-                  pitch: _,
-                  bearing: P,
+                  latitude: S,
+                  longitude: x,
+                  zoom: P,
+                  pitch: C,
+                  bearing: T,
                   nearZMultiplier: 0.01,
                   farZMultiplier: 1.01,
                   repeat: !0,
@@ -152,19 +166,19 @@
               n._drawLayers("google-map-repaint", { clearCanvas: !1 });
           }
           onContextLost() {}
-          getEventPixel(e, s) {
-            const n = s
+          getEventPixel(e, a) {
+            const n = a
               .getViewports()[0]
               .project([e.latLng.lng(), e.latLng.lat()]);
             return { x: n[0], y: n[1] };
           }
-          handleMouseEvent(e, s, n) {
+          handleMouseEvent(e, a, n) {
             const o = {
-              type: s,
+              type: a,
               offsetCenter: this.getEventPixel(n, e),
               srcEvent: n,
             };
-            switch (s) {
+            switch (a) {
               case "click":
                 (e._lastPointerDownInfo = e.pickObject(o.offsetCenter)),
                   (o.tapCount = 1),
@@ -185,36 +199,36 @@
             this.requestRedraw();
           }
         }
-        const v = [
+        const b = [
             new deck.GeoJsonLayer({
               id: "airports",
-              data: f,
+              data: g,
               filled: !0,
               pointRadiusMinPixels: 2,
               opacity: 1,
               pointRadiusScale: 2e3,
-              getRadius: (i) => 11 - i.properties.scalerank,
+              getRadius: (p) => 11 - p.properties.scalerank,
               getFillColor: [200, 0, 80, 180],
               pickable: !0,
               autoHighlight: !0,
-              onHover: y,
+              onHover: v,
             }),
             new deck.ArcLayer({
               id: "arcs",
-              data: f,
-              dataTransform: (i) =>
-                i.features.filter((e) => e.properties.scalerank < 4),
-              getSourcePosition: (i) => [l, c],
-              getTargetPosition: (i) => i.geometry.coordinates,
+              data: g,
+              dataTransform: (p) =>
+                p.features.filter((h) => h.properties.scalerank < 4),
+              getSourcePosition: (p) => [s, i],
+              getTargetPosition: (p) => p.geometry.coordinates,
               getSourceColor: [0, 128, 200],
               getTargetColor: [200, 0, 80],
               getWidth: 1,
             }),
           ],
-          L = {};
-        (m = new g(r, v, L)), m.setMap(h);
+          k = {};
+        (y = new L(r, b, k)), y.setMap(f);
       }
-      window.initMap = x;
+      window.initMap = I;
     </script>
     <style>
       #map,

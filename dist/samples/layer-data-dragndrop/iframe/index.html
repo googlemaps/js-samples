@@ -18,7 +18,7 @@
     />
 
     <script type="module" crossorigin>
-      const p = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -48,14 +48,13 @@
           const r = n(t);
           fetch(t.href, r);
         }
-      };
-      p();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let s;
-      function u() {
+      function p() {
         s = new google.maps.Map(document.getElementById("map"), {
           center: new google.maps.LatLng(0, 0),
           zoom: 4,
@@ -68,9 +67,9 @@
         } catch {
           alert("Not a GeoJSON file!");
         }
-        g(s);
+        u(s);
       }
-      function g(e) {
+      function u(e) {
         const o = new google.maps.LatLngBounds();
         e.data.forEach((n) => {
           const a = n.getGeometry();
@@ -87,14 +86,14 @@
               c(a, o, n);
             });
       }
-      function m() {
+      function g() {
         [...document.getElementsByClassName("file")].forEach((o) => {
           o.addEventListener(
             "dragstart",
             (n) => {
               n.dataTransfer.setData(
                 "text/plain",
-                JSON.stringify(v[Number(n.target.dataset.value)])
+                JSON.stringify(L[Number(n.target.dataset.value)])
               ),
                 console.log(n);
             },
@@ -104,7 +103,7 @@
         const e = document.getElementById("map");
         e.addEventListener("dragenter", d, !1),
           e.addEventListener("dragover", d, !1),
-          e.addEventListener("drop", y, !1),
+          e.addEventListener("drop", m, !1),
           e.addEventListener("dragleave", f, !1);
       }
       function d(e) {
@@ -118,7 +117,7 @@
       function f(e) {
         document.getElementById("map").classList.remove("over");
       }
-      function y(e) {
+      function m(e) {
         e.preventDefault(), e.stopPropagation(), f();
         const o = e.dataTransfer.files;
         if (o.length)
@@ -138,10 +137,10 @@
         }
         return !1;
       }
-      function L() {
-        u(), m();
+      function y() {
+        p(), g();
       }
-      const v = [
+      const L = [
         {
           type: "FeatureCollection",
           features: [
@@ -231,7 +230,7 @@
           ],
         },
       ];
-      window.initialize = L;
+      window.initialize = y;
     </script>
     <style>
       body,

@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
+      (function () {
         const r = document.createElement("link").relList;
         if (r && r.supports && r.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,14 +40,13 @@
           const t = n(e);
           fetch(e.href, t);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let l;
-      function c() {
+      function s() {
         l = new google.maps.Map(document.getElementById("map"), {
           zoom: 2,
           center: { lat: -33.865427, lng: 151.196123 },
@@ -59,10 +58,10 @@
           document.getElementsByTagName("head")[0].appendChild(o),
           l.data.setStyle((r) => {
             const n = r.getProperty("mag");
-            return { icon: d(n) };
+            return { icon: c(n) };
           });
       }
-      function d(o) {
+      function c(o) {
         return {
           path: google.maps.SymbolPath.CIRCLE,
           fillColor: "red",
@@ -72,11 +71,11 @@
           strokeWeight: 0.5,
         };
       }
-      function u(o) {
+      function d(o) {
         l.data.addGeoJson(o);
       }
-      window.initMap = c;
-      window.eqfeed_callback = u;
+      window.initMap = s;
+      window.eqfeed_callback = d;
     </script>
     <style>
       #map,

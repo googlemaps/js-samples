@@ -10,18 +10,29 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const d = function () {
-        const s = document.createElement("link").relList;
-        if (s && s.supports && s.supports("modulepreload")) return;
+      var p = Object.defineProperty;
+      var u = (n, t, s) =>
+        t in n
+          ? p(n, t, {
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+              value: s,
+            })
+          : (n[t] = s);
+      var a = (n, t, s) => (u(n, typeof t != "symbol" ? t + "" : t, s), s);
+      (function () {
+        const t = document.createElement("link").relList;
+        if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          n(e);
+          l(e);
         new MutationObserver((e) => {
           for (const o of e)
             if (o.type === "childList")
-              for (const t of o.addedNodes)
-                t.tagName === "LINK" && t.rel === "modulepreload" && n(t);
+              for (const d of o.addedNodes)
+                d.tagName === "LINK" && d.rel === "modulepreload" && l(d);
         }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
+        function s(e) {
           const o = {};
           return (
             e.integrity && (o.integrity = e.integrity),
@@ -34,65 +45,68 @@
             o
           );
         }
-        function n(e) {
+        function l(e) {
           if (e.ep) return;
           e.ep = !0;
-          const o = r(e);
+          const o = s(e);
           fetch(e.href, o);
         }
-      };
-      d();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function c() {
-        const a = new google.maps.Map(document.getElementById("map"), {
+       */ function h() {
+        const n = new google.maps.Map(document.getElementById("map"), {
             zoom: 11,
             center: { lat: 62.323907, lng: -150.109291 },
             mapTypeId: "satellite",
           }),
-          s = new google.maps.LatLngBounds(
+          t = new google.maps.LatLngBounds(
             new google.maps.LatLng(62.281819, -150.287132),
             new google.maps.LatLng(62.400471, -150.005608)
           ),
-          r =
+          s =
             "https://developers.google.com/maps/documentation/javascript/examples/full/images/talkeetna.png";
-        class n extends google.maps.OverlayView {
-          constructor(t, i) {
-            super(), (this.bounds_ = t), (this.image_ = i), (this.div_ = null);
+        class l extends google.maps.OverlayView {
+          constructor(i, r) {
+            super();
+            a(this, "bounds_");
+            a(this, "image_");
+            a(this, "div_");
+            (this.bounds_ = i), (this.image_ = r), (this.div_ = null);
           }
           onAdd() {
             (this.div_ = document.createElement("div")),
               (this.div_.style.borderStyle = "none"),
               (this.div_.style.borderWidth = "0px"),
               (this.div_.style.position = "absolute");
-            const t = document.createElement("img");
-            (t.src = this.image_),
-              (t.style.width = "100%"),
-              (t.style.height = "100%"),
-              (t.style.position = "absolute"),
-              this.div_.appendChild(t),
+            const i = document.createElement("img");
+            (i.src = this.image_),
+              (i.style.width = "100%"),
+              (i.style.height = "100%"),
+              (i.style.position = "absolute"),
+              this.div_.appendChild(i),
               this.getPanes().overlayLayer.appendChild(this.div_);
           }
           draw() {
-            const t = this.getProjection(),
-              i = t.fromLatLngToDivPixel(this.bounds_.getSouthWest()),
-              l = t.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+            const i = this.getProjection(),
+              r = i.fromLatLngToDivPixel(this.bounds_.getSouthWest()),
+              c = i.fromLatLngToDivPixel(this.bounds_.getNorthEast());
             this.div_ &&
-              ((this.div_.style.left = i.x + "px"),
-              (this.div_.style.top = l.y + "px"),
-              (this.div_.style.width = l.x - i.x + "px"),
-              (this.div_.style.height = i.y - l.y + "px"));
+              ((this.div_.style.left = r.x + "px"),
+              (this.div_.style.top = c.y + "px"),
+              (this.div_.style.width = c.x - r.x + "px"),
+              (this.div_.style.height = r.y - c.y + "px"));
           }
           onRemove() {
             this.div_ &&
               (this.div_.parentNode.removeChild(this.div_), (this.div_ = null));
           }
         }
-        new n(s, r).setMap(a);
+        new l(t, s).setMap(n);
       }
-      window.initMap = c;
+      window.initMap = h;
     </script>
     <style>
       #map,

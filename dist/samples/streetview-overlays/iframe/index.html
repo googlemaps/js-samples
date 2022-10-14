@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,21 +40,20 @@
           const t = s(e);
           fetch(e.href, t);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let i;
-      function a() {
+      function c() {
         const n = { lat: 40.729884, lng: -73.990988 },
           o = new google.maps.Map(document.getElementById("map"), {
             center: n,
             zoom: 18,
             streetViewControl: !1,
           });
-        document.getElementById("toggle").addEventListener("click", p),
+        document.getElementById("toggle").addEventListener("click", a),
           new google.maps.Marker({
             position: { lat: 40.730031, lng: -73.991428 },
             map: o,
@@ -77,10 +76,10 @@
           i.setPosition(n),
           i.setPov({ heading: 265, pitch: 0 });
       }
-      function p() {
+      function a() {
         i.getVisible() == !1 ? i.setVisible(!0) : i.setVisible(!1);
       }
-      window.initMap = a;
+      window.initMap = c;
     </script>
     <style>
       #map,

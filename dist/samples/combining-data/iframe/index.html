@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const f = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const o = i(e);
           fetch(e.href, o);
         }
-      };
-      f();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ const m = [
+       */ const f = [
         { stylers: [{ visibility: "off" }] },
         {
           featureType: "landscape",
@@ -62,22 +61,22 @@
       let a,
         r = Number.MAX_VALUE,
         c = -Number.MAX_VALUE;
-      function y() {
+      function m() {
         (a = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 40, lng: -100 },
           zoom: 4,
-          styles: m,
+          styles: f,
         })),
-          a.data.setStyle(v),
-          a.data.addListener("mouseover", h),
-          a.data.addListener("mouseout", E);
+          a.data.setStyle(b),
+          a.data.addListener("mouseover", v),
+          a.data.addListener("mouseout", h);
         const t = document.getElementById("census-variable");
         google.maps.event.addDomListener(t, "change", () => {
-          b(), g(t.options[t.selectedIndex].value);
+          g(), p(t.options[t.selectedIndex].value);
         }),
-          p();
+          y();
       }
-      function p() {
+      function y() {
         a.data.loadGeoJson(
           "https://storage.googleapis.com/mapsdevsite/json/states.js",
           { idPropertyName: "STATE" }
@@ -89,7 +88,7 @@
             );
           });
       }
-      function g(t) {
+      function p(t) {
         const n = new XMLHttpRequest();
         n.open("GET", t + ".json"),
           (n.onload = function () {
@@ -109,7 +108,7 @@
           }),
           n.send();
       }
-      function b() {
+      function g() {
         (r = Number.MAX_VALUE),
           (c = -Number.MAX_VALUE),
           a.data.forEach((t) => {
@@ -118,7 +117,7 @@
           (document.getElementById("data-box").style.display = "none"),
           (document.getElementById("data-caret").style.display = "none");
       }
-      function v(t) {
+      function b(t) {
         const n = [5, 69, 54],
           i = [151, 83, 34],
           l = (t.getProperty("census_variable") - r) / (c - r),
@@ -142,7 +141,7 @@
           }
         );
       }
-      function h(t) {
+      function v(t) {
         t.feature.setProperty("state", "hover");
         const n =
           ((t.feature.getProperty("census_variable") - r) / (c - r)) * 100;
@@ -155,10 +154,10 @@
           (document.getElementById("data-caret").style.display = "block"),
           (document.getElementById("data-caret").style.paddingLeft = n + "%");
       }
-      function E(t) {
+      function h(t) {
         t.feature.setProperty("state", "normal");
       }
-      window.initMap = y;
+      window.initMap = m;
     </script>
     <style>
       #map,

@@ -19,7 +19,7 @@
     />
 
     <script type="module" crossorigin>
-      const a = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -49,14 +49,13 @@
           const t = r(e);
           fetch(e.href, t);
         }
-      };
-      a();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let c;
-      function d() {
+      function a() {
         let l = [],
           n = google.maps.CollisionBehavior.REQUIRED;
         c = new google.maps.Map(document.getElementById("map"), {
@@ -114,7 +113,7 @@
               google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL,
           });
       }
-      window.initMap = d;
+      window.initMap = a;
     </script>
     <style>
       :root {

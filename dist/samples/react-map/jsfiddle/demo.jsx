@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import * as React from "https://cdn.skypack.dev/react@^18.1.0";
+import * as React from "https://cdn.skypack.dev/react@^18.2.0";
 import { createRoot } from "https://cdn.skypack.dev/react-dom@^18.1.0/client";
-import { Wrapper } from "https://cdn.skypack.dev/@googlemaps/react-wrapper@^1.1.33";
+import { Wrapper } from "https://cdn.skypack.dev/@googlemaps/react-wrapper@^1.1.35";
 import { createCustomEqual } from "https://cdn.skypack.dev/fast-equals@^3.0.2";
 import { isLatLngLiteral } from "https://cdn.skypack.dev/@googlemaps/typescript-guards@^1.0.16";
 const render = (status) => {

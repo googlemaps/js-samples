@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const y = function () {
+      (function () {
         const e = document.createElement("link").relList;
         if (e && e.supports && e.supports("modulepreload")) return;
         for (const i of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,9 +40,8 @@
           const r = t(i);
           fetch(i.href, r);
         }
-      };
-      y();
-      var I = function n(e, t) {
+      })();
+      var y = function n(e, t) {
         if (e === t) return !0;
         if (e && t && typeof e == "object" && typeof t == "object") {
           if (e.constructor !== t.constructor) return !1;
@@ -92,8 +91,8 @@
           mapIds: f,
           nonce: u,
           region: d,
-          retries: p = 3,
-          url: g = "https://maps.googleapis.com/maps/api/js",
+          retries: g = 3,
+          url: p = "https://maps.googleapis.com/maps/api/js",
           version: m,
         }) {
           if (
@@ -112,12 +111,12 @@
             (this.mapIds = f),
             (this.nonce = u),
             (this.region = d),
-            (this.retries = p),
-            (this.url = g),
+            (this.retries = g),
+            (this.url = p),
             (this.version = m),
             l.instance)
           ) {
-            if (!I(this.options, l.instance.options))
+            if (!y(this.options, l.instance.options))
               throw new Error(
                 `Loader must not be called again with different options. ${JSON.stringify(
                   this.options
@@ -263,13 +262,13 @@
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ const b = {},
-        v = new l({
+       */ const I = {},
+        b = new l({
           apiKey: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg",
           version: "weekly",
-          ...b,
+          ...I,
         });
-      v.load().then(() => {
+      b.load().then(() => {
         new google.maps.Map(document.getElementById("map"), {
           center: { lat: -34.397, lng: 150.644 },
           zoom: 8,

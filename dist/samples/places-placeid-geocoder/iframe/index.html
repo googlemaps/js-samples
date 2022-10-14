@@ -10,16 +10,16 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const a = function () {
-        const c = document.createElement("link").relList;
-        if (c && c.supports && c.supports("modulepreload")) return;
+      (function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          r(e);
+          c(e);
         new MutationObserver((e) => {
           for (const o of e)
             if (o.type === "childList")
               for (const t of o.addedNodes)
-                t.tagName === "LINK" && t.rel === "modulepreload" && r(t);
+                t.tagName === "LINK" && t.rel === "modulepreload" && c(t);
         }).observe(document, { childList: !0, subtree: !0 });
         function i(e) {
           const o = {};
@@ -34,39 +34,38 @@
             o
           );
         }
-        function r(e) {
+        function c(e) {
           if (e.ep) return;
           e.ep = !0;
           const o = i(e);
           fetch(e.href, o);
         }
-      };
-      a();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function s() {
+       */ function a() {
         const n = new google.maps.Map(document.getElementById("map"), {
             center: { lat: -33.8688, lng: 151.2195 },
             zoom: 13,
           }),
-          c = document.getElementById("pac-input"),
-          i = new google.maps.places.Autocomplete(c, {
+          r = document.getElementById("pac-input"),
+          i = new google.maps.places.Autocomplete(r, {
             fields: ["place_id", "geometry", "name", "formatted_address"],
           });
         i.bindTo("bounds", n),
-          n.controls[google.maps.ControlPosition.TOP_LEFT].push(c);
-        const r = new google.maps.InfoWindow(),
+          n.controls[google.maps.ControlPosition.TOP_LEFT].push(r);
+        const c = new google.maps.InfoWindow(),
           e = document.getElementById("infowindow-content");
-        r.setContent(e);
+        c.setContent(e);
         const o = new google.maps.Geocoder(),
           t = new google.maps.Marker({ map: n });
         t.addListener("click", () => {
-          r.open(n, t);
+          c.open(n, t);
         }),
           i.addListener("place_changed", () => {
-            r.close();
+            c.close();
             const l = i.getPlace();
             !l.place_id ||
               o
@@ -83,12 +82,12 @@
                     (e.children["place-id"].textContent = l.place_id),
                     (e.children["place-address"].textContent =
                       d[0].formatted_address),
-                    r.open(n, t);
+                    c.open(n, t);
                 })
                 .catch((d) => window.alert("Geocoder failed due to: " + d));
           });
       }
-      window.initMap = s;
+      window.initMap = a;
     </script>
     <style>
       #map,

@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const F = function () {
+      (function () {
         const e = document.createElement("link").relList;
         if (e && e.supports && e.supports("modulepreload")) return;
         for (const i of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,14 +40,13 @@
           const s = t(i);
           fetch(i.href, s);
         }
-      };
-      F();
+      })();
       /**
        * @license
        * Copyright 2022 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let r, v, _, T, M, S, f, L, E, G, d, c, m, u, y, b, h, g, p, I;
-      function O() {
+      function F() {
         (r = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 39.32, lng: -95 },
           zoom: 6,
@@ -63,7 +62,7 @@
           (M = document.getElementById("fill-color-picker")),
           (S = document.getElementById("stroke-color-picker")),
           v.addEventListener("change", C),
-          _.addEventListener("change", R),
+          _.addEventListener("change", O),
           M.addEventListener("change", B),
           S.addEventListener("change", B);
         const a = document.getElementById("sidebar");
@@ -128,10 +127,10 @@
           p.addListener("click", o),
           (G = [d, c, m, u, y, b, h, g, p]),
           k(),
-          K(),
+          R(),
           C();
       }
-      function R() {
+      function O() {
         let a = {
           fillColor: "white",
           fillOpacity: 0.01,
@@ -219,7 +218,7 @@
             break;
         }
       }
-      function K() {
+      function R() {
         for (const a of N) {
           let e = document.createElement("option");
           (e.innerHTML = a.name),
@@ -262,7 +261,7 @@
           l[1] == !1
             ? (_.namedItem(l[0]).disabled = !0)
             : (_.namedItem(l[0]).disabled = !1);
-        V(v.options[v.selectedIndex].text);
+        K(v.options[v.selectedIndex].text);
       }
       function P() {
         for (const a of G) a.style = null;
@@ -271,7 +270,7 @@
         let e = a.features[0].placeId;
         !e || A(e);
       }
-      function V(a) {
+      function K(a) {
         f.innerHTML = "";
         const e = { query: a, fields: ["place_id"] };
         E.findPlaceFromQuery(e, (t, l) => {
@@ -4061,7 +4060,7 @@
           },
         },
       ];
-      window.initMap = O;
+      window.initMap = F;
     </script>
     <style>
       #map,

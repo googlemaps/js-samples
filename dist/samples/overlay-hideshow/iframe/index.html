@@ -10,80 +10,94 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const c = function () {
-        const l = document.createElement("link").relList;
-        if (l && l.supports && l.supports("modulepreload")) return;
-        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
-          r(t);
-        new MutationObserver((t) => {
-          for (const e of t)
-            if (e.type === "childList")
-              for (const o of e.addedNodes)
-                o.tagName === "LINK" && o.rel === "modulepreload" && r(o);
+      var g = Object.defineProperty;
+      var h = (s, i, n) =>
+        i in s
+          ? g(s, i, {
+              enumerable: !0,
+              configurable: !0,
+              writable: !0,
+              value: n,
+            })
+          : (s[i] = n);
+      var a = (s, i, n) => (h(s, typeof i != "symbol" ? i + "" : i, n), n);
+      (function () {
+        const i = document.createElement("link").relList;
+        if (i && i.supports && i.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          r(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const l of t.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && r(l);
         }).observe(document, { childList: !0, subtree: !0 });
-        function d(t) {
-          const e = {};
+        function n(e) {
+          const t = {};
           return (
-            t.integrity && (e.integrity = t.integrity),
-            t.referrerpolicy && (e.referrerPolicy = t.referrerpolicy),
-            t.crossorigin === "use-credentials"
-              ? (e.credentials = "include")
-              : t.crossorigin === "anonymous"
-              ? (e.credentials = "omit")
-              : (e.credentials = "same-origin"),
-            e
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
           );
         }
-        function r(t) {
-          if (t.ep) return;
-          t.ep = !0;
-          const e = d(t);
-          fetch(t.href, e);
+        function r(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = n(e);
+          fetch(e.href, t);
         }
-      };
-      c();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function h() {
-        const n = new google.maps.Map(document.getElementById("map"), {
+       */ function p() {
+        const s = new google.maps.Map(document.getElementById("map"), {
             zoom: 11,
             center: { lat: 62.323907, lng: -150.109291 },
             mapTypeId: "satellite",
           }),
-          l = new google.maps.LatLngBounds(
+          i = new google.maps.LatLngBounds(
             new google.maps.LatLng(62.281819, -150.287132),
             new google.maps.LatLng(62.400471, -150.005608)
           );
-        let d = "https://developers.google.com/maps/documentation/javascript/";
-        d += "examples/full/images/talkeetna.png";
+        let n = "https://developers.google.com/maps/documentation/javascript/";
+        n += "examples/full/images/talkeetna.png";
         class r extends google.maps.OverlayView {
-          constructor(i, s) {
-            super(), (this.bounds = i), (this.image = s);
+          constructor(o, d) {
+            super();
+            a(this, "bounds");
+            a(this, "image");
+            a(this, "div");
+            (this.bounds = o), (this.image = d);
           }
           onAdd() {
             (this.div = document.createElement("div")),
               (this.div.style.borderStyle = "none"),
               (this.div.style.borderWidth = "0px"),
               (this.div.style.position = "absolute");
-            const i = document.createElement("img");
-            (i.src = this.image),
-              (i.style.width = "100%"),
-              (i.style.height = "100%"),
-              (i.style.position = "absolute"),
-              this.div.appendChild(i),
+            const o = document.createElement("img");
+            (o.src = this.image),
+              (o.style.width = "100%"),
+              (o.style.height = "100%"),
+              (o.style.position = "absolute"),
+              this.div.appendChild(o),
               this.getPanes().overlayLayer.appendChild(this.div);
           }
           draw() {
-            const i = this.getProjection(),
-              s = i.fromLatLngToDivPixel(this.bounds.getSouthWest()),
-              a = i.fromLatLngToDivPixel(this.bounds.getNorthEast());
+            const o = this.getProjection(),
+              d = o.fromLatLngToDivPixel(this.bounds.getSouthWest()),
+              c = o.fromLatLngToDivPixel(this.bounds.getNorthEast());
             this.div &&
-              ((this.div.style.left = s.x + "px"),
-              (this.div.style.top = a.y + "px"),
-              (this.div.style.width = a.x - s.x + "px"),
-              (this.div.style.height = s.y - a.y + "px"));
+              ((this.div.style.left = d.x + "px"),
+              (this.div.style.top = c.y + "px"),
+              (this.div.style.width = c.x - d.x + "px"),
+              (this.div.style.height = d.y - c.y + "px"));
           }
           onRemove() {
             this.div &&
@@ -101,28 +115,28 @@
                 ? this.show()
                 : this.hide());
           }
-          toggleDOM(i) {
-            this.getMap() ? this.setMap(null) : this.setMap(i);
+          toggleDOM(o) {
+            this.getMap() ? this.setMap(null) : this.setMap(o);
           }
         }
-        const t = new r(l, d);
-        t.setMap(n);
-        const e = document.createElement("button");
-        (e.textContent = "Toggle"),
-          e.classList.add("custom-map-control-button");
-        const o = document.createElement("button");
-        (o.textContent = "Toggle DOM Attachment"),
-          o.classList.add("custom-map-control-button"),
-          e.addEventListener("click", () => {
-            t.toggle();
+        const e = new r(i, n);
+        e.setMap(s);
+        const t = document.createElement("button");
+        (t.textContent = "Toggle"),
+          t.classList.add("custom-map-control-button");
+        const l = document.createElement("button");
+        (l.textContent = "Toggle DOM Attachment"),
+          l.classList.add("custom-map-control-button"),
+          t.addEventListener("click", () => {
+            e.toggle();
           }),
-          o.addEventListener("click", () => {
-            t.toggleDOM(n);
+          l.addEventListener("click", () => {
+            e.toggleDOM(s);
           }),
-          n.controls[google.maps.ControlPosition.TOP_RIGHT].push(o),
-          n.controls[google.maps.ControlPosition.TOP_RIGHT].push(e);
+          s.controls[google.maps.ControlPosition.TOP_RIGHT].push(l),
+          s.controls[google.maps.ControlPosition.TOP_RIGHT].push(t);
       }
-      window.initMap = h;
+      window.initMap = p;
     </script>
     <style>
       #map,

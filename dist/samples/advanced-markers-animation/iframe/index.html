@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const d = function () {
+      (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,12 @@
           const o = n(e);
           fetch(e.href, o);
         }
-      };
-      d();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function m(s) {
+       */ function d(s) {
         const t = s.getBounds(),
           n = t.getSouthWest().lat(),
           r = t.getSouthWest().lng(),
@@ -72,21 +71,21 @@
             mapId: "4504f8b37365c3d0",
           });
         google.maps.event.addListenerOnce(t, "idle", () => {
-          for (let e = 0; e < 100; e++) u(t);
+          for (let e = 0; e < 100; e++) m(t);
         });
         const n = document.createElement("div"),
           r = document.createElement("button");
         r.classList.add("ui-button"),
           (r.innerText = "Reset the example"),
           r.addEventListener("click", () => {
-            p();
+            u();
           }),
           n.appendChild(r),
           t.controls[google.maps.ControlPosition.TOP_CENTER].push(n);
       }
-      function u(s) {
+      function m(s) {
         const n = new google.maps.marker.AdvancedMarkerView({
-          position: m(s),
+          position: d(s),
           map: s,
         }).content;
         (n.style.opacity = "0"),
@@ -96,7 +95,7 @@
         const r = 2 + Math.random();
         n.style.setProperty("--delay-time", r + "s"), c.observe(n);
       }
-      function p() {
+      function u() {
         const s = document.getElementById("mapContainer");
         document.getElementById("map").remove();
         const n = document.createElement("div");

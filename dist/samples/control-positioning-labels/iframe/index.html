@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
+      (function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const o of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,19 +40,18 @@
           const e = i(o);
           fetch(o.href, e);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function T(r, n) {
+       */ function s(r, n) {
         const i = document.createElement("div");
         (i.title = n), (i.className = "controlUI"), r.appendChild(i);
         const t = document.createElement("div");
         (t.innerHTML = n), (t.className = "controlText"), i.appendChild(t);
       }
-      function c() {
+      function T() {
         const r = document.getElementById("map"),
           n = {
             zoom: 11,
@@ -77,10 +76,10 @@
         for (let o = 0; o < t.length; o++) {
           const e = t[o][0],
             l = document.createElement("div");
-          T(l, e), i.controls[t[o][1]].push(l);
+          s(l, e), i.controls[t[o][1]].push(l);
         }
       }
-      window.initialize = c;
+      window.initialize = T;
     </script>
     <style>
       #map,

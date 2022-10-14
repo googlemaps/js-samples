@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const J = function () {
+      (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const r of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,8 +40,7 @@
           const o = n(r);
           fetch(r.href, o);
         }
-      };
-      J();
+      })();
       function A(s, t, n, e, r, o) {
         if (r - e <= n) return;
         const i = (e + r) >> 1;
@@ -83,7 +82,7 @@
         const e = s[t];
         (s[t] = s[n]), (s[n] = e);
       }
-      function X(s, t, n, e, r, o, i) {
+      function J(s, t, n, e, r, o, i) {
         const u = [0, s.length - 1, 0],
           l = [];
         let a, c;
@@ -109,7 +108,7 @@
         }
         return l;
       }
-      function Q(s, t, n, e, r, o) {
+      function X(s, t, n, e, r, o) {
         const i = [0, s.length - 1, 0],
           u = [],
           l = r * r;
@@ -139,10 +138,10 @@
           o = t - e;
         return r * r + o * o;
       }
-      const Y = (s) => s[0],
-        b = (s) => s[1];
+      const Q = (s) => s[0],
+        Y = (s) => s[1];
       class R {
-        constructor(t, n = Y, e = b, r = 64, o = Float64Array) {
+        constructor(t, n = Q, e = Y, r = 64, o = Float64Array) {
           (this.nodeSize = r), (this.points = t);
           const i = t.length < 65536 ? Uint16Array : Uint32Array,
             u = (this.ids = new i(t.length)),
@@ -152,13 +151,13 @@
           A(u, l, r, 0, u.length - 1, 0);
         }
         range(t, n, e, r) {
-          return X(this.ids, this.coords, t, n, e, r, this.nodeSize);
+          return J(this.ids, this.coords, t, n, e, r, this.nodeSize);
         }
         within(t, n, e) {
-          return Q(this.ids, this.coords, t, n, e, this.nodeSize);
+          return X(this.ids, this.coords, t, n, e, this.nodeSize);
         }
       }
-      const tt = {
+      const b = {
           minZoom: 0,
           maxZoom: 16,
           minPoints: 2,
@@ -173,9 +172,9 @@
         O =
           Math.fround ||
           ((s) => (t) => ((s[0] = +t), s[0]))(new Float32Array(1));
-      class et {
+      class tt {
         constructor(t) {
-          (this.options = v(Object.create(tt), t)),
+          (this.options = v(Object.create(b), t)),
             (this.trees = new Array(this.options.maxZoom + 1));
         }
         load(t) {
@@ -185,7 +184,7 @@
           n && console.time(i), (this.points = t);
           let u = [];
           for (let l = 0; l < t.length; l++)
-            !t[l].geometry || u.push(rt(t[l], l));
+            !t[l].geometry || u.push(nt(t[l], l));
           (this.trees[r + 1] = new R(u, z, F, o, Float32Array)),
             n && console.timeEnd(i);
           for (let l = r; l >= e; l--) {
@@ -382,7 +381,7 @@
                   (y.parentId = L),
                   i && (M || (M = this._map(c, !0)), i(M, this._map(y)));
               }
-              (c.parentId = L), e.push(nt(m / g, d / g, L, g, M));
+              (c.parentId = L), e.push(et(m / g, d / g, L, g, M));
             } else if ((e.push(c), g > 1))
               for (const m of h) {
                 const d = f.points[m];
@@ -404,7 +403,7 @@
           return n && r === e ? v({}, r) : r;
         }
       }
-      function nt(s, t, n, e, r) {
+      function et(s, t, n, e, r) {
         return {
           x: O(s),
           y: O(t),
@@ -415,7 +414,7 @@
           properties: r,
         };
       }
-      function rt(s, t) {
+      function nt(s, t) {
         const [n, e] = s.geometry.coordinates;
         return { x: O(C(n)), y: O(k(e)), zoom: 1 / 0, index: t, parentId: -1 };
       }
@@ -424,7 +423,7 @@
           type: "Feature",
           id: s.id,
           properties: H(s),
-          geometry: { type: "Point", coordinates: [st(s.x), ot(s.y)] },
+          geometry: { type: "Point", coordinates: [rt(s.x), st(s.y)] },
         };
       }
       function H(s) {
@@ -450,10 +449,10 @@
           n = 0.5 - (0.25 * Math.log((1 + t) / (1 - t))) / Math.PI;
         return n < 0 ? 0 : n > 1 ? 1 : n;
       }
-      function st(s) {
+      function rt(s) {
         return (s - 0.5) * 360;
       }
-      function ot(s) {
+      function st(s) {
         const t = ((180 - s * 360) * Math.PI) / 180;
         return (360 * Math.atan(Math.exp(t))) / Math.PI - 90;
       }
@@ -468,7 +467,7 @@
         return s.y;
       }
       var D = Object.keys,
-        it = typeof WeakSet == "function";
+        ot = typeof WeakSet == "function";
       function P(s, t) {
         return s === t || (s !== s && t !== t);
       }
@@ -481,7 +480,7 @@
       function K(s) {
         return !!(s && s.$$typeof);
       }
-      function lt() {
+      function it() {
         var s = [];
         return {
           add: function (t) {
@@ -492,18 +491,18 @@
           },
         };
       }
-      var ut = (function (s) {
+      var lt = (function (s) {
         return s
           ? function () {
               return new WeakSet();
             }
-          : lt;
-      })(it);
+          : it;
+      })(ot);
       function W(s) {
         return function (n) {
           var e = s || n;
           return function (o, i, u, l, a, c, f) {
-            f === void 0 && (f = ut());
+            f === void 0 && (f = lt());
             var h = !!o && typeof o == "object",
               p = !!i && typeof i == "object";
             if (h || p) {
@@ -516,13 +515,13 @@
           };
         };
       }
-      function at(s, t, n, e) {
+      function ut(s, t, n, e) {
         var r = s.length;
         if (t.length !== r) return !1;
         for (; r-- > 0; ) if (!n(s[r], t[r], r, r, s, t, e)) return !1;
         return !0;
       }
-      function ct(s, t, n, e) {
+      function at(s, t, n, e) {
         var r = s.size === t.size;
         if (r && s.size) {
           var o = {},
@@ -545,8 +544,8 @@
         }
         return r;
       }
-      var ft = "_owner",
-        ht = Function.prototype.bind.call(
+      var ct = "_owner",
+        ft = Function.prototype.bind.call(
           Function.prototype.call,
           Object.prototype.hasOwnProperty
         );
@@ -556,16 +555,16 @@
         if (D(t).length !== o) return !1;
         if (o)
           for (var i = void 0; o-- > 0; ) {
-            if (((i = r[o]), i === ft)) {
+            if (((i = r[o]), i === ct)) {
               var u = K(s),
                 l = K(t);
               if ((u || l) && u !== l) return !1;
             }
-            if (!ht(t, i) || !n(s[i], t[i], i, i, s, t, e)) return !1;
+            if (!ft(t, i) || !n(s[i], t[i], i, i, s, t, e)) return !1;
           }
         return !0;
       }
-      function gt(s, t) {
+      function ht(s, t) {
         return (
           s.source === t.source &&
           s.global === t.global &&
@@ -576,7 +575,7 @@
           s.lastIndex === t.lastIndex
         );
       }
-      function pt(s, t, n, e) {
+      function gt(s, t, n, e) {
         var r = s.size === t.size;
         if (r && s.size) {
           var o = {};
@@ -594,8 +593,8 @@
         }
         return r;
       }
-      var mt = typeof Map == "function",
-        dt = typeof Set == "function",
+      var pt = typeof Map == "function",
+        mt = typeof Set == "function",
         $ = Object.prototype.valueOf;
       function E(s) {
         var t =
@@ -611,7 +610,7 @@
             var i = Array.isArray(e),
               u = Array.isArray(r);
             return i || u
-              ? i === u && at(e, r, t, o)
+              ? i === u && ut(e, r, t, o)
               : ((i = e instanceof Date),
                 (u = r instanceof Date),
                 i || u
@@ -619,15 +618,15 @@
                   : ((i = e instanceof RegExp),
                     (u = r instanceof RegExp),
                     i || u
-                      ? i === u && gt(e, r)
+                      ? i === u && ht(e, r)
                       : G(e) || G(r)
                       ? e === r
-                      : mt &&
+                      : pt &&
                         ((i = e instanceof Map), (u = r instanceof Map), i || u)
-                      ? i === u && ct(e, r, t, o)
-                      : dt &&
+                      ? i === u && at(e, r, t, o)
+                      : mt &&
                         ((i = e instanceof Set), (u = r instanceof Set), i || u)
-                      ? i === u && pt(e, r, t, o)
+                      ? i === u && gt(e, r, t, o)
                       : e.valueOf !== $ || r.valueOf !== $
                       ? P(e.valueOf(), r.valueOf())
                       : S(e, r, t, o)));
@@ -655,7 +654,7 @@ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
 LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */ function yt(
+***************************************************************************** */ function dt(
         s,
         t
       ) {
@@ -704,22 +703,22 @@ PERFORMANCE OF THIS SOFTWARE.
             (this.markers.length = 0);
         }
       }
-      class wt {
+      class yt {
         constructor({ maxZoom: t = 16 }) {
           this.maxZoom = t;
         }
         noop({ markers: t }) {
-          return vt(t);
+          return wt(t);
         }
       }
-      const vt = (s) =>
+      const wt = (s) =>
         s.map((n) => new I({ position: n.getPosition(), markers: [n] }));
-      class xt extends wt {
+      class vt extends yt {
         constructor(t) {
           var { maxZoom: n, radius: e = 60 } = t,
-            r = yt(t, ["maxZoom", "radius"]);
+            r = dt(t, ["maxZoom", "radius"]);
           super({ maxZoom: n }),
-            (this.superCluster = new et(
+            (this.superCluster = new tt(
               Object.assign({ maxZoom: this.maxZoom, radius: e }, r)
             )),
             (this.state = { zoom: null });
@@ -772,7 +771,7 @@ PERFORMANCE OF THIS SOFTWARE.
           }
         }
       }
-      class Mt {
+      class xt {
         constructor(t, n) {
           this.markers = { sum: t.length };
           const e = n.map((o) => o.count),
@@ -788,7 +787,7 @@ PERFORMANCE OF THIS SOFTWARE.
           };
         }
       }
-      class Ct {
+      class Mt {
         render({ count: t, position: n }, e) {
           const r =
               t > Math.max(10, e.clusters.markers.mean) ? "#ff0000" : "#0000ff",
@@ -814,12 +813,12 @@ PERFORMANCE OF THIS SOFTWARE.
           });
         }
       }
-      function kt(s, t) {
+      function Ct(s, t) {
         for (let n in t.prototype) s.prototype[n] = t.prototype[n];
       }
       class Z {
         constructor() {
-          kt(Z, google.maps.OverlayView);
+          Ct(Z, google.maps.OverlayView);
         }
       }
       var x;
@@ -828,16 +827,16 @@ PERFORMANCE OF THIS SOFTWARE.
           (s.CLUSTERING_END = "clusteringend"),
           (s.CLUSTER_CLICK = "click");
       })(x || (x = {}));
-      const Ot = (s, t, n) => {
+      const kt = (s, t, n) => {
         n.fitBounds(t.bounds);
       };
-      class Pt extends Z {
+      class Ot extends Z {
         constructor({
           map: t,
           markers: n = [],
-          algorithm: e = new xt({}),
-          renderer: r = new Ct(),
-          onClusterClick: o = Ot,
+          algorithm: e = new vt({}),
+          renderer: r = new Mt(),
+          onClusterClick: o = kt,
         }) {
           super(),
             (this.markers = [...n]),
@@ -909,7 +908,7 @@ PERFORMANCE OF THIS SOFTWARE.
             (this.clusters = []);
         }
         renderClusters() {
-          const t = new Mt(this.markers, this.clusters),
+          const t = new xt(this.markers, this.clusters),
             n = this.getMap();
           this.clusters.forEach((e) => {
             e.markers.length === 1
@@ -928,14 +927,14 @@ PERFORMANCE OF THIS SOFTWARE.
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function Et() {
+       */ function Pt() {
         const s = new google.maps.Map(document.getElementById("map"), {
             zoom: 3,
             center: { lat: -28.024, lng: 140.887 },
           }),
           t = new google.maps.InfoWindow({ content: "", disableAutoPan: !0 }),
           n = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-          e = Lt.map((r, o) => {
+          e = Et.map((r, o) => {
             const i = n[o % n.length],
               u = new google.maps.Marker({ position: r, label: i });
             return (
@@ -945,9 +944,9 @@ PERFORMANCE OF THIS SOFTWARE.
               u
             );
           });
-        new Pt({ markers: e, map: s });
+        new Ot({ markers: e, map: s });
       }
-      const Lt = [
+      const Et = [
         { lat: -31.56391, lng: 147.154312 },
         { lat: -33.718234, lng: 150.363181 },
         { lat: -33.727111, lng: 150.371124 },
@@ -972,7 +971,7 @@ PERFORMANCE OF THIS SOFTWARE.
         { lat: -42.735258, lng: 147.438 },
         { lat: -43.999792, lng: 170.463352 },
       ];
-      window.initMap = Et;
+      window.initMap = Pt;
     </script>
     <style>
       #map,

@@ -18,7 +18,7 @@
     <script src="https://unpkg.com/@deck.gl/google-maps@8.7.3/dist.min.js"></script>
 
     <script type="module" crossorigin>
-      const a = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -48,22 +48,21 @@
           const t = r(e);
           fetch(e.href, t);
         }
-      };
-      a();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ const l = deck.GeoJsonLayer,
-        d = deck.GoogleMapsOverlay;
-      function u() {
+       */ const a = deck.GeoJsonLayer,
+        l = deck.GoogleMapsOverlay;
+      function d() {
         const i = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 40, lng: -110 },
           zoom: 4,
         });
-        new d({
+        new l({
           layers: [
-            new l({
+            new a({
               id: "earthquakes",
               data: "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson",
               filled: !0,
@@ -90,7 +89,7 @@
           ],
         }).setMap(i);
       }
-      window.initMap = u;
+      window.initMap = d;
     </script>
     <style>
       :root {

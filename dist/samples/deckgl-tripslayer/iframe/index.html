@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/@deck.gl/google-maps@8.7.3/dist.min.js"></script>
 
     <script type="module" crossorigin>
-      const a = function () {
+      (function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -42,22 +42,21 @@
           const e = n(t);
           fetch(t.href, e);
         }
-      };
-      a();
+      })();
       /**
        * @license
        * Copyright 2021 Google LLC.
        * SPDX-License-Identifier: Apache-2.0
-       */ const l = deck.GoogleMapsOverlay,
-        c = deck.TripsLayer,
-        d =
+       */ const a = deck.GoogleMapsOverlay,
+        l = deck.TripsLayer,
+        c =
           "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json",
-        p = 1800,
-        u = [
+        d = 1800,
+        p = [
           [255, 0, 0],
           [0, 0, 255],
         ];
-      function m() {
+      function u() {
         const i = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 40.72, lng: -74 },
           mapId: "fae05836df2dc8bb",
@@ -67,25 +66,25 @@
         let o = 0;
         const n = {
             id: "trips",
-            data: d,
+            data: c,
             getPath: (e) => e.path,
             getTimestamps: (e) => e.timestamps,
-            getColor: (e) => u[e.vendor],
+            getColor: (e) => p[e.vendor],
             opacity: 1,
             widthMinPixels: 2,
             trailLength: 180,
             currentTime: o,
             shadowEnabled: !1,
           },
-          r = new l({}),
+          r = new a({}),
           t = () => {
-            o = (o + 1) % p;
-            const e = new c({ ...n, currentTime: o });
+            o = (o + 1) % d;
+            const e = new l({ ...n, currentTime: o });
             r.setProps({ layers: [e] }), window.requestAnimationFrame(t);
           };
         window.requestAnimationFrame(t), r.setMap(i);
       }
-      window.initMap = m;
+      window.initMap = u;
     </script>
     <style>
       :root {

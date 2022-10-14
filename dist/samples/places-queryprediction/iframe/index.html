@@ -10,16 +10,16 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      const s = function () {
-        const o = document.createElement("link").relList;
-        if (o && o.supports && o.supports("modulepreload")) return;
+      (function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          r(e);
+          o(e);
         new MutationObserver((e) => {
           for (const t of e)
             if (t.type === "childList")
               for (const i of t.addedNodes)
-                i.tagName === "LINK" && i.rel === "modulepreload" && r(i);
+                i.tagName === "LINK" && i.rel === "modulepreload" && o(i);
         }).observe(document, { childList: !0, subtree: !0 });
         function n(e) {
           const t = {};
@@ -34,22 +34,21 @@
             t
           );
         }
-        function r(e) {
+        function o(e) {
           if (e.ep) return;
           e.ep = !0;
           const t = n(e);
           fetch(e.href, t);
         }
-      };
-      s();
+      })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
-        const c = function (n, r) {
-          if (r != google.maps.places.PlacesServiceStatus.OK || !n) {
-            alert(r);
+       */ function s() {
+        const c = function (n, o) {
+          if (o != google.maps.places.PlacesServiceStatus.OK || !n) {
+            alert(o);
             return;
           }
           n.forEach((e) => {
@@ -63,7 +62,7 @@
           c
         );
       }
-      window.initService = l;
+      window.initService = s;
     </script>
   </head>
   <body>
