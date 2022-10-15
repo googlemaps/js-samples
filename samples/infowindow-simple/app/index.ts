@@ -53,7 +53,7 @@ function initMap(): void {
     infowindow.open({
       anchor: marker,
       map,
-      shouldFocus: false,
+      ariaLabel: "Uluru",
     });
   });
 }
