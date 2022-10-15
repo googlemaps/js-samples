@@ -10,17 +10,17 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      var m = Object.defineProperty;
-      var u = (r, t, o) =>
-        t in r
-          ? m(r, t, {
+      var u = Object.defineProperty;
+      var m = (o, t, r) =>
+        t in o
+          ? u(o, t, {
               enumerable: !0,
               configurable: !0,
               writable: !0,
-              value: o,
+              value: r,
             })
-          : (r[t] = o);
-      var d = (r, t, o) => (u(r, typeof t != "symbol" ? t + "" : t, o), o);
+          : (o[t] = r);
+      var d = (o, t, r) => (m(o, typeof t != "symbol" ? t + "" : t, r), r);
       (function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
@@ -32,7 +32,7 @@
               for (const i of n.addedNodes)
                 i.tagName === "LINK" && i.rel === "modulepreload" && c(i);
         }).observe(document, { childList: !0, subtree: !0 });
-        function o(e) {
+        function r(e) {
           const n = {};
           return (
             e.integrity && (n.integrity = e.integrity),
@@ -48,7 +48,7 @@
         function c(e) {
           if (e.ep) return;
           e.ep = !0;
-          const n = o(e);
+          const n = r(e);
           fetch(e.href, n);
         }
       })();
@@ -59,13 +59,13 @@
        */ let a;
       const p = { lat: 41.85, lng: -87.65 };
       class f {
-        constructor(t, o, c) {
+        constructor(t, r, c) {
           d(this, "map_");
           d(this, "center_");
-          (this.map_ = o),
+          (this.map_ = r),
             (this.center_ = new google.maps.LatLng(c)),
             (t.style.clear = "both");
-          const e = document.createElement("div");
+          const e = document.createElement("button");
           (e.id = "goCenterUI"),
             (e.title = "Click to recenter the map"),
             t.appendChild(e);
@@ -73,7 +73,7 @@
           (n.id = "goCenterText"),
             (n.innerHTML = "Center Map"),
             e.appendChild(n);
-          const i = document.createElement("div");
+          const i = document.createElement("button");
           (i.id = "setCenterUI"),
             (i.title = "Click to change the center of the map"),
             t.appendChild(i);
@@ -96,11 +96,11 @@
           zoom: 12,
           center: p,
         });
-        const r = document.createElement("div");
-        new f(r, a, p),
-          (r.index = 1),
-          (r.style.paddingTop = "10px"),
-          a.controls[google.maps.ControlPosition.TOP_CENTER].push(r);
+        const o = document.createElement("div");
+        new f(o, a, p),
+          (o.index = 1),
+          (o.style.paddingTop = "10px"),
+          a.controls[google.maps.ControlPosition.TOP_CENTER].push(o);
       }
       window.initMap = g;
     </script>
