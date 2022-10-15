@@ -47,7 +47,7 @@ function initMap() {
     infowindow.open({
       anchor: marker,
       map,
-      shouldFocus: false,
+      ariaLabel: "Uluru",
     });
   });
 }
