@@ -89,7 +89,7 @@
     "@googlemaps/js-api-loader": "^1.14.3",
     "@googlemaps/markerclusterer": "2.0.3",
     "@googlemaps/react-wrapper": "^1.1.35",
-    "@googlemaps/typescript-guards": "^1.0.16",
+    "@googlemaps/typescript-guards": "^2.0.3",
     "@material/mwc-button": "^0.27.0",
     "@material/select": "^14.0.0",
     "@tweenjs/tween.js": "^18.6.4",
