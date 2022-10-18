@@ -24,7 +24,7 @@ function initMap() {
       position: property.position,
       title: property.description,
     });
-    const element = advancedMarkerView.content as HTMLElement;
+    const element = advancedMarkerView.element as HTMLElement;
     ["focus", "pointerenter"].forEach((event) => {
       element.addEventListener(event, () => {
         highlight(advancedMarkerView, property);
