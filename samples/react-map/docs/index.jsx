@@ -156,6 +156,7 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
           // set the map prop on the child component
+          // @ts-ignore
           return React.cloneElement(child, { map });
         }
       })}
