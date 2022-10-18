@@ -2,7 +2,7 @@
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */function l(){const i={lat:37.43238031167444,lng:-122.16795397128632},s=new google.maps.Map(document.getElementById("map"),{zoom:11,center:i,mapId:"4504f8b37365c3d0"});for(const o of p){const n=new google.maps.marker.AdvancedMarkerView({map:s,content:c(o),position:o.position,title:o.description}),e=n.content;["focus","pointerenter"].forEach(t=>{e.addEventListener(t,()=>{d(n)})}),["blur","pointerleave"].forEach(t=>{e.addEventListener(t,()=>{r(n)})}),n.addListener("click",t=>{r(n)})}}function d(i,s){i.content.classList.add("highlight"),i.element.style.zIndex=1}function r(i,s){i.content.classList.remove("highlight"),i.element.style.zIndex=""}function c(i){const s=document.createElement("div");return s.classList.add("property"),s.innerHTML=`
+ */function l(){const i={lat:37.43238031167444,lng:-122.16795397128632},s=new google.maps.Map(document.getElementById("map"),{zoom:11,center:i,mapId:"4504f8b37365c3d0"});for(const o of p){const n=new google.maps.marker.AdvancedMarkerView({map:s,content:c(o),position:o.position,title:o.description}),e=n.element;["focus","pointerenter"].forEach(t=>{e.addEventListener(t,()=>{d(n)})}),["blur","pointerleave"].forEach(t=>{e.addEventListener(t,()=>{r(n)})}),n.addListener("click",t=>{r(n)})}}function d(i,s){i.content.classList.add("highlight"),i.element.style.zIndex=1}function r(i,s){i.content.classList.remove("highlight"),i.element.style.zIndex=""}function c(i){const s=document.createElement("div");return s.classList.add("property"),s.innerHTML=`
     <div class="icon">
         <i aria-hidden="true" class="fa fa-icon fa-${i.type}" title="${i.type}"></i>
         <span class="fa-sr-only">${i.type}</span>
