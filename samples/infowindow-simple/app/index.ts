@@ -41,7 +41,6 @@ function initMap(): void {
 
   const infowindow = new google.maps.InfoWindow({
     content: contentString,
-    ariaLabel: "Uluru",
   });
 
   const marker = new google.maps.Marker({
@@ -54,6 +53,7 @@ function initMap(): void {
     infowindow.open({
       anchor: marker,
       map,
+      ariaLabel: "Uluru",
     });
   });
 }
