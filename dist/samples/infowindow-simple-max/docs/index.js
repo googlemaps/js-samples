@@ -37,6 +37,7 @@ function initMap() {
   const infowindow = new google.maps.InfoWindow({
     content: contentString,
     maxWidth: 200,
+    ariaLabel: "Uluru",
   });
   const marker = new google.maps.Marker({
     position: uluru,
@@ -48,7 +49,6 @@ function initMap() {
     infowindow.open({
       anchor: marker,
       map,
-      shouldFocus: false,
     });
   });
 }
