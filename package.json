@@ -60,7 +60,7 @@
     "dotenv": "^16.0.3",
     "dts-minify": "^0.3.0",
     "esbuild": "^0.15.11",
-    "eslint": "^8.25.0",
+    "eslint": "^8.26.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-googlemaps": "^1.4.15",
     "eslint-plugin-jest": "^26.2.2",
