@@ -95,7 +95,7 @@
     "@tweenjs/tween.js": "^18.6.4",
     "clsx": "^1.2.1",
     "fast-equals": "^3.0.2",
-    "playground-elements": "^0.16.1",
+    "playground-elements": "^0.16.3",
     "react": "^18.2.0",
     "react-dom": "^18.1.0",
     "screenfull": "^6.0.1",
