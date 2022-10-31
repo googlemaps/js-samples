@@ -56,7 +56,7 @@
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.25.0",
     "buffer": "^6.0.3",
-    "cssnano": "^5.1.8",
+    "cssnano": "^5.1.14",
     "dotenv": "^16.0.3",
     "dts-minify": "^0.3.0",
     "esbuild": "^0.15.11",
