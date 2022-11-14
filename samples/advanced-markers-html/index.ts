@@ -108,8 +108,7 @@ const properties = [{
     lat: 37.44440882321596,
     lng: -122.2160620727,
   },
-}, //...
-//];
+},
 // [END maps_advanced_markers_html_snippet]
 {
   address: '100 Chris St, Portola Valley, CA',
