@@ -110,7 +110,6 @@ const properties = [
       lng: -122.2160620727,
     },
   },
-  //];
   {
     address: "100 Chris St, Portola Valley, CA",
     description: "Spacious warehouse great for small business",
