@@ -105,8 +105,7 @@ const properties = [
       lat: 37.44440882321596,
       lng: -122.2160620727,
     },
-  }, //...
-  //];
+  },
   {
     address: "100 Chris St, Portola Valley, CA",
     description: "Spacious warehouse great for small business",
