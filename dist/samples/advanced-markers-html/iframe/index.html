@@ -11,7 +11,7 @@
     <script src="https://use.fontawesome.com/releases/v6.2.0/js/all.js"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const l = function () {
         const s = document.createElement("link").relList;
         if (s && s.supports && s.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -41,29 +41,30 @@
           const t = o(e);
           fetch(e.href, t);
         }
-      })();
+      };
+      l();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
+       */ function d() {
         const i = { lat: 37.43238031167444, lng: -122.16795397128632 },
           s = new google.maps.Map(document.getElementById("map"), {
             zoom: 11,
             center: i,
             mapId: "4504f8b37365c3d0",
           });
-        for (const o of p) {
+        for (const o of u) {
           const n = new google.maps.marker.AdvancedMarkerView({
               map: s,
-              content: c(o),
+              content: p(o),
               position: o.position,
               title: o.description,
             }),
             e = n.element;
           ["focus", "pointerenter"].forEach((t) => {
             e.addEventListener(t, () => {
-              d(n);
+              c(n);
             });
           }),
             ["blur", "pointerleave"].forEach((t) => {
@@ -76,13 +77,13 @@
             });
         }
       }
-      function d(i, s) {
+      function c(i, s) {
         i.content.classList.add("highlight"), (i.element.style.zIndex = 1);
       }
       function r(i, s) {
         i.content.classList.remove("highlight"), (i.element.style.zIndex = "");
       }
-      function c(i) {
+      function p(i) {
         const s = document.createElement("div");
         return (
           s.classList.add("property"),
@@ -116,7 +117,7 @@
           s
         );
       }
-      const p = [
+      const u = [
         {
           address: "215 Emily St, MountainView, CA",
           description: "Single family house with modern design",
@@ -218,7 +219,7 @@
           position: { lat: 37.41391636421949, lng: -121.94592071575907 },
         },
       ];
-      window.initMap = l;
+      window.initMap = d;
     </script>
     <style>
       :root {

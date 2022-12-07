@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const l = function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,7 +40,8 @@
           const o = t(e);
           fetch(e.href, o);
         }
-      })();
+      };
+      l();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
@@ -67,7 +68,7 @@
         "tilt_changed",
         "zoom_changed",
       ];
-      function l(i, n) {
+      function a(i, n) {
         const t = document.getElementById(n);
         google.maps.event.addListener(i, n, () => {
           (t.className = "event active"),
@@ -77,16 +78,16 @@
         });
       }
       function d() {
-        a();
+        u();
         const i = document.getElementById("map"),
           n = new google.maps.Map(i, {
             center: new google.maps.LatLng(37.4419, -122.1419),
             zoom: 13,
             mapTypeId: "roadmap",
           });
-        for (let t = 0; t < r.length; t++) l(n, r[t]);
+        for (let t = 0; t < r.length; t++) a(n, r[t]);
       }
-      function a() {
+      function u() {
         const i = document.getElementById("sidebar");
         let n = "";
         for (let t = 0; t < r.length; t++)

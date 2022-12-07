@@ -10,16 +10,16 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const d = function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          d(e);
+          r(e);
         new MutationObserver((e) => {
           for (const n of e)
             if (n.type === "childList")
               for (const l of n.addedNodes)
-                l.tagName === "LINK" && l.rel === "modulepreload" && d(l);
+                l.tagName === "LINK" && l.rel === "modulepreload" && r(l);
         }).observe(document, { childList: !0, subtree: !0 });
         function i(e) {
           const n = {};
@@ -34,18 +34,19 @@
             n
           );
         }
-        function d(e) {
+        function r(e) {
           if (e.ep) return;
           e.ep = !0;
           const n = i(e);
           fetch(e.href, n);
         }
-      })();
+      };
+      d();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function r() {
+       */ function s() {
         const o = new google.maps.StreetViewPanorama(
           document.getElementById("pano"),
           {
@@ -62,13 +63,13 @@
             const t = document.getElementById("links_table");
             for (; t.hasChildNodes(); ) t.removeChild(t.lastChild);
             const i = o.getLinks();
-            for (const d in i) {
+            for (const r in i) {
               const e = document.createElement("tr");
               t.appendChild(e);
               const n = document.createElement("td");
-              n.innerHTML = "<b>Link: " + d + "</b>";
+              n.innerHTML = "<b>Link: " + r + "</b>";
               const l = document.createElement("td");
-              (l.innerHTML = i[d].description),
+              (l.innerHTML = i[r].description),
                 t.appendChild(n),
                 t.appendChild(l);
             }
@@ -84,7 +85,7 @@
               (i.firstChild.nodeValue = o.getPov().pitch + "");
           });
       }
-      window.initPano = r;
+      window.initPano = s;
     </script>
     <style>
       #map,

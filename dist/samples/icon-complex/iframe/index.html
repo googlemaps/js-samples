@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const a = function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,17 +40,18 @@
           const o = i(e);
           fetch(e.href, o);
         }
-      })();
+      };
+      a();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function a() {
+       */ function c() {
         const r = new google.maps.Map(document.getElementById("map"), {
           zoom: 10,
           center: { lat: -33.9, lng: 151.2 },
         });
-        c(r);
+        u(r);
       }
       const l = [
         ["Bondi Beach", -33.890542, 151.274856, 4],
@@ -59,7 +60,7 @@
         ["Manly Beach", -33.80010128657071, 151.28747820854187, 2],
         ["Maroubra Beach", -33.950198, 151.259302, 1],
       ];
-      function c(r) {
+      function u(r) {
         const n = {
             url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
             size: new google.maps.Size(20, 32),
@@ -79,7 +80,7 @@
           });
         }
       }
-      window.initMap = a;
+      window.initMap = c;
     </script>
     <style>
       #map,

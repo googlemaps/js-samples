@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.min.js"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const f = function () {
         const r = document.createElement("link").relList;
         if (r && r.supports && r.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -41,20 +41,21 @@
           const o = l(e);
           fetch(e.href, o);
         }
-      })();
+      };
+      f();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let p, d;
-      function f() {
+       */ let c, d;
+      function m() {
         const a = {
           center: { lat: 44.5250489, lng: -110.83819 },
           zoom: 18,
           scaleControl: !1,
           streetViewControl: !1,
         };
-        (p = new google.maps.Map(document.getElementById("map-left"), {
+        (c = new google.maps.Map(document.getElementById("map-left"), {
           ...a,
           mapTypeId: "satellite",
           tilt: 0,
@@ -90,12 +91,12 @@
           t.forEach((n) => {
             n.addListener("bounds_changed", () => {
               const i = n.getCenter(),
-                c = n.getZoom();
-              (i !== e || c !== o) && ((e = i), (o = c), s(n));
+                p = n.getZoom();
+              (i !== e || p !== o) && ((e = i), (o = p), s(n));
             });
           });
         }
-        r(p, d);
+        r(c, d);
         function l() {
           const t = document.getElementById("container").offsetWidth;
           (document.getElementById("map-left").style.width = `${t}px`),
@@ -105,7 +106,7 @@
           window.addEventListener("resize", l),
           Split(["#left", "#right"], { sizes: [50, 50] });
       }
-      window.initMap = f;
+      window.initMap = m;
     </script>
     <style>
       #map,

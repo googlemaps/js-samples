@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const m = function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,14 @@
           const o = c(e);
           fetch(e.href, o);
         }
-      })();
+      };
+      m();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let s, a, n;
-      function m() {
+      function d() {
         (s = new google.maps.Map(document.getElementById("map"), {
           zoom: 11,
           center: { lat: 35.6894, lng: 139.692 },
@@ -54,9 +55,9 @@
         })),
           (n = new google.maps.InfoWindow()),
           (a = new google.maps.MaxZoomService()),
-          s.addListener("click", d);
+          s.addListener("click", f);
       }
-      function d(i) {
+      function f(i) {
         a.getMaxZoomAtLatLng(i.latLng, (t) => {
           t.status !== "OK"
             ? n.setContent("Error in MaxZoomService")
@@ -65,7 +66,7 @@
             n.open(s);
         });
       }
-      window.initMap = m;
+      window.initMap = d;
     </script>
     <style>
       #map,

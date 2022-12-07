@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const I = function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,7 +40,8 @@
           const o = r(t);
           fetch(t.href, o);
         }
-      })();
+      };
+      I();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
@@ -50,10 +51,10 @@
         p,
         c = [],
         a;
-      const I = { country: "us" },
+      const E = { country: "us" },
         f =
           "https://developers.google.com/maps/documentation/javascript/images/marker_green",
-        E = new RegExp("^https?://.+?/"),
+        C = new RegExp("^https?://.+?/"),
         d = {
           au: { center: { lat: -25.3, lng: 133.8 }, zoom: 4 },
           br: { center: { lat: -14.2, lng: -51.9 }, zoom: 3 },
@@ -69,7 +70,7 @@
           us: { center: { lat: 37.1, lng: -95.7 }, zoom: 3 },
           uk: { center: { lat: 54.8, lng: -4.6 }, zoom: 5 },
         };
-      function C() {
+      function b() {
         (l = new google.maps.Map(document.getElementById("map"), {
           zoom: d.us.zoom,
           center: d.us.center,
@@ -85,22 +86,22 @@
             document.getElementById("autocomplete"),
             {
               types: ["(cities)"],
-              componentRestrictions: I,
+              componentRestrictions: E,
               fields: ["geometry"],
             }
           )),
           (u = new google.maps.places.PlacesService(l)),
-          a.addListener("place_changed", b),
-          document.getElementById("country").addEventListener("change", z);
+          a.addListener("place_changed", B),
+          document.getElementById("country").addEventListener("change", k);
       }
-      function b() {
+      function B() {
         const e = a.getPlace();
         e.geometry && e.geometry.location
-          ? (l.panTo(e.geometry.location), l.setZoom(15), B())
+          ? (l.panTo(e.geometry.location), l.setZoom(15), z())
           : (document.getElementById("autocomplete").placeholder =
               "Enter a city");
       }
-      function B() {
+      function z() {
         const e = { bounds: l.getBounds(), types: ["lodging"] };
         u.nearbySearch(e, (n, r, s) => {
           if (r === google.maps.places.PlacesServiceStatus.OK && n) {
@@ -114,9 +115,9 @@
                 icon: i,
               })),
                 (c[t].placeResult = n[t]),
-                google.maps.event.addListener(c[t], "click", L),
-                setTimeout(k(t), t * 100),
-                v(n[t], t);
+                google.maps.event.addListener(c[t], "click", M),
+                setTimeout(v(t), t * 100),
+                L(n[t], t);
             }
           }
         });
@@ -125,7 +126,7 @@
         for (let e = 0; e < c.length; e++) c[e] && c[e].setMap(null);
         c = [];
       }
-      function z() {
+      function k() {
         const e = document.getElementById("country").value;
         e == "all"
           ? (a.setComponentRestrictions({ country: [] }),
@@ -137,12 +138,12 @@
           h(),
           y();
       }
-      function k(e) {
+      function v(e) {
         return function () {
           c[e].setMap(l);
         };
       }
-      function v(e, n) {
+      function L(e, n) {
         const r = document.getElementById("results"),
           s = String.fromCharCode("A".charCodeAt(0) + (n % 26)),
           t = f + s + ".png",
@@ -168,14 +169,14 @@
         const e = document.getElementById("results");
         for (; e.childNodes[0]; ) e.removeChild(e.childNodes[0]);
       }
-      function L() {
+      function M() {
         const e = this;
         u.getDetails({ placeId: e.placeResult.place_id }, (n, r) => {
           r === google.maps.places.PlacesServiceStatus.OK &&
-            (p.open(l, e), M(n));
+            (p.open(l, e), R(n));
         });
       }
-      function M(e) {
+      function R(e) {
         if (
           ((document.getElementById("iw-icon").innerHTML =
             '<img class="hotelIcon" src="' + e.icon + '"/>'),
@@ -197,13 +198,13 @@
         } else document.getElementById("iw-rating-row").style.display = "none";
         if (e.website) {
           e.website;
-          let n = String(E.exec(e.website));
+          let n = String(C.exec(e.website));
           n || (n = "http://" + e.website + "/"),
             (document.getElementById("iw-website-row").style.display = ""),
             (document.getElementById("iw-website").textContent = n);
         } else document.getElementById("iw-website-row").style.display = "none";
       }
-      window.initMap = C;
+      window.initMap = b;
     </script>
     <style>
       #map,

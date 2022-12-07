@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const d = function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,24 +40,25 @@
           const o = r(e);
           fetch(e.href, o);
         }
-      })();
+      };
+      d();
       /**
        * @license
        * Copyright 2022 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let s, a, l;
-      function d() {
-        (s = new google.maps.Map(document.getElementById("map"), {
+       */ let a, s, l;
+      function p() {
+        (a = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 39.23, lng: -105.73 },
           zoom: 8,
           mapId: "a3efe1c035bad51b",
         })),
-          (a = s.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
-          a.addListener("click", p),
+          (s = a.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
+          s.addListener("click", y),
           (l = new google.maps.InfoWindow({})),
           u();
       }
-      function p(n) {
+      function y(n) {
         let t = n.features[0];
         if ((console.log(n), !t.placeId)) return;
         u(t.placeId);
@@ -69,7 +70,7 @@
           "<br/> Feature type: " +
           t.featureType +
           "</span>";
-        m(r, n.latLng);
+        g(r, n.latLng);
       }
       const f = {
           strokeColor: "#810FCB",
@@ -78,14 +79,14 @@
           fillColor: "white",
           fillOpacity: 0.1,
         },
-        y = { ...f, fillColor: "#810FCB", fillOpacity: 0.5 };
+        m = { ...f, fillColor: "#810FCB", fillOpacity: 0.5 };
       function u(n) {
-        a.style = (t) => (n && t.feature.placeId == n ? y : f);
+        s.style = (t) => (n && t.feature.placeId == n ? m : f);
       }
-      function m(n, t) {
-        l.setContent(n), l.setPosition(t), l.open({ map: s, shouldFocus: !1 });
+      function g(n, t) {
+        l.setContent(n), l.setPosition(t), l.open({ map: a, shouldFocus: !1 });
       }
-      window.initMap = d;
+      window.initMap = p;
     </script>
     <style>
       #map,

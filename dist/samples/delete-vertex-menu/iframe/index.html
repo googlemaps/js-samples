@@ -10,95 +10,83 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      var p = Object.defineProperty;
-      var g = (r, t, n) =>
-        t in r
-          ? p(r, t, {
-              enumerable: !0,
-              configurable: !0,
-              writable: !0,
-              value: n,
-            })
-          : (r[t] = n);
-      var c = (r, t, n) => (g(r, typeof t != "symbol" ? t + "" : t, n), n);
-      (function () {
-        const t = document.createElement("link").relList;
-        if (t && t.supports && t.supports("modulepreload")) return;
+      const c = function () {
+        const r = document.createElement("link").relList;
+        if (r && r.supports && r.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          d(e);
+          l(e);
         new MutationObserver((e) => {
-          for (const o of e)
-            if (o.type === "childList")
-              for (const l of o.addedNodes)
-                l.tagName === "LINK" && l.rel === "modulepreload" && d(l);
+          for (const t of e)
+            if (t.type === "childList")
+              for (const s of t.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && l(s);
         }).observe(document, { childList: !0, subtree: !0 });
-        function n(e) {
-          const o = {};
+        function a(e) {
+          const t = {};
           return (
-            e.integrity && (o.integrity = e.integrity),
-            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
             e.crossorigin === "use-credentials"
-              ? (o.credentials = "include")
+              ? (t.credentials = "include")
               : e.crossorigin === "anonymous"
-              ? (o.credentials = "omit")
-              : (o.credentials = "same-origin"),
-            o
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
           );
         }
-        function d(e) {
+        function l(e) {
           if (e.ep) return;
           e.ep = !0;
-          const o = n(e);
-          fetch(e.href, o);
+          const t = a(e);
+          fetch(e.href, t);
         }
-      })();
+      };
+      c();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function h() {
-        const r = {
+       */ function p() {
+        const d = {
             zoom: 3,
             center: new google.maps.LatLng(0, -180),
             mapTypeId: "terrain",
           },
-          t = new google.maps.Map(document.getElementById("map"), r),
-          n = [
+          r = new google.maps.Map(document.getElementById("map"), d),
+          a = [
             new google.maps.LatLng(37.772323, -122.214897),
             new google.maps.LatLng(21.291982, -157.821856),
             new google.maps.LatLng(-18.142599, 178.431),
             new google.maps.LatLng(-27.46758, 153.027892),
           ],
-          d = new google.maps.Polyline({
-            path: n,
+          l = new google.maps.Polyline({
+            path: a,
             editable: !0,
             strokeColor: "#FF0000",
             strokeOpacity: 1,
             strokeWeight: 2,
-            map: t,
+            map: r,
           });
         class e extends google.maps.OverlayView {
           constructor() {
-            super();
-            c(this, "div_");
-            c(this, "divListener_");
-            (this.div_ = document.createElement("div")),
+            super(),
+              (this.div_ = document.createElement("div")),
               (this.div_.className = "delete-menu"),
               (this.div_.innerHTML = "Delete");
-            const i = this;
+            const o = this;
             google.maps.event.addDomListener(this.div_, "click", () => {
-              i.removeVertex();
+              o.removeVertex();
             });
           }
           onAdd() {
-            const i = this,
-              s = this.getMap();
+            const o = this,
+              i = this.getMap();
             this.getPanes().floatPane.appendChild(this.div_),
               (this.divListener_ = google.maps.event.addDomListener(
-                s.getDiv(),
+                i.getDiv(),
                 "mousedown",
-                (a) => {
-                  a.target != i.div_ && i.close();
+                (n) => {
+                  n.target != o.div_ && o.close();
                 },
                 !0
               ));
@@ -115,36 +103,36 @@
             this.setMap(null);
           }
           draw() {
-            const i = this.get("position"),
-              s = this.getProjection();
-            if (!i || !s) return;
-            const a = s.fromLatLngToDivPixel(i);
-            (this.div_.style.top = a.y + "px"),
-              (this.div_.style.left = a.x + "px");
+            const o = this.get("position"),
+              i = this.getProjection();
+            if (!o || !i) return;
+            const n = i.fromLatLngToDivPixel(o);
+            (this.div_.style.top = n.y + "px"),
+              (this.div_.style.left = n.x + "px");
           }
-          open(i, s, a) {
-            this.set("position", s.getAt(a)),
-              this.set("path", s),
-              this.set("vertex", a),
-              this.setMap(i),
+          open(o, i, n) {
+            this.set("position", i.getAt(n)),
+              this.set("path", i),
+              this.set("vertex", n),
+              this.setMap(o),
               this.draw();
           }
           removeVertex() {
-            const i = this.get("path"),
-              s = this.get("vertex");
-            if (!i || s == null) {
+            const o = this.get("path"),
+              i = this.get("vertex");
+            if (!o || i == null) {
               this.close();
               return;
             }
-            i.removeAt(s), this.close();
+            o.removeAt(i), this.close();
           }
         }
-        const o = new e();
-        google.maps.event.addListener(d, "contextmenu", (l) => {
-          l.vertex != null && o.open(t, d.getPath(), l.vertex);
+        const t = new e();
+        google.maps.event.addListener(l, "contextmenu", (s) => {
+          s.vertex != null && t.open(r, l.getPath(), s.vertex);
         });
       }
-      window.initialize = h;
+      window.initialize = p;
     </script>
     <style>
       #map,

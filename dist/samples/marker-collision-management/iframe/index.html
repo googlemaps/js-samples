@@ -19,7 +19,7 @@
     />
 
     <script type="module" crossorigin>
-      (function () {
+      const a = function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -30,7 +30,7 @@
               for (const o of t.addedNodes)
                 o.tagName === "LINK" && o.rel === "modulepreload" && i(o);
         }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
+        function l(e) {
           const t = {};
           return (
             e.integrity && (t.integrity = e.integrity),
@@ -46,24 +46,25 @@
         function i(e) {
           if (e.ep) return;
           e.ep = !0;
-          const t = r(e);
+          const t = l(e);
           fetch(e.href, t);
         }
-      })();
+      };
+      a();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let c;
-      function a() {
-        let l = [],
+      function d() {
+        let r = [],
           n = google.maps.CollisionBehavior.REQUIRED;
         c = new google.maps.Map(document.getElementById("map"), {
           mapId: "3a3b33f0edd6ed2a",
           center: { lat: 47.609414458375674, lng: -122.33897030353548 },
           zoom: 17,
         });
-        const r = document.querySelector(".mdc-list");
+        const l = document.querySelector(".mdc-list");
         for (const [e, t] of Object.entries(google.maps.CollisionBehavior)) {
           const o = document.createElement("LI");
           o.classList.add("mdc-list-item"), o.setAttribute("data-value", e);
@@ -71,19 +72,19 @@
           s.classList.add("mdc-list-item__text"),
             (s.innerText = t),
             o.appendChild(s),
-            r.appendChild(o);
+            l.appendChild(o);
         }
         const i = new mdc.select.MDCSelect(
           document.querySelector(".mdc-select")
         );
         i.listen("MDCSelect:change", () => {
           (n = i.value),
-            l.forEach((e) => {
+            r.forEach((e) => {
               e.set("collisionBehavior", n);
             });
         }),
           (i.value = n),
-          (l = [
+          (r = [
             [-122.3402, 47.6093],
             [-122.3402, 47.6094],
             [-122.3403, 47.6094],
@@ -107,7 +108,7 @@
               })
           ));
       }
-      window.initMap = a;
+      window.initMap = d;
     </script>
     <style>
       :root {

@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const c = function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,13 +40,14 @@
           const o = l(e);
           fetch(e.href, o);
         }
-      })();
+      };
+      c();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let i, a;
-      function c() {
+      function p() {
         return {
           location: {
             pano: "reception",
@@ -73,12 +74,12 @@
           },
         };
       }
-      function p() {
+      function g() {
         (i = new google.maps.StreetViewPanorama(
           document.getElementById("street-view"),
           { pano: a.location.pano }
         )),
-          i.registerPanoProvider((t) => (t === "reception" ? c() : null)),
+          i.registerPanoProvider((t) => (t === "reception" ? p() : null)),
           i.addListener("links_changed", () => {
             i.getPano() === a.location.pano &&
               i
@@ -90,14 +91,14 @@
                 });
           });
       }
-      function g() {
+      function d() {
         new google.maps.StreetViewService()
           .getPanorama({ location: { lat: -33.867386, lng: 151.195767 } })
           .then(({ data: t }) => {
-            (a = t), p();
+            (a = t), g();
           });
       }
-      window.initMap = g;
+      window.initMap = d;
     </script>
     <style>
       body,

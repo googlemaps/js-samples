@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const m = function () {
         const a = document.createElement("link").relList;
         if (a && a.supports && a.supports("modulepreload")) return;
         for (const g of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,37 +40,38 @@
           const e = s(g);
           fetch(g.href, e);
         }
-      })();
+      };
+      m();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let L, n;
-      function m() {
+      function p() {
         (L = new google.maps.Map(document.getElementById("map"), {
           zoom: 13,
           center: { lat: 37.775, lng: -122.434 },
           mapTypeId: "satellite",
         })),
           (n = new google.maps.visualization.HeatmapLayer({
-            data: c(),
+            data: d(),
             map: L,
           })),
           document
             .getElementById("toggle-heatmap")
-            .addEventListener("click", p),
-          document
-            .getElementById("change-gradient")
             .addEventListener("click", w),
           document
+            .getElementById("change-gradient")
+            .addEventListener("click", r),
+          document
             .getElementById("change-opacity")
-            .addEventListener("click", i),
-          document.getElementById("change-radius").addEventListener("click", r);
-      }
-      function p() {
-        n.setMap(n.getMap() ? null : L);
+            .addEventListener("click", c),
+          document.getElementById("change-radius").addEventListener("click", i);
       }
       function w() {
+        n.setMap(n.getMap() ? null : L);
+      }
+      function r() {
         const t = [
           "rgba(0, 255, 255, 0)",
           "rgba(0, 255, 255, 1)",
@@ -89,13 +90,13 @@
         ];
         n.set("gradient", n.get("gradient") ? null : t);
       }
-      function r() {
+      function i() {
         n.set("radius", n.get("radius") ? null : 20);
       }
-      function i() {
+      function c() {
         n.set("opacity", n.get("opacity") ? null : 0.2);
       }
-      function c() {
+      function d() {
         return [
           new google.maps.LatLng(37.782551, -122.445368),
           new google.maps.LatLng(37.782745, -122.444586),
@@ -599,7 +600,7 @@
           new google.maps.LatLng(37.751266, -122.403355),
         ];
       }
-      window.initMap = m;
+      window.initMap = p;
     </script>
     <style>
       #map,

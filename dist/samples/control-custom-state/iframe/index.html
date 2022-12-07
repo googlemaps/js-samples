@@ -10,99 +10,87 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      var u = Object.defineProperty;
-      var m = (o, t, r) =>
-        t in o
-          ? u(o, t, {
-              enumerable: !0,
-              configurable: !0,
-              writable: !0,
-              value: r,
-            })
-          : (o[t] = r);
-      var d = (o, t, r) => (m(o, typeof t != "symbol" ? t + "" : t, r), r);
-      (function () {
-        const t = document.createElement("link").relList;
-        if (t && t.supports && t.supports("modulepreload")) return;
+      const p = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          c(e);
+          i(e);
         new MutationObserver((e) => {
-          for (const n of e)
-            if (n.type === "childList")
-              for (const i of n.addedNodes)
-                i.tagName === "LINK" && i.rel === "modulepreload" && c(i);
+          for (const t of e)
+            if (t.type === "childList")
+              for (const n of t.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
         }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
-          const n = {};
+        function s(e) {
+          const t = {};
           return (
-            e.integrity && (n.integrity = e.integrity),
-            e.referrerpolicy && (n.referrerPolicy = e.referrerpolicy),
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
             e.crossorigin === "use-credentials"
-              ? (n.credentials = "include")
+              ? (t.credentials = "include")
               : e.crossorigin === "anonymous"
-              ? (n.credentials = "omit")
-              : (n.credentials = "same-origin"),
-            n
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
           );
         }
-        function c(e) {
+        function i(e) {
           if (e.ep) return;
           e.ep = !0;
-          const n = r(e);
-          fetch(e.href, n);
+          const t = s(e);
+          fetch(e.href, t);
         }
-      })();
+      };
+      p();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let a;
-      const p = { lat: 41.85, lng: -87.65 };
-      class f {
-        constructor(t, r, c) {
-          d(this, "map_");
-          d(this, "center_");
-          (this.map_ = r),
-            (this.center_ = new google.maps.LatLng(c)),
-            (t.style.clear = "both");
+       */ let d;
+      const a = { lat: 41.85, lng: -87.65 };
+      class u {
+        constructor(o, s, i) {
+          (this.map_ = s),
+            (this.center_ = new google.maps.LatLng(i)),
+            (o.style.clear = "both");
           const e = document.createElement("button");
           (e.id = "goCenterUI"),
             (e.title = "Click to recenter the map"),
-            t.appendChild(e);
-          const n = document.createElement("div");
-          (n.id = "goCenterText"),
-            (n.innerHTML = "Center Map"),
-            e.appendChild(n);
-          const i = document.createElement("button");
-          (i.id = "setCenterUI"),
-            (i.title = "Click to change the center of the map"),
-            t.appendChild(i);
+            o.appendChild(e);
+          const t = document.createElement("div");
+          (t.id = "goCenterText"),
+            (t.innerHTML = "Center Map"),
+            e.appendChild(t);
+          const n = document.createElement("button");
+          (n.id = "setCenterUI"),
+            (n.title = "Click to change the center of the map"),
+            o.appendChild(n);
           const l = document.createElement("div");
           (l.id = "setCenterText"),
             (l.innerHTML = "Set Center"),
-            i.appendChild(l),
+            n.appendChild(l),
             e.addEventListener("click", () => {
-              const s = this.center_;
-              this.map_.setCenter(s);
+              const c = this.center_;
+              this.map_.setCenter(c);
             }),
-            i.addEventListener("click", () => {
-              const s = this.map_.getCenter();
-              s && (this.center_ = s);
+            n.addEventListener("click", () => {
+              const c = this.map_.getCenter();
+              c && (this.center_ = c);
             });
         }
       }
-      function g() {
-        a = new google.maps.Map(document.getElementById("map"), {
+      function m() {
+        d = new google.maps.Map(document.getElementById("map"), {
           zoom: 12,
-          center: p,
+          center: a,
         });
-        const o = document.createElement("div");
-        new f(o, a, p),
-          (o.index = 1),
-          (o.style.paddingTop = "10px"),
-          a.controls[google.maps.ControlPosition.TOP_CENTER].push(o);
+        const r = document.createElement("div");
+        new u(r, d, a),
+          (r.index = 1),
+          (r.style.paddingTop = "10px"),
+          d.controls[google.maps.ControlPosition.TOP_CENTER].push(r);
       }
-      window.initMap = g;
+      window.initMap = m;
     </script>
     <style>
       #map,

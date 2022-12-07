@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const i = function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const o of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,23 +40,24 @@
           const n = l(o);
           fetch(o.href, n);
         }
-      })();
+      };
+      i();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let c;
-      function i() {
+      function m() {
         (c = new google.maps.Map(document.querySelector("#map"), {
           center: { lat: -34.397, lng: 150.644 },
           zoom: 8,
           disableDefaultUI: !0,
         })),
-          m(c),
           d(c),
-          f(c);
+          f(c),
+          a(c);
       }
-      function m(e) {
+      function d(e) {
         (document.querySelector(".zoom-control-in").onclick = function () {
           e.setZoom(e.getZoom() + 1);
         }),
@@ -67,7 +68,7 @@
             document.querySelector(".zoom-control")
           );
       }
-      function d(e) {
+      function f(e) {
         const t = document.querySelector(".maptype-control");
         (document.querySelector(".maptype-control-map").onclick = function () {
           t.classList.add("maptype-control-is-map"),
@@ -82,12 +83,12 @@
             }),
           e.controls[google.maps.ControlPosition.LEFT_TOP].push(t);
       }
-      function f(e) {
+      function a(e) {
         const t = e.getDiv().firstChild,
           l = document.querySelector(".fullscreen-control");
         e.controls[google.maps.ControlPosition.RIGHT_TOP].push(l),
           (l.onclick = function () {
-            u(t) ? p() : a(t);
+            u(t) ? y() : p(t);
           }),
           (document.onwebkitfullscreenchange =
             document.onmsfullscreenchange =
@@ -107,7 +108,7 @@
             document.msFullscreenElement) == e
         );
       }
-      function a(e) {
+      function p(e) {
         e.requestFullscreen
           ? e.requestFullscreen()
           : e.webkitRequestFullScreen
@@ -116,7 +117,7 @@
           ? e.mozRequestFullScreen()
           : e.msRequestFullScreen && e.msRequestFullScreen();
       }
-      function p() {
+      function y() {
         document.exitFullscreen
           ? document.exitFullscreen()
           : document.webkitExitFullscreen
@@ -125,7 +126,7 @@
           ? document.mozCancelFullScreen()
           : document.msExitFullscreen && document.msExitFullscreen();
       }
-      window.initMap = i;
+      window.initMap = m;
     </script>
     <style>
       #map,

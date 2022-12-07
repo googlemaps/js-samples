@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const a = function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,7 +40,8 @@
           const t = r(e);
           fetch(e.href, t);
         }
-      })();
+      };
+      a();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
@@ -48,7 +49,7 @@
        */ let s;
       const c =
         "https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml";
-      function a() {
+      function u() {
         (s = new google.maps.Map(document.getElementById("map"), {
           center: new google.maps.LatLng(-19.257753, 146.823688),
           zoom: 2,
@@ -65,7 +66,7 @@
             n.innerHTML = r;
           });
       }
-      window.initMap = a;
+      window.initMap = u;
     </script>
     <style>
       #map,

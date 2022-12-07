@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Place Class</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      const c = function () {
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          s(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const r of t.addedNodes)
+                r.tagName === "LINK" && r.rel === "modulepreload" && s(r);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function s(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = n(e);
+          fetch(e.href, t);
+        }
+      };
+      c();
+      /**
+       * @license
+       * Copyright 2022 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ let i,
+        a = { lat: 37.4161493, lng: -122.0812166 };
+      function d() {
+        (i = new google.maps.Map(document.getElementById("map"), {
+          center: a,
+          zoom: 14,
+          mapId: "4504f8b37365c3d0",
+        })),
+          u();
+      }
+      async function u() {
+        const l = {
+            query: "Sports Page",
+            fields: ["displayName", "location"],
+            locationBias: a,
+          },
+          { places: o } = await new google.maps.places.Place.findPlaceFromQuery(
+            l
+          );
+        if (o.length) {
+          const n = o[0];
+          new google.maps.marker.AdvancedMarkerView({
+            map: i,
+            position: n.location,
+            title: n.displayName,
+          }),
+            i.setCenter(n.location);
+        } else console.log("No results");
+      }
+      window.initMap = d;
+    </script>
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+     The `defer` attribute causes the callback to execute after the full HTML
+     document has been parsed. For non-blocking uses, avoiding race conditions,
+     and consistent behavior across browsers, consider loading using Promises
+     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+    -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=marker,places&v=beta"
+      defer
+    ></script>
+  </body>
+</html>

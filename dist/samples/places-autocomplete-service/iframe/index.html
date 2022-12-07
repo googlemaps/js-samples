@@ -19,7 +19,7 @@
     />
 
     <script type="module" crossorigin>
-      (function () {
+      const f = function () {
         const n = document.createElement("link").relList;
         if (n && n.supports && n.supports("modulepreload")) return;
         for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -49,19 +49,20 @@
           const c = e(t);
           fetch(t.href, c);
         }
-      })();
+      };
+      f();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
        */ let u, m, p, d, i, r;
-      const f = (o, n) => {
+      const g = (o, n) => {
           let e = 0;
           return (...t) => {
             window.clearTimeout(e), (e = window.setTimeout(() => n(...t), o));
           };
         },
-        g = () => {
+        y = () => {
           (r = new google.maps.Map(document.getElementById("map"), {
             center: { lat: 47.609414458375674, lng: -122.33897030353548 },
             zoom: 12,
@@ -96,10 +97,10 @@
               i.checked && s();
             }),
             (i.checked = !0),
-            b(),
+            h(),
             s();
         },
-        s = f(100, () => {
+        s = g(100, () => {
           const o = { input: d.value },
             n = r.getBounds();
           i.checked && n && (o.bounds = n);
@@ -110,12 +111,12 @@
             e.getAttribute("data-value") !== "" &&
             (o.types = [e.getAttribute("data-value")]),
             (m.innerText = JSON.stringify(o, null, 2)),
-            d.value && u.getPlacePredictions(o, y);
+            d.value && u.getPlacePredictions(o, b);
         }),
-        y = (o, n) => {
+        b = (o, n) => {
           p.innerText = JSON.stringify({ results: o, status: n }, null, 2);
         },
-        b = () => {
+        h = () => {
           document
             .querySelectorAll(".mdc-text-field")
             .forEach((e) => new mdc.textField.MDCTextField(e)),
@@ -138,7 +139,7 @@
               n[e.detail.index].classList.add("tab-content--active");
           });
         };
-      window.initialize = g;
+      window.initialize = y;
     </script>
     <style>
       :root {

@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const c = function () {
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,12 +40,13 @@
           const t = r(e);
           fetch(e.href, t);
         }
-      })();
+      };
+      c();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function c() {
+       */ function a() {
         const l = new google.maps.Map(document.getElementById("map"), {
             zoom: 8,
             center: { lat: 40.731, lng: -73.997 },
@@ -69,7 +70,7 @@
           })
           .catch((n) => window.alert("Geocoder failed due to: " + n));
       }
-      window.initMap = c;
+      window.initMap = a;
     </script>
     <style>
       #map,

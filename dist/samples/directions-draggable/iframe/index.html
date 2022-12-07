@@ -10,7 +10,7 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
     <script type="module" crossorigin>
-      (function () {
+      const s = function () {
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
@@ -40,12 +40,13 @@
           const r = o(e);
           fetch(e.href, r);
         }
-      })();
+      };
+      s();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function s() {
+       */ function c() {
         const i = new google.maps.Map(document.getElementById("map"), {
             zoom: 4,
             center: { lat: -24.345, lng: 134.46 },
@@ -58,11 +59,11 @@
           });
         o.addListener("directions_changed", () => {
           const n = o.getDirections();
-          n && d(n);
+          n && a(n);
         }),
-          c("Perth, WA", "Sydney, NSW", t, o);
+          d("Perth, WA", "Sydney, NSW", t, o);
       }
-      function c(i, t, o, n) {
+      function d(i, t, o, n) {
         o.route({
           origin: i,
           destination: t,
@@ -80,7 +81,7 @@
             alert("Could not display directions due to: " + e);
           });
       }
-      function d(i) {
+      function a(i) {
         let t = 0;
         const o = i.routes[0];
         if (!!o) {
@@ -89,7 +90,7 @@
             (document.getElementById("total").innerHTML = t + " km");
         }
       }
-      window.initMap = s;
+      window.initMap = c;
     </script>
     <style>
       body,
