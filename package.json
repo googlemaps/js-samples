@@ -54,7 +54,7 @@
     "@types/react-dom": "^18.0.4",
     "@types/three": "^0.140.0",
     "@typescript-eslint/eslint-plugin": "^5.46.0",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@typescript-eslint/parser": "^5.46.0",
     "buffer": "^6.0.3",
     "cssnano": "^5.1.14",
     "dotenv": "^16.0.3",
