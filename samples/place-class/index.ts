@@ -28,17 +28,18 @@ async function findPlace() {
         locationBias: centerCoordinates,
     };
 
-    const { places } = await new google.maps.places.Place.findPlaceFromQuery(request);
+    const { places } = await google.maps.places.Place.findPlaceFromQuery(request);
 
     if (places.length) {
         const place = places[0];
+        const location = place.location as google.maps.LatLng;
         const markerView = new google.maps.marker.AdvancedMarkerView({
             map,
             position: place.location,
             title: place.displayName,
         });
 
-        map.setCenter(place.location);
+        map.setCenter(location);
 
     } else {
         console.log('No results');
@@ -70,7 +71,7 @@ async function findPlaceByPhone() {
         fields: ['displayName', 'location'],
     }
 
-    const { places } = await new google.maps.places.Place.findPlaceFromPhoneNumber(request);
+    const { places } = await google.maps.places.Place.findPlaceFromPhoneNumber(request);
 
     if (places.length) {
         const place = places[0];
