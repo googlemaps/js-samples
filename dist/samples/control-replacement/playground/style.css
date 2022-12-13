@@ -13,8 +13,7 @@ body {
 }
 
 .gm-style .controls {
-  font-size: 28px;
-  /* this adjusts the size of all the controls */
+  font-size: 28px; /* this adjusts the size of all the controls */
   background-color: white;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
   box-sizing: border-box;

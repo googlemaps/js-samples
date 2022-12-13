@@ -3,7 +3,7 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { faBus } from "https://cdn.skypack.dev/@fortawesome/free-solid-svg-icons@^6.1.1";
+import { faBus } from "https://cdn.skypack.dev/@fortawesome/free-solid-svg-icons@^6.2.1";
 
 function initMap() {
   const center = { lat: 36.6163, lng: -100.605 };
