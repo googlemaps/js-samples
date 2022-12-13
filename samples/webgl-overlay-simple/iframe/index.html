@@ -24897,11 +24897,13 @@ void main() {
           if (!this.paused) {
             t = this.timeScale;
             const n = this._timeScaleInterpolant;
-            n !== null &&
-              ((t *= n.evaluate(e)[0]),
-              e > n.parameterPositions[1] &&
-                (this.stopWarping(),
-                t === 0 ? (this.paused = !0) : (this.timeScale = t)));
+            if (n !== null) {
+              const i = n.evaluate(e)[0];
+              (t *= i),
+                e > n.parameterPositions[1] &&
+                  (this.stopWarping(),
+                  t === 0 ? (this.paused = !0) : (this.timeScale = t));
+            }
           }
           return (this._effectiveTimeScale = t), t;
         }
