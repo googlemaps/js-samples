@@ -3,7 +3,7 @@ let map: google.maps.Map;
 
 // Initialize and add the map
 function initMap(): void {
-  let markers: google.maps.Marker[] = [];
+  let markers: google.maps.marker.AdvancedMarkerView[];
 
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
 
@@ -42,14 +42,14 @@ function initMap(): void {
   select.listen("MDCSelect:change", () => {
     collisionBehavior = select.value;
     markers.forEach((marker) => {
-      marker.set("collisionBehavior", collisionBehavior);
+      marker.collisionBehavior = collisionBehavior;
     });
   });
 
   select.value = collisionBehavior;
 
   // Create some markers on the map
-  markers = [
+  let locations = [
     [-122.3402, 47.6093],
     [-122.3402, 47.6094],
     [-122.3403, 47.6094],
@@ -63,21 +63,15 @@ function initMap(): void {
     [-122.3379, 47.6093],
     [-122.3381, 47.6095],
     [-122.3378, 47.6095],
-  ].map(
-    ([lng, lat]: number[], i: number) =>
-      new google.maps.Marker({
-        position: new google.maps.LatLng({ lat, lng }),
-        map,
-        zIndex: i,
-        collisionBehavior: collisionBehavior,
-      } as google.maps.MarkerOptions)
-  );
+  ];
 
-  const markerViewCollisionExample = new google.maps.marker.AdvancedMarkerView({
-    map,
-    position: { lat: 47.4239, lng: -122.0947 },
-    collisionBehavior:
-      google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL,
+  locations.forEach(([lng, lat]: number[]) => {
+    const advancedMarker = new google.maps.marker.AdvancedMarkerView({
+      position: new google.maps.LatLng({ lat, lng }),
+      map,
+      collisionBehavior: collisionBehavior,
+    });
+    markers.push(advancedMarker);
   });
 }
 

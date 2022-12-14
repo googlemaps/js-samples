@@ -20,70 +20,70 @@
 
     <script type="module" crossorigin>
       (function () {
-        const n = document.createElement("link").relList;
-        if (n && n.supports && n.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          i(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const o of t.addedNodes)
-                o.tagName === "LINK" && o.rel === "modulepreload" && i(o);
+        const o = document.createElement("link").relList;
+        if (o && o.supports && o.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(t);
+        new MutationObserver((t) => {
+          for (const e of t)
+            if (e.type === "childList")
+              for (const n of e.addedNodes)
+                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
         }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
-          const t = {};
+        function s(t) {
+          const e = {};
           return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
+            t.integrity && (e.integrity = t.integrity),
+            t.referrerpolicy && (e.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (e.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (e.credentials = "omit")
+              : (e.credentials = "same-origin"),
+            e
           );
         }
-        function i(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = r(e);
-          fetch(e.href, t);
+        function i(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const e = s(t);
+          fetch(t.href, e);
         }
       })();
       /**
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let c;
-      function a() {
-        let l = [],
-          n = google.maps.CollisionBehavior.REQUIRED;
-        c = new google.maps.Map(document.getElementById("map"), {
+       */ let a;
+      function d() {
+        let l,
+          o = google.maps.CollisionBehavior.REQUIRED;
+        a = new google.maps.Map(document.getElementById("map"), {
           mapId: "6ff586e93e18149f",
           center: { lat: 47.609414458375674, lng: -122.33897030353548 },
           zoom: 17,
         });
-        const r = document.querySelector(".mdc-list");
-        for (const [e, t] of Object.entries(google.maps.CollisionBehavior)) {
-          const o = document.createElement("LI");
-          o.classList.add("mdc-list-item"), o.setAttribute("data-value", e);
-          const s = document.createElement("SPAN");
-          s.classList.add("mdc-list-item__text"),
-            (s.innerText = t),
-            o.appendChild(s),
-            r.appendChild(o);
+        const s = document.querySelector(".mdc-list");
+        for (const [e, n] of Object.entries(google.maps.CollisionBehavior)) {
+          const r = document.createElement("LI");
+          r.classList.add("mdc-list-item"), r.setAttribute("data-value", e);
+          const c = document.createElement("SPAN");
+          c.classList.add("mdc-list-item__text"),
+            (c.innerText = n),
+            r.appendChild(c),
+            s.appendChild(r);
         }
         const i = new mdc.select.MDCSelect(
           document.querySelector(".mdc-select")
         );
         i.listen("MDCSelect:change", () => {
-          (n = i.value),
+          (o = i.value),
             l.forEach((e) => {
-              e.set("collisionBehavior", n);
+              e.collisionBehavior = o;
             });
         }),
-          (i.value = n),
-          (l = [
+          (i.value = o),
+          [
             [-122.3402, 47.6093],
             [-122.3402, 47.6094],
             [-122.3403, 47.6094],
@@ -97,23 +97,16 @@
             [-122.3379, 47.6093],
             [-122.3381, 47.6095],
             [-122.3378, 47.6095],
-          ].map(
-            ([e, t], o) =>
-              new google.maps.Marker({
-                position: new google.maps.LatLng({ lat: t, lng: e }),
-                map: c,
-                zIndex: o,
-                collisionBehavior: n,
-              })
-          )),
-          new google.maps.marker.AdvancedMarkerView({
-            map: c,
-            position: { lat: 47.4239, lng: -122.0947 },
-            collisionBehavior:
-              google.maps.CollisionBehavior.REQUIRED_AND_HIDES_OPTIONAL,
+          ].forEach(([e, n]) => {
+            const r = new google.maps.marker.AdvancedMarkerView({
+              position: new google.maps.LatLng({ lat: n, lng: e }),
+              map: a,
+              collisionBehavior: o,
+            });
+            l.push(r);
           });
       }
-      window.initMap = a;
+      window.initMap = d;
     </script>
     <style>
       :root {
