@@ -8,7 +8,7 @@ let map;
 
 // Initialize and add the map
 function initMap() {
-  let markers;
+  let markers = [];
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
 
   map = new google.maps.Map(document.getElementById("map"), {
