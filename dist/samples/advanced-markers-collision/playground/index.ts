@@ -3,7 +3,7 @@ let map: google.maps.Map;
 
 // Initialize and add the map
 function initMap(): void {
-  let markers: google.maps.marker.AdvancedMarkerView[];
+  let markers: google.maps.marker.AdvancedMarkerView[] = [];
 
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
 
