@@ -80,7 +80,7 @@
     "typescript": "^4.9.4",
     "vite": "^3.2.5",
     "vite-plugin-singlefile": "^0.13.2",
-    "yaml": "^2.2.0"
+    "yaml": "^2.2.1"
   },
   "private": true,
   "dependencies": {
