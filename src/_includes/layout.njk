@@ -34,16 +34,17 @@
   <body>
   {% block html %}{% endblock %}
   {% block api %}
-    <!-- 
-     The `defer` attribute causes the callback to execute after the full HTML
-     document has been parsed. For non-blocking uses, avoiding race conditions,
-     and consistent behavior across browsers, consider loading using Promises
-     with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-    -->
-    <script 
-      src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}}&callback={{ callback }}{% if libraries|length %}&libraries={{ libraries }}{% endif %}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" defer></script>
     {% if dynamic_import == "true" %}
       <script >(g=>{var h,b,k,n="The Google Maps JavaScript API",c="google",l="importLibrary",p="__ib__",q=document,a=window;a=a[c]||(a[c]={});var d=a.maps||(a.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,m)=>{await (b=q.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+p);b.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[p]=f;b.onerror=()=>h=m(Error(n+" could not load."));q.head.append(b)}));d[l]?console.warn(n+" only loads once. Ignoring:",g):d[l]=(f,...m)=>r.add(f)&&u().then(()=>d[l](f,...m))})({key: {{GOOGLE_MAPS_API_KEY}}, v: "beta",});</script>
+    {% else %}
+      <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises
+      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+      -->
+      <script 
+        src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}}&callback={{ callback }}{% if libraries|length %}&libraries={{ libraries }}{% endif %}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" defer></script>
     {% endif -%}
   {% endblock %}   
   </body>
