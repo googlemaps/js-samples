@@ -14,14 +14,14 @@
         const t = document.createElement("link").relList;
         if (t && t.supports && t.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          c(e);
+          l(e);
         new MutationObserver((e) => {
           for (const o of e)
             if (o.type === "childList")
               for (const i of o.addedNodes)
-                i.tagName === "LINK" && i.rel === "modulepreload" && c(i);
+                i.tagName === "LINK" && i.rel === "modulepreload" && l(i);
         }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
+        function c(e) {
           const o = {};
           return (
             e.integrity && (o.integrity = e.integrity),
@@ -34,10 +34,10 @@
             o
           );
         }
-        function c(e) {
+        function l(e) {
           if (e.ep) return;
           e.ep = !0;
-          const o = r(e);
+          const o = c(e);
           fetch(e.href, o);
         }
       })();
@@ -45,31 +45,31 @@
        * @license
        * Copyright 2022 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let s, a, l;
+       */ let a, s, r;
       function d() {
-        (s = new google.maps.Map(document.getElementById("map"), {
+        (a = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 39.23, lng: -105.73 },
           zoom: 8,
           mapId: "a3efe1c035bad51b",
         })),
-          (a = s.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
-          a.addListener("click", p),
-          (l = new google.maps.InfoWindow({})),
+          (s = a.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
+          s.addListener("click", p),
+          (r = new google.maps.InfoWindow({})),
           u();
       }
-      function p(n) {
+      async function p(n) {
         let t = n.features[0];
-        if ((console.log(n), !t.placeId)) return;
+        if (!t.placeId) return;
         u(t.placeId);
-        let r =
+        let l =
           '<span style="font-size:small">Display name: ' +
-          t.displayName +
+          (await t.fetchPlace()).displayName +
           "<br/> Place ID: " +
           t.placeId +
           "<br/> Feature type: " +
           t.featureType +
           "</span>";
-        m(r, n.latLng);
+        m(l, n.latLng);
       }
       const f = {
           strokeColor: "#810FCB",
@@ -80,10 +80,10 @@
         },
         y = { ...f, fillColor: "#810FCB", fillOpacity: 0.5 };
       function u(n) {
-        a.style = (t) => (n && t.feature.placeId == n ? y : f);
+        s.style = (t) => (n && t.feature.placeId == n ? y : f);
       }
       function m(n, t) {
-        l.setContent(n), l.setPosition(t), l.open({ map: s, shouldFocus: !1 });
+        r.setContent(n), r.setPosition(t), r.open({ map: a, shouldFocus: !1 });
       }
       window.initMap = d;
     </script>
@@ -110,7 +110,7 @@
       with https://www.npmjs.com/package/@googlemaps/js-api-loader.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=beta"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=beta"
       defer
     ></script>
   </body>

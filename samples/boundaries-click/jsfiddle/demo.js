@@ -26,19 +26,19 @@ function initMap() {
 }
 
 // Handle the click event.
-function handlePlaceClick(event) {
+async function handlePlaceClick(event) {
   let feature = event.features[0];
 
-  console.log(event);
   if (!feature.placeId) return;
 
   // Apply the style to the feature layer.
   applyStyleToSelected(feature.placeId);
 
   // Add the info window.
+  const place = await feature.fetchPlace();
   let content =
     '<span style="font-size:small">Display name: ' +
-    feature.displayName +
+    place.displayName +
     "<br/> Place ID: " +
     feature.placeId +
     "<br/> Feature type: " +
