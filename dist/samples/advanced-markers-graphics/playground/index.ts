@@ -81,7 +81,7 @@ function initMap() {
     }
   });
 
-  // A marker using a Font Awesome icon for the glpyh.
+  // A marker using a Font Awesome icon for the glyph.
   const icon = document.createElement("div");
   icon.innerHTML = '<i class="fa fa-pizza-slice fa-lg"></i>';
   const faPinView = new google.maps.marker.PinView({
