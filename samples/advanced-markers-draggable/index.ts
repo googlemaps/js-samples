@@ -22,7 +22,7 @@
         title: "This marker is draggable.",
     });
     // [END maps_advanced_markers_draggable_marker]
-    draggableMarker.addListener('click', (event) => {
+    draggableMarker.addListener('dragend', (event) => {
         const position = draggableMarker.position as google.maps.LatLngLiteral;
         infoWindow.close();
         infoWindow.setContent(`Pin dropped at: ${position.lat()}, ${position.lng()}`);
