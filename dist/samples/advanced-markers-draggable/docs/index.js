@@ -20,11 +20,13 @@ function initMap() {
   });
 
   // [END maps_advanced_markers_draggable_marker]
-  draggableMarker.addListener("click", (event) => {
+  draggableMarker.addListener("dragend", (event) => {
     const position = draggableMarker.position;
 
     infoWindow.close();
-    infoWindow.setContent(`Pin dropped at: ${position.lat()}, ${position.lng()}`);
+    infoWindow.setContent(
+      `Pin dropped at: ${position.lat()}, ${position.lng()}`
+    );
     infoWindow.open(draggableMarker.map, draggableMarker);
   });
 }
