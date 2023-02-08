@@ -17,7 +17,7 @@ function initMap() {
     title: "This marker is draggable.",
   });
 
-  draggableMarker.addListener("click", (event) => {
+  draggableMarker.addListener("dragend", (event) => {
     const position = draggableMarker.position;
 
     infoWindow.close();

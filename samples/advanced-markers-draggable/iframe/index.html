@@ -58,7 +58,7 @@
             draggable: !0,
             title: "This marker is draggable.",
           });
-        n.addListener("click", (r) => {
+        n.addListener("dragend", (r) => {
           const e = n.position;
           o.close(),
             o.setContent(`Pin dropped at: ${e.lat()}, ${e.lng()}`),

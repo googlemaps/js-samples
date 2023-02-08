@@ -16,7 +16,7 @@ function initMap() {
     draggable: true,
     title: "This marker is draggable.",
   });
-  draggableMarker.addListener("click", (event) => {
+  draggableMarker.addListener("dragend", (event) => {
     const position = draggableMarker.position as google.maps.LatLngLiteral;
     infoWindow.close();
     infoWindow.setContent(
