@@ -20,7 +20,7 @@
         title: "This marker is draggable.",
     });
     draggableMarker.addListener('dragend', (event) => {
-        const position = draggableMarker.position as google.maps.LatLngLiteral;
+        const position = draggableMarker.position as google.maps.LatLng;
         infoWindow.close();
         infoWindow.setContent(`Pin dropped at: ${position.lat()}, ${position.lng()}`);
         infoWindow.open(draggableMarker.map, draggableMarker);
