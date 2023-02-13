@@ -84,7 +84,7 @@
   },
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@googlemaps/js-api-loader": "^1.15.1",
     "@googlemaps/markerclusterer": "2.0.3",
