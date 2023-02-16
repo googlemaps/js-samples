@@ -5,20 +5,18 @@
  */
 
 // [START maps_map_simple]
+// [START maps_map_simple_initmap]
 let map: google.maps.Map;
-
-function initMap(): void {
-  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+async function initMap(): Promise<void> {
+  //@ts-ignore
+  const { Map } = await google.maps.importLibrary("maps");
+  map = new Map(document.getElementById("map") as HTMLElement, {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,
   });
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
+// [END maps_map_simple_initmap]
 // [END maps_map_simple]
 export {};

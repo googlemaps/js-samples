@@ -1,6 +1,7 @@
 {
   "title": "Add Map",
-  "callback": "initMap",
+  "version": "weekly",
+  "dynamic_import": "true",
   "tag": "add_map",
   "name": "add-map",
   "pagination": {
