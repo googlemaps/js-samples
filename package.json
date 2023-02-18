@@ -1,6 +1,6 @@
 {
   "name": "places-autocomplete-addressform",
-  "description": "Samples for Google Maps JavaScript",
+  "description": "Address Autocomplete using Google Maps",
   "version": "2.1.4",
   "keywords": [
     "google",
@@ -12,10 +12,7 @@
   "bugs": {
     "url": "https://github.com/googlemaps/js-samples/issues"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/googlemaps/js-samples.git"
-  },
+  "repository": "git+https://github.com/googlemaps/js-samples.git",
   "files": [],
   "license": "Apache-2.0",
   "scripts": {
@@ -31,5 +28,7 @@
     "vite": "^3.2.5"
   },
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "main": "index.js",
+  "author": "Mitch <72631198+Mitch-PragmaFlow@users.noreply.github.com>"
 }
