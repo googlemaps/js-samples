@@ -13,41 +13,41 @@
       (function () {
         const e = document.createElement("link").relList;
         if (e && e.supports && e.supports("modulepreload")) return;
-        for (const i of document.querySelectorAll('link[rel="modulepreload"]'))
-          l(i);
-        new MutationObserver((i) => {
-          for (const s of i)
-            if (s.type === "childList")
-              for (const n of s.addedNodes)
-                n.tagName === "LINK" && n.rel === "modulepreload" && l(n);
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          l(t);
+        new MutationObserver((t) => {
+          for (const i of t)
+            if (i.type === "childList")
+              for (const f of i.addedNodes)
+                f.tagName === "LINK" && f.rel === "modulepreload" && l(f);
         }).observe(document, { childList: !0, subtree: !0 });
-        function t(i) {
-          const s = {};
+        function r(t) {
+          const i = {};
           return (
-            i.integrity && (s.integrity = i.integrity),
-            i.referrerpolicy && (s.referrerPolicy = i.referrerpolicy),
-            i.crossorigin === "use-credentials"
-              ? (s.credentials = "include")
-              : i.crossorigin === "anonymous"
-              ? (s.credentials = "omit")
-              : (s.credentials = "same-origin"),
-            s
+            t.integrity && (i.integrity = t.integrity),
+            t.referrerpolicy && (i.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (i.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (i.credentials = "omit")
+              : (i.credentials = "same-origin"),
+            i
           );
         }
-        function l(i) {
-          if (i.ep) return;
-          i.ep = !0;
-          const s = t(i);
-          fetch(i.href, s);
+        function l(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const i = r(t);
+          fetch(t.href, i);
         }
       })();
       /**
        * @license
        * Copyright 2022 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ let r, v, _, T, M, S, f, L, E, G, d, c, m, u, y, b, h, g, p, I;
-      function F() {
-        (r = new google.maps.Map(document.getElementById("map"), {
+       */ let _, o, s, C, M, p, n, g, I, E, c, v, u, m, y, S;
+      function k() {
+        (_ = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 39.32, lng: -95 },
           zoom: 6,
           mapTypeControl: !1,
@@ -55,182 +55,138 @@
           mapId: "1bf5295b744a394a",
         })),
           document.getElementById("pac-card"),
-          (f = document.getElementById("pac-content")),
-          (T = document.getElementById("pac-input")),
-          (v = document.getElementById("country-select")),
-          (_ = document.getElementById("feature-type-select")),
+          (n = document.getElementById("pac-content")),
+          (C = document.getElementById("pac-input")),
+          (o = document.getElementById("country-select")),
+          (s = document.getElementById("feature-type-select")),
           (M = document.getElementById("fill-color-picker")),
-          (S = document.getElementById("stroke-color-picker")),
-          v.addEventListener("change", C),
-          _.addEventListener("change", O),
-          M.addEventListener("change", B),
-          S.addEventListener("change", B);
+          (p = document.getElementById("stroke-color-picker")),
+          o.addEventListener("change", T),
+          s.addEventListener("change", G),
+          M.addEventListener("change", b),
+          p.addEventListener("change", b);
         const a = document.getElementById("sidebar");
-        r.controls[google.maps.ControlPosition.TOP_LEFT].push(a);
+        _.controls[google.maps.ControlPosition.TOP_LEFT].push(a);
         const e = {
           fields: ["place_id", "type"],
           strictBounds: !1,
           types: ["(regions)"],
         };
-        (L = new google.maps.places.Autocomplete(T, e)),
-          (E = new google.maps.places.PlacesService(r)),
-          L.addListener("place_changed", () => {
-            const t = L.getPlace();
-            switch (t.types[0]) {
+        (g = new google.maps.places.Autocomplete(C, e)),
+          (I = new google.maps.places.PlacesService(_)),
+          g.addListener("place_changed", () => {
+            const r = g.getPlace();
+            switch (r.types[0]) {
               case "country":
-                _.selectedIndex = 0;
+                s.selectedIndex = 0;
                 break;
               case "administrative_area_level_1":
-                _.selectedIndex = 1;
+                s.selectedIndex = 1;
                 break;
               case "administrative_area_level_2":
-                _.selectedIndex = 2;
-                break;
-              case "administrative_area_level_3":
-                _.selectedIndex = 3;
-                break;
-              case "administrative_area_level_4":
-                _.selectedIndex = 4;
+                s.selectedIndex = 2;
                 break;
               case "locality":
-                _.selectedIndex = 5;
-                break;
-              case "sublocality_level_1":
-                _.selectedIndex = 6;
-                break;
-              case "neighborhood":
-                _.selectedIndex = 7;
+                s.selectedIndex = 3;
                 break;
               case "postal_code":
-                _.selectedIndex = 8;
+                s.selectedIndex = 4;
                 break;
             }
-            A(t.place_id);
+            L(r.place_id);
           }),
-          (d = r.getFeatureLayer("COUNTRY")),
-          (c = r.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_1")),
-          (m = r.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
-          (u = r.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_3")),
-          (y = r.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_4")),
-          (b = r.getFeatureLayer("LOCALITY")),
-          (h = r.getFeatureLayer("SUBLOCALITY_LEVEL_1")),
-          (g = r.getFeatureLayer("NEIGHBORHOOD")),
-          (p = r.getFeatureLayer("POSTAL_CODE")),
-          d.addListener("click", o),
-          c.addListener("click", o),
-          m.addListener("click", o),
-          u.addListener("click", o),
-          y.addListener("click", o),
-          b.addListener("click", o),
-          h.addListener("click", o),
-          g.addListener("click", o),
-          p.addListener("click", o),
-          (G = [d, c, m, u, y, b, h, g, p]),
-          k(),
-          R(),
-          C();
+          (c = _.getFeatureLayer("COUNTRY")),
+          (v = _.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_1")),
+          (u = _.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2")),
+          (m = _.getFeatureLayer("LOCALITY")),
+          (y = _.getFeatureLayer("POSTAL_CODE")),
+          c.addListener("click", d),
+          v.addListener("click", d),
+          u.addListener("click", d),
+          m.addListener("click", d),
+          y.addListener("click", d),
+          (E = [c, v, u, m, y]),
+          h(),
+          P(),
+          T();
       }
-      function O() {
+      function G() {
         let a = {
           fillColor: "white",
           fillOpacity: 0.01,
-          strokeColor: S.value,
+          strokeColor: p.value,
           strokeOpacity: 1,
           strokeWeight: 2,
         };
-        switch ((P(), (I = ""), (f.innerHTML = ""), _.value)) {
+        switch ((A(), (S = ""), (n.innerHTML = ""), s.value)) {
           case "country":
-            d.style = a;
-            break;
-          case "administrative_area_level_1":
             c.style = a;
             break;
-          case "administrative_area_level_2":
-            m.style = a;
+          case "administrative_area_level_1":
+            v.style = a;
             break;
-          case "administrative_area_level_3":
+          case "administrative_area_level_2":
             u.style = a;
             break;
-          case "administrative_area_level_4":
-            y.style = a;
-            break;
           case "locality":
-            b.style = a;
-            break;
-          case "sublocality_level_1":
-            h.style = a;
-            break;
-          case "neighborhood":
-            g.style = a;
+            m.style = a;
             break;
           case "postal_code":
-            p.style = a;
+            y.style = a;
             break;
         }
       }
-      function B() {
-        I && k(I);
+      function b() {
+        S && h(S);
       }
-      function k(a) {
+      function h(a) {
         let e = {
-            strokeColor: S.value,
+            strokeColor: p.value,
             strokeOpacity: 1,
             strokeWeight: 2,
             fillColor: "white",
             fillOpacity: 0.1,
           },
-          t = {
-            strokeColor: S.value,
+          r = {
+            strokeColor: p.value,
             strokeOpacity: 1,
             strokeWeight: 2,
             fillColor: M.value,
             fillOpacity: 0.5,
           };
-        P();
-        const l = (i) => (i.feature.placeId == a ? t : e);
-        switch (_.value) {
+        A();
+        const l = (t) => (t.feature.placeId == a ? r : e);
+        switch (s.value) {
           case "country":
-            d.style = l;
-            break;
-          case "administrative_area_level_1":
             c.style = l;
             break;
-          case "administrative_area_level_2":
-            m.style = l;
+          case "administrative_area_level_1":
+            v.style = l;
             break;
-          case "administrative_area_level_3":
+          case "administrative_area_level_2":
             u.style = l;
             break;
-          case "administrative_area_level_4":
-            y.style = l;
-            break;
           case "locality":
-            b.style = l;
-            break;
-          case "sublocality_level_1":
-            h.style = l;
-            break;
-          case "neighborhood":
-            g.style = l;
+            m.style = l;
             break;
           case "postal_code":
-            p.style = l;
+            y.style = l;
             break;
         }
       }
-      function R() {
-        for (const a of N) {
+      function P() {
+        for (const a of B) {
           let e = document.createElement("option");
           (e.innerHTML = a.name),
             (e.value = a.code),
             a.code == "US" && (e.selected = !0),
-            v.appendChild(e);
+            o.appendChild(e);
         }
       }
-      function C() {
-        let a = v.value;
-        const e = N.find((l) => l.code === a);
-        let t = new Map([
+      function T() {
+        let a = o.value;
+        const e = B.find((l) => l.code === a);
+        let r = new Map([
           ["country", e == null ? void 0 : e.feature.country],
           [
             "administrative_area_level_1",
@@ -240,75 +196,62 @@
             "administrative_area_level_2",
             e == null ? void 0 : e.feature.administrative_area_level_2,
           ],
-          [
-            "administrative_area_level_3",
-            e == null ? void 0 : e.feature.administrative_area_level_3,
-          ],
-          [
-            "administrative_area_level_4",
-            e == null ? void 0 : e.feature.administrative_area_level_4,
-          ],
           ["postal_code", e == null ? void 0 : e.feature.postal_code],
           ["locality", e == null ? void 0 : e.feature.locality],
-          [
-            "sublocality_level_1",
-            e == null ? void 0 : e.feature.sublocality_level_1,
-          ],
-          ["neighborhood", e == null ? void 0 : e.feature.neighborhood],
         ]);
-        _.namedItem("country").selected = !0;
-        for (const l of t)
+        s.namedItem("country").selected = !0;
+        for (const l of r)
           l[1] == !1
-            ? (_.namedItem(l[0]).disabled = !0)
-            : (_.namedItem(l[0]).disabled = !1);
-        K(v.options[v.selectedIndex].text);
+            ? (s.namedItem(l[0]).disabled = !0)
+            : (s.namedItem(l[0]).disabled = !1);
+        N(o.options[o.selectedIndex].text);
       }
-      function P() {
-        for (const a of G) a.style = null;
+      function A() {
+        for (const a of E) a.style = null;
       }
-      function o(a) {
+      function d(a) {
         let e = a.features[0].placeId;
-        !e || A(e);
+        !e || L(e);
       }
-      function K(a) {
-        f.innerHTML = "";
+      function N(a) {
+        n.innerHTML = "";
         const e = { query: a, fields: ["place_id"] };
-        E.findPlaceFromQuery(e, (t, l) => {
+        I.findPlaceFromQuery(e, (r, l) => {
           l === google.maps.places.PlacesServiceStatus.OK &&
-            t &&
-            A(t[0].place_id);
+            r &&
+            L(r[0].place_id);
         });
       }
-      function A(a) {
-        (I = a), (f.innerHTML = "");
+      function L(a) {
+        (S = a), (n.innerHTML = "");
         const e = {
           placeId: a,
           fields: ["name", "formatted_address", "geometry", "type"],
         };
-        E.getDetails(e, (t, l) => {
-          var s;
+        I.getDetails(e, (r, l) => {
+          var i;
           if (
             l === google.maps.places.PlacesServiceStatus.OK &&
-            t &&
-            t.geometry &&
-            t.geometry.location
+            r &&
+            r.geometry &&
+            r.geometry.location
           ) {
-            var i = (s = t.geometry) == null ? void 0 : s.viewport;
-            r.fitBounds(i, 155), f.appendChild(document.createElement("hr"));
-            const n = t.types;
-            f.innerHTML =
+            var t = (i = r.geometry) == null ? void 0 : i.viewport;
+            _.fitBounds(t, 155), n.appendChild(document.createElement("hr"));
+            const f = r.types;
+            n.innerHTML =
               '<hr><span id="place-info"><b>' +
-              t.formatted_address +
+              r.formatted_address +
               "</b><br/> Place ID: <code>" +
               a +
               "</code><br/> Feature type: <code>" +
-              n[0] +
+              f[0] +
               "</code></span><br/>";
           }
         }),
-          k(a);
+          h(a);
       }
-      const N = [
+      const B = [
         {
           name: "Afghanistan",
           code: "AF",
@@ -316,12 +259,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -331,12 +270,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -346,12 +281,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -361,12 +292,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -376,12 +303,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -391,12 +314,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -406,12 +325,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -421,12 +336,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -436,12 +347,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -451,12 +358,8 @@
             country: !1,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -466,12 +369,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -481,12 +380,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -496,12 +391,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -511,12 +402,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -526,12 +413,8 @@
             country: !1,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -541,12 +424,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -556,12 +435,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -571,12 +446,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -586,12 +457,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -601,12 +468,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -616,12 +479,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -631,12 +490,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -646,12 +501,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -661,12 +512,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -676,12 +523,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -691,12 +534,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -706,12 +545,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -721,12 +556,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -736,12 +567,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -751,12 +578,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -766,12 +589,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -781,12 +600,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -796,12 +611,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -811,12 +622,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -826,12 +633,19 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
+          },
+        },
+        {
+          name: "Cabo Verde",
+          code: "CV",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            postal_code: !1,
+            locality: !1,
           },
         },
         {
@@ -841,12 +655,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -856,12 +666,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -871,27 +677,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
-          },
-        },
-        {
-          name: "Cape Verde",
-          code: "CV",
-          feature: {
-            country: !0,
-            administrative_area_level_1: !1,
-            administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
-            postal_code: !1,
-            locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -901,12 +688,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -916,12 +699,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -931,12 +710,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -946,12 +721,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -961,12 +732,8 @@
             country: !1,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -976,12 +743,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -991,12 +754,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1006,12 +765,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1021,12 +776,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1036,12 +787,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1051,12 +798,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1066,12 +809,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1081,12 +820,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1096,12 +831,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1111,12 +842,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1126,12 +853,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1141,12 +864,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1156,12 +875,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1171,12 +886,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1186,12 +897,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1201,12 +908,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1216,12 +919,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1231,12 +930,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1246,12 +941,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1261,12 +952,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1276,12 +963,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1291,12 +974,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1306,12 +985,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1321,12 +996,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1336,12 +1007,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1351,12 +1018,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1366,12 +1029,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1381,27 +1040,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
-          },
-        },
-        {
-          name: "Federated States of Micronesia",
-          code: "FM",
-          feature: {
-            country: !0,
-            administrative_area_level_1: !1,
-            administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
-            postal_code: !1,
-            locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1411,12 +1051,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1426,12 +1062,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1441,12 +1073,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !0,
-            administrative_area_level_4: !0,
             postal_code: !0,
             locality: !0,
-            sublocality_level_1: !0,
-            neighborhood: !0,
           },
         },
         {
@@ -1456,12 +1084,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1471,12 +1095,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1486,12 +1106,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1501,12 +1117,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1516,12 +1128,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1531,12 +1139,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !0,
-            administrative_area_level_4: !0,
             postal_code: !0,
             locality: !0,
-            sublocality_level_1: !0,
-            neighborhood: !0,
           },
         },
         {
@@ -1546,12 +1150,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1561,12 +1161,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1576,12 +1172,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1591,12 +1183,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1606,12 +1194,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1621,12 +1205,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1636,12 +1216,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1651,12 +1227,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1666,12 +1238,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1681,12 +1249,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1696,12 +1260,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1711,12 +1271,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1726,12 +1282,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1741,12 +1293,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1756,12 +1304,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1771,12 +1315,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1786,12 +1326,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1801,12 +1337,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1816,12 +1348,8 @@
             country: !1,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1831,12 +1359,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1846,12 +1370,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1861,12 +1381,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1876,12 +1392,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1891,12 +1403,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1906,12 +1414,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1921,12 +1425,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1936,12 +1436,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1951,12 +1447,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !0,
-            sublocality_level_1: !0,
-            neighborhood: !0,
           },
         },
         {
@@ -1966,12 +1458,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1981,12 +1469,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -1996,12 +1480,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2011,12 +1491,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2026,12 +1502,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2041,12 +1513,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2056,12 +1524,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2071,12 +1535,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2086,12 +1546,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2101,12 +1557,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2116,12 +1568,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2131,12 +1579,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2146,12 +1590,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2161,12 +1601,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2176,12 +1612,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2191,12 +1623,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2206,12 +1634,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2221,12 +1645,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2236,12 +1656,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2251,12 +1667,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2266,12 +1678,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2281,12 +1689,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2296,12 +1700,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2311,12 +1711,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2326,12 +1722,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2341,12 +1733,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2356,12 +1744,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2371,12 +1755,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2386,12 +1766,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2401,12 +1777,19 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
+          },
+        },
+        {
+          name: "Micronesia",
+          code: "FM",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !1,
+            administrative_area_level_2: !1,
+            postal_code: !1,
+            locality: !1,
           },
         },
         {
@@ -2416,12 +1799,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2431,12 +1810,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2446,12 +1821,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2461,12 +1832,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2476,12 +1843,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2491,12 +1854,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2506,12 +1865,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2521,12 +1876,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2536,12 +1887,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2551,12 +1898,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2566,12 +1909,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2581,12 +1920,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2596,12 +1931,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2611,12 +1942,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2626,12 +1953,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2641,12 +1964,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2656,12 +1975,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2671,12 +1986,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2686,12 +1997,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2701,12 +2008,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2716,12 +2019,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2731,12 +2030,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2746,12 +2041,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2761,12 +2052,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2776,12 +2063,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2791,12 +2074,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2806,12 +2085,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2821,12 +2096,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2836,12 +2107,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2851,12 +2118,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2866,12 +2129,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2881,12 +2140,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2896,12 +2151,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2911,12 +2162,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2926,12 +2173,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2941,12 +2184,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2956,12 +2195,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2971,12 +2206,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -2986,12 +2217,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3001,12 +2228,8 @@
             country: !1,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3016,12 +2239,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3031,12 +2250,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3046,12 +2261,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3061,12 +2272,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3076,12 +2283,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3091,12 +2294,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3106,12 +2305,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3121,12 +2316,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3136,12 +2327,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3151,12 +2338,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3166,12 +2349,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3181,12 +2360,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3196,12 +2371,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3211,12 +2382,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3226,12 +2393,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3241,12 +2404,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3256,12 +2415,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3271,12 +2426,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3286,12 +2437,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3301,12 +2448,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3316,12 +2459,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3331,12 +2470,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3346,12 +2481,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3361,12 +2492,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3376,12 +2503,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3391,12 +2514,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3406,12 +2525,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3421,12 +2536,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3436,12 +2547,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3451,12 +2558,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3466,12 +2569,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3481,12 +2580,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3496,12 +2591,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3511,12 +2602,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3526,12 +2613,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3541,12 +2624,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3556,12 +2635,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3571,12 +2646,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3586,12 +2657,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3601,12 +2668,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3616,12 +2679,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3631,12 +2690,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3646,12 +2701,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3661,12 +2712,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3676,12 +2723,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3691,12 +2734,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3706,27 +2745,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
-          },
-        },
-        {
-          name: "Turkey",
-          code: "TR",
-          feature: {
-            country: !0,
-            administrative_area_level_1: !0,
-            administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
-            postal_code: !1,
-            locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3736,12 +2756,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3751,12 +2767,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3766,12 +2778,19 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
+          },
+        },
+        {
+          name: "T\xFCrkiye",
+          code: "TR",
+          feature: {
+            country: !0,
+            administrative_area_level_1: !0,
+            administrative_area_level_2: !1,
+            postal_code: !1,
+            locality: !1,
           },
         },
         {
@@ -3781,12 +2800,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3796,12 +2811,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3811,12 +2822,8 @@
             country: !1,
             administrative_area_level_1: !0,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3826,12 +2833,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3841,12 +2844,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !0,
-            administrative_area_level_4: !0,
             postal_code: !1,
             locality: !0,
-            sublocality_level_1: !1,
-            neighborhood: !0,
           },
         },
         {
@@ -3856,12 +2855,8 @@
             country: !0,
             administrative_area_level_1: !0,
             administrative_area_level_2: !0,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !0,
             locality: !0,
-            sublocality_level_1: !0,
-            neighborhood: !0,
           },
         },
         {
@@ -3871,12 +2866,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3886,12 +2877,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3901,12 +2888,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3916,12 +2899,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3931,12 +2910,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3946,12 +2921,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3961,12 +2932,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3976,12 +2943,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -3991,12 +2954,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -4006,12 +2965,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -4021,12 +2976,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -4036,12 +2987,8 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
         {
@@ -4051,16 +2998,12 @@
             country: !0,
             administrative_area_level_1: !1,
             administrative_area_level_2: !1,
-            administrative_area_level_3: !1,
-            administrative_area_level_4: !1,
             postal_code: !1,
             locality: !1,
-            sublocality_level_1: !1,
-            neighborhood: !1,
           },
         },
       ];
-      window.initMap = F;
+      window.initMap = k;
     </script>
     <style>
       #map,
@@ -4138,23 +3081,7 @@
             >
               Administrative Area Level 2
             </option>
-            <option
-              id="administrative_area_level_3"
-              value="administrative_area_level_3"
-            >
-              Administrative Area Level 3
-            </option>
-            <option
-              id="administrative_area_level_4"
-              value="administrative_area_level_4"
-            >
-              Administrative Area Level 4
-            </option>
             <option id="locality" value="locality">Locality</option>
-            <option id="sublocality_level_1" value="sublocality_level_1">
-              Sublocality Level 1
-            </option>
-            <option id="neighborhood" value="neighborhood">Neighborhood</option>
             <option id="postal_code" value="postal_code">Postal code</option>
           </select>
         </div>

@@ -24,11 +24,7 @@ let allLayers;
 let countryLayer;
 let admin1Layer;
 let admin2Layer;
-let admin3Layer;
-let admin4Layer;
 let localityLayer;
-let subLocalityLayer;
-let neighborhoodLayer;
 let postalCodeLayer;
 
 let selectedPlaceId: string;
@@ -87,23 +83,11 @@ function initMap() {
             case 'administrative_area_level_2':
                 featureMenu.selectedIndex = 2;
                 break;
-            case 'administrative_area_level_3':
-                featureMenu.selectedIndex = 3;
-                break;
-            case 'administrative_area_level_4':
-                featureMenu.selectedIndex = 4;
-                break;
             case 'locality':
-                featureMenu.selectedIndex = 5; 
-                break;
-            case 'sublocality_level_1':
-                featureMenu.selectedIndex = 6;
-                break;
-            case 'neighborhood':
-                featureMenu.selectedIndex = 7
+                featureMenu.selectedIndex = 3; 
                 break;
             case 'postal_code':
-                featureMenu.selectedIndex = 8;
+                featureMenu.selectedIndex = 4;
                 break;
             default:
                 break;
@@ -121,15 +105,7 @@ function initMap() {
     //@ts-ignore
     admin2Layer = map.getFeatureLayer('ADMINISTRATIVE_AREA_LEVEL_2');
     //@ts-ignore
-    admin3Layer = map.getFeatureLayer('ADMINISTRATIVE_AREA_LEVEL_3');
-    //@ts-ignore
-    admin4Layer = map.getFeatureLayer('ADMINISTRATIVE_AREA_LEVEL_4');
-    //@ts-ignore
     localityLayer = map.getFeatureLayer('LOCALITY');
-    //@ts-ignore
-    subLocalityLayer = map.getFeatureLayer('SUBLOCALITY_LEVEL_1');
-    //@ts-ignore
-    neighborhoodLayer = map.getFeatureLayer('NEIGHBORHOOD');
     //@ts-ignore
     postalCodeLayer = map.getFeatureLayer('POSTAL_CODE');
 
@@ -137,15 +113,11 @@ function initMap() {
     countryLayer.addListener('click', handlePlaceClick);
     admin1Layer.addListener('click', handlePlaceClick);
     admin2Layer.addListener('click', handlePlaceClick);
-    admin3Layer.addListener('click', handlePlaceClick);
-    admin4Layer.addListener('click', handlePlaceClick);
     localityLayer.addListener('click', handlePlaceClick);
-    subLocalityLayer.addListener('click', handlePlaceClick);
-    neighborhoodLayer.addListener('click', handlePlaceClick);
     postalCodeLayer.addListener('click', handlePlaceClick);
 
     // List of all the layers when they get initialized.
-    allLayers = [countryLayer, admin1Layer, admin2Layer, admin3Layer, admin4Layer, localityLayer, subLocalityLayer, neighborhoodLayer, postalCodeLayer];
+    allLayers = [countryLayer, admin1Layer, admin2Layer, localityLayer, postalCodeLayer];
 
     // Init map styles.
     applyStyle();
@@ -181,20 +153,8 @@ function featureTypeChanged() {
         case 'administrative_area_level_2':
             admin2Layer.style = styleStrokeOnly;
             break;
-        case 'administrative_area_level_3':
-            admin3Layer.style = styleStrokeOnly;
-            break;
-        case 'administrative_area_level_4':
-            admin4Layer.style = styleStrokeOnly;
-            break;
         case 'locality':
             localityLayer.style = styleStrokeOnly;
-            break;
-        case 'sublocality_level_1':
-            subLocalityLayer.style = styleStrokeOnly;
-            break;
-        case 'neighborhood':
-            neighborhoodLayer.style = styleStrokeOnly;
             break;
         case 'postal_code':
             postalCodeLayer.style = styleStrokeOnly;
@@ -251,20 +211,8 @@ function applyStyle(placeid?) {
         case 'administrative_area_level_2':
             admin2Layer.style = featureStyle;
             break;
-        case 'administrative_area_level_3':
-            admin3Layer.style = featureStyle;
-            break;
-        case 'administrative_area_level_4':
-            admin4Layer.style = featureStyle;
-            break;
         case 'locality':
             localityLayer.style = featureStyle;
-            break;
-        case 'sublocality_level_1':
-        subLocalityLayer.style = featureStyle;
-        break;
-        case 'neighborhood':
-            neighborhoodLayer.style = featureStyle;
             break;
         case 'postal_code':
             postalCodeLayer.style = featureStyle;
@@ -303,12 +251,8 @@ function onCountrySelected() {
         ['country', selectedCountry?.feature.country],
         ['administrative_area_level_1', selectedCountry?.feature.administrative_area_level_1],
         ['administrative_area_level_2', selectedCountry?.feature.administrative_area_level_2],
-        ['administrative_area_level_3', selectedCountry?.feature.administrative_area_level_3],
-        ['administrative_area_level_4', selectedCountry?.feature.administrative_area_level_4],
         ['postal_code', selectedCountry?.feature.postal_code],
         ['locality', selectedCountry?.feature.locality],
-        ['sublocality_level_1', selectedCountry?.feature.sublocality_level_1],
-        ['neighborhood', selectedCountry?.feature.neighborhood],
     ]);
 
     // Set the feature list selection to 'country'.
@@ -404,6 +348,8 @@ function showSelectedPolygon(placeid) {
 
 }
 // TODO: Figure out how to get this into an external .js hosted on https://pantheon.corp.google.com/storage/browser/geo-devrel-public-buckets
+/** GENERATED FILE, DO NOT EDIT */
+
 const countries = [
     {
         "name": "Afghanistan", 
@@ -412,12 +358,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -427,12 +369,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -442,12 +380,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -457,12 +391,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -472,12 +402,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -487,12 +413,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -502,12 +424,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -517,12 +435,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -532,12 +446,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -547,12 +457,8 @@ const countries = [
             "country": false,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -562,12 +468,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -577,12 +479,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -592,12 +490,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -607,12 +501,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -622,12 +512,8 @@ const countries = [
             "country": false,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -637,12 +523,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -652,12 +534,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -667,12 +545,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -682,12 +556,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -697,12 +567,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -712,12 +578,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -727,12 +589,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -742,12 +600,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -757,12 +611,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -772,12 +622,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -787,12 +633,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -802,12 +644,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -817,12 +655,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -832,12 +666,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -847,12 +677,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -862,12 +688,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -877,12 +699,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -892,12 +710,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -907,12 +721,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -922,12 +732,19 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
+        }
+    },
+    {
+        "name": "Cabo Verde", 
+        "code": "CV", 
+        "feature": {
+            "country": true,
+            "administrative_area_level_1": false,
+            "administrative_area_level_2": false,
+            "postal_code": false,
+            "locality": false,
         }
     },
     {
@@ -937,12 +754,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -952,12 +765,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -967,27 +776,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
-        }
-    },
-    {
-        "name": "Cape Verde", 
-        "code": "CV", 
-        "feature": {
-            "country": true,
-            "administrative_area_level_1": false,
-            "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
-            "postal_code": false,
-            "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -997,12 +787,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1012,12 +798,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1027,12 +809,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1042,12 +820,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1057,12 +831,8 @@ const countries = [
             "country": false,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1072,12 +842,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1087,12 +853,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1102,12 +864,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1117,12 +875,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1132,12 +886,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1147,12 +897,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1162,12 +908,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1177,12 +919,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1192,12 +930,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1207,12 +941,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1222,12 +952,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1237,12 +963,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1252,12 +974,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1267,12 +985,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1282,12 +996,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1297,12 +1007,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1312,12 +1018,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1327,12 +1029,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1342,12 +1040,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1357,12 +1051,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1372,12 +1062,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1387,12 +1073,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1402,12 +1084,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1417,12 +1095,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1432,12 +1106,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1447,12 +1117,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1462,12 +1128,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1477,27 +1139,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
-        }
-    },
-    {
-        "name": "Federated States of Micronesia", 
-        "code": "FM", 
-        "feature": {
-            "country": true,
-            "administrative_area_level_1": false,
-            "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
-            "postal_code": false,
-            "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1507,12 +1150,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1522,12 +1161,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1537,12 +1172,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": true,
-            "administrative_area_level_4": true,
             "postal_code": true,
             "locality": true,
-            "sublocality_level_1": true,
-            "neighborhood": true,
         }
     },
     {
@@ -1552,12 +1183,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1567,12 +1194,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1582,12 +1205,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1597,12 +1216,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1612,12 +1227,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1627,12 +1238,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": true,
-            "administrative_area_level_4": true,
             "postal_code": true,
             "locality": true,
-            "sublocality_level_1": true,
-            "neighborhood": true,
         }
     },
     {
@@ -1642,12 +1249,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1657,12 +1260,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1672,12 +1271,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1687,12 +1282,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1702,12 +1293,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1717,12 +1304,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1732,12 +1315,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1747,12 +1326,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1762,12 +1337,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1777,12 +1348,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1792,12 +1359,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1807,12 +1370,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1822,12 +1381,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1837,12 +1392,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1852,12 +1403,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1867,12 +1414,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1882,12 +1425,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1897,12 +1436,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1912,12 +1447,8 @@ const countries = [
             "country": false,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1927,12 +1458,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1942,12 +1469,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1957,12 +1480,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1972,12 +1491,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -1987,12 +1502,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2002,12 +1513,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2017,12 +1524,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2032,12 +1535,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2047,12 +1546,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": true,
-            "sublocality_level_1": true,
-            "neighborhood": true,
         }
     },
     {
@@ -2062,12 +1557,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2077,12 +1568,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2092,12 +1579,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2107,12 +1590,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2122,12 +1601,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2137,12 +1612,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2152,12 +1623,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2167,12 +1634,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2182,12 +1645,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2197,12 +1656,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2212,12 +1667,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2227,12 +1678,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2242,12 +1689,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2257,12 +1700,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2272,12 +1711,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2287,12 +1722,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2302,12 +1733,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2317,12 +1744,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2332,12 +1755,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2347,12 +1766,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2362,12 +1777,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2377,12 +1788,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2392,12 +1799,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2407,12 +1810,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2422,12 +1821,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2437,12 +1832,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2452,12 +1843,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2467,12 +1854,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2482,12 +1865,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2497,12 +1876,19 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
+        }
+    },
+    {
+        "name": "Micronesia", 
+        "code": "FM", 
+        "feature": {
+            "country": true,
+            "administrative_area_level_1": false,
+            "administrative_area_level_2": false,
+            "postal_code": false,
+            "locality": false,
         }
     },
     {
@@ -2512,12 +1898,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2527,12 +1909,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2542,12 +1920,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2557,12 +1931,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2572,12 +1942,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2587,12 +1953,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2602,12 +1964,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2617,12 +1975,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2632,12 +1986,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2647,12 +1997,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2662,12 +2008,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2677,12 +2019,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2692,12 +2030,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2707,12 +2041,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2722,12 +2052,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2737,12 +2063,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2752,12 +2074,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2767,12 +2085,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2782,12 +2096,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2797,12 +2107,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2812,12 +2118,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2827,12 +2129,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2842,12 +2140,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2857,12 +2151,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2872,12 +2162,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2887,12 +2173,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2902,12 +2184,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2917,12 +2195,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2932,12 +2206,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2947,12 +2217,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2962,12 +2228,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2977,12 +2239,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -2992,12 +2250,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3007,12 +2261,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3022,12 +2272,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3037,12 +2283,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3052,12 +2294,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3067,12 +2305,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3082,12 +2316,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3097,12 +2327,8 @@ const countries = [
             "country": false,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3112,12 +2338,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3127,12 +2349,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3142,12 +2360,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3157,12 +2371,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3172,12 +2382,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3187,12 +2393,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3202,12 +2404,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3217,12 +2415,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3232,12 +2426,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3247,12 +2437,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3262,12 +2448,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3277,12 +2459,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3292,12 +2470,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3307,12 +2481,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3322,12 +2492,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3337,12 +2503,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3352,12 +2514,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3367,12 +2525,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3382,12 +2536,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3397,12 +2547,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3412,12 +2558,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3427,12 +2569,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3442,12 +2580,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3457,12 +2591,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3472,12 +2602,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3487,12 +2613,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3502,12 +2624,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3517,12 +2635,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3532,12 +2646,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3547,12 +2657,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3562,12 +2668,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3577,12 +2679,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3592,12 +2690,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3607,12 +2701,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3622,12 +2712,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3637,12 +2723,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3652,12 +2734,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3667,12 +2745,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3682,12 +2756,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3697,12 +2767,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3712,12 +2778,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3727,12 +2789,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3742,12 +2800,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3757,12 +2811,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3772,12 +2822,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3787,12 +2833,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3802,27 +2844,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
-        }
-    },
-    {
-        "name": "Turkey", 
-        "code": "TR", 
-        "feature": {
-            "country": true,
-            "administrative_area_level_1": true,
-            "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
-            "postal_code": false,
-            "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3832,12 +2855,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3847,12 +2866,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3862,12 +2877,19 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
+        }
+    },
+    {
+        "name": "Türkiye", 
+        "code": "TR", 
+        "feature": {
+            "country": true,
+            "administrative_area_level_1": true,
+            "administrative_area_level_2": false,
+            "postal_code": false,
+            "locality": false,
         }
     },
     {
@@ -3877,12 +2899,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3892,12 +2910,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3907,12 +2921,8 @@ const countries = [
             "country": false,
             "administrative_area_level_1": true,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3922,12 +2932,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3937,12 +2943,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": true,
-            "administrative_area_level_4": true,
             "postal_code": false,
             "locality": true,
-            "sublocality_level_1": false,
-            "neighborhood": true,
         }
     },
     {
@@ -3952,12 +2954,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": true,
             "administrative_area_level_2": true,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": true,
             "locality": true,
-            "sublocality_level_1": true,
-            "neighborhood": true,
         }
     },
     {
@@ -3967,12 +2965,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3982,12 +2976,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -3997,12 +2987,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4012,12 +2998,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4027,12 +3009,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4042,12 +3020,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4057,12 +3031,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4072,12 +3042,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4087,12 +3053,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4102,12 +3064,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4117,12 +3075,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4132,12 +3086,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
     {
@@ -4147,12 +3097,8 @@ const countries = [
             "country": true,
             "administrative_area_level_1": false,
             "administrative_area_level_2": false,
-            "administrative_area_level_3": false,
-            "administrative_area_level_4": false,
             "postal_code": false,
             "locality": false,
-            "sublocality_level_1": false,
-            "neighborhood": false,
         }
     },
 ]
