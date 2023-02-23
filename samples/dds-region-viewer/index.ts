@@ -85,10 +85,10 @@ function initMap() {
                 featureMenu.selectedIndex = 2;
                 break;
             case 'locality':
-                featureMenu.selectedIndex = 5; 
+                featureMenu.selectedIndex = 3; 
                 break;
             case 'postal_code':
-                featureMenu.selectedIndex = 8;
+                featureMenu.selectedIndex = 4;
                 break;
             default:
                 break;
