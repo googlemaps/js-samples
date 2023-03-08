@@ -1,0 +1,13 @@
+{
+    "title": "Style a point data feature",
+    "dynamic_import": "true",
+    "version": "beta",
+    "tag": "dds_datasets_point",
+    "name": "dds-datasets-point",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}

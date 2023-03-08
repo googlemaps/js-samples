@@ -1,0 +1,13 @@
+{
+    "title": "Style a polygon data feature",
+    "dynamic_import": "true",
+    "version": "beta",
+    "tag": "dds_datasets_polygon_click",
+    "name": "dds-datasets-polygon-click",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+}
