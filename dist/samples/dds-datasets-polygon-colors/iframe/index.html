@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Style a polygon data feature with more detail</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      (function () {
+        const e = document.createElement("link").relList;
+        if (e && e.supports && e.supports("modulepreload")) return;
+        for (const t of document.querySelectorAll('link[rel="modulepreload"]'))
+          i(t);
+        new MutationObserver((t) => {
+          for (const o of t)
+            if (o.type === "childList")
+              for (const s of o.addedNodes)
+                s.tagName === "LINK" && s.rel === "modulepreload" && i(s);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function n(t) {
+          const o = {};
+          return (
+            t.integrity && (o.integrity = t.integrity),
+            t.referrerpolicy && (o.referrerPolicy = t.referrerpolicy),
+            t.crossorigin === "use-credentials"
+              ? (o.credentials = "include")
+              : t.crossorigin === "anonymous"
+              ? (o.credentials = "omit")
+              : (o.credentials = "same-origin"),
+            o
+          );
+        }
+        function i(t) {
+          if (t.ep) return;
+          t.ep = !0;
+          const o = n(t);
+          fetch(t.href, o);
+        }
+      })();
+      /**
+       * @license
+       * Copyright 2019 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ function l(r) {
+        const e = r.feature;
+        switch ((console.log(e), e.datasetAttributes.typecategory)) {
+          case "Undeveloped":
+            return {
+              strokeColor: "blue",
+              strokeWeight: 2,
+              strokeOpacity: 1,
+              fillColor: "blue",
+              fillOpacity: 0.3,
+            };
+          case "Historic House Park":
+            return {
+              strokeColor: "red",
+              strokeWeight: 2,
+              strokeOpacity: 1,
+              fillColor: "red",
+              fillOpacity: 0.3,
+            };
+          default:
+            return {
+              strokeColor: "green",
+              strokeWeight: 2,
+              strokeOpacity: 1,
+              fillColor: "green",
+              fillOpacity: 0.3,
+            };
+        }
+      }
+      function a() {
+        const r = new google.maps.LatLng(40.639258, -74.123921),
+          e = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: r,
+            mapId: "b98e588c46685dd7",
+          }),
+          n = "6fe13aa9-b900-45e7-b636-3236672c3f4f",
+          i = e.getDatasetFeatureLayer(n);
+        i.style = l;
+        const t = document.createElement("div"),
+          o = c();
+        t.appendChild(o),
+          e.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(t);
+      }
+      function c(r) {
+        const e = document.createElement("div");
+        return (
+          (e.style.backgroundColor = "#fff"),
+          (e.style.opacity = "0.7"),
+          (e.style.fontFamily = "Roboto,Arial,sans-serif"),
+          (e.style.fontSize = "10px"),
+          (e.style.padding = "2px"),
+          (e.style.margin = "2px"),
+          (e.textContent = "Data source: NYC Open Data"),
+          e
+        );
+      }
+      window.initMap = a;
+    </script>
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises
+      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
+      -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_KNZ-cw4Il47QhWBnTJtHCcUpFUQjrU0&callback=initMap&v=alpha"
+      defer
+    ></script>
+  </body>
+</html>
