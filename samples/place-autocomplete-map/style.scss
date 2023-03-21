@@ -1,0 +1,41 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+ @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+ /* [START maps_place_autocomplete_map] */
+ @include meta.load-css("../../shared/scss/default.scss");
+
+#map_canvas {
+  flex: 1;
+}
+
+#pac-card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin: 10px;
+  padding: 5px;
+  font-family: Roboto, sans-serif;
+}
+
+#pac-input {
+  width: 250px;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+[class$="api-load-alpha-banner"] {
+  display: none;
+}  
+ 
+ /* [END maps_place_autocomplete_map] */

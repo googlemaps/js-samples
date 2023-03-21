@@ -1,0 +1,21 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+ @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+
+ /* [START maps_place_autocomplete_element] */
+ @include meta.load-css("../../shared/scss/default.scss");
+
+p {
+  font-family: Roboto, sans-serif;
+  font-weight: bold;
+}
+
+[class$="api-load-alpha-banner"] {
+  display: none;
+}  
+ 
+ /* [END maps_place_autocomplete_element] */

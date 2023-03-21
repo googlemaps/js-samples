@@ -1,0 +1,13 @@
+{
+    "title": "Place Autocomplete element",
+    "version": "alpha",
+    "dynamic_import": "true",
+    "tag": "place_autocomplete_element",
+    "name": "place-autocomplete-element",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}"
+  }
