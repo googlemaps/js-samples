@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Place Autocomplete element</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <script type="module" crossorigin>
+      (function () {
+        const n = document.createElement("link").relList;
+        if (n && n.supports && n.supports("modulepreload")) return;
+        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
+          o(e);
+        new MutationObserver((e) => {
+          for (const t of e)
+            if (t.type === "childList")
+              for (const l of t.addedNodes)
+                l.tagName === "LINK" && l.rel === "modulepreload" && o(l);
+        }).observe(document, { childList: !0, subtree: !0 });
+        function r(e) {
+          const t = {};
+          return (
+            e.integrity && (t.integrity = e.integrity),
+            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
+            e.crossorigin === "use-credentials"
+              ? (t.credentials = "include")
+              : e.crossorigin === "anonymous"
+              ? (t.credentials = "omit")
+              : (t.credentials = "same-origin"),
+            t
+          );
+        }
+        function o(e) {
+          if (e.ep) return;
+          e.ep = !0;
+          const t = r(e);
+          fetch(e.href, t);
+        }
+      })();
+      /**
+       * @license
+       * Copyright 2022 Google LLC. All Rights Reserved.
+       * SPDX-License-Identifier: Apache-2.0
+       */ async function c() {
+        await Promise.all([google.maps.importLibrary("places")]);
+        const i = document.createElement("input"),
+          n = new google.maps.places.PlaceAutocompleteElement({
+            inputElement: i,
+          });
+        document.body.appendChild(n.element);
+        const r = document.createElement("p");
+        (r.textContent = ""), document.body.appendChild(r);
+        const o = document.createElement("pre");
+        (o.textContent = ""),
+          document.body.appendChild(o),
+          n.addListener("gmp-placeselect", async ({ place: e }) => {
+            await e.fetchFields({
+              fields: ["displayName", "formattedAddress", "location"],
+            }),
+              (r.textContent = "Selected Place:"),
+              (o.textContent = JSON.stringify(e.toJSON(), null, 2));
+          });
+      }
+      c();
+    </script>
+    <style>
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+      }
+      p {
+        font-family: Roboto, sans-serif;
+        font-weight: 700;
+      }
+      [class$="api-load-alpha-banner"] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <p style="font-family: roboto, sans-serif">Search for a place here:</p>
+
+    <!-- prettier-ignore -->
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "alpha"});</script>
+  </body>
+</html>
