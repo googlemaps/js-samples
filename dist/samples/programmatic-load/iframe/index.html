@@ -91,8 +91,8 @@
           mapIds: f,
           nonce: u,
           region: d,
-          retries: g = 3,
-          url: p = "https://maps.googleapis.com/maps/api/js",
+          retries: p = 3,
+          url: g = "https://maps.googleapis.com/maps/api/js",
           version: m,
         }) {
           if (
@@ -111,8 +111,8 @@
             (this.mapIds = f),
             (this.nonce = u),
             (this.region = d),
-            (this.retries = g),
-            (this.url = p),
+            (this.retries = p),
+            (this.url = g),
             (this.version = m),
             l.instance)
           ) {
@@ -268,8 +268,9 @@
           version: "weekly",
           ...I,
         });
-      b.load().then(() => {
-        new google.maps.Map(document.getElementById("map"), {
+      b.load().then(async () => {
+        const { Map: n } = await google.maps.importLibrary("maps");
+        new n(document.getElementById("map"), {
           center: { lat: -34.397, lng: 150.644 },
           zoom: 8,
         });
