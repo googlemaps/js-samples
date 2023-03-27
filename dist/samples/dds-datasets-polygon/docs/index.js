@@ -41,8 +41,8 @@ function initMap() {
   // [END maps_dds_datasets_polygon_attribution_div]
 }
 
-// [START maps_dds_datasets_polygon_attribution_control]
 // Create a custom control to hold attribution text.
+// [START maps_dds_datasets_polygon_attribution_control]
 function createAttribution(map) {
   const attributionLabel = document.createElement("div");
 
