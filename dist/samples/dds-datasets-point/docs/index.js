@@ -15,6 +15,7 @@ function setStyle(/* FeatureStyleFunctionOptions */ params) {
   const furColors =
     datasetFeature.datasetAttributes["CombinationofPrimaryandHighlightColor"];
 
+  // [END maps_dds_datasets_point_style_get_features]
   // Apply styles. Fill is primary fur color, stroke is secondary fur color.
   switch (furColors) {
     case "Black+":
