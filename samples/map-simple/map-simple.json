@@ -1,8 +1,7 @@
 {
   "title": "Simple Map",
-  "callback": "initMap",
-  "libraries": [],
   "version": "weekly",
+  "dynamic_import": "true",
   "tag": "map_simple",
   "name": "map-simple",
   "pagination": {

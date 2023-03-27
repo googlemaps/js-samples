@@ -6,34 +6,41 @@
 
 // [START maps_add_map]
 // Initialize and add the map
-function initMap(): void {
+let map;
+async function initMap(): Promise<void> {
   // [START maps_add_map_instantiate_map]
   // The location of Uluru
-  const uluru = { lat: -25.344, lng: 131.031 };
+  const position = { lat: -25.344, lng: 131.031 };
+
+  // Request needed libraries.
+  //@ts-ignore
+  const [{ Map }, { AdvancedMarkerView }] = await Promise.all([
+    google.maps.importLibrary("maps"),
+    google.maps.importLibrary("marker"),
+  ]);
+
   // The map, centered at Uluru
-  const map = new google.maps.Map(
-    document.getElementById("map") as HTMLElement,
+  map = new Map(
+    document.getElementById('map') as HTMLElement,
     {
       zoom: 4,
-      center: uluru,
+      center: position,
+      mapId: 'DEMO_MAP_ID',
     }
   );
   // [END maps_add_map_instantiate_map]
 
   // [START maps_add_map_instantiate_marker]
   // The marker, positioned at Uluru
-  const marker = new google.maps.Marker({
-    position: uluru,
+  const marker = new AdvancedMarkerView({
     map: map,
+    position: position,
+    title: 'Uluru'
   });
   // [END maps_add_map_instantiate_marker]
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_add_map]
-export {};
+
+export { };
