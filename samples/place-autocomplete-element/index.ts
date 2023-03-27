@@ -14,9 +14,8 @@ async function initMap(): Promise<void> {
     ]);
     // Create the input HTML element, and append it.
     const input = document.createElement('input');
-    //@ts-ignore
     const pac = new google.maps.places.PlaceAutocompleteElement({ inputElement: input });
-    document.body.appendChild(pac.element);
+    document.body.appendChild(pac.element as HTMLElement);
     // [END maps_place_autocomplete_element_add]
 
     // Inject HTML UI.

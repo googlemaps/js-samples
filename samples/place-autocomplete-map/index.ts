@@ -31,7 +31,7 @@ async function initMap(): Promise<void> {
     const pac = new google.maps.places.PlaceAutocompleteElement({ inputElement: input });
 
     const card = document.getElementById('pac-card') as HTMLElement;
-    card.appendChild(pac.element);
+    card.appendChild(pac.element as HTMLElement);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
     // [END maps_place_autocomplete_map_add]
 
