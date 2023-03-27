@@ -5,7 +5,6 @@
  */
 
 // [START maps_map_simple]
-// [START maps_map_simple_initmap]
 let map: google.maps.Map;
 async function initMap(): Promise<void> {
   //@ts-ignore
@@ -17,6 +16,5 @@ async function initMap(): Promise<void> {
 }
 
 initMap();
-// [END maps_map_simple_initmap]
 // [END maps_map_simple]
 export {};
