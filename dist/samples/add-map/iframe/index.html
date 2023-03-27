@@ -14,14 +14,14 @@
         const o = document.createElement("link").relList;
         if (o && o.supports && o.supports("modulepreload")) return;
         for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          i(e);
+          s(e);
         new MutationObserver((e) => {
           for (const t of e)
             if (t.type === "childList")
-              for (const n of t.addedNodes)
-                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
+              for (const i of t.addedNodes)
+                i.tagName === "LINK" && i.rel === "modulepreload" && s(i);
         }).observe(document, { childList: !0, subtree: !0 });
-        function s(e) {
+        function n(e) {
           const t = {};
           return (
             e.integrity && (t.integrity = e.integrity),
@@ -34,10 +34,10 @@
             t
           );
         }
-        function i(e) {
+        function s(e) {
           if (e.ep) return;
           e.ep = !0;
-          const t = s(e);
+          const t = n(e);
           fetch(e.href, t);
         }
       })();
@@ -45,20 +45,30 @@
        * @license
        * Copyright 2019 Google LLC. All Rights Reserved.
        * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
+       */ let l;
+      async function c() {
         const r = { lat: -25.344, lng: 131.031 },
-          o = new google.maps.Map(document.getElementById("map"), {
-            zoom: 4,
-            center: r,
-          });
-        new google.maps.Marker({ position: r, map: o });
+          { Map: o } = await google.maps.importLibrary("maps"),
+          { AdvancedMarkerView: n } = await google.maps.importLibrary("marker");
+        (l = new o(document.getElementById("map"), {
+          zoom: 4,
+          center: r,
+          mapId: "DEMO_MAP_ID",
+        })),
+          new n({ map: l, position: r, title: "Uluru" });
       }
-      window.initMap = l;
+      c();
     </script>
     <style>
-      #map {
-        height: 400px;
-        width: 100%;
+      #map,
+      body,
+      html {
+        height: 100%;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
       }
     </style>
   </head>
@@ -67,15 +77,8 @@
     <!--The div element for the map -->
     <div id="map"></div>
 
-    <!-- 
-      The `defer` attribute causes the callback to execute after the full HTML
-      document has been parsed. For non-blocking uses, avoiding race conditions,
-      and consistent behavior across browsers, consider loading using Promises
-      with https://www.npmjs.com/package/@googlemaps/js-api-loader.
-      -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
-      defer
-    ></script>
+    <!-- prettier-ignore -->
+    <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+        ({key: "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg", v: "weekly"});</script>
   </body>
 </html>
