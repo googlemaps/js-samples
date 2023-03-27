@@ -47,7 +47,7 @@ body,
 }
 
 .color-key {
-  background: linear-gradient(to right, hsl(5deg, 69%, 54%) 0%, hsl(29deg, 71%, 51%) 17%, hsl(54deg, 74%, 47%) 33%, hsl(78deg, 76%, 44%) 50%, hsl(102deg, 78%, 41%) 67%, hsl(127deg, 81%, 37%) 83%, hsl(151deg, 83%, 34%) 100%);
+  background: linear-gradient(to right, hsl(5, 69%, 54%) 0%, hsl(29, 71%, 51%) 17%, hsl(54, 74%, 47%) 33%, hsl(78, 76%, 44%) 50%, hsl(102, 78%, 41%) 67%, hsl(127, 81%, 37%) 83%, hsl(151, 83%, 34%) 100%);
   flex: 1;
   -webkit-box-flex: 1;
   margin: 0 5px;
