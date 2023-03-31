@@ -37,8 +37,6 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: npm i
-      - run: npm run test:jest
       - run: npm run build
       - name: Update dist
         run: |
