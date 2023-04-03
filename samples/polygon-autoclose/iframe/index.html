@@ -9,76 +9,8 @@
     <title>Polygon Auto-Completion</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const o = document.createElement("link").relList;
-        if (o && o.supports && o.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          l(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const r of t.addedNodes)
-                r.tagName === "LINK" && r.rel === "modulepreload" && l(r);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function i(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function l(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = i(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function s() {
-        const n = new google.maps.Map(document.getElementById("map"), {
-            zoom: 5,
-            center: { lat: 24.886, lng: -70.268 },
-            mapTypeId: "terrain",
-          }),
-          o = [
-            { lat: 25.774, lng: -80.19 },
-            { lat: 18.466, lng: -66.118 },
-            { lat: 32.321, lng: -64.757 },
-          ];
-        new google.maps.Polygon({
-          paths: o,
-          strokeColor: "#FF0000",
-          strokeOpacity: 0.8,
-          strokeWeight: 3,
-          fillColor: "#FF0000",
-          fillOpacity: 0.35,
-        }).setMap(n);
-      }
-      window.initMap = s;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-a4e8727a.js"></script>
+    <link rel="stylesheet" href="./assets/index-5f44f203.css" />
   </head>
   <body>
     <div id="map"></div>

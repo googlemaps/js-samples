@@ -9,66 +9,8 @@
     <title>Disable Zoom and Pan</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const t = document.createElement("link").relList;
-        if (t && t.supports && t.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          i(e);
-        new MutationObserver((e) => {
-          for (const o of e)
-            if (o.type === "childList")
-              for (const r of o.addedNodes)
-                r.tagName === "LINK" && r.rel === "modulepreload" && i(r);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function l(e) {
-          const o = {};
-          return (
-            e.integrity && (o.integrity = e.integrity),
-            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (o.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (o.credentials = "omit")
-              : (o.credentials = "same-origin"),
-            o
-          );
-        }
-        function i(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const o = l(e);
-          fetch(e.href, o);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function s() {
-        const n = { lat: -22.915, lng: -43.197 },
-          t = new google.maps.Map(document.getElementById("map"), {
-            zoom: 13,
-            center: n,
-            gestureHandling: "none",
-            zoomControl: !1,
-          });
-        new google.maps.Marker({ position: n, map: t, title: "Hello World!" });
-      }
-      window.initMap = s;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-76def4ae.js"></script>
+    <link rel="stylesheet" href="./assets/index-5f44f203.css" />
   </head>
   <body>
     <div id="map"></div>

@@ -9,83 +9,8 @@
     <title>Data Layer: Event Handling</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const n = document.createElement("link").relList;
-        if (n && n.supports && n.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          l(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const i of t.addedNodes)
-                i.tagName === "LINK" && i.rel === "modulepreload" && l(i);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function s(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function l(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = s(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ let r;
-      function a() {
-        (r = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: { lat: -28, lng: 137 },
-        })),
-          r.data.loadGeoJson(
-            "https://storage.googleapis.com/maps-devrel/google.json"
-          ),
-          r.data.setStyle((o) => ({
-            fillColor: o.getProperty("color"),
-            strokeWeight: 1,
-          })),
-          r.data.addListener("mouseover", (o) => {
-            document.getElementById("info-box").textContent =
-              o.feature.getProperty("letter");
-          });
-      }
-      window.initMap = a;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-      #info-box {
-        background-color: #fff;
-        border: 1px solid #000;
-        bottom: 30px;
-        height: 20px;
-        left: 30px;
-        padding: 10px;
-        position: absolute;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-1099bc53.js"></script>
+    <link rel="stylesheet" href="./assets/index-dd413768.css" />
   </head>
   <body>
     <div id="map"></div>

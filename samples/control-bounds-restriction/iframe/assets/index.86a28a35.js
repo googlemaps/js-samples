@@ -1,5 +1,0 @@
-(function(){const o=document.createElement("link").relList;if(o&&o.supports&&o.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))r(e);new MutationObserver(e=>{for(const t of e)if(t.type==="childList")for(const n of t.addedNodes)n.tagName==="LINK"&&n.rel==="modulepreload"&&r(n)}).observe(document,{childList:!0,subtree:!0});function i(e){const t={};return e.integrity&&(t.integrity=e.integrity),e.referrerpolicy&&(t.referrerPolicy=e.referrerpolicy),e.crossorigin==="use-credentials"?t.credentials="include":e.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function r(e){if(e.ep)return;e.ep=!0;const t=i(e);fetch(e.href,t)}})();/**
- * @license
- * Copyright 2019 Google LLC. All Rights Reserved.
- * SPDX-License-Identifier: Apache-2.0
- */const s={north:-34.36,south:-47.35,west:166.28,east:-175.81},l={lat:-37.06,lng:174.58};function c(){new google.maps.Map(document.getElementById("map"),{center:l,restriction:{latLngBounds:s,strictBounds:!1},zoom:7})}window.initMap=c;

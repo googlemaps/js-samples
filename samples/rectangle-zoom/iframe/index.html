@@ -9,75 +9,8 @@
     <title>Rectangle Zoom</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const o = document.createElement("link").relList;
-        if (o && o.supports && o.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          i(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const n of t.addedNodes)
-                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function s(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function i(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = s(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
-        const r = new google.maps.Map(document.getElementById("map"), {
-            zoom: 11,
-            center: { lat: 40.74852, lng: -73.981687 },
-            mapTypeId: "terrain",
-          }),
-          o = new google.maps.Rectangle();
-        r.addListener("zoom_changed", () => {
-          o.setOptions({
-            strokeColor: "#FF0000",
-            strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: "#FF0000",
-            fillOpacity: 0.35,
-            map: r,
-            bounds: r.getBounds(),
-          });
-        });
-      }
-      window.initMap = l;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-6cea0d3f.js"></script>
+    <link rel="stylesheet" href="./assets/index-5f44f203.css" />
   </head>
   <body>
     <div id="map"></div>
