@@ -1,6 +1,6 @@
 {
   "title": "Add Map",
-  "version": "weekly",
+  "version": "beta",
   "dynamic_import": "true",
   "tag": "add_map",
   "name": "add-map",
