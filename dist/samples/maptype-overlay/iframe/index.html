@@ -9,101 +9,8 @@
     <title>Overlay Map Types</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      var c = Object.defineProperty;
-      var d = (i, t, r) =>
-        t in i
-          ? c(i, t, {
-              enumerable: !0,
-              configurable: !0,
-              writable: !0,
-              value: r,
-            })
-          : (i[t] = r);
-      var n = (i, t, r) => (d(i, typeof t != "symbol" ? t + "" : t, r), r);
-      (function () {
-        const t = document.createElement("link").relList;
-        if (t && t.supports && t.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          l(e);
-        new MutationObserver((e) => {
-          for (const o of e)
-            if (o.type === "childList")
-              for (const s of o.addedNodes)
-                s.tagName === "LINK" && s.rel === "modulepreload" && l(s);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
-          const o = {};
-          return (
-            e.integrity && (o.integrity = e.integrity),
-            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (o.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (o.credentials = "omit")
-              : (o.credentials = "same-origin"),
-            o
-          );
-        }
-        function l(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const o = r(e);
-          fetch(e.href, o);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ class a {
-        constructor(t) {
-          n(this, "tileSize");
-          n(this, "alt", null);
-          n(this, "maxZoom", 17);
-          n(this, "minZoom", 0);
-          n(this, "name", null);
-          n(this, "projection", null);
-          n(this, "radius", 6378137);
-          this.tileSize = t;
-        }
-        getTile(t, r, l) {
-          const e = l.createElement("div");
-          return (
-            (e.innerHTML = String(t)),
-            (e.style.width = this.tileSize.width + "px"),
-            (e.style.height = this.tileSize.height + "px"),
-            (e.style.fontSize = "10"),
-            (e.style.borderStyle = "solid"),
-            (e.style.borderWidth = "1px"),
-            (e.style.borderColor = "#AAAAAA"),
-            e
-          );
-        }
-        releaseTile(t) {}
-      }
-      function u() {
-        const i = new google.maps.Map(document.getElementById("map"), {
-            zoom: 10,
-            center: { lat: 41.85, lng: -87.65 },
-          }),
-          t = new a(new google.maps.Size(256, 256));
-        i.overlayMapTypes.insertAt(0, t);
-      }
-      window.initMap = u;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-7e9aadf8.js"></script>
+    <link rel="stylesheet" href="./assets/index-5f44f203.css" />
   </head>
   <body>
     <div id="map"></div>
@@ -116,7 +23,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&v=weekly"
       defer
     ></script>
   </body>

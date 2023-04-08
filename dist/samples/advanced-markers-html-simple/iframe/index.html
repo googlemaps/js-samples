@@ -9,94 +9,8 @@
     <title>Advanced Marker Simple HTML</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const o = document.createElement("link").relList;
-        if (o && o.supports && o.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          i(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const n of t.addedNodes)
-                n.tagName === "LINK" && n.rel === "modulepreload" && i(n);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function c(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function i(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = c(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
-        const r = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 37.42, lng: -122.1 },
-            zoom: 14,
-            mapId: "4504f8b37365c3d0",
-          }),
-          o = document.createElement("div");
-        (o.className = "price-tag"),
-          (o.textContent = "$2.5M"),
-          new google.maps.marker.AdvancedMarkerView({
-            map: r,
-            position: { lat: 37.42, lng: -122.1 },
-            content: o,
-          });
-      }
-      window.initMap = l;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-      .price-tag {
-        background-color: #4285f4;
-        border-radius: 8px;
-        color: #fff;
-        font-size: 14px;
-        padding: 10px 15px;
-        position: relative;
-      }
-      .price-tag:after {
-        border-left: 8px solid transparent;
-        border-right: 8px solid transparent;
-        border-top: 8px solid #4285f4;
-        content: "";
-        height: 0;
-        left: 50%;
-        position: absolute;
-        top: 100%;
-        transform: translate(-50%);
-        width: 0;
-      }
-      [class$="api-load-alpha-banner"] {
-        display: none;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-2adb65b8.js"></script>
+    <link rel="stylesheet" href="./assets/index-394e2318.css" />
   </head>
   <body>
     <div id="map"></div>
@@ -109,7 +23,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=marker&v=beta"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&libraries=marker&v=beta"
       defer
     ></script>
   </body>

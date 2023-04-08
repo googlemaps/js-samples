@@ -9,78 +9,8 @@
     <title>User-Editable Shapes</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const o = document.createElement("link").relList;
-        if (o && o.supports && o.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          r(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const s of t.addedNodes)
-                s.tagName === "LINK" && s.rel === "modulepreload" && r(s);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function n(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function r(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = n(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
-        const i = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 44.5452, lng: -78.5389 },
-            zoom: 9,
-          }),
-          o = { north: 44.599, south: 44.49, east: -78.443, west: -78.649 },
-          n = new google.maps.Rectangle({
-            bounds: o,
-            editable: !0,
-            draggable: !0,
-          });
-        n.setMap(i),
-          ["bounds_changed", "dragstart", "drag", "dragend"].forEach((r) => {
-            n.addListener(r, () => {
-              var e;
-              console.log({
-                bounds: (e = n.getBounds()) == null ? void 0 : e.toJSON(),
-                eventName: r,
-              });
-            });
-          });
-      }
-      window.initMap = l;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-9cf848b7.js"></script>
+    <link rel="stylesheet" href="./assets/index-5f44f203.css" />
   </head>
   <body>
     <div id="map"></div>
@@ -93,7 +23,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&v=weekly"
       defer
     ></script>
   </body>
