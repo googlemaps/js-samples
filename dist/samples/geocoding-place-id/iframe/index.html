@@ -9,98 +9,8 @@
     <title>Retrieving an Address for a Place ID</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const t = document.createElement("link").relList;
-        if (t && t.supports && t.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          i(e);
-        new MutationObserver((e) => {
-          for (const o of e)
-            if (o.type === "childList")
-              for (const c of o.addedNodes)
-                c.tagName === "LINK" && c.rel === "modulepreload" && i(c);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function n(e) {
-          const o = {};
-          return (
-            e.integrity && (o.integrity = e.integrity),
-            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (o.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (o.credentials = "omit")
-              : (o.credentials = "same-origin"),
-            o
-          );
-        }
-        function i(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const o = n(e);
-          fetch(e.href, o);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
-        const r = new google.maps.Map(document.getElementById("map"), {
-            zoom: 8,
-            center: { lat: 40.72, lng: -73.96 },
-          }),
-          t = new google.maps.Geocoder(),
-          n = new google.maps.InfoWindow();
-        document.getElementById("submit").addEventListener("click", () => {
-          d(t, r, n);
-        });
-      }
-      function d(r, t, n) {
-        const i = document.getElementById("place-id").value;
-        r.geocode({ placeId: i })
-          .then(({ results: e }) => {
-            if (e[0]) {
-              t.setZoom(11), t.setCenter(e[0].geometry.location);
-              const o = new google.maps.Marker({
-                map: t,
-                position: e[0].geometry.location,
-              });
-              n.setContent(e[0].formatted_address), n.open(t, o);
-            } else window.alert("No results found");
-          })
-          .catch((e) => window.alert("Geocoder failed due to: " + e));
-      }
-      window.initMap = l;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-      #floating-panel {
-        background-color: #fff;
-        border: 1px solid #999;
-        font-family: Roboto, "sans-serif";
-        left: 25%;
-        line-height: 30px;
-        padding: 5px 5px 5px 10px;
-        position: absolute;
-        text-align: center;
-        top: 10px;
-        width: 440px;
-        z-index: 5;
-      }
-      #place-id {
-        width: 250px;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-852bfe8b.js"></script>
+    <link rel="stylesheet" href="./assets/index-3ffb134f.css" />
   </head>
   <body>
     <div id="floating-panel">
@@ -118,7 +28,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&v=weekly"
       defer
     ></script>
   </body>

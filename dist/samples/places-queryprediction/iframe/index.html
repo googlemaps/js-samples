@@ -9,61 +9,7 @@
     <title>Retrieving Autocomplete Predictions</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const r = document.createElement("link").relList;
-        if (r && r.supports && r.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          o(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const i of t.addedNodes)
-                i.tagName === "LINK" && i.rel === "modulepreload" && o(i);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function n(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function o(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = n(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function s() {
-        const c = function (n, o) {
-          if (o != google.maps.places.PlacesServiceStatus.OK || !n) {
-            alert(o);
-            return;
-          }
-          n.forEach((e) => {
-            const t = document.createElement("li");
-            t.appendChild(document.createTextNode(e.description)),
-              document.getElementById("results").appendChild(t);
-          });
-        };
-        new google.maps.places.AutocompleteService().getQueryPredictions(
-          { input: "pizza near Syd" },
-          c
-        );
-      }
-      window.initService = s;
-    </script>
+    <script type="module" crossorigin src="./assets/index-2c87cfee.js"></script>
   </head>
   <body>
     <p>Query suggestions for 'pizza near Syd':</p>
@@ -83,7 +29,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initService&libraries=places&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initService&libraries=places&v=weekly"
       defer
     ></script>
   </body>

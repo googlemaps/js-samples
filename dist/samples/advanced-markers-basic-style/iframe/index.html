@@ -9,102 +9,8 @@
     <title>Advanced Marker Basic Customization</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const t = document.createElement("link").relList;
-        if (t && t.supports && t.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          r(e);
-        new MutationObserver((e) => {
-          for (const n of e)
-            if (n.type === "childList")
-              for (const l of n.addedNodes)
-                l.tagName === "LINK" && l.rel === "modulepreload" && r(l);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function i(e) {
-          const n = {};
-          return (
-            e.integrity && (n.integrity = e.integrity),
-            e.referrerpolicy && (n.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (n.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (n.credentials = "omit")
-              : (n.credentials = "same-origin"),
-            n
-          );
-        }
-        function r(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const n = i(e);
-          fetch(e.href, n);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ new DOMParser();
-      function a() {
-        const o = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: 37.419, lng: -122.02 },
-          zoom: 14,
-          mapId: "4504f8b37365c3d0",
-        });
-        new google.maps.marker.AdvancedMarkerView({
-          map: o,
-          position: { lat: 37.419, lng: -122.03 },
-          title: "Title text for the marker at lat: 37.419, lng: -122.03",
-        });
-        const t = new google.maps.marker.PinView({ scale: 1.5 });
-        new google.maps.marker.AdvancedMarkerView({
-          map: o,
-          position: { lat: 37.419, lng: -122.02 },
-          content: t.element,
-        });
-        const i = new google.maps.marker.PinView({ background: "#FBBC04" });
-        new google.maps.marker.AdvancedMarkerView({
-          map: o,
-          position: { lat: 37.419, lng: -122.01 },
-          content: i.element,
-        });
-        const r = new google.maps.marker.PinView({ borderColor: "#137333" });
-        new google.maps.marker.AdvancedMarkerView({
-          map: o,
-          position: { lat: 37.415, lng: -122.03 },
-          content: r.element,
-        });
-        const e = new google.maps.marker.PinView({ glyphColor: "white" });
-        new google.maps.marker.AdvancedMarkerView({
-          map: o,
-          position: { lat: 37.415, lng: -122.02 },
-          content: e.element,
-        });
-        const n = new google.maps.marker.PinView({ glyph: "" });
-        new google.maps.marker.AdvancedMarkerView({
-          map: o,
-          position: { lat: 37.415, lng: -122.01 },
-          content: n.element,
-        });
-      }
-      window.initMap = a;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-      [class$="api-load-alpha-banner"] {
-        display: none;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-4a4d5a73.js"></script>
+    <link rel="stylesheet" href="./assets/index-ce4e6ab5.css" />
   </head>
   <body>
     <div id="map"></div>
@@ -117,7 +23,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=marker&v=beta"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&libraries=marker&v=beta"
       defer
     ></script>
   </body>

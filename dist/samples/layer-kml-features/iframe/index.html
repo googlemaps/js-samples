@@ -9,88 +9,8 @@
     <title>KML Feature Details</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const n = document.createElement("link").relList;
-        if (n && n.supports && n.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          o(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const i of t.addedNodes)
-                i.tagName === "LINK" && i.rel === "modulepreload" && o(i);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function o(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = r(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function l() {
-        const s = new google.maps.Map(document.getElementById("map"), {
-          zoom: 12,
-          center: { lat: 37.06, lng: -95.68 },
-        });
-        new google.maps.KmlLayer({
-          url: "https://raw.githubusercontent.com/googlearchive/kml-samples/gh-pages/kml/Placemark/placemark.kml",
-          suppressInfoWindows: !0,
-          map: s,
-        }).addListener("click", (o) => {
-          const e = o.featureData.description;
-          r(e);
-        });
-        function r(o) {
-          const e = document.getElementById("sidebar");
-          e.innerHTML = o;
-        }
-      }
-      window.initMap = l;
-    </script>
-    <style>
-      body,
-      html {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #container {
-        display: flex;
-        height: 100%;
-      }
-      #sidebar {
-        box-sizing: border-box;
-        flex-basis: 15rem;
-        flex-grow: 1;
-        height: 100%;
-        max-width: 30rem;
-        overflow: auto;
-        padding: 1rem;
-      }
-      #map {
-        flex-basis: 0;
-        flex-grow: 4;
-        height: 100%;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-2c14b81a.js"></script>
+    <link rel="stylesheet" href="./assets/index-c075e56e.css" />
   </head>
   <body>
     <div id="container">
@@ -106,7 +26,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&v=weekly"
       defer
     ></script>
   </body>

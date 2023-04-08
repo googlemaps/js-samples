@@ -9,127 +9,8 @@
     <title>Place ID Geocoder</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const r = document.createElement("link").relList;
-        if (r && r.supports && r.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          c(e);
-        new MutationObserver((e) => {
-          for (const o of e)
-            if (o.type === "childList")
-              for (const t of o.addedNodes)
-                t.tagName === "LINK" && t.rel === "modulepreload" && c(t);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function i(e) {
-          const o = {};
-          return (
-            e.integrity && (o.integrity = e.integrity),
-            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (o.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (o.credentials = "omit")
-              : (o.credentials = "same-origin"),
-            o
-          );
-        }
-        function c(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const o = i(e);
-          fetch(e.href, o);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ function a() {
-        const n = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: -33.8688, lng: 151.2195 },
-            zoom: 13,
-          }),
-          r = document.getElementById("pac-input"),
-          i = new google.maps.places.Autocomplete(r, {
-            fields: ["place_id", "geometry", "name", "formatted_address"],
-          });
-        i.bindTo("bounds", n),
-          n.controls[google.maps.ControlPosition.TOP_LEFT].push(r);
-        const c = new google.maps.InfoWindow(),
-          e = document.getElementById("infowindow-content");
-        c.setContent(e);
-        const o = new google.maps.Geocoder(),
-          t = new google.maps.Marker({ map: n });
-        t.addListener("click", () => {
-          c.open(n, t);
-        }),
-          i.addListener("place_changed", () => {
-            c.close();
-            const l = i.getPlace();
-            !l.place_id ||
-              o
-                .geocode({ placeId: l.place_id })
-                .then(({ results: d }) => {
-                  n.setZoom(11),
-                    n.setCenter(d[0].geometry.location),
-                    t.setPlace({
-                      placeId: l.place_id,
-                      location: d[0].geometry.location,
-                    }),
-                    t.setVisible(!0),
-                    (e.children["place-name"].textContent = l.name),
-                    (e.children["place-id"].textContent = l.place_id),
-                    (e.children["place-address"].textContent =
-                      d[0].formatted_address),
-                    c.open(n, t);
-                })
-                .catch((d) => window.alert("Geocoder failed due to: " + d));
-          });
-      }
-      window.initMap = a;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-      .controls {
-        background-color: #fff;
-        border: 1px solid transparent;
-        border-radius: 2px;
-        box-shadow: 0 2px 6px #0000004d;
-        box-sizing: border-box;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        height: 29px;
-        margin-left: 17px;
-        margin-top: 10px;
-        outline: none;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 400px;
-      }
-      .controls:focus {
-        border-color: #4d90fe;
-      }
-      .title {
-        font-weight: 700;
-      }
-      #infowindow-content {
-        display: none;
-      }
-      #map #infowindow-content {
-        display: inline;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-430e5e03.js"></script>
+    <link rel="stylesheet" href="./assets/index-b47ea98d.css" />
   </head>
   <body>
     <div style="display: none">
@@ -155,7 +36,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=places&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&libraries=places&v=weekly"
       defer
     ></script>
   </body>

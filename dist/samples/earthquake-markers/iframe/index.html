@@ -9,76 +9,8 @@
     <title>Earthquake Markers</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const o = document.createElement("link").relList;
-        if (o && o.supports && o.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          i(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const s of t.addedNodes)
-                s.tagName === "LINK" && s.rel === "modulepreload" && i(s);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function r(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function i(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = r(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ let c;
-      function a() {
-        c = new google.maps.Map(document.getElementById("map"), {
-          zoom: 2,
-          center: new google.maps.LatLng(2.8, -187.3),
-          mapTypeId: "terrain",
-        });
-        const n = document.createElement("script");
-        (n.src =
-          "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js"),
-          document.getElementsByTagName("head")[0].appendChild(n);
-      }
-      const l = function (n) {
-        for (let o = 0; o < n.features.length; o++) {
-          const r = n.features[o].geometry.coordinates,
-            i = new google.maps.LatLng(r[1], r[0]);
-          new google.maps.Marker({ position: i, map: c });
-        }
-      };
-      window.initMap = a;
-      window.eqfeed_callback = l;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-2da5785c.js"></script>
+    <link rel="stylesheet" href="./assets/index-5f44f203.css" />
   </head>
   <body>
     <div id="map"></div>
@@ -91,7 +23,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&v=weekly"
       defer
     ></script>
   </body>

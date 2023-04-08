@@ -9,86 +9,8 @@
     <title>Earthquake Circles</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const r = document.createElement("link").relList;
-        if (r && r.supports && r.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          a(e);
-        new MutationObserver((e) => {
-          for (const t of e)
-            if (t.type === "childList")
-              for (const i of t.addedNodes)
-                i.tagName === "LINK" && i.rel === "modulepreload" && a(i);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function n(e) {
-          const t = {};
-          return (
-            e.integrity && (t.integrity = e.integrity),
-            e.referrerpolicy && (t.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (t.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (t.credentials = "omit")
-              : (t.credentials = "same-origin"),
-            t
-          );
-        }
-        function a(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const t = n(e);
-          fetch(e.href, t);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ let l;
-      function s() {
-        l = new google.maps.Map(document.getElementById("map"), {
-          zoom: 2,
-          center: { lat: -33.865427, lng: 151.196123 },
-          mapTypeId: "terrain",
-        });
-        const o = document.createElement("script");
-        (o.src =
-          "https://developers.google.com/maps/documentation/javascript/examples/json/earthquake_GeoJSONP.js"),
-          document.getElementsByTagName("head")[0].appendChild(o),
-          l.data.setStyle((r) => {
-            const n = r.getProperty("mag");
-            return { icon: c(n) };
-          });
-      }
-      function c(o) {
-        return {
-          path: google.maps.SymbolPath.CIRCLE,
-          fillColor: "red",
-          fillOpacity: 0.2,
-          scale: Math.pow(2, o) / 2,
-          strokeColor: "white",
-          strokeWeight: 0.5,
-        };
-      }
-      function d(o) {
-        l.data.addGeoJson(o);
-      }
-      window.initMap = s;
-      window.eqfeed_callback = d;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-1bcc7810.js"></script>
+    <link rel="stylesheet" href="./assets/index-5f44f203.css" />
   </head>
   <body>
     <div id="map"></div>
@@ -101,7 +23,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&v=weekly"
       defer
     ></script>
   </body>

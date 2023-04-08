@@ -9,66 +9,8 @@
     <title>Data Layer: Simple</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
-    <script type="module" crossorigin>
-      (function () {
-        const t = document.createElement("link").relList;
-        if (t && t.supports && t.supports("modulepreload")) return;
-        for (const e of document.querySelectorAll('link[rel="modulepreload"]'))
-          n(e);
-        new MutationObserver((e) => {
-          for (const o of e)
-            if (o.type === "childList")
-              for (const r of o.addedNodes)
-                r.tagName === "LINK" && r.rel === "modulepreload" && n(r);
-        }).observe(document, { childList: !0, subtree: !0 });
-        function s(e) {
-          const o = {};
-          return (
-            e.integrity && (o.integrity = e.integrity),
-            e.referrerpolicy && (o.referrerPolicy = e.referrerpolicy),
-            e.crossorigin === "use-credentials"
-              ? (o.credentials = "include")
-              : e.crossorigin === "anonymous"
-              ? (o.credentials = "omit")
-              : (o.credentials = "same-origin"),
-            o
-          );
-        }
-        function n(e) {
-          if (e.ep) return;
-          e.ep = !0;
-          const o = s(e);
-          fetch(e.href, o);
-        }
-      })();
-      /**
-       * @license
-       * Copyright 2019 Google LLC. All Rights Reserved.
-       * SPDX-License-Identifier: Apache-2.0
-       */ let i;
-      function l() {
-        (i = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
-          center: { lat: -28, lng: 137 },
-        })),
-          i.data.loadGeoJson(
-            "https://storage.googleapis.com/mapsdevsite/json/google.json"
-          );
-      }
-      window.initMap = l;
-    </script>
-    <style>
-      #map,
-      body,
-      html {
-        height: 100%;
-      }
-      body,
-      html {
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+    <script type="module" crossorigin src="./assets/index-ec03bcef.js"></script>
+    <link rel="stylesheet" href="./assets/index-5f44f203.css" />
   </head>
   <body>
     <div id="map"></div>
@@ -81,7 +23,7 @@
       for more information.
       -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initMap&v=weekly"
       defer
     ></script>
   </body>
