@@ -50,7 +50,7 @@
     "@types/google.maps": "^3.52.5",
     "@types/google.visualization": "0.0.68",
     "@types/jest": "^29.4.0",
-    "@types/react": "^18.0.34",
+    "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@types/three": "^0.140.0",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
