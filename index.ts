@@ -18,6 +18,7 @@ let address1Field: HTMLInputElement;
 let address2Field: HTMLInputElement;
 let postalField: HTMLInputElement;
 
+
 function initAutocomplete() {
   address1Field = document.querySelector("#ship-address") as HTMLInputElement;
   address2Field = document.querySelector("#address2") as HTMLInputElement;
@@ -26,8 +27,8 @@ function initAutocomplete() {
   // Create the autocomplete object, restricting the search predictions to
   // addresses in the US and Canada.
   autocomplete = new google.maps.places.Autocomplete(address1Field, {
-    componentRestrictions: { country: ["us", "ca"] },
-    fields: ["address_components", "geometry"],
+    componentRestrictions: { country: ["us"] },
+    fields: ["address_components", "place_id"],
     types: ["address"],
   });
   address1Field.focus();
@@ -72,23 +73,27 @@ function fillInAddress() {
         break;
       }
 
-      case "locality":
-        (document.querySelector("#locality") as HTMLInputElement).value =
-          component.long_name;
-        break;
+      // case "locality":
+      //   (document.querySelector("#locality") as HTMLInputElement).value =
+      //     component.long_name;
+      //   break;
 
-      case "administrative_area_level_1": {
-        (document.querySelector("#state") as HTMLInputElement).value =
-          component.short_name;
-        break;
-      }
+      // case "administrative_area_level_1": {
+      //   (document.querySelector("#state") as HTMLInputElement).value =
+      //     component.short_name;
+      //   break;
+      // }
 
-      case "country":
-        (document.querySelector("#country") as HTMLInputElement).value =
-          component.long_name;
-        break;
+      // case "country":
+      //   (document.querySelector("#country") as HTMLInputElement).value =
+      //     component.long_name;
+      //   break;
     }
   }
+
+  //Get the Place Id Of a Location
+  console.log(place.place_id)
+
 
   address1Field.value = address1;
   postalField.value = postcode;
