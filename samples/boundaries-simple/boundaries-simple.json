@@ -1,7 +1,6 @@
 {
     "title": "Boundaries Simple",
-    "callback": "initMap",
-    "libraries": [],
+    "dynamic_import": "true",
     "version": "beta",
     "tag": "boundaries_simple",
     "name": "boundaries-simple",

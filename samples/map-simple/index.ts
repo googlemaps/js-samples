@@ -7,8 +7,7 @@
 // [START maps_map_simple]
 let map: google.maps.Map;
 async function initMap(): Promise<void> {
-  //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
+  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;;
   map = new Map(document.getElementById("map") as HTMLElement, {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8,

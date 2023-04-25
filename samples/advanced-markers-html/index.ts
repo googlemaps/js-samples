@@ -6,49 +6,41 @@
 
 // [START maps_advanced_markers_html]
 // [START maps_advanced_markers_html_snippet]
-function initMap() {
-  const center = {
-    lat: 37.43238031167444,
-    lng: -122.16795397128632,
-  };
-  const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+  const { LatLng } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
+
+  const center = new LatLng(37.43238031167444, -122.16795397128632);
+  const map = new Map(document.getElementById("map") as HTMLElement, {
     zoom: 11,
     center,
     mapId: "4504f8b37365c3d0",
   });
 
   for (const property of properties) {
-    const advancedMarkerView = new google.maps.marker.AdvancedMarkerView({
+    const AdvancedMarkerElement = new google.maps.marker.AdvancedMarkerElement({
       map,
       content: buildContent(property),
       position: property.position,
       title: property.description,
     });
-    const element = advancedMarkerView.element as HTMLElement;
-    ["focus", "pointerenter"].forEach((event) => {
-      element.addEventListener(event, () => {
-        highlight(advancedMarkerView, property);
-      });
-    });
-    ["blur", "pointerleave"].forEach((event) => {
-      element.addEventListener(event, () => {
-        unhighlight(advancedMarkerView, property);
-      });
-    });
-    advancedMarkerView.addListener("click", (event) => {
-      unhighlight(advancedMarkerView, property);
+    
+    AdvancedMarkerElement.addListener("click", () => {
+      toggleHighlight(AdvancedMarkerElement, property);
     });
   }
 }
 
-function highlight(markerView, property) {
-  markerView.content.classList.add("highlight");
-  markerView.element.style.zIndex = 1;
-}
-
-function unhighlight(markerView, property) {
-  markerView.content.classList.remove("highlight");
-  markerView.element.style.zIndex = "";
+function toggleHighlight(markerView, property) {
+  if (markerView.content.classList.contains("highlight")) {
+  	markerView.content.classList.remove("highlight");
+  	markerView.zIndex = null;
+  } else {
+  	markerView.content.classList.add("highlight");
+  	markerView.zIndex = 1;
+  }
 }
 
 function buildContent(property) {
@@ -208,11 +200,6 @@ const properties = [{
   },
 }];
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_advanced_markers_html]
 export { };

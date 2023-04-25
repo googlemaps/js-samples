@@ -1,7 +1,6 @@
 {
     "title": "Choropleth Map",
-    "callback": "initMap",
-    "libraries": [],
+    "dynamic_import": "true",
     "version": "beta",
     "tag": "boundaries_choropleth",
     "name": "boundaries-choropleth",

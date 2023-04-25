@@ -1,7 +1,6 @@
 {
     "title": "Advanced Marker Altitude",
-    "callback": "initMap",
-    "libraries": ["marker"],
+    "dynamic_import": "true",
     "version": "beta",
     "tag": "advanced_markers_altitude",
     "name": "advanced-markers-altitude",
