@@ -1,8 +1,6 @@
 {
     "title": "Advanced Markers CSS Animation",
-    "callback": "initMap",
-    "libraries": ["marker"],
-    "version": "beta",
+    "dynamic_import": "true",
     "tag": "advanced_markers_animation",
     "name": "advanced-markers-animation",
     "pagination": {
