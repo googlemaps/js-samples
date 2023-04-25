@@ -1,8 +1,6 @@
 {
     "title": "Advanced Markers with HTML",
-    "callback": "initMap",
-    "libraries": ["marker"],
-    "version": "beta",
+    "dynamic_import": "true",
     "tag": "advanced_markers_html",
     "name": "advanced-markers-html",
     "pagination": {

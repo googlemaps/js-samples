@@ -1,8 +1,6 @@
 {
     "title": "Advanced Marker Collision Management",
-    "callback": "initMap",
-    "libraries": ["marker"],
-    "version": "beta",
+    "dynamic_import": "true",
     "tag": "advanced_markers_collision",
     "name": "advanced-markers-collision",
     "pagination": {

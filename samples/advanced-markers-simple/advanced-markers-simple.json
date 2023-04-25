@@ -1,8 +1,6 @@
 {
     "title": "Default Advanced Marker",
-    "callback": "initMap",
-    "libraries": ["marker,places"],
-    "version": "beta",
+    "dynamic_import": "true",
     "tag": "advanced_markers_simple",
     "name": "advanced-markers-simple",
     "pagination": {

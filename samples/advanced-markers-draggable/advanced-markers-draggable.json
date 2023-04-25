@@ -1,8 +1,6 @@
 {
     "title": "Draggable Advanced Marker",
-    "callback": "initMap",
-    "libraries": ["marker"],
-    "version": "beta",
+    "dynamic_import": "true",
     "tag": "advanced_markers_draggable",
     "name": "advanced-markers-draggable",
     "pagination": {

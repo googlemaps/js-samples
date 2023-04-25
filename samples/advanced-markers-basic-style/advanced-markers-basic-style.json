@@ -1,8 +1,6 @@
 {
     "title": "Advanced Marker Basic Customization",
-    "callback": "initMap",
-    "libraries": ["marker"],
-    "version": "beta",
+    "dynamic_import": "true",
     "tag": "advanced_markers_basic_style",
     "name": "advanced-markers-basic-style",
     "pagination": {

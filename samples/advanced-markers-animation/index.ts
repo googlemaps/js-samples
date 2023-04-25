@@ -42,10 +42,17 @@
       }
     }
   });
-    
-  function initMap() {
-    const position = { lat: 37.4242011827985, lng: -122.09242296450893 };
-    const map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+  
+  async function initMap(): Promise<void> {
+    // Request needed libraries.
+    const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+    //@ts-ignore
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+    const { LatLng } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
+
+    const position = new LatLng(37.4242011827985, -122.09242296450893);
+
+    const map = new Map(document.getElementById("map") as HTMLElement, {
       zoom: 14,
       center: position,
       mapId: '4504f8b37365c3d0',
@@ -54,7 +61,7 @@
     // Create 100 markers to animate.
     google.maps.event.addListenerOnce(map, 'idle', () => {
       for (let i = 0; i < 100; i++) {
-        createMarker(map);
+        createMarker(map, AdvancedMarkerElement);
       }
     });
   
@@ -72,20 +79,20 @@
     map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlDiv);
   }
  
-  function createMarker(map) {
-    const advancedMarkerView = new google.maps.marker.AdvancedMarkerView({
+  function createMarker(map, AdvancedMarkerElement) {    
+    const advancedMarker = new AdvancedMarkerElement({
       position: getRandomPosition(map),
       map: map,
     });
-    const element = advancedMarkerView.content as HTMLElement;
-    element.style.opacity = '0'; 
-    element.addEventListener('animationend', (event) => { 
-      element.classList.remove('drop');
-      element.style.opacity = '1';
+    const content = advancedMarker.content as HTMLElement;
+    content.style.opacity = '0'; 
+    content.addEventListener('animationend', (event) => { 
+      content.classList.remove('drop');
+      content.style.opacity = '1';
     });
     const time = 2 + Math.random(); // 2s delay for easy to see the animation
-    element.style.setProperty('--delay-time', time +'s');
-    intersectionObserver.observe(element);
+    content.style.setProperty('--delay-time', time +'s');
+    intersectionObserver.observe(content);
   }
 
   function refreshMap() {
@@ -99,11 +106,6 @@
       initMap();
   }
 
-declare global {
-    interface Window {
-        initMap: () => void;
-    }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_advanced_markers_animation]
 export { };
