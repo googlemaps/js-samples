@@ -13,7 +13,7 @@ function initMap() {
   const draggableMarker = new google.maps.marker.AdvancedMarkerView({
     map,
     position: { lat: 37.39094933041195, lng: -122.02503913145092 },
-    draggable: true,
+    gmpDraggable: true,
     title: "This marker is draggable.",
   });
   draggableMarker.addListener("dragend", (event) => {
