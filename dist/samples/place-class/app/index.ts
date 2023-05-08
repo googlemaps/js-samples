@@ -7,8 +7,12 @@
 let map: google.maps.Map;
 let centerCoordinates = { lat: 37.4161493, lng: -122.0812166 };
 
-function initMap() {
-    map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
+async function initMap() {
+    const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+    const { Place } =  await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+
+    map = new Map(document.getElementById('map') as HTMLElement, {
         center: centerCoordinates,
         zoom: 14,
         // [START_EXCLUDE]
@@ -16,27 +20,27 @@ function initMap() {
         // [END_EXCLUDE]
     });
 
-    findPlace();
+    findPlace(AdvancedMarkerElement, Place);
+    getPlaceDetails(Place);
 }
 
-async function findPlace() {
+async function findPlace(AdvancedMarkerElement, Place) {
     const request = {
         query: 'Sports Page',
         fields: ['displayName', 'location'],
         locationBias: centerCoordinates,
     };
-
-    const { places } = await google.maps.places.Place.findPlaceFromQuery(request);
+    
+    const { places } = await Place.findPlaceFromQuery(request);
 
     if (places.length) {
         const place = places[0];
         const location = place.location as google.maps.LatLng;
-        const markerView = new google.maps.marker.AdvancedMarkerView({
+        const markerView = new AdvancedMarkerElement({
             map,
             position: place.location,
             title: place.displayName,
         });
-
         map.setCenter(location);
 
     } else {
@@ -44,9 +48,9 @@ async function findPlace() {
     }
 }
 
-async function getPlaceDetails() {
+async function getPlaceDetails(Place) {
     // Use place ID to create a new Place instance.
-    const place = new google.maps.places.Place({
+    const place = new Place({
         id: 'ChIJN1t_tDeuEmsRUsoyG83frY4',
         requestedLanguage: 'en', // optional
     });
@@ -59,31 +63,25 @@ async function getPlaceDetails() {
     console.log(place.formattedAddress);
 }
 
-async function findPlaceByPhone() {
+async function findPlaceByPhone(AdvancedMarkerElement, Place) {
     const request = {
         phoneNumber: '+1(206)787-5388',
         fields: ['displayName', 'location'],
     }
 
-    const { places } = await google.maps.places.Place.findPlaceFromPhoneNumber(request);
+    const { places } = await Place.findPlaceFromPhoneNumber(request);
 
     if (places.length) {
         const place = places[0];
-        const markerView = new google.maps.marker.AdvancedMarkerView({
+        const markerView = new AdvancedMarkerElement({
             map,
             position: place.location,
             title: place.displayName,
         });
-        console.log(place.displayName);
     } else {
         console.log('No results');
     }
 }
 
-declare global {
-    interface Window {
-        initMap: () => void;
-    }
-}
-window.initMap = initMap;
+initMap();
 export { };

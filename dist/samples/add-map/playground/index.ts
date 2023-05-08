@@ -9,7 +9,7 @@ async function initMap(): Promise<void> {
   const { Map } = (await google.maps.importLibrary(
     "maps"
   )) as google.maps.MapsLibrary;
-  const { AdvancedMarkerView } = (await google.maps.importLibrary(
+  const { AdvancedMarkerElement } = (await google.maps.importLibrary(
     "marker"
   )) as google.maps.MarkerLibrary;
 
@@ -21,7 +21,7 @@ async function initMap(): Promise<void> {
   });
 
   // The marker, positioned at Uluru
-  const marker = new AdvancedMarkerView({
+  const marker = new AdvancedMarkerElement({
     map: map,
     position: position,
     title: "Uluru",

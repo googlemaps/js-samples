@@ -3,8 +3,13 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
+async function initMap() {
+  // Request needed libraries.
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+    "marker"
+  );
+  const map = new Map(document.getElementById("map"), {
     zoom: 12,
     center: { lat: 34.84555, lng: -111.8035 },
     mapId: "4504f8b37365c3d0",
@@ -35,18 +40,18 @@ function initMap() {
     },
   ];
   // Create an info window to share between markers.
-  const infoWindow = new google.maps.InfoWindow();
+  const infoWindow = new InfoWindow();
 
   // Create the markers.
   tourStops.forEach(({ position, title }, i) => {
-    const pinView = new google.maps.marker.PinView({
+    const pin = new PinElement({
       glyph: `${i + 1}`,
     });
-    const marker = new google.maps.marker.AdvancedMarkerView({
+    const marker = new AdvancedMarkerElement({
       position,
       map,
       title: `${i + 1}. ${title}`,
-      content: pinView.element,
+      content: pin.element,
     });
 
     // Add a click listener for each marker, and set up the info window.
@@ -60,4 +65,4 @@ function initMap() {
   });
 }
 
-window.initMap = initMap;
+initMap();
