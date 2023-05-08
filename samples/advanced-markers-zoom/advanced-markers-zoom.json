@@ -1,7 +1,6 @@
 {
     "title": "Advanced Marker Zoom Visibility",
-    "callback": "initMap",
-    "libraries": ["marker"],
+    "dynamic_import": "true",
     "version": "beta",
     "tag": "advanced_markers_zoom",
     "name": "advanced-markers-zoom",

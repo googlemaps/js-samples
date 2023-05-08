@@ -1,8 +1,7 @@
 {
   "title": "Place Class",
-  "callback": "initMap",
-  "libraries": ["marker,places"],
   "version": "beta",
+  "dynamic_import": "true",
   "tag": "place_class",
   "name": "place-class",
   "pagination": {

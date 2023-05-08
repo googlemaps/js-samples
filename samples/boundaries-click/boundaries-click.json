@@ -1,7 +1,6 @@
 {
     "title": "Handle Region Boundary Click Event",
-    "callback": "initMap",
-    "libraries": ["places"],
+    "dynamic_import": "true",
     "version": "beta",
     "tag": "boundaries_click_event",
     "name": "boundaries-click-event",

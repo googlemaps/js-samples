@@ -4,15 +4,18 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 // [START maps_advanced_markers_draggable]
-function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
+async function initMap() {
+  // Request needed libraries.
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  const map = new Map(document.getElementById("map"), {
     center: { lat: 37.39094933041195, lng: -122.02503913145092 },
     zoom: 14,
     mapId: "4504f8b37365c3d0",
   });
-  const infoWindow = new google.maps.InfoWindow();
+  const infoWindow = new InfoWindow();
   // [START maps_advanced_markers_draggable_marker]
-  const draggableMarker = new google.maps.marker.AdvancedMarkerView({
+  const draggableMarker = new AdvancedMarkerElement({
     map,
     position: { lat: 37.39094933041195, lng: -122.02503913145092 },
     gmpDraggable: true,
@@ -31,5 +34,5 @@ function initMap() {
   });
 }
 
-window.initMap = initMap;
+initMap();
 // [END maps_advanced_markers_draggable]

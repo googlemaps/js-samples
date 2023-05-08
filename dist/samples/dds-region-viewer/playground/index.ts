@@ -371,7 +371,7 @@ const countries = [
     code: "AF",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -382,7 +382,7 @@ const countries = [
     code: "AL",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -393,8 +393,8 @@ const countries = [
     code: "DZ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -404,8 +404,8 @@ const countries = [
     code: "AS",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -415,9 +415,9 @@ const countries = [
     code: "AD",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -426,8 +426,8 @@ const countries = [
     code: "AO",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -459,7 +459,7 @@ const countries = [
     code: "AG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -469,9 +469,9 @@ const countries = [
     name: "Argentina",
     code: "AR",
     feature: {
-      country: false,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      country: true,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -481,7 +481,7 @@ const countries = [
     code: "AM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -504,7 +504,7 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: true,
     },
@@ -524,7 +524,7 @@ const countries = [
     name: "Azerbaijan",
     code: "AZ",
     feature: {
-      country: false,
+      country: true,
       administrative_area_level_1: true,
       administrative_area_level_2: true,
       postal_code: false,
@@ -536,7 +536,7 @@ const countries = [
     code: "BH",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -547,8 +547,8 @@ const countries = [
     code: "BD",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -558,7 +558,7 @@ const countries = [
     code: "BB",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -569,8 +569,8 @@ const countries = [
     code: "BY",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -591,7 +591,7 @@ const countries = [
     code: "BZ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -602,7 +602,7 @@ const countries = [
     code: "BJ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -613,7 +613,7 @@ const countries = [
     code: "BM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -624,7 +624,7 @@ const countries = [
     code: "BT",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -635,8 +635,8 @@ const countries = [
     code: "BO",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -646,8 +646,8 @@ const countries = [
     code: "BA",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -657,7 +657,7 @@ const countries = [
     code: "BW",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -701,7 +701,7 @@ const countries = [
     code: "VG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -712,7 +712,7 @@ const countries = [
     code: "BN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -724,7 +724,7 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: true,
     },
@@ -734,8 +734,8 @@ const countries = [
     code: "BF",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -745,7 +745,7 @@ const countries = [
     code: "BI",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -767,8 +767,8 @@ const countries = [
     code: "KH",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -778,7 +778,7 @@ const countries = [
     code: "CM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -800,7 +800,7 @@ const countries = [
     code: "BQ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -811,7 +811,7 @@ const countries = [
     code: "KY",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -822,8 +822,8 @@ const countries = [
     code: "CF",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -833,8 +833,8 @@ const countries = [
     code: "TD",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -843,9 +843,9 @@ const countries = [
     name: "Chile",
     code: "CL",
     feature: {
-      country: false,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      country: true,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -855,7 +855,7 @@ const countries = [
     code: "CN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -868,24 +868,13 @@ const countries = [
       country: true,
       administrative_area_level_1: false,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
   {
     name: "Cocos (Keeling) Islands",
     code: "CC",
-    feature: {
-      country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
-      postal_code: false,
-      locality: false,
-    },
-  },
-  {
-    name: "Colombia",
-    code: "CO",
     feature: {
       country: true,
       administrative_area_level_1: true,
@@ -895,11 +884,22 @@ const countries = [
     },
   },
   {
+    name: "Colombia",
+    code: "CO",
+    feature: {
+      country: true,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
+      postal_code: true,
+      locality: false,
+    },
+  },
+  {
     name: "Comoros",
     code: "KM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -921,7 +921,7 @@ const countries = [
     code: "CR",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -943,7 +943,7 @@ const countries = [
     code: "CU",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -987,8 +987,8 @@ const countries = [
     code: "CI",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -998,8 +998,8 @@ const countries = [
     code: "CD",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1020,7 +1020,7 @@ const countries = [
     code: "DJ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1031,7 +1031,7 @@ const countries = [
     code: "DM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1042,7 +1042,7 @@ const countries = [
     code: "DO",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1053,8 +1053,8 @@ const countries = [
     code: "EC",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1064,7 +1064,7 @@ const countries = [
     code: "EG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1075,7 +1075,7 @@ const countries = [
     code: "SV",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1086,7 +1086,7 @@ const countries = [
     code: "GQ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1097,7 +1097,7 @@ const countries = [
     code: "ER",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1109,8 +1109,8 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
-      postal_code: false,
+      administrative_area_level_2: true,
+      postal_code: true,
       locality: true,
     },
   },
@@ -1119,7 +1119,7 @@ const countries = [
     code: "SZ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1130,7 +1130,7 @@ const countries = [
     code: "ET",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1152,7 +1152,7 @@ const countries = [
     code: "FO",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1163,7 +1163,7 @@ const countries = [
     code: "FJ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1196,7 +1196,7 @@ const countries = [
     code: "GF",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1207,7 +1207,7 @@ const countries = [
     code: "PF",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1229,7 +1229,7 @@ const countries = [
     code: "GA",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1240,7 +1240,7 @@ const countries = [
     code: "GE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1262,8 +1262,8 @@ const countries = [
     code: "GH",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1275,7 +1275,7 @@ const countries = [
       country: true,
       administrative_area_level_1: false,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -1295,7 +1295,7 @@ const countries = [
     code: "GL",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1306,7 +1306,7 @@ const countries = [
     code: "GD",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1317,8 +1317,8 @@ const countries = [
     code: "GP",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1339,8 +1339,8 @@ const countries = [
     code: "GT",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1350,7 +1350,7 @@ const countries = [
     code: "GG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1361,8 +1361,8 @@ const countries = [
     code: "GN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1372,7 +1372,7 @@ const countries = [
     code: "GW",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1383,7 +1383,7 @@ const countries = [
     code: "GY",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1394,7 +1394,7 @@ const countries = [
     code: "HT",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1416,8 +1416,8 @@ const countries = [
     code: "HN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1427,8 +1427,8 @@ const countries = [
     code: "HK",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1439,7 +1439,7 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: true,
     },
@@ -1449,9 +1449,9 @@ const countries = [
     code: "IS",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -1459,11 +1459,11 @@ const countries = [
     name: "India",
     code: "IN",
     feature: {
-      country: false,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
-      postal_code: false,
-      locality: false,
+      country: true,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
+      postal_code: true,
+      locality: true,
     },
   },
   {
@@ -1482,7 +1482,7 @@ const countries = [
     code: "IR",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1493,7 +1493,7 @@ const countries = [
     code: "IQ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1505,7 +1505,7 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1515,7 +1515,7 @@ const countries = [
     code: "IM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1548,7 +1548,7 @@ const countries = [
     code: "JM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1570,7 +1570,7 @@ const countries = [
     code: "JE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1581,7 +1581,7 @@ const countries = [
     code: "JO",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1592,7 +1592,7 @@ const countries = [
     code: "KZ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1603,7 +1603,7 @@ const countries = [
     code: "KE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1614,7 +1614,7 @@ const countries = [
     code: "KI",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1625,7 +1625,7 @@ const countries = [
     code: "XK",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1636,7 +1636,7 @@ const countries = [
     code: "KW",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1647,7 +1647,7 @@ const countries = [
     code: "KG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1658,7 +1658,7 @@ const countries = [
     code: "LA",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1670,7 +1670,7 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
+      administrative_area_level_2: true,
       postal_code: true,
       locality: false,
     },
@@ -1680,8 +1680,8 @@ const countries = [
     code: "LB",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1691,7 +1691,7 @@ const countries = [
     code: "LS",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1702,7 +1702,7 @@ const countries = [
     code: "LR",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1713,7 +1713,7 @@ const countries = [
     code: "LY",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1724,7 +1724,7 @@ const countries = [
     code: "LI",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1768,7 +1768,7 @@ const countries = [
     code: "MG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1779,8 +1779,8 @@ const countries = [
     code: "MW",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1790,7 +1790,7 @@ const countries = [
     code: "MY",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1801,7 +1801,7 @@ const countries = [
     code: "MV",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1823,10 +1823,10 @@ const countries = [
     code: "MT",
     feature: {
       country: true,
-      administrative_area_level_1: true,
-      administrative_area_level_2: true,
+      administrative_area_level_1: false,
+      administrative_area_level_2: false,
       postal_code: false,
-      locality: false,
+      locality: true,
     },
   },
   {
@@ -1834,7 +1834,7 @@ const countries = [
     code: "MH",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1845,7 +1845,7 @@ const countries = [
     code: "MQ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1856,7 +1856,7 @@ const countries = [
     code: "MR",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1867,7 +1867,7 @@ const countries = [
     code: "MU",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1878,7 +1878,7 @@ const countries = [
     code: "YT",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1890,7 +1890,7 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1900,7 +1900,7 @@ const countries = [
     code: "FM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1911,7 +1911,7 @@ const countries = [
     code: "MD",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1933,7 +1933,7 @@ const countries = [
     code: "MN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1944,8 +1944,8 @@ const countries = [
     code: "ME",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1955,7 +1955,7 @@ const countries = [
     code: "MS",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1977,7 +1977,7 @@ const countries = [
     code: "MZ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -1988,8 +1988,8 @@ const countries = [
     code: "MM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -1999,7 +1999,7 @@ const countries = [
     code: "NA",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2010,7 +2010,7 @@ const countries = [
     code: "NR",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2021,8 +2021,8 @@ const countries = [
     code: "NP",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2043,7 +2043,7 @@ const countries = [
     code: "NC",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2057,7 +2057,7 @@ const countries = [
       administrative_area_level_1: true,
       administrative_area_level_2: true,
       postal_code: false,
-      locality: false,
+      locality: true,
     },
   },
   {
@@ -2065,7 +2065,7 @@ const countries = [
     code: "NI",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2076,7 +2076,7 @@ const countries = [
     code: "NE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2087,7 +2087,7 @@ const countries = [
     code: "NG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2098,7 +2098,7 @@ const countries = [
     code: "NU",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2120,7 +2120,7 @@ const countries = [
     code: "KP",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2131,8 +2131,8 @@ const countries = [
     code: "MK",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2142,9 +2142,9 @@ const countries = [
     code: "MP",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2155,7 +2155,7 @@ const countries = [
       country: true,
       administrative_area_level_1: true,
       administrative_area_level_2: true,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2164,7 +2164,7 @@ const countries = [
     code: "OM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2186,7 +2186,7 @@ const countries = [
     code: "PW",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2208,7 +2208,7 @@ const countries = [
     code: "PA",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2219,8 +2219,8 @@ const countries = [
     code: "PG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2230,7 +2230,7 @@ const countries = [
     code: "PY",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2241,8 +2241,8 @@ const countries = [
     code: "PE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2252,8 +2252,8 @@ const countries = [
     code: "PH",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2265,7 +2265,7 @@ const countries = [
       country: true,
       administrative_area_level_1: false,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2286,7 +2286,7 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2296,9 +2296,9 @@ const countries = [
     code: "PR",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2307,7 +2307,7 @@ const countries = [
     code: "QA",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2318,7 +2318,7 @@ const countries = [
     code: "CG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2339,7 +2339,7 @@ const countries = [
     name: "Russia",
     code: "RU",
     feature: {
-      country: false,
+      country: true,
       administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: true,
@@ -2351,8 +2351,8 @@ const countries = [
     code: "RW",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2362,8 +2362,8 @@ const countries = [
     code: "RE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2384,7 +2384,7 @@ const countries = [
     code: "SH",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2395,7 +2395,7 @@ const countries = [
     code: "KN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2406,7 +2406,7 @@ const countries = [
     code: "LC",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2419,7 +2419,7 @@ const countries = [
       country: true,
       administrative_area_level_1: false,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2428,9 +2428,9 @@ const countries = [
     code: "PM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2439,7 +2439,7 @@ const countries = [
     code: "VC",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2450,7 +2450,7 @@ const countries = [
     code: "WS",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2461,7 +2461,7 @@ const countries = [
     code: "SM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2472,7 +2472,7 @@ const countries = [
     code: "SA",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2483,8 +2483,8 @@ const countries = [
     code: "SN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2505,7 +2505,7 @@ const countries = [
     code: "SC",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2516,7 +2516,7 @@ const countries = [
     code: "SL",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2538,7 +2538,7 @@ const countries = [
     code: "SX",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2562,7 +2562,7 @@ const countries = [
       country: true,
       administrative_area_level_1: true,
       administrative_area_level_2: true,
-      postal_code: false,
+      postal_code: true,
       locality: true,
     },
   },
@@ -2571,7 +2571,7 @@ const countries = [
     code: "SB",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2582,7 +2582,7 @@ const countries = [
     code: "SO",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2594,7 +2594,7 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2606,7 +2606,7 @@ const countries = [
       country: true,
       administrative_area_level_1: false,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2648,8 +2648,8 @@ const countries = [
     code: "LK",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2659,7 +2659,7 @@ const countries = [
     code: "SD",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2670,7 +2670,7 @@ const countries = [
     code: "SR",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2681,7 +2681,7 @@ const countries = [
     code: "SJ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2692,8 +2692,8 @@ const countries = [
     code: "SE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2704,8 +2704,8 @@ const countries = [
     feature: {
       country: true,
       administrative_area_level_1: true,
-      administrative_area_level_2: false,
-      postal_code: false,
+      administrative_area_level_2: true,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2714,7 +2714,7 @@ const countries = [
     code: "SY",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2725,7 +2725,7 @@ const countries = [
     code: "ST",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2736,8 +2736,8 @@ const countries = [
     code: "TW",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2747,7 +2747,7 @@ const countries = [
     code: "TJ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2758,7 +2758,7 @@ const countries = [
     code: "TZ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2780,7 +2780,7 @@ const countries = [
     code: "BS",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2791,7 +2791,7 @@ const countries = [
     code: "GM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2802,7 +2802,7 @@ const countries = [
     code: "TL",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2813,7 +2813,7 @@ const countries = [
     code: "TG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2824,7 +2824,7 @@ const countries = [
     code: "TK",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2835,7 +2835,7 @@ const countries = [
     code: "TO",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2846,7 +2846,7 @@ const countries = [
     code: "TT",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2857,7 +2857,7 @@ const countries = [
     code: "TN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2868,7 +2868,7 @@ const countries = [
     code: "TM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2879,9 +2879,9 @@ const countries = [
     code: "TC",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
-      postal_code: false,
+      postal_code: true,
       locality: false,
     },
   },
@@ -2890,7 +2890,7 @@ const countries = [
     code: "TV",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2912,8 +2912,8 @@ const countries = [
     code: "VI",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -2923,7 +2923,7 @@ const countries = [
     code: "UG",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -2933,7 +2933,7 @@ const countries = [
     name: "Ukraine",
     code: "UA",
     feature: {
-      country: false,
+      country: true,
       administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
@@ -2989,7 +2989,7 @@ const countries = [
     code: "UY",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3000,7 +3000,7 @@ const countries = [
     code: "UZ",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3011,7 +3011,7 @@ const countries = [
     code: "VU",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3033,8 +3033,8 @@ const countries = [
     code: "VE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
-      administrative_area_level_2: false,
+      administrative_area_level_1: true,
+      administrative_area_level_2: true,
       postal_code: false,
       locality: false,
     },
@@ -3044,7 +3044,7 @@ const countries = [
     code: "VN",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3055,7 +3055,7 @@ const countries = [
     code: "WF",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3066,7 +3066,7 @@ const countries = [
     code: "EH",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3077,7 +3077,7 @@ const countries = [
     code: "YE",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3088,7 +3088,7 @@ const countries = [
     code: "ZM",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3099,7 +3099,7 @@ const countries = [
     code: "ZW",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,
@@ -3110,7 +3110,7 @@ const countries = [
     code: "AX",
     feature: {
       country: true,
-      administrative_area_level_1: false,
+      administrative_area_level_1: true,
       administrative_area_level_2: false,
       postal_code: false,
       locality: false,

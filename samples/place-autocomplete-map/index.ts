@@ -6,12 +6,12 @@
 
 // [START maps_place_autocomplete_map]
 let map: google.maps.Map;
-let marker: google.maps.marker.AdvancedMarkerView;
+let marker: google.maps.marker.AdvancedMarkerElement;
 let infoWindow: google.maps.InfoWindow;
 async function initMap(): Promise<void> {
     // Request needed libraries.
     //@ts-ignore
-    const [{ Map }, { AdvancedMarkerView }] = await Promise.all([
+    const [{ Map }, { AdvancedMarkerElement }] = await Promise.all([
         google.maps.importLibrary("marker"),
         google.maps.importLibrary("places")
       ]);
@@ -36,7 +36,7 @@ async function initMap(): Promise<void> {
     // [END maps_place_autocomplete_map_add]
 
     // Create the marker and infowindow
-    marker = new google.maps.marker.AdvancedMarkerView({
+    marker = new google.maps.marker.AdvancedMarkerElement({
         map,
     });
     

@@ -12,8 +12,13 @@ let map: google.maps.Map;
 //@ts-ignore
 let featureLayer;
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = (await google.maps.importLibrary(
+    "maps"
+  )) as google.maps.MapsLibrary;
+
+  map = new Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 20.773, lng: -156.01 }, // Hana, HI
     zoom: 12,
     // In the cloud console, configure this Map ID with a style that enables the
@@ -44,10 +49,5 @@ function initMap() {
   };
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 export {};

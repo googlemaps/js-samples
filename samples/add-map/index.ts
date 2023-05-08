@@ -15,7 +15,7 @@ async function initMap(): Promise<void> {
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-  const { AdvancedMarkerView } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
 
   // The map, centered at Uluru
   map = new Map(
@@ -30,7 +30,7 @@ async function initMap(): Promise<void> {
 
   // [START maps_add_map_instantiate_marker]
   // The marker, positioned at Uluru
-  const marker = new AdvancedMarkerView({
+  const marker = new AdvancedMarkerElement({
     map: map,
     position: position,
     title: 'Uluru'

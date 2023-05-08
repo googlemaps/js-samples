@@ -1,16 +1,21 @@
-function initMap() {
-  const map = new google.maps.Map(
-    document.getElementById("map") as HTMLElement,
-    {
-      center: { lat: 37.39094933041195, lng: -122.02503913145092 },
-      zoom: 14,
-      mapId: "4504f8b37365c3d0",
-    }
-  );
+async function initMap() {
+  // Request needed libraries.
+  const { Map, InfoWindow } = (await google.maps.importLibrary(
+    "maps"
+  )) as google.maps.MapsLibrary;
+  const { AdvancedMarkerElement } = (await google.maps.importLibrary(
+    "marker"
+  )) as google.maps.MarkerLibrary;
 
-  const infoWindow = new google.maps.InfoWindow();
+  const map = new Map(document.getElementById("map") as HTMLElement, {
+    center: { lat: 37.39094933041195, lng: -122.02503913145092 },
+    zoom: 14,
+    mapId: "4504f8b37365c3d0",
+  });
 
-  const draggableMarker = new google.maps.marker.AdvancedMarkerView({
+  const infoWindow = new InfoWindow();
+
+  const draggableMarker = new AdvancedMarkerElement({
     map,
     position: { lat: 37.39094933041195, lng: -122.02503913145092 },
     gmpDraggable: true,
@@ -26,10 +31,5 @@ function initMap() {
   });
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 export {};
