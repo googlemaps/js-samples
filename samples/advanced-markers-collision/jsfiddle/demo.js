@@ -7,11 +7,14 @@
 let map;
 
 // Initialize and add the map
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   let markers = [];
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
 
-  map = new google.maps.Map(document.getElementById("map"), {
+  map = new Map(document.getElementById("map"), {
     mapId: "6ff586e93e18149f",
     center: { lat: 47.609414458375674, lng: -122.33897030353548 },
     zoom: 17,
@@ -65,7 +68,7 @@ function initMap() {
   ];
 
   locations.forEach(([lng, lat]) => {
-    const advancedMarker = new google.maps.marker.AdvancedMarkerView({
+    const advancedMarker = new AdvancedMarkerElement({
       position: new google.maps.LatLng({ lat, lng }),
       map,
       collisionBehavior: collisionBehavior,
@@ -75,4 +78,4 @@ function initMap() {
   });
 }
 
-window.initMap = initMap;
+initMap();

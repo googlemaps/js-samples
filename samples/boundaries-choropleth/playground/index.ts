@@ -1,16 +1,17 @@
-function initMap() {
-  const map = new google.maps.Map(
-    document.getElementById("map") as HTMLElement,
-    {
-      center: { lat: 40.76, lng: -101.64 },
-      zoom: 5,
-      // In the cloud console, configure this Map ID with a style that enables the
-      // "Administrative Area Level 1" feature layer.
-      mapId: "7ba16be0c9375fa7",
-    }
-  );
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = (await google.maps.importLibrary(
+    "maps"
+  )) as google.maps.MapsLibrary;
 
-  //@ts-ignore
+  const map = new Map(document.getElementById("map") as HTMLElement, {
+    center: { lat: 40.76, lng: -101.64 },
+    zoom: 5,
+    // In the cloud console, configure this Map ID with a style that enables the
+    // "Administrative Area Level 1" feature layer.
+    mapId: "7ba16be0c9375fa7",
+  });
+
   const featureLayer = map.getFeatureLayer(
     google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_1
   );
@@ -41,7 +42,6 @@ function initMap() {
       fillOpacity: 0.5,
     };
   };
-
   // Population data by state.
   const states = {
     ChIJdf5LHzR_hogR6czIUzU0VV4: 5039877, // Alabama
@@ -97,10 +97,5 @@ function initMap() {
   };
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 export {};

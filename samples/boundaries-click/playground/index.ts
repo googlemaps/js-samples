@@ -1,10 +1,13 @@
-import { DstAlphaFactor } from "three";
-
 let map: google.maps.Map;
 let featureLayer;
 let infoWindow: google.maps.InfoWindow;
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
+async function initMap() {
+  // Request needed libraries.
+  const { Map, InfoWindow } = (await google.maps.importLibrary(
+    "maps"
+  )) as google.maps.MapsLibrary;
+
+  map = new Map(document.getElementById("map") as HTMLElement, {
     center: { lat: 39.23, lng: -105.73 }, // Park County, CO
     zoom: 8,
     // In the cloud console, configure this Map ID with a style that enables the
@@ -16,7 +19,7 @@ function initMap() {
   featureLayer = map.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2");
   // Add the event listener for the feature layer.
   featureLayer.addListener("click", handlePlaceClick);
-  infoWindow = new google.maps.InfoWindow({});
+  infoWindow = new InfoWindow({});
   // Apply style on load, to enable clicking.
   applyStyleToSelected();
 }
@@ -76,10 +79,6 @@ function updateInfoWindow(content, center) {
     shouldFocus: false,
   });
 }
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+
+initMap();
 export {};

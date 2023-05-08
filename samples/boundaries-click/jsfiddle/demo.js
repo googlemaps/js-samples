@@ -7,8 +7,11 @@ let map;
 let featureLayer;
 let infoWindow;
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
+async function initMap() {
+  // Request needed libraries.
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+
+  map = new Map(document.getElementById("map"), {
     center: { lat: 39.23, lng: -105.73 },
     zoom: 8,
     // In the cloud console, configure this Map ID with a style that enables the
@@ -20,7 +23,7 @@ function initMap() {
   featureLayer = map.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2");
   // Add the event listener for the feature layer.
   featureLayer.addListener("click", handlePlaceClick);
-  infoWindow = new google.maps.InfoWindow({});
+  infoWindow = new InfoWindow({});
   // Apply style on load, to enable clicking.
   applyStyleToSelected();
 }
@@ -88,4 +91,4 @@ function updateInfoWindow(content, center) {
   });
 }
 
-window.initMap = initMap;
+initMap();

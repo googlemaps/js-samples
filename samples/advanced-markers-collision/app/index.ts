@@ -8,12 +8,16 @@
 let map: google.maps.Map;
 
 // Initialize and add the map
-function initMap(): void {
-  let markers: google.maps.marker.AdvancedMarkerView[] = [];
+async function initMap(): Promise<void> {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+  
+  let markers: google.maps.marker.AdvancedMarkerElement[] = [];
 
   let collisionBehavior = google.maps.CollisionBehavior.REQUIRED;
 
-  map = new google.maps.Map(
+  map = new Map(
     document.getElementById("map") as HTMLElement,
     {
       mapId: "6ff586e93e18149f",
@@ -73,7 +77,7 @@ function initMap(): void {
   ];
 
   locations.forEach(([lng, lat]: number[]) => {
-    const advancedMarker = new google.maps.marker.AdvancedMarkerView({
+    const advancedMarker = new AdvancedMarkerElement({
       position: new google.maps.LatLng({ lat, lng }),
       map,
       collisionBehavior: collisionBehavior,
@@ -82,10 +86,5 @@ function initMap(): void {
   });
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 export { };

@@ -11,8 +11,11 @@ let map;
 //@ts-ignore
 let featureLayer;
 
-function initMap() {
-  map = new google.maps.Map(document.getElementById("map"), {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
+
+  map = new Map(document.getElementById("map"), {
     center: { lat: 20.773, lng: -156.01 },
     zoom: 12,
     // In the cloud console, configure this Map ID with a style that enables the
@@ -44,5 +47,5 @@ function initMap() {
   // [END maps_boundaries_simple_style_single]
 }
 
-window.initMap = initMap;
+initMap();
 // [END maps_boundaries_simple]

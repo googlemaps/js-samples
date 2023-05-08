@@ -3,15 +3,16 @@
  * Copyright 2022 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-function initMap() {
-  const map = new google.maps.Map(document.getElementById("map"), {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
+  const map = new Map(document.getElementById("map"), {
     center: { lat: 40.76, lng: -101.64 },
     zoom: 5,
     // In the cloud console, configure this Map ID with a style that enables the
     // "Administrative Area Level 1" feature layer.
     mapId: "7ba16be0c9375fa7",
   });
-  //@ts-ignore
   const featureLayer = map.getFeatureLayer(
     google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_1
   );
@@ -96,4 +97,4 @@ function initMap() {
   };
 }
 
-window.initMap = initMap;
+initMap();
