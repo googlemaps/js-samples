@@ -94,7 +94,7 @@ async function initMap() {
   const attributionControl = createAttribution(map);
 
   attributionDiv.appendChild(attributionControl);
-  map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(attributionDiv);
+  map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(attributionDiv);
 }
 
 // Create a custom control to hold attribution text.
