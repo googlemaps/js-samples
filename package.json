@@ -47,7 +47,7 @@
     "@googlemaps/three": "^3.0.3",
     "@playwright/test": "^1.33.0",
     "@types/geojson": "^7946.0.10",
-    "@types/google.maps": "^3.53.1",
+    "@types/google.maps": "^3.53.2",
     "@types/google.visualization": "0.0.69",
     "@types/jest": "^29.5.1",
     "@types/react": "^18.0.37",
