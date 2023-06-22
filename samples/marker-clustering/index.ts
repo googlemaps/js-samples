@@ -6,12 +6,17 @@
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 
 // [START maps_marker_clustering]
-function initMap(): void {
+async function initMap() {
+  // Request needed libraries.
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
       zoom: 3,
       center: { lat: -28.024, lng: 140.887 },
+      mapId: 'DEMO_MAP_ID',
     }
   );
 
@@ -26,18 +31,21 @@ function initMap(): void {
   // Add some markers to the map.
   const markers = locations.map((position, i) => {
     const label = labels[i % labels.length];
-    const marker = new google.maps.Marker({
+    const pinGlyph = new google.maps.marker.PinElement({
+      glyph: label,
+      glyphColor: "white",
+    })
+    const marker = new google.maps.marker.AdvancedMarkerElement({
       position,
-      label,
+      content: pinGlyph.element,
     });
 
     // markers can only be keyboard focusable when they have click listeners
     // open info window when marker is clicked
     marker.addListener("click", () => {
-      infoWindow.setContent(label);
+      infoWindow.setContent(position.lat + ", " + position.lng);
       infoWindow.open(map, marker);
     });
-
     return marker;
   });
 
@@ -71,11 +79,6 @@ const locations = [
   { lat: -43.999792, lng: 170.463352 },
 ];
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_marker_clustering]
-export {};
+export { };
