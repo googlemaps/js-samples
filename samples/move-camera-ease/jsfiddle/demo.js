@@ -3,7 +3,7 @@
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */
-import { Easing, Tween, update } from "https://cdn.skypack.dev/@tweenjs/tween.js@^20.0.3";
+import { Easing, Tween, update } from "https://cdn.skypack.dev/@tweenjs/tween.js@^21.0.0";
 let map;
 const cameraOptions = {
   tilt: 0,
