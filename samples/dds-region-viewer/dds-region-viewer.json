@@ -2,7 +2,7 @@
     "title": "Region Coverage Viewer",
     "callback": "initMap",
     "libraries": ["places"],
-    "version": "beta",
+    "version": "weekly",
     "tag": "dds_region_viewer",
     "name": "dds-region-viewer",
     "pagination": {
