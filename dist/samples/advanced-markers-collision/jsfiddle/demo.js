@@ -20,23 +20,6 @@ async function initMap() {
     zoom: 17,
   });
 
-  const menuList = document.querySelector(".mdc-list");
-
-  // Add the behaviors to the select options
-  for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {
-    const item = document.createElement("LI");
-
-    item.classList.add("mdc-list-item");
-    item.setAttribute("data-value", key);
-
-    const itemText = document.createElement("SPAN");
-
-    itemText.classList.add("mdc-list-item__text");
-    itemText.innerText = value;
-    item.appendChild(itemText);
-    menuList.appendChild(item);
-  }
-
   // @ts-ignore
   const select = new mdc.select.MDCSelect(
     document.querySelector(".mdc-select")
