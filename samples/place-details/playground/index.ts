@@ -8,7 +8,7 @@ function initMap(): void {
     {
       center: { lat: -33.866, lng: 151.196 },
       zoom: 15,
-    }
+    },
   );
 
   const request = {

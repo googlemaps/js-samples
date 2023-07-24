@@ -31,7 +31,7 @@ function drop(): void {
 
 function addMarkerWithTimeout(
   position: google.maps.LatLngLiteral,
-  timeout: number
+  timeout: number,
 ): void {
   window.setTimeout(() => {
     markers.push(
@@ -39,7 +39,7 @@ function addMarkerWithTimeout(
         position: position,
         map,
         animation: google.maps.Animation.DROP,
-      })
+      }),
     );
   }, timeout);
 }

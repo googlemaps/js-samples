@@ -61,10 +61,10 @@ function setStyle(/* FeatureStyleFunctionOptions */ params) {
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { LatLng } = (await google.maps.importLibrary(
-    "core"
+    "core",
   )) as google.maps.CoreLibrary;
 
   const position = new LatLng(40.780101, -73.96778);

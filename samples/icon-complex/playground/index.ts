@@ -8,7 +8,7 @@ function initMap(): void {
     {
       zoom: 10,
       center: { lat: -33.9, lng: 151.2 },
-    }
+    },
   );
 
   setMarkers(map);

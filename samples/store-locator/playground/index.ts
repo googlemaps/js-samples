@@ -34,11 +34,11 @@ function initMap(): void {
 
   // @ts-ignore
   new mdc.textField.MDCTextField(
-    document.querySelector(".mdc-text-field") as HTMLInputElement
+    document.querySelector(".mdc-text-field") as HTMLInputElement,
   );
 
   autocompleteInput = document.getElementById(
-    "search-input"
+    "search-input",
   ) as HTMLInputElement;
   autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
     fields: ["geometry"],
@@ -47,7 +47,7 @@ function initMap(): void {
   autocomplete.bindTo("bounds", map); // bias to map viewport
 
   fetch(
-    "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
+    "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson",
   )
     .then((response) => {
       return response.json();
@@ -74,7 +74,7 @@ function initMap(): void {
             seeDetail(new google.maps.LatLng({ lat, lng }));
           });
           markers.push(marker);
-        }
+        },
       );
 
       // @ts-ignore
@@ -102,17 +102,17 @@ function initMap(): void {
             update(new google.maps.LatLng({ lat, lng }));
             map.setZoom(10);
             map.setMapTypeId(originalMapTypeId);
-          }
+          },
         );
       }
-    }
+    },
   );
 
   (document.getElementById("refresh") as HTMLButtonElement).addEventListener(
     "click",
     () => {
       update(map.getCenter()!);
-    }
+    },
   );
 }
 
@@ -168,20 +168,20 @@ function renderCards(stores: Store[]): void {
         });
 
         cardsDiv.appendChild(card);
-      }
+      },
     );
   cardsDiv.scrollTo(0, 0);
 }
 
 function getDistances(
-  place: google.maps.Place | google.maps.LatLng
+  place: google.maps.Place | google.maps.LatLng,
 ): Promise<google.maps.DistanceMatrixResponse> {
   const origins = [place];
 
   return new Promise((resolve, reject) => {
     const callback = (
       response: google.maps.DistanceMatrixResponse | null,
-      status: google.maps.DistanceMatrixStatus
+      status: google.maps.DistanceMatrixStatus,
     ) => {
       if (status === google.maps.DistanceMatrixStatus.OK && response) {
         resolve(response);
@@ -197,7 +197,7 @@ function getDistances(
         travelMode: google.maps.TravelMode.DRIVING,
         unitSystem: google.maps.UnitSystem.IMPERIAL,
       },
-      callback
+      callback,
     );
   });
 }
@@ -241,11 +241,11 @@ function update(location?: google.maps.LatLng) {
     return (
       google.maps.geometry.spherical.computeDistanceBetween(
         new google.maps.LatLng(a.location),
-        location
+        location,
       ) -
       google.maps.geometry.spherical.computeDistanceBetween(
         new google.maps.LatLng(b.location),
-        location
+        location,
       )
     );
   });

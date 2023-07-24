@@ -6,7 +6,7 @@ function initMap(): void {
     {
       zoom: 7,
       center: { lat: 41.85, lng: -87.65 },
-    }
+    },
   );
 
   directionsRenderer.setMap(map);
@@ -17,17 +17,17 @@ function initMap(): void {
 
   (document.getElementById("start") as HTMLElement).addEventListener(
     "change",
-    onChangeHandler
+    onChangeHandler,
   );
   (document.getElementById("end") as HTMLElement).addEventListener(
     "change",
-    onChangeHandler
+    onChangeHandler,
   );
 }
 
 function calculateAndDisplayRoute(
   directionsService: google.maps.DirectionsService,
-  directionsRenderer: google.maps.DirectionsRenderer
+  directionsRenderer: google.maps.DirectionsRenderer,
 ) {
   directionsService
     .route({

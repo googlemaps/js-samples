@@ -12,7 +12,7 @@ function initMap(): void {
         style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
         mapTypeIds: ["roadmap", "terrain"],
       },
-    }
+    },
   );
 }
 

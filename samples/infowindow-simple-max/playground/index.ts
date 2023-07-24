@@ -9,7 +9,7 @@ function initMap(): void {
     {
       zoom: 4,
       center: uluru,
-    }
+    },
   );
 
   const contentString =

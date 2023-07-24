@@ -19,7 +19,7 @@ function initMap(): void {
         position: google.maps.ControlPosition.LEFT_TOP,
       },
       fullscreenControl: true,
-    }
+    },
   );
 }
 

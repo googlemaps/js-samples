@@ -11,11 +11,11 @@ function initMap(): void {
     {
       zoom: 4,
       center: { lat: 34, lng: -40.605 },
-    }
+    },
   );
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-    document.getElementById("info") as HTMLElement
+    document.getElementById("info") as HTMLElement,
   );
 
   marker1 = new google.maps.Marker({
@@ -32,7 +32,7 @@ function initMap(): void {
 
   const bounds = new google.maps.LatLngBounds(
     marker1.getPosition() as google.maps.LatLng,
-    marker2.getPosition() as google.maps.LatLng
+    marker2.getPosition() as google.maps.LatLng,
   );
 
   map.fitBounds(bounds);
@@ -69,16 +69,16 @@ function update() {
 
   const heading = google.maps.geometry.spherical.computeHeading(
     path[0],
-    path[1]
+    path[1],
   );
 
   (document.getElementById("heading") as HTMLInputElement).value =
     String(heading);
   (document.getElementById("origin") as HTMLInputElement).value = String(
-    path[0]
+    path[0],
   );
   (document.getElementById("destination") as HTMLInputElement).value = String(
-    path[1]
+    path[1],
   );
 }
 

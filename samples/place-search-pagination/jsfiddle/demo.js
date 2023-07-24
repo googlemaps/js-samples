@@ -40,7 +40,7 @@ function initMap() {
           pagination.nextPage();
         };
       }
-    }
+    },
   );
 }
 

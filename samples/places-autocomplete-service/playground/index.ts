@@ -33,14 +33,14 @@ const initialize = (): void => {
   requestElement = document.getElementById("request") as HTMLPreElement;
   responseElement = document.getElementById("response") as HTMLPreElement;
   biasToMapSwitchElement = document.getElementById(
-    "bias-to-map"
+    "bias-to-map",
   ) as HTMLInputElement;
   autocompleteTypeElement = document.getElementById(
-    "autocomplete-type"
+    "autocomplete-type",
   ) as HTMLInputElement;
 
   const autocompleteTypeListElement = document.getElementById(
-    "autocomplete-type-list"
+    "autocomplete-type-list",
   ) as HTMLUListElement;
 
   ["", "establishment", "geocode", "address", "(cities)", "(regions)"].forEach(
@@ -57,7 +57,7 @@ const initialize = (): void => {
 
       item.appendChild(itemText);
       autocompleteTypeListElement.appendChild(item);
-    }
+    },
   );
 
   inputElement.addEventListener("input", inputChangeCallback);
@@ -86,7 +86,7 @@ const inputChangeCallback = debounce(100, () => {
   }
 
   const selectedAutocompleteType = document.querySelector(
-    "#autocomplete-type-list > .mdc-list-item--selected"
+    "#autocomplete-type-list > .mdc-list-item--selected",
   );
 
   if (
@@ -107,7 +107,7 @@ const inputChangeCallback = debounce(100, () => {
 
 const predictionsCallback = (
   results: google.maps.places.AutocompletePrediction[] | null,
-  status: google.maps.places.PlacesServiceStatus
+  status: google.maps.places.PlacesServiceStatus,
 ) => {
   responseElement.innerText = JSON.stringify({ results, status }, null, 2);
 };
@@ -116,7 +116,7 @@ const initializeMaterialDesignComponents = () => {
   document.querySelectorAll(".mdc-text-field").forEach(
     (el) =>
       // @ts-ignore
-      new mdc.textField.MDCTextField(el)
+      new mdc.textField.MDCTextField(el),
   );
 
   document
@@ -126,12 +126,15 @@ const initializeMaterialDesignComponents = () => {
 
   document.querySelectorAll(".mdc-select").forEach((el) =>
     // @ts-ignore
-    new mdc.select.MDCSelect(el).listen("MDCSelect:change", inputChangeCallback)
+    new mdc.select.MDCSelect(el).listen(
+      "MDCSelect:change",
+      inputChangeCallback,
+    ),
   );
 
   // @ts-ignore
   const tabBar = new mdc.tabBar.MDCTabBar(
-    document.querySelector(".mdc-tab-bar")
+    document.querySelector(".mdc-tab-bar"),
   );
   const contentElements = document.querySelectorAll(".tab-content");
 

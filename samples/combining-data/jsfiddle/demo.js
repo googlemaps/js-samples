@@ -50,14 +50,14 @@ function loadMapShapes() {
   // load US state outline polygons from a GeoJson file
   map.data.loadGeoJson(
     "https://storage.googleapis.com/mapsdevsite/json/states.js",
-    { idPropertyName: "STATE" }
+    { idPropertyName: "STATE" },
   );
   // wait for the request to complete by listening for the first feature to be
   // added
   google.maps.event.addListenerOnce(map.data, "addfeature", () => {
     google.maps.event.trigger(
       document.getElementById("census-variable"),
-      "change"
+      "change",
     );
   });
 }

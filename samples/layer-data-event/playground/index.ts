@@ -8,7 +8,7 @@ function initMap(): void {
 
   // Load GeoJSON.
   map.data.loadGeoJson(
-    "https://storage.googleapis.com/maps-devrel/google.json"
+    "https://storage.googleapis.com/maps-devrel/google.json",
   );
 
   // Add some style.

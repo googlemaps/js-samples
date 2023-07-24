@@ -23,7 +23,7 @@ function initMap(): void {
       disableDefaultUI: true,
       gestureHandling: "none",
       zoomControl: false,
-    }
+    },
   );
 
   function clamp(num, min, max) {
@@ -36,8 +36,8 @@ function initMap(): void {
       clamp(
         map.getZoom()! - OVERVIEW_DIFFERENCE,
         OVERVIEW_MIN_ZOOM,
-        OVERVIEW_MAX_ZOOM
-      )
+        OVERVIEW_MAX_ZOOM,
+      ),
     );
   });
 }

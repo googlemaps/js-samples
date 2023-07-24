@@ -85,7 +85,7 @@ function initMap(): void {
           stylers: [{ color: "#17263c" }],
         },
       ],
-    }
+    },
   );
 }
 

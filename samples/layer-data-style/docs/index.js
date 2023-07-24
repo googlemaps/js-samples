@@ -14,7 +14,7 @@ function initMap() {
   // [START maps_layer_data_style_script_snippet_load]
   // Load GeoJSON.
   map.data.loadGeoJson(
-    "https://storage.googleapis.com/mapsdevsite/json/google.json"
+    "https://storage.googleapis.com/mapsdevsite/json/google.json",
   );
   // [END maps_layer_data_style_script_snippet_load]
   // [START maps_layer_data_style_script_snippet_style]

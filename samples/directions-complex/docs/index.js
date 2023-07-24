@@ -24,7 +24,7 @@ function initMap() {
     directionsService,
     markerArray,
     stepDisplay,
-    map
+    map,
   );
 
   // Listen to change events from the start and end lists.
@@ -34,7 +34,7 @@ function initMap() {
       directionsService,
       markerArray,
       stepDisplay,
-      map
+      map,
     );
   };
 
@@ -47,7 +47,7 @@ function calculateAndDisplayRoute(
   directionsService,
   markerArray,
   stepDisplay,
-  map
+  map,
 ) {
   // First, remove any existing markers from the map.
   for (let i = 0; i < markerArray.length; i++) {
@@ -91,7 +91,7 @@ function showSteps(directionResult, markerArray, stepDisplay, map) {
       stepDisplay,
       marker,
       myRoute.steps[i].instructions,
-      map
+      map,
     );
   }
 }

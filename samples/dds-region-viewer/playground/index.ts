@@ -45,13 +45,13 @@ function initMap() {
   searchInput = document.getElementById("pac-input") as HTMLInputElement;
   countryMenu = document.getElementById("country-select") as HTMLSelectElement;
   featureMenu = document.getElementById(
-    "feature-type-select"
+    "feature-type-select",
   ) as HTMLSelectElement;
   fillColorPicker = document.getElementById(
-    "fill-color-picker"
+    "fill-color-picker",
   ) as HTMLInputElement;
   strokeColorPicker = document.getElementById(
-    "stroke-color-picker"
+    "stroke-color-picker",
   ) as HTMLInputElement;
 
   // Set up input events.
@@ -73,7 +73,7 @@ function initMap() {
 
   autoComplete = new google.maps.places.Autocomplete(
     searchInput,
-    autocompleteOptions
+    autocompleteOptions,
   );
   placesService = new google.maps.places.PlacesService(map);
 

@@ -7,7 +7,7 @@ function initMap(): void {
       zoom: 6,
       center: { lat: 20.291, lng: 153.027 },
       mapTypeId: "terrain",
-    }
+    },
   );
 
   // Define the custom symbols. All symbols are defined via SVG path notation.

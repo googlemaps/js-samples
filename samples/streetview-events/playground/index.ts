@@ -8,7 +8,7 @@ function initPano() {
         pitch: 0,
       },
       visible: true,
-    }
+    },
   );
 
   panorama.addListener("pano_changed", () => {
@@ -45,7 +45,7 @@ function initPano() {
 
   panorama.addListener("position_changed", () => {
     const positionCell = document.getElementById(
-      "position-cell"
+      "position-cell",
     ) as HTMLElement;
 
     (positionCell.firstChild as HTMLElement).nodeValue =

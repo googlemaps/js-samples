@@ -37,8 +37,8 @@ function initMap() {
       clamp(
         map.getZoom() - OVERVIEW_DIFFERENCE,
         OVERVIEW_MIN_ZOOM,
-        OVERVIEW_MAX_ZOOM
-      )
+        OVERVIEW_MAX_ZOOM,
+      ),
     );
   });
 }

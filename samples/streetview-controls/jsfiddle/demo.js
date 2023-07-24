@@ -16,7 +16,7 @@ function initPano() {
       linksControl: false,
       panControl: false,
       enableCloseButton: false,
-    }
+    },
   );
 }
 

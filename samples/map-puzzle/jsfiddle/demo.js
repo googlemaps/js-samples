@@ -119,7 +119,7 @@ class PuzzleDemo {
     xmlhttpRequest.open(
       "GET",
       "https://storage.googleapis.com/mapsdevsite/json/puzzle.json",
-      true
+      true,
     );
     xmlhttpRequest.send(null);
   }
@@ -273,7 +273,7 @@ class PuzzleDemo {
   boundsContainsPoly_(bounds, poly) {
     const b = new google.maps.LatLngBounds(
       new google.maps.LatLng(bounds[0][0], bounds[0][1]),
-      new google.maps.LatLng(bounds[1][0], bounds[1][1])
+      new google.maps.LatLng(bounds[1][0], bounds[1][1]),
     );
     const paths = poly.getPaths().getArray();
 

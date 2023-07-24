@@ -21,13 +21,13 @@ function initMap() {
   google.maps.event.addListener(map, "click", (e) => {
     const resultColor = google.maps.geometry.poly.containsLocation(
       e.latLng,
-      bermudaTriangle
+      bermudaTriangle,
     )
       ? "blue"
       : "red";
     const resultPath = google.maps.geometry.poly.containsLocation(
       e.latLng,
-      bermudaTriangle
+      bermudaTriangle,
     )
       ? // A triangle.
         "m 0 -1 l 1 2 -2 0 z"

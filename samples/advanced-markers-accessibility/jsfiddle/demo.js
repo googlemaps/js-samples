@@ -7,7 +7,7 @@ async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-    "marker"
+    "marker",
   );
   const map = new Map(document.getElementById("map"), {
     zoom: 12,

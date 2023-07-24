@@ -8,7 +8,7 @@ function initMap(): void {
     {
       zoom: 14,
       center: { lat: 34.366, lng: -89.519 },
-    }
+    },
   );
   const poly = new google.maps.Polyline({
     strokeColor: "#000000",
@@ -29,7 +29,7 @@ function initMap(): void {
  */
 function addLatLngToPoly(
   latLng: google.maps.LatLng,
-  poly: google.maps.Polyline
+  poly: google.maps.Polyline,
 ) {
   const path = poly.getPath();
 

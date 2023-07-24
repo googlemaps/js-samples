@@ -28,7 +28,7 @@ async function initMap() {
 
     infoWindow.close();
     infoWindow.setContent(
-      `Pin dropped at: ${position.lat()}, ${position.lng()}`
+      `Pin dropped at: ${position.lat()}, ${position.lng()}`,
     );
     infoWindow.open(draggableMarker.map, draggableMarker);
   });

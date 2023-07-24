@@ -17,7 +17,7 @@ function initialize() {
         heading: 34,
         pitch: 10,
       },
-    }
+    },
   );
 
   map.setStreetView(panorama);

@@ -3,13 +3,13 @@ let centerCoordinates = { lat: 37.4161493, lng: -122.0812166 };
 
 async function initMap() {
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { Place } = (await google.maps.importLibrary(
-    "places"
+    "places",
   )) as google.maps.PlacesLibrary;
   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
-    "marker"
+    "marker",
   )) as google.maps.MarkerLibrary;
 
   map = new Map(document.getElementById("map") as HTMLElement, {

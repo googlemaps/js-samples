@@ -5,7 +5,7 @@ function initMap(): void {
     {
       center: { lat: 44.5452, lng: -78.5389 },
       zoom: 9,
-    }
+    },
   );
 
   const bounds = {

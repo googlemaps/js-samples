@@ -33,7 +33,7 @@ function initMap() {
   autocomplete.addListener("place_changed", placeChanged);
   autocomplete.bindTo("bounds", map); // bias to map viewport
   fetch(
-    "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson"
+    "https://carto.nationalmap.gov/arcgis/rest/services/structures/MapServer/23/query?where=STATE%3D%27CO%27&returnGeometry=true&outSR=4326&f=pjson",
   )
     .then((response) => {
       return response.json();
@@ -55,7 +55,7 @@ function initMap() {
             seeDetail(new google.maps.LatLng({ lat, lng }));
           });
           markers.push(marker);
-        }
+        },
       );
       // @ts-ignore
       new MarkerClusterer(map, markers, {
@@ -77,7 +77,7 @@ function initMap() {
           update(new google.maps.LatLng({ lat, lng }));
           map.setZoom(10);
           map.setMapTypeId(originalMapTypeId);
-        }
+        },
       );
     }
   });
@@ -135,7 +135,7 @@ function renderCards(stores) {
             seeDetail(new google.maps.LatLng(location));
           });
         cardsDiv.appendChild(card);
-      }
+      },
     );
   cardsDiv.scrollTo(0, 0);
 }
@@ -158,7 +158,7 @@ function getDistances(place) {
         travelMode: google.maps.TravelMode.DRIVING,
         unitSystem: google.maps.UnitSystem.IMPERIAL,
       },
-      callback
+      callback,
     );
   });
 }
@@ -199,11 +199,11 @@ function update(location) {
     return (
       google.maps.geometry.spherical.computeDistanceBetween(
         new google.maps.LatLng(a.location),
-        location
+        location,
       ) -
       google.maps.geometry.spherical.computeDistanceBetween(
         new google.maps.LatLng(b.location),
-        location
+        location,
       )
     );
   });

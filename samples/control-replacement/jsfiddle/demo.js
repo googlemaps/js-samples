@@ -26,7 +26,7 @@ function initZoomControl(map) {
   };
 
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
-    document.querySelector(".zoom-control")
+    document.querySelector(".zoom-control"),
   );
 }
 

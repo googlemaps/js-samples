@@ -69,7 +69,7 @@ function initAutocomplete() {
           icon,
           title: place.name,
           position: place.geometry.location,
-        })
+        }),
       );
       if (place.geometry.viewport) {
         // Only geocodes have viewport.

@@ -22,7 +22,7 @@ function initMap() {
       fillOpacity: 1,
       anchor: new google.maps.Point(
         faBus.icon[0] / 2, // width
-        faBus.icon[1] // height
+        faBus.icon[1], // height
       ),
       strokeWeight: 1,
       strokeColor: "#ffffff",

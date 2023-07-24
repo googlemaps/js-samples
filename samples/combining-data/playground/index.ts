@@ -33,7 +33,7 @@ function initMap(): void {
 
   // wire up the button
   const selectBox = document.getElementById(
-    "census-variable"
+    "census-variable",
   ) as HTMLSelectElement;
 
   google.maps.event.addDomListener(selectBox, "change", () => {
@@ -50,7 +50,7 @@ function loadMapShapes() {
   // load US state outline polygons from a GeoJson file
   map.data.loadGeoJson(
     "https://storage.googleapis.com/mapsdevsite/json/states.js",
-    { idPropertyName: "STATE" }
+    { idPropertyName: "STATE" },
   );
 
   // wait for the request to complete by listening for the first feature to be
@@ -58,7 +58,7 @@ function loadMapShapes() {
   google.maps.event.addListenerOnce(map.data, "addfeature", () => {
     google.maps.event.trigger(
       document.getElementById("census-variable") as HTMLElement,
-      "change"
+      "change",
     );
   });
 }

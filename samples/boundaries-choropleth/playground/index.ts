@@ -1,7 +1,7 @@
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
 
   const map = new Map(document.getElementById("map") as HTMLElement, {
@@ -13,7 +13,7 @@ async function initMap() {
   });
 
   const featureLayer = map.getFeatureLayer(
-    google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_1
+    google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_1,
   );
 
   featureLayer.style = (featureStyleFunctionOptions) => {

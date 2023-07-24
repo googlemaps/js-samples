@@ -8,7 +8,7 @@ function initMap(): void {
     {
       zoom: 15,
       center,
-    }
+    },
   );
 
   // use a FontAwesome svg
@@ -21,7 +21,7 @@ function initMap(): void {
       fillOpacity: 1,
       anchor: new google.maps.Point(
         faBus.icon[0] / 2, // width
-        faBus.icon[1] // height
+        faBus.icon[1], // height
       ),
       strokeWeight: 1,
       strokeColor: "#ffffff",

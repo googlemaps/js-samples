@@ -38,7 +38,7 @@ function addMarkerWithTimeout(position, timeout) {
         position: position,
         map,
         animation: google.maps.Animation.DROP,
-      })
+      }),
     );
   }, timeout);
 }

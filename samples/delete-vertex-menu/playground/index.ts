@@ -7,7 +7,7 @@ function initialize() {
 
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
-    mapOptions
+    mapOptions,
   );
 
   const flightPlanCoordinates = [
@@ -62,7 +62,7 @@ function initialize() {
             deleteMenu.close();
           }
         },
-        true
+        true,
       );
     }
 
@@ -103,7 +103,7 @@ function initialize() {
     open(
       map: google.maps.Map,
       path: google.maps.MVCArray<google.maps.LatLng>,
-      vertex: number
+      vertex: number,
     ) {
       this.set("position", path.getAt(vertex));
       this.set("path", path);

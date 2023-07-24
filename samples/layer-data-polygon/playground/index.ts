@@ -7,7 +7,7 @@ function initMap(): void {
     {
       zoom: 6,
       center: { lat: -33.872, lng: 151.252 },
-    }
+    },
   );
 
   // Define the LatLng coordinates for the outer path.

@@ -26,7 +26,7 @@ function initMap() {
     "Perth, WA",
     "Sydney, NSW",
     directionsService,
-    directionsRenderer
+    directionsRenderer,
   );
 }
 

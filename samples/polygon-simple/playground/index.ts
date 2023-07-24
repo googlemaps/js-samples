@@ -7,7 +7,7 @@ function initMap(): void {
       zoom: 5,
       center: { lat: 24.886, lng: -70.268 },
       mapTypeId: "terrain",
-    }
+    },
   );
 
   // Define the LatLng coordinates for the polygon's path.

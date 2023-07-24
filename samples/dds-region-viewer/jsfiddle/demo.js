@@ -64,7 +64,7 @@ function initMap() {
 
   autoComplete = new google.maps.places.Autocomplete(
     searchInput,
-    autocompleteOptions
+    autocompleteOptions,
   );
   placesService = new google.maps.places.PlacesService(map);
   autoComplete.addListener("place_changed", () => {

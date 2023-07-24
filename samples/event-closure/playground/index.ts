@@ -4,7 +4,7 @@ function initMap(): void {
     {
       zoom: 4,
       center: { lat: -25.363882, lng: 131.044922 },
-    }
+    },
   );
 
   const bounds: google.maps.LatLngBoundsLiteral = {
@@ -42,7 +42,7 @@ function initMap(): void {
 // marker is clicked, the info window will open with the secret message.
 function attachSecretMessage(
   marker: google.maps.Marker,
-  secretMessage: string
+  secretMessage: string,
 ) {
   const infowindow = new google.maps.InfoWindow({
     content: secretMessage,

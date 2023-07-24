@@ -4,7 +4,7 @@ let infoWindow: google.maps.InfoWindow;
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
 
   map = new Map(document.getElementById("map") as HTMLElement, {

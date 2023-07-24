@@ -1,12 +1,12 @@
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { AdvancedMarkerElement, PinElement } =
     (await google.maps.importLibrary("marker")) as google.maps.MarkerLibrary;
   const { Place } = (await google.maps.importLibrary(
-    "places"
+    "places",
   )) as google.maps.PlacesLibrary;
 
   const map = new Map(document.getElementById("map") as HTMLElement, {
@@ -23,7 +23,7 @@ async function initMap() {
 
   const pinSvg = parser.parseFromString(
     pinSvgString,
-    "image/svg+xml"
+    "image/svg+xml",
   ).documentElement;
 
   const pinSvgMarkerView = new AdvancedMarkerElement({

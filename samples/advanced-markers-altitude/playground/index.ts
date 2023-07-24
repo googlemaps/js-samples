@@ -2,7 +2,7 @@ let map;
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { AdvancedMarkerElement, PinElement } =
     (await google.maps.importLibrary("marker")) as google.maps.MarkerLibrary;

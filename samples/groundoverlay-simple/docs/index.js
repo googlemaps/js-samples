@@ -22,7 +22,7 @@ function initMap() {
 
   historicalOverlay = new google.maps.GroundOverlay(
     "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
-    imageBounds
+    imageBounds,
   );
   historicalOverlay.setMap(map);
 }

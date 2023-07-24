@@ -29,7 +29,7 @@ function getReceptionPanoramaData(): google.maps.StreetViewPanoramaData {
         pano: string,
         zoom: number,
         tileX: number,
-        tileY: number
+        tileY: number,
       ): string {
         return (
           "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +
@@ -49,7 +49,7 @@ function getReceptionPanoramaData(): google.maps.StreetViewPanoramaData {
 function initPanorama() {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view") as HTMLElement,
-    { pano: (outsideGoogle.location as google.maps.StreetViewLocation).pano }
+    { pano: (outsideGoogle.location as google.maps.StreetViewLocation).pano },
   );
   // Register a provider for the custom panorama.
   panorama.registerPanoProvider(
@@ -59,7 +59,7 @@ function initPanorama() {
       }
       // @ts-ignore TODO fix typings
       return null;
-    }
+    },
   );
 
   // Add a link to our custom panorama from outside the Google Sydney office.

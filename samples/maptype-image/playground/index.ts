@@ -8,7 +8,7 @@ function initMap(): void {
       mapTypeControlOptions: {
         mapTypeIds: ["moon"],
       },
-    }
+    },
   );
 
   const moonMapType = new google.maps.ImageMapType({

@@ -5,7 +5,7 @@ function initMap(): void {
       zoom: 8,
       center: { lat: 63.333, lng: -150.5 }, // Denali.
       mapTypeId: "terrain",
-    }
+    },
   );
   const elevator = new google.maps.ElevationService();
   const infowindow = new google.maps.InfoWindow({});
@@ -22,7 +22,7 @@ function initMap(): void {
 function displayLocationElevation(
   location: google.maps.LatLng,
   elevator: google.maps.ElevationService,
-  infowindow: google.maps.InfoWindow
+  infowindow: google.maps.InfoWindow,
 ) {
   // Initiate the location request
   elevator
@@ -38,14 +38,14 @@ function displayLocationElevation(
         infowindow.setContent(
           "The elevation at this point <br>is " +
             results[0].elevation +
-            " meters."
+            " meters.",
         );
       } else {
         infowindow.setContent("No results found");
       }
     })
     .catch((e) =>
-      infowindow.setContent("Elevation service failed due to: " + e)
+      infowindow.setContent("Elevation service failed due to: " + e),
     );
 }
 

@@ -6,7 +6,7 @@
 function initService(): void {
   const displaySuggestions = function (
     predictions: google.maps.places.QueryAutocompletePrediction[] | null,
-    status: google.maps.places.PlacesServiceStatus
+    status: google.maps.places.PlacesServiceStatus,
   ) {
     if (status != google.maps.places.PlacesServiceStatus.OK || !predictions) {
       alert(status);

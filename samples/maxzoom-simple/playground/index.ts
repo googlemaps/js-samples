@@ -24,13 +24,13 @@ function showMaxZoom(e: google.maps.MapMouseEvent) {
         infoWindow.setContent("Error in MaxZoomService");
       } else {
         infoWindow.setContent(
-          "The maximum zoom at this location is: " + result.zoom
+          "The maximum zoom at this location is: " + result.zoom,
         );
       }
 
       infoWindow.setPosition(e.latLng);
       infoWindow.open(map);
-    }
+    },
   );
 }
 
