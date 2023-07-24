@@ -1,10 +1,10 @@
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
-    "marker"
+    "marker",
   )) as google.maps.MarkerLibrary;
 
   const map = new Map(document.getElementById("map") as HTMLElement, {

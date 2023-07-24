@@ -78,7 +78,7 @@ function initGallPeters() {
       const latRadians = (latLng.lat() * Math.PI) / 180;
       return new google.maps.Point(
         GALL_PETERS_RANGE_X * (0.5 + latLng.lng() / 360),
-        GALL_PETERS_RANGE_Y * (0.5 - 0.5 * Math.sin(latRadians))
+        GALL_PETERS_RANGE_Y * (0.5 - 0.5 * Math.sin(latRadians)),
       );
     },
     fromPointToLatLng: function (point, noWrap) {
@@ -87,7 +87,7 @@ function initGallPeters() {
       return new google.maps.LatLng(
         (Math.asin(1 - 2 * y) * 180) / Math.PI,
         -180 + 360 * x,
-        noWrap
+        noWrap,
       );
     },
   };

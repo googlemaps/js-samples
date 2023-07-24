@@ -42,7 +42,7 @@ function zoom(map: google.maps.Map) {
 function processPoints(
   geometry: google.maps.LatLng | google.maps.Data.Geometry,
   callback: any,
-  thisArg: google.maps.LatLngBounds
+  thisArg: google.maps.LatLngBounds,
 ) {
   if (geometry instanceof google.maps.LatLng) {
     callback.call(thisArg, geometry);
@@ -65,11 +65,13 @@ function initEvents() {
         // @ts-ignore
         e.dataTransfer.setData(
           "text/plain",
-          JSON.stringify(files[Number((e.target as HTMLElement).dataset.value)])
+          JSON.stringify(
+            files[Number((e.target as HTMLElement).dataset.value)],
+          ),
         );
         console.log(e);
       },
-      false
+      false,
     );
   });
 

@@ -9,7 +9,7 @@ function initMap(): void {
     {
       zoom: 9,
       center: center,
-    }
+    },
   );
 
   const svgMarker = {

@@ -5,7 +5,7 @@ function initMap(): void {
     document.getElementById("map") as HTMLElement,
     {
       zoom: 8,
-    }
+    },
   );
   const geocoder = new google.maps.Geocoder();
 
@@ -21,7 +21,7 @@ function initMap(): void {
       });
     })
     .catch((e) =>
-      window.alert("Geocode was not successful for the following reason: " + e)
+      window.alert("Geocode was not successful for the following reason: " + e),
     );
 }
 

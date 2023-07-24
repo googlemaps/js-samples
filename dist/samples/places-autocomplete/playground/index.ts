@@ -9,15 +9,15 @@ function initMap(): void {
       center: { lat: 40.749933, lng: -73.98633 },
       zoom: 13,
       mapTypeControl: false,
-    }
+    },
   );
   const card = document.getElementById("pac-card") as HTMLElement;
   const input = document.getElementById("pac-input") as HTMLInputElement;
   const biasInputElement = document.getElementById(
-    "use-location-bias"
+    "use-location-bias",
   ) as HTMLInputElement;
   const strictBoundsInputElement = document.getElementById(
-    "use-strict-bounds"
+    "use-strict-bounds",
   ) as HTMLInputElement;
   const options = {
     fields: ["formatted_address", "geometry", "name"],
@@ -36,7 +36,7 @@ function initMap(): void {
 
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById(
-    "infowindow-content"
+    "infowindow-content",
   ) as HTMLElement;
 
   infowindow.setContent(infowindowContent);

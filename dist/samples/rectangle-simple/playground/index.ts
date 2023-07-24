@@ -7,7 +7,7 @@ function initMap(): void {
       zoom: 11,
       center: { lat: 33.678, lng: -116.243 },
       mapTypeId: "terrain",
-    }
+    },
   );
 
   const rectangle = new google.maps.Rectangle({

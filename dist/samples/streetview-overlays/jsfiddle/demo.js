@@ -44,7 +44,7 @@ function initMap() {
     /** @type {google.maps.StreetViewPov} */ {
       heading: 265,
       pitch: 0,
-    }
+    },
   );
 }
 

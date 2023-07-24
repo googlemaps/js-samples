@@ -3,10 +3,10 @@ let center;
 
 async function initMap() {
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { LatLng, LatLngBounds } = (await google.maps.importLibrary(
-    "core"
+    "core",
   )) as google.maps.CoreLibrary;
 
   center = new LatLng(37.4161493, -122.0812166);
@@ -23,11 +23,11 @@ async function initMap() {
 
 async function findPlaces(LatLng, LatLngBounds) {
   const { Place } = (await google.maps.importLibrary(
-    "places"
+    "places",
   )) as google.maps.PlacesLibrary;
   //@ts-ignore
   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
-    "marker"
+    "marker",
   )) as google.maps.MarkerLibrary;
   const request = {
     query: "Tacos in Mountain View",

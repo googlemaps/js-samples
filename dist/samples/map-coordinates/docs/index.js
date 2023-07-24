@@ -28,11 +28,11 @@ function createInfoWindowContent(latLng, zoom) {
   const worldCoordinate = project(latLng);
   const pixelCoordinate = new google.maps.Point(
     Math.floor(worldCoordinate.x * scale),
-    Math.floor(worldCoordinate.y * scale)
+    Math.floor(worldCoordinate.y * scale),
   );
   const tileCoordinate = new google.maps.Point(
     Math.floor((worldCoordinate.x * scale) / TILE_SIZE),
-    Math.floor((worldCoordinate.y * scale) / TILE_SIZE)
+    Math.floor((worldCoordinate.y * scale) / TILE_SIZE),
   );
   return [
     "Chicago, IL",
@@ -54,7 +54,7 @@ function project(latLng) {
   siny = Math.min(Math.max(siny, -0.9999), 0.9999);
   return new google.maps.Point(
     TILE_SIZE * (0.5 + latLng.lng() / 360),
-    TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI))
+    TILE_SIZE * (0.5 - Math.log((1 + siny) / (1 - siny)) / (4 * Math.PI)),
   );
 }
 

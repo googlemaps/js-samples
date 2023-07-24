@@ -44,13 +44,13 @@ function initZoomControl(map: google.maps.Map) {
     };
 
   map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(
-    document.querySelector(".zoom-control") as HTMLElement
+    document.querySelector(".zoom-control") as HTMLElement,
   );
 }
 
 function initMapTypeControl(map: google.maps.Map) {
   const mapTypeControlDiv = document.querySelector(
-    ".maptype-control"
+    ".maptype-control",
   ) as HTMLElement;
 
   (document.querySelector(".maptype-control-map") as HTMLElement).onclick =
@@ -74,7 +74,7 @@ function initMapTypeControl(map: google.maps.Map) {
 function initFullscreenControl(map: google.maps.Map) {
   const elementToSendFullscreen = map.getDiv().firstChild as HTMLElement;
   const fullscreenControl = document.querySelector(
-    ".fullscreen-control"
+    ".fullscreen-control",
   ) as HTMLElement;
 
   map.controls[google.maps.ControlPosition.RIGHT_TOP].push(fullscreenControl);

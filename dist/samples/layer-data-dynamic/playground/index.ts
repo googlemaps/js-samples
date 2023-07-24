@@ -8,7 +8,7 @@ function initMap(): void {
 
   // Load GeoJSON.
   map.data.loadGeoJson(
-    "https://storage.googleapis.com/mapsdevsite/json/google.json"
+    "https://storage.googleapis.com/mapsdevsite/json/google.json",
   );
 
   // Color each letter gray. Change the color when the isColorful property

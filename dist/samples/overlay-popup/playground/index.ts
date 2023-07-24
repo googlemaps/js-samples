@@ -50,7 +50,7 @@ function initMap(): void {
     /** Called each frame when the popup needs to draw itself. */
     draw() {
       const divPosition = this.getProjection().fromLatLngToDivPixel(
-        this.position
+        this.position,
       )!;
 
       // Hide the popup when it is far out of view.
@@ -72,7 +72,7 @@ function initMap(): void {
 
   popup = new Popup(
     new google.maps.LatLng(-33.866, 151.196),
-    document.getElementById("content") as HTMLElement
+    document.getElementById("content") as HTMLElement,
   );
   popup.setMap(map);
 }

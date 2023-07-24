@@ -7,10 +7,10 @@ async function initMap(): Promise<void> {
   // Request needed libraries.
   //@ts-ignore
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
-    "marker"
+    "marker",
   )) as google.maps.MarkerLibrary;
 
   // The map, centered at Uluru

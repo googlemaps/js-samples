@@ -23,7 +23,7 @@ function initMap(): void {
       tilt: 30,
       mapId: "90f87356969d889c",
       zoom: 3,
-    }
+    },
   );
 
   const flightsLayer = new ArcLayer({

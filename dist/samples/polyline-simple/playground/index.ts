@@ -9,7 +9,7 @@ function initMap(): void {
       zoom: 3,
       center: { lat: 0, lng: -180 },
       mapTypeId: "terrain",
-    }
+    },
   );
 
   const flightPlanCoordinates = [

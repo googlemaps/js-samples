@@ -24,7 +24,7 @@ function initMap(): void {
       zoomControlOptions: {
         position: google.maps.ControlPosition.LEFT_BOTTOM,
       },
-    }
+    },
   );
 
   // instantiate the map on the right with control positioning
@@ -41,7 +41,7 @@ function initMap(): void {
       zoomControlOptions: {
         position: google.maps.ControlPosition.RIGHT_BOTTOM,
       },
-    }
+    },
   );
 
   // helper function to keep maps in sync

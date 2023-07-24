@@ -9,7 +9,7 @@ function initMap(): void {
     {
       center: { lat: 55.53, lng: 9.4 },
       zoom: 10,
-    }
+    },
   );
 
   // initialize services
@@ -55,7 +55,7 @@ function initMap(): void {
             map,
             position: results[0].geometry.location,
             label: asDestination ? "D" : "O",
-          })
+          }),
         );
       };
 

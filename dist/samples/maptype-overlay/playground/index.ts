@@ -25,7 +25,7 @@ class CoordMapType implements google.maps.MapType {
   getTile(
     coord: google.maps.Point,
     zoom: number,
-    ownerDocument: Document
+    ownerDocument: Document,
   ): HTMLElement {
     const div = ownerDocument.createElement("div");
 
@@ -47,7 +47,7 @@ function initMap(): void {
     {
       zoom: 10,
       center: { lat: 41.85, lng: -87.65 },
-    }
+    },
   );
 
   // Insert this overlay map type as the first overlay map type at

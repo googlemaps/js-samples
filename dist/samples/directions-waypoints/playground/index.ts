@@ -6,7 +6,7 @@ function initMap(): void {
     {
       zoom: 6,
       center: { lat: 41.85, lng: -87.65 },
-    }
+    },
   );
 
   directionsRenderer.setMap(map);
@@ -15,17 +15,17 @@ function initMap(): void {
     "click",
     () => {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
-    }
+    },
   );
 }
 
 function calculateAndDisplayRoute(
   directionsService: google.maps.DirectionsService,
-  directionsRenderer: google.maps.DirectionsRenderer
+  directionsRenderer: google.maps.DirectionsRenderer,
 ) {
   const waypts: google.maps.DirectionsWaypoint[] = [];
   const checkboxArray = document.getElementById(
-    "waypoints"
+    "waypoints",
   ) as HTMLSelectElement;
 
   for (let i = 0; i < checkboxArray.length; i++) {
@@ -50,7 +50,7 @@ function calculateAndDisplayRoute(
 
       const route = response.routes[0];
       const summaryPanel = document.getElementById(
-        "directions-panel"
+        "directions-panel",
       ) as HTMLElement;
 
       summaryPanel.innerHTML = "";

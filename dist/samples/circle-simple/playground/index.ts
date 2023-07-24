@@ -35,7 +35,7 @@ function initMap(): void {
       zoom: 4,
       center: { lat: 37.09, lng: -95.712 },
       mapTypeId: "terrain",
-    }
+    },
   );
 
   // Construct the circle for each value in citymap.

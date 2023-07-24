@@ -59,7 +59,7 @@ function initialize() {
             deleteMenu.close();
           }
         },
-        true
+        true,
       );
     }
     onRemove() {

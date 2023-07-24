@@ -13,7 +13,7 @@ function initMap(): void {
 
   script.setAttribute(
     "src",
-    "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json"
+    "https://storage.googleapis.com/mapsdevsite/json/quakes.geo.json",
   );
   document.getElementsByTagName("head")[0].appendChild(script);
 }

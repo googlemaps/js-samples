@@ -11,14 +11,14 @@ function initMap(): void {
 
   // Add a style-selector control to the map.
   const styleControl = document.getElementById(
-    "style-selector-control"
+    "style-selector-control",
   ) as HTMLElement;
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
 
   // Set the map's style to the initial value of the selector.
   const styleSelector = document.getElementById(
-    "style-selector"
+    "style-selector",
   ) as HTMLSelectElement;
 
   map.setOptions({ styles: styles[styleSelector.value] });

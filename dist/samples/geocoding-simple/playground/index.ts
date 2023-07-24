@@ -61,7 +61,7 @@ function initMap(): void {
   });
 
   submitButton.addEventListener("click", () =>
-    geocode({ address: inputText.value })
+    geocode({ address: inputText.value }),
   );
 
   clearButton.addEventListener("click", () => {

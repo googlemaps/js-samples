@@ -38,7 +38,7 @@ async function initMap() {
     selectedPlaceInfo.textContent = JSON.stringify(
       place.toJSON(),
       /* replacer */ null,
-      /* space */ 2
+      /* space */ 2,
     );
   });
   // [END maps_place_autocomplete_element_listener]

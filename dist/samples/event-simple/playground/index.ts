@@ -6,7 +6,7 @@ function initMap(): void {
     {
       zoom: 4,
       center: myLatlng,
-    }
+    },
   );
 
   const marker = new google.maps.Marker({

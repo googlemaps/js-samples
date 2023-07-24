@@ -6,7 +6,7 @@ function initMap(): void {
     {
       zoom: 14,
       center: { lat: 37.77, lng: -122.447 },
-    }
+    },
   );
 
   directionsRenderer.setMap(map);
@@ -16,13 +16,13 @@ function initMap(): void {
     "change",
     () => {
       calculateAndDisplayRoute(directionsService, directionsRenderer);
-    }
+    },
   );
 }
 
 function calculateAndDisplayRoute(
   directionsService: google.maps.DirectionsService,
-  directionsRenderer: google.maps.DirectionsRenderer
+  directionsRenderer: google.maps.DirectionsRenderer,
 ) {
   const selectedMode = (document.getElementById("mode") as HTMLInputElement)
     .value;

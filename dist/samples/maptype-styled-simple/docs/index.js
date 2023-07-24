@@ -118,7 +118,7 @@ function initMap() {
         stylers: [{ color: "#92998d" }],
       },
     ],
-    { name: "Styled Map" }
+    { name: "Styled Map" },
   );
   // Create a map object, and include the MapTypeId to add
   // to the map type control.

@@ -4,7 +4,7 @@ function initMap(): void {
     {
       zoom: 18,
       center: { lat: 37.783, lng: -122.403 },
-    }
+    },
   );
 
   const bounds: Record<number, [[number, number], [number, number]]> = {

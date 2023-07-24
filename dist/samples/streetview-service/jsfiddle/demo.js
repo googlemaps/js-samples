@@ -14,7 +14,7 @@ function initMap() {
   const sv = new google.maps.StreetViewService();
 
   panorama = new google.maps.StreetViewPanorama(
-    document.getElementById("pano")
+    document.getElementById("pano"),
   );
   // Set up the map.
   map = new google.maps.Map(document.getElementById("map"), {
@@ -31,7 +31,7 @@ function initMap() {
     sv.getPanorama({ location: event.latLng, radius: 50 })
       .then(processSVData)
       .catch((e) =>
-        console.error("Street View data not found for this location.")
+        console.error("Street View data not found for this location."),
       );
   });
 }

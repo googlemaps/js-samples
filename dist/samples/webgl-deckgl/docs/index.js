@@ -84,7 +84,7 @@ function initMap() {
       // Register event listeners
       for (const eventType in eventListeners) {
         eventListeners[eventType] = map.addListener(eventType, (event) =>
-          this.handleMouseEvent(this.deck, eventType, event)
+          this.handleMouseEvent(this.deck, eventType, event),
         );
       }
     }

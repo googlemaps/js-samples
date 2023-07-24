@@ -6,7 +6,7 @@ function initMap(): void {
     {
       zoom: 8,
       center: { lat: 40.731, lng: -73.997 },
-    }
+    },
   );
   const geocoder = new google.maps.Geocoder();
   const infowindow = new google.maps.InfoWindow();
@@ -15,14 +15,14 @@ function initMap(): void {
     "click",
     () => {
       geocodeLatLng(geocoder, map, infowindow);
-    }
+    },
   );
 }
 
 function geocodeLatLng(
   geocoder: google.maps.Geocoder,
   map: google.maps.Map,
-  infowindow: google.maps.InfoWindow
+  infowindow: google.maps.InfoWindow,
 ) {
   const input = (document.getElementById("latlng") as HTMLInputElement).value;
   const latlngStr = input.split(",", 2);

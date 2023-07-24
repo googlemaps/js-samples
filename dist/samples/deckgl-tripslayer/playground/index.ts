@@ -30,7 +30,7 @@ function initMap(): void {
       mapId: "fae05836df2dc8bb",
       tilt: 45,
       zoom: 15,
-    }
+    },
   );
 
   let currentTime = 0;

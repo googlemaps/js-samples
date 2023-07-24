@@ -17,7 +17,7 @@ const mapOptions = {
 function initMap(): void {
   map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
-    mapOptions
+    mapOptions,
   );
 
   // install Tweenjs with npm i @tweenjs/tween.js

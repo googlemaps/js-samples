@@ -127,7 +127,7 @@ const Map = ({ onClick, onIdle, children, style, ...options }) => {
   React.useEffect(() => {
     if (map) {
       ["click", "idle"].forEach((eventName) =>
-        google.maps.event.clearListeners(map, eventName)
+        google.maps.event.clearListeners(map, eventName),
       );
       if (onClick) {
         map.addListener("click", onClick);

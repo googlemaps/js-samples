@@ -15,7 +15,7 @@ function initAutocomplete() {
       center: { lat: -33.8688, lng: 151.2195 },
       zoom: 13,
       mapTypeId: "roadmap",
-    }
+    },
   );
 
   // Create the search box and link it to the UI element.
@@ -70,7 +70,7 @@ function initAutocomplete() {
           icon,
           title: place.name,
           position: place.geometry.location,
-        })
+        }),
       );
 
       if (place.geometry.viewport) {

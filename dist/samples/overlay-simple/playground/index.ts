@@ -16,12 +16,12 @@ function initMap(): void {
       zoom: 11,
       center: { lat: 62.323907, lng: -150.109291 },
       mapTypeId: "satellite",
-    }
+    },
   );
 
   const bounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(62.281819, -150.287132),
-    new google.maps.LatLng(62.400471, -150.005608)
+    new google.maps.LatLng(62.400471, -150.005608),
   );
 
   // The photograph is courtesy of the U.S. Geological Survey.
@@ -84,10 +84,10 @@ function initMap(): void {
       // in LatLngs and convert them to pixel coordinates.
       // We'll use these coordinates to resize the div.
       const sw = overlayProjection.fromLatLngToDivPixel(
-        this.bounds_.getSouthWest()
+        this.bounds_.getSouthWest(),
       )!;
       const ne = overlayProjection.fromLatLngToDivPixel(
-        this.bounds_.getNorthEast()
+        this.bounds_.getNorthEast(),
       )!;
 
       // Resize the image's div to fit the indicated dimensions.

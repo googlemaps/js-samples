@@ -7,12 +7,12 @@ function initMap(): void {
       zoom: 7,
       center: { lat: 41.85, lng: -87.65 },
       disableDefaultUI: true,
-    }
+    },
   );
 
   directionsRenderer.setMap(map);
   directionsRenderer.setPanel(
-    document.getElementById("sidebar") as HTMLElement
+    document.getElementById("sidebar") as HTMLElement,
   );
 
   const control = document.getElementById("floating-panel") as HTMLElement;
@@ -25,17 +25,17 @@ function initMap(): void {
 
   (document.getElementById("start") as HTMLElement).addEventListener(
     "change",
-    onChangeHandler
+    onChangeHandler,
   );
   (document.getElementById("end") as HTMLElement).addEventListener(
     "change",
-    onChangeHandler
+    onChangeHandler,
   );
 }
 
 function calculateAndDisplayRoute(
   directionsService: google.maps.DirectionsService,
-  directionsRenderer: google.maps.DirectionsRenderer
+  directionsRenderer: google.maps.DirectionsRenderer,
 ) {
   const start = (document.getElementById("start") as HTMLInputElement).value;
   const end = (document.getElementById("end") as HTMLInputElement).value;

@@ -47,7 +47,7 @@ function getReceptionPanoramaData() {
 function initPanorama() {
   panorama = new google.maps.StreetViewPanorama(
     document.getElementById("street-view"),
-    { pano: outsideGoogle.location.pano }
+    { pano: outsideGoogle.location.pano },
   );
   // Register a provider for the custom panorama.
   panorama.registerPanoProvider((pano) => {

@@ -23,7 +23,7 @@ async function initMap() {
 
   // @ts-ignore
   const select = new mdc.select.MDCSelect(
-    document.querySelector(".mdc-select")
+    document.querySelector(".mdc-select"),
   );
 
   select.listen("MDCSelect:change", () => {

@@ -40,31 +40,31 @@ class AutocompleteDirectionsHandler {
     // Specify just the place data fields that you need.
     const originAutocomplete = new google.maps.places.Autocomplete(
       originInput,
-      { fields: ["place_id"] }
+      { fields: ["place_id"] },
     );
     // Specify just the place data fields that you need.
     const destinationAutocomplete = new google.maps.places.Autocomplete(
       destinationInput,
-      { fields: ["place_id"] }
+      { fields: ["place_id"] },
     );
 
     this.setupClickListener(
       "changemode-walking",
-      google.maps.TravelMode.WALKING
+      google.maps.TravelMode.WALKING,
     );
     this.setupClickListener(
       "changemode-transit",
-      google.maps.TravelMode.TRANSIT
+      google.maps.TravelMode.TRANSIT,
     );
     this.setupClickListener(
       "changemode-driving",
-      google.maps.TravelMode.DRIVING
+      google.maps.TravelMode.DRIVING,
     );
     this.setupPlaceChangedListener(originAutocomplete, "ORIG");
     this.setupPlaceChangedListener(destinationAutocomplete, "DEST");
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
-      destinationInput
+      destinationInput,
     );
     this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
   }
@@ -116,7 +116,7 @@ class AutocompleteDirectionsHandler {
         } else {
           window.alert("Directions request failed due to " + status);
         }
-      }
+      },
     );
   }
 }

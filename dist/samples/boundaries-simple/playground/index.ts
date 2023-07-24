@@ -15,7 +15,7 @@ let featureLayer;
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
 
   map = new Map(document.getElementById("map") as HTMLElement, {

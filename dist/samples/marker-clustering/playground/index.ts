@@ -3,7 +3,7 @@ import { MarkerClusterer } from "@googlemaps/markerclusterer";
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { AdvancedMarkerElement, PinElement } =
     (await google.maps.importLibrary("marker")) as google.maps.MarkerLibrary;
@@ -14,7 +14,7 @@ async function initMap() {
       zoom: 3,
       center: { lat: -28.024, lng: 140.887 },
       mapId: "DEMO_MAP_ID",
-    }
+    },
   );
 
   const infoWindow = new google.maps.InfoWindow({

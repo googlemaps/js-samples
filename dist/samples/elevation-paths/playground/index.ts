@@ -20,7 +20,7 @@ function initMap(): void {
       zoom: 8,
       center: path[1],
       mapTypeId: "terrain",
-    }
+    },
   );
 
   // Create an ElevationService.
@@ -33,7 +33,7 @@ function initMap(): void {
 function displayPathElevation(
   path: google.maps.LatLngLiteral[],
   elevator: google.maps.ElevationService,
-  map: google.maps.Map
+  map: google.maps.Map,
 ) {
   // Display a polyline of the elevation path.
   new google.maps.Polyline({
@@ -54,7 +54,7 @@ function displayPathElevation(
     .then(plotElevation)
     .catch((e) => {
       const chartDiv = document.getElementById(
-        "elevation_chart"
+        "elevation_chart",
       ) as HTMLElement;
 
       // Show the error code inside the chartDiv.

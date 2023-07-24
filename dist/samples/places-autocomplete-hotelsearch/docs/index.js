@@ -95,7 +95,7 @@ function initMap() {
       types: ["(cities)"],
       componentRestrictions: countryRestrict,
       fields: ["geometry"],
-    }
+    },
   );
   places = new google.maps.places.PlacesService(map);
   autocomplete.addListener("place_changed", onPlaceChanged);
@@ -241,7 +241,7 @@ function showInfoWindow() {
 
       infoWindow.open(map, marker);
       buildIWContent(place);
-    }
+    },
   );
 }
 

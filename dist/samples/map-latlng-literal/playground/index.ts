@@ -13,7 +13,7 @@ function initMap(): void {
 
   map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
-    mapOptions
+    mapOptions,
   );
 
   const marker = new google.maps.Marker({
