@@ -14,7 +14,7 @@ function initMap(): void {
       scaleControl: true,
       center: cairo,
       zoom: 10,
-    }
+    },
   );
 
   const infowindow = new google.maps.InfoWindow();

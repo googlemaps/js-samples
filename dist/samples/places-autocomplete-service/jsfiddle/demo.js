@@ -36,7 +36,7 @@ const initialize = () => {
   autocompleteTypeElement = document.getElementById("autocomplete-type");
 
   const autocompleteTypeListElement = document.getElementById(
-    "autocomplete-type-list"
+    "autocomplete-type-list",
   );
 
   ["", "establishment", "geocode", "address", "(cities)", "(regions)"].forEach(
@@ -52,7 +52,7 @@ const initialize = () => {
       itemText.innerText = type;
       item.appendChild(itemText);
       autocompleteTypeListElement.appendChild(item);
-    }
+    },
   );
   inputElement.addEventListener("input", inputChangeCallback);
   biasToMapSwitchElement.addEventListener("change", inputChangeCallback);
@@ -77,7 +77,7 @@ const inputChangeCallback = debounce(100, () => {
   }
 
   const selectedAutocompleteType = document.querySelector(
-    "#autocomplete-type-list > .mdc-list-item--selected"
+    "#autocomplete-type-list > .mdc-list-item--selected",
   );
 
   if (
@@ -103,7 +103,7 @@ const initializeMaterialDesignComponents = () => {
   document.querySelectorAll(".mdc-text-field").forEach(
     (el) =>
       // @ts-ignore
-      new mdc.textField.MDCTextField(el)
+      new mdc.textField.MDCTextField(el),
   );
   document
     .querySelectorAll(".mdc-switch")
@@ -111,12 +111,15 @@ const initializeMaterialDesignComponents = () => {
     .forEach((el) => new mdc.switchControl.MDCSwitch(el));
   document.querySelectorAll(".mdc-select").forEach((el) =>
     // @ts-ignore
-    new mdc.select.MDCSelect(el).listen("MDCSelect:change", inputChangeCallback)
+    new mdc.select.MDCSelect(el).listen(
+      "MDCSelect:change",
+      inputChangeCallback,
+    ),
   );
 
   // @ts-ignore
   const tabBar = new mdc.tabBar.MDCTabBar(
-    document.querySelector(".mdc-tab-bar")
+    document.querySelector(".mdc-tab-bar"),
   );
   const contentElements = document.querySelectorAll(".tab-content");
 

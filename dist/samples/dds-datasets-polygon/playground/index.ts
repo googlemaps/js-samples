@@ -10,10 +10,10 @@ const styleOptions = {
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { LatLng } = (await google.maps.importLibrary(
-    "core"
+    "core",
   )) as google.maps.CoreLibrary;
 
   const position = new LatLng(40.757815, -73.933123);

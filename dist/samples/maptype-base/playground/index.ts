@@ -19,7 +19,7 @@ class CoordMapType {
   getTile(
     coord: google.maps.Point,
     zoom: number,
-    ownerDocument: Document
+    ownerDocument: Document,
   ): HTMLElement {
     const div = ownerDocument.createElement("div");
 
@@ -49,7 +49,7 @@ function initMap(): void {
         mapTypeIds: ["coordinate", "roadmap"],
         style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
       },
-    }
+    },
   );
 
   map.addListener("maptypeid_changed", () => {
@@ -64,7 +64,7 @@ function initMap(): void {
   // Now attach the coordinate map type to the map's registry.
   map.mapTypes.set(
     "coordinate",
-    new CoordMapType(new google.maps.Size(256, 256))
+    new CoordMapType(new google.maps.Size(256, 256)),
   );
 }
 

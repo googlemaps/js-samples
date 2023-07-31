@@ -9,7 +9,7 @@ function initMap(): void {
 
   // Add controls to the map, allowing users to hide/show features.
   const styleControl = document.getElementById(
-    "style-selector-control"
+    "style-selector-control",
   ) as HTMLElement;
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(styleControl);
@@ -19,13 +19,13 @@ function initMap(): void {
     "click",
     () => {
       map.setOptions({ styles: styles["hide"] });
-    }
+    },
   );
   (document.getElementById("show-poi") as HTMLElement).addEventListener(
     "click",
     () => {
       map.setOptions({ styles: styles["default"] });
-    }
+    },
   );
 }
 

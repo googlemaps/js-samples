@@ -34,14 +34,14 @@ function displayLocationElevation(location, elevator, infowindow) {
         infowindow.setContent(
           "The elevation at this point <br>is " +
             results[0].elevation +
-            " meters."
+            " meters.",
         );
       } else {
         infowindow.setContent("No results found");
       }
     })
     .catch((e) =>
-      infowindow.setContent("Elevation service failed due to: " + e)
+      infowindow.setContent("Elevation service failed due to: " + e),
     );
 }
 

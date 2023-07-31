@@ -10,7 +10,7 @@ function initPano() {
   // the custom panorama 'reception' which we check for below.
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("map"),
-    { pano: "reception", visible: true }
+    { pano: "reception", visible: true },
   );
 
   panorama.registerPanoProvider(getCustomPanorama);

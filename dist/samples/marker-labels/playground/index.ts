@@ -10,7 +10,7 @@ function initMap(): void {
     {
       zoom: 12,
       center: bangalore,
-    }
+    },
   );
 
   // This event listener calls addMarker() when the map is clicked.

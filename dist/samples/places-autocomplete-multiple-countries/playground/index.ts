@@ -8,7 +8,7 @@ function initMap(): void {
     {
       center: { lat: 50.064192, lng: -130.605469 },
       zoom: 3,
-    }
+    },
   );
   const card = document.getElementById("pac-card") as HTMLElement;
 
@@ -45,7 +45,7 @@ function initMap(): void {
 
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById(
-    "infowindow-content"
+    "infowindow-content",
   ) as HTMLElement;
 
   infowindow.setContent(infowindowContent);

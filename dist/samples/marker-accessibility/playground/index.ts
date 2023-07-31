@@ -7,7 +7,7 @@ function initMap(): void {
     {
       zoom: 12,
       center: { lat: 34.84555, lng: -111.8035 },
-    }
+    },
   );
 
   // Set LatLng and title text for the markers. The first marker (Boynton Pass)

@@ -14,7 +14,7 @@ function initPano() {
         pitch: 0,
       },
       visible: true,
-    }
+    },
   );
 
   panorama.addListener("pano_changed", () => {

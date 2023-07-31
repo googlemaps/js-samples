@@ -10,7 +10,7 @@ function initMap(): void {
     {
       zoom: 13,
       center: { lat: 40.771, lng: -73.974 },
-    }
+    },
   );
 
   // Create a renderer for directions and bind it to the map.
@@ -25,7 +25,7 @@ function initMap(): void {
     directionsService,
     markerArray,
     stepDisplay,
-    map
+    map,
   );
 
   // Listen to change events from the start and end lists.
@@ -35,17 +35,17 @@ function initMap(): void {
       directionsService,
       markerArray,
       stepDisplay,
-      map
+      map,
     );
   };
 
   (document.getElementById("start") as HTMLElement).addEventListener(
     "change",
-    onChangeHandler
+    onChangeHandler,
   );
   (document.getElementById("end") as HTMLElement).addEventListener(
     "change",
-    onChangeHandler
+    onChangeHandler,
   );
 }
 
@@ -54,7 +54,7 @@ function calculateAndDisplayRoute(
   directionsService: google.maps.DirectionsService,
   markerArray: google.maps.Marker[],
   stepDisplay: google.maps.InfoWindow,
-  map: google.maps.Map
+  map: google.maps.Map,
 ) {
   // First, remove any existing markers from the map.
   for (let i = 0; i < markerArray.length; i++) {
@@ -86,7 +86,7 @@ function showSteps(
   directionResult: google.maps.DirectionsResult,
   markerArray: google.maps.Marker[],
   stepDisplay: google.maps.InfoWindow,
-  map: google.maps.Map
+  map: google.maps.Map,
 ) {
   // For each step, place a marker, and add the text to the marker's infowindow.
   // Also attach the marker to an array so we can keep track of it and remove it
@@ -103,7 +103,7 @@ function showSteps(
       stepDisplay,
       marker,
       myRoute.steps[i].instructions,
-      map
+      map,
     );
   }
 }
@@ -112,7 +112,7 @@ function attachInstructionText(
   stepDisplay: google.maps.InfoWindow,
   marker: google.maps.Marker,
   text: string,
-  map: google.maps.Map
+  map: google.maps.Map,
 ) {
   google.maps.event.addListener(marker, "click", () => {
     // Open an info window when the marker is clicked on, containing the text

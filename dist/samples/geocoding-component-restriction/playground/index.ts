@@ -7,14 +7,14 @@ function initMap(): void {
     {
       zoom: 8,
       center: { lat: -33.865, lng: 151.209 },
-    }
+    },
   );
 
   (document.getElementById("submit") as HTMLElement).addEventListener(
     "click",
     () => {
       geocodeAddress(geocoder, map);
-    }
+    },
   );
 }
 
@@ -35,7 +35,7 @@ function geocodeAddress(geocoder: google.maps.Geocoder, map: google.maps.Map) {
       });
     })
     .catch((e) =>
-      window.alert("Geocode was not successful for the following reason: " + e)
+      window.alert("Geocode was not successful for the following reason: " + e),
     );
 }
 

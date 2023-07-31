@@ -4,7 +4,7 @@ function initMap(): void {
     {
       zoom: 12,
       center: { lat: 37.06, lng: -95.68 },
-    }
+    },
   );
 
   const kmlLayer = new google.maps.KmlLayer({

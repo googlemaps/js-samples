@@ -33,7 +33,7 @@ function initMap() {
   document.getElementById("request").innerText = JSON.stringify(
     request,
     null,
-    2
+    2,
   );
   // get distance matrix response
   service.getDistanceMatrix(request).then((response) => {
@@ -41,7 +41,7 @@ function initMap() {
     document.getElementById("response").innerText = JSON.stringify(
       response,
       null,
-      2
+      2,
     );
 
     // show on map
@@ -58,7 +58,7 @@ function initMap() {
             map,
             position: results[0].geometry.location,
             label: asDestination ? "D" : "O",
-          })
+          }),
         );
       };
       return handler;

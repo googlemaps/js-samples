@@ -8,7 +8,7 @@ function initMap(): void {
       zoom: 6,
       center: { lat: 20.291, lng: 153.027 },
       mapTypeId: "terrain",
-    }
+    },
   );
 
   // Define a symbol using a predefined path (an arrow)

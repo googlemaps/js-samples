@@ -12,7 +12,7 @@ function initMap() {
   });
   // NOTE: This uses cross-domain XHR, and may not work on older browsers.
   map.data.loadGeoJson(
-    "https://storage.googleapis.com/mapsdevsite/json/google.json"
+    "https://storage.googleapis.com/mapsdevsite/json/google.json",
   );
 }
 

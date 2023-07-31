@@ -5,10 +5,10 @@ let map: google.maps.Map;
 async function initMap(): Promise<void> {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
-    "marker"
+    "marker",
   )) as google.maps.MarkerLibrary;
 
   let markers: google.maps.marker.AdvancedMarkerElement[] = [];
@@ -21,30 +21,12 @@ async function initMap(): Promise<void> {
       mapId: "6ff586e93e18149f",
       center: { lat: 47.609414458375674, lng: -122.33897030353548 },
       zoom: 17,
-    } as google.maps.MapOptions
+    } as google.maps.MapOptions,
   );
-
-  const menuList = document.querySelector(".mdc-list") as HTMLUListElement;
-
-  // Add the behaviors to the select options
-  for (const [key, value] of Object.entries(google.maps.CollisionBehavior)) {
-    const item = document.createElement("LI");
-
-    item.classList.add("mdc-list-item");
-    item.setAttribute("data-value", key);
-
-    const itemText = document.createElement("SPAN") as HTMLSpanElement;
-
-    itemText.classList.add("mdc-list-item__text");
-    itemText.innerText = value as string;
-
-    item.appendChild(itemText);
-    menuList.appendChild(item);
-  }
 
   // @ts-ignore
   const select = new mdc.select.MDCSelect(
-    document.querySelector(".mdc-select") as HTMLElement
+    document.querySelector(".mdc-select") as HTMLElement,
   );
 
   select.listen("MDCSelect:change", () => {

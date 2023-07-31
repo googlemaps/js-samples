@@ -11,7 +11,7 @@ function initMap(): void {
       center: pyrmont,
       zoom: 17,
       mapId: "8d193001f940fde3",
-    } as google.maps.MapOptions
+    } as google.maps.MapOptions,
   );
 
   // Create the places service.
@@ -33,7 +33,7 @@ function initMap(): void {
     (
       results: google.maps.places.PlaceResult[] | null,
       status: google.maps.places.PlacesServiceStatus,
-      pagination: google.maps.places.PlaceSearchPagination | null
+      pagination: google.maps.places.PlaceSearchPagination | null,
     ) => {
       if (status !== "OK" || !results) return;
 
@@ -46,13 +46,13 @@ function initMap(): void {
           pagination.nextPage();
         };
       }
-    }
+    },
   );
 }
 
 function addPlaces(
   places: google.maps.places.PlaceResult[],
-  map: google.maps.Map
+  map: google.maps.Map,
 ) {
   const placesList = document.getElementById("places") as HTMLElement;
 

@@ -14,7 +14,7 @@ async function initMap() {
     mapId: "7ba16be0c9375fa7",
   });
   const featureLayer = map.getFeatureLayer(
-    google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_1
+    google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_1,
   );
 
   featureLayer.style = (featureStyleFunctionOptions) => {

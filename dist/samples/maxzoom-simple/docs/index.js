@@ -25,7 +25,7 @@ function showMaxZoom(e) {
       infoWindow.setContent("Error in MaxZoomService");
     } else {
       infoWindow.setContent(
-        "The maximum zoom at this location is: " + result.zoom
+        "The maximum zoom at this location is: " + result.zoom,
       );
     }
 

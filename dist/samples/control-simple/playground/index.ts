@@ -6,7 +6,7 @@ function initMap(): void {
       center: { lat: -33, lng: 151 },
       zoomControl: false,
       scaleControl: true,
-    }
+    },
   );
 }
 

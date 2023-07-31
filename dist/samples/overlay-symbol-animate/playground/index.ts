@@ -7,7 +7,7 @@ function initMap(): void {
       center: { lat: 20.291, lng: 153.027 },
       zoom: 6,
       mapTypeId: "terrain",
-    }
+    },
   );
 
   // Define the symbol, using one of the predefined paths ('CIRCLE')

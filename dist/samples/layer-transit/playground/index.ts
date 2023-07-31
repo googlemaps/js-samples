@@ -4,7 +4,7 @@ function initMap(): void {
     {
       zoom: 13,
       center: { lat: 51.501904, lng: -0.115871 },
-    }
+    },
   );
 
   const transitLayer = new google.maps.TransitLayer();

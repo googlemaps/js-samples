@@ -14,7 +14,7 @@ function initMap() {
       tilt: 0.0,
       // Map ID for a vector map.
       mapId: "6ff586e93e18149f",
-    }
+    },
   );
   const canvas = document.createElement("canvas");
   const infoWindow = new google.maps.InfoWindow({

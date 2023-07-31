@@ -57,7 +57,7 @@ function initMap() {
   // Now attach the coordinate map type to the map's registry.
   map.mapTypes.set(
     "coordinate",
-    new CoordMapType(new google.maps.Size(256, 256))
+    new CoordMapType(new google.maps.Size(256, 256)),
   );
 }
 

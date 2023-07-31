@@ -6,7 +6,7 @@ function initMap(): void {
       zoom: 13,
       center: locationRio,
       gestureHandling: "cooperative",
-    }
+    },
   );
 
   new google.maps.Marker({

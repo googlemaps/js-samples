@@ -6,7 +6,7 @@ function initPano() {
   // the custom panorama 'reception' which we check for below.
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("map") as HTMLElement,
-    { pano: "reception", visible: true }
+    { pano: "reception", visible: true },
   );
 
   panorama.registerPanoProvider(getCustomPanorama);
@@ -17,7 +17,7 @@ function getCustomPanoramaTileUrl(
   pano: string,
   zoom: number,
   tileX: number,
-  tileY: number
+  tileY: number,
 ): string {
   return (
     "https://developers.google.com/maps/documentation/javascript/examples/full/images/" +

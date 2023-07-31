@@ -13,7 +13,7 @@ function initMap() {
   });
   // Load GeoJSON.
   map.data.loadGeoJson(
-    "https://storage.googleapis.com/mapsdevsite/json/google.json"
+    "https://storage.googleapis.com/mapsdevsite/json/google.json",
   );
   // [START maps_layer_data_dynamic_snippet]
   // Color each letter gray. Change the color when the isColorful property

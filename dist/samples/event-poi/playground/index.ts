@@ -6,14 +6,14 @@ function initMap(): void {
     {
       zoom: 18,
       center: origin,
-    }
+    },
   );
 
   new ClickEventHandler(map, origin);
 }
 
 function isIconMouseEvent(
-  e: google.maps.MapMouseEvent | google.maps.IconMouseEvent
+  e: google.maps.MapMouseEvent | google.maps.IconMouseEvent,
 ): e is google.maps.IconMouseEvent {
   return "placeId" in e;
 }
@@ -35,7 +35,7 @@ class ClickEventHandler {
     this.placesService = new google.maps.places.PlacesService(map);
     this.infowindow = new google.maps.InfoWindow();
     this.infowindowContent = document.getElementById(
-      "infowindow-content"
+      "infowindow-content",
     ) as HTMLElement;
     this.infowindow.setContent(this.infowindowContent);
 
@@ -85,7 +85,7 @@ class ClickEventHandler {
       { placeId: placeId },
       (
         place: google.maps.places.PlaceResult | null,
-        status: google.maps.places.PlacesServiceStatus
+        status: google.maps.places.PlacesServiceStatus,
       ) => {
         if (
           status === "OK" &&
@@ -109,7 +109,7 @@ class ClickEventHandler {
           ).textContent = place.formatted_address as string;
           me.infowindow.open(me.map);
         }
-      }
+      },
     );
   }
 }

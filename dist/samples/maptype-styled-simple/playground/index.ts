@@ -112,7 +112,7 @@ function initMap(): void {
         stylers: [{ color: "#92998d" }],
       },
     ],
-    { name: "Styled Map" }
+    { name: "Styled Map" },
   );
 
   // Create a map object, and include the MapTypeId to add
@@ -125,7 +125,7 @@ function initMap(): void {
       mapTypeControlOptions: {
         mapTypeIds: ["roadmap", "satellite", "hybrid", "terrain", "styled_map"],
       },
-    }
+    },
   );
 
   //Associate the styled map with the MapTypeId and set it to display.

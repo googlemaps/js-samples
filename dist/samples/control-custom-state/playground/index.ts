@@ -12,7 +12,7 @@ class CenterControl {
   constructor(
     controlDiv: HTMLElement,
     map: google.maps.Map,
-    center: google.maps.LatLngLiteral
+    center: google.maps.LatLngLiteral,
   ) {
     this.map_ = map;
     // Set the center property upon construction

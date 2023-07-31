@@ -66,11 +66,11 @@ function initEvents() {
         // @ts-ignore
         e.dataTransfer.setData(
           "text/plain",
-          JSON.stringify(files[Number(e.target.dataset.value)])
+          JSON.stringify(files[Number(e.target.dataset.value)]),
         );
         console.log(e);
       },
-      false
+      false,
     );
   });
 

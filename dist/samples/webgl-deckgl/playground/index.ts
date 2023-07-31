@@ -90,7 +90,7 @@ function initMap() {
         eventListeners[eventType] = map.addListener(
           eventType,
           (event: google.maps.MapMouseEvent) =>
-            this.handleMouseEvent(this.deck, eventType, event)
+            this.handleMouseEvent(this.deck, eventType, event),
         );
       }
     }
@@ -148,7 +148,7 @@ function initMap() {
 
     getEventPixel(
       event: google.maps.MapMouseEvent | google.maps.IconMouseEvent,
-      deck: any
+      deck: any,
     ): { x: number; y: number } {
       const point = deck
         .getViewports()[0]
@@ -166,7 +166,7 @@ function initMap() {
     handleMouseEvent(
       deck: any,
       type: string,
-      event: google.maps.MapMouseEvent
+      event: google.maps.MapMouseEvent,
     ) {
       const deckEvent = {
         type,

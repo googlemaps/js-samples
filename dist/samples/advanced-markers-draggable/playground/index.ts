@@ -1,10 +1,10 @@
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = (await google.maps.importLibrary(
-    "maps"
+    "maps",
   )) as google.maps.MapsLibrary;
   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
-    "marker"
+    "marker",
   )) as google.maps.MarkerLibrary;
 
   const map = new Map(document.getElementById("map") as HTMLElement, {
@@ -25,7 +25,7 @@ async function initMap() {
     const position = draggableMarker.position as google.maps.LatLng;
     infoWindow.close();
     infoWindow.setContent(
-      `Pin dropped at: ${position.lat()}, ${position.lng()}`
+      `Pin dropped at: ${position.lat()}, ${position.lng()}`,
     );
     infoWindow.open(draggableMarker.map, draggableMarker);
   });

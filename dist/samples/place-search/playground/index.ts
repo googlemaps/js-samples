@@ -27,7 +27,7 @@ function initMap(): void {
     request,
     (
       results: google.maps.places.PlaceResult[] | null,
-      status: google.maps.places.PlacesServiceStatus
+      status: google.maps.places.PlacesServiceStatus,
     ) => {
       if (status === google.maps.places.PlacesServiceStatus.OK && results) {
         for (let i = 0; i < results.length; i++) {
@@ -36,7 +36,7 @@ function initMap(): void {
 
         map.setCenter(results[0].geometry!.location!);
       }
-    }
+    },
   );
 }
 

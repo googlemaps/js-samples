@@ -13,7 +13,7 @@ function initMap(): void {
     {
       center: { lat: -33.8688, lng: 151.2195 },
       zoom: 13,
-    }
+    },
   );
 
   const input = document.getElementById("pac-input") as HTMLInputElement;
@@ -29,7 +29,7 @@ function initMap(): void {
 
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById(
-    "infowindow-content"
+    "infowindow-content",
   ) as HTMLElement;
 
   infowindow.setContent(infowindowContent);

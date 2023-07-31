@@ -10,7 +10,7 @@ function initMap(): void {
       heading: 320,
       tilt: 47.5,
       mapId: "90f87356969d889c",
-    }
+    },
   );
 
   const buttons: [string, string, number, google.maps.ControlPosition][] = [

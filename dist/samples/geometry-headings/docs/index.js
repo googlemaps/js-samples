@@ -17,7 +17,7 @@ function initMap() {
   });
 
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(
-    document.getElementById("info")
+    document.getElementById("info"),
   );
   marker1 = new google.maps.Marker({
     map,
@@ -32,7 +32,7 @@ function initMap() {
 
   const bounds = new google.maps.LatLngBounds(
     marker1.getPosition(),
-    marker2.getPosition()
+    marker2.getPosition(),
   );
 
   map.fitBounds(bounds);
@@ -62,7 +62,7 @@ function update() {
 
   const heading = google.maps.geometry.spherical.computeHeading(
     path[0],
-    path[1]
+    path[1],
   );
 
   document.getElementById("heading").value = String(heading);

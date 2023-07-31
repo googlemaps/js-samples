@@ -18,7 +18,7 @@ function initMap(): void {
     {
       center: { lat: 40, lng: -110 },
       zoom: 4,
-    }
+    },
   );
 
   const deckOverlay = new GoogleMapsOverlay({

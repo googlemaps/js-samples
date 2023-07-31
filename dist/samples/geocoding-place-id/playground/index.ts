@@ -7,7 +7,7 @@ function initMap(): void {
     {
       zoom: 8,
       center: { lat: 40.72, lng: -73.96 },
-    }
+    },
   );
   const geocoder = new google.maps.Geocoder();
   const infowindow = new google.maps.InfoWindow();
@@ -16,7 +16,7 @@ function initMap(): void {
     "click",
     () => {
       geocodePlaceId(geocoder, map, infowindow);
-    }
+    },
   );
 }
 
@@ -25,7 +25,7 @@ function initMap(): void {
 function geocodePlaceId(
   geocoder: google.maps.Geocoder,
   map: google.maps.Map,
-  infowindow: google.maps.InfoWindow
+  infowindow: google.maps.InfoWindow,
 ) {
   const placeId = (document.getElementById("place-id") as HTMLInputElement)
     .value;

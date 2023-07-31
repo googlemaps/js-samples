@@ -5,7 +5,7 @@ function initMap(): void {
     {
       zoom: 4,
       center: originalMapCenter,
-    }
+    },
   );
 
   const infowindow = new google.maps.InfoWindow({

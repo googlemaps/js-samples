@@ -9,7 +9,7 @@ function initMap(): void {
     {
       zoom: 13,
       center: { lat: 40.74, lng: -74.18 },
-    }
+    },
   );
 
   const imageBounds = {
@@ -21,7 +21,7 @@ function initMap(): void {
 
   historicalOverlay = new google.maps.GroundOverlay(
     "https://storage.googleapis.com/geo-devrel-public-buckets/newark_nj_1922-661x516.jpeg",
-    imageBounds
+    imageBounds,
   );
   historicalOverlay.setMap(map);
 }

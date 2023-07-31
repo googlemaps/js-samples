@@ -10,7 +10,7 @@ function initMap(): void {
       center: astorPlace,
       zoom: 18,
       streetViewControl: false,
-    }
+    },
   );
 
   document
@@ -47,7 +47,7 @@ function initMap(): void {
     /** @type {google.maps.StreetViewPov} */ {
       heading: 265,
       pitch: 0,
-    }
+    },
   );
 }
 

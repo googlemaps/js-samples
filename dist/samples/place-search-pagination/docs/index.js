@@ -41,7 +41,7 @@ function initMap() {
           pagination.nextPage();
         };
       }
-    }
+    },
   );
 }
 

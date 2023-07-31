@@ -10,7 +10,7 @@ function initMap(): void {
     {
       zoom: 13,
       center: { lat: 59.325, lng: 18.07 },
-    }
+    },
   );
 
   marker = new google.maps.Marker({
