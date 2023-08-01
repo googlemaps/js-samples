@@ -29,7 +29,6 @@ function initMap(): void {
   const options = {
     fields: ["formatted_address", "geometry", "name"],
     strictBounds: false,
-    types: ["establishment"],
   };
 
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
