@@ -14,10 +14,13 @@
 
 name: Test
 on:
+  pull-request:
+    branches:
+      - main
   push:
     branches-ignore:
       - master
-concurrency: 
+concurrency:
   group: test-${{ github.ref }}
   cancel-in-progress: true
 jobs:
