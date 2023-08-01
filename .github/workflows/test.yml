@@ -14,7 +14,7 @@
 
 name: Test
 on:
-  pull_request:
+  pull_request_review:
     branches:
       - main
     types: [submitted]
@@ -25,15 +25,11 @@ concurrency:
   group: test-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  not_approved:
-    if: >-
-      github.event.review.state &&
-      github.event.review.state != 'approved'
-    run: |
-      echo "Skipping tests until PR is approved." >> $GITHUB_STEP_SUMMARY
-      stopMarker=$(uuidgen)
-      exit 1
   test:
+    if: >-
+      github.event_name == 'push' ||
+      (github.event_name == 'pull_request_review' &&
+      github.event.review.state != 'approved')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
