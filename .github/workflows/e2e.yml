@@ -14,9 +14,10 @@
 
 name: e2e
 on:
-  pull_request:
+  pull_request_review:
     branches:
       - main
+    types: [submitted]
   push:
     branches-ignore:
       - master
@@ -26,6 +27,14 @@ concurrency:
   group: e2e-${{ github.ref }}
   cancel-in-progress: true
 jobs:
+  not_approved:
+    if: >-
+      github.event.review.state &&
+      github.event.review.state != 'approved'
+    run: |
+      echo "Skipping tests until PR is approved." >> $GITHUB_STEP_SUMMARY
+      stopMarker=$(uuidgen)
+      exit 1
   build:
     if: "!contains(github.event.head_commit.message, 'chore: update dist folder')"
     runs-on: ubuntu-latest
