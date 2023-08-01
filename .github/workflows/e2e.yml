@@ -14,7 +14,7 @@
 
 name: e2e
 on:
-  pull-request:
+  pull_request:
     branches:
       - main
   push:
