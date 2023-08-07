@@ -93,7 +93,7 @@
     "@material/mwc-button": "^0.27.0",
     "@material/select": "^14.0.0",
     "@tweenjs/tween.js": "^20.0.3",
-    "clsx": "^1.2.1",
+    "clsx": "^2.0.0",
     "fast-equals": "^3.0.3",
     "playground-elements": "^0.18.0",
     "react": "^18.2.0",
