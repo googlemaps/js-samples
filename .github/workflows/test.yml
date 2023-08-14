@@ -14,14 +14,22 @@
 
 name: Test
 on:
+  pull_request_review:
+    branches:
+      - main
+    types: [submitted]
   push:
     branches-ignore:
       - master
-concurrency: 
+concurrency:
   group: test-${{ github.ref }}
   cancel-in-progress: true
 jobs:
   test:
+    if: >-
+      github.event_name == 'push' ||
+      (github.event_name == 'pull_request_review' &&
+      github.event.review.state == 'approved')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
