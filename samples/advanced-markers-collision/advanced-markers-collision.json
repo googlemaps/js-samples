@@ -1,7 +1,7 @@
 {
     "title": "Advanced Marker Collision Management",
     "dynamic_import": "true",
-    "version": "beta",
+    "version": "weekly",
     "tag": "advanced_markers_collision",
     "name": "advanced-markers-collision",
     "pagination": {

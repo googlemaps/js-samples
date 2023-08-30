@@ -2,7 +2,7 @@
   "title": "WebGL DeckGL OverlayView",
   "callback": "initMap",
   "libraries": [],
-  "version": "beta",
+  "version": "weekly",
   "tag": "webgl_deckgl",
   "name": "webgl-deckgl",
   "pagination": {

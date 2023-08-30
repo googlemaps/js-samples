@@ -2,7 +2,7 @@
   "title": "deck.gl ArcLayer",
   "callback": "initMap",
   "libraries": [],
-  "version": "beta",
+  "version": "weekly",
   "tag": "deckgl_arclayer",
   "name": "deckgl-arclayer",
   "pagination": {
