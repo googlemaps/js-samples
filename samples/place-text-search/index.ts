@@ -11,9 +11,8 @@ let center;
 
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-    const { LatLng, LatLngBounds } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
 
-    center = new LatLng(37.4161493, -122.0812166);
+    center = {lat: 37.4161493, lng: -122.0812166};
     map = new Map(document.getElementById('map') as HTMLElement, {
         center: center,
         zoom: 14,
@@ -22,10 +21,10 @@ async function initMap() {
         // [END_EXCLUDE]
     });
 
-    findPlaces(LatLng, LatLngBounds);
+    findPlaces();
 }
 
-async function findPlaces(LatLng, LatLngBounds) {
+async function findPlaces() {
     const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
     //@ts-ignore
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
@@ -43,10 +42,13 @@ async function findPlaces(LatLng, LatLngBounds) {
 
     //@ts-ignore
     const { places } = await Place.searchByText(request);
-    const bound = new LatLngBounds();
 
     if (places.length) {
         console.log(places);
+        
+        const { LatLngBounds } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
+        const bounds = new LatLngBounds();
+        
         // Loop through and get all the results.
         places.forEach((place) => {
             const markerView = new AdvancedMarkerElement({
@@ -55,11 +57,11 @@ async function findPlaces(LatLng, LatLngBounds) {
                 title: place.displayName,
             });
 
-            bound.extend(new LatLng(place.location));
+            bounds.extend(place.location);
             console.log(place);
         });
 
-        map.setCenter(bound.getCenter());
+        map.setCenter(bounds.getCenter());
 
     } else {
         console.log('No results');
