@@ -25,17 +25,12 @@ form {
 
 input {
   width: 100%;
-  height: 1.2rem;
   margin-top: 0;
   padding: 0.5em;
   border: 0;
   border-bottom: 2px solid gray;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
-}
-
-input:focus {
-  border-bottom: 4px solid black;
 }
 
 input[type='reset'] {
@@ -71,31 +66,30 @@ input[type='reset'] {
 
 .slim-field-left {
   flex: 1 150px;
-  margin: 15px 15px 15px 0px;
+  margin: 15px;
+  margin-inline-start: 0;
 }
 
 .slim-field-right {
   flex: 1 150px;
-  margin: 15px 0px 15px 15px;
+  margin: 15px;
+  margin-inline-end: 0;
 }
 
 .my-button {
-	background-color:#000;
-	border-radius:6px;
-	color:#fff;
+  background-color:#000;
+  border-radius:6px;
+  color:#fff;
   margin: 10px;
-	padding:6px 24px;
-	text-decoration:none;
+  cursor: pointer;
+  padding:6px 24px;
+  text-decoration:none;
 }
 .my-button:hover {
-	background-color:#666;
+  background-color:#666;
 }
 .my-button:active {
-	position:relative;
-	top:1px;
-}
-
-img.powered-by-google {
-  margin: 0.5em;
+  position:relative;
+  top:1px;
 }
 /* [END maps_places_autocomplete_addressform] */

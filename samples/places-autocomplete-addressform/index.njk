@@ -29,11 +29,11 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
     <span class="form-label">City*</span>
     <input id="locality" name="locality" required>
   </label>
-  <label class="slim-field-left">
+  <label class="slim-field-start">
     <span class="form-label">State/Province*</span>
     <input id="state" name="state" required>
   </label>
-  <label class="slim-field-right" for="postal_code">
+  <label class="slim-field-end" for="postal_code">
     <span class="form-label">Postal code*</span>
     <input id="postcode" name="postcode" required>
   </label>
@@ -47,5 +47,4 @@ https://developers.google.com/maps/documentation/javascript/examples/places-auto
   Not recommended for user-facing forms due to risk of mis-click when aiming for Submit button. -->
   <input type="reset" value="Clear form">
 </form>
-{% include '../../src/_includes/powered-by-google.njk' %}
 {% endblock %}
