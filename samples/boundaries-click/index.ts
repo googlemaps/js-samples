@@ -29,16 +29,19 @@ async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = await google.maps.importLibrary('maps') as google.maps.MapsLibrary;
 
-  map = new Map(document.getElementById('map_canvas') as HTMLElement, {
+  map = new Map(document.getElementById('map') as HTMLElement, {
     center: {lat: 39.23, lng: -105.73},
     zoom: 8,
     // In the cloud console, configure your Map ID with a style that enables the
     // 'Administrative Area Level 2' Data Driven Styling type.
     mapId: 'a3efe1c035bad51b', // Substitute your own map ID.
+    mapTypeControl: false,
   });
 
   //[START maps_boundaries_click_event_add_layer]
   // Add the feature layer.
+  //@ts-ignore
+  //featureLayer = map.getFeatureLayer('ADMINISTRATIVE_AREA_LEVEL_2');
   featureLayer = map.getFeatureLayer(google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_2);
 
   // Add the event listeners for the feature layer.
