@@ -9,10 +9,6 @@ let lastInteractedFeatureIds = [];
 let lastClickedFeatureIds = [];
 let datasetLayer;
 
-// [START maps_dds_datasets_polygon_click_styles]
-
-// [END maps_dds_datasets_polygon_click_styles]
-
 // [START maps_dds_datasets_polygon_click_eventhandlers]
 // Note, 'globalid' is an attribute in this Dataset.
 function handleClick(/* MouseEvent */ e) {
@@ -36,15 +32,16 @@ function handleMouseMove(/* MouseEvent */ e) {
 
 async function initMap() {
   // Request needed libraries.
-  const {Map} = await google.maps.importLibrary('maps') as google.maps.MapsLibrary;
-  const {LatLng} = await google.maps.importLibrary('core') as google.maps.CoreLibrary;
+  const { Map } = await google.maps.importLibrary('maps') as google.maps.MapsLibrary;
+  const { LatLng } = await google.maps.importLibrary('core') as google.maps.CoreLibrary;
   const position = new LatLng(40.796675, -73.946275);
-  map = new Map(document.getElementById('map_canvas') as HTMLElement, {
+  map = new Map(document.getElementById('map') as HTMLElement, {
     zoom: 13,
     center: position,
     mapId: 'b98e588c46685dd7',
     mapTypeControl: false,
   });
+  
   // Dataset ID for NYC park data.
   const datasetId = '6fe13aa9-b900-45e7-b636-3236672c3f4f';
 
