@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 // [START maps_dds_datasets_polygon_click]
-let map;
+let map: google.maps.Map;
 let lastInteractedFeatureIds = [];
 let lastClickedFeatureIds = [];
 let datasetLayer;
