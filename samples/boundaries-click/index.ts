@@ -39,7 +39,7 @@ async function initMap() {
 
   //[START maps_boundaries_click_event_add_layer]
   // Add the feature layer.
-  featureLayer = map.getFeatureLayer('ADMINISTRATIVE_AREA_LEVEL_2');
+  featureLayer = map.getFeatureLayer(google.maps.FeatureType.ADMINISTRATIVE_AREA_LEVEL_2);
 
   // Add the event listeners for the feature layer.
   featureLayer.addListener('click', handleClick);
