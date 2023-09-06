@@ -39,7 +39,7 @@ function initMap() {
         streetViewControl: false,
         // In the cloud console, configure this Map ID with a style that enables 
         // ALL Data Driven Styling types.
-        mapId: '1bf5295b744a394a',/* 'a3efe1c035bad51b', */
+        mapId: '1bf5295b744a394a',
     });
 
     const card = document.getElementById('pac-card') as HTMLElement;
