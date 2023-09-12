@@ -9,7 +9,7 @@ let lastInteractedFeatureIds = [];
 let lastClickedFeatureIds = [];
 let datasetLayer;
 
-// [START maps_dds_datasets_polygon_click_eventhandlers]
+// [START maps_dds_datasets_polygon_click_eventhandler]
 // Note, 'globalid' is an attribute in this Dataset.
 function handleClick(/* MouseEvent */ e) {
   if (e.features) {
@@ -28,7 +28,7 @@ function handleMouseMove(/* MouseEvent */ e) {
   //@ts-ignore
   datasetLayer.style = applyStyle;
 }
-// [END maps_dds_datasets_polygon_click_eventhandlers]
+// [END maps_dds_datasets_polygon_click_eventhandler]
 
 async function initMap() {
   // Request needed libraries.
