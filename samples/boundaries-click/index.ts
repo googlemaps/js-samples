@@ -11,7 +11,7 @@ let infoWindow;
 let lastInteractedFeatureIds = [];
 let lastClickedFeatureIds = [];
 
-// [START maps_boundaries_click_event_handlers]
+// [START maps_boundaries_click_event_handler]
 function handleClick(/* MouseEvent */ e) {
   lastClickedFeatureIds = e.features.map(f => f.placeId);
   lastInteractedFeatureIds = [];
@@ -23,7 +23,7 @@ function handleMouseMove(/* MouseEvent */ e) {
   lastInteractedFeatureIds = e.features.map(f => f.placeId);
   featureLayer.style = applyStyle;
 }
-// [END maps_boundaries_click_event_handlers]
+// [END maps_boundaries_click_event_handler]
 
 async function initMap() {
   // Request needed libraries.
