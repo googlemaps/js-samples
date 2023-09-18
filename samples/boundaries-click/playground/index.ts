@@ -1,6 +1,21 @@
 let map: google.maps.Map;
 let featureLayer;
-let infoWindow: google.maps.InfoWindow;
+let infoWindow;
+let lastInteractedFeatureIds = [];
+let lastClickedFeatureIds = [];
+
+function handleClick(/* MouseEvent */ e) {
+  lastClickedFeatureIds = e.features.map((f) => f.placeId);
+  lastInteractedFeatureIds = [];
+  featureLayer.style = applyStyle;
+  createInfoWindow(e);
+}
+
+function handleMouseMove(/* MouseEvent */ e) {
+  lastInteractedFeatureIds = e.features.map((f) => f.placeId);
+  featureLayer.style = applyStyle;
+}
+
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = (await google.maps.importLibrary(
@@ -8,28 +23,45 @@ async function initMap() {
   )) as google.maps.MapsLibrary;
 
   map = new Map(document.getElementById("map") as HTMLElement, {
-    center: { lat: 39.23, lng: -105.73 }, // Park County, CO
+    center: { lat: 39.23, lng: -105.73 },
     zoom: 8,
-    // In the cloud console, configure this Map ID with a style that enables the
-    // "Administrative Area Level 2" Data Driven Styling type.
-    mapId: "a3efe1c035bad51b", // <YOUR_MAP_ID_HERE>,
+    // In the cloud console, configure your Map ID with a style that enables the
+    // 'Administrative Area Level 2' Data Driven Styling type.
+    mapId: "a3efe1c035bad51b", // Substitute your own map ID.
+    mapTypeControl: false,
   });
+
   // Add the feature layer.
   //@ts-ignore
   featureLayer = map.getFeatureLayer("ADMINISTRATIVE_AREA_LEVEL_2");
-  // Add the event listener for the feature layer.
-  featureLayer.addListener("click", handlePlaceClick);
+
+  // Add the event listeners for the feature layer.
+  featureLayer.addListener("click", handleClick);
+  featureLayer.addListener("mousemove", handleMouseMove);
+
+  // Map event listener.
+  map.addListener("mousemove", () => {
+    // If the map gets a mousemove, that means there are no feature layers
+    // with listeners registered under the mouse, so we clear the last
+    // interacted feature ids.
+    if (lastInteractedFeatureIds?.length) {
+      lastInteractedFeatureIds = [];
+      featureLayer.style = applyStyle;
+    }
+  });
+
+  // Create the infowindow.
   infoWindow = new InfoWindow({});
   // Apply style on load, to enable clicking.
-  applyStyleToSelected();
+  featureLayer.style = applyStyle;
 }
-// Handle the click event.
-async function handlePlaceClick(event) {
+
+// Helper function for the infowindow.
+async function createInfoWindow(event) {
   let feature = event.features[0];
   if (!feature.placeId) return;
-  // Apply the style to the feature layer.
-  applyStyleToSelected(feature.placeId);
-  // Add the info window.
+
+  // Update the infowindow.
   const place = await feature.fetchPlace();
   let content =
     '<span style="font-size:small">Display name: ' +
@@ -39,37 +71,45 @@ async function handlePlaceClick(event) {
     "<br/> Feature type: " +
     feature.featureType +
     "</span>";
+
   updateInfoWindow(content, event.latLng);
 }
+
+// Define styles.
 // Stroke and fill with minimum opacity value.
-//@ts-ignore
-const styleDefault: google.maps.FeatureStyleOptions = {
+const styleDefault = {
   strokeColor: "#810FCB",
   strokeOpacity: 1.0,
   strokeWeight: 2.0,
   fillColor: "white",
-  fillOpacity: 0.1, // Polygons must be visible to receive click events.
+  fillOpacity: 0.1, // Polygons must be visible to receive events.
 };
-
-// Style for the clicked Administrative Area Level 2 polygon.
-//@ts-ignore
-const styleClicked: google.maps.FeatureStyleOptions = {
+// Style for the clicked polygon.
+const styleClicked = {
   ...styleDefault,
   fillColor: "#810FCB",
   fillOpacity: 0.5,
 };
-// Apply styles to the map.
-function applyStyleToSelected(placeid?) {
-  // Apply styles to the feature layer.
-  featureLayer.style = (options) => {
-    // Style fill and stroke for a polygon.
-    if (placeid && options.feature.placeId == placeid) {
-      return styleClicked;
-    }
-    // Style only the stroke for the entire feature type.
-    return styleDefault;
-  };
+// Style for polygon on mouse move.
+const styleMouseMove = {
+  ...styleDefault,
+  strokeWeight: 4.0,
+};
+
+// Apply styles using a feature style function.
+function applyStyle(/* FeatureStyleFunctionOptions */ params) {
+  const placeId = params.feature.placeId;
+  //@ts-ignore
+  if (lastClickedFeatureIds.includes(placeId)) {
+    return styleClicked;
+  }
+  //@ts-ignore
+  if (lastInteractedFeatureIds.includes(placeId)) {
+    return styleMouseMove;
+  }
+  return styleDefault;
 }
+
 // Helper function to create an info window.
 function updateInfoWindow(content, center) {
   infoWindow.setContent(content);
