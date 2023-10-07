@@ -21,7 +21,3 @@ p {
   font-weight: bold;
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-

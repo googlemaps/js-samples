@@ -57,7 +57,3 @@ body {
   width: 100%;
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-

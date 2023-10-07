@@ -49,8 +49,4 @@ body {
   display: inline;
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-
 /* [END maps_place_autocomplete_map] */

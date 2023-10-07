@@ -43,7 +43,3 @@ body {
   display: inline;
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-
