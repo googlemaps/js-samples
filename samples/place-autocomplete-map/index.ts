@@ -29,7 +29,7 @@ async function initMap(): Promise<void> {
     placeAutocomplete.id = 'place-autocomplete-input';
 
     const card = document.getElementById('place-autocomplete-card') as HTMLElement;
-    card.appendChild(placeAutocomplete as HTMLElement);
+    card.appendChild(placeAutocomplete);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
     // [END maps_place_autocomplete_map_add]
 

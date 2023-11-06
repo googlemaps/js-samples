@@ -23,7 +23,7 @@ async function initMap(): Promise<void> {
   const card = document.getElementById(
     "place-autocomplete-card",
   ) as HTMLElement;
-  card.appendChild(placeAutocomplete as HTMLElement);
+  card.appendChild(placeAutocomplete);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
 
   // Create the marker and infowindow
