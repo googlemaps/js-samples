@@ -25,7 +25,8 @@ async function initMap(): Promise<void> {
   });
 
   const card = document.getElementById("pac-card") as HTMLElement;
-  card.appendChild(pac.element as HTMLElement);
+  //@ts-ignore
+  card.appendChild(pac);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
 
   // Create the marker and infowindow
@@ -36,7 +37,8 @@ async function initMap(): Promise<void> {
   infoWindow = new google.maps.InfoWindow({});
 
   // Add the gmp-placeselect listener, and display the results on the map.
-  pac.addListener("gmp-placeselect", async ({ place }) => {
+  //@ts-ignore
+  pac.addEventListener("gmp-placeselect", async ({ place }) => {
     await place.fetchFields({
       fields: ["displayName", "formattedAddress", "location"],
     });
