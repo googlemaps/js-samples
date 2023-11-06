@@ -45,8 +45,4 @@ body {
   border-top: 8px solid #4285F4;
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-
 /* [END maps_advanced_markers_html_simple] */

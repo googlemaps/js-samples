@@ -79,8 +79,4 @@ body {
   padding: 0.5em;
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-
 /* [END maps_dds_datasets_point] */

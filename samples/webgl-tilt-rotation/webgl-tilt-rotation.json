@@ -2,7 +2,7 @@
   "title": "Tilt and Rotation",
   "callback": "initMap",
   "libraries": [],
-  "version": "beta",
+  "version": "weekly",
   "tag": "webgl_tilt_rotation",
   "name": "webgl-tilt-rotation",
   "pagination": {
