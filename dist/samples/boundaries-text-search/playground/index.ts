@@ -45,7 +45,7 @@ async function findBoundary() {
 
 function styleBoundary(placeid) {
   // Define a style of transparent purple with opaque stroke.
-  const styleFill = /** @type {!google.maps.FeatureStyleOptions} */ {
+  const styleFill = {
     strokeColor: "#810FCB",
     strokeOpacity: 1.0,
     strokeWeight: 3.0,

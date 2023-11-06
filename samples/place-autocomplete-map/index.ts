@@ -24,14 +24,12 @@ async function initMap(): Promise<void> {
         mapTypeControl: false,
     });
     // [START maps_place_autocomplete_map_add]
-    // Create the input HTML element, and add it to the map as a custom control.
-    const input = document.createElement('input');
-    input.id = 'pac-input';
     //@ts-ignore
-    const pac = new google.maps.places.PlaceAutocompleteElement({ inputElement: input });
+    const placeAutocomplete = new google.maps.places.PlaceAutocompleteElement();
+    placeAutocomplete.id = 'place-autocomplete-input';
 
-    const card = document.getElementById('pac-card') as HTMLElement;
-    card.appendChild(pac.element as HTMLElement);
+    const card = document.getElementById('place-autocomplete-card') as HTMLElement;
+    card.appendChild(placeAutocomplete as HTMLElement);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
     // [END maps_place_autocomplete_map_add]
 
@@ -44,7 +42,7 @@ async function initMap(): Promise<void> {
 
     // [START maps_place_autocomplete_map_listener]
     // Add the gmp-placeselect listener, and display the results on the map.
-    pac.addListener('gmp-placeselect', async ({ place }) => {
+    placeAutocomplete.addEventListener('gmp-placeselect', async ({ place }) => {
         await place.fetchFields({ fields: ['displayName', 'formattedAddress', 'location'] });
 
         // If the place has a geometry, then present it on a map.

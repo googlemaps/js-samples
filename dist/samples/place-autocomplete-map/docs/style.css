@@ -22,11 +22,7 @@ body {
   padding: 0;
 }
 
-#map_canvas {
-  flex: 1;
-}
-
-#pac-card {
+#place-autocomplete-card {
   background-color: #fff;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -37,7 +33,7 @@ body {
   font-weight: bold;
 }
 
-#pac-input {
+#place-autocomplete {
   width: 250px;
 }
 
