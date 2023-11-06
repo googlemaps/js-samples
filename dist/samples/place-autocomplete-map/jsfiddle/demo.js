@@ -34,7 +34,8 @@ async function initMap() {
   });
   const card = document.getElementById("pac-card");
 
-  card.appendChild(pac.element);
+  //@ts-ignore
+  card.appendChild(pac);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
   // Create the marker and infowindow
   marker = new google.maps.marker.AdvancedMarkerElement({
@@ -42,7 +43,8 @@ async function initMap() {
   });
   infoWindow = new google.maps.InfoWindow({});
   // Add the gmp-placeselect listener, and display the results on the map.
-  pac.addListener("gmp-placeselect", async ({ place }) => {
+  //@ts-ignore
+  pac.addEventListener("gmp-placeselect", async ({ place }) => {
     await place.fetchFields({
       fields: ["displayName", "formattedAddress", "location"],
     });
