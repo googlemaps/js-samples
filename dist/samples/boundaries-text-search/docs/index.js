@@ -26,7 +26,7 @@ async function initMap() {
 // [START maps_boundaries_text_search_find_region]
 async function findBoundary() {
   const request = {
-    textQuery: "Trinidad, CA",
+    query: "Trinidad, CA",
     fields: ["id", "location"],
     includedType: "locality",
     locationBias: center,
