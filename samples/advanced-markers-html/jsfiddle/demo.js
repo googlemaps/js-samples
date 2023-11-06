@@ -7,8 +7,7 @@ async function initMap() {
   // Request needed libraries.
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-  const { LatLng } = await google.maps.importLibrary("core");
-  const center = new LatLng(37.43238031167444, -122.16795397128632);
+  const center = { lat: 37.43238031167444, lng: -122.16795397128632 };
   const map = new Map(document.getElementById("map"), {
     zoom: 11,
     center,

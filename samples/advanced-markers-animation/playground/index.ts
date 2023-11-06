@@ -44,11 +44,8 @@ async function initMap(): Promise<void> {
   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
     "marker",
   )) as google.maps.MarkerLibrary;
-  const { LatLng } = (await google.maps.importLibrary(
-    "core",
-  )) as google.maps.CoreLibrary;
 
-  const position = new LatLng(37.4242011827985, -122.09242296450893);
+  const position = { lat: 37.4242011827985, lng: -122.09242296450893 };
 
   const map = new Map(document.getElementById("map") as HTMLElement, {
     zoom: 14,

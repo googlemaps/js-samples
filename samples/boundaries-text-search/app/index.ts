@@ -10,10 +10,8 @@ let center;
 
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-    const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
-    const { LatLng } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
 
-    center = new LatLng(41.059, -124.151); // Trinidad, CA
+    center = {lat: 41.059, lng: -124.151}; // Trinidad, CA
 
     map = new Map(document.getElementById('map') as HTMLElement, {
         center: center,
@@ -25,9 +23,9 @@ async function initMap() {
 
     featureLayer = map.getFeatureLayer('LOCALITY');
 
-    findBoundary(Place);
+    findBoundary();
 }
-async function findBoundary(Place) {
+async function findBoundary() {
     const request = {
         query: 'Trinidad, CA',
         fields: ['id', 'location'],
@@ -35,6 +33,7 @@ async function findBoundary(Place) {
         locationBias: center,
     };
 
+    const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
     const { places } = await Place.searchByText(request);
 
     if (places.length) {
@@ -48,13 +47,13 @@ async function findBoundary(Place) {
 
 function styleBoundary(placeid) {
     // Define a style of transparent purple with opaque stroke.
-    const styleFill = /** @type {!google.maps.FeatureStyleOptions} */({
+    const styleFill = {
         strokeColor: '#810FCB',
         strokeOpacity: 1.0,
         strokeWeight: 3.0,
         fillColor: '#810FCB',
         fillOpacity: 0.5
-    });
+    };
 
     // Define the feature style function.
     featureLayer.style = (params) => {

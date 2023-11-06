@@ -88,8 +88,4 @@ body {
   background: rgb(235, 235, 235);
 }
 
-[class$=api-load-alpha-banner] {
-  display: none;
-}
-
 /* [END maps_advanced_markers_animation] */
