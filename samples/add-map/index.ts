@@ -5,7 +5,7 @@
  */
 
 // [START maps_add_map]
-// Initialize and add the map
+// Initialize and add the map.
 let map;
 async function initMap(): Promise<void> {
   // [START maps_add_map_instantiate_map]
