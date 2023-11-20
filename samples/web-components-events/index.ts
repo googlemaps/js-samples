@@ -15,9 +15,11 @@ function initMap(): void {
       advancedMarker.addEventListener('gmp-click', async () => {
 
         const infoWindow = new google.maps.InfoWindow({
+          //@ts-ignore
           content: advancedMarker.title,
         });
         infoWindow.open({
+          //@ts-ignore
           anchor: advancedMarker
         });
       });
