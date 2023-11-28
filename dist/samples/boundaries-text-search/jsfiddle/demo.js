@@ -30,6 +30,7 @@ async function findBoundary() {
     locationBias: center,
   };
   const { Place } = await google.maps.importLibrary("places");
+  //@ts-ignore
   const { places } = await Place.searchByText(request);
 
   if (places.length) {
