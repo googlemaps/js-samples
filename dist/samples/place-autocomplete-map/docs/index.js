@@ -28,10 +28,12 @@ async function initMap() {
   //@ts-ignore
   const placeAutocomplete = new google.maps.places.PlaceAutocompleteElement();
 
+  //@ts-ignore
   placeAutocomplete.id = "place-autocomplete-input";
 
   const card = document.getElementById("place-autocomplete-card");
 
+  //@ts-ignore
   card.appendChild(placeAutocomplete);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
   // [END maps_place_autocomplete_map_add]
@@ -42,6 +44,7 @@ async function initMap() {
   infoWindow = new google.maps.InfoWindow({});
   // [START maps_place_autocomplete_map_listener]
   // Add the gmp-placeselect listener, and display the results on the map.
+  //@ts-ignore
   placeAutocomplete.addEventListener("gmp-placeselect", async ({ place }) => {
     await place.fetchFields({
       fields: ["displayName", "formattedAddress", "location"],

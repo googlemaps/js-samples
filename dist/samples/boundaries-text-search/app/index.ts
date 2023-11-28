@@ -34,6 +34,7 @@ async function findBoundary() {
     };
 
     const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
+    //@ts-ignore
     const { places } = await Place.searchByText(request);
 
     if (places.length) {
