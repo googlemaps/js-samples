@@ -1,0 +1,36 @@
+<!doctype html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+<html>
+  <head>
+    <title>Add a Map Web Component</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    
+    
+    <script type="module" crossorigin src="./assets/index-6a9c90a7.js"></script>
+    <link rel="stylesheet" href="./assets/index-382120f9.css">
+  </head>
+  <body>
+    <gmp-map
+      center="37.4220656,-122.0840897"
+      zoom="10"
+      map-id="DEMO_MAP_ID"
+    ></gmp-map>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises.
+      See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+      for more information.
+      -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=beta"
+      defer
+    ></script>
+  </body>
+</html>
