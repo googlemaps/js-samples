@@ -29,7 +29,7 @@
     "@types/google.maps": "^3.53.5",
     "typescript": "^5.2.2",
     "vite": "^4.4.12",
-    "@types/google.visualization": "0.0.69"
+    "@types/google.visualization": "0.0.73"
   },
   "private": true,
   "dependencies": {}
