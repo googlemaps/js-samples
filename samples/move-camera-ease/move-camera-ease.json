@@ -2,7 +2,7 @@
   "title": "Move Camera Easing",
   "callback": "initMap",
   "libraries": [],
-  "version": "beta",
+  "version": "weekly",
   "tag": "move_camera_ease",
   "name": "move-camera-ease",
   "pagination": {

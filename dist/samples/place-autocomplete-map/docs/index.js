@@ -25,18 +25,16 @@ async function initMap() {
   });
 
   // [START maps_place_autocomplete_map_add]
-  // Create the input HTML element, and add it to the map as a custom control.
-  const input = document.createElement("input");
-
-  input.id = "pac-input";
+  //@ts-ignore
+  const placeAutocomplete = new google.maps.places.PlaceAutocompleteElement();
 
   //@ts-ignore
-  const pac = new google.maps.places.PlaceAutocompleteElement({
-    inputElement: input,
-  });
-  const card = document.getElementById("pac-card");
+  placeAutocomplete.id = "place-autocomplete-input";
 
-  card.appendChild(pac.element);
+  const card = document.getElementById("place-autocomplete-card");
+
+  //@ts-ignore
+  card.appendChild(placeAutocomplete);
   map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
   // [END maps_place_autocomplete_map_add]
   // Create the marker and infowindow
@@ -46,7 +44,8 @@ async function initMap() {
   infoWindow = new google.maps.InfoWindow({});
   // [START maps_place_autocomplete_map_listener]
   // Add the gmp-placeselect listener, and display the results on the map.
-  pac.addListener("gmp-placeselect", async ({ place }) => {
+  //@ts-ignore
+  placeAutocomplete.addEventListener("gmp-placeselect", async ({ place }) => {
     await place.fetchFields({
       fields: ["displayName", "formattedAddress", "location"],
     });

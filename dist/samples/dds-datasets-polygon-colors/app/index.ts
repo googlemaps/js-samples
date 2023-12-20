@@ -44,9 +44,8 @@ function setStyle(/* FeatureStyleFunctionOptions */ params) {
 async function initMap() {
     // Request needed libraries.
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-    const { LatLng } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
 
-    const position = new LatLng(40.580732, -74.152826);
+    const position = {lat: 40.580732, lng: -74.152826};
     const map = new Map(document.getElementById('map') as HTMLElement, {
         zoom: 14,
         center: position,

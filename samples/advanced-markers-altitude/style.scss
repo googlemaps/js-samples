@@ -4,13 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
- @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
+@use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
- /* [START maps_advanced_markers_altitude] */
- @include meta.load-css("../../shared/scss/default.scss");
+/* [START maps_advanced_markers_altitude] */
+@include meta.load-css("../../shared/scss/default.scss");
 
- [class$="api-load-alpha-banner"] {
-     display: none;
- }
- 
- /* [END maps_advanced_markers_altitude] */
+/* [END maps_advanced_markers_altitude] */

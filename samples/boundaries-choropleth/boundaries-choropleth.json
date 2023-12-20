@@ -1,7 +1,7 @@
 {
     "title": "Choropleth Map",
     "dynamic_import": "true",
-    "version": "beta",
+    "version": "weekly",
     "tag": "boundaries_choropleth",
     "name": "boundaries-choropleth",
     "pagination": {

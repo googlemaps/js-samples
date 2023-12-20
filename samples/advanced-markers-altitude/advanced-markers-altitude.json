@@ -1,7 +1,7 @@
 {
     "title": "Advanced Marker Altitude",
     "dynamic_import": "true",
-    "version": "beta",
+    "version": "weekly",
     "tag": "advanced_markers_altitude",
     "name": "advanced-markers-altitude",
     "pagination": {
