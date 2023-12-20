@@ -43,7 +43,7 @@ function getNormalizedCoord(coord, zoom) {
   
       const x = coord.x;
       const y = coord.y;
-      const key = "YOUR_API_KEY";
+      const key = "AIzaSyD4jWorF4eIMiBE3oZnd73Y7kOVO9q6gBE";
       img.style.opacity = 0.8;
       img.src = `https://pollen.googleapis.com/v1/mapTypes/${mapType}/heatmapTiles/${zoom}/${x}/${y}?key=${key}`;
       return img;
