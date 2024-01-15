@@ -29,7 +29,7 @@
     "@types/google.maps": "^3.53.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.11",
-    "@types/geojson": "^7946.0.10"
+    "@types/geojson": "^7946.0.13"
   },
   "private": true,
   "dependencies": {}
