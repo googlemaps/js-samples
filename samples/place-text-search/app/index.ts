@@ -28,7 +28,7 @@ async function findPlaces() {
     //@ts-ignore
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
     const request = {
-        query: 'Tacos in Mountain View',
+        textQuery: 'Tacos in Mountain View',
         fields: ['displayName', 'location', 'businessStatus'],
         includedType: 'restaurant',
         isOpenNow: true,
