@@ -24,7 +24,7 @@ function initMap(): void {
   });
 
   const request = {
-    textQuery: "Museum of Contemporary Art Australia",
+    query: "Museum of Contemporary Art Australia",
     fields: ["name", "geometry"],
   };
 
