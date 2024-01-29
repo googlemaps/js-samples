@@ -70,3 +70,4 @@ async function initMap() {
 
 initMap();
 // [END maps_advanced_markers_accessibility]
+export{ };
