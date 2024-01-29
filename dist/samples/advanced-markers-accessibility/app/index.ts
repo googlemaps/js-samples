@@ -68,4 +68,4 @@ async function initMap() {
 }
 
 initMap();
-export { };
+export{ };
