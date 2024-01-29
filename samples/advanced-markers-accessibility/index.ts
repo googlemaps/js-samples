@@ -56,7 +56,6 @@ async function initMap() {
             map,
             title: `${i + 1}. ${title}`,
             content: pin.element,
-            gmpClickable: true,
         });
 
         // Add a click listener for each marker, and set up the info window.
