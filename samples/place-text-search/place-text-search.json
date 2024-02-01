@@ -1,6 +1,6 @@
 {
     "title": "Text Search",
-    "version": "beta",
+    "version": "weekly",
     "dynamic_import": "true",
     "tag": "place_text_search",
     "name": "place-text-search",
