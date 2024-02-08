@@ -1,6 +1,6 @@
 {
     "title": "Place Autocomplete map",
-    "version": "alpha",
+    "version": "beta",
     "dynamic_import": "true",
     "tag": "place_autocomplete_map",
     "name": "place-autocomplete-map",
