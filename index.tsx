@@ -196,23 +196,25 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   return null;
 };
 
-const deepCompareEqualsForMaps = createCustomEqual(
-  (deepEqual) => (a: any, b: any) => {
-    if (
-      isLatLngLiteral(a) ||
-      a instanceof google.maps.LatLng ||
-      isLatLngLiteral(b) ||
-      b instanceof google.maps.LatLng
-    ) {
-      return new google.maps.LatLng(a).equals(new google.maps.LatLng(b));
-    }
+const deepCompareEqualsForMaps = createCustomEqual({
+  createInternalComparator: (deepEqual) => {
+    return (a, b, state) => {
+      if (
+        isLatLngLiteral(a) ||
+        a instanceof google.maps.LatLng ||
+        isLatLngLiteral(b) ||
+        b instanceof google.maps.LatLng
+      ) {
+        return new google.maps.LatLng(a).equals(new google.maps.LatLng(b));
+      }
 
-    // TODO extend to other types
-
-    // use fast-equals for other objects
-    return deepEqual(a, b);
+      // TODO extend to other types
+  
+      // use fast-equals for other objects
+      return deepEqual(a, b, state);
+    };
   }
-);
+});
 
 function useDeepCompareMemoize(value: any) {
   const ref = React.useRef();
