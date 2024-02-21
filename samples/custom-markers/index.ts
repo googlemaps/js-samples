@@ -7,10 +7,15 @@
 // [START maps_custom_markers]
 let map: google.maps.Map;
 
-function initMap(): void {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+
   map = new google.maps.Map(document.getElementById("map") as HTMLElement, {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     zoom: 16,
+    mapId: "DEMO_MAP_ID",
   });
 
   const iconBase =
@@ -107,21 +112,17 @@ function initMap(): void {
     },
   ];
 
-  // Create markers.
   for (let i = 0; i < features.length; i++) {
-    const marker = new google.maps.Marker({
+    const iconImage = document.createElement("img");
+    iconImage.src = icons[features[i].type].icon;
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      map,
       position: features[i].position,
-      icon: icons[features[i].type].icon,
-      map: map,
-    });
+      content: iconImage,
+    })
   }
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_custom_markers]
 export {};
