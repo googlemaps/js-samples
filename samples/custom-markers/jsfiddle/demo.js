@@ -5,10 +5,17 @@
  */
 let map;
 
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
+    "marker",
+  );
+
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-33.91722, 151.23064),
     zoom: 16,
+    mapId: "DEMO_MAP_ID",
   });
 
   const iconBase =
@@ -103,14 +110,17 @@ function initMap() {
     },
   ];
 
-  // Create markers.
   for (let i = 0; i < features.length; i++) {
-    const marker = new google.maps.Marker({
+    const iconImage = document.createElement("img");
+
+    iconImage.src = icons[features[i].type].icon;
+
+    const marker = new google.maps.marker.AdvancedMarkerElement({
+      map,
       position: features[i].position,
-      icon: icons[features[i].type].icon,
-      map: map,
+      content: iconImage,
     });
   }
 }
 
-window.initMap = initMap;
+initMap();
