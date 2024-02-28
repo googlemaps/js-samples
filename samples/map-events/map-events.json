@@ -1,7 +1,6 @@
 {
   "title": "Map Events",
-  "callback": "initMap",
-  "libraries": [],
+  "dynamic_import": "true",
   "version": "weekly",
   "tag": "map_events",
   "name": "map-events",
