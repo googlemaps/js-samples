@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 // [START maps_event_domListener]
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
   const mapDiv = document.getElementById("map");
   const map = new google.maps.Map(mapDiv, {
     zoom: 8,
@@ -18,5 +20,5 @@ function initMap() {
   });
 }
 
-window.initMap = initMap;
+initMap();
 // [END maps_event_domListener]

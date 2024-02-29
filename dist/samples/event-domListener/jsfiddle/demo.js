@@ -3,7 +3,9 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
   const mapDiv = document.getElementById("map");
   const map = new google.maps.Map(mapDiv, {
     zoom: 8,
@@ -17,4 +19,4 @@ function initMap() {
   });
 }
 
-window.initMap = initMap;
+initMap();

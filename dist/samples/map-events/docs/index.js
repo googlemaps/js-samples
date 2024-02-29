@@ -40,7 +40,10 @@ function setupListener(map, name) {
   });
 }
 
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
+
   populateTable();
 
   const mapDiv = document.getElementById("map");
@@ -68,6 +71,5 @@ function populateTable() {
   eventsTable.innerHTML = content;
 }
 
-window.initMap = initMap;
-// [END maps_map_event]
+initMap();
 // [END maps_map_events]
