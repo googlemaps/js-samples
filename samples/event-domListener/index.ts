@@ -5,7 +5,10 @@
  */
 
 // [START maps_event_domListener]
-function initMap(): void {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+
   const mapDiv = document.getElementById("map") as HTMLElement;
   const map = new google.maps.Map(mapDiv, {
     zoom: 8,
@@ -19,11 +22,6 @@ function initMap(): void {
   });
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_event_domListener]
 export {};

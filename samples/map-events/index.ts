@@ -38,7 +38,10 @@ function setupListener(map: google.maps.Map, name: string) {
   });
 }
 
-function initMap(): void {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+
   populateTable();
   const mapDiv = document.getElementById("map") as HTMLElement;
   const map = new google.maps.Map(mapDiv, {
@@ -64,11 +67,6 @@ function populateTable() {
   eventsTable.innerHTML = content;
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_map_event]
-export { initMap };
+export { };
