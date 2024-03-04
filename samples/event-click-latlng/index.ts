@@ -5,7 +5,10 @@
  */
 
 // [START maps_event_click_latlng]
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+
   const myLatlng = { lat: -25.363, lng: 131.044 };
 
   const map = new google.maps.Map(document.getElementById("map")!, {
@@ -39,11 +42,6 @@ function initMap() {
   // [END maps_event_click_latlng_listener]
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_event_click_latlng]
 export {};

@@ -1,7 +1,6 @@
 {
   "title": "Event Click LatLng",
-  "callback": "initMap",
-  "libraries": [],
+  "dynamic_import": "true",
   "version": "weekly",
   "tag": "event_click_latlng",
   "name": "event-click-latlng",
