@@ -44,3 +44,4 @@ async function initMap() {
 
 initMap();
 // [END maps_event_click_latlng]
+export {};
