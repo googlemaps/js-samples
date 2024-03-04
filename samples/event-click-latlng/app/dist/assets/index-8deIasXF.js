@@ -2,4 +2,4 @@
  * @license
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
- */function c(){const i={lat:-25.363,lng:131.044},o=new google.maps.Map(document.getElementById("map"),{zoom:4,center:i});let n=new google.maps.InfoWindow({content:"Click the map to get Lat/Lng!",position:i});n.open(o),o.addListener("click",r=>{n.close(),n=new google.maps.InfoWindow({position:r.latLng}),n.setContent(JSON.stringify(r.latLng.toJSON(),null,2)),n.open(o)})}window.initMap=c;
+ */async function c(){await google.maps.importLibrary("maps");const i={lat:-25.363,lng:131.044},o=new google.maps.Map(document.getElementById("map"),{zoom:4,center:i});let n=new google.maps.InfoWindow({content:"Click the map to get Lat/Lng!",position:i});n.open(o),o.addListener("click",r=>{n.close(),n=new google.maps.InfoWindow({position:r.latLng}),n.setContent(JSON.stringify(r.latLng.toJSON(),null,2)),n.open(o)})}c();
