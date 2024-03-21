@@ -5,8 +5,10 @@
  SPDX-License-Identifier: Apache-2.0
 -->
 {% extends '../../src/_includes/layout.njk'%} {% block html %}
+<!-- [START maps_{{tag}}_gmp_map] -->
 <gmp-map center="43.4142989,-124.2301242" zoom="4" map-id="DEMO_MAP_ID">
     <gmp-advanced-marker position="37.4220656,-122.0840897" title="Mountain View, CA"></gmp-advanced-marker>
     <gmp-advanced-marker position="47.648994,-122.3503845" title="Seattle, WA"></gmp-advanced-marker>
 </gmp-map>
+<!-- [END maps_{{tag}}_gmp_map] -->
 {% endblock %}
