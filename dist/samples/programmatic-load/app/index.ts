@@ -10,7 +10,7 @@ let map: google.maps.Map;
 
 const additionalOptions = {};
 const loader = new Loader({
-  apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY!,
+  apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   version: "weekly",
   ...additionalOptions,
 });
