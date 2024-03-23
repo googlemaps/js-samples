@@ -8,9 +8,8 @@ import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclust
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-    "marker",
-  );
+  const { AdvancedMarkerElement, PinElement } =
+    await google.maps.importLibrary("marker");
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 3,
     center: { lat: -28.024, lng: 140.887 },

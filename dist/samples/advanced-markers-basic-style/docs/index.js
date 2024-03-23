@@ -9,9 +9,8 @@ const parser = new DOMParser();
 async function initMap() {
   // Request needed libraries.
   const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-    "marker",
-  );
+  const { AdvancedMarkerElement, PinElement } =
+    await google.maps.importLibrary("marker");
   const map = new Map(document.getElementById("map"), {
     center: { lat: 37.419, lng: -122.02 },
     zoom: 14,
