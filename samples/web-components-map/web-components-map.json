@@ -1,8 +1,7 @@
 {
     "title": "Add a Map Web Component",
-    "callback": "initMap",
-    "libraries": [],
     "version": "beta",
+    "dynamic_import": "true",
     "tag": "web_components_map",
     "name": "web-components-map",
     "pagination": {

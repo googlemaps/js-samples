@@ -1,7 +1,6 @@
 {
     "title": "Add a Map with Markers using Web Components",
-    "callback": "initMap",
-    "libraries": ["marker"],
+    "dynamic_import": "true",
     "version": "beta",
     "tag": "web_components_markers",
     "name": "web-components-markers",
