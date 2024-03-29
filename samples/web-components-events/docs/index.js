@@ -5,7 +5,10 @@
  */
 // [START maps_web_components_events]
 // This example adds a map using web components.
-function initMap() {
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
   console.log("Maps JavaScript API loaded.");
 
   const advancedMarkers = document.querySelectorAll(
@@ -29,5 +32,5 @@ function initMap() {
   }
 }
 
-window.initMap = initMap;
+initMap();
 // [END maps_web_components_events]
