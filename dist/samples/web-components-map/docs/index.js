@@ -5,9 +5,11 @@
  */
 // [START maps_web_components_map]
 // This example adds a map using web components.
-function initMap() {
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+
   console.log("Maps JavaScript API loaded.");
 }
 
-window.initMap = initMap;
+initMap();
 // [END maps_web_components_map]
