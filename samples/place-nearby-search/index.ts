@@ -24,6 +24,7 @@ async function initMap() {
 }
 
 async function nearbySearch() {
+    //@ts-ignore
     const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
     // [START maps_place_nearby_search_request]
