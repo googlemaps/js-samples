@@ -24,7 +24,7 @@ async function initMap() {
 }
 
 async function nearbySearch() {
-    const { Place } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
+    const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
     // [START maps_place_nearby_search_request]
     const request = {
@@ -37,6 +37,7 @@ async function nearbySearch() {
         // optional parameters
         includedPrimaryTypes: ['restaurant'],
         maxResultCount: 8,
+        rankPreference: SearchNearbyRankPreference.POPULARITY,
         language: 'en-US',
         region: 'us',
     };
