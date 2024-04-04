@@ -5,9 +5,12 @@
  */
 // [START maps_web_components_markers]
 // This example adds a map with markers, using web components.
-function initMap() {
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
   console.log("Maps JavaScript API loaded.");
 }
 
-window.initMap = initMap;
+initMap();
 // [END maps_web_components_markers]

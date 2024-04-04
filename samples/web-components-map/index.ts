@@ -6,15 +6,11 @@
 
 // [START maps_web_components_map]
 // This example adds a map using web components.
-function initMap(): void {
+async function initMap(): Promise<void> {
+    const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
     console.log('Maps JavaScript API loaded.');
 }
 
-declare global {
-    interface Window {
-        initMap: () => void;
-    }
-}
-window.initMap = initMap;
+initMap();
 // [END maps_web_components_map]
 export { };
