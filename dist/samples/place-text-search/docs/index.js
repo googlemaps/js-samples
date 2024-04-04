@@ -14,9 +14,7 @@ async function initMap() {
   map = new Map(document.getElementById("map"), {
     center: center,
     zoom: 14,
-    // [START_EXCLUDE]
-    mapId: "4504f8b37365c3d0",
-    // [END_EXCLUDE]
+    mapId: "DEMO_MAP_ID"
   });
   findPlaces();
 }
