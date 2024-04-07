@@ -24,6 +24,8 @@ const render = (status: Status) => {
   return <h1>{status}</h1>;
 };
 
+const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+
 const App: React.VFC = () => {
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
   const [zoom, setZoom] = React.useState(3); // initial zoom
@@ -92,7 +94,7 @@ const App: React.VFC = () => {
 
   return (
     <div style={{ display: "flex", height: "100%" }}>
-      <Wrapper apiKey={import.meta.env.VITE_GOOGLE_MAPS_API_KEY!} render={render}>
+      <Wrapper apiKey={apiKey} render={render}>
         <Map
           center={center}
           onClick={onClick}

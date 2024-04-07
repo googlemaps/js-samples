@@ -6,11 +6,11 @@ module.exports = function (content, outputPath) {
   if (/app\/index\.tsx?$/.test(outputPath)) {
     content = content.replace(
       /"YOUR_API_KEY"/g,
-      "import.meta.env.VITE_GOOGLE_MAPS_API_KEY!"
+      "import.meta.env.VITE_GOOGLE_MAPS_API_KEY"
     );
   }
 
-  if (outputPath.endsWith("playground/index.ts")) {
+  if (/playground\/index\.tsx?$/.test(outputPath)) {
     content = content.replace(
       /"YOUR_API_KEY"/g,
       "process.env.GOOGLE_MAPS_API_KEY!"

@@ -23,6 +23,8 @@ const render = (status) => {
   return <h1>{status}</h1>;
 };
 
+const apiKey = "YOUR_API_KEY";
+
 const App = () => {
   // [START maps_react_map_component_app_state]
   const [clicks, setClicks] = React.useState([]);
@@ -93,7 +95,7 @@ const App = () => {
   // [START maps_react_map_component_app_return]
   return (
     <div style={{ display: "flex", height: "100%" }}>
-      <Wrapper apiKey={"YOUR_API_KEY"} render={render}>
+      <Wrapper apiKey={apiKey} render={render}>
         <Map
           center={center}
           onClick={onClick}
