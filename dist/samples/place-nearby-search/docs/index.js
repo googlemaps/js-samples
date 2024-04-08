@@ -5,18 +5,15 @@
  */
 // [START maps_place_nearby_search]
 let map;
-let center;
 
 async function initMap() {
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
+  let center = new google.maps.LatLng(52.369358, 4.889258);
 
-  center = { lat: 37.4161493, lng: -122.0812166 };
   map = new Map(document.getElementById("map"), {
     center: center,
     zoom: 11,
-    // [START_EXCLUDE]
-    mapId: "4504f8b37365c3d0",
-    // [END_EXCLUDE]
+    mapId: "DEMO_MAP_ID",
   });
   nearbySearch();
 }
@@ -28,16 +25,18 @@ async function nearbySearch() {
   );
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   // [START maps_place_nearby_search_request]
+  // Restrict within the map viewport.
+  let center = new google.maps.LatLng(52.369358, 4.889258);
   const request = {
     // required parameters
     fields: ["displayName", "location", "businessStatus"],
     locationRestriction: {
-      center: { lat: 37.4161493, lng: -122.0812166 },
+      center: center,
       radius: 500,
     },
     // optional parameters
     includedPrimaryTypes: ["restaurant"],
-    maxResultCount: 8,
+    maxResultCount: 5,
     rankPreference: SearchNearbyRankPreference.POPULARITY,
     language: "en-US",
     region: "us",
