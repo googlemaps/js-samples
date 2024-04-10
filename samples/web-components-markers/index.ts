@@ -5,10 +5,10 @@
  */
 
 // [START maps_web_components_markers]
-// This example adds a map with markers, using web components.
+// Add libraries and log a message.
 async function initMap(): Promise<void> {
-    const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+    await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
+    await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
 
     console.log('Maps JavaScript API loaded.');
 }

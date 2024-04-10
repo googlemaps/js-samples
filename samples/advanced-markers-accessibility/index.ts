@@ -13,7 +13,7 @@ async function initMap() {
     const map = new Map(document.getElementById("map") as HTMLElement, {
         zoom: 12,
         center: { lat: 34.84555, lng: -111.8035 },
-        mapId: '4504f8b37365c3d0',
+        mapId: 'DEMO_MAP_ID',
     });
 
     // Set LatLng and title text for the markers. The first marker (Boynton Pass)
@@ -49,22 +49,25 @@ async function initMap() {
     tourStops.forEach(({position, title}, i) => {
         const pin = new PinElement({
             glyph: `${i + 1}`,
+            scale: 1.5,
         });
-
+        // [START maps_advanced_markers_accessibility_marker]
         const marker = new AdvancedMarkerElement({
             position,
             map,
             title: `${i + 1}. ${title}`,
             content: pin.element,
         });
+        // [END maps_advanced_markers_accessibility_marker]
 
-        // Add a click listener for each marker, and set up the info window.
-        marker.addListener('click', ({ domEvent, latLng }) => {
-            const { target } = domEvent;
+        // Add event handling code for markers.
+        // [START maps_advanced_markers_accessibility_event_listener]
+        marker.addEventListener('gmp-click', () => {
             infoWindow.close();
             infoWindow.setContent(marker.title);
             infoWindow.open(marker.map, marker);
         });
+        // [END maps_advanced_markers_accessibility_event_listener]
     });
 }
 
