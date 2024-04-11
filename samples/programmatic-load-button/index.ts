@@ -8,6 +8,7 @@
 import { Loader } from "@googlemaps/js-api-loader";
 
 let map: google.maps.Map;
+//@ts-ignore
 let apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY!;
 
 const center = { lat: 41.90476224706472, lng: 12.49822074385094 };
