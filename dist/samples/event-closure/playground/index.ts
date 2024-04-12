@@ -1,9 +1,18 @@
-function initMap(): void {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = (await google.maps.importLibrary(
+    "maps",
+  )) as google.maps.MapsLibrary;
+  const { AdvancedMarkerElement } = (await google.maps.importLibrary(
+    "marker",
+  )) as google.maps.MarkerLibrary;
+
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
       zoom: 4,
       center: { lat: -25.363882, lng: 131.044922 },
+      mapId: "DEMO_MAP_ID",
     },
   );
 
@@ -26,7 +35,7 @@ function initMap(): void {
   const latSpan = bounds.north - bounds.south;
 
   for (let i = 0; i < secretMessages.length; ++i) {
-    const marker = new google.maps.Marker({
+    const marker = new google.maps.marker.AdvancedMarkerElement({
       position: {
         lat: bounds.south + latSpan * Math.random(),
         lng: bounds.west + lngSpan * Math.random(),
@@ -41,7 +50,7 @@ function initMap(): void {
 // Attaches an info window to a marker with the provided message. When the
 // marker is clicked, the info window will open with the secret message.
 function attachSecretMessage(
-  marker: google.maps.Marker,
+  marker: google.maps.marker.AdvancedMarkerElement,
   secretMessage: string,
 ) {
   const infowindow = new google.maps.InfoWindow({
@@ -49,14 +58,9 @@ function attachSecretMessage(
   });
 
   marker.addListener("click", () => {
-    infowindow.open(marker.get("map"), marker);
+    infowindow.open(marker.map, marker);
   });
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 export {};

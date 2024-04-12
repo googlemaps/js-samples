@@ -1,7 +1,6 @@
 {
   "title": "Custom Markers",
-  "callback": "initMap",
-  "libraries": [],
+  "dynamic_import": "true",
   "version": "weekly",
   "tag": "custom_markers",
   "name": "custom-markers",

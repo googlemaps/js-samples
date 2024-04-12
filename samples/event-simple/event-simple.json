@@ -1,7 +1,6 @@
 {
   "title": "Simple Click Events",
-  "callback": "initMap",
-  "libraries": [],
+  "dynamic_import": "true",
   "version": "weekly",
   "tag": "event_simple",
   "name": "event-simple",

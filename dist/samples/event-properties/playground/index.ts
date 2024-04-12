@@ -1,4 +1,9 @@
-function initMap(): void {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = (await google.maps.importLibrary(
+    "maps",
+  )) as google.maps.MapsLibrary;
+
   const originalMapCenter = new google.maps.LatLng(-25.363882, 131.044922);
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
@@ -20,10 +25,5 @@ function initMap(): void {
   });
 }
 
-declare global {
-  interface Window {
-    initMap: () => void;
-  }
-}
-window.initMap = initMap;
+initMap();
 export {};

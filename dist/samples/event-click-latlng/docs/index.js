@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 // [START maps_event_click_latlng]
-function initMap() {
+async function initMap() {
+  // Request needed libraries.
+  const { Map } = await google.maps.importLibrary("maps");
   const myLatlng = { lat: -25.363, lng: 131.044 };
   const map = new google.maps.Map(document.getElementById("map"), {
     zoom: 4,
@@ -34,5 +36,5 @@ function initMap() {
   // [END maps_event_click_latlng_listener]
 }
 
-window.initMap = initMap;
+initMap();
 // [END maps_event_click_latlng]

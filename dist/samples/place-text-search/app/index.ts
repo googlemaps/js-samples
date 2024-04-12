@@ -11,10 +11,10 @@ let center;
 async function initMap() {
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
 
-    center = {lat: 37.4161493, lng: -122.0812166};
+    center = { lat: 37.4161493, lng: -122.0812166 };
     map = new Map(document.getElementById('map') as HTMLElement, {
         center: center,
-        zoom: 14,
+        zoom: 11,
         // [START_EXCLUDE]
         mapId: '4504f8b37365c3d0',
         // [END_EXCLUDE]
@@ -25,20 +25,20 @@ async function initMap() {
 
 async function findPlaces() {
     const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
-    //@ts-ignore
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
     const request = {
         textQuery: 'Tacos in Mountain View',
         fields: ['displayName', 'location', 'businessStatus'],
         includedType: 'restaurant',
+        locationBias: { lat: 37.4161493, lng: -122.0812166 },
         isOpenNow: true,
         language: 'en-US',
-        maxResultCount: 7,
+        maxResultCount: 8,
         minRating: 3.2,
         region: 'us',
         useStrictTypeFiltering: false,
     };
-
+    
     //@ts-ignore
     const { places } = await Place.searchByText(request);
 
@@ -60,7 +60,7 @@ async function findPlaces() {
             console.log(place);
         });
 
-        map.setCenter(bounds.getCenter());
+        map.fitBounds(bounds);
 
     } else {
         console.log('No results');

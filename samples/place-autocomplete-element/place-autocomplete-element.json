@@ -1,6 +1,6 @@
 {
     "title": "Place Autocomplete element",
-    "version": "alpha",
+    "version": "beta",
     "dynamic_import": "true",
     "tag": "place_autocomplete_element",
     "name": "place-autocomplete-element",
