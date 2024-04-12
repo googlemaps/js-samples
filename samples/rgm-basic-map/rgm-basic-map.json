@@ -1,0 +1,15 @@
+{
+    "title": "React Google Maps - Basic Map",
+    "libraries": [],
+    "version": "weekly",
+    "tag": "rgm_basic_map",
+    "name": "rgm-basic-map",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "tsx": true,
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}",
+    "dependencies": ["@vis.gl/react-google-maps", "react", "react-dom", "vite"]
+  }
