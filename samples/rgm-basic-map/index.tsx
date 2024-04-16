@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// [START rgm_basic_map]
+// [START maps_rgm_basic_map]
 import React from 'react';
 import {createRoot} from 'react-dom/client';
 
@@ -43,4 +43,4 @@ export function renderToDom(container: HTMLElement) {
     </React.StrictMode>
   );
 }
-// [END rgm_basic_map]
+// [END maps_rgm_basic_map]
