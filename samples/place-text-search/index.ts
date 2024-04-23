@@ -57,7 +57,7 @@ async function findPlaces() {
                 title: place.displayName,
             });
 
-            bounds.extend(place.location);
+            bounds.extend(place.location as google.maps.LatLng);
             console.log(place);
         });
 
