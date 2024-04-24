@@ -26,7 +26,7 @@ function initMap(): void {
 
   // Add a basic style.
   map.data.setStyle((feature) => {
-    const mag = Math.exp(parseFloat(feature.getProperty("mag"))) * 0.1;
+    const mag = Math.exp(parseFloat(feature.getProperty("mag") as string)) * 0.1;
     return /** @type {google.maps.Data.StyleOptions} */ {
       icon: {
         path: google.maps.SymbolPath.CIRCLE,
