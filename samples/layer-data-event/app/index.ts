@@ -20,7 +20,7 @@ function initMap(): void {
   // Add some style.
   map.data.setStyle((feature) => {
     return /** @type {google.maps.Data.StyleOptions} */ {
-      fillColor: feature.getProperty("color"),
+      fillColor: feature.getProperty("color") as string,
       strokeWeight: 1,
     };
   });

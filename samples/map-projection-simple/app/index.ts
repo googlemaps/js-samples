@@ -39,7 +39,7 @@ function initMap(): void {
   // Add some markers to the map.
   map.data.setStyle((feature) => {
     return {
-      title: feature.getProperty("name"),
+      title: feature.getProperty("name") as string,
       optimized: false,
     };
   });
