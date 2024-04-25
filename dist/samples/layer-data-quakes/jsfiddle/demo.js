@@ -36,8 +36,8 @@ function styleFeature(feature) {
   const minMag = 1.0;
   const maxMag = 6.0;
   // fraction represents where the value sits between the min and max
-  const fraction =
-    (Math.min(feature.getProperty("mag"), maxMag) - minMag) / (maxMag - minMag);
+  let mag = feature.getProperty("mag");
+  const fraction = (Math.min(mag, maxMag) - minMag) / (maxMag - minMag);
   const color = interpolateHsl(low, high, fraction);
   return {
     icon: {
@@ -45,11 +45,11 @@ function styleFeature(feature) {
       strokeWeight: 0.5,
       strokeColor: "#fff",
       fillColor: color,
-      fillOpacity: 2 / feature.getProperty("mag"),
+      fillOpacity: 2 / mag,
       // while an exponent would technically be correct, quadratic looks nicer
-      scale: Math.pow(feature.getProperty("mag"), 2),
+      scale: Math.pow(mag, 2),
     },
-    zIndex: Math.floor(feature.getProperty("mag")),
+    zIndex: Math.floor(mag),
   };
 }
 
