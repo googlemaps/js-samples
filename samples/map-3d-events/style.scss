@@ -9,15 +9,8 @@
 /* [START maps_map_3d_events] */
 @include meta.load-css("../../shared/scss/sidebar.scss");
 
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
 body, main {
   display: flex;
-  flex-direction: column;
 }
 main {
   padding: 30px;
@@ -37,6 +30,7 @@ aside {
   flex-basis: 25%;
   font-family: Droid Sans Mono, monospace;
   font-size: 14px;
+  padding-left: 10px;
 }
 aside > p.active {
   background-color: #9cf;
