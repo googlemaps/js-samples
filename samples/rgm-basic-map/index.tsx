@@ -32,7 +32,7 @@ const App = () => (
     />
   </APIProvider>
 );
-const root = createRoot(document.getElementById('app'));
+const root = createRoot(document.getElementById('app')!);
 root.render(<App />);
 
 export default App;
