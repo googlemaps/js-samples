@@ -1,26 +1,19 @@
-<!doctype html>
-<!--
- @license
- Copyright 2019 Google LLC. All Rights Reserved.
- SPDX-License-Identifier: Apache-2.0
--->
 <html>
   <head>
     <title>React Google Maps - Basic Map</title>
+
+    <!-- playground-hide -->
     <script>
       const process = { env: {} };
       process.env.GOOGLE_MAPS_API_KEY =
         "AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg";
     </script>
+    <!-- playground-hide-end -->
+
     <link rel="stylesheet" type="text/css" href="./style.css" />
-    <script type="module" src="./index.tsx"></script>
   </head>
   <body>
     <div id="app"></div>
-    <script type="module">
-      import { renderToDom } from "./index";
-
-      renderToDom(document.querySelector("#app"));
-    </script>
+    <script type="module" src="./index"></script>
   </body>
 </html>
