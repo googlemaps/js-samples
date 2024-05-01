@@ -137,9 +137,11 @@ function styleFeature(feature: google.maps.Data.Feature) {
   const low = [5, 69, 54]; // color of smallest datum
   const high = [151, 83, 34]; // color of largest datum
 
+  let censusVariable = feature.getProperty("census_variable") as number;
+
   // delta represents where the value sits between the min and max
   const delta =
-    (feature.getProperty("census_variable") - censusMin) /
+    (censusVariable - censusMin) /
     (censusMax - censusMin);
 
   const color: number[] = [];
@@ -153,8 +155,8 @@ function styleFeature(feature: google.maps.Data.Feature) {
   let showRow = true;
 
   if (
-    feature.getProperty("census_variable") == null ||
-    isNaN(feature.getProperty("census_variable"))
+    censusVariable == null ||
+    isNaN(censusVariable)
   ) {
     showRow = false;
   }

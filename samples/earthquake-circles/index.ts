@@ -24,7 +24,7 @@ function initMap(): void {
   document.getElementsByTagName("head")[0].appendChild(script);
 
   map.data.setStyle((feature) => {
-    const magnitude = feature.getProperty("mag");
+    const magnitude = feature.getProperty("mag") as number;
     return {
       icon: getCircle(magnitude),
     };

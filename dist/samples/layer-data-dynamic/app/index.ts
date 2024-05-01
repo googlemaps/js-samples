@@ -23,7 +23,7 @@ function initMap(): void {
     let color = "gray";
 
     if (feature.getProperty("isColorful")) {
-      color = feature.getProperty("color");
+      color = feature.getProperty("color") as string;
     }
     return /** @type {!google.maps.Data.StyleOptions} */ {
       fillColor: color,
