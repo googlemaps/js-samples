@@ -15,9 +15,7 @@ async function initMap() {
     map = new Map(document.getElementById('map') as HTMLElement, {
         center: center,
         zoom: 11,
-        // [START_EXCLUDE]
-        mapId: '4504f8b37365c3d0',
-        // [END_EXCLUDE]
+        mapId: 'DEMO_MAP_ID',
     });
 
     findPlaces();
@@ -56,7 +54,7 @@ async function findPlaces() {
                 title: place.displayName,
             });
 
-            bounds.extend(place.location);
+            bounds.extend(place.location as google.maps.LatLng);
             console.log(place);
         });
 
