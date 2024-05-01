@@ -6,13 +6,16 @@
 
 // [START maps_web_components_markers]
 // This example adds a map with markers, using web components.
+// [START maps_web_components_markers_initmap]
 async function initMap(): Promise<void> {
-    const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
-
     console.log('Maps JavaScript API loaded.');
 }
-
-initMap();
+// [END maps_web_components_markers_initmap]
+declare global {
+    interface Window {
+      initMap: () => void;
+    }
+  }
+window.initMap = initMap;
 // [END maps_web_components_markers]
 export { };
