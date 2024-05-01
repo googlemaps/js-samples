@@ -21,7 +21,6 @@ import {APIProvider, Map} from '@vis.gl/react-google-maps';
 
 const API_KEY =
   globalThis.GOOGLE_MAPS_API_KEY ?? ("YOUR_API_KEY");
-  console.log('API_KEY',API_KEY);
 
 const App = () => (
   <APIProvider apiKey={API_KEY}>
@@ -33,15 +32,8 @@ const App = () => (
     />
   </APIProvider>
 );
+const root = createRoot(document.getElementById('app'));
+root.render(<App />);
+
 export default App;
-
-export function renderToDom(container: HTMLElement) {
-  const root = createRoot(container);
-
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
-  );
-}
 // [END maps_rgm_basic_map]
