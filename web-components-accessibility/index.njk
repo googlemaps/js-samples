@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%} {% block html %}
+<gmp-map center="34.84555, -111.8035" zoom="12" map-id="DEMO_MAP_ID">
+    <!-- START maps_web_components_events_clickable -->
+    <gmp-advanced-marker position="34.8791806, -111.8265049" title="Boynton Pass" gmp-clickable></gmp-advanced-marker>
+    <!-- END maps_web_components_events_clickable -->
+    <gmp-advanced-marker position="34.8559195, -111.7988186" title="Airport Mesa" gmp-clickable></gmp-advanced-marker>
+    <gmp-advanced-marker position="34.832149, -111.7695277" title="Chapel of the Holy Cross" gmp-clickable></gmp-advanced-marker>
+    <gmp-advanced-marker position="34.823736, -111.8001857" title="Red Rock Crossing" gmp-clickable></gmp-advanced-marker>
+    <gmp-advanced-marker position="34.800326, -111.7665047" title="Bell Rock" gmp-clickable></gmp-advanced-marker>
+</gmp-map>
+{% endblock %}
