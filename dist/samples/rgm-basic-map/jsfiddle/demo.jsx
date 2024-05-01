@@ -17,9 +17,6 @@ import React from "https://cdn.skypack.dev/react@^18.2.0";
 import { createRoot } from "https://cdn.skypack.dev/react-dom@^18.2.0/client";
 import { APIProvider, Map } from "https://cdn.skypack.dev/@vis.gl/react-google-maps@latest";
 const API_KEY = globalThis.GOOGLE_MAPS_API_KEY ?? "YOUR_API_KEY";
-
-console.log("API_KEY", API_KEY);
-
 const App = () => (
   <APIProvider apiKey={API_KEY}>
     <Map
@@ -30,13 +27,7 @@ const App = () => (
     />
   </APIProvider>
 );
-export default App;
-export function renderToDom(container) {
-  const root = createRoot(container);
+const root = createRoot(document.getElementById("app"));
 
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-  );
-}
+root.render(<App />);
+export default App;

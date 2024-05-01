@@ -18,9 +18,6 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { APIProvider, Map } from "@vis.gl/react-google-maps";
 const API_KEY = globalThis.GOOGLE_MAPS_API_KEY ?? "YOUR_API_KEY";
-
-console.log("API_KEY", API_KEY);
-
 const App = () => (
   <APIProvider apiKey={API_KEY}>
     <Map
@@ -31,14 +28,8 @@ const App = () => (
     />
   </APIProvider>
 );
-export default App;
-export function renderToDom(container) {
-  const root = createRoot(container);
+const root = createRoot(document.getElementById("app"));
 
-  root.render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
-  );
-}
+root.render(<App />);
+export default App;
 // [END maps_rgm_basic_map]
