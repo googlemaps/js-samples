@@ -47,7 +47,9 @@ async function initMap() {
   tourStops.forEach(({ position, title }, i) => {
     const pin = new PinElement({
       glyph: `${i + 1}`,
+      scale: 1.5,
     });
+    // [START maps_advanced_markers_accessibility_marker]
     const marker = new AdvancedMarkerElement({
       position,
       map,
@@ -55,6 +57,8 @@ async function initMap() {
       content: pin.element,
     });
 
+    // [END maps_advanced_markers_accessibility_marker]
+    // [START maps_advanced_markers_accessibility_event_listener]
     // Add a click listener for each marker, and set up the info window.
     marker.addListener("click", ({ domEvent, latLng }) => {
       const { target } = domEvent;
@@ -63,6 +67,7 @@ async function initMap() {
       infoWindow.setContent(marker.title);
       infoWindow.open(marker.map, marker);
     });
+    // [END maps_advanced_markers_accessibility_event_listener]
   });
 }
 
