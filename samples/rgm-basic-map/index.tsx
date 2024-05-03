@@ -16,7 +16,6 @@
 // [START maps_rgm_basic_map]
 import React from 'react';
 import {createRoot} from 'react-dom/client';
-
 import {APIProvider, Map} from '@vis.gl/react-google-maps';
 
 const API_KEY =
