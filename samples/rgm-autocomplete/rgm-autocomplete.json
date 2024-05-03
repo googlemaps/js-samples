@@ -1,0 +1,15 @@
+{
+    "title": "React Google Maps - Autocomplete",
+    "libraries": [],
+    "version": "weekly",
+    "tag": "rgm_autocomplete",
+    "name": "rgm-autocomplete",
+    "pagination": {
+      "data": "mode",
+      "size": 1,
+      "alias": "mode"
+    },
+    "tsx": true,
+    "permalink": "samples/{{ page.fileSlug }}/{{mode}}/{% if mode == 'jsfiddle' %}demo{% else %}index{% endif %}.{{ page.outputFileExtension }}",
+    "dependencies": ["@vis.gl/react-google-maps", "react", "react-dom", "vite"]
+  }
