@@ -86,7 +86,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@vis.gl/react-google-maps": "latest",
+    "@googlemaps/extended-component-library": "^0.6.10",
     "@googlemaps/js-api-loader": "^1.15.1",
     "@googlemaps/markerclusterer": "2.3.1",
     "@googlemaps/react-wrapper": "^1.1.35",
@@ -94,6 +94,7 @@
     "@material/mwc-button": "^0.27.0",
     "@material/select": "^14.0.0",
     "@tweenjs/tween.js": "^21.0.0",
+    "@vis.gl/react-google-maps": "latest",
     "clsx": "^2.1.1",
     "fast-equals": "^3.0.3",
     "playground-elements": "^0.18.1",
