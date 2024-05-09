@@ -91,7 +91,7 @@ Error generating stack: `+o.message+`
  * @license
  * Copyright 2023 Google LLC
  * SPDX-License-Identifier: Apache-2.0
- */const Dy="0.6.10",zy="NPM";/**
+ */const Dy="0.6.11",zy="NPM";/**
  * @license
  * Copyright 2023 Google LLC
  * SPDX-License-Identifier: Apache-2.0
