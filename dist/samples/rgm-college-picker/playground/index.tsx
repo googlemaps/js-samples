@@ -11,37 +11,6 @@ import * as GMPX from '@googlemaps/extended-component-library/react';
 import { OverlayLayout } from '@googlemaps/extended-component-library/overlay_layout.js';
 import { PlacePicker } from '@googlemaps/extended-component-library/place_picker.js';
 
-/* Google Maps JS SDK typings, which are
- * published as `@types/google.maps`. However, sometimes there is a delay
- * in published typings. Components should use types from this file so we
- * can centrally shim/unshim them when necessary.
- */
-
-export declare interface AuthorAttribution {
-  displayName: string;
-  photoURI: string|null;
-  uri: string|null;
-}
-
-export declare type Photo = Omit<google.maps.places.Photo, 'attributions'>& {
-  authorAttributions: AuthorAttribution[];
-};
-
-export declare type Review =
-    Omit<google.maps.places.Review, 'author'|'authorURI'|'authorPhotoURI'>& {
-  authorAttribution: AuthorAttribution|null;
-};
-
-export declare interface Place extends Omit<
-    google.maps.places.Place,
-    'photos'|'reviews'|'fetchFields'|'accessibilityOptions'> {
-  photos?: Photo[];
-  reviews?: Review[];
-  accessibilityOptions?: {hasWheelchairAccessibleEntrance: boolean|null}|null;
-  fetchFields: (options: google.maps.places.FetchFieldsRequest) =>
-      Promise<{place: Place}>;
-}
-
 const API_KEY =
   globalThis.GOOGLE_MAPS_API_KEY ?? ("YOUR_API_KEY");
 const DEFAULT_CENTER = { lat: -34.397, lng: 150.644 };
@@ -54,7 +23,7 @@ const DEFAULT_ZOOM_WITH_LOCATION = 16;
 const App = () => {
   const overlayLayoutRef = useRef<OverlayLayout>(null);
   const pickerRef = useRef<PlacePicker>(null);
-  const [college, setCollege] = useState<Place | undefined>(undefined);
+  const [college, setCollege] = useState<google.maps.places.Place | undefined>(undefined);
 
   return (
     <div className="App">
