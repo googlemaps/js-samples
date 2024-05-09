@@ -86,7 +86,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
-    "@googlemaps/extended-component-library": "^0.6.10",
+    "@googlemaps/extended-component-library": "^0.6.11",
     "@googlemaps/js-api-loader": "^1.15.1",
     "@googlemaps/markerclusterer": "2.3.1",
     "@googlemaps/react-wrapper": "^1.1.35",
