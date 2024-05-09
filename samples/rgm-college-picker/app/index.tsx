@@ -7,9 +7,24 @@
 import React, { useState, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import { AdvancedMarker, Map, Pin, APIProvider } from '@vis.gl/react-google-maps';
-import * as GMPX from '@googlemaps/extended-component-library/react';
-import { OverlayLayout } from '@googlemaps/extended-component-library/overlay_layout.js';
-import { PlacePicker } from '@googlemaps/extended-component-library/place_picker.js';
+import {
+  PlaceReviews,
+  PlaceDataProvider,
+  PlaceDirectionsButton,
+  IconButton,
+  PlaceOverview,
+  SplitLayout,
+  OverlayLayout,
+  PlacePicker
+} from '@googlemaps/extended-component-library/react';
+// The below imports are necessary because we are creating refs of 
+// the OverlayLayout and PlacePicker components.
+// You need to pass the ref property a web component type object. 
+// Imports from  @googlemaps/extended-component-library/react are 
+// wrappers around web components, not the components themselves.
+// For the ref property we import the actual components and alias them for clarity.
+import { OverlayLayout as TOverlayLayout } from '@googlemaps/extended-component-library/overlay_layout.js';
+import { PlacePicker as TPlacePicker } from '@googlemaps/extended-component-library/place_picker.js';
 
 const API_KEY =
   globalThis.GOOGLE_MAPS_API_KEY ?? (import.meta.env.VITE_GOOGLE_MAPS_API_KEY!);
@@ -21,18 +36,20 @@ const DEFAULT_ZOOM_WITH_LOCATION = 16;
  * as ratings, photos, and reviews displayed on the side.
  */
 const App = () => {
-  const overlayLayoutRef = useRef<OverlayLayout>(null);
-  const pickerRef = useRef<PlacePicker>(null);
+  const overlayLayoutRef = useRef<TOverlayLayout>(null);
+  const pickerRef = useRef<TPlacePicker>(null);
   const [college, setCollege] = useState<google.maps.places.Place | undefined>(undefined);
 
+  // See https://lit.dev/docs/frameworks/react/#using-slots for why 
+  // we need to wrap our custom elements in a div with a slot attribute.
   return (
     <div className="App">
       <APIProvider apiKey={API_KEY} version='beta' >
-        <GMPX.SplitLayout rowReverse rowLayoutMinWidth={700}>
-          <div className="SplitLayoutContainer" slot="fixed">
-            <GMPX.OverlayLayout ref={overlayLayoutRef}>
-              <div className="MainContainer" slot="main">
-                <GMPX.PlacePicker
+        <SplitLayout rowReverse rowLayoutMinWidth={700}>
+          <div className="SlotDiv" slot="fixed">
+            <OverlayLayout ref={overlayLayoutRef}>
+              <div className="SlotDiv" slot="main">
+                <PlacePicker
                   className="CollegePicker"
                   ref={pickerRef}
                   forMap="gmap"
@@ -47,35 +64,39 @@ const App = () => {
                     }
                   }}
                 />
-                <GMPX.PlaceOverview
+                <PlaceOverview
                   size="large"
                   place={college}
                   googleLogoAlreadyDisplayed
                 >
-                  <GMPX.IconButton
-                    slot="action"
-                    variant="filled"
-                    onClick={() => overlayLayoutRef.current?.showOverlay()}
-                  >
-                    See Reviews
-                  </GMPX.IconButton>
-                  <GMPX.PlaceDirectionsButton slot="action" variant="filled">
-                    Directions
-                  </GMPX.PlaceDirectionsButton>
-                </GMPX.PlaceOverview>
+                  <div slot="action" className="SlotDiv">
+                    <IconButton
+                      slot="action"
+                      variant="filled"
+                      onClick={() => overlayLayoutRef.current?.showOverlay()}
+                    >
+                      See Reviews
+                    </IconButton>
+                  </div>
+                  <div slot="action" className="SlotDiv">
+                    <PlaceDirectionsButton slot="action" variant="filled">
+                      Directions
+                    </PlaceDirectionsButton>
+                  </div>
+                </PlaceOverview>
               </div>
-              <div slot="overlay">
-                <GMPX.IconButton
+              <div slot="overlay" className="SlotDiv">
+                <IconButton
                   className="CloseButton"
                   onClick={() => overlayLayoutRef.current?.hideOverlay()}
                 >
                   Close
-                </GMPX.IconButton>
-                <GMPX.PlaceDataProvider place={college}>
-                  <GMPX.PlaceReviews />
-                </GMPX.PlaceDataProvider>
+                </IconButton>
+                <PlaceDataProvider place={college}>
+                  <PlaceReviews />
+                </PlaceDataProvider>
               </div>
-            </GMPX.OverlayLayout>
+            </OverlayLayout>
           </div>
           <div className="SplitLayoutContainer" slot="main">
             <Map
@@ -83,6 +104,9 @@ const App = () => {
               mapId="8c732c82e4ec29d9"
               center={college?.location ?? DEFAULT_CENTER}
               zoom={college?.location ? DEFAULT_ZOOM_WITH_LOCATION : DEFAULT_ZOOM}
+              gestureHandling="none"
+              fullscreenControl={false}
+              zoomControl={false}
             >
               {college?.location && (
                 <AdvancedMarker position={college?.location}>
@@ -91,7 +115,7 @@ const App = () => {
               )}
             </Map>
           </div>
-        </GMPX.SplitLayout>
+        </SplitLayout>
       </APIProvider>
     </div>
   );
