@@ -17,12 +17,14 @@ import {
   OverlayLayout,
   PlacePicker
 } from '@googlemaps/extended-component-library/react';
-// The below imports are necessary because we are creating refs of 
-// the OverlayLayout and PlacePicker components.
-// You need to pass the ref property a web component type object. 
-// Imports from  @googlemaps/extended-component-library/react are 
-// wrappers around web components, not the components themselves.
-// For the ref property we import the actual components and alias them for clarity.
+/**
+ * The below imports are necessary because we are creating refs of 
+ * the OverlayLayout and PlacePicker components. You need to pass 
+ * the ref property a web component type object. Imports from  
+ * @googlemaps/extended-component-library/react are wrappers around
+ * the web components, not the components themselves. For the ref 
+ * property we import the actual components and alias them for clarity.
+ */
 import { OverlayLayout as TOverlayLayout } from '@googlemaps/extended-component-library/overlay_layout.js';
 import { PlacePicker as TPlacePicker } from '@googlemaps/extended-component-library/place_picker.js';
 
@@ -39,9 +41,10 @@ const App = () => {
   const overlayLayoutRef = useRef<TOverlayLayout>(null);
   const pickerRef = useRef<TPlacePicker>(null);
   const [college, setCollege] = useState<google.maps.places.Place | undefined>(undefined);
-
-  // See https://lit.dev/docs/frameworks/react/#using-slots for why 
-  // we need to wrap our custom elements in a div with a slot attribute.
+/**
+ * See https://lit.dev/docs/frameworks/react/#using-slots for why
+ * we need to wrap our custom elements in a div with a slot attribute. 
+ */
   return (
     <div className="App">
       <APIProvider apiKey={API_KEY} version='beta' >
