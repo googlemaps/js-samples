@@ -61,4 +61,8 @@ body {
   margin: 1rem;
 }
 
+.SlotDiv {
+  display: contents;
+}
+
 /* [END maps_rgm_college_picker] */

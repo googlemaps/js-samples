@@ -60,3 +60,7 @@ body {
   margin: 1rem;
 }
 
+.SlotDiv {
+  display: contents;
+}
+
