@@ -35,8 +35,10 @@ const App = () => {
   const overlayLayoutRef = useRef(null);
   const pickerRef = useRef(null);
   const [college, setCollege] = useState(undefined);
-  // See https://lit.dev/docs/frameworks/react/#using-slots for why
-  // we need to wrap our custom elements in a div with a slot attribute.
+  /**
+   * See https://lit.dev/docs/frameworks/react/#using-slots for why
+   * we need to wrap our custom elements in a div with a slot attribute.
+   */
   return (
     <div className="App">
       <APIProvider apiKey={API_KEY} version="beta">
