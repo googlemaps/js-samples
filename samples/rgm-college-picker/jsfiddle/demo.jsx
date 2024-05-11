@@ -22,7 +22,7 @@ import {
   PlacePicker,
 } from "https://cdn.skypack.dev/@googlemaps/extended-component-library@^0.6.11/react";
 const API_KEY = globalThis.GOOGLE_MAPS_API_KEY ?? "YOUR_API_KEY";
-const DEFAULT_CENTER = { lat: -34.397, lng: 150.644 };
+const DEFAULT_CENTER = { lat: 38, lng: -98 };
 const DEFAULT_ZOOM = 4;
 const DEFAULT_ZOOM_WITH_LOCATION = 16;
 
