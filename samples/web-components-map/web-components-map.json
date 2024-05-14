@@ -1,7 +1,7 @@
 {
     "title": "Add a Map using HTML",
     "callback": "initMap",
-    "libraries": [],
+    "libraries": ["maps"],
     "version": "beta",
     "tag": "web_components_map",
     "name": "web-components-map",
