@@ -7,5 +7,4 @@
 @use 'sass:meta'; // To enable @use via meta.load-css and keep comments in order
 
 /* [START maps_web_components_map] */
-@include meta.load-css("../../shared/scss/default.scss");
 /* [END maps_web_components_map] */
