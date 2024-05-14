@@ -24,14 +24,17 @@ import {
   useMap,
   useMapsLibrary,
   useAdvancedMarkerRef,
-} from "https://cdn.skypack.dev/@vis.gl/react-google-maps@latest";
+} from "https://cdn.skypack.dev/@vis.gl/react-google-maps@^1.0.0";
 const API_KEY = globalThis.GOOGLE_MAPS_API_KEY ?? "YOUR_API_KEY";
 
 const App = () => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [markerRef, marker] = useAdvancedMarkerRef();
   return (
-    <APIProvider apiKey={API_KEY}>
+    <APIProvider
+      apiKey={API_KEY}
+      solutionChannel="GMP_JS_SAMPLE_rgm-autocomplete"
+    >
       <Map
         mapId={"bf51a910020fa25a"}
         defaultZoom={3}
