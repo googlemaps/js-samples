@@ -21,7 +21,7 @@ const API_KEY =
   globalThis.GOOGLE_MAPS_API_KEY ?? (import.meta.env.VITE_GOOGLE_MAPS_API_KEY!);
 
 const App = () => (
-  <APIProvider apiKey={API_KEY}>
+  <APIProvider solutionChannel='GMP_JS_SAMPLE_rgm-basic-map' apiKey={API_KEY}>
     <Map
       defaultZoom={8}
       defaultCenter={{ lat: -34.397, lng: 150.644 }}

@@ -41,7 +41,11 @@ const App = () => {
    */
   return (
     <div className="App">
-      <APIProvider apiKey={API_KEY} version="beta">
+      <APIProvider
+        solutionChannel="GMP_JS_SAMPLE_rgm-college-picker"
+        apiKey={API_KEY}
+        version="beta"
+      >
         <SplitLayout rowReverse rowLayoutMinWidth={700}>
           <div className="SlotDiv" slot="fixed">
             <OverlayLayout ref={overlayLayoutRef}>

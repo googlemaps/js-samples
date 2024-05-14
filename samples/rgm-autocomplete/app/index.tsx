@@ -36,7 +36,7 @@ const App = () => {
     const [markerRef, marker] = useAdvancedMarkerRef();
     
     return ( 
-        <APIProvider apiKey={API_KEY}>
+        <APIProvider apiKey={API_KEY} solutionChannel='GMP_JS_SAMPLE_rgm-autocomplete'>
             <Map
                 mapId={'bf51a910020fa25a'}
                 defaultZoom={3}
