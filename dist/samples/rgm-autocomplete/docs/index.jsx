@@ -34,7 +34,7 @@ const App = () => {
   return (
     <APIProvider
       apiKey={API_KEY}
-      solutionChannel="GMP_JS_SAMPLE_rgm-autocomplete"
+      solutionChannel="GMP_devsite_samples_v3_rgmautocomplete"
     >
       <Map
         mapId={"bf51a910020fa25a"}
