@@ -18,7 +18,10 @@ import { createRoot } from "https://cdn.skypack.dev/react-dom@^18.2.0/client";
 import { APIProvider, Map } from "https://cdn.skypack.dev/@vis.gl/react-google-maps@^1.0.0";
 const API_KEY = globalThis.GOOGLE_MAPS_API_KEY ?? "YOUR_API_KEY";
 const App = () => (
-  <APIProvider solutionChannel="GMP_JS_SAMPLE_rgm-basic-map" apiKey={API_KEY}>
+  <APIProvider
+    solutionChannel="GMP_devsite_samples_v3_rgmbasicmap"
+    apiKey={API_KEY}
+  >
     <Map
       defaultZoom={8}
       defaultCenter={{ lat: -34.397, lng: 150.644 }}

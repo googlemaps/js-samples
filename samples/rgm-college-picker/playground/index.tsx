@@ -30,7 +30,7 @@ import { PlacePicker as TPlacePicker } from '@googlemaps/extended-component-libr
 
 const API_KEY =
   globalThis.GOOGLE_MAPS_API_KEY ?? ("YOUR_API_KEY");
-const DEFAULT_CENTER = {lat: 38, lng: -98};
+const DEFAULT_CENTER = { lat: 38, lng: -98 };
 const DEFAULT_ZOOM = 4;
 const DEFAULT_ZOOM_WITH_LOCATION = 16;
 /**
@@ -41,13 +41,16 @@ const App = () => {
   const overlayLayoutRef = useRef<TOverlayLayout>(null);
   const pickerRef = useRef<TPlacePicker>(null);
   const [college, setCollege] = useState<google.maps.places.Place | undefined>(undefined);
-/**
- * See https://lit.dev/docs/frameworks/react/#using-slots for why
- * we need to wrap our custom elements in a div with a slot attribute. 
- */
+  /**
+   * See https://lit.dev/docs/frameworks/react/#using-slots for why
+   * we need to wrap our custom elements in a div with a slot attribute. 
+   */
   return (
     <div className="App">
-      <APIProvider solutionChannel='GMP_JS_SAMPLE_rgm-college-picker' apiKey={API_KEY} version='beta' >
+      <APIProvider
+        solutionChannel='GMP_devsite_samples_v3_rgmcollegepicker'
+        apiKey={API_KEY}
+        version='beta' >
         <SplitLayout rowReverse rowLayoutMinWidth={700}>
           <div className="SlotDiv" slot="fixed">
             <OverlayLayout ref={overlayLayoutRef}>

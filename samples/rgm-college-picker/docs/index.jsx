@@ -42,7 +42,7 @@ const App = () => {
   return (
     <div className="App">
       <APIProvider
-        solutionChannel="GMP_JS_SAMPLE_rgm-college-picker"
+        solutionChannel="GMP_devsite_samples_v3_rgmcollegepicker"
         apiKey={API_KEY}
         version="beta"
       >
