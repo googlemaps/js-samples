@@ -57,6 +57,7 @@ async function initMap() {
             map,
             title: `${i + 1}. ${title}`,
             content: pin.element,
+            gmpClickable: true,
         });
         // [END maps_advanced_markers_accessibility_marker]
         // [START maps_advanced_markers_accessibility_event_listener]
