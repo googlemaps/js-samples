@@ -1,6 +1,5 @@
 {
     "title": "Add a Map with Markers using HTML",
-    "callback": "initMap",
     "libraries": ["marker"],
     "version": "beta",
     "tag": "web_components_markers",
