@@ -17,8 +17,8 @@ async function initMap() {
     });
 
     // Set LatLng and title text for the markers. The first marker (Boynton Pass)
-    // receives the initial focus when tab is pressed. Use arrow keys to
-    // move between markers; press tab again to cycle through the map controls.
+    // receives the initial focus when tab is pressed. Use arrow keys to move
+    // between markers; press tab again to cycle through the map controls.
     const tourStops = [
         {
             position: { lat: 34.8791806, lng: -111.8265049 }, 
@@ -57,6 +57,7 @@ async function initMap() {
             map,
             title: `${i + 1}. ${title}`,
             content: pin.element,
+            gmpClickable: true,
         });
         // [END maps_advanced_markers_accessibility_marker]
         // [START maps_advanced_markers_accessibility_event_listener]
