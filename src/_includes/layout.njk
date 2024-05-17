@@ -29,7 +29,7 @@
       -->
       <script 
         src="https://maps.googleapis.com/maps/api/js?key={{GOOGLE_MAPS_API_KEY}}{% if callback %}&callback={{ callback }}{% endif %}{% if libraries|length %}&libraries={{ libraries }}{% endif %}&v={{ version }}{% if language %}&language={{ language }}{% endif %}{% if region %}&region={{ region }}{% endif %}" defer></script>
-  {% endif %}
+  {% endif -%}
   {% block resources %}
   {% if mode == "jsfiddle" -%}
     <!-- jsFiddle will insert css and js -->
