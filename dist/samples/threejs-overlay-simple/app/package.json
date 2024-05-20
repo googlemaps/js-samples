@@ -32,7 +32,7 @@
   },
   "private": true,
   "dependencies": {
-    "@googlemaps/three": "^3.0.3",
+    "@googlemaps/three": "^4.0.13",
     "three": "^0.140.2"
   }
 }

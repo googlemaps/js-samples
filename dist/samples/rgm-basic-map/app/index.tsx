@@ -14,15 +14,16 @@
  * limitations under the License.
  */
 import React from 'react';
-import {createRoot} from 'react-dom/client';
-
-import {APIProvider, Map} from '@vis.gl/react-google-maps';
+import { createRoot } from 'react-dom/client';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
 
 const API_KEY =
   globalThis.GOOGLE_MAPS_API_KEY ?? (import.meta.env.VITE_GOOGLE_MAPS_API_KEY!);
 
 const App = () => (
-  <APIProvider apiKey={API_KEY}>
+  <APIProvider
+    solutionChannel='GMP_devsite_samples_v3_rgmbasicmap'
+    apiKey={API_KEY}>
     <Map
       defaultZoom={8}
       defaultCenter={{ lat: -34.397, lng: 150.644 }}
