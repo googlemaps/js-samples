@@ -25,13 +25,13 @@ function initMap(): void {
     .addEventListener("click", toggleStreetView);
   
   const cafeIcon = document.createElement("img");
-  cafeIcon.src = "https://developers.devsite.corp.google.com/maps/documentation/javascript/examples/full/images/cafe_icon.svg";
+  cafeIcon.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/cafe_icon.svg";
 
   const dollarIcon = document.createElement("img");
-  dollarIcon.src = "https://developers.devsite.corp.google.com/maps/documentation/javascript/examples/full/images/bank_icon.svg";
+  dollarIcon.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/bank_icon.svg";
 
   const busIcon = document.createElement("img");
-  busIcon.src = "https://developers.devsite.corp.google.com/maps/documentation/javascript/examples/full/images/bus_icon.svg";
+  busIcon.src = "https://developers.google.com/maps/documentation/javascript/examples/full/images/bus_icon.svg";
 
 
   // Set up the markers on the map
