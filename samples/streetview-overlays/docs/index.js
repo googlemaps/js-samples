@@ -17,24 +17,39 @@ function initMap() {
 
   document.getElementById("toggle").addEventListener("click", toggleStreetView);
 
+  const cafeIcon = document.createElement("img");
+
+  cafeIcon.src =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/cafe_icon.svg";
+
+  const dollarIcon = document.createElement("img");
+
+  dollarIcon.src =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/bank_icon.svg";
+
+  const busIcon = document.createElement("img");
+
+  busIcon.src =
+    "https://developers.google.com/maps/documentation/javascript/examples/full/images/bus_icon.svg";
+
   // Set up the markers on the map
   const cafeMarker = new google.maps.Marker({
     position: { lat: 40.730031, lng: -73.991428 },
     map,
-    icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=cafe|FFFF00",
     title: "Cafe",
+    icon: cafeIcon.src,
   });
   const bankMarker = new google.maps.Marker({
     position: { lat: 40.729681, lng: -73.991138 },
     map,
-    icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=dollar|FFFF00",
     title: "Bank",
+    icon: dollarIcon.src,
   });
   const busMarker = new google.maps.Marker({
     position: { lat: 40.729559, lng: -73.990741 },
     map,
-    icon: "https://chart.apis.google.com/chart?chst=d_map_pin_icon&chld=bus|FFFF00",
     title: "Bus Stop",
+    icon: busIcon.src,
   });
 
   // We get the map's default panorama and set up some defaults.
