@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+ @license
+ Copyright 2019 Google LLC. All Rights Reserved.
+ SPDX-License-Identifier: Apache-2.0
+-->
+{% extends '../../src/_includes/layout.njk'%}
+{% block html %}
+<!-- // [START maps_place_autocomplete_data_session_html] -->
+<input id="input" type="text" placeholder="Search for a place..."/>
+<div id="title"></div>
+<ul id="results"></ul>
+<img
+    class="powered-by-google"
+    src="https://storage.googleapis.com/geo-devrel-public-buckets/powered_by_google_on_white.png"
+    alt="Powered by Google"
+/>
+<!-- // [END maps_place_autocomplete_data_session_html] -->
+{% endblock %}
