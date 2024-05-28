@@ -26,7 +26,6 @@ async function init() {
   // Add the token to the request.
   // @ts-ignore
   request.sessionToken = token;
-
   // Fetch autocomplete suggestions.
   const { suggestions } =
     await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
