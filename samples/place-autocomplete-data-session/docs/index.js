@@ -3,7 +3,6 @@
  * Copyright 2024 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// [START maps_maps_place_autocomplete_data_session]
 // [START maps_place_autocomplete_data_session]
 let title;
 let results;
@@ -98,4 +97,4 @@ async function refreshToken(request) {
 }
 
 window.init = init;
-// [END maps_maps_place_autocomplete_data_session]
+// [END maps_place_autocomplete_data_session]

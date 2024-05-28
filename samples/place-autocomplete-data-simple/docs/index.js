@@ -3,7 +3,6 @@
  * Copyright 2024 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
-// [START maps_maps_place_autocomplete_data_simple]
 // [START maps_place_autocomplete_data_simple]
 /**
  * Demonstrates making a single request for Place predictions, then requests Place Details for the first result.
@@ -93,4 +92,4 @@ async function init() {
 }
 
 init();
-// [END maps_maps_place_autocomplete_data_simple]
+// [END maps_place_autocomplete_data_simple]
