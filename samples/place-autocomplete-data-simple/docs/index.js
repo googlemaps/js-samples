@@ -38,11 +38,11 @@ async function init() {
   request.sessionToken = token;
 
   // [END maps_place_autocomplete_data_simple_token]
+  // [END maps_place_autocomplete_data_simple_request]
   // [START maps_place_autocomplete_data_simple_get_suggestions]
   // Fetch autocomplete suggestions.
   const { suggestions } =
     await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
-  // [END maps_place_autocomplete_data_simple_request]
   const title = document.getElementById("title");
 
   title.appendChild(
