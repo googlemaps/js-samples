@@ -42,17 +42,6 @@ async function init() {
 
   for (let suggestion of suggestions) {
     const placePrediction = suggestion.placePrediction;
-
-    // Log everything for the place prediction. TODO: Delete this section once we have seen the results.
-    console.log("placeId: " + placePrediction.placeId); // You've now got the place ID!
-    console.log("    text: " + placePrediction.text.toString());
-    console.log("    mainText: " + placePrediction.mainText.toString());
-    console.log(
-      "    secondaryText: " + placePrediction.secondaryText.toString(),
-    );
-    console.log("    types: " + placePrediction.types);
-    console.log("    distanceMeters: " + placePrediction.distanceMeters);
-
     // Create a new list element.
     const listItem = document.createElement("li");
     const resultsElement = document.getElementById("results");
