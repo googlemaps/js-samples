@@ -3,7 +3,7 @@
     "callback": "init",
     "libraries": ["places"],
     "version": "weekly",
-    "tag": "maps_place_autocomplete_data_session",
+    "tag": "place_autocomplete_data_session",
     "name": "place-autocomplete-data-session",
     "pagination": {
       "data": "mode",

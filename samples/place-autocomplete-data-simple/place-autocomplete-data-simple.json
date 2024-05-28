@@ -2,7 +2,7 @@
     "title": "Place Autocomplete Data API Predictions",
     "version": "weekly",
     "dynamic_import": "true",
-    "tag": "maps_place_autocomplete_data_simple",
+    "tag": "place_autocomplete_data_simple",
     "name": "place-autocomplete-data-simple",
     "pagination": {
       "data": "mode",
