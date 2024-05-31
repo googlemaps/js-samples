@@ -13,7 +13,7 @@ let outsideGoogle;
 function getReceptionPanoramaData() {
   return {
     location: {
-      pano: "reception",
+      pano: "reception", // The ID for this custom panorama.
       description: "Google Sydney - Reception",
       latLng: new google.maps.LatLng(-33.86684, 151.19583),
     },

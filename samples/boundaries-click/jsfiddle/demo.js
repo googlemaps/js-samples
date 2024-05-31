@@ -30,7 +30,7 @@ async function initMap() {
     zoom: 8,
     // In the cloud console, configure your Map ID with a style that enables the
     // 'Administrative Area Level 2' Data Driven Styling type.
-    mapId: "a3efe1c035bad51b",
+    mapId: "a3efe1c035bad51b", // Substitute your own map ID.
     mapTypeControl: false,
   });
   // Add the feature layer.

@@ -12,11 +12,11 @@ function initMap() {
   // The following path marks a path from Mt. Whitney, the highest point in the
   // continental United States to Badwater, Death Valley, the lowest point.
   const path = [
-    { lat: 36.579, lng: -118.292 },
-    { lat: 36.606, lng: -118.0638 },
-    { lat: 36.433, lng: -117.951 },
-    { lat: 36.588, lng: -116.943 },
-    { lat: 36.34, lng: -117.468 },
+    { lat: 36.579, lng: -118.292 }, // Mt. Whitney
+    { lat: 36.606, lng: -118.0638 }, // Lone Pine
+    { lat: 36.433, lng: -117.951 }, // Owens Lake
+    { lat: 36.588, lng: -116.943 }, // Beatty Junction
+    { lat: 36.34, lng: -117.468 }, // Panama Mint Springs
     { lat: 36.24, lng: -116.832 },
   ]; // Badwater, Death Valley
   const map = new google.maps.Map(document.getElementById("map"), {

@@ -21,7 +21,7 @@ function initMap() {
     id: "flights",
     data: AIRPORTS,
     dataTransform: (d) => d.features.filter((f) => f.properties.scalerank < 4),
-    getSourcePosition: () => [14.42076, 50.08804],
+    getSourcePosition: () => [14.42076, 50.08804], // Prague
     getTargetPosition: (f) => f.geometry.coordinates,
     getSourceColor: [0, 128, 200],
     getTargetColor: [0, 0, 80],
