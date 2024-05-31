@@ -12,9 +12,9 @@ function initMap() {
   });
   // Define the LatLng coordinates for the outer path.
   const outerCoords = [
-    { lat: -32.364, lng: 153.207 },
-    { lat: -35.364, lng: 153.207 },
-    { lat: -35.364, lng: 158.207 },
+    { lat: -32.364, lng: 153.207 }, // north west
+    { lat: -35.364, lng: 153.207 }, // south west
+    { lat: -35.364, lng: 158.207 }, // south east
     { lat: -32.364, lng: 158.207 }, // north east
   ];
   // Define the LatLng coordinates for an inner path.

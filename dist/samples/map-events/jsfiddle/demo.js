@@ -20,7 +20,7 @@ const events = [
   "mouseover",
   "projection_changed",
   "resize",
-  "rightclick",
+  "rightclick", // use contextmenu
   "tilesloaded",
   "tilt_changed",
   "zoom_changed",

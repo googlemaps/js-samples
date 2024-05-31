@@ -15,7 +15,7 @@ async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
 
   map = new Map(document.getElementById("map"), {
-    center: { lat: 20.773, lng: -156.01 },
+    center: { lat: 20.773, lng: -156.01 }, // Hana, HI
     zoom: 12,
     // In the cloud console, configure this Map ID with a style that enables the
     // "Locality" feature layer.

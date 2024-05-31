@@ -17,7 +17,7 @@ function initMap() {
   mapLeft = new google.maps.Map(document.getElementById("map-left"), {
     ...mapOptions,
     mapTypeId: "satellite",
-    tilt: 0,
+    tilt: 0, // at high zoom levels we need to maintain the same projection
     fullscreenControlOptions: {
       position: google.maps.ControlPosition.LEFT_BOTTOM,
     },

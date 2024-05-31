@@ -32,7 +32,7 @@ function initMap() {
             type: "spring",
             stiffness: 0.1,
             damping: 0.15,
-            enter: () => [0],
+            enter: () => [0], // grow from size 0,
             duration: 10000,
           },
         },

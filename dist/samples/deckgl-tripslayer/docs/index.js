@@ -14,7 +14,7 @@ const DATA_URL =
   "https://raw.githubusercontent.com/visgl/deck.gl-data/master/examples/trips/trips-v7.json";
 const LOOP_LENGTH = 1800;
 const VENDOR_COLORS = [
-  [255, 0, 0],
+  [255, 0, 0], // vendor #0
   [0, 0, 255], // vendor #1
 ];
 

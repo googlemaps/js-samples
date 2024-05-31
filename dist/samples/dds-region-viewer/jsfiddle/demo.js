@@ -28,7 +28,7 @@ let selectedPlaceId;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
-    center: { lat: 39.32, lng: -95 },
+    center: { lat: 39.32, lng: -95 }, // Near the center of the contintental U.S.
     zoom: 6,
     mapTypeControl: false,
     streetViewControl: false,

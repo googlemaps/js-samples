@@ -36,7 +36,7 @@ function initMap() {
     position: { lat: 36.6163, lng: -100.6 },
     map,
     label: {
-      text: "\ue530",
+      text: "\ue530", // codepoint from https://fonts.google.com/icons
       fontFamily: "Material Icons",
       color: "#ffffff",
       fontSize: "18px",

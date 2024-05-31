@@ -202,7 +202,7 @@ function initMap() {
       data: AIR_PORTS,
       dataTransform: (d) =>
         d.features.filter((f) => f.properties.scalerank < 4),
-      getSourcePosition: (f) => [lng, lat],
+      getSourcePosition: (f) => [lng, lat], // London
       getTargetPosition: (f) => f.geometry.coordinates,
       getSourceColor: [0, 128, 200],
       getTargetColor: [200, 0, 80],
