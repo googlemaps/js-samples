@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import React from "https://cdn.skypack.dev/react@^18.2.0";
-import { createRoot } from "https://cdn.skypack.dev/react-dom@^18.2.0/client";
+import { createRoot } from "https://cdn.skypack.dev/react-dom@^18.3.1/client";
 import { APIProvider, Map } from "https://cdn.skypack.dev/@vis.gl/react-google-maps@^1.0.0";
 const API_KEY = globalThis.GOOGLE_MAPS_API_KEY ?? "YOUR_API_KEY";
 const App = () => (
