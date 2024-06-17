@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import React, { useState, useRef } from "https://cdn.skypack.dev/react@^18.2.0";
-import ReactDOM from "https://cdn.skypack.dev/react-dom@^18.2.0/client";
+import ReactDOM from "https://cdn.skypack.dev/react-dom@^18.3.1/client";
 import {
   AdvancedMarker,
   Map,
