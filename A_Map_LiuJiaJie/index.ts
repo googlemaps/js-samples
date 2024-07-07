@@ -57,8 +57,8 @@ function bd09ToWGS84(bdLat, bdLng) {
 
 function NoTransmit(bdLat, bdLng) {
 
-  const wgsLng = bdLng;
-  const wgsLat = bdLat;
+  const wgsLng = bdLng + 0.006;
+  const wgsLat = bdLat - 0.001;
   return [wgsLat, wgsLng];
 }
 
@@ -66,8 +66,8 @@ let map: google.maps.Map;
 async function initMap(): Promise<void> {
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
   map = new Map(document.getElementById("map") as HTMLElement, {
-    center: { lat: -34.397, lng: 150.644 },
-    zoom: 8,
+    center: { lat: 34.70865, lng: 113.74781 },
+    zoom: 12,
   });
 
     // Array of locations with their respective coordinates and titles
@@ -5158,7 +5158,7 @@ async function initMap(): Promise<void> {
     // Create markers for each location
     locations.forEach(location => {
       const [wgsLat, wgsLng] = NoTransmit(location.lat, location.lng);
-      const marker = new AdvancedMarkerElement({
+      const marker = new google.maps.Marker({
         position: { lat: wgsLat, lng: wgsLng },
         map: map,
         title: location.title
