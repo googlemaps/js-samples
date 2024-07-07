@@ -5,6 +5,7 @@
  */
 
 
+
 // The following example creates five accessible and
 // focusable markers.
 
@@ -56,4 +57,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 const mapStyle: google.maps.MapTypeStyle[] = [
   {
     stylers: [{ visibility: "off" }],
@@ -80,6 +81,7 @@ function loadCensusData(variable: string) {
 
   xhr.open("GET", variable + ".json");
 
+
   xhr.onload = function () {
     const censusData = JSON.parse(xhr.responseText) as any;
 
@@ -113,6 +115,7 @@ function loadCensusData(variable: string) {
   };
 
   xhr.send();
+
 }
 
 /** Removes census data from each shape on the map and resets the UI. */
@@ -133,6 +136,7 @@ function clearCensusData() {
  *
  * @param {google.maps.Data.Feature} feature
  */
+
 function styleFeature(feature: google.maps.Data.Feature) {
   const low = [5, 69, 54]; // color of smallest datum
   const high = [151, 83, 34]; // color of largest datum
@@ -178,6 +182,8 @@ function styleFeature(feature: google.maps.Data.Feature) {
   };
 }
 
+
+
 /**
  * Responds to the mouse-in event on a map shape (state).
  *
@@ -214,10 +220,12 @@ function mouseOutOfRegion(e: any) {
   e.feature.setProperty("state", "normal");
 }
 
+
 declare global {
   interface Window {
     initMap: () => void;
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 /*
  * This demo illustrates the coordinate system used to display map tiles in the
  * API.
@@ -72,4 +73,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

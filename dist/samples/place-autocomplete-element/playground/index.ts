@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2022 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 async function initMap(): Promise<void> {
   // Request needed libraries.
   //@ts-ignore
@@ -34,4 +40,5 @@ async function initMap(): Promise<void> {
 }
 
 initMap();
+
 export {};

@@ -1,4 +1,11 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map;
+
 function setStyle(/* FeatureStyleFunctionOptions */ params) {
   const datasetFeature = params.feature;
   // 'typecategory' is an attribute in this Dataset.
@@ -76,4 +83,5 @@ function createAttribution(map) {
 }
 
 initMap();
+
 export {};

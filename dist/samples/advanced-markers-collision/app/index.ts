@@ -5,6 +5,7 @@
  */
 
 // eslint-disable no-undef
+
 let map: google.maps.Map;
 
 // Initialize and add the map
@@ -59,14 +60,17 @@ async function initMap(): Promise<void> {
   ];
 
   locations.forEach(([lng, lat]: number[]) => {
+
     const advancedMarker = new AdvancedMarkerElement({
       position: new google.maps.LatLng({ lat, lng }),
       map,
       collisionBehavior: collisionBehavior,
     });
+
     markers.push(advancedMarker);
   });
 }
 
 initMap();
+
 export { };

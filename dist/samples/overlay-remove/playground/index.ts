@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // This example adds a UI control allowing users to remove the
 // ground overlay from the map.
 
@@ -48,4 +54,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

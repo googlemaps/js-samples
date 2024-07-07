@@ -5,6 +5,7 @@
  */
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 
+
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
@@ -79,4 +80,5 @@ const locations = [
 ];
 
 initMap();
+
 export { };

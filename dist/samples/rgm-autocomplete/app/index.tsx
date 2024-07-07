@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import React, { useState, useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
@@ -117,3 +118,4 @@ const root = createRoot(document.getElementById('app')!);
 root.render(<App />);
 
 export default App;
+

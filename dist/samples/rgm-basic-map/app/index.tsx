@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { APIProvider, Map } from '@vis.gl/react-google-maps';
@@ -36,3 +37,4 @@ const root = createRoot(document.getElementById('app')!);
 root.render(<App />);
 
 export default App;
+

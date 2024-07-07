@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+
 import * as THREE from "three";
 
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
@@ -94,4 +95,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export { initMap };

@@ -5,6 +5,8 @@
  */
 
 
+
+
 declare global {
   interface Document {
     mozCancelFullScreen?: () => Promise<void>;
@@ -146,4 +148,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

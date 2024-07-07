@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example adds an animated symbol to a polyline.
 
 function initMap(): void {
@@ -63,4 +64,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

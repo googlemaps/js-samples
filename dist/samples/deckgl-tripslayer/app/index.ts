@@ -3,6 +3,7 @@
  * Copyright 2021 Google LLC.
  * SPDX-License-Identifier: Apache-2.0
  */
+
 // TODO Use imports when Deck.gl works in more bundlers
 // https://github.com/visgl/deck.gl/issues/6351#issuecomment-1079424167
 
@@ -80,4 +81,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

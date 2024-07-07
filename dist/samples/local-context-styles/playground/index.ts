@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map: google.maps.Map;
 const center = { lat: 21.27869, lng: -157.826347 };
 
@@ -112,4 +118,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

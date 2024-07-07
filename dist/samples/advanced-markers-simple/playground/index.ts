@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
@@ -18,5 +24,7 @@ async function initMap() {
     position: { lat: 37.4239163, lng: -122.0947209 },
   });
 }
+
 initMap();
+
 export {};

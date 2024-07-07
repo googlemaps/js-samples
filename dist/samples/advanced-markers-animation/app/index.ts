@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 /**
    * Returns a random lat lng position within the map bounds.
    * @param {!google.maps.Map} map
@@ -104,4 +105,5 @@
   }
 
 initMap();
+
 export { };

@@ -4,11 +4,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 import { Loader } from "@googlemaps/js-api-loader";
 
 let map: google.maps.Map;
 
 const additionalOptions = {};
+
 const loader = new Loader({
   apiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY!,
   version: "weekly",
@@ -22,4 +24,6 @@ loader.load().then(async () => {
     zoom: 8,
   });
 });
+
+
 export {};

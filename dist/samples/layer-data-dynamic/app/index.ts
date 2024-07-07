@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map: google.maps.Map;
 
 function initMap(): void {
@@ -16,6 +17,7 @@ function initMap(): void {
   map.data.loadGeoJson(
     "https://storage.googleapis.com/mapsdevsite/json/google.json"
   );
+
 
   // Color each letter gray. Change the color when the isColorful property
   // is set to true.
@@ -48,6 +50,7 @@ function initMap(): void {
   map.data.addListener("mouseout", (event) => {
     map.data.revertStyle();
   });
+
 }
 
 declare global {
@@ -56,4 +59,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

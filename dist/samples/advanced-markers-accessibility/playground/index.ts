@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = (await google.maps.importLibrary(
@@ -47,6 +53,7 @@ async function initMap() {
       glyph: `${i + 1}`,
       scale: 1.5,
     });
+
     const marker = new AdvancedMarkerElement({
       position,
       map,
@@ -54,6 +61,7 @@ async function initMap() {
       content: pin.element,
       gmpClickable: true,
     });
+
     // Add a click listener for each marker, and set up the info window.
     marker.addListener("click", ({ domEvent, latLng }) => {
       const { target } = domEvent;
@@ -65,4 +73,5 @@ async function initMap() {
 }
 
 initMap();
+
 export {};

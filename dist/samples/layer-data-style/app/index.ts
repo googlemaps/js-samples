@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map: google.maps.Map;
 
 function initMap(): void {
@@ -12,16 +13,20 @@ function initMap(): void {
     center: { lat: -28, lng: 137 },
   });
 
+
   // Load GeoJSON.
   map.data.loadGeoJson(
     "https://storage.googleapis.com/mapsdevsite/json/google.json"
   );
+
+
 
   // Set the stroke width, and fill color for each polygon
   map.data.setStyle({
     fillColor: "green",
     strokeWeight: 1,
   });
+
 }
 
 declare global {
@@ -30,4 +35,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

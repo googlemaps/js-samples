@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -31,6 +37,7 @@ function initMap(): void {
   // Bind the map's bounds (viewport) property to the autocomplete object,
   // so that the autocomplete requests use the current map bounds for the
   // bounds option in the request.
+
   autocomplete.bindTo("bounds", map);
 
   const infowindow = new google.maps.InfoWindow();
@@ -101,8 +108,10 @@ function initMap(): void {
       // 1. Unbind from map
       // 2. Reset the bounds to whole world
       // 3. Uncheck the strict bounds checkbox UI (which also disables strict bounds)
+
       autocomplete.unbind("bounds");
       autocomplete.setBounds({ east: 180, west: -180, north: 90, south: -90 });
+
       strictBoundsInputElement.checked = biasInputElement.checked;
     }
 
@@ -129,4 +138,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

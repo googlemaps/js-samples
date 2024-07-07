@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 function initMap(): void {
   // Styles a map in night mode.
   const map = new google.maps.Map(
@@ -101,4 +102,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

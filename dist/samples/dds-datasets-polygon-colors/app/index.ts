@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map;
+
 function setStyle(/* FeatureStyleFunctionOptions */ params) {
     const datasetFeature = params.feature;
     // 'typecategory' is an attribute in this Dataset.
@@ -40,6 +42,7 @@ function setStyle(/* FeatureStyleFunctionOptions */ params) {
             break;
     }
 }
+
 
 async function initMap() {
     // Request needed libraries.
@@ -80,4 +83,5 @@ function createAttribution(map) {
 }
 
 initMap();
+
 export { };

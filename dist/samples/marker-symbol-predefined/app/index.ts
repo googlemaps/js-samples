@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example uses a symbol to add a vector-based icon to a marker.
 // The symbol uses one of the predefined vector paths ('CIRCLE') supplied by the
 // Google Maps JavaScript API.
@@ -34,4 +35,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

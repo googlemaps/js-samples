@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 declare global {
   const deck: any;
 }
@@ -243,4 +249,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map: google.maps.Map;
 let maxZoomService: google.maps.MaxZoomService;
 let infoWindow: google.maps.InfoWindow;
@@ -46,4 +47,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

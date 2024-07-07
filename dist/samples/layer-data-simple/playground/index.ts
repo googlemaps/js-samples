@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map: google.maps.Map;
 
 function initMap(): void {
@@ -18,4 +24,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

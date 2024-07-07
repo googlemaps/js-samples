@@ -4,7 +4,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 async function initMap(): Promise<void> {
+
     // Request needed libraries.
     //@ts-ignore
     const [{ Map }] = await Promise.all([
@@ -16,6 +18,7 @@ async function initMap(): Promise<void> {
     //@ts-ignore
     document.body.appendChild(placeAutocomplete);
 
+
     // Inject HTML UI.
     const selectedPlaceTitle = document.createElement('p');
     selectedPlaceTitle.textContent = '';
@@ -24,6 +27,7 @@ async function initMap(): Promise<void> {
     const selectedPlaceInfo = document.createElement('pre');
     selectedPlaceInfo.textContent = '';
     document.body.appendChild(selectedPlaceInfo);
+
 
     // Add the gmp-placeselect listener, and display the results.
     //@ts-ignore
@@ -34,7 +38,9 @@ async function initMap(): Promise<void> {
         selectedPlaceInfo.textContent = JSON.stringify(
             place.toJSON(), /* replacer */ null, /* space */ 2);
     });
+
 }
 
 initMap();
+
 export { };

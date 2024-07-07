@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2022 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
@@ -42,6 +48,7 @@ async function initMap() {
       fillOpacity: 0.5,
     };
   };
+
   // Population data by state.
   const states = {
     ChIJdf5LHzR_hogR6czIUzU0VV4: 5039877, // Alabama
@@ -98,4 +105,5 @@ async function initMap() {
 }
 
 initMap();
+
 export {};

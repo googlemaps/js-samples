@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script
@@ -149,4 +150,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 const mapStyle: google.maps.MapTypeStyle[] = [
   {
     stylers: [{ visibility: "off" }],
@@ -127,6 +133,7 @@ function clearCensusData() {
  *
  * @param {google.maps.Data.Feature} feature
  */
+
 function styleFeature(feature: google.maps.Data.Feature) {
   const low = [5, 69, 54]; // color of smallest datum
   const high = [151, 83, 34]; // color of largest datum
@@ -209,4 +216,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -1,8 +1,15 @@
 /**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/**
  * @fileoverview Sample showing capturing a KML file click
  *   and displaying the contents in a side panel instead of
  *   an InfoWindow
  */
+
 let map: google.maps.Map;
 
 const url =
@@ -36,4 +43,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

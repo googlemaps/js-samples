@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 import { Easing, Tween, update } from "@tweenjs/tween.js";
 
 let map: google.maps.Map;
@@ -50,4 +51,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

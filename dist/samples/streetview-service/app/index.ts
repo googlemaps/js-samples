@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 /*
  * Click the map to set a new location for the Street View camera.
  */
@@ -77,4 +78,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

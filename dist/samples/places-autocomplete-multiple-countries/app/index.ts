@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -19,6 +20,7 @@ function initMap(): void {
   const card = document.getElementById("pac-card") as HTMLElement;
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+
 
   const center = { lat: 50.064192, lng: -130.605469 };
   // Create a bounding box with sides ~10km away from the center point
@@ -38,16 +40,21 @@ function initMap(): void {
 
   const autocomplete = new google.maps.places.Autocomplete(input, options);
 
+
   // Set initial restriction to the greater list of countries.
+
   autocomplete.setComponentRestrictions({
     country: ["us", "pr", "vi", "gu", "mp"],
   });
+
+
 
   const southwest = { lat: 5.6108, lng: 136.589326 };
   const northeast = { lat: 61.179287, lng: 2.64325 };
   const newBounds = new google.maps.LatLngBounds(southwest, northeast);
 
   autocomplete.setBounds(newBounds);
+
 
   const infowindow = new google.maps.InfoWindow();
   const infowindowContent = document.getElementById(
@@ -133,4 +140,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

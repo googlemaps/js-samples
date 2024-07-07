@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2022 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map: google.maps.Map;
 let marker: google.maps.marker.AdvancedMarkerElement;
 let infoWindow: google.maps.InfoWindow;
@@ -16,6 +22,7 @@ async function initMap(): Promise<void> {
     mapId: "4504f8b37365c3d0",
     mapTypeControl: false,
   });
+
   //@ts-ignore
   const placeAutocomplete = new google.maps.places.PlaceAutocompleteElement();
   //@ts-ignore
@@ -77,4 +84,5 @@ function updateInfoWindow(content, center) {
 }
 
 initMap();
+
 export {};

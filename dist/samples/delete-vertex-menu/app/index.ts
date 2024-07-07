@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 function initialize() {
   const mapOptions = {
     zoom: 3,
@@ -153,4 +154,5 @@ declare global {
   }
 }
 window.initialize = initialize;
+
 export {};

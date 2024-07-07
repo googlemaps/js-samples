@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
+
 async function initMap() {
     // Request needed libraries.
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
@@ -20,5 +22,7 @@ async function initMap() {
         position: { lat: 37.4239163, lng: -122.0947209 },
     });
 }
+
 initMap();
+
 export { };

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example creates a simple polygon representing the Bermuda Triangle. Note
 // that the code specifies only three LatLng coordinates for the polygon. The
 // API automatically draws a stroke connecting the last LatLng back to the first
@@ -46,4 +47,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

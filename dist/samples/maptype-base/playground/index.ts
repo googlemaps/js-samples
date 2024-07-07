@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 /*
  * This demo demonstrates how to replace default map tiles with custom imagery.
  * In this case, the CoordMapType displays gray tiles annotated with the tile
@@ -74,4 +80,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

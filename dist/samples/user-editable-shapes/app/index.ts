@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example adds a user-editable rectangle to the map.
 function initMap(): void {
   const map = new google.maps.Map(
@@ -13,6 +14,7 @@ function initMap(): void {
       zoom: 9,
     }
   );
+
 
   const bounds = {
     north: 44.599,
@@ -27,6 +29,7 @@ function initMap(): void {
     editable: true,
     draggable: true,
   });
+
 
   rectangle.setMap(map);
 
@@ -44,4 +47,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

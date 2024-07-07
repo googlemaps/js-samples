@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
@@ -36,6 +42,7 @@ async function initMap() {
     position: { lat: 37.425, lng: -122.0955 },
     title: "This marker is visible at zoom level 18 and higher.",
   });
+
   map.addListener("zoom_changed", () => {
     const zoom = map.getZoom();
     if (zoom) {
@@ -49,4 +56,5 @@ async function initMap() {
 }
 
 initMap();
+
 export {};

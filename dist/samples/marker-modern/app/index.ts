@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 import { faBus } from "@fortawesome/free-solid-svg-icons";
 
 function initMap(): void {
@@ -56,4 +57,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

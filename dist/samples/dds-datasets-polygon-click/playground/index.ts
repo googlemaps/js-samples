@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map: google.maps.Map;
 let lastInteractedFeatureIds = [];
 let lastClickedFeatureIds = [];
@@ -42,6 +48,7 @@ async function initMap() {
   const datasetId = "6fe13aa9-b900-45e7-b636-3236672c3f4f";
 
   //@ts-ignore
+
   datasetLayer = map.getDatasetFeatureLayer(datasetId);
   datasetLayer.style = applyStyle;
 
@@ -58,6 +65,7 @@ async function initMap() {
       datasetLayer.style = applyStyle;
     }
   });
+
   const attributionDiv = document.createElement("div");
   const attributionControl = createAttribution(map);
 
@@ -120,4 +128,5 @@ function createAttribution(map) {
 }
 
 initMap();
+
 export {};

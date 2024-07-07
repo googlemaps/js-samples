@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
+
 // This example creates a custom overlay called USGSOverlay, containing
 // a U.S. Geological Survey (USGS) image of the relevant area on the map.
 
@@ -42,6 +44,7 @@ function initMap(): void {
     private image_: string;
     private div_: HTMLElement | null;
 
+
     constructor(bounds: google.maps.LatLngBounds, image: string) {
       super();
 
@@ -54,6 +57,8 @@ function initMap(): void {
       // method so we'll leave it null for now.
       this.div_ = null;
     }
+
+
 
     /**
      * onAdd is called when the map's panes are ready and the overlay has been
@@ -80,6 +85,8 @@ function initMap(): void {
       panes.overlayLayer.appendChild(this.div_);
     }
 
+
+
     draw() {
       // We use the south-west and north-east
       // coordinates of the overlay to peg it to the correct position and size.
@@ -105,6 +112,8 @@ function initMap(): void {
       }
     }
 
+
+
     /**
      * The onRemove() method will be called automatically from the API if
      * we ever set the overlay's map property to 'null'.
@@ -115,6 +124,8 @@ function initMap(): void {
         this.div_ = null;
       }
     }
+
+
   }
 
   const overlay = new USGSOverlay(bounds, srcImage);
@@ -128,4 +139,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

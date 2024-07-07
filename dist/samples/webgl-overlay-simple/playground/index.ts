@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2021 Google LLC.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import {
   AmbientLight,
   DirectionalLight,
@@ -105,6 +111,7 @@ function initWebglOverlayView(map: google.maps.Map): void {
     // Sometimes it is necessary to reset the GL state.
     renderer.resetState();
   };
+
   webglOverlayView.setMap(map);
 }
 
@@ -114,4 +121,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

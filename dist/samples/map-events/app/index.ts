@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 const events = [
   "bounds_changed",
   "center_changed",
@@ -67,4 +68,5 @@ function populateTable() {
 }
 
 initMap();
+
 export { };

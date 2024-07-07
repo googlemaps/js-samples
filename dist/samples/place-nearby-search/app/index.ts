@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map;
 
 async function initMap() {
@@ -23,6 +24,7 @@ async function nearbySearch() {
     //@ts-ignore
     const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary('places') as google.maps.PlacesLibrary;
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+
 
     // Restrict within the map viewport.
     let center = new google.maps.LatLng(52.369358, 4.889258);
@@ -44,6 +46,7 @@ async function nearbySearch() {
 
     //@ts-ignore
     const { places } = await Place.searchNearby(request);
+
 
     if (places.length) {
         console.log(places);
@@ -71,5 +74,6 @@ async function nearbySearch() {
 }
 
 initMap();
+
 
 export { };

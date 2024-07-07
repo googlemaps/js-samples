@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Wrapper, Status } from "@googlemaps/react-wrapper";
@@ -25,6 +26,7 @@ const render = (status: Status) => {
 };
 
 const App: React.VFC = () => {
+
   const [clicks, setClicks] = React.useState<google.maps.LatLng[]>([]);
   const [zoom, setZoom] = React.useState(3); // initial zoom
   const [center, setCenter] = React.useState<google.maps.LatLngLiteral>({
@@ -42,6 +44,7 @@ const App: React.VFC = () => {
     setZoom(m.getZoom()!);
     setCenter(m.getCenter()!.toJSON());
   };
+
 
   const form = (
     <div
@@ -90,6 +93,7 @@ const App: React.VFC = () => {
     </div>
   );
 
+
   return (
     <div style={{ display: "flex", height: "100%" }}>
       <Wrapper apiKey={"YOUR_API_KEY"} render={render}>
@@ -109,6 +113,7 @@ const App: React.VFC = () => {
       {form}
     </div>
   );
+
 };
 interface MapProps extends google.maps.MapOptions {
   style: { [key: string]: string };
@@ -124,6 +129,7 @@ const Map: React.FC<MapProps> = ({
   style,
   ...options
 }) => {
+
   const ref = React.useRef<HTMLDivElement>(null);
   const [map, setMap] = React.useState<google.maps.Map>();
 
@@ -133,6 +139,8 @@ const Map: React.FC<MapProps> = ({
     }
   }, [ref, map]);
 
+
+
   // because React does not do deep comparisons, a custom hook is used
   // see discussion in https://github.com/googlemaps/js-samples/issues/946
   useDeepCompareEffectForMaps(() => {
@@ -140,6 +148,8 @@ const Map: React.FC<MapProps> = ({
       map.setOptions(options);
     }
   }, [map, options]);
+
+
 
   React.useEffect(() => {
     if (map) {
@@ -157,6 +167,8 @@ const Map: React.FC<MapProps> = ({
     }
   }, [map, onClick, onIdle]);
 
+
+
   return (
     <>
       <div ref={ref} style={style} />
@@ -169,7 +181,9 @@ const Map: React.FC<MapProps> = ({
       })}
     </>
   );
+
 };
+
 
 const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
   const [marker, setMarker] = React.useState<google.maps.Marker>();
@@ -195,6 +209,7 @@ const Marker: React.FC<google.maps.MarkerOptions> = (options) => {
 
   return null;
 };
+
 
 const deepCompareEqualsForMaps = createCustomEqual(
   (deepEqual) => (a: any, b: any) => {
@@ -235,6 +250,8 @@ window.addEventListener("DOMContentLoaded", () => {
   const root = createRoot(document.getElementById("root")!);
   root.render(<App />);
 });
+
+
 
 
 export {};

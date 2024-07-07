@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example uses a GroundOverlay to place an image on the map
 // showing an antique map of Newark, NJ.
 
@@ -38,4 +39,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

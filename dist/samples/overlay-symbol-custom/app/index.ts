@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example adds three custom symbols to a polyline.
 
 function initMap(): void {
@@ -15,6 +16,7 @@ function initMap(): void {
       mapTypeId: "terrain",
     }
   );
+
 
   // Define the custom symbols. All symbols are defined via SVG path notation.
   // They have varying stroke color, fill color, stroke weight,
@@ -60,6 +62,7 @@ function initMap(): void {
     ],
     map: map,
   });
+
 }
 
 declare global {
@@ -68,4 +71,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

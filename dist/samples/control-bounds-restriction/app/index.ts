@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map: google.maps.Map;
 
 const NEW_ZEALAND_BOUNDS = {
@@ -31,4 +32,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

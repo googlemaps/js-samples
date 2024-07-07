@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map;
 async function initMap() {
     // Request needed libraries.
@@ -21,8 +22,10 @@ async function initMap() {
     const datasetId = '3d0bd5fb-3f42-47fe-b50f-81c0932cd533';
     //@ts-ignore
     const datasetLayer = map.getDatasetFeatureLayer(datasetId);
+
     // Apply style to all features.
     datasetLayer.style = { strokeColor: 'green', strokeWeight: 4, };
+
     // Create an attribution DIV and add the attribution to the map.
     const attributionDiv = document.createElement('div');
     const attributionControl = createAttribution(map);
@@ -45,4 +48,5 @@ function createAttribution(map) {
 }
 
 initMap();
+
 export { };

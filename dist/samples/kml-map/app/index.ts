@@ -9,6 +9,7 @@
  *   and displaying the contents in a side panel instead of
  *   an InfoWindow
  */
+
 let map: google.maps.Map;
 
 const url =
@@ -42,4 +43,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2024 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let title;
 let results;
 let input;
@@ -96,4 +102,5 @@ declare global {
   }
 }
 window.init = init;
+
 export {};

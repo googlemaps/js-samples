@@ -5,6 +5,8 @@
  */
 
 
+
+
 // This example adds hide() and show() methods to a custom overlay's prototype.
 // These methods toggle the visibility of the container <div>.
 // overlay to or from the map.
@@ -29,6 +31,7 @@ function initMap(): void {
 
   image += "examples/full/images/talkeetna.png";
 
+
   /**
    * The custom USGSOverlay object contains the USGS image,
    * the bounds of the image, and a reference to the map.
@@ -44,6 +47,8 @@ function initMap(): void {
       this.bounds = bounds;
       this.image = image;
     }
+
+
 
     /**
      * onAdd is called when the map's panes are ready and the overlay has been
@@ -70,6 +75,8 @@ function initMap(): void {
       panes.overlayLayer.appendChild(this.div);
     }
 
+
+
     draw() {
       // We use the south-west and north-east
       // coordinates of the overlay to peg it to the correct position and size.
@@ -95,6 +102,8 @@ function initMap(): void {
       }
     }
 
+
+
     /**
      * The onRemove() method will be called automatically from the API if
      * we ever set the overlay's map property to 'null'.
@@ -105,6 +114,8 @@ function initMap(): void {
         delete this.div;
       }
     }
+
+
 
     /**
      *  Set the visibility to 'hidden' or 'visible'.
@@ -138,11 +149,16 @@ function initMap(): void {
         this.setMap(map);
       }
     }
+
+
   }
+
 
   const overlay: USGSOverlay = new USGSOverlay(bounds, image);
 
   overlay.setMap(map);
+
+
 
   const toggleButton = document.createElement("button");
 
@@ -164,6 +180,7 @@ function initMap(): void {
 
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleDOMButton);
   map.controls[google.maps.ControlPosition.TOP_RIGHT].push(toggleButton);
+
 }
 
 declare global {
@@ -172,4 +189,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

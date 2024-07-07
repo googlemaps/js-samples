@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map: google.maps.Map;
 let localContextMapView;
 
@@ -195,6 +196,7 @@ const styles: google.maps.MapTypeStyle[] = [
 function initMap() {
   localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
+
     placeTypePreferences: [
       { type: "bakery", weight: 1 },
       { type: "bank", weight: 1 },
@@ -207,6 +209,7 @@ function initMap() {
       { type: "secondary_school", weight: 3 },
       { type: "supermarket", weight: 2 },
     ],
+
     maxPlaceCount: 24,
   });
 
@@ -218,6 +221,7 @@ function initMap() {
     styles,
   });
 
+
   // Build and add the Autocomplete search bar
   const input = document.getElementById("input")! as HTMLInputElement;
   const options = {
@@ -228,6 +232,7 @@ function initMap() {
     fields: ["address_components", "geometry", "name"],
   };
   const autocomplete = new google.maps.places.Autocomplete(input, options);
+
 
   autocomplete.addListener("place_changed", () => {
     const place = autocomplete.getPlace();
@@ -267,4 +272,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

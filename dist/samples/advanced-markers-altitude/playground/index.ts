@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map;
 async function initMap() {
   // Request needed libraries.
@@ -14,6 +20,7 @@ async function initMap() {
     heading: 45,
     mapId: "6ff586e93e18149f",
   });
+
   const pin = new PinElement({
     background: "#4b2e83",
     borderColor: "#b7a57a",
@@ -34,4 +41,5 @@ async function initMap() {
 }
 
 initMap();
+
 export {};

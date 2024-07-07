@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 declare global {
   interface Document {
     mozCancelFullScreen?: () => Promise<void>;
@@ -139,4 +145,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

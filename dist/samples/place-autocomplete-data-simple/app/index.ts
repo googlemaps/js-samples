@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 /**
  * Demonstrates making a single request for Place predictions, then requests Place Details for the first result.
  */
@@ -11,7 +12,9 @@ async function init() {
     // @ts-ignore
     const { Place, AutocompleteSessionToken, AutocompleteSuggestion } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
 
+
     // Add an initial request body.
+
     let request = {
         input: "Tadi",
         locationRestriction: { west: -122.44, north: 37.8, east: -122.39, south: 37.78 },
@@ -21,11 +24,16 @@ async function init() {
         region: "us",
     };
 
+
+
     // Create a session token.
     const token = new AutocompleteSessionToken();
     // Add the token to the request.
     // @ts-ignore
     request.sessionToken = token;
+
+
+
     // Fetch autocomplete suggestions.
     const { suggestions } = await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
 
@@ -42,15 +50,21 @@ async function init() {
         resultsElement.appendChild(listItem);
     }
 
+
+
     let place = suggestions[0].placePrediction.toPlace(); // Get first predicted place.
+
     await place.fetchFields({
         fields: ['displayName', 'formattedAddress'],
     });
 
+
     const placeInfo = document.getElementById("prediction") as HTMLElement;
     placeInfo.textContent = 'First predicted place: ' + place.displayName + ': ' + place.formattedAddress;
+
 
 }
 
 init();
+
 export { };

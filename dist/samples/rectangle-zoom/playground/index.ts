@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // This example creates a rectangle based on the viewport
 // on any 'zoom-changed' event.
 
@@ -33,4 +39,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

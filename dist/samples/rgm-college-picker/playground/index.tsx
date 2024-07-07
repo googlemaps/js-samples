@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 import React, { useState, useRef } from 'react';
 import ReactDOM from 'react-dom/client';
 import { AdvancedMarker, Map, Pin, APIProvider } from '@vis.gl/react-google-maps';
@@ -133,3 +134,4 @@ root.render(
     <App />
   </React.StrictMode>
 );
+

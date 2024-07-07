@@ -6,6 +6,7 @@
 
 // @ts-nocheck TODO remove when fixed
 
+
 function initMap(): void {
   const geocoder = new google.maps.Geocoder();
   const map = new google.maps.Map(
@@ -51,4 +52,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

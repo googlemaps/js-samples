@@ -3,10 +3,12 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+
 let map: google.maps.Map;
 let lastInteractedFeatureIds = [];
 let lastClickedFeatureIds = [];
 let datasetLayer;
+
 
 // Note, 'globalid' is an attribute in this Dataset.
 function handleClick(/* MouseEvent */ e) {
@@ -27,6 +29,7 @@ function handleMouseMove(/* MouseEvent */ e) {
   datasetLayer.style = applyStyle;
 }
 
+
 async function initMap() {
   // Request needed libraries.
   const { Map } = await google.maps.importLibrary('maps') as google.maps.MapsLibrary;
@@ -43,6 +46,7 @@ async function initMap() {
   const datasetId = '6fe13aa9-b900-45e7-b636-3236672c3f4f';
 
   //@ts-ignore
+
   datasetLayer = map.getDatasetFeatureLayer(datasetId);
   datasetLayer.style = applyStyle;
 
@@ -59,12 +63,14 @@ async function initMap() {
       datasetLayer.style = applyStyle;
     }
   });
+
   const attributionDiv = document.createElement('div');
   const attributionControl = createAttribution(map);
 
   attributionDiv.appendChild(attributionControl);
   map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(attributionDiv);
 }
+
 
 const styleDefault = {
   strokeColor: 'green',
@@ -100,6 +106,7 @@ function applyStyle(/* FeatureStyleFunctionOptions */ params) {
   return styleDefault;
 }
 
+
 function createAttribution(map) {
   const attributionLabel = document.createElement('div');
 
@@ -115,4 +122,5 @@ function createAttribution(map) {
 }
 
 initMap();
+
 export { };

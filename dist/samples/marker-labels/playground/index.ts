@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // In the following example, markers appear when the user clicks on the map.
 // Each marker is labeled with a single alphabetical character.
 const labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -39,4 +45,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

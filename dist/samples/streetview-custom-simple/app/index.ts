@@ -6,6 +6,7 @@
 
 // @ts-nocheck TODO remove when fixed
 
+
 function initPano() {
   // Set up Street View and initially set it visible. Register the
   // custom panorama provider function. Set the StreetView to display
@@ -70,4 +71,5 @@ declare global {
   }
 }
 window.initPano = initPano;
+
 export {};

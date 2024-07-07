@@ -5,6 +5,7 @@
  */
 let map, overview;
 
+
 const OVERVIEW_DIFFERENCE = 5;
 const OVERVIEW_MIN_ZOOM = 3;
 const OVERVIEW_MAX_ZOOM = 10;
@@ -53,4 +54,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 const parser = new DOMParser();
 
 async function initMap() {
@@ -19,12 +20,15 @@ async function initMap() {
 
     // Each PinElement is paired with a MarkerView to demonstrate setting each parameter.
 
+
     // Default marker with title text (no PinElement).
     const markerViewWithText = new AdvancedMarkerElement({
         map,
         position: { lat: 37.419, lng: -122.03 },
         title: 'Title text for the marker at lat: 37.419, lng: -122.03',
     });
+
+
 
     // Adjust the scale.
     const pinScaled = new PinElement({
@@ -36,6 +40,8 @@ async function initMap() {
         content: pinScaled.element,
     });
 
+
+
     // Change the background color.
     const pinBackground = new PinElement({
         background: '#FBBC04',
@@ -45,6 +51,8 @@ async function initMap() {
         position: { lat: 37.419, lng: -122.01 },
         content: pinBackground.element,
     });
+
+
 
     // Change the border color.
     const pinBorder = new PinElement({
@@ -56,6 +64,8 @@ async function initMap() {
         content: pinBorder.element,
     });
 
+
+
     // Change the glyph color.
     const pinGlyph = new PinElement({
         glyphColor: 'white',
@@ -65,6 +75,8 @@ async function initMap() {
         position: { lat: 37.415, lng: -122.02 },
         content: pinGlyph.element,
     });
+
+
 
     // Hide the glyph.
     const pinNoGlyph = new PinElement({
@@ -76,7 +88,9 @@ async function initMap() {
         content: pinNoGlyph.element,
     });
 
+
 }
 
 initMap();
+
 export { };

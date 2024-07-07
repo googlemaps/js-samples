@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 async function initMap() {
   // Request needed libraries.
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
@@ -65,4 +66,5 @@ function attachSecretMessage(
 }
 
 initMap();
+
 export {};

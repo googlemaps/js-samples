@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 async function initMap() {
   // Request needed libraries.
   const { Map } = (await google.maps.importLibrary(
@@ -98,6 +104,7 @@ const properties = [
       lng: -122.2160620727,
     },
   },
+
   {
     address: "100 Chris St, Portola Valley, CA",
     description: "Spacious warehouse great for small business",
@@ -205,4 +212,5 @@ const properties = [
 ];
 
 initMap();
+
 export {};

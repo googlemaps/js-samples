@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example adds a predefined symbol (an arrow) to a polyline.
 // Setting offset to 100% places the arrow at the end of the line.
 
@@ -16,6 +17,7 @@ function initMap(): void {
       mapTypeId: "terrain",
     }
   );
+
 
   // Define a symbol using a predefined path (an arrow)
   // supplied by the Google Maps JavaScript API.
@@ -37,6 +39,7 @@ function initMap(): void {
     ],
     map: map,
   });
+
 }
 
 declare global {
@@ -45,4 +48,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

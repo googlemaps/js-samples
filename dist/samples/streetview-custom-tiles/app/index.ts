@@ -6,6 +6,7 @@
 
 // @ts-nocheck TODO remove when fixed
 
+
 let panorama: google.maps.StreetViewPanorama;
 
 // StreetViewPanoramaData of a panorama just outside the Google Sydney office.
@@ -100,4 +101,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

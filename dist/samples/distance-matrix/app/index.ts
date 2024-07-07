@@ -6,6 +6,7 @@
 
 // @ts-nocheck TODO remove when fixed
 
+
 function initMap(): void {
   const bounds = new google.maps.LatLngBounds();
   const markersArray: google.maps.Marker[] = [];
@@ -98,4 +99,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This sample uses the Places Autocomplete widget to:
 // 1. Help the user select a place
 // 2. Retrieve the address components associated with that place
@@ -36,6 +37,7 @@ function initAutocomplete() {
   // address fields in the form.
   autocomplete.addListener("place_changed", fillInAddress);
 }
+
 
 function fillInAddress() {
   // Get the place details from the autocomplete object.
@@ -99,10 +101,12 @@ function fillInAddress() {
   address2Field.focus();
 }
 
+
 declare global {
   interface Window {
     initAutocomplete: () => void;
   }
 }
 window.initAutocomplete = initAutocomplete;
+
 export {};

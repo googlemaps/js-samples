@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // This example creates a triangular polygon with a hole in it.
 
 function initMap(): void {
@@ -44,4 +50,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

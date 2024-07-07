@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 function initMap(): void {
   const origin = { lat: -33.871, lng: 151.197 };
 
@@ -120,4 +126,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // You can set control options to change the default position or style of many
 // of the map controls.
 
@@ -28,4 +29,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

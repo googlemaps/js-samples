@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example adds a UI control allowing users to remove the
 // ground overlay from the map.
 
@@ -44,9 +45,11 @@ function restoreOverlay() {
   historicalOverlay.setMap(map);
 }
 
+
 function removeOverlay() {
   historicalOverlay.setMap(null);
 }
+
 
 declare global {
   interface Window {
@@ -54,4 +57,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

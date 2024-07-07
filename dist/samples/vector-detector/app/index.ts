@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 /**
  * This example creates a map with an info window that shows whether
  * the map render type is raster or vector.
@@ -40,4 +41,5 @@
     }
   }
   window.initMap = initMap;
+
   export {};

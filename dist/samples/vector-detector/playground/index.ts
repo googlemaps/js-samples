@@ -1,4 +1,10 @@
 /**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/**
  * This example creates a map with an info window that shows whether
  * the map render type is raster or vector.
  */
@@ -37,4 +43,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

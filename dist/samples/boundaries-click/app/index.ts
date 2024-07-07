@@ -4,11 +4,13 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map: google.maps.Map;
 let featureLayer;
 let infoWindow;
 let lastInteractedFeatureIds = [];
 let lastClickedFeatureIds = [];
+
 
 function handleClick(/* MouseEvent */ e) {
   lastClickedFeatureIds = e.features.map(f => f.placeId);
@@ -22,6 +24,7 @@ function handleMouseMove(/* MouseEvent */ e) {
   featureLayer.style = applyStyle;
 }
 
+
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = await google.maps.importLibrary('maps') as google.maps.MapsLibrary;
@@ -34,6 +37,7 @@ async function initMap() {
     mapId: 'a3efe1c035bad51b', // Substitute your own map ID.
     mapTypeControl: false,
   });
+
 
   // Add the feature layer.
   //@ts-ignore
@@ -53,6 +57,7 @@ async function initMap() {
       featureLayer.style = applyStyle;
     }
   });
+
 
   // Create the infowindow.
   infoWindow = new InfoWindow({});
@@ -74,6 +79,7 @@ async function createInfoWindow(event) {
 
   updateInfoWindow(content, event.latLng);
 }
+
 
 // Define styles.
 // Stroke and fill with minimum opacity value.
@@ -110,6 +116,7 @@ function applyStyle(/* FeatureStyleFunctionOptions */ params) {
   return styleDefault;
 }
 
+
 // Helper function to create an info window.
 function updateInfoWindow(content, center) {
   infoWindow.setContent(content);
@@ -121,4 +128,5 @@ function updateInfoWindow(content, center) {
 }
 
 initMap();
+
 export { };

@@ -8,6 +8,7 @@
 * This is the simplest possible example. It calls the styling function with a Place ID.
 */
 
+
 let map: google.maps.Map;
 //@ts-ignore
 let featureLayer;
@@ -27,6 +28,7 @@ async function initMap() {
   //@ts-ignore
   featureLayer = map.getFeatureLayer('LOCALITY');
   
+
   // Define a style with purple fill and border.
   //@ts-ignore
   const featureStyleOptions: google.maps.FeatureStyleOptions = {
@@ -45,7 +47,9 @@ async function initMap() {
     }
   };
 
+
 }
 
 initMap();
+
 export {};

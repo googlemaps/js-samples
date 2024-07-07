@@ -5,6 +5,7 @@
  */
 // @ts-nocheck TODO remove when fixed
 
+
 // This example adds a search box to a map, using the Google Place Autocomplete
 // feature. People can enter geographical searches. The search box will return a
 // pick list containing a mix of places and predicted search terms.
@@ -35,6 +36,7 @@ function initAutocomplete() {
   });
 
   let markers: google.maps.Marker[] = [];
+
 
   // Listen for the event fired when the user selects a prediction and retrieve
   // more details for that place.
@@ -87,6 +89,7 @@ function initAutocomplete() {
     });
     map.fitBounds(bounds);
   });
+
 }
 
 declare global {
@@ -95,4 +98,5 @@ declare global {
   }
 }
 window.initAutocomplete = initAutocomplete;
+
 export {};

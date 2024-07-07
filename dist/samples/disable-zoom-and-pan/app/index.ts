@@ -4,8 +4,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 function initMap(): void {
   const locationRio = { lat: -22.915, lng: -43.197 };
+
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
     {
@@ -15,6 +17,7 @@ function initMap(): void {
       zoomControl: false,
     }
   );
+
 
   new google.maps.Marker({
     position: locationRio,
@@ -29,4 +32,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

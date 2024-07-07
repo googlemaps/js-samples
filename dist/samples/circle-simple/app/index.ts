@@ -5,6 +5,8 @@
  */
 
 
+
+
 // This example creates circles on the map, representing populations in North
 // America.
 
@@ -68,4 +70,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map: google.maps.Map;
 
 let infoWindow;
@@ -69,6 +70,7 @@ function initMap() {
       zIndex: 30,
     });
 
+
     marker.addListener("click", () => {
       // Close any open details or existing InfoWindows
       localContextMapView.hidePlaceDetailsView();
@@ -85,20 +87,25 @@ function initMap() {
         origin: district.location,
       };
     });
+
   }
 
   // Set the LocalContextMapView event handlers.
+
   localContextMapView.addListener("placedetailsviewshowstart", () => {
     if (infoWindow) {
       infoWindow.close();
     }
   });
 
+
+
   localContextMapView.addListener("placedetailsviewhidestart", () => {
     if (infoStorage) {
       createInfoWindow(infoStorage.district, infoStorage.marker);
     }
   });
+
 }
 
 // Creates an infoWindow and also stores information associated with the
@@ -142,4 +149,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

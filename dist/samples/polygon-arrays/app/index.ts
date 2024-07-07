@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example creates a simple polygon representing the Bermuda Triangle.
 // When the user clicks on the polygon an info window opens, showing
 // information about the polygon's coordinates.
@@ -80,4 +81,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

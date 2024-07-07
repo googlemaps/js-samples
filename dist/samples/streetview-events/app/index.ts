@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 function initPano() {
   const panorama = new google.maps.StreetViewPanorama(
     document.getElementById("pano") as HTMLElement,
@@ -75,4 +76,5 @@ declare global {
   }
 }
 window.initPano = initPano;
+
 export {};

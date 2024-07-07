@@ -5,6 +5,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 async function initMap() {
     // Request needed libraries.
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
@@ -39,6 +40,7 @@ async function initMap() {
         position: { lat: 37.425, lng: -122.0955 },
         title: 'This marker is visible at zoom level 18 and higher.'
     });
+
     map.addListener('zoom_changed', () => {
         const zoom = map.getZoom();
         if (zoom) {
@@ -49,7 +51,9 @@ async function initMap() {
             marker04.map = zoom > 17 ? map : null;
         }
     });
+
 }
 
 initMap();
+
 export { };

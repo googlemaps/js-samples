@@ -4,9 +4,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // Initialize and add the map
 let map;
 async function initMap(): Promise<void> {
+
   // The location of Uluru
   const position = { lat: -25.344, lng: 131.031 };
 
@@ -25,14 +27,18 @@ async function initMap(): Promise<void> {
     }
   );
 
+
+
   // The marker, positioned at Uluru
   const marker = new AdvancedMarkerElement({
     map: map,
     position: position,
     title: 'Uluru'
   });
+
 }
 
 initMap();
+
 
 export { };

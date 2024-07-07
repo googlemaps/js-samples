@@ -9,6 +9,8 @@ declare global {
 }
 
 
+
+
 let map: google.maps.Map, webGLOverlay: any;
 // source: Natural Earth http://www.naturalearthdata.com/ via geojson.xyz
 const AIR_PORTS =
@@ -145,10 +147,12 @@ function initMap() {
       gl.depthFunc(gl.LEQUAL);
       gl.depthMask(true);
 
+
       this.requestRedraw();
       deck._drawLayers("google-map-repaint", {
         clearCanvas: false,
       });
+
     }
 
     onContextLost() {}
@@ -211,6 +215,7 @@ function initMap() {
     }
   }
 
+
   const layers = [
     new deck.GeoJsonLayer({
       id: "airports",
@@ -238,6 +243,7 @@ function initMap() {
     }),
   ];
 
+
   const props = {};
 
   webGLOverlay = new DeckGLOverlay(mapElement, layers, props);
@@ -250,4 +256,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

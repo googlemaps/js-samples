@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // This example creates draggable triangles on the map.
 // Note also that the red triangle is geodesic, so its shape changes
 // as you drag it north or south.
@@ -57,4 +63,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

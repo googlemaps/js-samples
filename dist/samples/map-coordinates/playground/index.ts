@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 function initMap(): void {
   const chicago = new google.maps.LatLng(41.85, -87.65);
 
@@ -71,4 +77,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

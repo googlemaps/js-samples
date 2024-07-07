@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example converts a polyline to a dashed line, by
 // setting the opacity of the polyline to 0, and drawing an opaque symbol
 // at a regular interval on the polyline.
@@ -17,6 +18,7 @@ function initMap(): void {
       mapTypeId: "terrain",
     }
   );
+
 
   // Define a symbol using SVG path notation, with an opacity of 1.
   const lineSymbol = {
@@ -43,6 +45,7 @@ function initMap(): void {
     ],
     map: map,
   });
+
 }
 
 declare global {
@@ -51,4 +54,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

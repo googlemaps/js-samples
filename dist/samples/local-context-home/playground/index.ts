@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map: google.maps.Map;
 let localContextMapView;
 
@@ -189,6 +195,7 @@ const styles: google.maps.MapTypeStyle[] = [
 function initMap() {
   localContextMapView = new google.maps.localContext.LocalContextMapView({
     element: document.getElementById("map"),
+
     placeTypePreferences: [
       { type: "bakery", weight: 1 },
       { type: "bank", weight: 1 },
@@ -201,6 +208,7 @@ function initMap() {
       { type: "secondary_school", weight: 3 },
       { type: "supermarket", weight: 2 },
     ],
+
     maxPlaceCount: 24,
   });
 
@@ -261,4 +269,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

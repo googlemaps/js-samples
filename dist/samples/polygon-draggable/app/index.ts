@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example creates draggable triangles on the map.
 // Note also that the red triangle is geodesic, so its shape changes
 // as you drag it north or south.
@@ -24,6 +25,7 @@ function initMap(): void {
     { lat: 32.321, lng: -44.757 },
   ];
 
+
   const redCoords = [
     { lat: 25.774, lng: -80.19 },
     { lat: 18.466, lng: -66.118 },
@@ -42,6 +44,7 @@ function initMap(): void {
     draggable: true,
     geodesic: true,
   });
+
 
   // Construct a draggable blue triangle with geodesic set to false.
   new google.maps.Polygon({
@@ -63,4 +66,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

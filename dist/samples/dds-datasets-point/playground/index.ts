@@ -1,4 +1,11 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map;
+
 function setStyle(/* FeatureStyleFunctionOptions */ params) {
   // Get the dataset feature, so we can work with all of its attributes.
   const datasetFeature = params.feature;
@@ -146,4 +153,5 @@ function makeLegend(map) {
 }
 
 initMap();
+
 export {};

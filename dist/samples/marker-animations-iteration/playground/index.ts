@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // If you're adding a number of markers, you may want to drop them on the map
 // consecutively rather than all at once. This example shows how to use
 // window.setTimeout() to space your markers' animation.
@@ -58,4 +64,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

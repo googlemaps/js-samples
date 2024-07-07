@@ -5,6 +5,7 @@
  */
 let mapLeft: google.maps.Map, mapRight: google.maps.Map;
 
+
 function initMap(): void {
   const mapOptions = {
     center: { lat: 44.5250489, lng: -110.83819 },
@@ -109,4 +110,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

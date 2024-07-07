@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example adds a marker to indicate the position of Bondi Beach in Sydney,
 // Australia.
 function initMap(): void {
@@ -30,4 +31,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

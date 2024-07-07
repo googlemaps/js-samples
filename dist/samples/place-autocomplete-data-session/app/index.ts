@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let title;
 let results;
 let input;
@@ -92,4 +93,5 @@ declare global {
     }
   }
   window.init = init;
+
 export { };

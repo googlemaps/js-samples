@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
  async function initMap() {
     // Request needed libraries.
     const { Map, InfoWindow } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
@@ -17,12 +18,14 @@
 
     const infoWindow = new InfoWindow();
 
+
     const draggableMarker = new AdvancedMarkerElement({
         map,
         position: {lat: 37.39094933041195, lng: -122.02503913145092},
         gmpDraggable: true,
         title: "This marker is draggable.",
     });
+
     draggableMarker.addListener('dragend', (event) => {
         const position = draggableMarker.position as google.maps.LatLng;
         infoWindow.close();
@@ -33,4 +36,5 @@
 }
 
 initMap();
+
 export { };

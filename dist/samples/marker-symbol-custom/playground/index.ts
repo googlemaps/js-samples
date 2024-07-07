@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // This example uses SVG path notation to add a vector-based symbol
 // as the icon for a marker. The resulting icon is a marker-shaped
 // symbol with a blue fill and no border.
@@ -35,4 +41,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

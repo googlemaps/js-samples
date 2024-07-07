@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 async function initMap() {
     // Request needed libraries.
     const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
@@ -15,6 +16,7 @@ async function initMap() {
         zoom: 13,
         mapId: '4504f8b37365c3d0',
     });
+
 
     const parser = new DOMParser();
 
@@ -31,6 +33,8 @@ async function initMap() {
         title: 'A marker using a custom SVG image.',
     });
 
+
+
     // A marker with a with a URL pointing to a PNG.
     const beachFlagImg = document.createElement('img');
     beachFlagImg.src = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
@@ -41,6 +45,8 @@ async function initMap() {
         content: beachFlagImg,
         title: 'A marker using a custom PNG Image',
     });
+
+
 
     // A marker with a custom SVG glyph.
     const glyphImg = document.createElement('img');
@@ -56,6 +62,8 @@ async function initMap() {
         content: glyphSvgPinElement.element,
         title: "A marker using a custom SVG for the glyph.",
     });
+
+
 
     // A marker customized using a place icon and color, name, and geometry.
     const place = new Place({
@@ -78,6 +86,8 @@ async function initMap() {
     });
 
 
+
+
     // A marker using a Font Awesome icon for the glyph.
     const icon = document.createElement('div');
     icon.innerHTML = '<i class="fa fa-pizza-slice fa-lg"></i>';
@@ -94,7 +104,9 @@ async function initMap() {
         content: faPin.element,
         title: 'A marker using a FontAwesome icon for the glyph.'
     });
+
 }
 
 initMap();
+
 export { };

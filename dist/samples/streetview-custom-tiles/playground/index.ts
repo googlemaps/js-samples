@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // @ts-nocheck TODO remove when fixed
 
 let panorama: google.maps.StreetViewPanorama;
@@ -94,4 +100,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

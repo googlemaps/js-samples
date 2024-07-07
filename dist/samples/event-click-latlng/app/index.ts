@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 async function initMap() {
   // Request needed libraries.
   const { Map } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
@@ -23,6 +24,7 @@ async function initMap() {
 
   infoWindow.open(map);
 
+
   // Configure the click listener.
   map.addListener("click", (mapsMouseEvent) => {
     // Close the current InfoWindow.
@@ -37,7 +39,9 @@ async function initMap() {
     );
     infoWindow.open(map);
   });
+
 }
 
 initMap();
+
 export {};

@@ -4,12 +4,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map;
+
 function setStyle(/* FeatureStyleFunctionOptions */ params) {
+
     // Get the dataset feature, so we can work with all of its attributes.
     const datasetFeature = params.feature;
     // Get all of the needed dataset attributes.
     const furColors = datasetFeature.datasetAttributes['CombinationofPrimaryandHighlightColor'];
+
 
     // Apply styles. Fill is primary fur color, stroke is secondary fur color.
     switch (furColors) {
@@ -42,6 +46,7 @@ function setStyle(/* FeatureStyleFunctionOptions */ params) {
             break; 
     }
 }
+
 
 async function initMap() {
     // Request needed libraries.
@@ -129,4 +134,5 @@ function makeLegend(map) {
 }
 
 initMap();
+
 export { };

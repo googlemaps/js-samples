@@ -6,6 +6,7 @@
 
 // @ts-nocheck TODO remove when fixed
 
+
 let map: google.maps.Map;
 let marker: google.maps.Marker;
 let geocoder: google.maps.Geocoder;
@@ -108,4 +109,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

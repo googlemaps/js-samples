@@ -1,4 +1,11 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map;
+
 const styleOptions = {
   strokeColor: "green",
   strokeWeight: 2,
@@ -27,6 +34,7 @@ async function initMap() {
   // Dataset ID for NYC park data.
   const datasetId = "6fe13aa9-b900-45e7-b636-3236672c3f4f";
   //@ts-ignore
+
   const datasetLayer = map.getDatasetFeatureLayer(datasetId);
   datasetLayer.style = styleOptions;
 
@@ -38,6 +46,7 @@ async function initMap() {
 }
 
 // Create a custom control to hold attribution text.
+
 function createAttribution(map) {
   const attributionLabel = document.createElement("div");
   // Define CSS styles.
@@ -52,4 +61,5 @@ function createAttribution(map) {
 }
 
 initMap();
+
 export {};

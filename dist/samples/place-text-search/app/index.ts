@@ -5,6 +5,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map;
 let center;
 
@@ -24,6 +25,7 @@ async function initMap() {
 async function findPlaces() {
     const { Place } = await google.maps.importLibrary("places") as google.maps.PlacesLibrary;
     const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+
     const request = {
         textQuery: 'Tacos in Mountain View',
         fields: ['displayName', 'location', 'businessStatus'],
@@ -39,6 +41,7 @@ async function findPlaces() {
     
     //@ts-ignore
     const { places } = await Place.searchByText(request);
+
 
     if (places.length) {
         console.log(places);
@@ -66,5 +69,6 @@ async function findPlaces() {
 }
 
 initMap();
+
 
 export { };

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let panorama: google.maps.StreetViewPanorama;
 
 function initialize() {
@@ -22,4 +23,5 @@ declare global {
   }
 }
 window.initialize = initialize;
+
 export {};

@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
+
 import {
   AmbientLight,
   DirectionalLight,
@@ -35,6 +37,8 @@ function initMap(): void {
   initWebglOverlayView(map);
 }
 
+
+
 function initWebglOverlayView(map: google.maps.Map): void {
   let scene, renderer, camera, loader;
   const webglOverlayView = new google.maps.WebGLOverlayView();
@@ -63,6 +67,8 @@ function initWebglOverlayView(map: google.maps.Map): void {
       scene.add(gltf.scene);
     });
   };
+
+
 
   webglOverlayView.onContextRestored = ({ gl }) => {
     // Create the js renderer, using the
@@ -94,6 +100,8 @@ function initWebglOverlayView(map: google.maps.Map): void {
     };
   };
 
+
+
   webglOverlayView.onDraw = ({ gl, transformer }): void => {
     const latLngAltitudeLiteral: google.maps.LatLngAltitudeLiteral = {
       lat: mapOptions.center.lat,
@@ -111,7 +119,10 @@ function initWebglOverlayView(map: google.maps.Map): void {
     // Sometimes it is necessary to reset the GL state.
     renderer.resetState();
   };
+
+
   webglOverlayView.setMap(map);
+
 }
 
 declare global {
@@ -120,4 +131,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 import { Loader } from "@googlemaps/js-api-loader";
 
 let map: google.maps.Map;
@@ -36,5 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
 
 export {};

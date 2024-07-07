@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2022 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map: google.maps.Map;
 let featureLayer;
 let infoWindow;
@@ -121,4 +127,5 @@ function updateInfoWindow(content, center) {
 }
 
 initMap();
+
 export {};

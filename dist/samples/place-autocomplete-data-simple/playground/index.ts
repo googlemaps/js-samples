@@ -1,4 +1,10 @@
 /**
+ * @license
+ * Copyright 2024 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/**
  * Demonstrates making a single request for Place predictions, then requests Place Details for the first result.
  */
 async function init() {
@@ -7,6 +13,7 @@ async function init() {
     (await google.maps.importLibrary("places")) as google.maps.PlacesLibrary;
 
   // Add an initial request body.
+
   let request = {
     input: "Tadi",
     locationRestriction: {
@@ -26,6 +33,7 @@ async function init() {
   // Add the token to the request.
   // @ts-ignore
   request.sessionToken = token;
+
   // Fetch autocomplete suggestions.
   const { suggestions } =
     await AutocompleteSuggestion.fetchAutocompleteSuggestions(request);
@@ -48,6 +56,7 @@ async function init() {
   }
 
   let place = suggestions[0].placePrediction.toPlace(); // Get first predicted place.
+
   await place.fetchFields({
     fields: ["displayName", "formattedAddress"],
   });
@@ -61,4 +70,5 @@ async function init() {
 }
 
 init();
+
 export {};

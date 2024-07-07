@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 // This example creates an interactive map which constructs a polyline based on
 // user clicks. Note that the polyline only appears once its path property
 // contains two LatLng coordinates.
@@ -50,4 +51,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

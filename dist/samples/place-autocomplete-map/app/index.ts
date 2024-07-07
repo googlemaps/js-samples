@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+
 let map: google.maps.Map;
 let marker: google.maps.marker.AdvancedMarkerElement;
 let infoWindow: google.maps.InfoWindow;
@@ -22,6 +23,7 @@ async function initMap(): Promise<void> {
         mapId: '4504f8b37365c3d0',
         mapTypeControl: false,
     });
+
     //@ts-ignore
     const placeAutocomplete = new google.maps.places.PlaceAutocompleteElement();
     //@ts-ignore
@@ -32,12 +34,14 @@ async function initMap(): Promise<void> {
     card.appendChild(placeAutocomplete);
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(card);
 
+
     // Create the marker and infowindow
     marker = new google.maps.marker.AdvancedMarkerElement({
         map,
     });
     
     infoWindow = new google.maps.InfoWindow({});
+
 
     // Add the gmp-placeselect listener, and display the results on the map.
     //@ts-ignore
@@ -60,6 +64,7 @@ async function initMap(): Promise<void> {
         updateInfoWindow(content, place.location);
         marker.position = place.location;
     });
+
 }
 
 // Helper function to create an info window.
@@ -74,4 +79,5 @@ function updateInfoWindow(content, center) {
 }
 
 initMap();
+
 export { };

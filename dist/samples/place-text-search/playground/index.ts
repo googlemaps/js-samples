@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2022 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 let map;
 let center;
 
@@ -23,6 +29,7 @@ async function findPlaces() {
   const { AdvancedMarkerElement } = (await google.maps.importLibrary(
     "marker",
   )) as google.maps.MarkerLibrary;
+
   const request = {
     textQuery: "Tacos in Mountain View",
     fields: ["displayName", "location", "businessStatus"],

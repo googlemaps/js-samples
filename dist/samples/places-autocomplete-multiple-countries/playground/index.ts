@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // This example requires the Places library. Include the libraries=places
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
@@ -33,6 +39,7 @@ function initMap(): void {
   const autocomplete = new google.maps.places.Autocomplete(input, options);
 
   // Set initial restriction to the greater list of countries.
+
   autocomplete.setComponentRestrictions({
     country: ["us", "pr", "vi", "gu", "mp"],
   });
@@ -127,4 +134,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

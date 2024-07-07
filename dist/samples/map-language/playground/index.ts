@@ -1,3 +1,9 @@
+/**
+ * @license
+ * Copyright 2019 Google LLC. All Rights Reserved.
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 // This example displays a map with the language and region set
 // to Japan. These settings are specified in the HTML script element
 // when loading the Google Maps JavaScript API.
@@ -19,4 +25,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};

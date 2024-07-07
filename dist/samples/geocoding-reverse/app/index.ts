@@ -6,6 +6,7 @@
 
 // @ts-nocheck TODO remove when fixed
 
+
 function initMap(): void {
   const map = new google.maps.Map(
     document.getElementById("map") as HTMLElement,
@@ -63,4 +64,5 @@ declare global {
   }
 }
 window.initMap = initMap;
+
 export {};
