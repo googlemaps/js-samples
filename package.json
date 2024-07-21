@@ -46,7 +46,7 @@
     "@11ty/eleventy": "^2.0.1",
     "@googlemaps/three": "^4.0.13",
     "@playwright/test": "^1.44.0",
-    "@types/geojson": "^7946.0.14",
+    "@types/geojson": "^7946.0.13",
     "@types/google.maps": "^3.53.5",
     "@types/google.visualization": "0.0.73",
     "@types/jest": "^29.5.6",
@@ -77,7 +77,7 @@
     "prettier": "^3.0.1",
     "sass": "^1.69.7",
     "tailwindcss": "^3.3.3",
-    "typescript": "^5.5.3",
+    "typescript": "^5.4.5",
     "vite": "^5.2.13",
     "vite-plugin-singlefile": "^0.13.5",
     "yaml": "^2.4.3"
