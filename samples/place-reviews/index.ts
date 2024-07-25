@@ -26,7 +26,7 @@ async function initMap() {
     // [START maps_place_reviews_get_first]
     // Use a place ID to create a new Place instance.
     const place = new Place({
-        id: 'ChIJB9a4Ifl744kRlpz0BQJzGQ8', // Crazy Good Kitchen, Boston, MA
+        id: 'ChIJpyiwa4Zw44kRBQSGWKv4wgA', // Faneuil Hall Marketplace, Boston, MA
     });
 
     // Call fetchFields, passing 'reviews' and other needed fields.
