@@ -1,6 +1,6 @@
 {
     "title": "Place Reviews",
-    "version": "beta",
+    "version": "weekly",
     "dynamic_import": "true",
     "tag": "place_reviews",
     "name": "place-reviews",
