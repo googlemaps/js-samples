@@ -98,7 +98,7 @@ function initMap() {
                 break;
         }
 
-        showSelectedPolygon(place.place_id);
+        showSelectedPolygon(place.place_id, 1);
 
     });
 
@@ -297,7 +297,7 @@ function revertStyles() {
 function handlePlaceClick(event) {
     let clickedPlaceId = event.features[0].placeId;
     if (!clickedPlaceId) return;
-    showSelectedPolygon(clickedPlaceId);
+    showSelectedPolygon(clickedPlaceId, 0);
 }
 
 // Get the place ID for the selected country, then call showSelectedPolygon().
@@ -315,13 +315,13 @@ function showSelectedCountry(countryName) {
             status === google.maps.places.PlacesServiceStatus.OK &&
             place
         ) {
-            showSelectedPolygon(place[0].place_id);
+            showSelectedPolygon(place[0].place_id, 1);
         }
     });
 }
 
 // Event handler for when a polygon is selected.
-function showSelectedPolygon(placeid) {
+function showSelectedPolygon(placeid, requestType /** 0=click, 1=autocomplete */) {
     selectedPlaceId = placeid;
     contentDiv.innerHTML = ''; // Clear the info display.
 
@@ -351,11 +351,18 @@ function showSelectedPolygon(placeid) {
             contentDiv.appendChild(document.createElement('hr'));
 
             const types = place.types as string[];
-
-            // Create HTML for place information.
+            // Create HTML for place information (autocomplete requests skip the feature type).
+            if (requestType == 0) {
+            // The polygon was selected via a click.
             contentDiv.innerHTML = '<hr><span id="place-info"><b>' + place.formatted_address +
                 '</b><br/> Place ID: <code>' + placeid + '</code>' +
                 '<br/> Feature type: <code>' + types[0] + '</code></span><br/>';
+            } else {
+            // The polygon was selected via autocomplete.
+            contentDiv.innerHTML = '<hr><span id="place-info"><b>' + place.formatted_address +
+                '</b><br/> Place ID: <code>' + placeid + '</code><br/>' +
+                'Click a boundary to see the feature type.';
+            };
         }
     });
 
@@ -363,7 +370,7 @@ function showSelectedPolygon(placeid) {
     applyStyle(placeid);
 
 }
-/** GENERATED FILE, DO NOT EDIT */
+/** GENERATED CONTENT, DO NOT EDIT BELOW THIS LINE */
 
 const countries = [
     {
