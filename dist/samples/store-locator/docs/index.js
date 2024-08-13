@@ -107,9 +107,7 @@ function renderCards(stores) {
   </div>
 <div class="mdc-card__actions">
   <a class="mdc-button mdc-card__action mdc-card__action--button"
-    target="_blank" href="https://maps.google.com?q=${
-      address ? address : name
-    }">
+    target="_blank" href="https://maps.google.com?q=${address ? address : name}">
     <div class="mdc-button__ripple"></div>
     <span class="mdc-button__label">Directions</span>
   </a>

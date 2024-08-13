@@ -20,9 +20,8 @@ async function initMap() {
 
 async function nearbySearch() {
   //@ts-ignore
-  const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary(
-    "places",
-  );
+  const { Place, SearchNearbyRankPreference } =
+    await google.maps.importLibrary("places");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   // [START maps_place_nearby_search_request]
   // Restrict within the map viewport.
