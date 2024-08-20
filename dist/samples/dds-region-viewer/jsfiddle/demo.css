@@ -70,3 +70,14 @@ body {
   font-size: 14px;
 }
 
+#color-controls {
+  display: flex;
+  align-items: center;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
