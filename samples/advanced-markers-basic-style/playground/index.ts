@@ -49,7 +49,7 @@ async function initMap() {
   });
   const markerViewBorder = new AdvancedMarkerElement({
     map,
-    position: { lat: 37.415, lng: -122.03 },
+    position: { lat: 37.415, lng: -122.035 },
     content: pinBorder.element,
   });
 
@@ -59,8 +59,18 @@ async function initMap() {
   });
   const markerViewGlyph = new AdvancedMarkerElement({
     map,
-    position: { lat: 37.415, lng: -122.02 },
+    position: { lat: 37.415, lng: -122.025 },
     content: pinGlyph.element,
+  });
+
+  const pinTextGlyph = new PinElement({
+    glyph: "T",
+    glyphColor: "white",
+  });
+  const markerViewGlyphText = new AdvancedMarkerElement({
+    map,
+    position: { lat: 37.415, lng: -122.015 },
+    content: pinTextGlyph.element,
   });
 
   // Hide the glyph.
@@ -69,7 +79,7 @@ async function initMap() {
   });
   const markerViewNoGlyph = new AdvancedMarkerElement({
     map,
-    position: { lat: 37.415, lng: -122.01 },
+    position: { lat: 37.415, lng: -122.005 },
     content: pinNoGlyph.element,
   });
 }
