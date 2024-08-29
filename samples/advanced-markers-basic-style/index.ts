@@ -60,7 +60,7 @@ async function initMap() {
     });
     const markerViewBorder = new AdvancedMarkerElement({
         map,
-        position: { lat: 37.415, lng: -122.03 },
+        position: { lat: 37.415, lng: -122.035 },
         content: pinBorder.element,
     });
     // [END maps_advanced_markers_basic_style_border]
@@ -72,10 +72,22 @@ async function initMap() {
     });
     const markerViewGlyph = new AdvancedMarkerElement({
         map,
-        position: { lat: 37.415, lng: -122.02 },
+        position: { lat: 37.415, lng: -122.025 },
         content: pinGlyph.element,
     });
     // [END maps_advanced_markers_basic_style_glyph]
+
+    // [START maps_advanced_markers_basic_style_text_glyph]
+    const pinTextGlyph = new PinElement({
+        glyph: 'T',
+        glyphColor: 'white',
+    });
+    const markerViewGlyphText = new AdvancedMarkerElement({
+        map,
+        position: { lat: 37.415, lng: -122.015 },
+        content: pinTextGlyph.element,
+    });
+    // [END maps_advanced_markers_basic_style_text_glyph]
 
     // [START maps_advanced_markers_basic_style_hide_glyph]
     // Hide the glyph.
@@ -84,7 +96,7 @@ async function initMap() {
     });
     const markerViewNoGlyph = new AdvancedMarkerElement({
         map,
-        position: { lat: 37.415, lng: -122.01 },
+        position: { lat: 37.415, lng: -122.005 },
         content: pinNoGlyph.element,
     });
     // [END maps_advanced_markers_basic_style_hide_glyph]
