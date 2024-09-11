@@ -19,6 +19,7 @@ async function initMap() {
       zoom: 17,
       heading: 280,
       tilt: 67.5,
+      //@ts-ignore
       renderingType: RenderingType.VECTOR,
     }
   );
