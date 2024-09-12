@@ -1,4 +1,7 @@
-require("dotenv").config();
+//require("dotenv").config();
+
+import { dotenv } from "dotenv";
+dotenv.config();
 
 import { typescript } from "./src/engines/typescript/sample";
 import { typescriptJSX } from "./src/engines/typescript/sample-jsx";
