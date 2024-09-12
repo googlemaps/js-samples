@@ -7,7 +7,6 @@
 // [START maps_webgl_tilt_rotation]
 async function initMap() {
   const { LatLng } = await google.maps.importLibrary("core") as google.maps.CoreLibrary;
-  //@ts-ignore
   const { Map, RenderingType } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
 
   const center = new LatLng(37.790211, -122.389607); // Downtown San Francisco, CA
@@ -19,7 +18,6 @@ async function initMap() {
       zoom: 17,
       heading: 280,
       tilt: 67.5,
-      //@ts-ignore
       renderingType: RenderingType.VECTOR,
     }
   );
