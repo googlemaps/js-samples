@@ -24,6 +24,7 @@ async function initMap(): Promise<void> {
       zoom: 4,
       center: position,
       mapId: 'DEMO_MAP_ID',
+      //@ts-ignore
       renderingType: RenderingType.VECTOR,
     }
   );
