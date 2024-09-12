@@ -55,9 +55,9 @@ async function makeAcRequest(input) {
         // Create a link for the place, add an event handler to fetch the place.
         const a = document.createElement('a');
         a.addEventListener('click', () => {
-            onPlaceSelected(placePrediction.toPlace());
+            onPlaceSelected(placePrediction!.toPlace());
         });
-        a.innerText = placePrediction.text.toString();
+        a.innerText = placePrediction!.text.toString();
 
         // Create a new list element.
         const li = document.createElement('li');
