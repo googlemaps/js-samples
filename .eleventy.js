@@ -1,5 +1,3 @@
-//require("dotenv").config();
-
 import { dotenv } from "dotenv";
 dotenv.config();
 
@@ -17,20 +15,7 @@ import { path } from "path";
 import { vite } from "vite";
 import { chalk } from "chalk";
 import { prettier } from "prettier";
-//const typescript = require("./src/engines/typescript/sample");
-//const typescriptJSX = require("./src/engines/typescript/sample-jsx");
-//const sass = require("./src/engines/sass");
-//const stripRegionTags = require("./src/transforms/strip-region-tags");
-//const stripLicenseHeaders = require("./src/transforms/strip-license-headers");
-//const yourAPIKey = require("./src/transforms/your-api-key");
-//const format = require("./src/transforms/format");
-//const minify = require("./src/transforms/minify");
-//const skypack = require("./src/transforms/skypack");
-//const fs = require("fs");
-//const path = require("path");
-//const vite = require("vite");
-//const chalk = require("chalk");
-//const prettier = require("prettier");
+import { EventEmitter } from "events";
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./shared/**/*");
@@ -77,7 +62,8 @@ module.exports = function (eleventyConfig) {
       .map((d) => d.name);
 
     // remove warning https://stackoverflow.com/questions/8313628/node-js-request-how-to-emitter-setmaxlisteners
-    require("events").EventEmitter.defaultMaxListeners = samples.length * 2;
+    //require("events").EventEmitter.defaultMaxListeners = samples.length * 2;
+    EventEmitter.defaultMaxListeners = samples.length * 2;
 
     const inlinePlugin = {
       name: "vite:singlefile",
