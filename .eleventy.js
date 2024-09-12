@@ -1,19 +1,33 @@
 require("dotenv").config();
 
-const typescript = require("./src/engines/typescript/sample");
-const typescriptJSX = require("./src/engines/typescript/sample-jsx");
-const sass = require("./src/engines/sass");
-const stripRegionTags = require("./src/transforms/strip-region-tags");
-const stripLicenseHeaders = require("./src/transforms/strip-license-headers");
-const yourAPIKey = require("./src/transforms/your-api-key");
-const format = require("./src/transforms/format");
-const minify = require("./src/transforms/minify");
-const skypack = require("./src/transforms/skypack");
-const fs = require("fs");
-const path = require("path");
-const vite = require("vite");
-const chalk = require("chalk");
-const prettier = require("prettier");
+import { typescript } from "./src/engines/typescript/sample";
+import { typescriptJSX } from "./src/engines/typescript/sample-jsx";
+import { sass } from "./src/engines/sass";
+import { stripRegionTags } from "./src/transforms/strip-region-tags";
+import { stripLicenseHeaders } from "./src/transforms/strip-license-headers";
+import { yourAPIKey } from "./src/transforms/your-api-key";
+import { format } from "./src/transforms/format";
+import { minify } from "./src/transforms/minify";
+import { skypack } from "./src/transforms/minify";
+import { fs } from "fs";
+import { path } from "path";
+import { vite } from "vite";
+import { chalk } from "chalk";
+import { prettier } from "prettier";
+//const typescript = require("./src/engines/typescript/sample");
+//const typescriptJSX = require("./src/engines/typescript/sample-jsx");
+//const sass = require("./src/engines/sass");
+//const stripRegionTags = require("./src/transforms/strip-region-tags");
+//const stripLicenseHeaders = require("./src/transforms/strip-license-headers");
+//const yourAPIKey = require("./src/transforms/your-api-key");
+//const format = require("./src/transforms/format");
+//const minify = require("./src/transforms/minify");
+//const skypack = require("./src/transforms/skypack");
+//const fs = require("fs");
+//const path = require("path");
+//const vite = require("vite");
+//const chalk = require("chalk");
+//const prettier = require("prettier");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./shared/**/*");
