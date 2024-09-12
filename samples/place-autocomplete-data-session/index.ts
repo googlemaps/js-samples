@@ -51,7 +51,7 @@ async function makeAcRequest(input) {
     results.replaceChildren();
 
     for (const suggestion of suggestions) {
-        const placePrediction = suggestion.placePrediction;
+        const placePrediction = suggestion!.placePrediction;
 
         // Create a link for the place, add an event handler to fetch the place.
         const a = document.createElement('a');
