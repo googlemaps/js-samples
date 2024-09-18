@@ -43,6 +43,7 @@
             </option>
           </select>
         </div>
+        <!-- Autocomplete control -->
         <div id="ac-input">
           <input
             id="pac-input"
@@ -51,22 +52,29 @@
             placeholder="Enter a location name"
           />
         </div>
+        <div id="filter-checkbox">
+          <label for="pac-filter-option"
+            ><input id="pac-filter-option" type="checkbox" /> Restrict search to
+            selected feature type</label
+          >
+        </div>
         <!-- Color controls -->
         <div id="color-controls" class="pac-controls">
-          <label for="head">Fill:</label>
-          <input
-            type="color"
-            id="fill-color-picker"
-            name="head"
-            value="#810FCB"
-          />
-          <label for="body">Stroke:</label>
-          <input
-            type="color"
-            id="stroke-color-picker"
-            name="body"
-            value="#810FCB"
-          />
+          <label for="head"
+            >Fill:&nbsp;<input
+              type="color"
+              id="fill-color-picker"
+              name="head"
+              value="#810FCB"
+          /></label>
+          &nbsp;&nbsp;
+          <label for="body"
+            >Stroke:&nbsp;<input
+              type="color"
+              id="stroke-color-picker"
+              name="body"
+              value="#810FCB"
+          /></label>
         </div>
         <!-- Place details, photo, etc. -->
         <div id="pac-content"></div>

@@ -15,6 +15,7 @@ let map: google.maps.Map;
 let countryMenu: HTMLSelectElement;
 let featureMenu: HTMLSelectElement;
 let searchInput: HTMLInputElement;
+let searchInputOption: HTMLInputElement;
 let fillColorPicker: HTMLInputElement;
 let strokeColorPicker: HTMLInputElement;
 let contentDiv: HTMLElement;
@@ -45,6 +46,7 @@ function initMap() {
     const card = document.getElementById('pac-card') as HTMLElement;
     contentDiv = document.getElementById('pac-content') as HTMLElement;
     searchInput = document.getElementById('pac-input') as HTMLInputElement;
+    searchInputOption = document.getElementById('pac-filter-option') as HTMLInputElement;
     countryMenu = document.getElementById('country-select') as HTMLSelectElement;
     featureMenu = document.getElementById('feature-type-select') as HTMLSelectElement;
     fillColorPicker = document.getElementById('fill-color-picker') as HTMLInputElement;
@@ -69,6 +71,18 @@ function initMap() {
 
     autoComplete = new google.maps.places.Autocomplete(searchInput, autocompleteOptions);
     placesService = new google.maps.places.PlacesService(map);
+
+    searchInputOption.addEventListener('change', () => {
+        if (searchInputOption.checked) {
+            // Do not show school_district since AC cannot use it for filtering.
+            featureMenu.item(5)!.disabled = true;
+            setFeatureType();
+        } else {
+            // Show school districts.
+            featureMenu.item(5)!.disabled = false;
+            setFeatureType();
+        }
+    });
 
     autoComplete.addListener('place_changed', () => {
         const place = autoComplete.getPlace() as google.maps.places.PlaceResult;
@@ -98,9 +112,10 @@ function initMap() {
                 break;
         }
 
-        showSelectedPolygon(place.place_id);
+        showSelectedPolygon(place.place_id, 1);
 
     });
+
 
     // Add all the feature layers.
     //@ts-ignore
@@ -133,7 +148,7 @@ function initMap() {
     // Set up country and feature menus.
     buildMenu();
     onCountrySelected();
-    featureMenu.selectedIndex = 1;
+    featureMenu.selectedIndex = 0; // Set to COUNTRY.
 }
 
 // Restyle and make a request when the feature type is changed.
@@ -148,6 +163,7 @@ function featureTypeChanged() {
     });
 
     revertStyles();
+    setFeatureType();
     selectedPlaceId = '';
     contentDiv.innerHTML = '';
 
@@ -155,24 +171,41 @@ function featureTypeChanged() {
     switch (featureMenu.value) {
         case 'country':
             countryLayer.style = styleStrokeOnly;
+            searchInputOption.disabled = false;
             break;
         case 'administrative_area_level_1':
             admin1Layer.style = styleStrokeOnly;
+            searchInputOption.disabled = false;
             break;
         case 'administrative_area_level_2':
             admin2Layer.style = styleStrokeOnly;
+            searchInputOption.disabled = false;
             break;
         case 'locality':
             localityLayer.style = styleStrokeOnly;
+            searchInputOption.disabled = false;
             break;
         case 'postal_code':
             postalCodeLayer.style = styleStrokeOnly;
+            searchInputOption.disabled = false;
             break;
         case 'school_district':
             schoolDistrictLayer.style = styleStrokeOnly;
+            searchInputOption.disabled = true;
             break;
         default:
             break;
+    }
+}
+
+// Toggle autocomplete types based on restrict search checkbox.
+function setFeatureType() {
+    if (searchInputOption.checked) {
+        // Set autocomplete to the selected type.
+        autoComplete.setTypes([featureMenu.value]);
+    } else {
+        // Set autocomplete to return all feature types.
+        autoComplete.setTypes(['(regions)']);
     }
 }
 
@@ -216,21 +249,27 @@ function applyStyle(placeid?) {
     switch (featureMenu.value) {
         case 'country':
             countryLayer.style = featureStyle;
+            searchInputOption.disabled = false;
             break;
         case 'administrative_area_level_1':
             admin1Layer.style = featureStyle;
+            searchInputOption.disabled = false;
             break;
         case 'administrative_area_level_2':
             admin2Layer.style = featureStyle;
+            searchInputOption.disabled = false;
             break;
         case 'locality':
             localityLayer.style = featureStyle;
+            searchInputOption.disabled = false;
             break;
         case 'postal_code':
             postalCodeLayer.style = featureStyle;
+            searchInputOption.disabled = false;
             break;
         case 'school_district':
             schoolDistrictLayer.style = featureStyle;
+            searchInputOption.disabled = true;
             break;
         default:
             break;
@@ -255,21 +294,7 @@ function buildMenu() {
 function onCountrySelected() {
     // Get the selected value.
     let selected = countryMenu.value;
-
-    // Return the data for the selected country.
-    const selectedCountry = countries.find((country) => {
-        return country.code === selected;
-    });
-
-    // Create a map for our values.
-    let featureAvailabilityMap = new Map([
-        ['country', selectedCountry?.feature.country],
-        ['administrative_area_level_1', selectedCountry?.feature.administrative_area_level_1],
-        ['administrative_area_level_2', selectedCountry?.feature.administrative_area_level_2],
-        ['postal_code', selectedCountry?.feature.postal_code],
-        ['locality', selectedCountry?.feature.locality],
-        ['school_district', selectedCountry?.feature.school_district],
-    ]);
+    let featureAvailabilityMap = getFeatureAvailability(selected);
 
     // Set the feature list selection to 'country'.
     featureMenu.namedItem('country')!.selected = true;
@@ -286,6 +311,26 @@ function onCountrySelected() {
     showSelectedCountry(countryMenu.options[countryMenu.selectedIndex].text);
 }
 
+// Return a map of feature availability for a country.
+function getFeatureAvailability(countryName) {
+    // Return the data for the selected country.
+    const selectedCountry = countries.find((country) => {
+        return country.code === countryName;
+    });
+
+    // Create a map for our values.
+    let featureAvailabilityMap = new Map([
+        ['country', selectedCountry?.feature.country],
+        ['administrative_area_level_1', selectedCountry?.feature.administrative_area_level_1],
+        ['administrative_area_level_2', selectedCountry?.feature.administrative_area_level_2],
+        ['postal_code', selectedCountry?.feature.postal_code],
+        ['locality', selectedCountry?.feature.locality],
+        ['school_district', selectedCountry?.feature.school_district],
+    ]);
+
+    return featureAvailabilityMap;
+}
+
 // Restyle all feature layers to be invisible.
 function revertStyles() {
     for (const layer of allLayers) {
@@ -297,7 +342,7 @@ function revertStyles() {
 function handlePlaceClick(event) {
     let clickedPlaceId = event.features[0].placeId;
     if (!clickedPlaceId) return;
-    showSelectedPolygon(clickedPlaceId);
+    showSelectedPolygon(clickedPlaceId, 0);
 }
 
 // Get the place ID for the selected country, then call showSelectedPolygon().
@@ -315,13 +360,14 @@ function showSelectedCountry(countryName) {
             status === google.maps.places.PlacesServiceStatus.OK &&
             place
         ) {
-            showSelectedPolygon(place[0].place_id);
+            showSelectedPolygon(place[0].place_id, 0);
         }
     });
 }
 
 // Event handler for when a polygon is selected.
-function showSelectedPolygon(placeid) {
+// mode 0 = click, mode 1 = autocomplete.
+function showSelectedPolygon(placeid, mode) {
     selectedPlaceId = placeid;
     contentDiv.innerHTML = ''; // Clear the info display.
 
@@ -353,17 +399,23 @@ function showSelectedPolygon(placeid) {
             const types = place.types as string[];
 
             // Create HTML for place information.
-            contentDiv.innerHTML = '<hr><span id="place-info"><b>' + place.formatted_address +
-                '</b><br/> Place ID: <code>' + placeid + '</code>' +
-                '<br/> Feature type: <code>' + types[0] + '</code></span><br/>';
+            // Show information if boundary was clicked (mode 0).
+            if (mode == 0){
+                contentDiv.innerHTML = `<hr><span id="place-info"><b>${place.formatted_address}
+                    </b><br/> Place ID: <code>${placeid}</code>
+                    <br/> Feature type: <code>${types[0]}</code></span><br/>`;
+            } else {
+                // Display no information if autocomplete was used (mode 1).
+                contentDiv.innerHTML = `<hr><span id="place-info">Click a boundary to see its place ID and feature type.</span>`
+            };
         }
     });
 
     // Call the global styling function.
     applyStyle(placeid);
-
 }
-/** GENERATED FILE, DO NOT EDIT */
+
+/** GENERATED CONTENT, DO NOT EDIT BELOW THIS LINE */
 
 const countries = [
     {

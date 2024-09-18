@@ -3,9 +3,9 @@
  * Copyright 2019 Google LLC. All Rights Reserved.
  * SPDX-License-Identifier: Apache-2.0
  */
+// [START maps_marker_clustering]
 import { MarkerClusterer } from "@googlemaps/markerclusterer";
 
-// [START maps_marker_clustering]
 async function initMap() {
   // Request needed libraries.
   const { Map, InfoWindow } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
