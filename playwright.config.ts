@@ -1,4 +1,4 @@
-import { PlaywrightTestConfig, devices } from "@playwright/test";
+import type { PlaywrightTestConfig, devices } from "@playwright/test";
 import { test, expect, Expect } from "@playwright/test";
 import fs from "fs";
 import path from "path";
@@ -16,22 +16,22 @@ const config: PlaywrightTestConfig = {
       height: 1200,
     },
     baseURL: "http://localhost:8080/",
-    // headless: process.env.CI ? true : false,
-    // launchOptions: {
-    //   slowMo: process.env.CI ? undefined : 100,
-    // },
+    headless: process.env.CI ? true : false,
+    launchOptions: {
+      slowMo: process.env.CI ? undefined : 100,
+    },
   },
   webServer: {
     command: "npm run serve",
     port: 8080,
   },
   updateSnapshots: "none",
-  projects: [
+  /* projects: [
     {
       name: "chromium",
       use: { ...devices["Desktop Chrome"] },
     },
-  ],
+  ], */
   reporter: process.env.CI ? "github" : "list",
 };
 
