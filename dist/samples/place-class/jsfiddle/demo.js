@@ -8,7 +8,6 @@ let centerCoordinates = { lat: 37.4161493, lng: -122.0812166 };
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
-  const { Place } = await google.maps.importLibrary("places");
 
   map = new Map(document.getElementById("map"), {
     center: centerCoordinates,
@@ -17,10 +16,11 @@ async function initMap() {
     mapId: "4504f8b37365c3d0",
     // [END_EXCLUDE]
   });
-  getPlaceDetails(Place);
+  getPlaceDetails();
 }
 
-async function getPlaceDetails(Place) {
+async function getPlaceDetails() {
+  const { Place } = await google.maps.importLibrary("places");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   // Use place ID to create a new Place instance.
   const place = new Place({
