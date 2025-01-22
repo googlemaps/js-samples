@@ -28,13 +28,13 @@
   "devDependencies": {
     "@types/google.maps": "^3.53.5",
     "typescript": "^5.5.3",
-    "vite": "^5.4.6"
+    "vite": "^5.4.14"
   },
   "private": true,
   "dependencies": {
     "@vis.gl/react-google-maps": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.3.1",
-    "vite": "^5.4.6"
+    "vite": "^5.4.14"
   }
 }
