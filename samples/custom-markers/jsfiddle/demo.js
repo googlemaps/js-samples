@@ -8,9 +8,8 @@ let map;
 async function initMap() {
   // Request needed libraries.
   const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary(
-    "marker",
-  );
+  const { AdvancedMarkerElement, PinElement } =
+    await google.maps.importLibrary("marker");
 
   map = new google.maps.Map(document.getElementById("map"), {
     center: new google.maps.LatLng(-33.91722, 151.23064),
