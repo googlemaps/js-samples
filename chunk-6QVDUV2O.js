@@ -1,0 +1,1 @@
+var h=Object.defineProperty;var i=Object.getOwnPropertyDescriptor;var j=(b,a,c)=>a in b?h(b,a,{enumerable:!0,configurable:!0,writable:!0,value:c}):b[a]=c;var k=(b,a,c,e)=>{for(var d=e>1?void 0:e?i(a,c):a,f=b.length-1,g;f>=0;f--)(g=b[f])&&(d=(e?g(a,c,d):g(d))||d);return e&&d&&h(a,c,d),d};var l=(b,a,c)=>j(b,typeof a!="symbol"?a+"":a,c);export{k as a,l as b};
