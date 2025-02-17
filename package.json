@@ -93,7 +93,7 @@
     "@googlemaps/typescript-guards": "^2.0.3",
     "@material/mwc-button": "^0.27.0",
     "@material/select": "^14.0.0",
-    "@tweenjs/tween.js": "^21.0.0",
+    "@tweenjs/tween.js": "^25.0.0",
     "@vis.gl/react-google-maps": "^1.0.0",
     "clsx": "^2.1.1",
     "fast-equals": "^3.0.3",
