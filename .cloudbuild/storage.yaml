@@ -24,26 +24,27 @@ steps:
     entrypoint: npm
   - name: 'google/cloud-sdk:slim'
     args:
-      - gsutil
-      - '-m'
+      - gcloud
+      - storage
       - cp
-      - '-r'
-      - '-Z'  # gzip
+      - '--recursive'
+      - '--gzip-local-all'  # gzip
       - dist/
       - 'gs://$_BUCKET/$REPO_NAME/$_PATH'
   # remove following after https://github.com/google/playground-elements/pull/279
   - name: 'google/cloud-sdk:slim'
     args:
-      - gsutil
-      - '-m'
-      - setmeta
-      - '-h'
-      - 'content-type:video/mp2t'
+      - gcloud
+      - storage
+      - objects
+      - update
+      - '--content-type=video/mp2t'
       - 'gs://$_BUCKET/$REPO_NAME/$_PATH/**/*.ts'
   - name: 'google/cloud-sdk:slim'
     args:
-      - gsutil
-      - cors 
-      - set
-      - 'cors.json'
+      - gcloud
+      - storage
+      - buckets
+      - update
+      - '--cors-file=cors.json'
       - 'gs://$_BUCKET'
